@@ -16,7 +16,7 @@ To use the EZLogger add-in, you need the following:
    To clone the repository to your local machine, use the following command:
 
    ```bash
-   git clone https://github.com/your-username/EZLogger.git
+   git clone https://github.com/lundeen-bryan/EZLogger_SLN.git
    ```
 
   > Alternatively you can download the zip file to your local machine.
