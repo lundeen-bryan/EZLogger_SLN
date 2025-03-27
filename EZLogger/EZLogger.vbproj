@@ -126,6 +126,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -223,9 +224,21 @@
     <Compile Include="ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportWizardTaskPaneContainer.Designer.vb">
+      <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWizardTaskPaneContainer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ribbon.vb">
+      <XmlRibbon>true</XmlRibbon>
+    </Compile>
     <Compile Include="ThisAddIn.vb">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="ReportWizardTaskPaneContainer.resx">
+      <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
+    </EmbeddedResource>
     <None Include="EZLogger_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.vb</DependentUpon>
@@ -263,6 +276,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wizard1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ribbon.xml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

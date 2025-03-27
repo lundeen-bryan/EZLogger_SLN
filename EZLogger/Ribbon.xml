@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+    <ribbon>
+        <tabs>
+            <tab idMso="TabAddIns" label="EZ Logger">
+                <group id="WizardGroup" label="Wizards">
+                    <button id="ReportWizardButton" onAction="ReportWizardButton_Click" label="Report Wizard" />
+                    <button id="CoverWizardButton" label="Cover Letter Wizard" />
+                </group>
+                <group id="DatabaseGroup" label="Databases">
+                    <menu id="DatabaseMenu" label="Select a Database" />
+                </group>
+                <group id="ToolsGroup" label="Tools">
+                    <button id="SaveButton" label="Save Files" />
+                    <button id="ConvertButton" label="Convert To PDF" />
+                    <button id="TypoButton" label="Report a Typo" />
+                </group>
+                <group id="SetupGroup" label="Setup Commands">
+                    <button id="HelpButton" label="Help" />
+                    <button id="SettingsButton" label="Settings" />
+                    <button id="AboutButton" label="About" />
+                    <button id="SyncButton" label="Sync With SharePoint" />
+                </group>
+            </tab>
+        </tabs>
+    </ribbon>
+</customUI>
