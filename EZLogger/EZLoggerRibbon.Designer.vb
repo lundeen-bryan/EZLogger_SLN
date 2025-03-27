@@ -43,19 +43,19 @@
     Private Sub InitializeComponent()
         Me.Tab1 = Me.Factory.CreateRibbonTab
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
-        Me.ReportWizardButton = Me.Factory.CreateRibbonButton
         Me.DatabaseGroup = Me.Factory.CreateRibbonGroup
         Me.ToolsGroup = Me.Factory.CreateRibbonGroup
         Me.SetupGroup = Me.Factory.CreateRibbonGroup
-        Me.SettingsButton = Me.Factory.CreateRibbonButton
-        Me.AboutButton = Me.Factory.CreateRibbonButton
+        Me.ReportWizardButton = Me.Factory.CreateRibbonButton
         Me.CoverWizardButton = Me.Factory.CreateRibbonButton
+        Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.SaveButton = Me.Factory.CreateRibbonButton
         Me.ConvertButton = Me.Factory.CreateRibbonButton
-        Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.TypoButton = Me.Factory.CreateRibbonButton
-        Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.HelpButton = Me.Factory.CreateRibbonButton
+        Me.SettingsButton = Me.Factory.CreateRibbonButton
+        Me.AboutButton = Me.Factory.CreateRibbonButton
+        Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.DatabaseGroup.SuspendLayout()
@@ -80,13 +80,6 @@
         Me.WizardGroup.Label = "Wizards"
         Me.WizardGroup.Name = "WizardGroup"
         '
-        'ReportWizardButton
-        '
-        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard1
-        Me.ReportWizardButton.Label = "Report Wizard"
-        Me.ReportWizardButton.Name = "ReportWizardButton"
-        Me.ReportWizardButton.ShowImage = True
-        '
         'DatabaseGroup
         '
         Me.DatabaseGroup.Items.Add(Me.DatabaseMenu)
@@ -110,60 +103,76 @@
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
-        'SettingsButton
+        'ReportWizardButton
         '
-        Me.SettingsButton.Label = "Settings"
-        Me.SettingsButton.Name = "SettingsButton"
-        Me.SettingsButton.ShowImage = True
-        '
-        'AboutButton
-        '
-        Me.AboutButton.Label = "About"
-        Me.AboutButton.Name = "AboutButton"
-        Me.AboutButton.ShowImage = True
+        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard1
+        Me.ReportWizardButton.Label = "Report Wizard"
+        Me.ReportWizardButton.Name = "ReportWizardButton"
+        Me.ReportWizardButton.ShowImage = True
         '
         'CoverWizardButton
         '
+        Me.CoverWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard2
         Me.CoverWizardButton.Label = "Cover Letter Wizard"
         Me.CoverWizardButton.Name = "CoverWizardButton"
         Me.CoverWizardButton.ShowImage = True
         '
+        'DatabaseMenu
+        '
+        Me.DatabaseMenu.Dynamic = True
+        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
+        Me.DatabaseMenu.Label = "Select a Database"
+        Me.DatabaseMenu.Name = "DatabaseMenu"
+        Me.DatabaseMenu.ShowImage = True
+        '
         'SaveButton
         '
+        Me.SaveButton.Image = Global.EZLogger.My.Resources.Resources.floppy
         Me.SaveButton.Label = "Save Files"
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.ShowImage = True
         '
         'ConvertButton
         '
+        Me.ConvertButton.Image = Global.EZLogger.My.Resources.Resources.pdf1
         Me.ConvertButton.Label = "Convert To PDF"
         Me.ConvertButton.Name = "ConvertButton"
         Me.ConvertButton.ShowImage = True
         '
-        'SyncButton
-        '
-        Me.SyncButton.Label = "Sync With SharePoint"
-        Me.SyncButton.Name = "SyncButton"
-        Me.SyncButton.ShowImage = True
-        '
         'TypoButton
         '
+        Me.TypoButton.Image = Global.EZLogger.My.Resources.Resources.typo
         Me.TypoButton.Label = "Report a Typo"
         Me.TypoButton.Name = "TypoButton"
         Me.TypoButton.ShowImage = True
         '
-        'DatabaseMenu
-        '
-        Me.DatabaseMenu.Dynamic = True
-        Me.DatabaseMenu.Label = "Select a Database"
-        Me.DatabaseMenu.Name = "DatabaseMenu"
-        Me.DatabaseMenu.ShowImage = True
-        '
         'HelpButton
         '
+        Me.HelpButton.Image = Global.EZLogger.My.Resources.Resources.help
         Me.HelpButton.Label = "Help"
         Me.HelpButton.Name = "HelpButton"
         Me.HelpButton.ShowImage = True
+        '
+        'SettingsButton
+        '
+        Me.SettingsButton.Image = Global.EZLogger.My.Resources.Resources.cog
+        Me.SettingsButton.Label = "Settings"
+        Me.SettingsButton.Name = "SettingsButton"
+        Me.SettingsButton.ShowImage = True
+        '
+        'AboutButton
+        '
+        Me.AboutButton.Image = Global.EZLogger.My.Resources.Resources.about
+        Me.AboutButton.Label = "About"
+        Me.AboutButton.Name = "AboutButton"
+        Me.AboutButton.ShowImage = True
+        '
+        'SyncButton
+        '
+        Me.SyncButton.Image = Global.EZLogger.My.Resources.Resources.sharepoint
+        Me.SyncButton.Label = "Sync With SharePoint"
+        Me.SyncButton.Name = "SyncButton"
+        Me.SyncButton.ShowImage = True
         '
         'EZLoggerRibbon
         '
