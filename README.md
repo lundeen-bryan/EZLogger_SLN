@@ -58,7 +58,7 @@ To fork or clone the repository:
    Once forked, you can clone the repository to your machine using the following command:
 
    ```bash
-   git clone https://github.com/your-username/EZLogger.git
+   git clone https://github.com/lundeen-bryan/EZLogger_SLN.git
    ```
 
 3. **Make Changes**:
