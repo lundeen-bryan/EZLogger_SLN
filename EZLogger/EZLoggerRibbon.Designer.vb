@@ -43,24 +43,36 @@
     Private Sub InitializeComponent()
         Me.Tab1 = Me.Factory.CreateRibbonTab
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
-        Me.DatabaseGroup = Me.Factory.CreateRibbonGroup
-        Me.ToolsGroup = Me.Factory.CreateRibbonGroup
-        Me.SetupGroup = Me.Factory.CreateRibbonGroup
         Me.ReportWizardButton = Me.Factory.CreateRibbonButton
         Me.CoverWizardButton = Me.Factory.CreateRibbonButton
+        Me.DatabaseGroup = Me.Factory.CreateRibbonGroup
         Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
+        Me.ToolsGroup = Me.Factory.CreateRibbonGroup
         Me.SaveButton = Me.Factory.CreateRibbonButton
         Me.ConvertButton = Me.Factory.CreateRibbonButton
         Me.TypoButton = Me.Factory.CreateRibbonButton
+        Me.SetupGroup = Me.Factory.CreateRibbonGroup
         Me.HelpButton = Me.Factory.CreateRibbonButton
         Me.SettingsButton = Me.Factory.CreateRibbonButton
         Me.AboutButton = Me.Factory.CreateRibbonButton
         Me.SyncButton = Me.Factory.CreateRibbonButton
+        Me.ReportWizardBox = Me.Factory.CreateRibbonBox
+        Me.CoverLetterWizardBox = Me.Factory.CreateRibbonBox
+        Me.SaveBtnBox = Me.Factory.CreateRibbonBox
+        Me.PdfBtnBox = Me.Factory.CreateRibbonBox
+        Me.TypoBtnBox = Me.Factory.CreateRibbonBox
+        Me.DbBtnBox = Me.Factory.CreateRibbonBox
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.DatabaseGroup.SuspendLayout()
         Me.ToolsGroup.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
+        Me.ReportWizardBox.SuspendLayout()
+        Me.CoverLetterWizardBox.SuspendLayout()
+        Me.SaveBtnBox.SuspendLayout()
+        Me.PdfBtnBox.SuspendLayout()
+        Me.TypoBtnBox.SuspendLayout()
+        Me.DbBtnBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -75,24 +87,73 @@
         '
         'WizardGroup
         '
-        Me.WizardGroup.Items.Add(Me.ReportWizardButton)
-        Me.WizardGroup.Items.Add(Me.CoverWizardButton)
+        Me.WizardGroup.Items.Add(Me.ReportWizardBox)
+        Me.WizardGroup.Items.Add(Me.CoverLetterWizardBox)
         Me.WizardGroup.Label = "Wizards"
         Me.WizardGroup.Name = "WizardGroup"
         '
+        'ReportWizardButton
+        '
+        Me.ReportWizardButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard1
+        Me.ReportWizardButton.Label = "Report Wizard"
+        Me.ReportWizardButton.Name = "ReportWizardButton"
+        Me.ReportWizardButton.ShowImage = True
+        '
+        'CoverWizardButton
+        '
+        Me.CoverWizardButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.CoverWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard2
+        Me.CoverWizardButton.Label = "Cover Letter Wizard"
+        Me.CoverWizardButton.Name = "CoverWizardButton"
+        Me.CoverWizardButton.ShowImage = True
+        '
         'DatabaseGroup
         '
-        Me.DatabaseGroup.Items.Add(Me.DatabaseMenu)
+        Me.DatabaseGroup.Items.Add(Me.DbBtnBox)
         Me.DatabaseGroup.Label = "Databases"
         Me.DatabaseGroup.Name = "DatabaseGroup"
         '
+        'DatabaseMenu
+        '
+        Me.DatabaseMenu.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.DatabaseMenu.Dynamic = True
+        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
+        Me.DatabaseMenu.Label = "Select a Database"
+        Me.DatabaseMenu.Name = "DatabaseMenu"
+        Me.DatabaseMenu.ShowImage = True
+        '
         'ToolsGroup
         '
-        Me.ToolsGroup.Items.Add(Me.SaveButton)
-        Me.ToolsGroup.Items.Add(Me.ConvertButton)
-        Me.ToolsGroup.Items.Add(Me.TypoButton)
+        Me.ToolsGroup.Items.Add(Me.SaveBtnBox)
+        Me.ToolsGroup.Items.Add(Me.PdfBtnBox)
+        Me.ToolsGroup.Items.Add(Me.TypoBtnBox)
         Me.ToolsGroup.Label = "Tools"
         Me.ToolsGroup.Name = "ToolsGroup"
+        '
+        'SaveButton
+        '
+        Me.SaveButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.SaveButton.Image = Global.EZLogger.My.Resources.Resources.floppy
+        Me.SaveButton.Label = "Save Files"
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.ShowImage = True
+        '
+        'ConvertButton
+        '
+        Me.ConvertButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.ConvertButton.Image = Global.EZLogger.My.Resources.Resources.pdf1
+        Me.ConvertButton.Label = "Convert To PDF"
+        Me.ConvertButton.Name = "ConvertButton"
+        Me.ConvertButton.ShowImage = True
+        '
+        'TypoButton
+        '
+        Me.TypoButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.TypoButton.Image = Global.EZLogger.My.Resources.Resources.typo
+        Me.TypoButton.Label = "Report a Typo"
+        Me.TypoButton.Name = "TypoButton"
+        Me.TypoButton.ShowImage = True
         '
         'SetupGroup
         '
@@ -102,49 +163,6 @@
         Me.SetupGroup.Items.Add(Me.SyncButton)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
-        '
-        'ReportWizardButton
-        '
-        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard1
-        Me.ReportWizardButton.Label = "Report Wizard"
-        Me.ReportWizardButton.Name = "ReportWizardButton"
-        Me.ReportWizardButton.ShowImage = True
-        '
-        'CoverWizardButton
-        '
-        Me.CoverWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard2
-        Me.CoverWizardButton.Label = "Cover Letter Wizard"
-        Me.CoverWizardButton.Name = "CoverWizardButton"
-        Me.CoverWizardButton.ShowImage = True
-        '
-        'DatabaseMenu
-        '
-        Me.DatabaseMenu.Dynamic = True
-        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
-        Me.DatabaseMenu.Label = "Select a Database"
-        Me.DatabaseMenu.Name = "DatabaseMenu"
-        Me.DatabaseMenu.ShowImage = True
-        '
-        'SaveButton
-        '
-        Me.SaveButton.Image = Global.EZLogger.My.Resources.Resources.floppy
-        Me.SaveButton.Label = "Save Files"
-        Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.ShowImage = True
-        '
-        'ConvertButton
-        '
-        Me.ConvertButton.Image = Global.EZLogger.My.Resources.Resources.pdf1
-        Me.ConvertButton.Label = "Convert To PDF"
-        Me.ConvertButton.Name = "ConvertButton"
-        Me.ConvertButton.ShowImage = True
-        '
-        'TypoButton
-        '
-        Me.TypoButton.Image = Global.EZLogger.My.Resources.Resources.typo
-        Me.TypoButton.Label = "Report a Typo"
-        Me.TypoButton.Name = "TypoButton"
-        Me.TypoButton.ShowImage = True
         '
         'HelpButton
         '
@@ -174,6 +192,38 @@
         Me.SyncButton.Name = "SyncButton"
         Me.SyncButton.ShowImage = True
         '
+        'ReportWizardBox
+        '
+        Me.ReportWizardBox.BoxStyle = Microsoft.Office.Tools.Ribbon.RibbonBoxStyle.Vertical
+        Me.ReportWizardBox.Items.Add(Me.ReportWizardButton)
+        Me.ReportWizardBox.Name = "ReportWizardBox"
+        '
+        'CoverLetterWizardBox
+        '
+        Me.CoverLetterWizardBox.BoxStyle = Microsoft.Office.Tools.Ribbon.RibbonBoxStyle.Vertical
+        Me.CoverLetterWizardBox.Items.Add(Me.CoverWizardButton)
+        Me.CoverLetterWizardBox.Name = "CoverLetterWizardBox"
+        '
+        'SaveBtnBox
+        '
+        Me.SaveBtnBox.Items.Add(Me.SaveButton)
+        Me.SaveBtnBox.Name = "SaveBtnBox"
+        '
+        'PdfBtnBox
+        '
+        Me.PdfBtnBox.Items.Add(Me.ConvertButton)
+        Me.PdfBtnBox.Name = "PdfBtnBox"
+        '
+        'TypoBtnBox
+        '
+        Me.TypoBtnBox.Items.Add(Me.TypoButton)
+        Me.TypoBtnBox.Name = "TypoBtnBox"
+        '
+        'DbBtnBox
+        '
+        Me.DbBtnBox.Items.Add(Me.DatabaseMenu)
+        Me.DbBtnBox.Name = "DbBtnBox"
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
@@ -189,6 +239,18 @@
         Me.ToolsGroup.PerformLayout()
         Me.SetupGroup.ResumeLayout(False)
         Me.SetupGroup.PerformLayout()
+        Me.ReportWizardBox.ResumeLayout(False)
+        Me.ReportWizardBox.PerformLayout()
+        Me.CoverLetterWizardBox.ResumeLayout(False)
+        Me.CoverLetterWizardBox.PerformLayout()
+        Me.SaveBtnBox.ResumeLayout(False)
+        Me.SaveBtnBox.PerformLayout()
+        Me.PdfBtnBox.ResumeLayout(False)
+        Me.PdfBtnBox.PerformLayout()
+        Me.TypoBtnBox.ResumeLayout(False)
+        Me.TypoBtnBox.PerformLayout()
+        Me.DbBtnBox.ResumeLayout(False)
+        Me.DbBtnBox.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -208,6 +270,12 @@
     Friend WithEvents TypoButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents DatabaseMenu As Microsoft.Office.Tools.Ribbon.RibbonMenu
     Friend WithEvents HelpButton As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents ReportWizardBox As Microsoft.Office.Tools.Ribbon.RibbonBox
+    Friend WithEvents CoverLetterWizardBox As Microsoft.Office.Tools.Ribbon.RibbonBox
+    Friend WithEvents DbBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
+    Friend WithEvents SaveBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
+    Friend WithEvents PdfBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
+    Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
 End Class
 
 Partial Class ThisRibbonCollection
