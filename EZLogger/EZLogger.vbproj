@@ -215,6 +215,15 @@
   -->
   <ItemGroup>
     <AppDesigner Include="My Project\" />
+    <Compile Include="CoverPageWizardPane.xaml.vb">
+      <DependentUpon>CoverPageWizardPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoverPageWizardPaneContainer.Designer.vb">
+      <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CoverPageWizardPaneContainer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="EZLoggerRibbon.Designer.vb">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </Compile>
@@ -236,6 +245,9 @@
     <Compile Include="ThisAddIn.vb">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="CoverPageWizardPaneContainer.resx">
+      <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +284,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CoverPageWizardPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReportWizardPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

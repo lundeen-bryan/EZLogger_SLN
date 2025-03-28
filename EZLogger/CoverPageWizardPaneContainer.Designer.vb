@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ReportWizardTaskPaneContainer
+Partial Class CoverPageWizardPaneContainer
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -23,8 +23,8 @@ Partial Class ReportWizardTaskPaneContainer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.ReportWizardPanel1 = New EZLogger.ReportWizardPanel()
-        Me.LabelReportWizardHere = New System.Windows.Forms.Label()
+        Me.CoverPageWizardPane1 = New EZLogger.CoverPageWizardPane()
+        Me.LabelCoverPage = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -35,30 +35,30 @@ Partial Class ReportWizardTaskPaneContainer
         Me.ElementHost1.Size = New System.Drawing.Size(150, 150)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
-        Me.ElementHost1.Child = Me.ReportWizardPanel1
+        Me.ElementHost1.Child = Me.CoverPageWizardPane1
         '
-        'LabelReportWizardHere
+        'LabelCoverPage
         '
-        Me.LabelReportWizardHere.AutoSize = True
-        Me.LabelReportWizardHere.Location = New System.Drawing.Point(26, 55)
-        Me.LabelReportWizardHere.Name = "LabelReportWizardHere"
-        Me.LabelReportWizardHere.Size = New System.Drawing.Size(101, 13)
-        Me.LabelReportWizardHere.TabIndex = 1
-        Me.LabelReportWizardHere.Text = "Report Wizard Here"
+        Me.LabelCoverPage.AutoSize = True
+        Me.LabelCoverPage.Location = New System.Drawing.Point(13, 53)
+        Me.LabelCoverPage.Name = "LabelCoverPage"
+        Me.LabelCoverPage.Size = New System.Drawing.Size(125, 13)
+        Me.LabelCoverPage.TabIndex = 1
+        Me.LabelCoverPage.Text = "Cover Page Wizard Here"
         '
-        'ReportWizardTaskPaneContainer
+        'CoverPageWizardPaneContainer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.LabelReportWizardHere)
+        Me.Controls.Add(Me.LabelCoverPage)
         Me.Controls.Add(Me.ElementHost1)
-        Me.Name = "ReportWizardTaskPaneContainer"
+        Me.Name = "CoverPageWizardPaneContainer"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend ReportWizardPanel1 As ReportWizardPanel
-    Friend WithEvents LabelReportWizardHere As Windows.Forms.Label
+    Friend WithEvents LabelCoverPage As Windows.Forms.Label
+    Friend CoverPageWizardPane1 As CoverPageWizardPane
 End Class
