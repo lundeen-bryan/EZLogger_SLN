@@ -41,6 +41,11 @@ Public Class EZLoggerRibbon
         Globals.ThisAddIn.ReportWizardTaskPane.Visible = Not Globals.ThisAddIn.ReportWizardTaskPane.Visible
     End Sub
 
+    ' This button toggles the Report Wizard Task Pane.
+    Private Sub CoverWizardButton_Click(sender As Object, e As RibbonControlEventArgs) Handles CoverWizardButton.Click
+        Globals.ThisAddIn.CoverWizardTaskPane.Visible = Not Globals.ThisAddIn.CoverWizardTaskPane.Visible
+    End Sub
+
     ' This event handler is called when any of the menu items in DatabaseMenu is clicked.
     Private Sub DatabaseMenuItem_Click(sender As Object, e As RibbonControlEventArgs)
         Dim button As Microsoft.Office.Tools.Ribbon.RibbonButton = CType(sender, Microsoft.Office.Tools.Ribbon.RibbonButton)

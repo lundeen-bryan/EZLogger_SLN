@@ -116,7 +116,7 @@
         '
         Me.CoverWizardButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
         Me.CoverWizardButton.Image = Global.EZLogger.My.Resources.Resources.Wizard2
-        Me.CoverWizardButton.Label = "Cover Letter Wizard"
+        Me.CoverWizardButton.Label = "Cover Page Wizard"
         Me.CoverWizardButton.Name = "CoverWizardButton"
         Me.CoverWizardButton.ShowImage = True
         '
