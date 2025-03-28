@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WPF VB.NET UserControl Property Template</title>
+  <style>
+    body {
+      font-family: Consolas, monospace;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    code, pre {
+      background-color: #eee;
+      padding: 10px;
+      display: block;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+    }
+    h1, h2 {
+      color: #005a9c;
+    }
+    ul {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>WPF VB.NET Property Exposure Template</h1>
+  <p>This guide shows how to expose a property from a WPF UserControl using a DependencyProperty in VB.NET.</p>
+
+  <h2>Template Code</h2>
+  <p>Place this inside your <strong>UserControl's code-behind (.xaml.vb)</strong> file:</p>
+  <pre><code>' 1. Register the DependencyProperty
+Public Shared ReadOnly MyPropertyProperty As DependencyProperty =
+    DependencyProperty.Register("MyProperty", GetType(String), GetType(MyControlClass), New PropertyMetadata(String.Empty))
+
+' 2. Create the CLR wrapper
+Public Property MyProperty As String
+    Get
+        Return CType(GetValue(MyPropertyProperty), String)
+    End Get
+    Set(value As String)
+        SetValue(MyPropertyProperty, value)
+    End Set
+End Property
+</code></pre>
+
+  <h2>How to Customize</h2>
+  <ul>
+    <li><strong>MyProperty</strong>: Replace with your desired property name (e.g., <code>LabelText</code>).</li>
+    <li><strong>String</strong>: Replace with the data type you want (e.g., <code>Boolean</code>, <code>Brush</code>).</li>
+    <li><strong>MyControlClass</strong>: Replace with the name of your UserControl class (e.g., <code>ReadOnlyField</code>).</li>
+  </ul>
+
+  <h2>Bind in XAML</h2>
+  <p>Inside your UserControl’s XAML file, bind to the property like this:</p>
+  <pre><code>&lt;Label Content="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" /&gt;</code></pre>
+
+  <h2>Set the Property When Using the Control</h2>
+  <p>In the parent control or window where you use your UserControl, set the property like this:</p>
+  <pre><code>&lt;local:MyControlClass MyProperty="Your Value Here" /&gt;</code></pre>
+
+  <hr>
+  <p><em>Tip: If you're using MVVM, you can bind the exposed property to your ViewModel for full data binding support.</em></p>
+</body>
+</html>
