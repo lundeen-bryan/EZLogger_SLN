@@ -343,8 +343,17 @@
   -->
   <ItemGroup>
     <AppDesigner Include="My Project\" />
+    <Compile Include="Controls\ButtonGrouped.xaml.vb">
+      <DependentUpon>ButtonGrouped.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CoverPageWizardPane.xaml.vb">
       <DependentUpon>CoverPageWizardPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReadOnlyField.xaml.vb">
+      <DependentUpon>ReadOnlyField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserDataEntryField.xaml.vb">
+      <DependentUpon>UserDataEntryField.xaml</DependentUpon>
     </Compile>
     <Compile Include="CoverPageWizardPaneContainer.Designer.vb">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
@@ -415,11 +424,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CoverPageWizardPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ReadOnlyField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ReportWizardPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserDataEntryField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
