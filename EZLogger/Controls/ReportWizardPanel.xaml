@@ -16,14 +16,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="White" Margin="0,0,-5,0">
-        <GroupBox Header="02. Patient Number (Lucida Fax 12pt)" Margin="10,100,0,0" VerticalAlignment="Top" FontFamily="Lucida Fax" Height="80" BorderBrush="Black" Foreground="#FF464646" HorizontalAlignment="Left" Width="335">
-            <TextBox HorizontalAlignment="Left" Height="40" Margin="15,0,0,0" TextWrapping="Wrap" Text="Enter Patient Number Here" Width="300" FontFamily="Consolas" FontSize="14" Padding="5,5,5,5" BorderBrush="#FF646464"/>
-        </GroupBox>
-        <GroupBox Header="03. Confirm Patient Match with Database" Margin="10,185,0,0" VerticalAlignment="Top" FontFamily="Lucida Fax" Height="80" BorderBrush="Black" Foreground="#FF464646" HorizontalAlignment="Left" Width="335">
-            <Button Content="View Database" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Height="30" Width="134" Padding="1,1,1,1" Background="#FFF0F0F0" Foreground="#FF464646" FontFamily="Candara" FontSize="14"/>
-        </GroupBox>
-        <GroupBox Header="01. Patient Name (Lucida Fax 12pt)" Margin="10,15,0,0" VerticalAlignment="Top" FontFamily="Lucida Fax" Height="80" BorderBrush="Black" Foreground="#FF464646" HorizontalAlignment="Left" Width="335">
-            <Label Content="Patient Name Here (Consolas 14pt)" HorizontalAlignment="Left" Margin="15,0,0,0" Height="40" Width="300" RenderTransformOrigin="0.495,-1.075" Background="#FFC1E0FF" FontFamily="Consolas" FontSize="14" BorderBrush="#FF646464" BorderThickness="1,1,1,1" Foreground="#FF464646"/>
-        </GroupBox>
+        <local:ReadOnlyField HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <local:UserDataEntryField HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top"/>
+        <local:ButtonGrouped HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
