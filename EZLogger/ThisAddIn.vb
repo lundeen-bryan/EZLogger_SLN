@@ -29,7 +29,7 @@ Public Class ThisAddIn
 
         ' Create an instance of your ReportWizardPanel (WPF control)
         Dim myReportWizardPanel As New ReportWizardPanel()
-        Dim myCoverPageWizardPanel As New ReportWizardPanel()
+        Dim myCoverPageWizardPanel As New CoverPageWizardPane()
 
         ' Set the ReportWizardPanel as the child of the ElementHost
         myTaskPaneContainer.ElementHost1.Child = myReportWizardPanel
