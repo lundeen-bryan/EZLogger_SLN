@@ -70,5 +70,15 @@ Public Class EZLoggerRibbon
         customMsgBox.Show()
         customMsgBox.TextBoxMessageToUser.Text = "This is a custom message."
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
+
+    End Sub
+
+    Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
+        Dim aboutForm As New AboutEZLoggerHost()
+        aboutForm.StartPosition = FormStartPosition.CenterScreen
+        aboutForm.Show() ' Use ShowDialog() for true modal behavior
+    End Sub
 End Class
 
