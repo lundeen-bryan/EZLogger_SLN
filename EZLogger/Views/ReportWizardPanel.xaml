@@ -16,8 +16,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="White" Margin="0,0,-5,0">
-        <local:ReadOnlyField HorizontalAlignment="Left" VerticalAlignment="Top" LabelText="Bryan Lundeen"/>
-        <local:UserDataEntryField HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top"/>
+        <local:ReadOnlyField HorizontalAlignment="Left" VerticalAlignment="Top" LabelText="Bryan Lundeen" HeaderText="01. Patient Name"/>
+        <local:UserDataEntryField HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" HeaderText="02. Patient Number"/>
         <local:ButtonGrouped HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

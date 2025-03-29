@@ -346,7 +346,7 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CoverPageWizardPane.xaml.vb">
+    <Compile Include="Views\CoverPageWizardPane.xaml.vb">
       <DependentUpon>CoverPageWizardPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ReadOnlyField.xaml.vb">
@@ -367,7 +367,7 @@
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ReportWizardPanel.xaml.vb">
+    <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReportWizardTaskPaneContainer.Designer.vb">
@@ -428,7 +428,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CoverPageWizardPane.xaml">
+    <Page Include="Views\CoverPageWizardPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,7 +436,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ReportWizardPanel.xaml">
+    <Page Include="Views\ReportWizardPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -491,9 +491,7 @@
   <ItemGroup>
     <None Include="Resources\typo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
