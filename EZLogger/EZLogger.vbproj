@@ -346,6 +346,9 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TaskStepControl.xaml.vb">
+      <DependentUpon>TaskStepControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CoverPageWizardPane.xaml.vb">
       <DependentUpon>CoverPageWizardPane.xaml</DependentUpon>
     </Compile>
@@ -425,6 +428,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TaskStepControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
