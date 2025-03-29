@@ -65,5 +65,10 @@ Public Class EZLoggerRibbon
         End Select
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
+        Dim customMsgBox As New CustomMsgBox()
+        customMsgBox.Show()
+        customMsgBox.TextBoxMessageToUser.Text = "This is a custom message."
+    End Sub
 End Class
 
