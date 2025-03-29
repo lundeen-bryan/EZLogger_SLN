@@ -33,6 +33,7 @@ Partial Class CustomMsgBox
         Me.TextBoxMessageToUser.AcceptsReturn = True
         Me.TextBoxMessageToUser.AcceptsTab = True
         Me.TextBoxMessageToUser.BackColor = System.Drawing.Color.Black
+        Me.TextBoxMessageToUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxMessageToUser.Font = New System.Drawing.Font("Lucida Console", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMessageToUser.ForeColor = System.Drawing.Color.Lime
         Me.TextBoxMessageToUser.Location = New System.Drawing.Point(13, 13)
@@ -78,6 +79,7 @@ Partial Class CustomMsgBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(378, 221)
         Me.Controls.Add(Me.ButtonOk)
         Me.Controls.Add(Me.ButtonNo)
