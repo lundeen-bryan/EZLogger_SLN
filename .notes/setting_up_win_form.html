@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    h1, h2, h3 { color: #333; }
+    pre { background-color: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
+    code { background-color: #f4f4f4; padding: 2px 4px; }
+    .step { margin-bottom: 20px; }
+    ul, ol { margin-left: 20px; }
+    a { text-decoration: none; color: #0066cc; }
+  </style>
+</head>
+<body>
+  <h1>Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in)</h1>
+  <p>This guide explains how to host a WPF <code>UserControl</code> inside a modal-like Windows Form window in a VB.NET VSTO Word Add-in.</p>
+
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#create-usercontrol">Create the WPF UserControl</a></li>
+    <li><a href="#create-form">Create the Windows Form with ElementHost</a></li>
+    <li><a href="#form-logic">Write Code to Load the WPF Control</a></li>
+    <li><a href="#ribbon-code">Add the Ribbon Button Logic</a></li>
+    <li><a href="#optional-names">Rename for Clarity (Optional)</a></li>
+    <li><a href="#testing">Test the Modal Window</a></li>
+  </ol>
+
+  <div class="step" id="create-usercontrol">
+    <h2>1. Create the WPF UserControl</h2>
+    <ol>
+      <li>Right-click the project and select <strong>Add &gt; New Item</strong>.</li>
+      <li>Choose <strong>WPF User Control</strong> and name it <code>UserControl1.xaml</code>.</li>
+      <li>Design the control, for example by adding a Label that says "About This Add-in".</li>
+    </ol>
+  </div>
+
+  <div class="step" id="create-form">
+    <h2>2. Create the Windows Form with ElementHost</h2>
+    <ol>
+      <li>Right-click the project and select <strong>Add &gt; Windows Form</strong>.</li>
+      <li>Name it <code>Form1.vb</code>.</li>
+      <li>In the Form designer, drag an <strong>ElementHost</strong> control from the Toolbox onto the form.</li>
+      <li>Set its <strong>Name</strong> to <code>ElementHost1</code> and <strong>Dock</strong> to <code>Fill</code>.</li>
+    </ol>
+  </div>
+
+  <div class="step" id="form-logic">
+    <h2>3. Write Code to Load the WPF Control</h2>
+    <p>Double-click on the Form to open the code view and add the following to <code>Form1_Load</code>:</p>
+    <pre><code>Imports System.Windows.Forms.Integration
+
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim myControl As New UserControl1()
+        ElementHost1.Dock = DockStyle.Fill
+        ElementHost1.Child = myControl
+    End Sub
+End Class</code></pre>
+  </div>
+
+  <div class="step" id="ribbon-code">
+    <h2>4. Add the Ribbon Button Logic</h2>
+    <p>Open your Ribbon class file (e.g., <code>EZLoggerRibbon.vb</code>) and add:</p>
+    <pre><code>Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
+    Dim aboutForm As New Form1()
+    aboutForm.StartPosition = FormStartPosition.CenterScreen
+    aboutForm.Show() ' Use ShowDialog() for true modal behavior
+End Sub</code></pre>
+    <p>If you want to block interaction with Word while the window is open, replace <code>Show()</code> with <code>ShowDialog()</code>.</p>
+  </div>
+
+  <div class="step" id="optional-names">
+    <h2>5. Rename for Clarity (Optional)</h2>
+    <p>You can rename these components to better reflect their purpose:</p>
+    <ul>
+      <li><strong>Form1</strong> → <code>AboutWindow</code></li>
+      <li><strong>UserControl1</strong> → <code>AboutControl</code></li>
+    </ul>
+    <p>Be sure to update all references accordingly in your code.</p>
+  </div>
+
+  <div class="step" id="testing">
+    <h2>6. Test the Modal Window</h2>
+    <ol>
+      <li>Press <strong>F5</strong> in Visual Studio to launch Word with your Add-in.</li>
+      <li>Click the Ribbon button (e.g., <strong>About</strong>).</li>
+      <li>The modal-like window should appear, centered, hosting your WPF control.</li>
+    </ol>
+  </div>
+
+  <h2>Tips</h2>
+  <ul>
+    <li>Ensure the <code>WindowsFormsIntegration</code> assembly is referenced in your project.</li>
+    <li>Use <code>ShowDialog()</code> if you want to disable Word interaction while the form is open.</li>
+    <li>Keep WPF logic inside the UserControl to keep the Form clean and reusable.</li>
+  </ul>
+</body>
+</html>

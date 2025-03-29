@@ -349,6 +349,12 @@
     <Compile Include="Controls\TaskStepControl.xaml.vb">
       <DependentUpon>TaskStepControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LegacyForms\AboutEZLoggerHost.Designer.vb">
+      <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\AboutEZLoggerHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LegacyForms\CustomMsgBox.Designer.vb">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </Compile>
@@ -392,8 +398,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <Compile Include="Views\AboutEZLogger.xaml.vb">
+      <DependentUpon>AboutEZLogger.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegacyForms\AboutEZLoggerHost.resx">
+      <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LegacyForms\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
@@ -461,6 +473,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\EzLoggerRD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutEZLogger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
