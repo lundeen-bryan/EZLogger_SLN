@@ -8,7 +8,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
-        <GroupBox Header="01. Patient Name (Lucida Fax 12pt)"
+        <GroupBox Header="{Binding HeaderText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                   Margin="10,15,0,0"
                   VerticalAlignment="Top"
                   FontFamily="Lucida Fax"
@@ -18,17 +18,17 @@
                   HorizontalAlignment="Left"
                   Width="335">
             <Label x:Name="InnerLabel"
-                   Content="Patient Name Here (Consolas 14pt)"
-                   HorizontalAlignment="Left"
-                   Margin="15,0,0,0"
+                   Content="{Binding LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center"
+                   Margin="15,0,15,0"
                    Height="40"
-                   Width="300"
                    RenderTransformOrigin="0.495,-1.075"
                    Background="#FFC1E0FF"
                    FontFamily="Consolas"
                    FontSize="14"
                    BorderBrush="#FF646464"
-                   BorderThickness="1,1,1,1"
+                   BorderThickness="1"
                    Foreground="#FF464646" />
         </GroupBox>
     </Grid>
