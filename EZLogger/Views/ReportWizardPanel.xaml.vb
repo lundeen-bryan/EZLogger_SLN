@@ -43,12 +43,16 @@ Partial Public Class ReportWizardPanel
                 Globals.ThisAddIn.DueDateFormPane.Visible = Not Globals.ThisAddIn.DueDateFormPane.Visible
             Case "_D"
                 ' This section is for looking up the patient in the TCAR Log
-                Dim tcarLogTodo As New CustomMsgBox
+                Dim tcarLogTodo As New CustomMsgBox()
                 tcarLogTodo.StartPosition = FormStartPosition.CenterScreen
                 tcarLogTodo.Show()
                 tcarLogTodo.TextBoxMessageToUser.Text = "TODO: code a database connection to the TCAR Log"
             Case "_E"
                 ' Custom logic for button E click
+                Dim ConrepTodo As New CustomMsgBox()
+                ConrepTodo.StartPosition = FormStartPosition.CenterScreen
+                ConrepTodo.Show()
+                ConrepTodo.TextBoxMessageToUser.Text = "TODO: code a connection to a database that shows who is the CONREP for the patient"
             Case "_F"
                 ' Custom logic for button F click
             Case "_G"

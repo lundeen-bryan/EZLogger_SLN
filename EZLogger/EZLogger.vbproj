@@ -346,6 +346,15 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OpinionControl.xaml.vb">
+      <DependentUpon>OpinionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\OpinionContainer.Designer.vb">
+      <DependentUpon>OpinionContainer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\OpinionContainer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\DueDateFormPane.xaml.vb">
       <DependentUpon>DueDateFormPane.xaml</DependentUpon>
     </Compile>
@@ -440,6 +449,9 @@
     <EmbeddedResource Include="LegacyForms\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LegacyForms\OpinionContainer.resx">
+      <DependentUpon>OpinionContainer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +494,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OpinionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
