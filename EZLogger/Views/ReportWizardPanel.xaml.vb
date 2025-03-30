@@ -40,9 +40,13 @@ Partial Public Class ReportWizardPanel
                 confirmMatch.StartPosition = FormStartPosition.CenterScreen
                 confirmMatch.Show()
             Case "_C"
-                ' Custom logic for button C click
+                Globals.ThisAddIn.DueDateFormPane.Visible = Not Globals.ThisAddIn.DueDateFormPane.Visible
             Case "_D"
-                ' Custom logic for button D click
+                ' This section is for looking up the patient in the TCAR Log
+                Dim tcarLogTodo As New CustomMsgBox
+                tcarLogTodo.StartPosition = FormStartPosition.CenterScreen
+                tcarLogTodo.Show()
+                tcarLogTodo.TextBoxMessageToUser.Text = "TODO: code a database connection to the TCAR Log"
             Case "_E"
                 ' Custom logic for button E click
             Case "_F"

@@ -23,6 +23,7 @@ Partial Class DueDatePaneContainer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
+        Me.DueDateFormPane = New EZLogger.DueDateFormPane()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -30,10 +31,10 @@ Partial Class DueDatePaneContainer
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(717, 815)
+        Me.ElementHost1.Size = New System.Drawing.Size(717, 906)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
-        Me.ElementHost1.Child = Nothing
+        Me.ElementHost1.Child = Me.DueDateFormPane
         '
         'DueDatePaneContainer
         '
@@ -41,10 +42,11 @@ Partial Class DueDatePaneContainer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ElementHost1)
         Me.Name = "DueDatePaneContainer"
-        Me.Size = New System.Drawing.Size(717, 815)
+        Me.Size = New System.Drawing.Size(717, 906)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
+    Friend DueDateFormPane As DueDateFormPane
 End Class

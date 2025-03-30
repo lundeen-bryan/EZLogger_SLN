@@ -346,8 +346,8 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DueDateFormControl.xaml.vb">
-      <DependentUpon>DueDateFormControl.xaml</DependentUpon>
+    <Compile Include="Views\DueDateFormPane.xaml.vb">
+      <DependentUpon>DueDateFormPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TaskStepControl.xaml.vb">
       <DependentUpon>TaskStepControl.xaml</DependentUpon>
@@ -485,7 +485,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\DueDateFormControl.xaml">
+    <Page Include="Views\DueDateFormPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
