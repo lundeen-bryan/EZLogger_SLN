@@ -66,7 +66,10 @@ Partial Public Class ReportWizardPanel
                 approvedForm.StartPosition = FormStartPosition.CenterScreen
                 approvedForm.Show()
             Case "_I"
-                ' Custom logic for button I click
+                ' Custom logic for button I click Rename and save file
+                Dim fileSaverForm As New FileSaverHost()
+                fileSaverForm.StartPosition = FormStartPosition.CenterScreen
+                fileSaverForm.Show()
             Case "_J"
                 ' Custom logic for button J click
             Case Else
