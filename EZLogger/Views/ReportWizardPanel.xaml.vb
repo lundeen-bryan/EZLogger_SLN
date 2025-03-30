@@ -54,14 +54,14 @@ Partial Public Class ReportWizardPanel
                 ConrepTodo.Show()
                 ConrepTodo.TextBoxMessageToUser.Text = "TODO: code a connection to a database that shows who is the CONREP for the patient"
             Case "_F"
-                ' Custom logic for button F click
+                ' Show the Choose report opinion task panel
+                Globals.ThisAddIn.OpinionControl.Visible = Not Globals.ThisAddIn.OpinionControl.Visible
             Case "_G"
                 ' Custom logic for button G click
             Case "_H"
                 Dim approvedForm As New ApprovedByHost()
                 approvedForm.StartPosition = FormStartPosition.CenterScreen
                 approvedForm.Show()
-                ' Custom logic for button H click
             Case "_I"
                 ' Custom logic for button I click
             Case "_J"

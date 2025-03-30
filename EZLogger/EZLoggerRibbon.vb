@@ -73,7 +73,7 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Globals.ThisAddIn.DueDateFormPane.Visible = Not Globals.ThisAddIn.DueDateFormPane.Visible
+        Globals.ThisAddIn.OpinionControl.Visible = Not Globals.ThisAddIn.OpinionControl.Visible
     End Sub
 
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
