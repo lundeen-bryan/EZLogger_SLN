@@ -31,9 +31,14 @@ Partial Public Class ReportWizardPanel
         ' Implement your custom logic here based on the ButtonContent
         Select Case taskControl.ButtonContent
             Case "_A"
-                ' Custom logic for button A click
+                Dim customMsgBox As New CustomMsgBox()
+                customMsgBox.StartPosition = FormStartPosition.CenterScreen
+                CustomMsgBox.Show()
+                CustomMsgBox.TextBoxMessageToUser.Text = "EZ Logger should search the footer to find the napa ID number and show it to the user for confirmation."
             Case "_B"
-                ' Custom logic for button B click
+                Dim confirmMatch As New ConfirmPatientMatch()
+                confirmMatch.StartPosition = FormStartPosition.CenterScreen
+                confirmMatch.Show()
             Case "_C"
                 ' Custom logic for button C click
             Case "_D"

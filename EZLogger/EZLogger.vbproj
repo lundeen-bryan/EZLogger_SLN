@@ -346,16 +346,31 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DueDateFormControl.xaml.vb">
+      <DependentUpon>DueDateFormControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TaskStepControl.xaml.vb">
       <DependentUpon>TaskStepControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ApprovedByControl.xaml.vb">
       <DependentUpon>ApprovedByControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DueDatePaneContainer.Designer.vb">
+      <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DueDatePaneContainer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="LegacyForms\AboutEZLoggerHost.Designer.vb">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </Compile>
     <Compile Include="LegacyForms\AboutEZLoggerHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LegacyForms\ConfirmPatientMatch.Designer.vb">
+      <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\ConfirmPatientMatch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LegacyForms\CustomMsgBox.Designer.vb">
@@ -413,8 +428,14 @@
     <EmbeddedResource Include="CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DueDatePaneContainer.resx">
+      <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LegacyForms\AboutEZLoggerHost.resx">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegacyForms\ConfirmPatientMatch.resx">
+      <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LegacyForms\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
@@ -461,6 +482,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DueDateFormControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
