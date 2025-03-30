@@ -73,9 +73,7 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Dim approvedForm As New ApprovedByHost()
-        approvedForm.StartPosition = FormStartPosition.CenterScreen
-        approvedForm.Show()
+        Globals.ThisAddIn.DueDateFormPane.Visible = Not Globals.ThisAddIn.DueDateFormPane.Visible
     End Sub
 
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
