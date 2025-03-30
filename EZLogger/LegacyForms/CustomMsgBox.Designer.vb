@@ -89,6 +89,7 @@ Partial Class CustomMsgBox
         Me.MinimizeBox = False
         Me.Name = "CustomMsgBox"
         Me.ShowIcon = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
