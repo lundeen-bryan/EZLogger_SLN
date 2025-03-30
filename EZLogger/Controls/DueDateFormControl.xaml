@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="DueDateFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EZLogger"
+             mc:Ignorable="d" Height="740" Width="610">
+    <Grid Background="White" Margin="0,0,-5,-60">
+        <Label Content="REPORT DATE CALCULATOR" HorizontalAlignment="Left" Margin="30,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.578" FontFamily="Candara" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
+        <Frame x:Name="DataEntryFrame" Content="Data Entry" HorizontalAlignment="Left" Height="315" Margin="10,90,0,0" VerticalAlignment="Top" Width="405" BorderBrush="DarkGray" Background="White" BorderThickness="1,1,1,1" NavigationUIVisibility="Hidden" FontFamily="Candara" FontSize="14" Padding="6,6,0,0"/>
+        <GroupBox x:Name="CommitDateGroup" HorizontalAlignment="Left" Height="75" Header="Commitment Date" Margin="24,120,0,6" VerticalAlignment="Top" Width="180" BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+            <DatePicker HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="140" BorderBrush="DarkGray" FontFamily="Lucida Console"/>
+        </GroupBox>
+        <GroupBox x:Name="CurrentDueDateGroup" HorizontalAlignment="Left" Height="80" Header="Current Due Date" Margin="24,196,0,0" VerticalAlignment="Top" Width="180" BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+            <DatePicker HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="145" FontFamily="Lucida Console"/>
+        </GroupBox>
+        <GroupBox x:Name="NextDueDateGroup" HorizontalAlignment="Left" Height="80" Header="Next Due Date" Margin="215,196,0,0" VerticalAlignment="Top" Width="180" BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+            <DatePicker HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="140" FontFamily="Lucida Console"/>
+        </GroupBox>
+        <GroupBox x:Name="CurrentReportDateGroup" HorizontalAlignment="Left" Height="80" Header="Current Report Date" Margin="24,276,0,0" VerticalAlignment="Top" Width="180" BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+            <DatePicker HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="145" VerticalAlignment="Top" FontFamily="Lucida Console"/>
+        </GroupBox>
+        <GroupBox x:Name="ReportTypeGroup" HorizontalAlignment="Left" Height="115" Header="Report Type" Margin="215,276,0,0" VerticalAlignment="Top" Width="180" BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+            <Button Content="Button" HorizontalAlignment="Left" Height="30" Margin="15,0,0,0" Width="105" VerticalAlignment="Bottom" Background="White"/>
+        </GroupBox>
+        <ComboBox HorizontalAlignment="Left" Height="30" Margin="230,300,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.467,1" FontFamily="Lucida Console" FontSize="14"/>
+        <Frame Content="Pre-Trial Based Due Dates" HorizontalAlignment="Left" Height="370" Margin="12,420,0,0" VerticalAlignment="Top" Width="335" NavigationUIVisibility="Hidden" Padding="6,6,6,6" BorderBrush="DarkGray" Background="#00000000" BorderThickness="1,1,1,1" FontFamily="Candara"/>
+        <Frame Content="Post-Trial Based Due Dates" HorizontalAlignment="Left" Height="295" Margin="355,420,0,0" VerticalAlignment="Top" Width="250" NavigationUIVisibility="Hidden" Padding="6,6,6,6" BorderBrush="DarkGray" Background="#00000000" BorderThickness="1,1,1,1" FontFamily="Candara"/>
+        <Frame Content="Current Cycle for Pre-Trial" HorizontalAlignment="Left" Height="330" Margin="20,450,0,0" VerticalAlignment="Top" Width="320" NavigationUIVisibility="Hidden" Padding="6,6,6,6" BorderBrush="DarkGray" Background="#00000000" BorderThickness="1,1,1,1" FontFamily="Candara"/>
+        <GroupBox HorizontalAlignment="Left" Height="70" Header="GroupBox" Margin="30,485,0,0" VerticalAlignment="Top" Width="205" BorderBrush="DarkGray">
+            <Label Content="01/15/2024" HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="180" Background="#FFC1E0FF" BorderBrush="Black" FontFamily="Lucida Console" Padding="12,12,12,12" FontSize="14"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="70" Header="GroupBox" Margin="30,560,0,0" VerticalAlignment="Top" Width="205" BorderBrush="DarkGray">
+            <Label Content="06/15/2024" HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="180" Background="#FFC1E0FF" BorderBrush="Black" FontFamily="Lucida Console" Padding="12,12,12,12" FontSize="14"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="70" Header="GroupBox" Margin="30,630,0,0" VerticalAlignment="Top" Width="205" BorderBrush="DarkGray">
+            <Label Content="01/15/2025" HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="180" Background="#FFC1E0FF" BorderBrush="Black" FontFamily="Lucida Console" Padding="12,12,12,12" FontSize="14"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="70" Header="GroupBox" Margin="30,700,0,0" VerticalAlignment="Top" Width="205" BorderBrush="DarkGray">
+            <Label Content="06/15/2025" HorizontalAlignment="Left" Height="35" Margin="6,6,6,6" Width="180" Background="#FFC1E0FF" BorderBrush="Black" FontFamily="Lucida Console" Padding="12,12,12,12" FontSize="14"/>
+        </GroupBox>
+        <RadioButton Content="_A" HorizontalAlignment="Left" Height="25" Margin="260,515,0,0" VerticalAlignment="Top" Width="55" BorderBrush="DarkGray" Cursor="Hand" FontFamily="Consolas" FontSize="20" FontWeight="Bold"/>
+        <RadioButton Content="_B" HorizontalAlignment="Left" Height="25" Margin="260,585,0,0" VerticalAlignment="Top" Width="55" BorderBrush="DarkGray" Cursor="Hand" FontFamily="Consolas" FontSize="20" FontWeight="Bold"/>
+        <RadioButton Content="_C" HorizontalAlignment="Left" Height="25" Margin="260,655,0,0" VerticalAlignment="Top" Width="55" BorderBrush="DarkGray" Cursor="Hand" FontFamily="Consolas" FontSize="20" FontWeight="Bold"/>
+        <RadioButton Content="_D" HorizontalAlignment="Left" Height="25" Margin="260,725,0,0" VerticalAlignment="Top" Width="55" BorderBrush="DarkGray" Cursor="Hand" FontFamily="Consolas" FontSize="20" FontWeight="Bold"/>
+
+    </Grid>
+</UserControl>
