@@ -17,10 +17,12 @@
                   HorizontalAlignment="Left"
                   Width="335">
             <StackPanel Margin="-5,-14,-7,-6" Orientation="Horizontal">
-                <Button Content="{Binding ButtonContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                <Button x:Name="TaskButton"
+                        Content="{Binding ButtonContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         Height="35"
                         Width="45"
-                        Margin="12,6,0,0"/>
+                        Margin="12,6,0,0"
+                        Click="Button_Click"/>
                 <CheckBox Content="{Binding CheckBoxContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
                           Height="25"
                           Width="256"

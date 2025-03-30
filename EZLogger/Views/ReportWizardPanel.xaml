@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
              Width="615"
-             Height="685">
+             Height="745">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -37,20 +37,64 @@
                                   Margin="10,10,10,0" />
         <TabControl Grid.Row="2"
                     Margin="0,10,0,0">
-            <TabItem Header="TabItem">
+            <TabItem Header="Tasks1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled"
                               Background="#FFE5E5E5">
                     <StackPanel Margin="10"
                                 Background="#FFE5E5E5">
-                        <local:TaskStepControl Margin="0,10,0,0" ButtonContent="_A" CheckBoxContent="1. Confirm patient number" />
-                        <local:TaskStepControl Margin="0,10,0,0" ButtonContent="_B" CheckBoxContent="2. Pull data from database" />
-                        <local:TaskStepControl Margin="0,10,0,10" ButtonContent="_C" CheckBoxContent="3. Select report type and dates" />
+                        <local:TaskStepControl x:Name="TaskStepControlA"
+                                               Margin="0,10,0,0"
+                                               ButtonContent="_A"
+                                               CheckBoxContent="1. Confirm patient number" />
+                        <local:TaskStepControl x:Name="TaskStepControlB"
+                                               Margin="0,10,0,0"
+                                               ButtonContent="_B"
+                                               CheckBoxContent="2. Pull data from database" />
+                        <local:TaskStepControl x:Name="TaskStepControlC"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_C"
+                                               CheckBoxContent="3. Select report type and dates" />
+                        <local:TaskStepControl x:Name="TaskStepControlD"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_D"
+                                               CheckBoxContent="4. Check TCAR log" />
+                        <local:TaskStepControl x:Name="TaskStepControlE"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_E"
+                                               CheckBoxContent="5. Check date of last HLV" />
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5" />
+            <TabItem Header="Tasks2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Background="#FFE5E5E5">
+                    <StackPanel Margin="10"
+                                Background="#FFE5E5E5">
+                        <local:TaskStepControl x:Name="TaskStepControlF"
+                                               Margin="0,10,0,0"
+                                               ButtonContent="_F"
+                                               CheckBoxContent="_6. Confirm report opinion" />
+                        <local:TaskStepControl x:Name="TaskStepControlG"
+                                               Margin="0,10,0,0"
+                                               ButtonContent="_G"
+                                               CheckBoxContent="7. Select report author" />
+                        <local:TaskStepControl x:Name="TaskStepControlH"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_H"
+                                               CheckBoxContent="8. Select who authorized approval"
+                                               Loaded="TaskStepControl_Loaded" />
+                        <local:TaskStepControl x:Name="TaskStepControlI"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_I"
+                                               CheckBoxContent="9. Rename and save file" />
+                        <local:TaskStepControl x:Name="TaskStepControlJ"
+                                               Margin="0,10,0,10"
+                                               ButtonContent="_J"
+                                               CheckBoxContent="10. Select cover pages to print" />
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

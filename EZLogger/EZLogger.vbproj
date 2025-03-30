@@ -349,6 +349,9 @@
     <Compile Include="Controls\TaskStepControl.xaml.vb">
       <DependentUpon>TaskStepControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ApprovedByControl.xaml.vb">
+      <DependentUpon>ApprovedByControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LegacyForms\AboutEZLoggerHost.Designer.vb">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </Compile>
@@ -382,6 +385,12 @@
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LegacyForms\ApprovedByHost.Designer.vb">
+      <DependentUpon>ApprovedByHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\ApprovedByHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
@@ -412,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegacyForms\ApprovedByHost.resx">
+      <DependentUpon>ApprovedByHost.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="EZLogger_TemporaryKey.pfx" />
@@ -453,6 +465,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TaskStepControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ApprovedByControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
