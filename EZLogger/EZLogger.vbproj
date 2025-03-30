@@ -346,13 +346,23 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LegacyForms\FileSaverHost.Designer.vb">
+      <DependentUpon>FileSaverHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyForms\FileSaverHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FileSaverControl.xaml.vb">
+      <DependentUpon>FileSaverControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LegacyForms\EvaluatorHost.Designer.vb">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\EvaluatorHost.vb" />
+    <Compile Include="LegacyForms\EvaluatorHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\EvaluatorControl.xaml.vb">
       <DependentUpon>EvaluatorControl.xaml</DependentUpon>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\OpinionControl.xaml.vb">
       <DependentUpon>OpinionControl.xaml</DependentUpon>
@@ -460,6 +470,9 @@
     <EmbeddedResource Include="LegacyForms\EvaluatorHost.resx">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LegacyForms\FileSaverHost.resx">
+      <DependentUpon>FileSaverHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OpinionContainer.resx">
       <DependentUpon>OpinionContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -505,6 +518,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileSaverControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -599,6 +616,11 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <Content Include="Views\Letter_A.png" />
+    <Content Include="Views\Letter_B.png" />
+    <Content Include="Views\number_1.png" />
+    <Content Include="Views\number_2.png" />
+    <Content Include="Views\number_3.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
