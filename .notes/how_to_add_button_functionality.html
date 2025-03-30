@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #eaeaea;
+            padding: 10px;
+            border-radius: 4px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form</h1>
+    <p>This guide explains how to add functionality to a button in a WPF form that is hosted inside a Windows Forms form. It covers the steps involved, potential obstacles, and solutions to common issues.</p>
+
+    <h2>Overview</h2>
+    <p>In this guide, we will:</p>
+    <ol>
+        <li>Create a Windows Forms form that hosts a WPF form using <code>WindowsFormsHost</code>.</li>
+        <li>Add a button to the WPF form.</li>
+        <li>Write the event handler for the button click event.</li>
+        <li>Ensure the WPF form is displayed correctly in the center of the screen.</li>
+    </ol>
+
+    <h2>Step-by-Step Guide</h2>
+
+    <h3>1. Create the Windows Forms Host Form</h3>
+    <p>First, create a Windows Forms form that will host the WPF form. In this example, we'll create a form named <code>ApprovedByHost</code>.</p>
+    <pre><code class="language-vbnet">Imports System.Windows.Forms
+Imports System.Windows.Forms.Integration
+
+Public Class ApprovedByHost
+    Inherits Form
+
+    Private elementHost As ElementHost
+    Private wpfForm As YourWpfForm ' Replace YourWpfForm with the actual WPF form class
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
+    Private Sub InitializeComponent()
+        Me.elementHost = New ElementHost()
+        Me.wpfForm = New YourWpfForm() ' Initialize your WPF form
+
+        Me.elementHost.Dock = DockStyle.Fill
+        Me.elementHost.Child = Me.wpfForm
+
+        Me.Controls.Add(Me.elementHost)
+        Me.Text = "Approved By"
+
+        ' Set the start position to center screen
+        Me.StartPosition = FormStartPosition.CenterScreen
+    End Sub
+End Class</code></pre>
+
+    <h3>2. Add the Button to the WPF Form</h3>
+    <p>Next, add a button to your WPF form. In this example, we'll add a button named <code>btnApprove</code> to the XAML file of the WPF form.</p>
+    <pre><code class="language-xaml">&lt;Window x:Class="YourNamespace.Views.YourWpfForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="YourWpfForm" Height="300" Width="400"&gt;
+    &lt;Grid&gt;
+        &lt;Button x:Name="btnApprove" Content="Approve" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnApprove_Click"/&gt;
+    &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre>
+
+    <h3>3. Write the Event Handler for the Button Click Event</h3>
+    <p>Now, write the event handler for the button click event in the code-behind file of the WPF form.</p>
+    <pre><code class="language-vbnet">Imports System.Windows
+
+Namespace YourNamespace.Views
+    Partial Public Class YourWpfForm
+        Inherits Window
+
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+
+        Private Sub btnApprove_Click(sender As Object, e As RoutedEventArgs)
+            MessageBox.Show("Approved!")
+        End Sub
+    End Class
+End Namespace</code></pre>
+
+    <h3>4. Update Event Handler in <code>ReportWizardPanel.xaml.vb</code></h3>
+    <p>Finally, update the event handler in the <code>ReportWizardPanel.xaml.vb</code> file to open the <code>ApprovedByHost</code> form when the button is clicked.</p>
+    <pre><code class="language-vbnet">Imports System.Windows
+Imports System.Windows.Controls
+Imports System.Windows.Forms
+Imports System.Windows.Forms.Integration
+
+Partial Public Class ReportWizardPanel
+    Inherits UserControl
+
+    Public Sub New()
+        InitializeComponent()
+
+        ' Assign event handlers to TaskStepControl instances
+        AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+
+        ' Add Loaded event handler for TaskStepControlH
+        AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
+    End Sub
+
+    ' Custom event handler for TaskStepControl
+    Private Sub TaskStepControl_ButtonClick(sender As Object, e As RoutedEventArgs)
+        Dim taskControl As TaskStepControl = CType(sender, TaskStepControl)
+
+        ' Implement your custom logic here based on the ButtonContent
+        Select Case taskControl.ButtonContent
+            Case "_A"
+                ' Custom logic for button A click
+            Case "_B"
+                ' Custom logic for button B click
+            Case "_C"
+                ' Custom logic for button C click
+            Case "_D"
+                ' Custom logic for button D click
+            Case "_E"
+                ' Custom logic for button E click
+            Case "_F"
+                ' Custom logic for button F click
+            Case "_G"
+                ' Custom logic for button G click
+            Case "_H"
+                Dim approvedForm As New ApprovedByHost()
+                approvedForm.StartPosition = FormStartPosition.CenterScreen
+                approvedForm.Show()
+            Case "_I"
+                ' Custom logic for button I click
+            Case "_J"
+                ' Custom logic for button J click
+            Case Else
+                ' Custom logic for unknown button click
+        End Select
+    End Sub
+
+    ' Loaded event handler for TaskStepControlH
+    Private Sub TaskStepControl_Loaded(sender As Object, e As RoutedEventArgs)
+        ' Implement your custom logic here for when TaskStepControlH is loaded
+    End Sub
+End Class</code></pre>
+
+    <h2>Potential Obstacles and Solutions</h2>
+    <p>Here are some common obstacles you might encounter and how to overcome them:</p>
+    <ul>
+        <li><strong>Missing References:</strong> Ensure that you have added the necessary references for both WPF and Windows Forms in your project. You might need to add <code>System.Windows.Forms</code> and <code>System.Windows.Forms.Integration</code>.</li>
+        <li><strong>Namespace Conflicts:</strong> Be careful with namespace conflicts when using both WPF and Windows Forms. Use fully qualified names if necessary.</li>
+        <li><strong>Hosting WPF in Windows Forms:</strong> Use <code>WindowsFormsHost</code> to host WPF controls inside Windows Forms. Ensure you set the child property to your WPF form.</li>
+        <li><strong>Event Handling:</strong> Ensure that event handlers are correctly assigned and that methods are defined in the appropriate code-behind files.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>By following this guide, you should be able to successfully add functionality to a button in a WPF form hosted inside a Windows Forms form. This approach allows you to leverage the strengths of both WPF and Windows Forms in your application.</p>
+
+    <h2>Using AI Assistance for Implementation</h2>
+    <p>If you encounter any issues implementing the button functionality or need further assistance, you can use an AI model like ChatGPT or Copilot to help you. Here is a prompt you can use to get the AI to help you with the implementation:</p>
+    <pre><code>I'm working on a VB.NET project where I need to add functionality to a button in a WPF form hosted inside a Windows Forms form.
+The WPF form should be displayed in the center of the screen when a specific button is clicked.
+Can you provide a step-by-step guide on how to achieve this, including the necessary imports, event handlers, and any potential issues I might encounter?</code></pre>
+    <p>By using this prompt, the AI can provide you with detailed instructions and code snippets to help you implement or fix the solution.</p>
+</body>
+</html>

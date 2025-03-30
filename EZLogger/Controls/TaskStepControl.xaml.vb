@@ -43,4 +43,17 @@ Public Class TaskStepControl
             SetValue(CheckBoxContentProperty, value)
         End Set
     End Property
+
+    ' Event handler for the button click
+    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+        ' Raise the custom event
+        RaiseEvent TaskButtonClick(Me, New RoutedEventArgs())
+    End Sub
+
+    ' Custom event delegate
+    Public Delegate Sub TaskButtonClickHandler(sender As Object, e As RoutedEventArgs)
+
+    ' Custom event
+    Public Event TaskButtonClick As TaskButtonClickHandler
+
 End Class
