@@ -58,6 +58,9 @@ Partial Public Class ReportWizardPanel
                 Globals.ThisAddIn.OpinionControl.Visible = Not Globals.ThisAddIn.OpinionControl.Visible
             Case "_G"
                 ' Custom logic for button G click
+                Dim evaluatorForm As New EvaluatorHost()
+                evaluatorForm.StartPosition = FormStartPosition.CenterScreen
+                evaluatorForm.Show()
             Case "_H"
                 Dim approvedForm As New ApprovedByHost()
                 approvedForm.StartPosition = FormStartPosition.CenterScreen
