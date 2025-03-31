@@ -24,7 +24,6 @@ Partial Class CoverPageWizardPaneContainer
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
         Me.CoverPageWizardPane1 = New EZLogger.CoverPageWizardPane()
-        Me.LabelCoverPage = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -32,33 +31,22 @@ Partial Class CoverPageWizardPaneContainer
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(150, 150)
+        Me.ElementHost1.Size = New System.Drawing.Size(823, 802)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
         Me.ElementHost1.Child = Me.CoverPageWizardPane1
-        '
-        'LabelCoverPage
-        '
-        Me.LabelCoverPage.AutoSize = True
-        Me.LabelCoverPage.Location = New System.Drawing.Point(13, 53)
-        Me.LabelCoverPage.Name = "LabelCoverPage"
-        Me.LabelCoverPage.Size = New System.Drawing.Size(125, 13)
-        Me.LabelCoverPage.TabIndex = 1
-        Me.LabelCoverPage.Text = "Cover Page Wizard Here"
         '
         'CoverPageWizardPaneContainer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.LabelCoverPage)
         Me.Controls.Add(Me.ElementHost1)
         Me.Name = "CoverPageWizardPaneContainer"
+        Me.Size = New System.Drawing.Size(823, 802)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend WithEvents LabelCoverPage As Windows.Forms.Label
     Friend CoverPageWizardPane1 As CoverPageWizardPane
 End Class

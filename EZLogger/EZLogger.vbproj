@@ -415,12 +415,10 @@
     <Compile Include="Controls\UserDataEntryField.xaml.vb">
       <DependentUpon>UserDataEntryField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CoverPageWizardPaneContainer.Designer.vb">
+    <Compile Include="Views\CoverPageWizardPaneContainer.Designer.vb">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </Compile>
-    <Compile Include="CoverPageWizardPaneContainer.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Views\CoverPageWizardPaneContainer.vb" />
     <Compile Include="EZLoggerRibbon.Designer.vb">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </Compile>
@@ -452,7 +450,7 @@
     <Compile Include="Views\AboutEZLogger.xaml.vb">
       <DependentUpon>AboutEZLogger.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CoverPageWizardPaneContainer.resx">
+    <EmbeddedResource Include="Views\CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DueDatePaneContainer.resx">
