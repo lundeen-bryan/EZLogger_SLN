@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class OpinionContainer
+Partial Class OpinionHost
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -30,19 +30,18 @@ Partial Class OpinionContainer
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(1036, 896)
+        Me.ElementHost1.Size = New System.Drawing.Size(150, 150)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
         Me.ElementHost1.Child = Nothing
         '
-        'OpinionContainer
+        'OpinionHost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.Controls.Add(Me.ElementHost1)
-        Me.Name = "OpinionContainer"
-        Me.Size = New System.Drawing.Size(1036, 896)
+        Me.Name = "OpinionHost"
         Me.ResumeLayout(False)
 
     End Sub

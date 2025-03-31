@@ -26,7 +26,7 @@ Public Class ThisAddIn
         End Get
     End Property
 
-    Public ReadOnly Property OpinionControl As Microsoft.Office.Tools.CustomTaskPane
+    Public ReadOnly Property OpinionView As Microsoft.Office.Tools.CustomTaskPane
         Get
             Return myOpinionTaskPane
         End Get
@@ -37,7 +37,7 @@ Public Class ThisAddIn
         Dim myTaskPaneContainer As New ReportWizardTaskPaneContainer()
         Dim myCoverPageContainer As New CoverPageWizardPaneContainer()
         Dim myDueDatePaneContainer As New DueDatePaneContainer()
-        Dim myOpinionPaneContainer As New OpinionContainer()
+        Dim myOpinionPaneContainer As New OpinionHost()
 
         ' Set the dock style for the ElementHost inside the container
         myTaskPaneContainer.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -49,7 +49,7 @@ Public Class ThisAddIn
         Dim myReportWizardPanel As New ReportWizardPanel()
         Dim myCoverPageWizardPanel As New CoverPageWizardPane()
         Dim myDueDatePane As New DueDateFormPane()
-        Dim myOpinionPane As New OpinionControl()
+        Dim myOpinionPane As New OpinionView()
 
         ' Set the ReportWizardPanel as the child of the ElementHost
         myTaskPaneContainer.ElementHost1.Child = myReportWizardPanel
@@ -61,7 +61,7 @@ Public Class ThisAddIn
         myTaskPane = Me.CustomTaskPanes.Add(myTaskPaneContainer, "Report Wizard")
         myCoverPagePane = Me.CustomTaskPanes.Add(myCoverPageContainer, "Cover Page Wizard")
         myDueDateTaskPane  = Me.CustomTaskPanes.Add(myDueDatePaneContainer, "Due Date Calculator")
-        myOpinionTaskPane  = Me.CustomTaskPanes.Add(myOpinionPaneContainer, "Opinion Container")
+        myOpinionTaskPane = Me.CustomTaskPanes.Add(myOpinionPaneContainer, "Evaluator's Opinion")
 
         ' Initially, keep the panel hidden
         myTaskPane.Visible = False

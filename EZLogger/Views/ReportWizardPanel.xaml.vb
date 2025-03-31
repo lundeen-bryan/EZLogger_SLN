@@ -55,7 +55,7 @@ Partial Public Class ReportWizardPanel
                 ConrepTodo.TextBoxMessageToUser.Text = "TODO: code a connection to a database that shows who is the CONREP for the patient"
             Case "_F"
                 ' Show the Choose report opinion task panel
-                Globals.ThisAddIn.OpinionControl.Visible = Not Globals.ThisAddIn.OpinionControl.Visible
+                Globals.ThisAddIn.OpinionView.Visible = Not Globals.ThisAddIn.OpinionView.Visible
             Case "_G"
                 ' Custom logic for button G click
                 Dim evaluatorForm As New EvaluatorHost()
