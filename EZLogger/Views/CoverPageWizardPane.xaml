@@ -4,9 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EZLogger"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             mc:Ignorable="d" d:DesignWidth="400" Height="675">
+    <Grid HorizontalAlignment="Left" Width="415" Margin="0,25,0,0">
+        <StackPanel HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="380" Orientation="Horizontal">
+            <Label Content="SELECT PAGES TO CONVERT TO PDF" Height="35" Width="366" FontFamily="Candara" FontSize="24" FontWeight="Bold" FontStyle="Italic" VerticalAlignment="Top" Margin="12,12,12,12"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="260" Margin="0,60,0,0" VerticalAlignment="Top" Width="380">
+            <ListBox Height="260" d:ItemsSource="{d:SampleData ItemCount=5}" FontFamily="Lucida Console" Width="380" HorizontalAlignment="Left" BorderBrush="Black"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="225" Margin="4,320,0,0" VerticalAlignment="Top" Width="370">
+            <GroupBox Height="75" Header="Convert Selection to PDF" Width="370" BorderBrush="Black" FontFamily="Lucida Fax" FontSize="14">
+                <StackPanel HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="360" Orientation="Horizontal">
+                    <RadioButton Content="Convert Individually" Height="20" Width="170" FontFamily="Lucida Fax" FontSize="14"/>
+                    <RadioButton Content="Convert and Merge" Height="20" Width="160" FontFamily="Lucida Fax" FontSize="14"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Height="75" Header="Save Output to..." Width="370" BorderBrush="Black" FontFamily="Lucida Fax" FontSize="14">
+                <StackPanel HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="360" Orientation="Horizontal">
+                    <RadioButton Content="_Windows/Temp" Height="20" Width="170" FontFamily="Lucida Fax" FontSize="14"/>
+                    <RadioButton Content="_My Documents" Height="20" Width="160" FontFamily="Lucida Fax" FontSize="14"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Height="75" Header="Cover Pages" Width="370" BorderBrush="Black" FontFamily="Lucida Fax" FontSize="14">
+                <StackPanel HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="360" Orientation="Horizontal">
+                    <Label Content="0" Height="26" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Content="+" Height="26" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Height="25" TextWrapping="Wrap" Width="35" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <ScrollBar Height="46" Width="15"/>
+                    <Label Content="The pages plus covers added" Height="30" Width="235"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="90" Margin="0,555,0,0" VerticalAlignment="Top" Width="400" Orientation="Horizontal">
+            <Button Content="Convert" Height="35" Width="115" FontFamily="Lucida Fax" FontSize="14"/>
+            <Label x:Name="SpacerLabel" Content="" Height="34" Width="100"/>
+            <Button Content="Link With a Database" Height="35" Width="165" FontFamily="Lucida Fax" FontSize="14"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>
