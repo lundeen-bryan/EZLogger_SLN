@@ -352,6 +352,12 @@
     <Compile Include="HostForms\FileSaverHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\OpinionHost.Designer.vb">
+      <DependentUpon>OpinionHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\OpinionHost.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="HostForms\TypoHost.Designer.vb">
       <DependentUpon>TypoHost.vb</DependentUpon>
     </Compile>
@@ -369,15 +375,6 @@
     </Compile>
     <Compile Include="Views\EvaluatorControl.xaml.vb">
       <DependentUpon>EvaluatorControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OpinionControl.xaml.vb">
-      <DependentUpon>OpinionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\OpinionContainer.Designer.vb">
-      <DependentUpon>OpinionContainer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\OpinionContainer.vb">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\DueDateFormPane.xaml.vb">
       <DependentUpon>DueDateFormPane.xaml</DependentUpon>
@@ -437,6 +434,9 @@
     <Compile Include="HostForms\ApprovedByHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\OpinionView.xaml.vb">
+      <DependentUpon>OpinionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
@@ -480,8 +480,8 @@
     <EmbeddedResource Include="HostForms\FileSaverHost.resx">
       <DependentUpon>FileSaverHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\OpinionContainer.resx">
-      <DependentUpon>OpinionContainer.vb</DependentUpon>
+    <EmbeddedResource Include="HostForms\OpinionHost.resx">
+      <DependentUpon>OpinionHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
@@ -539,10 +539,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OpinionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DueDateFormPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -560,6 +556,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ReadOnlyField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OpinionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

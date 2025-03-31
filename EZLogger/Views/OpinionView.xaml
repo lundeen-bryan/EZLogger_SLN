@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="OpinionControl"
+﻿<UserControl x:Name="OpinionView1" x:Class="OpinionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -51,12 +51,12 @@
                     <local:OpinionRow Choice="Malingering" PCCode="1370" TypicalWording='Select this if the report specifically states the patient is malingering.'/>
                 </DataGrid.Items>
             </DataGrid>
-            <TextBlock Text="Select one of the types below based on the matching opinion phrases" Margin="6,12,0,0" FontFamily="Lucida Fax" FontSize="16"/>
-            <ListBox Height="100" d:ItemsSource="{d:SampleData ItemCount=5}" FontFamily="Lucida Console" FontSize="14"/>
+            <TextBlock TextWrapping="Wrap" Text="Select one of the types below based on the matching opinion phrases" FontFamily="Lucida Fax" FontSize="14"/>
+            <ListBox x:Name="OpinionListBox" Height="100" FontFamily="Lucida Console" FontSize="14"/>
             <StackPanel Height="100" Orientation="Horizontal">
                 <Button Content="Goto _First Page" Height="30" Width="115" Margin="12,0,0,0" Background="#FFDDDDDD" FontFamily="Candara" FontSize="14"/>
                 <Button Content="Goto _Last Page" Height="30" Width="115" Background="#FFDDDDDD" FontFamily="Candara" Margin="12,0,0,0" FontSize="14"/>
-                <Button Content="_OK" Height="30" Width="115" Background="#FFDDDDDD" FontFamily="Candara" Margin="12,0,0,0" FontSize="14"/>
+                <Button Content="_Save Value" Height="30" Width="115" Background="#FFDDDDDD" FontFamily="Candara" Margin="12,0,0,0" FontSize="14"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
