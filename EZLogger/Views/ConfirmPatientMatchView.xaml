@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="ConfirmPatientMatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:EZLogger"
+             mc:Ignorable="d"
+             d:DesignHeight="195"
+             d:DesignWidth="350">
+    <StackPanel Background="Black">
+        <StackPanel x:Name="StackPanel_1"
+                    Height="100"
+                    Width="350"
+                    HorizontalAlignment="Left"
+                    Background="White">
+            <local:ButtonGrouped HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 FontFamily="Lucida Fax"
+                                 FontSize="14"
+                                 HeaderText="Confirm Patient Match"
+                                 ButtonText="_View Database" />
+        </StackPanel>
+        <StackPanel x:Name="StackPanel_2"
+                    Height="50"
+                    Width="350"
+                    Background="White"
+                    HorizontalAlignment="Left">
+            <Label Content="Does everything look like a match?"
+                   FontFamily="Lucida Fax"
+                   FontSize="14"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Margin="0,25,0,0" />
+        </StackPanel>
+        <StackPanel x:Name="StackPanel_3"
+                    Height="45"
+                    Width="350"
+                    Background="White"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+            <Button Content="_Yes"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="12,6,12,6"
+                    Width="100"
+                    Height="25"
+                    FontFamily="Lucida Fax"
+                    FontSize="14" />
+            <Button Content="_No"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="6,6,6,6"
+                    Width="100"
+                    Height="25"
+                    FontFamily="Lucida Fax"
+                    FontSize="14" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
