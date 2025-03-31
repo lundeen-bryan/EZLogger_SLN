@@ -36,7 +36,7 @@ Partial Public Class ReportWizardPanel
                 CustomMsgBox.Show()
                 CustomMsgBox.TextBoxMessageToUser.Text = "EZ Logger should search the footer to find the napa ID number and show it to the user for confirmation."
             Case "_B"
-                Dim confirmMatch As New ConfirmPatientMatch()
+                Dim confirmMatch As New ConfirmPatientMatchHost()
                 confirmMatch.StartPosition = FormStartPosition.CenterScreen
                 confirmMatch.Show()
             Case "_C"
