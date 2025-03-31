@@ -616,11 +616,11 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
-    <Content Include="Views\Letter_A.png" />
-    <Content Include="Views\Letter_B.png" />
-    <Content Include="Views\number_1.png" />
-    <Content Include="Views\number_2.png" />
-    <Content Include="Views\number_3.png" />
+    <Resource Include="Resources\Letter_A.png" />
+    <Resource Include="Resources\Letter_B.png" />
+    <Resource Include="Resources\number_1.png" />
+    <Resource Include="Resources\number_2.png" />
+    <Resource Include="Resources\number_3.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
