@@ -51,9 +51,9 @@
     <p>Double-click on the Form to open the code view and add the following to <code>Form1_Load</code>:</p>
     <pre><code>Imports System.Windows.Forms.Integration
 
-Public Class Form1
+Public Class Form1[the Hosting form name]
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim myControl As New UserControl1()
+        Dim myControl As New UserControl1()[The view or control name]
         ElementHost1.Dock = DockStyle.Fill
         ElementHost1.Child = myControl
     End Sub

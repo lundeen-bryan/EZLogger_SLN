@@ -73,13 +73,21 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Globals.ThisAddIn.OpinionControl.Visible = Not Globals.ThisAddIn.OpinionControl.Visible
+        Dim typoForm As New TypoHost()
+        typoForm.StartPosition = FormStartPosition.CenterScreen
+        typoForm.Show()
     End Sub
 
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
         Dim aboutForm As New AboutEZLoggerHost()
         aboutForm.StartPosition = FormStartPosition.CenterScreen
         aboutForm.Show() ' Use ShowDialog() for true modal behavior
+    End Sub
+
+    Private Sub TypoButton_Click(sender As Object, e As RibbonControlEventArgs) Handles TypoButton.Click
+        Dim typoForm As New TypoHost()
+        typoForm.StartPosition = FormStartPosition.CenterScreen
+        typoForm.Show()
     End Sub
 End Class
 

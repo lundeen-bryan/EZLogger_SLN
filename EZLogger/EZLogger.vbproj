@@ -352,6 +352,12 @@
     <Compile Include="HostForms\FileSaverHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\TypoHost.Designer.vb">
+      <DependentUpon>TypoHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\TypoHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\FileSaverControl.xaml.vb">
       <DependentUpon>FileSaverControl.xaml</DependentUpon>
     </Compile>
@@ -450,6 +456,9 @@
     <Compile Include="Views\AboutEZLogger.xaml.vb">
       <DependentUpon>AboutEZLogger.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TypoView.xaml.vb">
+      <DependentUpon>TypoView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HostForms\CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +501,9 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <EmbeddedResource Include="EZLoggerRibbon.resx">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\TypoHost.resx">
+      <DependentUpon>TypoHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -564,6 +576,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AboutEZLogger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TypoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
