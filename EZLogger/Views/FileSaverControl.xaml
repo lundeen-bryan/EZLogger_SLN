@@ -71,7 +71,7 @@
                Margin="6,6,0,0"
                VerticalAlignment="Top"
                Width="45"
-               Source="/EZLogger;component/Views/number_1.png" />
+               Source="/EZLogger;component/Resources/number_1.png" />
         <Button Content="Search"
                 HorizontalAlignment="Left"
                 Height="30"
@@ -122,7 +122,7 @@
                     Width="200" Height="95" VerticalAlignment="Bottom">
             <Image Height="45"
                    Width="56"
-                   Source="/EZLogger;component/Views/number_3.png" />
+                   Source="/EZLogger;component/Resources/number_3.png" />
             <Button Content="Show New _Path Below"
                     Height="35"
                     Width="157"
@@ -179,10 +179,10 @@
             Background="White">
             <Image Height="35"
                 Width="57"
-                Source="/EZLogger;component/Views/number_2.png" />
+                Source="/EZLogger;component/Resources/number_1.png" />
             <Image Height="35"
                 Width="57"
-                Source="/EZLogger;component/Views/Letter_A.png" />
+                Source="/EZLogger;component/Resources/Letter_A.png" />
             <RadioButton Content="_Move File"
                 Height="20"
                 Width="91"
@@ -192,10 +192,10 @@
                 FontSize="16" />
             <Image Height="35"
                 Width="57"
-                Source="/EZLogger;component/Views/number_2.png" />
+                Source="/EZLogger;component/Resources/number_1.png" />
             <Image Height="35"
                 Width="57"
-                Source="/EZLogger;component/Views/Letter_B.png" />
+                Source="/EZLogger;component/Resources/Letter_B.png" />
             <RadioButton Content="_Copy File"
                 Height="20"
                 Width="96"
