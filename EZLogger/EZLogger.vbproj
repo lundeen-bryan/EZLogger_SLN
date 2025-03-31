@@ -346,6 +346,12 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HostForms\ConfirmPatientMatchHost.Designer.vb">
+      <DependentUpon>ConfirmPatientMatchHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ConfirmPatientMatchHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\FileSaverHost.Designer.vb">
       <DependentUpon>FileSaverHost.vb</DependentUpon>
     </Compile>
@@ -369,6 +375,9 @@
     </Compile>
     <Compile Include="HostForms\UserConfigHost.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ConfirmPatientMatchView.xaml.vb">
+      <DependentUpon>ConfirmPatientMatchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FileSaverControl.xaml.vb">
       <DependentUpon>FileSaverControl.xaml</DependentUpon>
@@ -401,12 +410,6 @@
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\AboutEZLoggerHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\ConfirmPatientMatch.Designer.vb">
-      <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\ConfirmPatientMatch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\CustomMsgBox.Designer.vb">
@@ -468,6 +471,9 @@
     <Compile Include="Views\UserConfigView.xaml.vb">
       <DependentUpon>UserConfigView.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HostForms\ConfirmPatientMatchHost.resx">
+      <DependentUpon>ConfirmPatientMatchHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -476,9 +482,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\AboutEZLoggerHost.resx">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\ConfirmPatientMatch.resx">
-      <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
@@ -540,6 +543,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ButtonGrouped.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfirmPatientMatchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
