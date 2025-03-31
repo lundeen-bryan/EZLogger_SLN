@@ -346,19 +346,19 @@
     <Compile Include="Controls\ButtonGrouped.xaml.vb">
       <DependentUpon>ButtonGrouped.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\FileSaverHost.Designer.vb">
+    <Compile Include="HostForms\FileSaverHost.Designer.vb">
       <DependentUpon>FileSaverHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\FileSaverHost.vb">
+    <Compile Include="HostForms\FileSaverHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\FileSaverControl.xaml.vb">
       <DependentUpon>FileSaverControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\EvaluatorHost.Designer.vb">
+    <Compile Include="HostForms\EvaluatorHost.Designer.vb">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\EvaluatorHost.vb">
+    <Compile Include="HostForms\EvaluatorHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\EvaluatorControl.xaml.vb">
@@ -367,10 +367,10 @@
     <Compile Include="Views\OpinionControl.xaml.vb">
       <DependentUpon>OpinionControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OpinionContainer.Designer.vb">
+    <Compile Include="HostForms\OpinionContainer.Designer.vb">
       <DependentUpon>OpinionContainer.vb</DependentUpon>
     </Compile>
-    <Compile Include="OpinionContainer.vb">
+    <Compile Include="HostForms\OpinionContainer.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\DueDateFormPane.xaml.vb">
@@ -382,28 +382,28 @@
     <Compile Include="Controls\ApprovedByControl.xaml.vb">
       <DependentUpon>ApprovedByControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DueDatePaneContainer.Designer.vb">
+    <Compile Include="HostForms\DueDatePaneContainer.Designer.vb">
       <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
     </Compile>
-    <Compile Include="DueDatePaneContainer.vb">
+    <Compile Include="HostForms\DueDatePaneContainer.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LegacyForms\AboutEZLoggerHost.Designer.vb">
+    <Compile Include="HostForms\AboutEZLoggerHost.Designer.vb">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\AboutEZLoggerHost.vb">
+    <Compile Include="HostForms\AboutEZLoggerHost.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LegacyForms\ConfirmPatientMatch.Designer.vb">
+    <Compile Include="HostForms\ConfirmPatientMatch.Designer.vb">
       <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\ConfirmPatientMatch.vb">
+    <Compile Include="HostForms\ConfirmPatientMatch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LegacyForms\CustomMsgBox.Designer.vb">
+    <Compile Include="HostForms\CustomMsgBox.Designer.vb">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\CustomMsgBox.vb">
+    <Compile Include="HostForms\CustomMsgBox.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\CoverPageWizardPane.xaml.vb">
@@ -415,29 +415,29 @@
     <Compile Include="Controls\UserDataEntryField.xaml.vb">
       <DependentUpon>UserDataEntryField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CoverPageWizardPaneContainer.Designer.vb">
+    <Compile Include="HostForms\CoverPageWizardPaneContainer.Designer.vb">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Views\CoverPageWizardPaneContainer.vb" />
+    <Compile Include="HostForms\CoverPageWizardPaneContainer.vb" />
     <Compile Include="EZLoggerRibbon.Designer.vb">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </Compile>
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LegacyForms\ApprovedByHost.Designer.vb">
+    <Compile Include="HostForms\ApprovedByHost.Designer.vb">
       <DependentUpon>ApprovedByHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="LegacyForms\ApprovedByHost.vb">
+    <Compile Include="HostForms\ApprovedByHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReportWizardTaskPaneContainer.Designer.vb">
+    <Compile Include="HostForms\ReportWizardTaskPaneContainer.Designer.vb">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReportWizardTaskPaneContainer.vb">
+    <Compile Include="HostForms\ReportWizardTaskPaneContainer.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ribbon.vb">
@@ -450,34 +450,34 @@
     <Compile Include="Views\AboutEZLogger.xaml.vb">
       <DependentUpon>AboutEZLogger.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\CoverPageWizardPaneContainer.resx">
+    <EmbeddedResource Include="HostForms\CoverPageWizardPaneContainer.resx">
       <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DueDatePaneContainer.resx">
+    <EmbeddedResource Include="HostForms\DueDatePaneContainer.resx">
       <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\AboutEZLoggerHost.resx">
+    <EmbeddedResource Include="HostForms\AboutEZLoggerHost.resx">
       <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\ConfirmPatientMatch.resx">
+    <EmbeddedResource Include="HostForms\ConfirmPatientMatch.resx">
       <DependentUpon>ConfirmPatientMatch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\CustomMsgBox.resx">
+    <EmbeddedResource Include="HostForms\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\EvaluatorHost.resx">
+    <EmbeddedResource Include="HostForms\EvaluatorHost.resx">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\FileSaverHost.resx">
+    <EmbeddedResource Include="HostForms\FileSaverHost.resx">
       <DependentUpon>FileSaverHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpinionContainer.resx">
+    <EmbeddedResource Include="HostForms\OpinionContainer.resx">
       <DependentUpon>OpinionContainer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportWizardTaskPaneContainer.resx">
+    <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LegacyForms\ApprovedByHost.resx">
+    <EmbeddedResource Include="HostForms\ApprovedByHost.resx">
       <DependentUpon>ApprovedByHost.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
