@@ -89,5 +89,9 @@ Public Class EZLoggerRibbon
         typoForm.StartPosition = FormStartPosition.CenterScreen
         typoForm.Show()
     End Sub
+
+    Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
+        Globals.ThisAddIn.UserConfigHost.Visible = Not Globals.ThisAddIn.UserConfigHost.Visible
+    End Sub
 End Class
 
