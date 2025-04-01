@@ -1,4 +1,4 @@
-# EZLogger
+# EZLogger v1.0.0
 
 EZLogger is an Office Add-In developed using Visual Studio Tools for Office (VSTO) in VB.NET. The add-in integrates with Microsoft Word to provide various tools, including a report wizard, database operations, and task management.
 
