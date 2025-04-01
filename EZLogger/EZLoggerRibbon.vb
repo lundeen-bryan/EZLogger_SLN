@@ -93,5 +93,11 @@ Public Class EZLoggerRibbon
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
         Globals.ThisAddIn.UserConfigHost.Visible = Not Globals.ThisAddIn.UserConfigHost.Visible
     End Sub
+
+    Private Sub EmailButton_Click(sender As Object, e As RibbonControlEventArgs) Handles EmailButton.Click
+        Dim emailForm As New SendEmailHost()
+        emailForm.StartPosition = FormStartPosition.CenterScreen
+        emailForm.Show()
+    End Sub
 End Class
 

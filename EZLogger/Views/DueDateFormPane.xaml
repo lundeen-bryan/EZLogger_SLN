@@ -7,10 +7,13 @@
              mc:Ignorable="d"
              Height="835"
              Width="645">
-    <ScrollViewer VerticalScrollBarVisibility="Visible" Margin="0,0,0,-15">
-        <Grid Background="White" Width="645" Height="834">
+    <ScrollViewer VerticalScrollBarVisibility="Visible"
+                  Margin="0,0,0,-15">
+        <Grid Background="White"
+              Width="645"
+              Height="834">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="39*" />
             </Grid.ColumnDefinitions>
             <Label Content="REPORT DATE CALCULATOR"
                    HorizontalAlignment="Left"
@@ -20,7 +23,9 @@
                    FontFamily="Candara"
                    FontSize="24"
                    FontWeight="Bold"
-                   FontStyle="Italic" Height="39" Width="287" />
+                   FontStyle="Italic"
+                   Height="39"
+                   Width="287" />
             <Frame x:Name="DataEntryFrame"
                    Content="Data Entry"
                    HorizontalAlignment="Left"
@@ -33,7 +38,8 @@
                    NavigationUIVisibility="Hidden"
                    FontFamily="Candara"
                    FontSize="14"
-                   Padding="6,6,0,0" Margin="7,53,0,0" />
+                   Padding="6,6,0,0"
+                   Margin="7,53,0,0" />
             <GroupBox x:Name="CommitDateGroup"
                       HorizontalAlignment="Left"
                       Height="75"
@@ -49,7 +55,8 @@
                             Margin="6,6,6,6"
                             Width="140"
                             BorderBrush="DarkGray"
-                            FontFamily="Lucida Console" Padding="6,6,6,6" />
+                            FontFamily="Lucida Console"
+                            Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox x:Name="CurrentDueDateGroup"
                       HorizontalAlignment="Left"
@@ -65,7 +72,8 @@
                             Height="35"
                             Margin="6,6,6,6"
                             Width="145"
-                            FontFamily="Lucida Console" Padding="6,6,6,6" />
+                            FontFamily="Lucida Console"
+                            Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox x:Name="NextDueDateGroup"
                       HorizontalAlignment="Left"
@@ -81,7 +89,8 @@
                             Height="35"
                             Margin="6,6,6,6"
                             Width="140"
-                            FontFamily="Lucida Console" Padding="6,6,6,6" />
+                            FontFamily="Lucida Console"
+                            Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox x:Name="CurrentReportDateGroup"
                       HorizontalAlignment="Left"
@@ -98,7 +107,8 @@
                             Margin="6,6,6,6"
                             Width="145"
                             VerticalAlignment="Top"
-                            FontFamily="Lucida Console" Padding="6,6,6,6" />
+                            FontFamily="Lucida Console"
+                            Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox x:Name="ReportTypeGroup"
                       HorizontalAlignment="Left"
@@ -166,7 +176,9 @@
                       Margin="30,502,0,0"
                       VerticalAlignment="Top"
                       Width="205"
-                      BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
                 <Label Content="01/15/2024"
                        HorizontalAlignment="Left"
                        Height="35"
@@ -184,7 +196,9 @@
                       Margin="30,577,0,0"
                       VerticalAlignment="Top"
                       Width="205"
-                      BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
                 <Label Content="06/15/2024"
                        HorizontalAlignment="Left"
                        Height="35"
@@ -202,7 +216,9 @@
                       Margin="30,652,0,0"
                       VerticalAlignment="Top"
                       Width="205"
-                      BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
                 <Label Content="01/15/2025"
                        HorizontalAlignment="Left"
                        Height="35"
@@ -220,7 +236,9 @@
                       Margin="30,727,0,0"
                       VerticalAlignment="Top"
                       Width="205"
-                      BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
                 <Label Content="06/15/2025"
                        HorizontalAlignment="Left"
                        Height="35"
@@ -276,50 +294,115 @@
                          FontFamily="Consolas"
                          FontSize="20"
                          FontWeight="Bold" />
-            <Button Content="Open_PPR Assist Form" HorizontalAlignment="Left" Height="40" Margin="365,710,0,0" VerticalAlignment="Top" Width="225" Background="White" FontFamily="Candara" FontSize="14"/>
-            <StackPanel HorizontalAlignment="Left" Height="165" Margin="365,470,0,0" VerticalAlignment="Top" Width="225"/>
-            <Frame Content="Post-Trial Due Dates" HorizontalAlignment="Left" Height="200" Margin="360,500,0,0" VerticalAlignment="Top" Width="240" NavigationUIVisibility="Hidden" BorderBrush="DarkGray" BorderThickness="1,1,1,1" Padding="6,6,6,6"/>
-            <GroupBox HorizontalAlignment="Left"
-                Height="70"
-                Header="Current PPR"
-                Margin="375,530,0,0"
-                VerticalAlignment="Top"
-                Width="205"
-                BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
-                <Label Content="01/15/2024"
+            <Button Content="Open_PPR Assist Form"
                     HorizontalAlignment="Left"
-                    Height="35"
-                    Margin="6,6,6,6"
-                    Width="180"
-                    Background="#FFC1E0FF"
-                    BorderBrush="Black"
-                    FontFamily="Lucida Console"
-                    Padding="12,12,12,12"
+                    Height="40"
+                    Margin="365,710,0,0"
+                    VerticalAlignment="Top"
+                    Width="225"
+                    Background="White"
+                    FontFamily="Candara"
                     FontSize="14" />
+            <StackPanel HorizontalAlignment="Left"
+                        Height="165"
+                        Margin="365,470,0,0"
+                        VerticalAlignment="Top"
+                        Width="225" />
+            <Frame Content="Post-Trial Due Dates"
+                   HorizontalAlignment="Left"
+                   Height="200"
+                   Margin="360,500,0,0"
+                   VerticalAlignment="Top"
+                   Width="240"
+                   NavigationUIVisibility="Hidden"
+                   BorderBrush="DarkGray"
+                   BorderThickness="1,1,1,1"
+                   Padding="6,6,6,6" />
+            <GroupBox HorizontalAlignment="Left"
+                      Height="70"
+                      Header="Current PPR"
+                      Margin="375,530,0,0"
+                      VerticalAlignment="Top"
+                      Width="205"
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
+                <Label Content="01/15/2024"
+                       HorizontalAlignment="Left"
+                       Height="35"
+                       Margin="6,6,6,6"
+                       Width="180"
+                       Background="#FFC1E0FF"
+                       BorderBrush="Black"
+                       FontFamily="Lucida Console"
+                       Padding="12,12,12,12"
+                       FontSize="14" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
-                Height="70"
-                Header="Next PPR Due Date"
-                Margin="375,610,0,0"
-                VerticalAlignment="Top"
-                Width="205"
-                BorderBrush="DarkGray" FontFamily="Candara" FontSize="14">
+                      Height="70"
+                      Header="Next PPR Due Date"
+                      Margin="375,610,0,0"
+                      VerticalAlignment="Top"
+                      Width="205"
+                      BorderBrush="DarkGray"
+                      FontFamily="Candara"
+                      FontSize="14">
                 <Label Content="01/15/2024"
-                    HorizontalAlignment="Left"
-                    Height="35"
-                    Margin="6,6,6,6"
-                    Width="180"
-                    Background="#FFC1E0FF"
-                    BorderBrush="Black"
-                    FontFamily="Lucida Console"
-                    Padding="12,12,12,12"
-                    FontSize="14" />
+                       HorizontalAlignment="Left"
+                       Height="35"
+                       Margin="6,6,6,6"
+                       Width="180"
+                       Background="#FFC1E0FF"
+                       BorderBrush="Black"
+                       FontFamily="Lucida Console"
+                       Padding="12,12,12,12"
+                       FontSize="14" />
             </GroupBox>
-            <Frame Content="" HorizontalAlignment="Left" Height="40" Margin="10,377,0,0" VerticalAlignment="Top" Width="595" Padding="6,6,6,6" BorderBrush="DarkGray" BorderThickness="1,1,1,1" NavigationUIVisibility="Hidden"/>
-            <Label Content="Days Before or After Due Date:" HorizontalAlignment="Left" Height="25" Margin="25,387,0,0" VerticalAlignment="Top" Width="205" FontFamily="Candara" FontSize="14"/>
-            <Label Content="" HorizontalAlignment="Left" Height="25" Margin="255,387,0,0" VerticalAlignment="Top" Width="205" FontFamily="Candara" FontSize="14" Background="#FFC1E0FF"/>
-            <Button Content="_Save and Continue" HorizontalAlignment="Left" Height="40" Margin="450,135,0,0" VerticalAlignment="Top" Width="135" FontFamily="Candara" FontSize="14" Background="White"/>
-            <Button Content="Go _Back" HorizontalAlignment="Left" Height="40" Margin="470,185,0,0" VerticalAlignment="Top" Width="115" FontFamily="Candara" FontSize="14" Background="White"/>
+            <Frame Content=""
+                   HorizontalAlignment="Left"
+                   Height="40"
+                   Margin="10,377,0,0"
+                   VerticalAlignment="Top"
+                   Width="595"
+                   Padding="6,6,6,6"
+                   BorderBrush="DarkGray"
+                   BorderThickness="1,1,1,1"
+                   NavigationUIVisibility="Hidden" />
+            <Label Content="Days Before or After Due Date:"
+                   HorizontalAlignment="Left"
+                   Height="25"
+                   Margin="25,387,0,0"
+                   VerticalAlignment="Top"
+                   Width="205"
+                   FontFamily="Candara"
+                   FontSize="14" />
+            <Label Content=""
+                   HorizontalAlignment="Left"
+                   Height="25"
+                   Margin="255,387,0,0"
+                   VerticalAlignment="Top"
+                   Width="205"
+                   FontFamily="Candara"
+                   FontSize="14"
+                   Background="#FFC1E0FF" />
+            <Button Content="_Save and Continue"
+                    HorizontalAlignment="Left"
+                    Height="40"
+                    Margin="450,135,0,0"
+                    VerticalAlignment="Top"
+                    Width="135"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    Background="White" />
+            <Button Content="Go _Back"
+                    HorizontalAlignment="Left"
+                    Height="40"
+                    Margin="470,185,0,0"
+                    VerticalAlignment="Top"
+                    Width="115"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    Background="White" />
         </Grid>
     </ScrollViewer>
 </UserControl>
