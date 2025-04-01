@@ -364,6 +364,12 @@
     <Compile Include="HostForms\OpinionHost.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="HostForms\PprDueDateHost.Designer.vb">
+      <DependentUpon>PprDueDateHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\PprDueDateHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\TypoHost.Designer.vb">
       <DependentUpon>TypoHost.vb</DependentUpon>
     </Compile>
@@ -446,6 +452,9 @@
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PprDueDateView.xaml.vb">
+      <DependentUpon>PprDueDateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
@@ -494,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\PprDueDateHost.resx">
+      <DependentUpon>PprDueDateHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
@@ -579,6 +591,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OpinionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PprDueDateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
