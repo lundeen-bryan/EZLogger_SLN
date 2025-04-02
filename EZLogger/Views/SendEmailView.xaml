@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hw="http://schemas.hpod9.com/haley/wpf"
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
              d:DesignHeight="175"
@@ -12,14 +13,14 @@
     <Grid Height="170"
           VerticalAlignment="Top"
           HorizontalAlignment="Center"
-          Width="800">
+          Width="800" Background="White">
         <Button Content="Select File"
                 HorizontalAlignment="Left"
                 Margin="15,10,0,0"
                 VerticalAlignment="Top"
                 Width="72"
                 Height="24"
-                Background="#FFF0F0F0" FontFamily="Candara" FontSize="14" />
+                Background="{x:Null}" FontFamily="Candara" FontSize="14" />
         <TextBlock HorizontalAlignment="Left"
                    Margin="100,7,0,0"
                    TextWrapping="Wrap"
@@ -33,14 +34,14 @@
                   Width="770"
                   BorderBrush="DarkGray"
                   Margin="12,48,0,0" FontFamily="Candara" FontSize="14">
-            <TextBox HorizontalAlignment="Left"
+            <hw:PlainTextBox HorizontalAlignment="Left"
                      Height="20"
                      Margin="6,6,0,0"
                      TextWrapping="Wrap"
-                     Text="TextBox"
+                     WaterMark="Select a file to see the Filename here"
                      Width="745"
                      Padding="1,1,0,0"
-                     FontFamily="Lucida Sans" />
+                     FontFamily="Lucida Sans" BorderBrush="Gray" Background="White" />
         </GroupBox>
         <GroupBox HorizontalAlignment="Left"
                   Height="54"
@@ -49,13 +50,13 @@
                   Width="263"
                   BorderBrush="DarkGray"
                   Margin="12,101,0,0" FontFamily="Candara" FontSize="14">
-            <TextBox Height="20"
+            <hw:PlainTextBox Height="20"
                      Margin="6,0,7,0"
                      TextWrapping="Wrap"
-                     Text="TextBox"
+                     WaterMark="Lastname"
                      VerticalAlignment="Center"
                      Padding="1,1,0,0"
-                     FontFamily="Lucida Sans" />
+                     FontFamily="Lucida Sans" BorderBrush="Gray" Background="White" />
         </GroupBox>
         <GroupBox HorizontalAlignment="Left"
                   Height="54"
@@ -64,13 +65,13 @@
                   Width="263"
                   BorderBrush="DarkGray"
                   Margin="282,100,0,0" FontFamily="Candara" FontSize="14">
-            <TextBox Height="20"
+            <hw:PlainTextBox Height="20"
                      Margin="6,0,7,0"
                      TextWrapping="Wrap"
-                     Text="TextBox"
+                     WaterMark="Firstname"
                      VerticalAlignment="Center"
                      Padding="1,1,0,0"
-                     FontFamily="Lucida Sans" />
+                     FontFamily="Lucida Sans" BorderBrush="Gray" Background="White" />
         </GroupBox>
         <GroupBox HorizontalAlignment="Left"
                   Height="64"
@@ -90,6 +91,6 @@
                 VerticalAlignment="Top"
                 Width="72"
                 Height="24"
-                Background="#FFF0F0F0" FontFamily="Candara" FontSize="14" />
+                Background="{x:Null}" FontFamily="Candara" FontSize="14" />
     </Grid>
 </UserControl>
