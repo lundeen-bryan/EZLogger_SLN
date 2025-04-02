@@ -9,19 +9,19 @@ Partial Public Class ReportWizardPanel
         InitializeComponent()
 
         ' Assign event handlers to TaskStepControl instances
-        AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+        'AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
 
         ' Add Loaded event handler for TaskStepControlH
-        AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
+        'AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
     End Sub
 
     ' Custom event handler for TaskStepControl

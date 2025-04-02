@@ -68,7 +68,7 @@ Public Class ThisAddIn
         myOpinionPaneContainer.ElementHost1.Child = myOpinionPane
 
         ' Add the container to the CustomTaskPanes collection with a title
-        myTaskPane = Me.CustomTaskPanes.Add(myTaskPaneContainer, "Report Wizard")
+        myTaskPane = Me.CustomTaskPanes.Add(myTaskPaneContainer, "EZ Logger Report Wizard")
         myCoverPagePane = Me.CustomTaskPanes.Add(myCoverPageContainer, "Cover Page Wizard")
         myDueDateTaskPane  = Me.CustomTaskPanes.Add(myDueDatePaneContainer, "Due Date Calculator")
         myOpinionTaskPane = Me.CustomTaskPanes.Add(myOpinionPaneContainer, "Evaluator's Opinion")
