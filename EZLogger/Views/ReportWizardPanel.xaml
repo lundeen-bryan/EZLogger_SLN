@@ -7,91 +7,59 @@
              xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
-             Width="390"
-             Height="745">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/EZLogger;component/Resources/EzLoggerRD.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <local:ReadOnlyField Grid.Row="0"
-                             HorizontalAlignment="Left"
-                             LabelText="Bryan Lundeen"
-                             HeaderText="Patient Name"
-                             Height="95"
-                             Width="345"
-                             Margin="10,10,10,0" />
-        <local:UserDataEntryField Grid.Row="1"
-                                  HorizontalAlignment="Left"
-                                  HeaderText="Patient Number"
-                                  Height="85"
-                                  Width="345"
-                                  Margin="10,10,10,0" />
-        <TabControl Grid.Row="2"
-                    Margin="0,10,0,0" Background="{x:Null}">
-            <TabItem Header="Tasks1" HorizontalAlignment="Left" Background="#FFE5E5E5">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
-                    <StackPanel Margin="10" Width="347" HorizontalAlignment="Left">
-                        <local:TaskStepControl x:Name="TaskStepControlA"
-                                               Margin="0,10,0,0"
-                                               ButtonContent="_A"
-                                               CheckBoxContent="1. Confirm patient number" Width="342" HorizontalAlignment="Left" />
-                        <local:TaskStepControl x:Name="TaskStepControlB"
-                                               Margin="0,10,0,0"
-                                               ButtonContent="_B"
-                                               CheckBoxContent="2. Pull data from database" HorizontalAlignment="Left" />
-                        <local:TaskStepControl x:Name="TaskStepControlC"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_C"
-                                               CheckBoxContent="3. Select report type and dates" HorizontalAlignment="Left" />
-                        <local:TaskStepControl x:Name="TaskStepControlD"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_D"
-                                               CheckBoxContent="4. Check TCAR log" HorizontalAlignment="Left" />
-                        <local:TaskStepControl x:Name="TaskStepControlE"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_E"
-                                               CheckBoxContent="5. Check date of last HLV" />
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="Tasks2">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel Margin="10">
-                        <local:TaskStepControl x:Name="TaskStepControlF"
-                                               Margin="0,10,0,0"
-                                               ButtonContent="_F"
-                                               CheckBoxContent="_6. Confirm report opinion" />
-                        <local:TaskStepControl x:Name="TaskStepControlG"
-                                               Margin="0,10,0,0"
-                                               ButtonContent="_G"
-                                               CheckBoxContent="7. Select report author" />
-                        <local:TaskStepControl x:Name="TaskStepControlH"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_H"
-                                               CheckBoxContent="8. Select who authorized approval"
-                                               Loaded="TaskStepControl_Loaded" />
-                        <local:TaskStepControl x:Name="TaskStepControlI"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_I"
-                                               CheckBoxContent="9. Rename and save file" />
-                        <local:TaskStepControl x:Name="TaskStepControlJ"
-                                               Margin="0,10,0,10"
-                                               ButtonContent="_J"
-                                               CheckBoxContent="10. Select cover pages to print" />
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
-    </Grid>
+             Width="260"
+             Height="1075">
+    <ScrollViewer FontFamily="Candara" FontSize="14" Background="DarkGray">
+        <Grid Background="White">
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="01. Find Patient Number in Report" Margin="6,6,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Search" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="83" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="02. Patient Number" Margin="6,76,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Type Number Here Manually" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="03. Look up patient in database" Margin="5,145,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Database" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="84" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <hw:PlainExpander HorizontalAlignment="Left" Height="100" Header="04. Court Number(s)" Margin="6,220,0,0" VerticalAlignment="Top" Width="215" ShowIcon="False" Background="#FFDDDDDD" IsExpanded="True">
+                <TextBlock TextWrapping="Wrap" Text="123456h;2344r5;33456t;33RRT5;667788H;9988-STC-456;VVR-45678;1" Width="209" HorizontalAlignment="Left" Margin="0,0,0,7"/>
+            </hw:PlainExpander>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="05. Maximum Commitment Date" Margin="6,315,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Expiration Date Here" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="95" Header="06. Report Type" Margin="5,385,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <StackPanel Height="70" VerticalAlignment="Top">
+                    <ComboBox HorizontalAlignment="Left" Margin="6,6,0,0" Width="193" Height="30" VerticalAlignment="Top" FontFamily="Lucida Fax">
+                        <ComboBoxItem Content="1370(b)(1)"/>
+                        <ComboBoxItem Content="UNLIKELY 1370(b)(1)"/>
+                        <ComboBoxItem Content="1372(a)(1)"/>
+                    </ComboBox>
+                    <hw:PlainButton Content="Confirmed" HorizontalAlignment="Center" Width="79" Margin="0,6,0,0" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD" Height="25"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="07. Current Due Date" Margin="5,481,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Current Due Date" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="08. Next Due Date" Margin="6,550,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Next Due Date" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="09. Confirm Report Opinion" Margin="5,620,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Open Opinion Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="10. Select Report Author" Margin="5,690,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Select Author Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="11. Select Authorizing Senior" Margin="5,761,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Select Senior Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="12. Rename and Save File" Margin="5,831,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="File Save Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="13. Select Cover Pages to Print" Margin="5,901,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Cover Page Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left" Height="69" Header="14. Sync With SharePoint" Margin="6,970,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
+                <hw:PlainButton Content="Sync Now" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="84" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            </GroupBox>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
