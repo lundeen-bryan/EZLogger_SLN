@@ -19,20 +19,20 @@
                 VerticalAlignment="Top"
                 Width="72"
                 Height="24"
-                Background="#FFF0F0F0" />
+                Background="#FFF0F0F0" FontFamily="Candara" FontSize="14" />
         <TextBlock HorizontalAlignment="Left"
                    Margin="100,7,0,0"
                    TextWrapping="Wrap"
                    Text="The file naming convention needs to be DSH-N -- LASTNAME, Firstname -- 1370(b)(1) report but this macro will create that for you if you fill-in the boxes below."
                    VerticalAlignment="Top"
-                   FontFamily="Lucida Fax" />
+                   FontFamily="Lucida Fax" FontSize="14" />
         <GroupBox HorizontalAlignment="Left"
                   Height="54"
                   Header="Filename"
                   VerticalAlignment="Top"
                   Width="770"
                   BorderBrush="DarkGray"
-                  Margin="12,48,0,0">
+                  Margin="12,48,0,0" FontFamily="Candara" FontSize="14">
             <TextBox HorizontalAlignment="Left"
                      Height="20"
                      Margin="6,6,0,0"
@@ -48,7 +48,7 @@
                   VerticalAlignment="Top"
                   Width="263"
                   BorderBrush="DarkGray"
-                  Margin="12,101,0,0">
+                  Margin="12,101,0,0" FontFamily="Candara" FontSize="14">
             <TextBox Height="20"
                      Margin="6,0,7,0"
                      TextWrapping="Wrap"
@@ -63,7 +63,7 @@
                   VerticalAlignment="Top"
                   Width="263"
                   BorderBrush="DarkGray"
-                  Margin="282,100,0,0">
+                  Margin="282,100,0,0" FontFamily="Candara" FontSize="14">
             <TextBox Height="20"
                      Margin="6,0,7,0"
                      TextWrapping="Wrap"
@@ -78,7 +78,7 @@
                   VerticalAlignment="Top"
                   Width="148"
                   BorderBrush="DarkGray"
-                  Margin="552,101,0,0">
+                  Margin="552,101,0,0" FontFamily="Candara" FontSize="14">
             <ComboBox HorizontalAlignment="Left"
                       Height="20"
                       Margin="8,0,0,0"
@@ -90,6 +90,6 @@
                 VerticalAlignment="Top"
                 Width="72"
                 Height="24"
-                Background="#FFF0F0F0" />
+                Background="#FFF0F0F0" FontFamily="Candara" FontSize="14" />
     </Grid>
 </UserControl>

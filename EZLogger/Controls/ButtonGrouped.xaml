@@ -24,7 +24,7 @@
                     Height="30"
                     Width="134"
                     Padding="1,1,1,1"
-                    Background="#FFF0F0F0"
+                    Background="{x:Null}"
                     Foreground="#FF464646"
                     FontFamily="Candara"
                     FontSize="14" />

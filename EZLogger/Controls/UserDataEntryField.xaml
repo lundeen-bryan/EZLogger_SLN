@@ -21,6 +21,7 @@
                   Width="335">
             <hw:PlainTextBox x:Name="txtBox"
                              Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                             WaterMark="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
                              FontFamily="Consolas"
                              FontSize="14"
                              Padding="5"

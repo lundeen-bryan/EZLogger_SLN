@@ -22,7 +22,7 @@
                         Height="35"
                         Width="45"
                         Margin="12,6,0,0"
-                        Click="Button_Click"/>
+                        Click="Button_Click" Background="{x:Null}"/>
                 <CheckBox Content="{Binding CheckBoxContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
                           Height="25"
                           Width="256"

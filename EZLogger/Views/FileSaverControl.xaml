@@ -79,7 +79,7 @@
                 VerticalAlignment="Top"
                 Width="95"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <TextBox HorizontalAlignment="Left"
                  Height="30"
                  Margin="165,35,0,0"
@@ -130,7 +130,7 @@
                     Width="157"
                     Margin="0,12,0,-4"
                     FontFamily="Candara"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
         </StackPanel>
         <GroupBox HorizontalAlignment="Left"
                   Header="New File Name"
@@ -157,7 +157,7 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <Button Content="_Done"
                 HorizontalAlignment="Left"
                 Height="35"
@@ -165,7 +165,7 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <Button Content="Copy File Path"
                 HorizontalAlignment="Left"
                 Height="35"
@@ -173,7 +173,7 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <StackPanel HorizontalAlignment="Left"
                     Height="65"
                     Margin="300,265,0,0"

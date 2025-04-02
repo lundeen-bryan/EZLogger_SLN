@@ -45,7 +45,7 @@
                     Width="100"
                     Height="25"
                     FontFamily="Lucida Fax"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
             <Button Content="_No"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -53,7 +53,7 @@
                     Width="100"
                     Height="25"
                     FontFamily="Lucida Fax"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

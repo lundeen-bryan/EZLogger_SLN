@@ -12,11 +12,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,64,0,0" TextWrapping="Wrap" Text="Instructions:" VerticalAlignment="Top" FontFamily="Lucida Fax" FontSize="14" TextDecorations="Underline"/>
         <TextBlock Margin="11,85,0,0" TextWrapping="Wrap" Text="After step 3 you can start to track typos. Enter typo and the author below and press OK." VerticalAlignment="Top" FontFamily="Lucida Fax" FontSize="14" Height="35" HorizontalAlignment="Left" Width="354"/>
         <TextBlock HorizontalAlignment="Left" Height="55" Margin="20,160,0,0" TextWrapping="Wrap" Text="Tip: Go to the last page and copy the authors name and paste it here." VerticalAlignment="Top" Width="170" FontFamily="Lucida Fax" FontSize="14"/>
-        <Button Content="_First Page" HorizontalAlignment="Left" Margin="218,150,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14"/>
-        <Button Content="_Last Page" HorizontalAlignment="Left" Margin="218,190,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14"/>
+        <Button Content="_First Page" HorizontalAlignment="Left" Margin="218,150,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14" Background="{x:Null}"/>
+        <Button Content="_Last Page" HorizontalAlignment="Left" Margin="218,190,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14" Background="{x:Null}"/>
         <GroupBox HorizontalAlignment="Left" Height="120" Header="Enter Typo Description Here" Margin="10,245,0,0" VerticalAlignment="Top" Width="790" FontFamily="Lucida Fax" FontSize="14" BorderBrush="Black">
             <TextBox HorizontalAlignment="Left" Height="94" Margin="6,0,0,0" TextWrapping="Wrap" Width="764" VerticalAlignment="Top" AcceptsReturn="True"/>
         </GroupBox>
-        <Button Content="_Save" HorizontalAlignment="Left" Margin="15,375,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14"/>
+        <Button Content="_Save" HorizontalAlignment="Left" Margin="15,375,0,0" VerticalAlignment="Top" Height="30" Width="94" FontFamily="Lucida Fax" FontSize="14" Background="{x:Null}"/>
     </Grid>
 </UserControl>

@@ -65,14 +65,14 @@ Public Class EZLoggerRibbon
         End Select
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) 
         Dim customMsgBox As New CustomMsgBox()
         customMsgBox.StartPosition = FormStartPosition.CenterScreen
         customMsgBox.Show()
         customMsgBox.TextBoxMessageToUser.Text = "This is a custom message from the button in the Ribbon that was pressed... Bryan"
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) 
         Dim typoForm As New TypoHost()
         typoForm.StartPosition = FormStartPosition.CenterScreen
         typoForm.Show()
