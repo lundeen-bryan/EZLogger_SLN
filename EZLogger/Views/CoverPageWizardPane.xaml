@@ -132,7 +132,7 @@
                     Height="35"
                     Width="115"
                     FontFamily="Lucida Fax"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
             <Label x:Name="SpacerLabel"
                    Content=""
                    Height="34"
@@ -141,7 +141,7 @@
                     Height="35"
                     Width="165"
                     FontFamily="Lucida Fax"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
         </StackPanel>
     </Grid>
 </UserControl>
