@@ -79,7 +79,7 @@
                 VerticalAlignment="Top"
                 Width="95"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <TextBox HorizontalAlignment="Left"
                  Height="30"
                  Margin="165,35,0,0"
@@ -119,7 +119,9 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Left"
                     Margin="385,0,0,160"
-                    Width="200" Height="95" VerticalAlignment="Bottom">
+                    Width="200"
+                    Height="95"
+                    VerticalAlignment="Bottom">
             <Image Height="45"
                    Width="56"
                    Source="/EZLogger;component/Resources/number_3.png" />
@@ -128,13 +130,15 @@
                     Width="157"
                     Margin="0,12,0,-4"
                     FontFamily="Candara"
-                    FontSize="14" />
+                    FontSize="14" Background="{x:Null}" />
         </StackPanel>
         <GroupBox HorizontalAlignment="Left"
                   Header="New File Name"
                   Margin="20,0,0,60"
                   Width="805"
-                  BorderBrush="DarkGray" Height="90" VerticalAlignment="Bottom">
+                  BorderBrush="DarkGray"
+                  Height="90"
+                  VerticalAlignment="Bottom">
             <TextBlock HorizontalAlignment="Left"
                        Height="56"
                        Margin="5,0,0,0"
@@ -153,7 +157,7 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <Button Content="_Done"
                 HorizontalAlignment="Left"
                 Height="35"
@@ -161,7 +165,7 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <Button Content="Copy File Path"
                 HorizontalAlignment="Left"
                 Height="35"
@@ -169,41 +173,48 @@
                 VerticalAlignment="Bottom"
                 Width="115"
                 FontFamily="Candara"
-                FontSize="14" />
+                FontSize="14" Background="{x:Null}" />
         <StackPanel HorizontalAlignment="Left"
-            Height="65"
-            Margin="300,265,0,0"
-            VerticalAlignment="Top"
-            Width="515"
-            Orientation="Horizontal"
-            Background="White">
+                    Height="65"
+                    Margin="300,265,0,0"
+                    VerticalAlignment="Top"
+                    Width="515"
+                    Orientation="Horizontal"
+                    Background="White">
             <Image Height="35"
-                Width="57"
-                Source="/EZLogger;component/Resources/number_1.png" />
+                   Width="57"
+                   Source="/EZLogger;component/Resources/number_1.png" />
             <Image Height="35"
-                Width="57"
-                Source="/EZLogger;component/Resources/Letter_A.png" />
+                   Width="57"
+                   Source="/EZLogger;component/Resources/Letter_A.png" />
             <RadioButton Content="_Move File"
-                Height="20"
-                Width="91"
-                FontFamily="Candara"
-                FontWeight="Bold"
-                FontStyle="Italic"
-                FontSize="16" />
+                         Height="20"
+                         Width="91"
+                         FontFamily="Candara"
+                         FontWeight="Bold"
+                         FontStyle="Italic"
+                         FontSize="16" />
             <Image Height="35"
-                Width="57"
-                Source="/EZLogger;component/Resources/number_1.png" />
+                   Width="57"
+                   Source="/EZLogger;component/Resources/number_1.png" />
             <Image Height="35"
-                Width="57"
-                Source="/EZLogger;component/Resources/Letter_B.png" />
+                   Width="57"
+                   Source="/EZLogger;component/Resources/Letter_B.png" />
             <RadioButton Content="_Copy File"
-                Height="20"
-                Width="96"
-                FontFamily="Candara"
-                FontWeight="Bold"
-                FontStyle="Italic"
-                FontSize="16" />
+                         Height="20"
+                         Width="96"
+                         FontFamily="Candara"
+                         FontWeight="Bold"
+                         FontStyle="Italic"
+                         FontSize="16" />
         </StackPanel>
-        <Label Content="Instructions: First move the file and then copy the file using the options below:" HorizontalAlignment="Left" Height="40" Margin="155,210,0,0" VerticalAlignment="Top" Width="675" FontFamily="Lucida Fax" FontSize="14"/>
+        <Label Content="Instructions: First move the file and then copy the file using the options below:"
+               HorizontalAlignment="Left"
+               Height="40"
+               Margin="155,210,0,0"
+               VerticalAlignment="Top"
+               Width="675"
+               FontFamily="Lucida Fax"
+               FontSize="14" />
     </Grid>
 </UserControl>

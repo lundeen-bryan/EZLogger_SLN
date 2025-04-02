@@ -65,17 +65,11 @@ Public Class EZLoggerRibbon
         End Select
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) 
         Dim customMsgBox As New CustomMsgBox()
         customMsgBox.StartPosition = FormStartPosition.CenterScreen
         customMsgBox.Show()
         customMsgBox.TextBoxMessageToUser.Text = "This is a custom message from the button in the Ribbon that was pressed... Bryan"
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Dim typoForm As New TypoHost()
-        typoForm.StartPosition = FormStartPosition.CenterScreen
-        typoForm.Show()
     End Sub
 
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
@@ -92,6 +86,22 @@ Public Class EZLoggerRibbon
 
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
         Globals.ThisAddIn.UserConfigHost.Visible = Not Globals.ThisAddIn.UserConfigHost.Visible
+    End Sub
+
+    Private Sub EmailButton_Click(sender As Object, e As RibbonControlEventArgs) Handles EmailButton.Click
+        Dim emailForm As New SendEmailHost()
+        emailForm.StartPosition = FormStartPosition.CenterScreen
+        emailForm.Show()
+    End Sub
+
+    Private Sub SaveButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SaveButton.Click
+        Dim fileSave As New FileSaverHost()
+        fileSave.StartPosition = FormStartPosition.CenterScreen
+        fileSave.Show()
+    End Sub
+
+    Private Sub ConvertButton_Click(sender As Object, e As RibbonControlEventArgs) Handles ConvertButton.Click
+        Globals.ThisAddIn.CoverWizardTaskPane.Visible = Not Globals.ThisAddIn.CoverWizardTaskPane.Visible
     End Sub
 End Class
 

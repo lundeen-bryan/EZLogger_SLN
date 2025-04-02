@@ -36,52 +36,67 @@
             <StackPanel x:Name="AddEvaluatorStackPanel"
                         Height="100"
                         Orientation="Horizontal">
-                <Button Content="_D"
+                <Button Content="_A"
                         Height="37"
                         Width="33"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Margin="12,12,0,0" FontSize="18" />
+                        Margin="12,12,0,0"
+                        FontSize="18" Background="{x:Null}" />
                 <Label Content="Jump to First Page"
                        Width="148"
                        Height="33"
                        Margin="12,12,0,0"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top" FontSize="16" />
+                       VerticalAlignment="Top"
+                       FontSize="16" />
                 <TextBox TextWrapping="Wrap"
                          Text="TextBox"
                          Width="348"
                          Height="32"
                          VerticalAlignment="Top"
-                         Margin="12,12,0,0" FontFamily="Lucida Console" FontSize="18" Padding="6,6,6,6" />
+                         Margin="12,12,0,0"
+                         FontFamily="Lucida Console"
+                         FontSize="18"
+                         Padding="6,6,6,6" />
             </StackPanel>
             <Label Content="GO TO"
                    FontFamily="Candara"
                    FontSize="24" />
             <TextBlock Text="Select the last page to see who wrote the report."
-                       Margin="6,0,0,0" FontSize="18" />
+                       Margin="6,0,0,0"
+                       FontSize="18" />
             <StackPanel x:Name="NavigationStackPanel"
                         Height="95"
                         Orientation="Horizontal">
-                <Button Content="_D"
+                <Button Content="_B"
                         Height="37"
                         Width="33"
                         Margin="15,24,0,34"
-                        HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" />
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="18" Background="{x:Null}" />
                 <Label Content="Jump to First Page"
                        HorizontalAlignment="Left"
                        Margin="12,24,0,0"
                        VerticalAlignment="Top"
-                       Width="148" FontSize="18" />
-                <Button Content="_D"
+                       Width="148"
+                       FontSize="18" />
+                <Button Content="_C"
                         Height="37"
                         Width="33"
                         RenderTransformOrigin="0.424,0.083"
-                        Margin="12,24,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" />
+                        Margin="12,24,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="18" Background="{x:Null}" />
                 <Label Content="Jump to Last Page"
                        Width="308"
                        Height="29"
-                       Margin="12,24,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" />
+                       Margin="12,24,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       FontSize="18" />
             </StackPanel>
             <StackPanel x:Name="DoneStackPanel"
                         Height="70"
@@ -90,7 +105,8 @@
                         HorizontalAlignment="Left"
                         Margin="12,24,0,0"
                         Height="37"
-                        Width="33" FontSize="18" />
+                        Width="33"
+                        FontSize="18" Background="{x:Null}" />
                 <Label Content="Done Selecting Evaluator"
                        Height="40"
                        Width="203"

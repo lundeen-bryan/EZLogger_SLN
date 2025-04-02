@@ -7,7 +7,7 @@
              xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
-             Width="615"
+             Width="390"
              Height="745">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -36,29 +36,27 @@
                                   Width="345"
                                   Margin="10,10,10,0" />
         <TabControl Grid.Row="2"
-                    Margin="0,10,0,0">
-            <TabItem Header="Tasks1">
+                    Margin="0,10,0,0" Background="{x:Null}">
+            <TabItem Header="Tasks1" HorizontalAlignment="Left" Background="#FFE5E5E5">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled"
-                              Background="#FFE5E5E5">
-                    <StackPanel Margin="10"
-                                Background="#FFE5E5E5">
+                              HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+                    <StackPanel Margin="10" Width="347" HorizontalAlignment="Left">
                         <local:TaskStepControl x:Name="TaskStepControlA"
                                                Margin="0,10,0,0"
                                                ButtonContent="_A"
-                                               CheckBoxContent="1. Confirm patient number" />
+                                               CheckBoxContent="1. Confirm patient number" Width="342" HorizontalAlignment="Left" />
                         <local:TaskStepControl x:Name="TaskStepControlB"
                                                Margin="0,10,0,0"
                                                ButtonContent="_B"
-                                               CheckBoxContent="2. Pull data from database" />
+                                               CheckBoxContent="2. Pull data from database" HorizontalAlignment="Left" />
                         <local:TaskStepControl x:Name="TaskStepControlC"
                                                Margin="0,10,0,10"
                                                ButtonContent="_C"
-                                               CheckBoxContent="3. Select report type and dates" />
+                                               CheckBoxContent="3. Select report type and dates" HorizontalAlignment="Left" />
                         <local:TaskStepControl x:Name="TaskStepControlD"
                                                Margin="0,10,0,10"
                                                ButtonContent="_D"
-                                               CheckBoxContent="4. Check TCAR log" />
+                                               CheckBoxContent="4. Check TCAR log" HorizontalAlignment="Left" />
                         <local:TaskStepControl x:Name="TaskStepControlE"
                                                Margin="0,10,0,10"
                                                ButtonContent="_E"
@@ -68,10 +66,8 @@
             </TabItem>
             <TabItem Header="Tasks2">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled"
-                              Background="#FFE5E5E5">
-                    <StackPanel Margin="10"
-                                Background="#FFE5E5E5">
+                              HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10">
                         <local:TaskStepControl x:Name="TaskStepControlF"
                                                Margin="0,10,0,0"
                                                ButtonContent="_F"
