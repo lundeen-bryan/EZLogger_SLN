@@ -72,6 +72,7 @@ Partial Public Class ReportWizardPanel
                 fileSaverForm.Show()
             Case "_J"
                 ' Custom logic for button J click
+                Globals.ThisAddIn.CoverWizardTaskPane.Visible = Not Globals.ThisAddIn.CoverWizardTaskPane.Visible
             Case Else
                 ' Custom logic for unknown button click
         End Select
