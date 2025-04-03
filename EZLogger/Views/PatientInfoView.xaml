@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="PatientInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hw="http://schemas.hpod9.com/haley/wpf"
+             xmlns:local="clr-namespace:EZLogger"
+             mc:Ignorable="d" Height="745" Width="315" FontFamily="Candara" FontSize="14">
+    <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Content="PATIENT INFO SAVED IN REPORT" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="313" FontWeight="Bold" FontStyle="Italic" FontSize="18"/>
+            <hw:PlainButton Content="Refresh List" HorizontalAlignment="Left" Margin="15,54,0,0" VerticalAlignment="Top" Width="115" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="Validate Fields" HorizontalAlignment="Left" Margin="170,54,0,0" VerticalAlignment="Top" Width="115" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R" Foreground="Red"/>
+            <hw:PlainButton Content="Delete" HorizontalAlignment="Left" Margin="15,86,0,0" VerticalAlignment="Top" Width="60" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="Delete All" HorizontalAlignment="Left" Margin="82,86,0,0" VerticalAlignment="Top" Width="70" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="Add/Edit" HorizontalAlignment="Left" Margin="159,86,0,0" VerticalAlignment="Top" Width="60" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="Copy" HorizontalAlignment="Left" Margin="225,86,0,0" VerticalAlignment="Top" Width="60" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="First Page" HorizontalAlignment="Left" Margin="15,120,0,0" VerticalAlignment="Top" Width="80" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <hw:PlainButton Content="Last Page" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top" Width="80" Height="24" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray" AutomationProperties.AcceleratorKey="R"/>
+            <ListBox HorizontalAlignment="Left" Height="575" Margin="12,160,-4,0" VerticalAlignment="Top" Width="290" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

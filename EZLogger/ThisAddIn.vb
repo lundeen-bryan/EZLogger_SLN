@@ -4,38 +4,10 @@ Imports Microsoft.Office.Interop.Word
 Public Class ThisAddIn
 
     Private myTaskPane As Microsoft.Office.Tools.CustomTaskPane
-    Private myCoverPagePane As Microsoft.Office.Tools.CustomTaskPane
-    Private myDueDateTaskPane As Microsoft.Office.Tools.CustomTaskPane
-    Private myOpinionTaskPane As Microsoft.Office.Tools.CustomTaskPane
-    Private myUserConfigTaskPane As Microsoft.Office.Tools.CustomTaskPane
 
     Public ReadOnly Property ReportWizardTaskPane As Microsoft.Office.Tools.CustomTaskPane
         Get
             Return myTaskPane
-        End Get
-    End Property
-
-    Public ReadOnly Property CoverWizardTaskPane As Microsoft.Office.Tools.CustomTaskPane
-        Get
-            Return myCoverPagePane
-        End Get
-    End Property
-
-    Public ReadOnly Property DueDateFormPane As Microsoft.Office.Tools.CustomTaskPane
-        Get
-            Return myDueDateTaskPane
-        End Get
-    End Property
-
-    Public ReadOnly Property OpinionView As Microsoft.Office.Tools.CustomTaskPane
-        Get
-            Return myOpinionTaskPane
-        End Get
-    End Property
-
-    Public ReadOnly Property UserConfigHost As Microsoft.Office.Tools.CustomTaskPane
-        Get
-            Return myUserConfigTaskPane
         End Get
     End Property
 

@@ -63,6 +63,7 @@
         Me.SettingsButton = Me.Factory.CreateRibbonButton
         Me.AboutButton = Me.Factory.CreateRibbonButton
         Me.SyncButton = Me.Factory.CreateRibbonButton
+        Me.Button1 = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -144,6 +145,7 @@
         'ToolsGroup
         '
         Me.ToolsGroup.Items.Add(Me.SaveBtnBox)
+        Me.ToolsGroup.Items.Add(Me.Button1)
         Me.ToolsGroup.Items.Add(Me.PdfBtnBox)
         Me.ToolsGroup.Items.Add(Me.TypoBtnBox)
         Me.ToolsGroup.Items.Add(Me.EmailButton)
@@ -234,6 +236,14 @@
         Me.SyncButton.Name = "SyncButton"
         Me.SyncButton.ShowImage = True
         '
+        'Button1
+        '
+        Me.Button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.Button1.Image = Global.EZLogger.My.Resources.Resources.about
+        Me.Button1.Label = "Patient Info"
+        Me.Button1.Name = "Button1"
+        Me.Button1.ShowImage = True
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
@@ -287,6 +297,7 @@
     Friend WithEvents PdfBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Button1 As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection

@@ -352,6 +352,15 @@
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HostForms\PatientInfoHost.Designer.vb">
+      <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\PatientInfoHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PatientInfoView.xaml.vb">
+      <DependentUpon>PatientInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
     </Compile>
@@ -368,6 +377,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
+      <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
@@ -406,6 +418,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\PatientInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ReportWizardPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
