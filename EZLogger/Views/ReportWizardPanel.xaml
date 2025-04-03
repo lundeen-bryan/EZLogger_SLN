@@ -67,21 +67,6 @@
                                 BorderBrush="DarkGray"
                                 Background="#FFDDDDDD" />
             </GroupBox>
-            <hw:PlainExpander HorizontalAlignment="Left"
-                              Height="100"
-                              Header="04. Court Number(s)"
-                              Margin="6,220,0,0"
-                              VerticalAlignment="Top"
-                              Width="215"
-                              ShowIcon="False"
-                              Background="#FFDDDDDD"
-                              IsExpanded="True">
-                <TextBlock TextWrapping="Wrap"
-                           Text="123456h;2344r5;33456t;33RRT5;667788H;9988-STC-456;VVR-45678;1"
-                           Width="209"
-                           HorizontalAlignment="Left"
-                           Margin="0,0,0,7" />
-            </hw:PlainExpander>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
                       Header="05. Maximum Commitment Date"
@@ -113,11 +98,7 @@
                               Width="193"
                               Height="30"
                               VerticalAlignment="Top"
-                              FontFamily="Lucida Fax">
-                        <ComboBoxItem Content="1370(b)(1)" />
-                        <ComboBoxItem Content="UNLIKELY 1370(b)(1)" />
-                        <ComboBoxItem Content="1372(a)(1)" />
-                    </ComboBox>
+                              FontFamily="Lucida Fax"/>
                     <hw:PlainButton x:Name="ConfirmTypeBtn" 
                                     Click="ConfirmReportTypeButton_Click"
                                     Content="Confirmed"
@@ -263,6 +244,16 @@
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
                                 Background="#FFDDDDDD" />
+            </GroupBox>
+            <GroupBox HorizontalAlignment="Left"
+                Height="100"
+                Header="04. Court Number(s)"
+                Margin="5,215,0,0"
+                VerticalAlignment="Top"
+                Width="219"
+                BorderBrush="DarkGray">
+                <TextBlock x:Name="CourtNumbersTextBlock"
+                    HorizontalAlignment="Left" TextWrapping="Wrap" Width="210" Padding="6,6,6,6"/>
             </GroupBox>
         </Grid>
     </ScrollViewer>
