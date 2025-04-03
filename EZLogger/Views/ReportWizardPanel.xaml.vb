@@ -20,6 +20,10 @@ Partial Public Class ReportWizardPanel
     }
 
         ReportTypeCbo.ItemsSource = reportTypes
+        ' Simulated database value — later this will come from a database or config
+        Dim courtNumbers As String = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
+
+        CourtNumbersTextBlock.Text = courtNumbers
     End Sub
 
     Private Sub PatientDatabaseButton_Click(sender As Object, e As RoutedEventArgs)
