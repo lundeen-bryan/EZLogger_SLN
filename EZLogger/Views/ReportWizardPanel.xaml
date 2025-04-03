@@ -117,7 +117,8 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Current Due Date"
+                <hw:PlainTextBox x:Name="TextBoxCurrentDue" 
+                                 WaterMark="Current Due Date"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
@@ -133,7 +134,8 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Next Due Date"
+                <hw:PlainTextBox x:Name="TextBoxNextDue" 
+                                 WaterMark="Next Due Date"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
@@ -149,7 +151,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="Open Opinion Form"
+                <hw:PlainButton x:Name="BtnOpenOpinionForm" Content="Open Opinion Form"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
@@ -166,7 +168,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="Select Author Form"
+                <hw:PlainButton x:Name="BtnSelectAuthor" Content="Select Author Form"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
@@ -183,7 +185,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="Select Senior Form"
+                <hw:PlainButton x:Name="BtnSelectSenior" Content="Select Senior Form"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
@@ -200,7 +202,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="File Save Form"
+                <hw:PlainButton x:Name="BtnSaveForm" Content="File Save Form"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
@@ -217,7 +219,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="Cover Page Form"
+                <hw:PlainButton x:Name="BtnCoverPageForm" Content="Cover Page Form"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
@@ -234,7 +236,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton Content="Sync Now"
+                <hw:PlainButton x:Name="BtnSyncNow" Content="Sync Now"
                                 HorizontalAlignment="Left"
                                 Margin="6,6,0,0"
                                 VerticalAlignment="Top"
