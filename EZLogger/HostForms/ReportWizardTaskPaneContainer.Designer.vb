@@ -23,7 +23,7 @@ Partial Class ReportWizardTaskPaneContainer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.ReportWizardPanel1 = New EZLogger.ReportWizardPanel()
+        'Me.ReportWizardPanel1 = New EZLogger.EZLogger.ReportWizardPanel()
         Me.SuspendLayout()
         '
         'ElementHost1
