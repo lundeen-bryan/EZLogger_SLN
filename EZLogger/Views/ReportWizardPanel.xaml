@@ -113,11 +113,7 @@
                               Width="193"
                               Height="30"
                               VerticalAlignment="Top"
-                              FontFamily="Lucida Fax">
-                        <ComboBoxItem Content="1370(b)(1)" />
-                        <ComboBoxItem Content="UNLIKELY 1370(b)(1)" />
-                        <ComboBoxItem Content="1372(a)(1)" />
-                    </ComboBox>
+                              FontFamily="Lucida Fax"/>
                     <hw:PlainButton x:Name="ConfirmTypeBtn" 
                                     Click="ConfirmReportTypeButton_Click"
                                     Content="Confirmed"
