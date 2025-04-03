@@ -38,7 +38,7 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Type Number Here Manually"
+                <hw:PlainTextBox x:Name="TextBoxPatientNumber" WaterMark="Type Number Here Manually"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"

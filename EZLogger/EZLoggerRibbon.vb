@@ -64,5 +64,17 @@ Public Class EZLoggerRibbon
         Dim ptinfo As New PatientInfoHost()
         ptinfo.Show()
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
+        Dim reader As New WordFooterReader()
+        Dim patientNumber As String = reader.FindPatientNumberInFooter()
+
+        If Not String.IsNullOrWhiteSpace(patientNumber) Then
+            MessageBox.Show("Patient number found: " & patientNumber, "Success")
+        Else
+            MessageBox.Show("No patientnumber found", "Search Complete")
+        End If
+
+    End Sub
 End Class
 
