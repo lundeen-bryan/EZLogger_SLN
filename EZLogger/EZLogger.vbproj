@@ -359,6 +359,10 @@
     <Compile Include="HostForms\PatientInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Views\OpinionView.xaml.vb">
+      <DependentUpon>OpinionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientInfoView.xaml.vb">
       <DependentUpon>PatientInfoView.xaml</DependentUpon>
     </Compile>
@@ -419,6 +423,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\OpinionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PatientInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
