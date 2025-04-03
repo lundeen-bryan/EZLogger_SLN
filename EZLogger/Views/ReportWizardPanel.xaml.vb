@@ -5,12 +5,18 @@ Imports EZLogger.EZLogger.Handlers
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
 
-    Private handler As New ReportWizardHandler()
+    Private getPatientNumberHandler As New ReportWizardHandler()
     Private dbhandler As New PatientDatabaseHandler()
     Private rthandler As New ReportTypeHandler()
 
     Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
-        handler.OnSearchButtonClick()
+        Dim patientNumber As String = getPatientNumberHandler.OnSearchButtonClick()
+
+        If Not String.IsNullOrWhiteSpace(patientNumber) Then
+            TextBoxPatientNumber.Text = patientNumber
+        Else
+            MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+        End If
     End Sub
     Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         Dim reportTypes As New List(Of String) From {
@@ -41,4 +47,5 @@ Partial Public Class ReportWizardPanel
             MessageBox.Show("Please select a report type first.", "No Selection")
         End If
     End Sub
+
 End Class
