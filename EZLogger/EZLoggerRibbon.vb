@@ -65,39 +65,8 @@ Public Class EZLoggerRibbon
         End Select
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) 
-        Dim customMsgBox As New CustomMsgBox()
-        customMsgBox.StartPosition = FormStartPosition.CenterScreen
-        customMsgBox.Show()
-        customMsgBox.TextBoxMessageToUser.Text = "This is a custom message from the button in the Ribbon that was pressed... Bryan"
-    End Sub
-
-    Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
-        Dim aboutForm As New AboutEZLoggerHost()
-        aboutForm.StartPosition = FormStartPosition.CenterScreen
-        aboutForm.Show() ' Use ShowDialog() for true modal behavior
-    End Sub
-
-    Private Sub TypoButton_Click(sender As Object, e As RibbonControlEventArgs) Handles TypoButton.Click
-        Dim typoForm As New TypoHost()
-        typoForm.StartPosition = FormStartPosition.CenterScreen
-        typoForm.Show()
-    End Sub
-
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
         Globals.ThisAddIn.UserConfigHost.Visible = Not Globals.ThisAddIn.UserConfigHost.Visible
-    End Sub
-
-    Private Sub EmailButton_Click(sender As Object, e As RibbonControlEventArgs) Handles EmailButton.Click
-        Dim emailForm As New SendEmailHost()
-        emailForm.StartPosition = FormStartPosition.CenterScreen
-        emailForm.Show()
-    End Sub
-
-    Private Sub SaveButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SaveButton.Click
-        Dim fileSave As New FileSaverHost()
-        fileSave.StartPosition = FormStartPosition.CenterScreen
-        fileSave.Show()
     End Sub
 
     Private Sub ConvertButton_Click(sender As Object, e As RibbonControlEventArgs) Handles ConvertButton.Click

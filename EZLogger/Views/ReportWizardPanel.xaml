@@ -9,56 +9,260 @@
              mc:Ignorable="d"
              Width="260"
              Height="1075">
-    <ScrollViewer FontFamily="Candara" FontSize="14" Background="DarkGray">
+    <ScrollViewer FontFamily="Candara"
+                  FontSize="14"
+                  Background="DarkGray">
         <Grid Background="White">
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="01. Find Patient Number in Report" Margin="6,6,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Search" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="83" CornerRadius="3,3,3,3" Background="#FFDDDDDD" BorderBrush="DarkGray"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="01. Find Patient Number in Report"
+                      Margin="6,6,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton x:Name="FindPatientId"
+                                Content="Search"
+                                HorizontalAlignment="Left"
+                                Click="FindPatientId_Click"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="83"
+                                CornerRadius="3,3,3,3"
+                                Background="#FFDDDDDD"
+                                BorderBrush="DarkGray" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="02. Patient Number" Margin="6,76,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Type Number Here Manually" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="02. Patient Number"
+                      Margin="6,76,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Type Number Here Manually"
+                                 HorizontalAlignment="Left"
+                                 Margin="6,6,0,0"
+                                 TextWrapping="Wrap"
+                                 Width="175"
+                                 BorderBrush="DarkGray"
+                                 FontFamily="Lucida Console"
+                                 FontSize="11" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="03. Look up patient in database" Margin="5,145,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Database" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="84" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="03. Look up patient in database"
+                      Margin="5,145,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton x:Name="LookupDatabase"
+                                Content="Database"
+                                Click="PatientDatabaseButton_Click"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="84"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <hw:PlainExpander HorizontalAlignment="Left" Height="100" Header="04. Court Number(s)" Margin="6,220,0,0" VerticalAlignment="Top" Width="215" ShowIcon="False" Background="#FFDDDDDD" IsExpanded="True">
-                <TextBlock TextWrapping="Wrap" Text="123456h;2344r5;33456t;33RRT5;667788H;9988-STC-456;VVR-45678;1" Width="209" HorizontalAlignment="Left" Margin="0,0,0,7"/>
+            <hw:PlainExpander HorizontalAlignment="Left"
+                              Height="100"
+                              Header="04. Court Number(s)"
+                              Margin="6,220,0,0"
+                              VerticalAlignment="Top"
+                              Width="215"
+                              ShowIcon="False"
+                              Background="#FFDDDDDD"
+                              IsExpanded="True">
+                <TextBlock TextWrapping="Wrap"
+                           Text="123456h;2344r5;33456t;33RRT5;667788H;9988-STC-456;VVR-45678;1"
+                           Width="209"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,7" />
             </hw:PlainExpander>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="05. Maximum Commitment Date" Margin="6,315,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Expiration Date Here" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="05. Maximum Commitment Date"
+                      Margin="6,315,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Expiration Date Here"
+                                 HorizontalAlignment="Left"
+                                 Margin="6,6,0,0"
+                                 TextWrapping="Wrap"
+                                 Width="175"
+                                 BorderBrush="DarkGray"
+                                 FontFamily="Lucida Console"
+                                 FontSize="11" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="95" Header="06. Report Type" Margin="5,385,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <StackPanel Height="70" VerticalAlignment="Top">
-                    <ComboBox HorizontalAlignment="Left" Margin="6,6,0,0" Width="193" Height="30" VerticalAlignment="Top" FontFamily="Lucida Fax">
-                        <ComboBoxItem Content="1370(b)(1)"/>
-                        <ComboBoxItem Content="UNLIKELY 1370(b)(1)"/>
-                        <ComboBoxItem Content="1372(a)(1)"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="95"
+                      Header="06. Report Type"
+                      Margin="5,385,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <StackPanel Height="70"
+                            VerticalAlignment="Top">
+                    <ComboBox x:Name="ReportTypeCbo" 
+                              HorizontalAlignment="Left"
+                              Margin="6,6,0,0"
+                              Width="193"
+                              Height="30"
+                              VerticalAlignment="Top"
+                              FontFamily="Lucida Fax">
+                        <ComboBoxItem Content="1370(b)(1)" />
+                        <ComboBoxItem Content="UNLIKELY 1370(b)(1)" />
+                        <ComboBoxItem Content="1372(a)(1)" />
                     </ComboBox>
-                    <hw:PlainButton Content="Confirmed" HorizontalAlignment="Center" Width="79" Margin="0,6,0,0" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD" Height="25"/>
+                    <hw:PlainButton x:Name="ConfirmTypeBtn" 
+                                    Click="ConfirmReportTypeButton_Click"
+                                    Content="Confirmed"
+                                    HorizontalAlignment="Center"
+                                    Width="79"
+                                    Margin="0,6,0,0"
+                                    CornerRadius="3,3,3,3"
+                                    BorderBrush="DarkGray"
+                                    Background="#FFDDDDDD"
+                                    Height="25" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="07. Current Due Date" Margin="5,481,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Current Due Date" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="07. Current Due Date"
+                      Margin="5,481,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Current Due Date"
+                                 HorizontalAlignment="Left"
+                                 Margin="6,6,0,0"
+                                 TextWrapping="Wrap"
+                                 Width="175"
+                                 BorderBrush="DarkGray"
+                                 FontFamily="Lucida Console"
+                                 FontSize="11" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="08. Next Due Date" Margin="6,550,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Next Due Date" HorizontalAlignment="Left" Margin="6,6,0,0" TextWrapping="Wrap" Width="175" BorderBrush="DarkGray" FontFamily="Lucida Console" FontSize="11"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="08. Next Due Date"
+                      Margin="6,550,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainTextBox WaterMark="Next Due Date"
+                                 HorizontalAlignment="Left"
+                                 Margin="6,6,0,0"
+                                 TextWrapping="Wrap"
+                                 Width="175"
+                                 BorderBrush="DarkGray"
+                                 FontFamily="Lucida Console"
+                                 FontSize="11" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="09. Confirm Report Opinion" Margin="5,620,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Open Opinion Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="09. Confirm Report Opinion"
+                      Margin="5,620,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="Open Opinion Form"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="128"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="10. Select Report Author" Margin="5,690,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Select Author Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="10. Select Report Author"
+                      Margin="5,690,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="Select Author Form"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="128"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="11. Select Authorizing Senior" Margin="5,761,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Select Senior Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="11. Select Authorizing Senior"
+                      Margin="5,761,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="Select Senior Form"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="128"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="12. Rename and Save File" Margin="5,831,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="File Save Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="12. Rename and Save File"
+                      Margin="5,831,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="File Save Form"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="128"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="13. Select Cover Pages to Print" Margin="5,901,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Cover Page Form" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="128" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="13. Select Cover Pages to Print"
+                      Margin="5,901,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="Cover Page Form"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="128"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
-            <GroupBox HorizontalAlignment="Left" Height="69" Header="14. Sync With SharePoint" Margin="6,970,0,0" VerticalAlignment="Top" Width="219" BorderBrush="DarkGray">
-                <hw:PlainButton Content="Sync Now" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Height="29" Width="84" CornerRadius="3,3,3,3" BorderBrush="DarkGray" Background="#FFDDDDDD"/>
+            <GroupBox HorizontalAlignment="Left"
+                      Height="69"
+                      Header="14. Sync With SharePoint"
+                      Margin="6,970,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
+                <hw:PlainButton Content="Sync Now"
+                                HorizontalAlignment="Left"
+                                Margin="6,6,0,0"
+                                VerticalAlignment="Top"
+                                Height="29"
+                                Width="84"
+                                CornerRadius="3,3,3,3"
+                                BorderBrush="DarkGray"
+                                Background="#FFDDDDDD" />
             </GroupBox>
         </Grid>
     </ScrollViewer>
