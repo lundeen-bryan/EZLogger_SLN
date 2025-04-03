@@ -28,9 +28,8 @@
                                 VerticalAlignment="Top"
                                 Height="29"
                                 Width="83"
-                                CornerRadius="3,3,3,3"
                                 Background="#FFDDDDDD"
-                                BorderBrush="DarkGray" />
+                                BorderBrush="DarkGray" CornerRadius="3,3,3,3"/>
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -65,7 +64,7 @@
                                 Width="84"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="D" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -108,7 +107,7 @@
                                     CornerRadius="3,3,3,3"
                                     BorderBrush="DarkGray"
                                     Background="#FFDDDDDD"
-                                    Height="25" />
+                                    Height="25" AutomationProperties.AcceleratorKey="C" />
                 </StackPanel>
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
@@ -158,7 +157,7 @@
                                 Width="128"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="O" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -175,7 +174,7 @@
                                 Width="128"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="A" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -192,7 +191,7 @@
                                 Width="128"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="E" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -209,7 +208,7 @@
                                 Width="128"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="F" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -226,7 +225,7 @@
                                 Width="128"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="V" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -243,7 +242,7 @@
                                 Width="84"
                                 CornerRadius="3,3,3,3"
                                 BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" />
+                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="Y" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                 Height="100"
