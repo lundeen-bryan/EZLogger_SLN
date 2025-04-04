@@ -367,12 +367,21 @@
     <Compile Include="HostForms\PatientInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\ReportTypeHost.Designer.vb">
+      <DependentUpon>ReportTypeHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ReportTypeHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientInfoView.xaml.vb">
       <DependentUpon>PatientInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportTypeView.xaml.vb">
+      <DependentUpon>ReportTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
@@ -395,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\ReportTypeHost.resx">
+      <DependentUpon>ReportTypeHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
@@ -443,6 +455,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

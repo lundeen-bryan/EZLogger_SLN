@@ -1,10 +1,13 @@
 ﻿Imports System.Windows
+Imports System.Windows.Forms
 
 Namespace EZLogger.Handlers
 
 	Public Class ReportTypeHandler
 		Public Sub OnConfirmReportTypeButtonClick(reportType As String)
-			MessageBox.Show($"You confirmed the report type: {reportType}", "Report Type Click")
+			Dim host As New ReportTypeHost()
+			host.StartPosition = FormStartPosition.CenterScreen
+			host.Show()
 		End Sub
 	End Class
 End Namespace
