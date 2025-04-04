@@ -20,16 +20,17 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="FindPatientId"
-                                Content="Search"
-                                HorizontalAlignment="Left"
-                                Click="FindPatientId_Click"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="83"
-                                Background="#FFDDDDDD"
-                                BorderBrush="DarkGray" CornerRadius="3,3,3,3"/>
+                <Button x:Name="FindPatientId"
+                        Content="Search"
+                        HorizontalAlignment="Left"
+                        Click="FindPatientId_Click"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="83"
+                        Background="{x:Null}"
+                        BorderBrush="DarkGray"
+                        Cursor="Hand" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -38,14 +39,14 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox x:Name="TextBoxPatientNumber" WaterMark="Type Number Here Manually"
+                <TextBox x:Name="TextBoxPatientNumber"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
                                  Width="175"
                                  BorderBrush="DarkGray"
                                  FontFamily="Lucida Console"
-                                 FontSize="11" />
+                                 FontSize="11" Height="31" Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -54,17 +55,18 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="LookupDatabase"
-                                Content="Database"
-                                Click="PatientDatabaseButton_Click"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="84"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="D" />
+                <Button x:Name="LookupDatabase"
+                        Content="Database"
+                        Click="PatientDatabaseButton_Click"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="84"
+                        Cursor="Hand"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="D" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -73,14 +75,13 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox WaterMark="Expiration Date Here"
-                                 HorizontalAlignment="Left"
+                <TextBox HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
                                  Width="175"
                                  BorderBrush="DarkGray"
                                  FontFamily="Lucida Console"
-                                 FontSize="11" />
+                                 FontSize="11" Height="31" Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="95"
@@ -91,23 +92,24 @@
                       BorderBrush="DarkGray">
                 <StackPanel Height="70"
                             VerticalAlignment="Top">
-                    <ComboBox x:Name="ReportTypeCbo" 
+                    <ComboBox x:Name="ReportTypeCbo"
                               HorizontalAlignment="Left"
                               Margin="6,6,0,0"
                               Width="193"
                               Height="30"
                               VerticalAlignment="Top"
-                              FontFamily="Lucida Fax"/>
-                    <hw:PlainButton x:Name="ConfirmTypeBtn" 
-                                    Click="ConfirmReportTypeButton_Click"
-                                    Content="Confirmed"
-                                    HorizontalAlignment="Center"
-                                    Width="79"
-                                    Margin="0,6,0,0"
-                                    CornerRadius="3,3,3,3"
-                                    BorderBrush="DarkGray"
-                                    Background="#FFDDDDDD"
-                                    Height="25" AutomationProperties.AcceleratorKey="C" />
+                              FontFamily="Lucida Fax" />
+                    <Button x:Name="ConfirmTypeBtn"
+                            Click="ConfirmReportTypeButton_Click"
+                            Cursor="Hand"
+                            Content="Confirmed"
+                            HorizontalAlignment="Center"
+                            Width="79"
+                            Margin="0,6,0,0"
+                            BorderBrush="DarkGray"
+                            Background="{x:Null}"
+                            Height="25"
+                            AutomationProperties.AcceleratorKey="C" />
                 </StackPanel>
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
@@ -117,15 +119,14 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox x:Name="TextBoxCurrentDue" 
-                                 WaterMark="Current Due Date"
+                <TextBox x:Name="TextBoxCurrentDue"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
                                  Width="175"
                                  BorderBrush="DarkGray"
                                  FontFamily="Lucida Console"
-                                 FontSize="11" />
+                                 FontSize="11" Height="31" Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -134,15 +135,14 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainTextBox x:Name="TextBoxNextDue" 
-                                 WaterMark="Next Due Date"
+                <TextBox x:Name="TextBoxNextDue"
                                  HorizontalAlignment="Left"
                                  Margin="6,6,0,0"
                                  TextWrapping="Wrap"
                                  Width="175"
                                  BorderBrush="DarkGray"
                                  FontFamily="Lucida Console"
-                                 FontSize="11" />
+                                 FontSize="11" Height="31" Padding="6,6,6,6" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -151,15 +151,18 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnOpenOpinionForm" Content="Open Opinion Form"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="128"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="O" />
+                <Button x:Name="BtnOpenOpinionForm"
+                        Click="OpenOpinionForm_Click"
+                        Content="Open Opinion Form"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="128"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="O" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -168,15 +171,17 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnSelectAuthor" Content="Select Author Form"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="128"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="A" />
+                <Button x:Name="BtnSelectAuthor"
+                        Content="Select Author Form"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="128"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="A" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -185,15 +190,17 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnSelectSenior" Content="Select Senior Form"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="128"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="E" />
+                <Button x:Name="BtnSelectSenior"
+                        Content="Select Senior Form"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="128"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="E" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -202,15 +209,17 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnSaveForm" Content="File Save Form"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="128"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="F" />
+                <Button x:Name="BtnSaveForm"
+                        Content="File Save Form"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="128"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="F" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -219,15 +228,17 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnCoverPageForm" Content="Cover Page Form"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="128"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="V" />
+                <Button x:Name="BtnCoverPageForm"
+                        Content="Cover Page Form"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="128"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="V" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -236,25 +247,30 @@
                       VerticalAlignment="Top"
                       Width="219"
                       BorderBrush="DarkGray">
-                <hw:PlainButton x:Name="BtnSyncNow" Content="Sync Now"
-                                HorizontalAlignment="Left"
-                                Margin="6,6,0,0"
-                                VerticalAlignment="Top"
-                                Height="29"
-                                Width="84"
-                                CornerRadius="3,3,3,3"
-                                BorderBrush="DarkGray"
-                                Background="#FFDDDDDD" AutomationProperties.AcceleratorKey="Y" />
+                <Button x:Name="BtnSyncNow"
+                        Content="Sync Now"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="6,6,0,0"
+                        VerticalAlignment="Top"
+                        Height="29"
+                        Width="84"
+                        BorderBrush="DarkGray"
+                        Background="{x:Null}"
+                        AutomationProperties.AcceleratorKey="Y" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
-                Height="100"
-                Header="04. Court Number(s)"
-                Margin="5,215,0,0"
-                VerticalAlignment="Top"
-                Width="219"
-                BorderBrush="DarkGray">
+                      Height="100"
+                      Header="04. Court Number(s)"
+                      Margin="5,215,0,0"
+                      VerticalAlignment="Top"
+                      Width="219"
+                      BorderBrush="DarkGray">
                 <TextBlock x:Name="CourtNumbersTextBlock"
-                    HorizontalAlignment="Left" TextWrapping="Wrap" Width="210" Padding="6,6,6,6"/>
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap"
+                           Width="210"
+                           Padding="6,6,6,6" />
             </GroupBox>
         </Grid>
     </ScrollViewer>
