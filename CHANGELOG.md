@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [1.0.1] - 2025-04-04
+
+- Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
+- Markdown files created/updated for better documentation accessibility, with clear sections on project setup, control creation, and property exposure.
+
 ## [1.0.1] - 2025-04-03
 
 ### Updated
