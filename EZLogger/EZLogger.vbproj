@@ -343,6 +343,10 @@
   -->
   <ItemGroup>
     <AppDesigner Include="My Project\" />
+    <Compile Include="Controls\FormHeaderControl.xaml.vb">
+      <DependentUpon>FormHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
@@ -353,6 +357,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
+    <Compile Include="HostForms\OpinionHost.Designer.vb">
+      <DependentUpon>OpinionHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\OpinionHost.vb" />
     <Compile Include="HostForms\PatientInfoHost.Designer.vb">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
     </Compile>
@@ -382,6 +390,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <EmbeddedResource Include="HostForms\OpinionHost.resx">
+      <DependentUpon>OpinionHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -423,6 +434,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\FormHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OpinionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -482,9 +497,7 @@
   <ItemGroup>
     <None Include="Resources\typo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
