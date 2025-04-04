@@ -1,0 +1,130 @@
+{
+    "_comment":    "EZLogger Global Configuration File",
+    "this_config": {
+        "_comment":    "Identifies this config file type or scope",
+        "name":        "global config"
+    },
+    "edo_filepath": {
+        "_comment":            "Paths used by the EDO (Forensic Office) for templates, logs, and audit files",
+        "cot_list":            "",
+        "court_fax":           "",
+        "da_fax":              "",
+        "error_folder":        "",
+        "ist_cert":            "",
+        "ppr_cover":           "",
+        "processed_log":       "",
+        "processed_tcars":     "",
+        "report_history":      "",
+        "sheriff_fax":         "",
+        "tcar_xl_log":         ""
+    },
+    "cdo_filepath": {
+        "_comment":            "Paths for CDO report tracking files and visit logs",
+        "hlv_due":             "",
+        "post_trial_1026":     "",
+        "post_trial_2972":     "",
+        "pre_trial_1370":      ""
+    },
+    "Alerts": {
+        "215715-4":    "Jesse Lucatero - for any reports processed on this case, please send a copy to Judicial Assistant Troy Podratz (TPodratz@lacourt.org) CM",
+        "218048-7":    "Amber Brown - SUPER RUSH due 03-May - 05/02-BL",
+        "219124-5":    "Daryl Shreve is on the CARE court list 02/26",
+        "219596-4":    "Kelley is on the CARE court list 02/20",
+        "_comment":    "Patient-specific alerts: Patient ID -> Message shown when processing their reports"
+    },
+    "Weekly": {
+        "_comment":    "Location of the currently active weekly Excel tracker",
+        "current":     ""
+    },
+    "listbox": {
+        "_comment":    "Values used to populate list boxes and combo boxes in forms",
+        "report_type": [
+            "PPR",
+            "1026.2(l)",
+            "1026.2(b)",
+            "COT",
+            "1026.5(b)(1)",
+            "2972",
+            "1370(b)(1)",
+            "1372(a)(1)",
+            "1372(e)",
+            "UNLIKELY 1370(b)(1)",
+            "UNLIKELY 1370(c)(1)"
+        ],
+        "opinions": [
+            "Competent",
+            "Not Yet Competent",
+            "UNLIKELY",
+            "Malingering",
+            "Restored",
+            "Retain and Treat"
+        ],
+        "cover_pages": [
+            "A. Convert This Document to PDF",
+            "B. Court Fax Cover Sheet",
+            "C. Sheriff Fax Cover Sheet",
+            "D. CONREP Fax Cover Sheet",
+            "E. DA Fax Cover Sheet",
+            "F. [Deprecated] Periodic Progress Report 1026(f) Cover Letter",
+            "G. WIC 6316.2 MDSO Ext Cover and Affidavit",
+            "H. 1026.5(b)(1) NOT Extending Commitment Cover",
+            "I. 1026.5(b)(1) Extension Cover and Affidavit",
+            "J. 2972 Renewal Cover and Affidavit",
+            "K. 1370 90-Day Proximal to 9-Month",
+            "L. 1372(e) CERT",
+            "M. 1372(a)(1) CERT",
+            "N. UNLIKELY(b)(1) Sheriff Cover Letter",
+            "O. UNLIKELY(c)(1) Court Cover Letter",
+            "P. UNLIKELY(c)(1) Sheriff Cover Letter",
+            "Q. UNLIKELY(b)(1) Court Cover Letter",
+            "R. TCAR Updated Email",
+            "S.Court Email",
+            "T.Sheriff Email"
+        ]
+    },
+    "log_files": {
+        "IST":         "",
+        "MDO":         "",
+        "NGI":         "",
+        "_comment":    "Paths to Excel logs for different legal categories"
+    },
+    "log_files_status_bar": {
+        "IST":         "Log 1370(b)(1), 1372(a)(1), and Unlikelies. Will log:",
+        "MDO":         "Log 2972 Renewals. Will log:",
+        "NGI":         "Log 1026(f), 1026.2(l), 1026.2(b), COT, and 1026.5(b)(1). Will log:",
+        "_comment":    "Short summary of what each log type covers"
+    },
+    "email_list": {
+        "_comment":    "Shared email lists used in automation (e.g. for sending notifications or documents)",
+        "secretaries": [
+            "Kristi.Moreno@dsh.ca.gov",
+            "Hilda.Garcia@dsh.ca.gov",
+            "Keyara.Hutcheson@dsh.ca.gov",
+            "Crystal.Garrison@dsh.ca.gov",
+            "Dawn.Marcacci@dsh.ca.gov",
+            "Chloe.Casilang@dsh.ca.gov",
+            "Kevin.Decara@dsh.ca.gov"
+        ]
+    },
+    "version": {
+        "_comment":            "Version and maintenance info for the config",
+        "date":                "2025-01-31",
+        "instructions":        "fixed error handling when patient number doesn't match database",
+        "number":              "2.6.1",
+        "support_email":       "Bryan.Lundeen@dsh.ca.gov"
+    },
+    "county_alerts": {
+        "BUTTE":           "Please check forensic info for changes to the court number and judge name",
+        "KERN":            "Check with court clerk before faxing. They often require a phone confirmation.",
+        "LOS ANGELES":     "Use internal e-filing only. Include form CR-206 if available.",
+        "MADERA":          "No fax. Must mail originals to the court.",
+        "ORANGE":          "Fax AND mail required to meet deadline. Include cover letter and DA copy.",
+        "RIVERSIDE":       "Send to court using e-Submit. (see OneNote)",
+        "SACRAMENTO":      "Use the new fax number ending in -8579. See OneNote if uncertain.",
+        "SAN DIEGO":       "Fax is not used. Use e-filing platform and include court form MC-025.",
+        "SAN JOAQUIN":     "Don't send reports to San Joaquin with a cover page. Email them to the clerk via the shared address. See OneNote.",
+        "TULARE":          "DO NOT fax. All reports must be mailed or e-filed using Tyler.",
+        "YUBA":            "Send by mail only. Court requires original signature pages.",
+        "_comment":        "Displays special alert messages per county during processing or printing"
+    }
+}
