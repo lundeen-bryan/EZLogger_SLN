@@ -1,6 +1,7 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
 Imports EZLogger.EZLogger.Handlers
+Imports System.Collections.Generic
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
@@ -20,21 +21,10 @@ Partial Public Class ReportWizardPanel
         End If
     End Sub
     Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Dim reportTypes As New List(Of String) From {
-        "1370(b)(1)",
-        "UNLIKELY 1370(b)(1)",
-        "1372(a)(1)",
-        "PPR",
-        "1026.5(b)(1)",
-        "2972",
-        "1026.2(l)",
-        "1026.2(b)"
-    }
+        ReportTypeCbo.ItemsSource = rthandler.GetReportTypes()
 
-        ReportTypeCbo.ItemsSource = reportTypes
         ' Simulated database value — later this will come from a database or config
         Dim courtNumbers As String = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
-
         CourtNumbersTextBlock.Text = courtNumbers
     End Sub
 
@@ -47,15 +37,22 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub ConfirmReportTypeButton_Click(sender As Object, e As RoutedEventArgs)
-        'Dim selectedItem As ComboBoxItem = TryCast(ReportTypeCbo.SelectedItem, ComboBoxItem)
-        Dim selectedItem As String = TryCast(ReportTypeCbo.SelectedItem, String)
+        Dim selectedItem = ReportTypeCbo.SelectedItem
 
         If selectedItem IsNot Nothing Then
-            'Dim reportType As String = selectedItem.Content.ToString()
-            rthandler.OnConfirmReportTypeButtonClick(selectedItem)
+            Dim currentSelection As String = selectedItem.ToString()
+
+            ' Show the form and get the updated value
+            Dim newSelection As String = rthandler.OnConfirmReportTypeButtonClick(currentSelection)
+
+            ' Update ComboBox if the value changed
+            If Not String.IsNullOrWhiteSpace(newSelection) AndAlso newSelection <> currentSelection Then
+                ReportTypeCbo.SelectedItem = newSelection
+            End If
         Else
             MessageBox.Show("Please select a report type first.", "No Selection")
         End If
     End Sub
+
 
 End Class

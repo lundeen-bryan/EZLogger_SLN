@@ -13,7 +13,7 @@
             <StackPanel Height="80" Width="440" Orientation="Horizontal">
                 <StackPanel Height="80" Width="220" VerticalAlignment="Top">
                     <GroupBox Height="70" Header="Report Type" Width="200" BorderBrush="DarkGray" VerticalAlignment="Top">
-                        <ComboBox HorizontalAlignment="Left" Width="185" Height="31"/>
+                        <ComboBox x:Name="ReportTypeViewCbo" HorizontalAlignment="Left" Width="185" Height="31"/>
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="80" Width="220" VerticalAlignment="Top">
