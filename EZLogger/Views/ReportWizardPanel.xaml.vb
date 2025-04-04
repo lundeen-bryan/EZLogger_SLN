@@ -23,7 +23,12 @@ Partial Public Class ReportWizardPanel
         Dim reportTypes As New List(Of String) From {
         "1370(b)(1)",
         "UNLIKELY 1370(b)(1)",
-        "1372(a)(1)"
+        "1372(a)(1)",
+        "PPR",
+        "1026.5(b)(1)",
+        "2972",
+        "1026.2(l)",
+        "1026.2(b)"
     }
 
         ReportTypeCbo.ItemsSource = reportTypes
