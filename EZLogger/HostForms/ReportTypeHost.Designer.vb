@@ -31,7 +31,7 @@ Partial Class ReportTypeHost
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(446, 879)
+        Me.ElementHost1.Size = New System.Drawing.Size(446, 896)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
         Me.ElementHost1.Child = Me.ReportTypeView1
@@ -41,7 +41,7 @@ Partial Class ReportTypeHost
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(446, 879)
+        Me.ClientSize = New System.Drawing.Size(446, 896)
         Me.Controls.Add(Me.ElementHost1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
