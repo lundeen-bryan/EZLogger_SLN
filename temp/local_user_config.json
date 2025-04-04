@@ -1,0 +1,32 @@
+{
+  "_comment": "EZLogger Local User Configuration File - last updated 2024-12-19",
+
+  "this_config": {
+    "_comment": "Identifies this as a user-specific config file",
+    "name": "user config"
+  },
+
+  "sp_filepath": {
+    "_comment": "Local file paths used by the user for templates, contact databases, and shared config references",
+    "templates": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Templates",
+    "user_forensic_library": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Forensic Reports Library",
+    "user_forensic_database": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases",
+    "global_config_file": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\ez_logger_global_config.json",
+    "properties_list": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\document_properties.txt",
+    "doctors_list": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\Doctors.txt",
+    "sheriff_addresses": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\Sheriff_Addresses.xlsx",
+    "da_contact_database": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\Da_Contact_Database.xlsx",
+    "court_contact": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\Court_Contact_Database.xlsx",
+    "hlv_due": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\HLV Due for Visit.txt",
+    "hlv_data": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\HLV_Report_Database.xlsm",
+    "ods_filepath": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases\\ODS.xlsm",
+    "databases": "C:\\Users\\USERNAME\\Documents\\EZLogger\\Databases"
+  },
+
+  "edo_filepath": {
+    "_comment": "Shortcuts to shared drive paths, relative to a network root",
+    "processed_reports": "\\Programming\\EZ Logger\\ProcessedReports",
+    "forensic_office": "\\\\Mhnfs1\\edo\\FCLSGRP\\Forensic Office",
+    "tcars_folder": "\\1370 FS Report Tracking"
+  }
+}
