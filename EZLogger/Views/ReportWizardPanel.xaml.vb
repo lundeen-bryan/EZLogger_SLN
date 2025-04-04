@@ -1,84 +1,61 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
-Imports System.Windows.Forms
+Imports EZLogger.EZLogger.Handlers
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
 
-    Public Sub New()
-        InitializeComponent()
+    Private getPatientNumberHandler As New ReportWizardHandler()
+    Private dbhandler As New PatientDatabaseHandler()
+    Private rthandler As New ReportTypeHandler()
+    Private ophandler As New EZLogger.HostForms.OpinionHandler()
 
-        ' Assign event handlers to TaskStepControl instances
-        AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-        AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
+    Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
+        Dim patientNumber As String = getPatientNumberHandler.OnSearchButtonClick()
 
-        ' Add Loaded event handler for TaskStepControlH
-        AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
+        If Not String.IsNullOrWhiteSpace(patientNumber) Then
+            TextBoxPatientNumber.Text = patientNumber
+        Else
+            MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+        End If
+    End Sub
+    Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Dim reportTypes As New List(Of String) From {
+        "1370(b)(1)",
+        "UNLIKELY 1370(b)(1)",
+        "1372(a)(1)",
+        "PPR",
+        "1026.5(b)(1)",
+        "2972",
+        "1026.2(l)",
+        "1026.2(b)"
+    }
+
+        ReportTypeCbo.ItemsSource = reportTypes
+        ' Simulated database value — later this will come from a database or config
+        Dim courtNumbers As String = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
+
+        CourtNumbersTextBlock.Text = courtNumbers
     End Sub
 
-    ' Custom event handler for TaskStepControl
-    Private Sub TaskStepControl_ButtonClick(sender As Object, e As RoutedEventArgs)
-        Dim taskControl As TaskStepControl = CType(sender, TaskStepControl)
-
-        ' Implement your custom logic here based on the ButtonContent
-        Select Case taskControl.ButtonContent
-            Case "_A"
-                Dim customMsgBox As New CustomMsgBox()
-                customMsgBox.StartPosition = FormStartPosition.CenterScreen
-                CustomMsgBox.Show()
-                CustomMsgBox.TextBoxMessageToUser.Text = "EZ Logger should search the footer to find the napa ID number and show it to the user for confirmation."
-            Case "_B"
-                Dim confirmMatch As New ConfirmPatientMatchHost()
-                confirmMatch.StartPosition = FormStartPosition.CenterScreen
-                confirmMatch.Show()
-            Case "_C"
-                Globals.ThisAddIn.DueDateFormPane.Visible = Not Globals.ThisAddIn.DueDateFormPane.Visible
-            Case "_D"
-                ' This section is for looking up the patient in the TCAR Log
-                Dim tcarLogTodo As New CustomMsgBox()
-                tcarLogTodo.StartPosition = FormStartPosition.CenterScreen
-                tcarLogTodo.Show()
-                tcarLogTodo.TextBoxMessageToUser.Text = "TODO: code a database connection to the TCAR Log"
-            Case "_E"
-                ' Custom logic for button E click
-                Dim ConrepTodo As New CustomMsgBox()
-                ConrepTodo.StartPosition = FormStartPosition.CenterScreen
-                ConrepTodo.Show()
-                ConrepTodo.TextBoxMessageToUser.Text = "TODO: code a connection to a database that shows who is the CONREP for the patient"
-            Case "_F"
-                ' Show the Choose report opinion task panel
-                Globals.ThisAddIn.OpinionView.Visible = Not Globals.ThisAddIn.OpinionView.Visible
-            Case "_G"
-                ' Custom logic for button G click
-                Dim evaluatorForm As New EvaluatorHost()
-                evaluatorForm.StartPosition = FormStartPosition.CenterScreen
-                evaluatorForm.Show()
-            Case "_H"
-                Dim approvedForm As New ApprovedByHost()
-                approvedForm.StartPosition = FormStartPosition.CenterScreen
-                approvedForm.Show()
-            Case "_I"
-                ' Custom logic for button I click Rename and save file
-                Dim fileSaverForm As New FileSaverHost()
-                fileSaverForm.StartPosition = FormStartPosition.CenterScreen
-                fileSaverForm.Show()
-            Case "_J"
-                ' Custom logic for button J click
-            Case Else
-                ' Custom logic for unknown button click
-        End Select
+    Private Sub PatientDatabaseButton_Click(sender As Object, e As RoutedEventArgs)
+        dbhandler.OnPatientDatabaseButtonClick()
     End Sub
 
-    ' Loaded event handler for TaskStepControlH
-    Private Sub TaskStepControl_Loaded(sender As Object, e As RoutedEventArgs)
-        ' Implement your custom logic here for when TaskStepControlH is loaded
+    Private Sub OpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
+        ophandler.OnOpenOpinionFormClick()
     End Sub
+
+    Private Sub ConfirmReportTypeButton_Click(sender As Object, e As RoutedEventArgs)
+        'Dim selectedItem As ComboBoxItem = TryCast(ReportTypeCbo.SelectedItem, ComboBoxItem)
+        Dim selectedItem As String = TryCast(ReportTypeCbo.SelectedItem, String)
+
+        If selectedItem IsNot Nothing Then
+            'Dim reportType As String = selectedItem.Content.ToString()
+            rthandler.OnConfirmReportTypeButtonClick(selectedItem)
+        Else
+            MessageBox.Show("Please select a report type first.", "No Selection")
+        End If
+    End Sub
+
 End Class

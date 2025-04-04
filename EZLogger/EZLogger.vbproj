@@ -343,117 +343,45 @@
   -->
   <ItemGroup>
     <AppDesigner Include="My Project\" />
-    <Compile Include="Controls\ButtonGrouped.xaml.vb">
-      <DependentUpon>ButtonGrouped.xaml</DependentUpon>
+    <Compile Include="Controls\FormHeaderControl.xaml.vb">
+      <DependentUpon>FormHeaderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\ConfirmPatientMatchHost.Designer.vb">
-      <DependentUpon>ConfirmPatientMatchHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\ConfirmPatientMatchHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\FileSaverHost.Designer.vb">
-      <DependentUpon>FileSaverHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\FileSaverHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\OpinionHost.Designer.vb">
-      <DependentUpon>OpinionHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\OpinionHost.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HostForms\PprDueDateHost.Designer.vb">
-      <DependentUpon>PprDueDateHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\PprDueDateHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\TypoHost.Designer.vb">
-      <DependentUpon>TypoHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\TypoHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\UserConfigHost.Designer.vb">
-      <DependentUpon>UserConfigHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\UserConfigHost.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\ConfirmPatientMatchView.xaml.vb">
-      <DependentUpon>ConfirmPatientMatchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FileSaverControl.xaml.vb">
-      <DependentUpon>FileSaverControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\EvaluatorHost.Designer.vb">
-      <DependentUpon>EvaluatorHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\EvaluatorHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\EvaluatorControl.xaml.vb">
-      <DependentUpon>EvaluatorControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DueDateFormPane.xaml.vb">
-      <DependentUpon>DueDateFormPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TaskStepControl.xaml.vb">
-      <DependentUpon>TaskStepControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ApprovedByControl.xaml.vb">
-      <DependentUpon>ApprovedByControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\DueDatePaneContainer.Designer.vb">
-      <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\DueDatePaneContainer.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HostForms\AboutEZLoggerHost.Designer.vb">
-      <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\AboutEZLoggerHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\CustomMsgBox.Designer.vb">
-      <DependentUpon>CustomMsgBox.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\CustomMsgBox.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\CoverPageWizardPane.xaml.vb">
-      <DependentUpon>CoverPageWizardPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ReadOnlyField.xaml.vb">
-      <DependentUpon>ReadOnlyField.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UserDataEntryField.xaml.vb">
-      <DependentUpon>UserDataEntryField.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\CoverPageWizardPaneContainer.Designer.vb">
-      <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\CoverPageWizardPaneContainer.vb" />
+    <Compile Include="Handlers\OpinionHandler.vb" />
+    <Compile Include="Handlers\PatientDatabaseHandler.vb" />
+    <Compile Include="Handlers\ReportTypeHandler.vb" />
+    <Compile Include="Handlers\ReportWizardHandler.vb" />
     <Compile Include="EZLoggerRibbon.Designer.vb">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </Compile>
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HostForms\ApprovedByHost.Designer.vb">
-      <DependentUpon>ApprovedByHost.vb</DependentUpon>
+    <Compile Include="Handlers\WordFooterReader.vb" />
+    <Compile Include="HostForms\OpinionHost.Designer.vb">
+      <DependentUpon>OpinionHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\ApprovedByHost.vb">
+    <Compile Include="HostForms\OpinionHost.vb" />
+    <Compile Include="HostForms\PatientInfoHost.Designer.vb">
+      <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\PatientInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\ReportTypeHost.Designer.vb">
+      <DependentUpon>ReportTypeHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ReportTypeHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PprDueDateView.xaml.vb">
-      <DependentUpon>PprDueDateView.xaml</DependentUpon>
+    <Compile Include="Views\PatientInfoView.xaml.vb">
+      <DependentUpon>PatientInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportTypeView.xaml.vb">
+      <DependentUpon>ReportTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportWizardPanel.xaml.vb">
       <DependentUpon>ReportWizardPanel.xaml</DependentUpon>
@@ -471,47 +399,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
-    <Compile Include="Views\AboutEZLogger.xaml.vb">
-      <DependentUpon>AboutEZLogger.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TypoView.xaml.vb">
-      <DependentUpon>TypoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserConfigView.xaml.vb">
-      <DependentUpon>UserConfigView.xaml</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="HostForms\ConfirmPatientMatchHost.resx">
-      <DependentUpon>ConfirmPatientMatchHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\CoverPageWizardPaneContainer.resx">
-      <DependentUpon>CoverPageWizardPaneContainer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\DueDatePaneContainer.resx">
-      <DependentUpon>DueDatePaneContainer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\AboutEZLoggerHost.resx">
-      <DependentUpon>AboutEZLoggerHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\CustomMsgBox.resx">
-      <DependentUpon>CustomMsgBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\EvaluatorHost.resx">
-      <DependentUpon>EvaluatorHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\FileSaverHost.resx">
-      <DependentUpon>FileSaverHost.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\PprDueDateHost.resx">
-      <DependentUpon>PprDueDateHost.vb</DependentUpon>
+    <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
+      <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\ReportTypeHost.resx">
+      <DependentUpon>ReportTypeHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\ApprovedByHost.resx">
-      <DependentUpon>ApprovedByHost.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="EZLogger_TemporaryKey.pfx" />
@@ -525,12 +423,6 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <EmbeddedResource Include="EZLoggerRibbon.resx">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\TypoHost.resx">
-      <DependentUpon>TypoHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\UserConfigHost.resx">
-      <DependentUpon>UserConfigHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -554,39 +446,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\ButtonGrouped.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ConfirmPatientMatchView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FileSaverControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EvaluatorControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DueDateFormPane.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TaskStepControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ApprovedByControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CoverPageWizardPane.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ReadOnlyField.xaml">
+    <Page Include="Controls\FormHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -594,7 +454,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PprDueDateView.xaml">
+    <Page Include="Views\PatientInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -602,23 +466,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserDataEntryField.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\EzLoggerRD.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AboutEZLogger.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TypoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -669,6 +517,7 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />
     <Resource Include="Resources\Letter_B.png" />
     <Resource Include="Resources\number_1.png" />

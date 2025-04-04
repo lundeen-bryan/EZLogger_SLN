@@ -42,11 +42,6 @@ Public Class EZLoggerRibbon
     End Sub
 
     ' This button toggles the Report Wizard Task Pane.
-    Private Sub CoverWizardButton_Click(sender As Object, e As RibbonControlEventArgs) Handles CoverWizardButton.Click
-        Globals.ThisAddIn.CoverWizardTaskPane.Visible = Not Globals.ThisAddIn.CoverWizardTaskPane.Visible
-    End Sub
-
-    ' This event handler is called when any of the menu items in DatabaseMenu is clicked.
     Private Sub DatabaseMenuItem_Click(sender As Object, e As RibbonControlEventArgs)
         Dim button As Microsoft.Office.Tools.Ribbon.RibbonButton = CType(sender, Microsoft.Office.Tools.Ribbon.RibbonButton)
         Dim tag As String = button.Tag.ToString()
@@ -66,32 +61,20 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
-        Dim customMsgBox As New CustomMsgBox()
-        customMsgBox.StartPosition = FormStartPosition.CenterScreen
-        customMsgBox.Show()
-        customMsgBox.TextBoxMessageToUser.Text = "This is a custom message from the button in the Ribbon that was pressed... Bryan"
+        Dim ptinfo As New PatientInfoHost()
+        ptinfo.Show()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Dim typoForm As New TypoHost()
-        typoForm.StartPosition = FormStartPosition.CenterScreen
-        typoForm.Show()
-    End Sub
+        Dim reader As New WordFooterReader()
+        Dim patientNumber As String = reader.FindPatientNumberInFooter()
 
-    Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
-        Dim aboutForm As New AboutEZLoggerHost()
-        aboutForm.StartPosition = FormStartPosition.CenterScreen
-        aboutForm.Show() ' Use ShowDialog() for true modal behavior
-    End Sub
+        If Not String.IsNullOrWhiteSpace(patientNumber) Then
+            MessageBox.Show("Patient number found: " & patientNumber, "Success")
+        Else
+            MessageBox.Show("No patientnumber found", "Search Complete")
+        End If
 
-    Private Sub TypoButton_Click(sender As Object, e As RibbonControlEventArgs) Handles TypoButton.Click
-        Dim typoForm As New TypoHost()
-        typoForm.StartPosition = FormStartPosition.CenterScreen
-        typoForm.Show()
-    End Sub
-
-    Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
-        Globals.ThisAddIn.UserConfigHost.Visible = Not Globals.ThisAddIn.UserConfigHost.Visible
     End Sub
 End Class
 
