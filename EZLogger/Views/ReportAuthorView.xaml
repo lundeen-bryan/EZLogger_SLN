@@ -23,13 +23,13 @@
         <GroupBox Height="95" Header="Add Evaluator Name to List" Width="449" Padding="6,6,6,6" BorderBrush="DarkGray" FontFamily="Lucida Fax">
             <TextBox x:Name="TextBoxAuthor" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Width="390" VerticalAlignment="Top" Height="31" Padding="6,6,6,6"/>
         </GroupBox>
-        <Button x:Name="BtnAddAuthor" Content="_Add New Author" Width="110" Margin="0,6,0,0" Height="31" Background="{x:Null}"/>
+        <Button x:Name="BtnAddAuthor" Content="_Add New Author" Width="125" Margin="0,6,0,0" Height="31" Background="{x:Null}" FontSize="16"/>
         <GroupBox Height="94" Header="Go To" Width="448" Padding="6,6,6,6" BorderBrush="DarkGray" FontFamily="Lucida Fax" Margin="0,12,0,0">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="BtnAuthorFirstPage" Content="_First Page" Height="31" Width="162" Margin="24,0,24,0" Background="{x:Null}" FontFamily="Candara"/>
-                <Button x:Name="BtnAuthorLastPage" Content="_Last Page" Width="162" Height="31" Margin="24,0,0,0" Background="{x:Null}" FontFamily="Candara"/>
+                <Button x:Name="BtnAuthorFirstPage" Content="_First Page" Height="31" Width="162" Margin="24,0,24,0" Background="{x:Null}" FontFamily="Candara" FontSize="16"/>
+                <Button x:Name="BtnAuthorLastPage" Content="_Last Page" Width="162" Height="31" Margin="24,0,0,0" Background="{x:Null}" FontFamily="Candara" FontSize="16"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="BtnAuthorDone" Content="_Done Selecting" Background="{x:Null}" Width="162" Height="31" Margin="0,12,0,24"/>
+        <Button x:Name="BtnAuthorDone" Content="_Done Selecting" Background="{x:Null}" Width="162" Height="31" Margin="0,12,0,24" FontSize="16"/>
     </StackPanel>
 </UserControl>
