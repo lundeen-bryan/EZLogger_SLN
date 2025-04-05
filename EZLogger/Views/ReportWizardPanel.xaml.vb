@@ -1,8 +1,6 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
 Imports EZLogger.EZLogger.Handlers
-Imports System.Collections.Generic
-Imports EZLogger.Helpers
 Imports EZLogger.EZLogger.Helpers
 
 Partial Public Class ReportWizardPanel

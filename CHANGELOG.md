@@ -9,6 +9,26 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [1.0.3] - 2025-04-05
+
+### Added
+
+- `CheifApprovalView` user control.
+- Documentation: *About the ConfigPathHelper.md* explaining design choices.
+
+### Changed
+
+- `EZLogger.vbproj` to include new view files.
+- `ConfigPathHelper.vb`: Added support for loading doctor names from JSON.
+- `ConfigView`: Updated UI and logic for managing doctor lists.
+- `global_config.json`: Added alerts and email distribution lists.
+- `Doctors.txt`: Appended new doctor entries.
+
+### Cleaned
+
+- Removed unused imports from `OpinionView.vb`, `ReportAuthorView.vb`, and `ReportWizardPanel.vb`.
+
+
 ## [1.0.2] - 2025-04-04
 
 - Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
