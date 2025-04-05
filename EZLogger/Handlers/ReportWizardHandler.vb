@@ -3,7 +3,7 @@ Imports System.Windows
 Imports System.Windows.Forms
 Imports MessageBox = System.Windows.MessageBox
 
-Namespace EZLogger.Handlers
+Namespace Handlers
 
     Public Class ReportWizardHandler
 

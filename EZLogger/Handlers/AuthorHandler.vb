@@ -1,7 +1,7 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
 
-Namespace EZLogger.HostForms
+Namespace HostForms
     Public Class AuthorHandler
 
         Public Sub OnOpenAuthorFormClick()
