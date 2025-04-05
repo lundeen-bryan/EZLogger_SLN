@@ -54,7 +54,7 @@
             <StackPanel Height="55"
                         Width="850"
                         Orientation="Horizontal">
-                <ComboBox Width="215"
+                <ComboBox x:Name="OpinionCbo" Width="215"
                           Height="26"
                           FontFamily="Lucida Fax" Margin="0,0,12,0">
                     <ComboBoxItem Content="1370(b)(1)" />

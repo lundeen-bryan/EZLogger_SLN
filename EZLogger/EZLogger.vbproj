@@ -357,6 +357,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
+    <Compile Include="Helpers\ConfigPathHelper.vb" />
     <Compile Include="HostForms\ConfigHost.Designer.vb">
       <DependentUpon>ConfigHost.vb</DependentUpon>
     </Compile>

@@ -1,4 +1,6 @@
 ﻿Imports System.Windows.Forms
+Imports EZLogger.EZLogger.Helpers
+Imports EZLogger.Helpers
 
 Namespace EZLogger.Handlers
 
@@ -24,13 +26,9 @@ Namespace EZLogger.Handlers
         End Function
 
         ' ✅ Shared function to return the list of report types
+
         Public Function GetReportTypes() As List(Of String)
-            Return New List(Of String) From {
-                "1370(b)(1)",
-                "1372(a)(1)",
-                "UNLIKELY 1370(b)(1)",
-                "PPR"
-            }
+            Return ConfigPathHelper.GetReportTypeList()
         End Function
 
     End Class
