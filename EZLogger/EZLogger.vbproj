@@ -388,6 +388,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Views\CheifApprovalView.xaml.vb">
+      <DependentUpon>CheifApprovalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
@@ -473,6 +476,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\FormHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheifApprovalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

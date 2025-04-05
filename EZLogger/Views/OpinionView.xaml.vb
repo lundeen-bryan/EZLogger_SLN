@@ -1,7 +1,6 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
 Imports EZLogger.EZLogger.Helpers
-Imports EZLogger.Helpers
 
 Public Class OpinionView
 

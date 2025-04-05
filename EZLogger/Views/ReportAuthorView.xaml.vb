@@ -1,6 +1,5 @@
 ﻿Imports EZLogger.EZLogger.Helpers
 Imports System.Windows
-Imports EZLogger.Helpers
 
 Public Class ReportAuthorView
 

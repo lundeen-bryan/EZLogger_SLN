@@ -6,6 +6,9 @@ Imports System.Windows
 Namespace EZLogger.Helpers
     Public Module ConfigPathHelper
 
+        ' In production, replace this hardcoded path with the user's actual Documents path:
+        ' Example: Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".ezlogger", "local_user_config.json")
+        ' Or use: $"C:\Users\{Environment.UserName}\OneDrive - Department of State Hospitals\Documents\.ezlogger\local_user_config.json"
         ' Hardcoded local config path for now
         Private ReadOnly localConfigPath As String = "C:\Users\lunde\repos\cs\ezlogger\EZLogger_SLN\temp\local_user_config.json"
 
@@ -109,28 +112,43 @@ Namespace EZLogger.Helpers
             Return reportTypes
         End Function
 
+        ''' <summary>
+        ''' Loads a list of doctor names from the text file defined in local_user_config.json.
+        ''' The list is sorted alphabetically before being returned.
+        ''' </summary>
+        ''' <returns>A sorted List(Of String) containing one doctor name per line.</returns>
         Public Function GetDoctorList() As List(Of String)
             Dim doctorList As New List(Of String)
 
             Try
-                ' Load the local config file
+                ' Path to the local user config file (set earlier in this module)
                 If Not File.Exists(localConfigPath) Then
                     MessageBox.Show("Local config file not found.")
                     Return doctorList
                 End If
 
+                ' Read the contents of the local_user_config.json file
                 Dim jsonText As String = File.ReadAllText(localConfigPath)
+
+                ' Parse the JSON into a usable structure
                 Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
                     Dim root = jsonDoc.RootElement
 
+                    ' Navigate to the sp_filepath section
                     Dim spFilepath As JsonElement
                     If root.TryGetProperty("sp_filepath", spFilepath) Then
+
+                        ' Try to get the doctors_list path from the config
                         Dim doctorsPathElement As JsonElement
                         If spFilepath.TryGetProperty("doctors_list", doctorsPathElement) Then
                             Dim doctorsPath As String = doctorsPathElement.GetString()
 
+                            ' If the file exists, read all lines into the list
                             If File.Exists(doctorsPath) Then
                                 doctorList.AddRange(File.ReadAllLines(doctorsPath))
+
+                                ' ✅ Sort the list alphabetically (A to Z)
+                                doctorList.Sort()
                             Else
                                 MessageBox.Show("Doctors list file not found at: " & doctorsPath)
                             End If
@@ -142,9 +160,35 @@ Namespace EZLogger.Helpers
                 MessageBox.Show("Error loading doctors list: " & ex.Message)
             End Try
 
+            ' Return the sorted list (or empty list if something failed)
             Return doctorList
         End Function
 
+
+        Public Function GetDoctorListFilePath() As String
+            Try
+                If Not File.Exists(localConfigPath) Then
+                    MessageBox.Show("Local config file not found.")
+                    Return String.Empty
+                End If
+
+                Dim jsonText As String = File.ReadAllText(localConfigPath)
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = jsonDoc.RootElement
+                    Dim spFilepath As JsonElement
+                    If root.TryGetProperty("sp_filepath", spFilepath) Then
+                        Dim pathElement As JsonElement
+                        If spFilepath.TryGetProperty("doctors_list", pathElement) Then
+                            Return pathElement.GetString()
+                        End If
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error reading doctor list path: " & ex.Message)
+            End Try
+
+            Return String.Empty
+        End Function
 
     End Module
 End Namespace
