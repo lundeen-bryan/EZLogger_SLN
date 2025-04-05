@@ -109,6 +109,42 @@ Namespace EZLogger.Helpers
             Return reportTypes
         End Function
 
+        Public Function GetDoctorList() As List(Of String)
+            Dim doctorList As New List(Of String)
+
+            Try
+                ' Load the local config file
+                If Not File.Exists(localConfigPath) Then
+                    MessageBox.Show("Local config file not found.")
+                    Return doctorList
+                End If
+
+                Dim jsonText As String = File.ReadAllText(localConfigPath)
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = jsonDoc.RootElement
+
+                    Dim spFilepath As JsonElement
+                    If root.TryGetProperty("sp_filepath", spFilepath) Then
+                        Dim doctorsPathElement As JsonElement
+                        If spFilepath.TryGetProperty("doctors_list", doctorsPathElement) Then
+                            Dim doctorsPath As String = doctorsPathElement.GetString()
+
+                            If File.Exists(doctorsPath) Then
+                                doctorList.AddRange(File.ReadAllLines(doctorsPath))
+                            Else
+                                MessageBox.Show("Doctors list file not found at: " & doctorsPath)
+                            End If
+                        End If
+                    End If
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error loading doctors list: " & ex.Message)
+            End Try
+
+            Return doctorList
+        End Function
+
 
     End Module
 End Namespace

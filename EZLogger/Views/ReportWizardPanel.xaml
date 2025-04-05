@@ -172,6 +172,7 @@
                       Width="219"
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnSelectAuthor"
+                Click="OpenAuthorForm_Click"
                         Content="Select Author Form"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
