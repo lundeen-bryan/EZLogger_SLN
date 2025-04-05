@@ -346,6 +346,7 @@
     <Compile Include="Controls\FormHeaderControl.xaml.vb">
       <DependentUpon>FormHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
@@ -374,6 +375,12 @@
     <Compile Include="HostForms\PatientInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\ReportAuthorHost.Designer.vb">
+      <DependentUpon>ReportAuthorHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ReportAuthorHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\ReportTypeHost.Designer.vb">
       <DependentUpon>ReportTypeHost.vb</DependentUpon>
     </Compile>
@@ -389,6 +396,9 @@
     </Compile>
     <Compile Include="Views\PatientInfoView.xaml.vb">
       <DependentUpon>PatientInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportAuthorView.xaml.vb">
+      <DependentUpon>ReportAuthorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportTypeView.xaml.vb">
       <DependentUpon>ReportTypeView.xaml</DependentUpon>
@@ -417,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\ReportAuthorHost.resx">
+      <DependentUpon>ReportAuthorHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportTypeHost.resx">
       <DependentUpon>ReportTypeHost.vb</DependentUpon>
@@ -472,6 +485,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportAuthorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

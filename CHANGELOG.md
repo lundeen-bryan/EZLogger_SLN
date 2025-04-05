@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning].
 - Modified `OpinionView.xaml.vb` to populate `OpinionCbo` with values from the "opinions" section of the global config.
 - Implemented `ReportWizardPanel_Loaded` to populate `ReportTypeCbo` from the global config.
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
-
+- Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
 ## [1.0.1] - 2025-04-03
 

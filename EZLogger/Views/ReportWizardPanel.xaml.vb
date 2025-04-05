@@ -12,6 +12,7 @@ Partial Public Class ReportWizardPanel
     Private dbhandler As New PatientDatabaseHandler()
     Private rthandler As New ReportTypeHandler()
     Private ophandler As New EZLogger.HostForms.OpinionHandler()
+    Private auhandler As New EZLogger.HostForms.AuthorHandler()
 
     Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = getPatientNumberHandler.OnSearchButtonClick()
@@ -37,6 +38,10 @@ Partial Public Class ReportWizardPanel
     Private Sub OpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
         ophandler.OnOpenOpinionFormClick()
     End Sub
+    Private Sub OpenAuthorForm_Click(sender As Object, e As RoutedEventArgs)
+        auhandler.OnOpenAuthorFormClick()
+    End Sub
+
 
     Private Sub ConfirmReportTypeButton_Click(sender As Object, e As RoutedEventArgs)
         Dim selectedItem = ReportTypeCbo.SelectedItem
