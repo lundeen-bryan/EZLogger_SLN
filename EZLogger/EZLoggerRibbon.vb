@@ -76,5 +76,10 @@ Public Class EZLoggerRibbon
         End If
 
     End Sub
+
+    Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
+        Dim configHost As New ConfigHost()
+        configHost.ShowDialog()
+    End Sub
 End Class
 

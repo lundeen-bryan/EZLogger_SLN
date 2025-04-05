@@ -357,6 +357,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
+    <Compile Include="HostForms\ConfigHost.Designer.vb">
+      <DependentUpon>ConfigHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ConfigHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </Compile>
@@ -374,6 +380,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Views\ConfigView.xaml.vb">
+      <DependentUpon>ConfigView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
     </Compile>
@@ -399,6 +408,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <EmbeddedResource Include="HostForms\ConfigHost.resx">
+      <DependentUpon>ConfigHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -447,6 +459,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\FormHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
