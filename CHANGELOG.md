@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning].
 - Modified `ReportWizardPanel` to use the shared `GetReportTypes` method for populating the ComboBox. (`EZLogger/Views/ReportWizardPanel.xaml.vb`)
 - Updated `ReportTypeView` to initialize the ComboBox with the shared report types and sync the selected item with `ReportWizardPanel`. (`EZLogger/Views/ReportTypeView.xaml.vb`)
 - Added new fields to `global_config.json` and `local_user_config.json` to support the ComboBox and other control values. (`temp/global_config.json`, `temp/local_user_config.json`)
+- Added `ConfigPathHelper.vb` in Helpers module to manage loading config paths and values from JSON.
+- Updated `ReportTypeHandler.vb` to retrieve report types dynamically from `global_config.json` instead of hardcoding.
+- Modified `OpinionView.xaml.vb` to populate `OpinionCbo` with values from the "opinions" section of the global config.
+- Implemented `ReportWizardPanel_Loaded` to populate `ReportTypeCbo` from the global config.
+- Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
+
 
 ## [1.0.1] - 2025-04-03
 

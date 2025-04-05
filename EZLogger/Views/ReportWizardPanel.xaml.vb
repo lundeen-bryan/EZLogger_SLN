@@ -2,6 +2,8 @@
 Imports System.Windows.Controls
 Imports EZLogger.EZLogger.Handlers
 Imports System.Collections.Generic
+Imports EZLogger.Helpers
+Imports EZLogger.EZLogger.Helpers
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
@@ -54,5 +56,9 @@ Partial Public Class ReportWizardPanel
         End If
     End Sub
 
+    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Dim reportTypes As List(Of String) = ConfigPathHelper.GetReportTypeList()
+        ReportTypeCbo.ItemsSource = reportTypes
+    End Sub
 
 End Class
