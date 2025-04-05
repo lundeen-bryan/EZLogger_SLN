@@ -1,0 +1,18 @@
+﻿<UserControl 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EZLogger"
+             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="EZLogger.Views.ChiefApprovalView"
+             mc:Ignorable="d" d:DesignWidth="390" FontFamily="Candara" FontSize="16" Padding="12,12,12,12" Height="435">
+    <StackPanel>
+        <Controls:FormHeaderControl HeaderText="Chief APPROVAL AND SIGNATURE"/>
+        <TextBlock TextWrapping="Wrap" Text="01. Select the name of the senior that approved the report" FontFamily="Lucida Fax" FontSize="14" Padding="6,6,6,6"/>
+        <ListBox x:Name="ListboxApproval" Height="100" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <TextBlock TextWrapping="Wrap" Text="02. While the doctor is still selected, press the Approved by button" Margin="0,12,0,6" FontFamily="Lucida Fax" FontSize="14" Padding="6,6,6,6"/>
+        <Button x:Name="BtnApproval" Content="Approved By" Background="{x:Null}" Width="150"/>
+        <TextBlock TextWrapping="Wrap" Text="03. Select the place in the document where you want to insert the signature. You should select the table/paragraph where the medical directors name is typed. Then press insert signature" Margin="0,12,0,6" FontFamily="Lucida Fax" FontSize="14" Padding="6,6,6,6"/>
+        <Button x:Name="BtnSignature" Content="Insert Signature" Background="{x:Null}" Width="150"/>
+    </StackPanel>
+</UserControl>

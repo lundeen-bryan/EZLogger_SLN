@@ -32,7 +32,7 @@
                            BorderBrush="DarkGray"
                            BorderThickness="1,1,1,1"
                            Padding="6,6,6,6" />
-                    <Button Content="_C"
+                    <Button x:Name="BtnCreateConfig" Content="_C"
                             HorizontalAlignment="Left"
                             Margin="17,35,0,0"
                             VerticalAlignment="Top"
@@ -125,7 +125,7 @@
                                    Width="729"
                                    Background="#FFC1E0FF" />
                     </GroupBox>
-                    <Button Content="Save This Configuration"
+                    <Button x:Name="BtnSaveConfig" Content="Sa_ve This Configuration"
                             HorizontalAlignment="Left"
                             Margin="634,512,0,0"
                             VerticalAlignment="Top"
@@ -281,17 +281,17 @@
                                 Margin="7,129,0,0"
                                 VerticalAlignment="Top"
                                 Width="30">
-                        <RadioButton x:Name="checkbx_secretaries"
+                        <RadioButton x:Name="radio_secretaries"
                                      Content="" />
-                        <RadioButton x:Name="checkbx_friday"
+                        <RadioButton x:Name="radio_friday"
                                      Content=""
                                      Margin="0,65,0,0" />
-                        <RadioButton x:Name="checkbx_competent"
+                        <RadioButton x:Name="radio_competent"
                                      Content=""
                                      VerticalContentAlignment="Bottom"
                                      Margin="0,60,0,0" />
                     </StackPanel>
-                    <Button Content="Edit"
+                    <Button x:Name="EditEmail" Content="Edit"
                             HorizontalAlignment="Left"
                             Margin="27,53,0,0"
                             VerticalAlignment="Top"

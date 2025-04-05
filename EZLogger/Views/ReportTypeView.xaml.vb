@@ -1,5 +1,5 @@
 ﻿' Top of the file
-Imports EZLogger.EZLogger.Handlers
+Imports EZLogger.Handlers
 Imports System.Collections.Generic
 Imports System.Windows
 

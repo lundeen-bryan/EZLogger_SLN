@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
-Imports EZLogger.EZLogger.Helpers
+Imports EZLogger.Helpers
 
-Namespace EZLogger.Handlers
+Namespace Handlers
 
     Public Class ReportTypeHandler
 

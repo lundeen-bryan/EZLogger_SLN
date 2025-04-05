@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Text.Json
 Imports System.Windows
 
-Namespace EZLogger.Helpers
+Namespace Helpers
     Public Module ConfigPathHelper
 
         ' In production, replace this hardcoded path with the user's actual Documents path:
