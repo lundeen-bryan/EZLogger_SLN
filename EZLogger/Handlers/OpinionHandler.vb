@@ -6,6 +6,7 @@ Namespace EZLogger.HostForms
 
         Public Sub OnOpenOpinionFormClick()
             Dim host As New OpinionHost()
+            host.TopMost = True
             host.StartPosition = FormStartPosition.CenterScreen
             host.Show()
         End Sub

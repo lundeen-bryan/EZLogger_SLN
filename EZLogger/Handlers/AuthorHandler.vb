@@ -6,6 +6,7 @@ Namespace EZLogger.HostForms
 
         Public Sub OnOpenAuthorFormClick()
             Dim host As New ReportAuthorHost()
+            host.TopMost = True
             host.StartPosition = FormStartPosition.CenterScreen
             host.Show()
         End Sub

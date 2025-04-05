@@ -16,6 +16,7 @@ Namespace EZLogger.Handlers
             Dim reportTypeView = CType(host.ElementHost1.Child, ReportTypeView)
             reportTypeView.InitialSelectedReportType = reportType
 
+            host.TopMost = True
             host.StartPosition = FormStartPosition.CenterScreen
 
             ' Show the form modally
