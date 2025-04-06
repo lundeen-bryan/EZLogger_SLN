@@ -25,7 +25,13 @@ Namespace Handlers
             Return reportTypeView.ReportTypeViewCbo.SelectedItem?.ToString()
         End Function
 
-        ' ✅ Shared function to return the list of report types
+        Public Sub HandleSelectedReportType(report_type As String)
+            If String.IsNullOrWhiteSpace(report_type) Then
+                MsgBox("Please select a  report type before confirming.")
+            Else
+                MsgBox("You selected report type: " & report_type)
+            End If
+        End Sub
 
         Public Function GetReportTypes() As List(Of String)
             Return ConfigPathHelper.GetReportTypeList()
