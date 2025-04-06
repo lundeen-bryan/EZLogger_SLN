@@ -46,7 +46,7 @@
                          Width="175"
                          BorderBrush="DarkGray"
                          FontFamily="Lucida Console"
-                         FontSize="11"
+                         FontSize="14"
                          Height="31"
                          Padding="6,6,6,6" />
             </GroupBox>
@@ -82,7 +82,7 @@
                          Width="175"
                          BorderBrush="DarkGray"
                          FontFamily="Lucida Console"
-                         FontSize="11"
+                         FontSize="14"
                          Height="31"
                          Padding="6,6,6,6" />
             </GroupBox>
@@ -127,7 +127,7 @@
                          Width="175"
                          BorderBrush="DarkGray"
                          FontFamily="Lucida Console"
-                         FontSize="11"
+                         FontSize="14"
                          Height="31"
                          Padding="6,6,6,6" />
             </GroupBox>
@@ -145,7 +145,7 @@
                          Width="175"
                          BorderBrush="DarkGray"
                          FontFamily="Lucida Console"
-                         FontSize="11"
+                         FontSize="14"
                          Height="31"
                          Padding="6,6,6,6" />
             </GroupBox>
