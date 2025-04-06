@@ -387,6 +387,12 @@
     <Compile Include="HostForms\CustomMsgBoxHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\FileSaveHost.Designer.vb">
+      <DependentUpon>FileSaveHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\FileSaveHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </Compile>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\FileSaveHost.resx">
+      <DependentUpon>FileSaveHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
