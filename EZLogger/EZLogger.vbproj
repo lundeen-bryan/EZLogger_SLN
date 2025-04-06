@@ -418,6 +418,9 @@
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FileSaveView.xaml.vb">
+      <DependentUpon>FileSaveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
     </Compile>
@@ -518,6 +521,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileSaveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
