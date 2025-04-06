@@ -20,6 +20,12 @@ Partial Public Class ReportWizardPanel
         AddHandler BtnSelectChief.Click, AddressOf BtnSelectChief_Click
         AddHandler ConfirmTypeBtn.Click, AddressOf ConfirmReportType_Click
         AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
+        AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
+    End Sub
+
+    Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
+        Dim mvhandler As New MoveCopyHandler()
+        mvhandler.OnMoveCopyClick()
     End Sub
 
     Private Sub BtnCoverPageForm_Click(sender As Object, e As RoutedEventArgs)
