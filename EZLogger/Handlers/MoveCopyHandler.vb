@@ -10,6 +10,25 @@ Namespace Handlers
             host.StartPosition = FormStartPosition.CenterScreen
             host.Show()
         End Sub
+
+        Public Sub HandleSearchClick(ownerForm As Form)
+            Dim config As New MessageBoxConfig With {
+                .Message = "You pressed the search button.",
+                .ShowOk = True
+            }
+
+            CustomMsgBoxHandler.Show(config, ownerForm)
+        End Sub
+
+        Public Sub HandleSaveAsClick(ownerForm As Form)
+            Dim config As New MessageBoxConfig With {
+                .Message = "This would normally open a Save As dialog.",
+                .ShowOk = True
+            }
+
+            CustomMsgBoxHandler.Show(config, ownerForm)
+        End Sub
+
     End Class
 End Namespace
 
