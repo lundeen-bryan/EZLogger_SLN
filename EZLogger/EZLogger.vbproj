@@ -343,12 +343,17 @@
   -->
   <ItemGroup>
     <AppDesigner Include="My Project\" />
+    <Compile Include="Controls\CustomMsgBox.xaml.vb">
+      <DependentUpon>CustomMsgBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FormHeaderControl.xaml.vb">
       <DependentUpon>FormHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enums\CustomMsgBoxResult.vb" />
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
+    <Compile Include="Handlers\CustomMsgBoxHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
@@ -363,6 +368,7 @@
     </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\ConfigPathHelper.vb" />
+    <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="HostForms\ChiefApprovalHost.Designer.vb">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>
     </Compile>
@@ -373,6 +379,12 @@
       <DependentUpon>ConfigHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\ConfigHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HostForms\CustomMsgBoxHost.Designer.vb">
+      <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\CustomMsgBoxHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
@@ -440,6 +452,9 @@
     <EmbeddedResource Include="HostForms\ConfigHost.resx">
       <DependentUpon>ConfigHost.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
+      <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -490,6 +505,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CustomMsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FormHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
