@@ -5,14 +5,26 @@ Imports System.Windows
 
 Public Class ReportTypeView
 
-    ' ✅ 1. Property to receive selected report type
     Public Property InitialSelectedReportType As String
+    Private ReadOnly _handler As ReportTypeHandler
+    Private ReadOnly rthandler As ReportTypeHandler
 
-    ' ✅ 2. Handler for shared report types
-    Private rthandler As New ReportTypeHandler()
+    Public Sub New(Optional hostForm As FormatException = Nothing)
+        InitializeComponent()
 
-    ' ✅ 3. When the view loads, populate and set selection
-    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        _handler = New ReportTypeHandler()
+        rthandler = New ReportTypeHandler()
+
+        AddHandler BtnSelectedType.Click, AddressOf BtnSelectedType_Click
+        AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
+    End Sub
+
+    Private Sub BtnSelectedType_Click(sender As Object, e As RoutedEventArgs)
+        Dim selectedType As String = TryCast(ReportTypeViewCbo.SelectedItem, String)
+        _handler.HandleSelectedReportType(selectedType)
+    End Sub
+
+    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
         Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
         ReportTypeViewCbo.ItemsSource = reportTypes
 
