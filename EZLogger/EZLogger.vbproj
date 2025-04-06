@@ -355,6 +355,7 @@
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\CustomMsgBoxHandler.vb" />
     <Compile Include="Handlers\CoverPageHandler.vb" />
+    <Compile Include="Handlers\MoveCopyHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
@@ -394,6 +395,12 @@
     <Compile Include="HostForms\CoverPageHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\MoveCopyHost.Designer.vb">
+      <DependentUpon>MoveCopyHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\MoveCopyHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </Compile>
@@ -427,6 +434,12 @@
     </Compile>
     <Compile Include="Views\CoverPageView.xaml.vb">
       <DependentUpon>CoverPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileMoveView.xaml.vb">
+      <DependentUpon>FileMoveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoveCopyView.xaml.vb">
+      <DependentUpon>MoveCopyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
@@ -467,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CoverPageHost.resx">
       <DependentUpon>CoverPageHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\MoveCopyHost.resx">
+      <DependentUpon>MoveCopyHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
@@ -535,6 +551,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CoverPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileMoveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MoveCopyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
