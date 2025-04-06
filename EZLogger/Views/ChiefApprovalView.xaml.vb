@@ -1,23 +1,28 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
+Imports System.Windows.Forms ' ✅ You need this for Form
+
 Imports EZLogger.HostForms
-Imports EZLogger.Handlers ' Make sure this matches your actual namespace and folder
+Imports EZLogger.Handlers
 
 Namespace EZLogger.Views
+
     Partial Public Class ChiefApprovalView
-        Inherits UserControl
+        Inherits Windows.Controls.UserControl
 
         Private ReadOnly _handler As ChiefApprovalHandler
+        Private ReadOnly _hostForm As Form
 
-        Public Sub New()
+        ' ✅ Single constructor with optional hostForm
+        Public Sub New(Optional hostForm As Form = Nothing)
             InitializeComponent()
 
-            ' Create instance of the handler
+            _hostForm = hostForm
             _handler = New ChiefApprovalHandler()
 
-            ' Wire up the buttons
             AddHandler BtnApproval.Click, AddressOf BtnApproval_Click
             AddHandler BtnSignature.Click, AddressOf BtnSignature_Click
+            AddHandler BtnClose.Click, AddressOf BtnClose_Click
         End Sub
 
         Private Sub BtnApproval_Click(sender As Object, e As RoutedEventArgs)
@@ -27,6 +32,11 @@ Namespace EZLogger.Views
         Private Sub BtnSignature_Click(sender As Object, e As RoutedEventArgs)
             _handler.HandleSignatureClick()
         End Sub
-    End Class
-End Namespace
 
+        Private Sub BtnClose_Click(sender As Object, e As RoutedEventArgs)
+            _handler.HandleCloseClick(_hostForm)
+        End Sub
+
+    End Class
+
+End Namespace

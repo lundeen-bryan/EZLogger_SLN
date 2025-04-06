@@ -1,5 +1,6 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
+Imports stdole
 
 Namespace HostForms
     Public Class ChiefApprovalHandler
@@ -17,6 +18,10 @@ Namespace HostForms
 
         Public Sub HandleSignatureClick()
             MsgBox("You clicked Insert Signature")
+        End Sub
+
+        Public Sub HandleCloseClick(form As Form)
+            If form IsNot Nothing Then form.Close()
         End Sub
 
     End Class

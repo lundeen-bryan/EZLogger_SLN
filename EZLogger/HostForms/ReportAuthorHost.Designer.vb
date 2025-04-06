@@ -23,7 +23,7 @@ Partial Class ReportAuthorHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.ReportAuthorView1 = New ReportAuthorView()
+        Me.ReportAuthorView1 = New EZLogger.Views.ReportAuthorView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -52,5 +52,5 @@ Partial Class ReportAuthorHost
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend ReportAuthorView1 As ReportAuthorView
+    Friend ReportAuthorView1 As EZLogger.Views.ReportAuthorView
 End Class
