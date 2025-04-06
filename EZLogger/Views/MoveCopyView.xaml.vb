@@ -1,26 +1,31 @@
 ﻿Imports System.Windows
-Imports System.Windows.Controls
+Imports System.Windows.Controls.UserControl
+Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports EZLogger.Enums
 
 Namespace EZLogger.Views
 
     Partial Public Class MoveCopyView
-        Inherits UserControl
+        Inherits System.Windows.Controls.UserControl ' ✅ Explicit WPF UserControl
 
-        Public Sub New()
+        Private ReadOnly _hostForm As Form
+        Private ReadOnly _handler As New Handlers.MoveCopyHandler()
+
+        Public Sub New(Optional hostForm As Form = Nothing)
             InitializeComponent()
+            _hostForm = hostForm
 
             AddHandler BtnSearchPatientId.Click, AddressOf BtnSearchPatientId_Click
+            AddHandler BtnSaveAs.Click, AddressOf BtnSaveAs_Click
         End Sub
 
         Private Sub BtnSearchPatientId_Click(sender As Object, e As RoutedEventArgs)
-            Dim config As New MessageBoxConfig With {
-                .Message = "You pressed the search button.",
-                .ShowOk = True
-            }
+            _handler.HandleSearchClick(_hostForm)
+        End Sub
 
-            CustomMsgBoxHandler.Show(config)
+        Private Sub BtnSaveAs_Click(sender As Object, e As RoutedEventArgs)
+            _handler.HandleSaveAsClick(_hostForm)
         End Sub
 
     End Class
