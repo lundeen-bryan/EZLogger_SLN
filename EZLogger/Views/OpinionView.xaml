@@ -11,7 +11,8 @@
              d:DesignHeight="395"
              d:DesignWidth="870"
              FontFamily="Candara"
-             FontSize="14" Padding="0,0,-4,0">
+             FontSize="14"
+             Padding="0,0,-4,0">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="ReportTypeData"
                             ObjectType="{x:Type models:ReportTypeEntry}"
@@ -30,7 +31,8 @@
                       Margin="6,10,6,0"
                       Height="261"
                       Background="White"
-                      BorderBrush="Black" Padding="6,0,6,0">
+                      BorderBrush="Black"
+                      Padding="6,0,6,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Choice"
                                         Binding="{Binding Choice}"
@@ -54,24 +56,46 @@
             <StackPanel Height="55"
                         Width="850"
                         Orientation="Horizontal">
-                <ComboBox x:Name="OpinionCbo" Width="215"
+                <ComboBox x:Name="OpinionCbo"
+                          Width="215"
                           Height="26"
-                          FontFamily="Lucida Fax" Margin="0,0,12,0">
+                          FontFamily="Lucida Fax"
+                          Margin="0,0,12,0">
                     <ComboBoxItem Content="1370(b)(1)" />
                     <ComboBoxItem Content="1372(a)(1)" />
                 </ComboBox>
-                <Button Margin="12,0,12,0"
-                                Width="88"
-                                Content="OK"
-                                BorderBrush="Gray" Height="31" Background="{x:Null}" Cursor="Hand"
-                                />
-                <Button Width="88"
-                                Content="First Page"
-                                BorderBrush="Gray"
-                                Margin="12,0,12,0" Height="31" Background="{x:Null}" Cursor="Hand" />
-                <Button Width="88"
-                                Content="Last Page"
-                                BorderBrush="Gray" Height="31" Background="{x:Null}" Margin="12,0,12,0" Cursor="Hand" />
+                <Button x:Name="BtnOpinionOk"
+                        Margin="12,0,12,0"
+                        Width="88"
+                        Content="_OK"
+                        BorderBrush="Gray"
+                        Height="31"
+                        Background="{x:Null}"
+                        Cursor="Hand" />
+                <Button x:Name="BtnOpinionFirstPage"
+                        Width="88"
+                        Content="_First Page"
+                        BorderBrush="Gray"
+                        Margin="12,0,12,0"
+                        Height="31"
+                        Background="{x:Null}"
+                        Cursor="Hand" />
+                <Button x:Name="BtnOpinionLastPage"
+                        Width="88"
+                        Content="_Last Page"
+                        BorderBrush="Gray"
+                        Height="31"
+                        Background="{x:Null}"
+                        Margin="12,0,12,0"
+                        Cursor="Hand" />
+                <Button x:Name="BtnClose"
+                        Width="88"
+                        Content="_Close"
+                        BorderBrush="Gray"
+                        Height="31"
+                        Background="{x:Null}"
+                        Margin="12,0,12,0"
+                        Cursor="Hand" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

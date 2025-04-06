@@ -125,7 +125,7 @@
                                    Width="729"
                                    Background="#FFC1E0FF" />
                     </GroupBox>
-                    <Button x:Name="BtnSaveConfig" Content="Sa_ve This Configuration"
+                    <Button x:Name="BtnSaveConfig" Content="S_ave This Configuration"
                             HorizontalAlignment="Left"
                             Margin="634,512,0,0"
                             VerticalAlignment="Top"
@@ -162,17 +162,17 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,10,0,0">
                         <Button x:Name="AddAlertButton"
-                                Content="Add"
+                                Content="_Add"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
                         <Button x:Name="EditAlertButton"
-                                Content="Edit"
+                                Content="_Edit"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
                         <Button x:Name="DeleteAlertButton"
-                                Content="Delete"
+                                Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
@@ -208,17 +208,17 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,10,0,0">
                         <Button x:Name="AddCountyAlertButton"
-                                Content="Add"
+                                Content="_Add"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
                         <Button x:Name="EditCountyAlertButton"
-                                Content="Edit"
+                                Content="_Edit"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
                         <Button x:Name="DeleteCountyAlertButton"
-                                Content="Delete"
+                                Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
@@ -291,7 +291,8 @@
                                      VerticalContentAlignment="Bottom"
                                      Margin="0,60,0,0" />
                     </StackPanel>
-                    <Button x:Name="EditEmail" Content="Edit"
+                    <Button x:Name="EditEmail" 
+                            Content="_Edit"
                             HorizontalAlignment="Left"
                             Margin="27,53,0,0"
                             VerticalAlignment="Top"
@@ -324,7 +325,7 @@
                              VerticalScrollBarVisibility="Auto"
                              Height="490" />
                     <Button x:Name="BtnSaveDoctorsList"
-                            Content="Save"
+                            Content="S_ave"
                             HorizontalAlignment="Left"
                             Margin="77,194,0,0"
                             VerticalAlignment="Top"

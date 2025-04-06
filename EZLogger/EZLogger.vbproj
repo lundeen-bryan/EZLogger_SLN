@@ -350,7 +350,9 @@
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
+    <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
+    <Compile Include="Handlers\PatientInfoHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
     <Compile Include="EZLoggerRibbon.Designer.vb">
@@ -376,7 +378,9 @@
     <Compile Include="HostForms\OpinionHost.Designer.vb">
       <DependentUpon>OpinionHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\OpinionHost.vb" />
+    <Compile Include="HostForms\OpinionHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\PatientInfoHost.Designer.vb">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
     </Compile>
