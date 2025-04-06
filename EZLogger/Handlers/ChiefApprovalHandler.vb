@@ -2,7 +2,7 @@
 Imports System.Windows.Forms
 Imports stdole
 
-Namespace HostForms
+Namespace Handlers
     Public Class ChiefApprovalHandler
 
         Public Sub OnOpenChiefHostClick()

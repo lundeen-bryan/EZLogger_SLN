@@ -1,9 +1,7 @@
 ﻿Imports System.Windows
-Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
-Imports EZLogger.HostForms
 
 Namespace EZLogger.Views
 

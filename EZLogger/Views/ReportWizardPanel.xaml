@@ -59,7 +59,6 @@
                       BorderBrush="DarkGray">
                 <Button x:Name="LookupDatabase"
                         Content="Database"
-                        Click="PatientDatabaseButton_Click"
                         HorizontalAlignment="Left"
                         Margin="6,6,0,0"
                         VerticalAlignment="Top"
@@ -103,7 +102,6 @@
                               Height="30"
                               FontFamily="Lucida Fax" />
                     <Button x:Name="ConfirmTypeBtn"
-                            Click="ConfirmReportTypeButton_Click"
                             Cursor="Hand"
                             Content="Open Report Type Form"
                             HorizontalAlignment="Center"
@@ -159,7 +157,6 @@
                       Width="285"
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnOpenOpinionForm"
-                        Click="OpenOpinionForm_Click"
                         Content="Open Opinion Form"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
@@ -179,7 +176,6 @@
                       Width="285"
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnSelectAuthor"
-                        Click="OpenAuthorForm_Click"
                         Content="Select Author Form"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
@@ -200,7 +196,6 @@
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnSelectChief"
                         Content="Chief Approval Form"
-                        Click="OpenChiefHost_Click"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
                         Margin="6,0,0,0"
@@ -220,7 +215,6 @@
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnSaveForm"
                         Content="File Save Form"
-                        Click="OpenFileSaveForm_Click"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
                         Margin="6,0,0,0"
