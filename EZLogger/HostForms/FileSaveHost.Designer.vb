@@ -23,7 +23,7 @@ Partial Class FileSaveHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.FileSaveView1 = New EZLogger.FileSaveView()
+        Me.FileSaveView1 = New FileSaveView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -31,7 +31,7 @@ Partial Class FileSaveHost
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(800, 450)
+        Me.ElementHost1.Size = New System.Drawing.Size(459, 654)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
         Me.ElementHost1.Child = Me.FileSaveView1
@@ -40,21 +40,18 @@ Partial Class FileSaveHost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(459, 654)
         Me.Controls.Add(Me.ElementHost1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FileSaveHost"
         Me.ShowIcon = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend FileSaveView1 As EZLogger.FileSaveView
+    Friend FileSaveView1 As FileSaveView
 End Class

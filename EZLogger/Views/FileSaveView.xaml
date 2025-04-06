@@ -6,10 +6,9 @@
              xmlns:hw="http://schemas.hpod9.com/haley/wpf"
              xmlns:local="clr-namespace:EZLogger"
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="FileSaveView"
-             mc:Ignorable="d" Height="640" Width="435" FontFamily="Candara" FontSize="16">
+             mc:Ignorable="d" Height="630" Width="460">
     <Grid>
-
-        <Controls:FormHeaderControl Margin="12,12,0,0" VerticalAlignment="Top" HeaderText="SELECT PAGES AND CONVERT TO PDF"/>
+        <Controls:FormHeaderControl HeaderText="SELECT PAGES AND CONVERT TO PDF"/>
         <ListBox x:Name="ListBoxCoverPages" HorizontalAlignment="Left" Height="360" Margin="10,70,0,0" VerticalAlignment="Top" Width="380" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <StackPanel Margin="0,450,0,0">
             <GroupBox Height="90" Header="Convert my selection to:" Width="430" BorderBrush="DarkGray">
@@ -22,7 +21,7 @@
                 <StackPanel Height="69" VerticalAlignment="Bottom" Orientation="Horizontal">
                     <Label x:Name="LabelPages" Content="0" Height="29" Margin="24,0,0,0" VerticalContentAlignment="Center" FontFamily="Lucida Fax"/>
                     <Label x:Name="LabelPages_Copy" Content="+" Height="29" VerticalContentAlignment="Center"/>
-                    <hw:Incrementer x:Name="IncrementerTotalPages" FontFamily="Lucida Fax"></hw:Incrementer>
+                    <hw:Incrementer x:Name="IncrementerTotalPages" FontFamily="Lucida Fax"/>
                     <Button x:Name="BtnConvert" Content="_Convert" Height="35" Margin="100,0,0,0" Width="131" Background="{x:Null}"/>
                 </StackPanel>
             </GroupBox>

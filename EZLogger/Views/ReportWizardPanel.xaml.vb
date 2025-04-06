@@ -12,6 +12,11 @@ Partial Public Class ReportWizardPanel
     Private ophandler As New HostForms.OpinionHandler()
     Private auhandler As New HostForms.AuthorHandler()
     Private chhandler As New HostForms.ChiefApprovalHandler()
+    Private fshandler As New Handlers.FileSaveHandler()
+
+    Private Sub OpenFileSaveForm_Click(sender As Object, e As RoutedEventArgs)
+        fshandler.OnFileSaveHostClick()
+    End Sub
 
     Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = getPatientNumberHandler.OnSearchButtonClick()

@@ -220,6 +220,7 @@
                       BorderBrush="DarkGray">
                 <Button x:Name="BtnSaveForm"
                         Content="File Save Form"
+                        Click="OpenFileSaveForm_Click"
                         Cursor="Hand"
                         HorizontalAlignment="Left"
                         Margin="6,0,0,0"
