@@ -1,7 +1,7 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
 
-Namespace HostForms
+Namespace Handlers
     Public Class AuthorHandler
 
         Public Sub OnOpenAuthorFormClick()

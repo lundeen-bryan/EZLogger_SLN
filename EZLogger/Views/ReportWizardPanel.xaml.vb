@@ -6,59 +6,62 @@ Imports EZLogger.Helpers
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
 
-    Private getPatientNumberHandler As New ReportWizardHandler()
-    Private dbhandler As New PatientDatabaseHandler()
-    Private rthandler As New ReportTypeHandler()
-    Private ophandler As New HostForms.OpinionHandler()
-    Private auhandler As New HostForms.AuthorHandler()
-    Private chhandler As New HostForms.ChiefApprovalHandler()
-    Private fshandler As New Handlers.FileSaveHandler()
+    Private ReadOnly _handler As ReportWizardHandler
 
-    Private Sub OpenFileSaveForm_Click(sender As Object, e As RoutedEventArgs)
-        fshandler.OnFileSaveHostClick()
+    Public Sub New()
+        InitializeComponent()
+        _handler = New ReportWizardHandler()
+
+        AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
+        AddHandler FindPatientId.Click, AddressOf FindPatientId_Click
+        AddHandler LookupDatabase.Click, AddressOf LookupDatabase_Click
+        AddHandler BtnOpenOpinionForm.Click, AddressOf BtnOpenOpinionForm_Click
+        AddHandler BtnSelectAuthor.Click, AddressOf BtnSelectAuthor_Click
+        AddHandler BtnSelectChief.Click, AddressOf BtnSelectChief_Click
+        AddHandler ConfirmTypeBtn.Click, AddressOf ConfirmReportType_Click
+        AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
+    End Sub
+
+    Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
+        Dim fileHandler As New FileSaveHandler()
+        fileHandler.OnFileSaveHostClick()
     End Sub
 
     Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
-        Dim patientNumber As String = getPatientNumberHandler.OnSearchButtonClick()
-
+        Dim patientNumber As String = _handler.OnSearchButtonClick()
         If Not String.IsNullOrWhiteSpace(patientNumber) Then
             TextBoxPatientNumber.Text = patientNumber
         Else
             MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
         End If
     End Sub
-    Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        ReportTypeCbo.ItemsSource = rthandler.GetReportTypes()
 
-        ' Simulated database value — later this will come from a database or config
-        Dim courtNumbers As String = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
-        CourtNumbersTextBlock.Text = courtNumbers
+    Private Sub LookupDatabase_Click(sender As Object, e As RoutedEventArgs)
+        Dim dbHandler As New PatientDatabaseHandler()
+        dbHandler.OnPatientDatabaseButtonClick()
     End Sub
 
-    Private Sub PatientDatabaseButton_Click(sender As Object, e As RoutedEventArgs)
-        dbhandler.OnPatientDatabaseButtonClick()
+    Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
+        Dim opHandler As New OpinionHandler()
+        opHandler.OnOpenOpinionFormClick()
     End Sub
 
-    Private Sub OpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
-        ophandler.OnOpenOpinionFormClick()
-    End Sub
-    Private Sub OpenAuthorForm_Click(sender As Object, e As RoutedEventArgs)
-        auhandler.OnOpenAuthorFormClick()
-    End Sub
-    Private Sub OpenChiefHost_Click(sender As Object, e As RoutedEventArgs)
-        chhandler.OnOpenChiefHostClick()
+    Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)
+        Dim auHandler As New AuthorHandler()
+        auHandler.OnOpenAuthorFormClick()
     End Sub
 
-    Private Sub ConfirmReportTypeButton_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub BtnSelectChief_Click(sender As Object, e As RoutedEventArgs)
+        Dim chHandler As New ChiefApprovalHandler()
+        chHandler.OnOpenChiefHostClick()
+    End Sub
+
+    Private Sub ConfirmReportType_Click(sender As Object, e As RoutedEventArgs)
+        Dim rHandler As New ReportTypeHandler()
         Dim selectedItem = ReportTypeCbo.SelectedItem
-
         If selectedItem IsNot Nothing Then
             Dim currentSelection As String = selectedItem.ToString()
-
-            ' Show the form and get the updated value
-            Dim newSelection As String = rthandler.OnConfirmReportTypeButtonClick(currentSelection)
-
-            ' Update ComboBox if the value changed
+            Dim newSelection As String = rHandler.OnConfirmReportTypeButtonClick(currentSelection)
             If Not String.IsNullOrWhiteSpace(newSelection) AndAlso newSelection <> currentSelection Then
                 ReportTypeCbo.SelectedItem = newSelection
             End If
@@ -67,9 +70,12 @@ Partial Public Class ReportWizardPanel
         End If
     End Sub
 
-    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+    Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
         Dim reportTypes As List(Of String) = ConfigPathHelper.GetReportTypeList()
         ReportTypeCbo.ItemsSource = reportTypes
+
+        ' Optional: Pre-load something into CourtNumbersTextBlock
+        CourtNumbersTextBlock.Text = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
     End Sub
 
 End Class

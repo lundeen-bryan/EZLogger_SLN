@@ -2,7 +2,6 @@
 Imports System.Windows.Controls
 Imports System.Windows.Forms ' ✅ You need this for Form
 
-Imports EZLogger.HostForms
 Imports EZLogger.Handlers
 
 Namespace EZLogger.Views

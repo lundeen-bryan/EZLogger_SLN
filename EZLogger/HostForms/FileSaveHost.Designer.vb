@@ -47,6 +47,7 @@ Partial Class FileSaveHost
         Me.MinimizeBox = False
         Me.Name = "FileSaveHost"
         Me.ShowIcon = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TopMost = True
         Me.ResumeLayout(False)
 
