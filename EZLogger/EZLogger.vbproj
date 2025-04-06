@@ -354,6 +354,7 @@
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\CustomMsgBoxHandler.vb" />
+    <Compile Include="Handlers\FileSaveHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
