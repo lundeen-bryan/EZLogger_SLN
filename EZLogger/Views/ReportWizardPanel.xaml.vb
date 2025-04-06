@@ -12,7 +12,7 @@ Partial Public Class ReportWizardPanel
         InitializeComponent()
         _handler = New ReportWizardHandler()
 
-        AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
+        AddHandler BtnCoverPageForm.Click, AddressOf BtnCoverPageForm_Click
         AddHandler FindPatientId.Click, AddressOf FindPatientId_Click
         AddHandler LookupDatabase.Click, AddressOf LookupDatabase_Click
         AddHandler BtnOpenOpinionForm.Click, AddressOf BtnOpenOpinionForm_Click
@@ -22,8 +22,8 @@ Partial Public Class ReportWizardPanel
         AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
     End Sub
 
-    Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
-        Dim fileHandler As New FileSaveHandler()
+    Private Sub BtnCoverPageForm_Click(sender As Object, e As RoutedEventArgs)
+        Dim fileHandler As New CoverPageHandler()
         fileHandler.OnFileSaveHostClick()
     End Sub
 

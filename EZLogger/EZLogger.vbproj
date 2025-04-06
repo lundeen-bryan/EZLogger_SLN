@@ -354,7 +354,7 @@
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\CustomMsgBoxHandler.vb" />
-    <Compile Include="Handlers\FileSaveHandler.vb" />
+    <Compile Include="Handlers\CoverPageHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
@@ -388,10 +388,10 @@
     <Compile Include="HostForms\CustomMsgBoxHost.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HostForms\FileSaveHost.Designer.vb">
-      <DependentUpon>FileSaveHost.vb</DependentUpon>
+    <Compile Include="HostForms\CoverPageHost.Designer.vb">
+      <DependentUpon>CoverPageHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\FileSaveHost.vb">
+    <Compile Include="HostForms\CoverPageHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
@@ -425,8 +425,8 @@
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FileSaveView.xaml.vb">
-      <DependentUpon>FileSaveView.xaml</DependentUpon>
+    <Compile Include="Views\CoverPageView.xaml.vb">
+      <DependentUpon>CoverPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
@@ -465,8 +465,8 @@
     <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\FileSaveHost.resx">
-      <DependentUpon>FileSaveHost.vb</DependentUpon>
+    <EmbeddedResource Include="HostForms\CoverPageHost.resx">
+      <DependentUpon>CoverPageHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
@@ -534,7 +534,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FileSaveView.xaml">
+    <Page Include="Views\CoverPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

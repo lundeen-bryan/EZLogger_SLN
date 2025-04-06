@@ -2,10 +2,10 @@
 Imports System.Windows.Controls
 
 Namespace Handlers
-	Public Class FileSaveHandler
+	Public Class CoverPageHandler
 
 		Public Sub OnFileSaveHostClick()
-			Dim host As New FileSaveHost()
+			Dim host As New CoverPageHost()
 			host.Show()
 		End Sub
 
