@@ -66,17 +66,24 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
-        Dim reader As New WordFooterReader()
-        Dim patientNumber As String = reader.FindPatientNumberInFooter()
+        Dim lorem As String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " &
+                          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " &
+                          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " &
+                          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-        If Not String.IsNullOrWhiteSpace(patientNumber) Then
-            MessageBox.Show("Patient number found: " & patientNumber, "Success")
-        Else
-            MessageBox.Show("No patientnumber found", "Search Complete")
+        Dim config As New MessageBoxConfig With {
+        .Message = lorem,
+        .ShowOk = True,
+        .ShowYes = False,
+        .ShowNo = False
+    }
+
+        Dim result = CustomMsgBoxHandler.Show(config)
+
+        If result = CustomMsgBoxResult.OK Then
+            MsgBox("User acknowledged the long message.")
         End If
-
     End Sub
-
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
         Dim configHost As New ConfigHost()
         configHost.ShowDialog()
