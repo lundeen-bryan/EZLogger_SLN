@@ -1,50 +1,50 @@
 ﻿Imports System.Data.SQLite
+Imports System.IO
+Imports System.Windows.Forms
+Imports EZLogger.Helpers
+Imports EZLogger.Models ' Adjust if PatientCls is in a different folder or namespace
 
-' Simple model to hold patient data
-Public Class Patient
-    Public Property PatientNumber As String
-    Public Property FullName As String
-    Public Property ClassName As String
-    Public Property County As String
-    Public Property BedStatus As String
-End Class
+Public Module DatabaseHelper
 
-' Database helper class to read from SQLite
-Public Class DatabaseHelper
-    Private ReadOnly _dbPath As String
+    Public Function GetPatientByNumber(patientNumber As String) As PatientCls
+        If String.IsNullOrWhiteSpace(patientNumber) Then
+            Return Nothing
+        End If
 
-    Public Sub New(dbPath As String)
-        _dbPath = dbPath
-    End Sub
+        Try
+            Dim dbPath As String = ConfigPathHelper.GetDatabasePath()
+            If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
+                MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
+                Return Nothing
+            End If
+            Dim connectionString As String = $"Data Source={dbPath};Version=3;"
 
-    Public Function GetAllPatients() As List(Of Patient)
-        Dim patients As New List(Of Patient)()
+            Using conn As New SQLiteConnection(connectionString)
+                conn.Open()
 
-        Using conn As New SQLiteConnection($"Data Source={_dbPath};Version=3;")
-            conn.Open()
+                Dim query As String = "SELECT * FROM EZL WHERE patient_number = @patientNumber"
 
-            Dim query As String = "
-                SELECT patient_number, fullname, class, county, bed_status
-                FROM EZL
-                ORDER BY fullname
-            "
+                Using cmd As New SQLiteCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
-            Using cmd As New SQLiteCommand(query, conn)
-                Using reader As SQLiteDataReader = cmd.ExecuteReader()
-                    While reader.Read()
-                        Dim p As New Patient With {
-                            .PatientNumber = reader("patient_number").ToString(),
-                            .FullName = reader("fullname").ToString(),
-                            .ClassName = reader("class").ToString(),
-                            .County = reader("county").ToString(),
-                            .BedStatus = reader("bed_status").ToString()
-                        }
-                        patients.Add(p)
-                    End While
+                    Using reader As SQLiteDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            Dim patient As New PatientCls With {
+                                .PatientNumber = reader("patient_number").ToString(),
+                                .FullName = reader("fullname").ToString(),
+                                .County = reader("county").ToString()
+                            }
+                            Return patient
+                        End If
+                    End Using
                 End Using
             End Using
-        End Using
 
-        Return patients
+        Catch ex As Exception
+            MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Return Nothing
     End Function
-End Class
+
+End Module

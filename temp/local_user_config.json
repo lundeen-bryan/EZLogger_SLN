@@ -18,7 +18,8 @@
         "sheriff_addresses":           "",
         "templates":                   "",
         "user_forensic_database":      "",
-        "user_forensic_library":       ""
+        "user_forensic_library":       "",
+        "ezl_database":                "C:\\Users\\lunde\\repos\\cs\\ezlogger\\EZLogger_SLN\\data\\ezlogger.db"
     },
     "edo_filepath": {
         "_comment":                "Shortcuts to shared drive paths, relative to a network root",
