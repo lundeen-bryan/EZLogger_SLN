@@ -20,6 +20,7 @@ Public Class WordFooterReader
             ResetFindParameters(footerRange)
 
             Do Until numberLocated OrElse repeatSearch > maxRepeatSearch
+
                 With footerRange.Find
                     .Text = "[0-9]{6,}-[0-9]{1,}"
                     .MatchWildcards = True
@@ -33,7 +34,8 @@ Public Class WordFooterReader
                             numberLocated = True
                             Clipboard.SetText(patientNumber)
                         Else
-                            footerRange.MoveStart(Word.WdUnits.wdWord, -1)
+                            'footerRange.MoveStart(Word.WdUnits.wdWord, -1)
+                            footerRange.Start = footerRange.End
                         End If
                     End If
                 End With

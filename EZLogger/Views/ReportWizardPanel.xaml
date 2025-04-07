@@ -23,7 +23,6 @@
                 <Button x:Name="FindPatientId"
                         Content="Search"
                         HorizontalAlignment="Left"
-                        Click="FindPatientId_Click"
                         Margin="6,6,0,0"
                         VerticalAlignment="Top"
                         Height="29"
