@@ -190,5 +190,34 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Returns the full path to the EZLogger SQLite database from local_user_config.json.
+        ''' </summary>
+        Public Function GetDatabasePath() As String
+            Try
+                If Not File.Exists(localConfigPath) Then
+                    MessageBox.Show("Local config file not found.")
+                    Return String.Empty
+                End If
+
+                Dim jsonText As String = File.ReadAllText(localConfigPath)
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = jsonDoc.RootElement
+
+                    Dim spFilepath As JsonElement
+                    If root.TryGetProperty("sp_filepath", spFilepath) Then
+                        Dim dbPathElement As JsonElement
+                        If spFilepath.TryGetProperty("ezl_database", dbPathElement) Then
+                            Return dbPathElement.GetString()
+                        End If
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error reading database path from config: " & ex.Message)
+            End Try
+
+            Return String.Empty
+        End Function
+
     End Module
 End Namespace

@@ -1,68 +1,82 @@
-# EZLogger Project Summary (As of Current Stage)
+## 📘 Plan: Pull Patient Data from SQLite and Display in VB.NET
 
-## **Project Purpose**
-EZLogger is a VSTO Office Add-in developed in VB.NET using a hybrid **WinForms + WPF** architecture. It assists forensic clinicians in preparing court reports by collecting report metadata, validating document content, and preparing files for export to SharePoint and PDF.
-
----
-
-## **User Interface Architecture**
-
-### **WPF Views** (`Views\`)
-- All views are **WPF UserControls**, hosted within **WinForms container forms** under `HostForms\`.
-- Each view handles a specific section of the report pipeline:
-  - `ReportWizardPanel` is the main control center.
-  - `OpinionView`, `ReportAuthorView`, `ReportTypeView`, `ChiefApprovalView`, etc., are modular views for sub-tasks.
-  - `MoveCopyView`, `CoverPageView`, `PatientInfoView` support file handling, cover pages, and patient info.
-
-### **Host Forms** (`HostForms\`)
-- Every WPF view is wrapped inside a `Form` using `ElementHost` (e.g., `MoveCopyHost`, `OpinionHost`).
-- Forms are launched from the `ReportWizardPanel` using logic stored in the `Handlers\` folder.
-
-### **Custom Controls**
-- `CustomMsgBox` is a fully custom, lime-on-black message box control with Yes/No/OK options.
-- A shared enum `CustomMsgBoxResult` is used to capture the user’s choice.
+### 🔹 Goal
+Retrieve patient data from a local SQLite database using the patient number entered into a WPF form (`TextBoxPatientNumber`). As a test, display the patient’s full name and total record count using a `MessageBox`.
 
 ---
 
-## **Code Organization**
-
-### **Handlers (`Handlers\`)**
-- Each WPF view has a corresponding handler class that contains button logic and actions (e.g., `OpinionHandler`, `MoveCopyHandler`).
-- Handlers are triggered by views, passing in any necessary context (e.g., the host form).
-
-### **Helpers (`Helpers\`)**
-- `ConfigPathHelper` is used to retrieve config values like report types or file paths.
-- `MessageBoxConfig` defines the data structure passed into `CustomMsgBox`.
-
-### **Controls**
-- Includes shared UI elements like `FormHeaderControl` and the `CustomMsgBoxControl`.
-
-### **ViewModels**
-- Currently includes a single `MainVM.vb`, prepared for future binding logic if needed.
+### 🔹 Project Context
+- **Application type:** VB.NET VSTO Add-in for Microsoft Word
+- **UI:** WPF UserControl hosted inside a WinForms custom task pane
+- **Database:** SQLite file (hardcoded for now, will load from JSON config later)
+- **Previous implementation:** Used Word Mail Merge UI (now deprecated in favor of direct DB access)
 
 ---
 
-## **Assets (`Resources\`)**
-- Includes custom icons, PNGs, and theme assets used by views and toolbars (e.g., floppy.png, Wizard1.png).
+### 👉 Components to Build or Update
+
+#### 1. **Patient Model (New or Existing)**
+A class representing a patient record from the `EZL` table.
+
+```vbnet
+Public Class Patient
+    Public Property PatientNumber As String
+    Public Property FullName As String
+    Public Property County As String
+    ' Add more fields as needed later
+End Class
+```
 
 ---
 
-## **Ribbon & Entry Points**
-- `EZLoggerRibbon.vb` defines the add-in’s entry point from the Office Ribbon.
-- `ThisAddIn.vb` handles application-level lifecycle events.
+#### 2. **Database Helper Method (New)**
+
+Add a function to your existing `DatabaseHelper.vb` to query SQLite:
+
+```vbnet
+Public Function GetPatientByNumber(patientNumber As String) As Patient
+```
+
+- Connect to `ezlogger.db`
+- Run `SELECT * FROM EZL WHERE patient_number = ?`
+- Map result to a `Patient` object
+- Return the `Patient`, or `Nothing` if not found
 
 ---
 
-## **Current Completion**
-- All WPF views and host forms are complete.
-- Button wiring is done via `Handlers`, and multiple buttons trigger the `CustomMsgBox` as a test.
-- `ReportWizardPanel` launches sub-forms from a centralized dashboard.
-- The architecture is solid and modular — ready to integrate data.
+#### 3. **ReportWizardPanel.xaml.vb Button Logic**
+
+In the `LookupDatabase_Click` method:
+- Call `DatabaseHelper.GetPatientByNumber(...)`
+- Show the patient’s name and row count in a `MessageBox`
+- Skip Mail Merge entirely for now
+
+Example:
+
+```vbnet
+Dim patient = db.GetPatientByNumber(patientNumber)
+If patient IsNot Nothing Then
+    MessageBox.Show($"Name: {patient.FullName}")
+Else
+    MessageBox.Show("Patient not found.")
+End If
+```
 
 ---
 
-## **Next Step: Database Integration**
-The app now needs to:
-- Connect to a local or portable SQLite database (or MS SQL in production)
-- Load dynamic data (e.g., patient info, report types, cover page templates)
-- Allow users to write data back (e.g., save file metadata, logging)
+### 🗙 Code Cleanup (After Testing)
+
+Once confirmed:
+- Remove `MailMerge.OpenDataSource(...)`
+- Delete any references to `MailMergeRecipientsEditList`
+- Archive or comment out the `WriteMailMergeDataToDocProperties()` logic (if not repurposed)
+
+---
+
+### ✅ Result
+
+After this task is complete, we will have:
+- A working, testable SQLite connection
+- A verified path from patient number to retrieved patient name
+- A simplified, future-proof structure for document automation
+

@@ -38,13 +38,25 @@ Partial Public Class ReportWizardPanel
         If Not String.IsNullOrWhiteSpace(patientNumber) Then
             TextBoxPatientNumber.Text = patientNumber
         Else
-            MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+            Windows.MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
         End If
     End Sub
 
     Private Sub LookupDatabase_Click(sender As Object, e As RoutedEventArgs)
-        Dim dbHandler As New PatientDatabaseHandler()
-        dbHandler.OnPatientDatabaseButtonClick()
+        Dim patientNumber As String = TextBoxPatientNumber.Text
+
+        If String.IsNullOrWhiteSpace(patientNumber) Then
+            Windows.MessageBox.Show("No patient number found. Please use the Search button first.", "Missing Data", MessageBoxButton.OK, MessageBoxImage.Warning)
+            Return
+        End If
+
+        Dim patient = DatabaseHelper.GetPatientByNumber(patientNumber)
+
+        If patient IsNot Nothing Then
+            Windows.MessageBox.Show($"Patient name: {patient.FullName}", "Record Found")
+        Else
+            Windows.MessageBox.Show("No patient record found.", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information)
+        End If
     End Sub
 
     Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
@@ -72,7 +84,7 @@ Partial Public Class ReportWizardPanel
                 ReportTypeCbo.SelectedItem = newSelection
             End If
         Else
-            MessageBox.Show("Please select a report type first.", "No Selection")
+            Windows.MessageBox.Show("Please select a report type first.", "No Selection")
         End If
     End Sub
 
