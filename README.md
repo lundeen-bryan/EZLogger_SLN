@@ -1,4 +1,4 @@
-# EZLogger v1.0.4
+# EZLogger v0.0.1
 
 EZLogger is an Office Add-In developed using Visual Studio Tools for Office (VSTO) in VB.NET. The add-in integrates with Microsoft Word to provide various tools, including a report wizard, database operations, and task management.
 
@@ -63,6 +63,35 @@ To fork or clone the repository:
 
 3. **Make Changes**:
    You can now make changes to the code on your local machine. If you make any significant changes, feel free to submit a pull request back to the main repository.
+
+## Versioning Strategy
+
+### Version Reset (April 2025)
+
+As of April 2025, I've transitioned to [Semantic Versioning 2.0.0](https://semver.org/) to provide more clarity around my release cycle and to better communicate the impact of changes to my codebase.
+
+#### Why We Changed
+
+Previously, my versioning strategy started at v1.0.0 despite the project being in early development stages. To better reflect the pre-release nature of my software and to align with industry standards, I've reset my versioning to start at v0.0.1.
+
+#### New Versioning Scheme
+
+My new versioning follows these principles:
+
+- **Development Phase (0.x.y)**:
+  - Starting at v0.0.1
+  - Minor version (0.x.0) increments with new features
+  - Patch version (0.0.x) increments with bug fixes
+
+- **Production Release (≥1.0.0)**:
+  - v1.0.0 will mark our first stable release
+  - Major version (x.0.0) increments with breaking changes
+  - Minor version (0.x.0) increments with backward-compatible new features
+  - Patch version (0.0.x) increments with backward-compatible bug fixes
+
+#### Implementation Date
+
+This versioning change was implemented on 2025-04-08 with the release of v0.0.1, replacing all previous versioning.
 
 ## Contributing
 
