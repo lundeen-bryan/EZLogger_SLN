@@ -8,17 +8,17 @@ and this project adheres to [Semantic Versioning].
 ## [Unreleased]
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
-- Use for future grid display and patient lookup logic supporting multiple legal statuses
+- Grid display and patient lookup logic supporting multiple legal statuses
 - Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
 - Use CustomMsgBox form in place of Windows.MessageBox -- low priority
 - Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
 - Refactor anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 
-## [1.0.4] - 2025-04-07
+## [0.0.1] - 2025-04-07
 
 ### Changed
 
-- Refactored GetPatientByNumber to GetPatientsByNumber, supporting up to 5 sorted results
+- Refactored GetPatientByNumber ~~to GetPatientsByNumber, supporting up to 5 sorted results~~ EZL only has one record per patient number
 - Refactored `LookupDatabase_Click` logic out of the view and into `ReportWizardHandler` to follow separation of concerns
 - Replacedlegacy MailMerge-based property writing with a direct SQLite-backed workflow. Will need to be refactored for MSSQL later.
 
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning].
 - `AgeHelper.CalculateAge()` function to calculate a patient’s age from DOB, with full documentation and legacy logic preserved.
 - Conditional confirmation prompt ("Does this information match the report?") using Yes/No dialog before writing document properties.
 
-## [1.0.3] - 2025-04-05
+## [0.0.1] - 2025-04-05
 
 ### Added
 
@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning].
 - Removed unused imports from `OpinionView.vb`, `ReportAuthorView.vb`, and `ReportWizardPanel.vb`.
 
 
-## [1.0.2] - 2025-04-04
+## [0.0.1] - 2025-04-04
 
 - Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
 - Markdown files created/updated for better documentation accessibility, with clear sections on project setup, control creation, and property exposure.
@@ -65,7 +65,7 @@ and this project adheres to [Semantic Versioning].
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
 - Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
-## [1.0.1] - 2025-04-03
+## [0.0.1] - 2025-04-03
 
 ### Updated
 
