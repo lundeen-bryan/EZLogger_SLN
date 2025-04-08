@@ -11,16 +11,23 @@ and this project adheres to [Semantic Versioning].
 - Use for future grid display and patient lookup logic supporting multiple legal statuses
 - Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
 - Use CustomMsgBox form in place of Windows.MessageBox -- low priority
+- Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
+- Refactor anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 
 ## [1.0.4] - 2025-04-07
 
 ### Changed
 
 - Refactored GetPatientByNumber to GetPatientsByNumber, supporting up to 5 sorted results
+- Refactored `LookupDatabase_Click` logic out of the view and into `ReportWizardHandler` to follow separation of concerns
+- Replacedlegacy MailMerge-based property writing with a direct SQLite-backed workflow. Will need to be refactored for MSSQL later.
 
 ### Added
 
-- Temporarily shows matches in a MessageBox
+- Temporarily shows matches in a MessageBox when pressing Database button
+- `WriteDataToDocProperties(patient As PatientCls)` method to write patient details into Word custom document properties.
+- `AgeHelper.CalculateAge()` function to calculate a patient’s age from DOB, with full documentation and legacy logic preserved.
+- Conditional confirmation prompt ("Does this information match the report?") using Yes/No dialog before writing document properties.
 
 ## [1.0.3] - 2025-04-05
 

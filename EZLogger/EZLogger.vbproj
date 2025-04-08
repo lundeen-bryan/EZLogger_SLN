@@ -386,6 +386,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
+    <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\ConfigPathHelper.vb" />
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
