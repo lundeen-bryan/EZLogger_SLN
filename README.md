@@ -66,17 +66,7 @@ To fork or clone the repository:
 
 ## Versioning Strategy
 
-### Version Reset (April 2025)
-
-As of April 2025, I've transitioned to [Semantic Versioning 2.0.0](https://semver.org/) to provide more clarity around my release cycle and to better communicate the impact of changes to my codebase.
-
-#### Why We Changed
-
-Previously, my versioning strategy started at v1.0.0 despite the project being in early development stages. To better reflect the pre-release nature of my software and to align with industry standards, I've reset my versioning to start at v0.0.1.
-
-#### New Versioning Scheme
-
-My new versioning follows these principles:
+Versioning follows these principles:
 
 - **Development Phase (0.x.y)**:
   - Starting at v0.0.1
