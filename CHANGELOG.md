@@ -2,19 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog],
-and this project adheres to [Semantic Versioning].
+The format is based on [Keep a Changelog][Keep a Changelog],
+and this project adheres to [Semantic Versioning][Semantic Versioning].
 
-## [Unreleased]
+## [Unreleased][Unreleased]
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
 - Grid display and patient lookup logic supporting multiple legal statuses
 - Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
-- Use CustomMsgBox form in place of Windows.MessageBox -- low priority
-- Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
+- Use CustomMsgBox form in place of Windows.MessageBox -- low priority if it enhances some aspect of the UI
 - Refactor anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
+- Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
+- Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
+- Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
+- Add function in a module to copy to clipboard since it will be used a lot in this app
+- Add function to get sender's name and add it as a document property as "ProcessedBy"
+- Add function to position forms on the same screen as the Word application in the top left corner rather than in the center of the main screen see fnc_position_form in legacy
+- Add function to return full filepath or filename or ext of open word document
+- Add function to check if a file already exists in a directory
+- Function to return user's temp file path
+- Return users documents path for finding the user_config.json file
+- Update EZL to show a charges column and write function to return charges from ODS
+- Function to write metadata to the sharepoint site when the file is uploaded/saved there
+- Functiion to close the document without notifications to the user
+- Functions to convert document to pdf and xps
+- Function to go to last page and first page and header/footer of document
+- Function to insert signature
+- Function that writes to excel
+- Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
-## [0.0.1] - 2025-04-07
+## [0.0.1][0.0.1] - 2025-04-07
 
 ### Changed
 
@@ -29,7 +46,7 @@ and this project adheres to [Semantic Versioning].
 - `AgeHelper.CalculateAge()` function to calculate a patient’s age from DOB, with full documentation and legacy logic preserved.
 - Conditional confirmation prompt ("Does this information match the report?") using Yes/No dialog before writing document properties.
 
-## [0.0.1] - 2025-04-05
+## [0.0.1][0.0.1] - 2025-04-05
 
 ### Added
 
@@ -48,8 +65,7 @@ and this project adheres to [Semantic Versioning].
 
 - Removed unused imports from `OpinionView.vb`, `ReportAuthorView.vb`, and `ReportWizardPanel.vb`.
 
-
-## [0.0.1] - 2025-04-04
+## [0.0.1][0.0.1] - 2025-04-04
 
 - Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
 - Markdown files created/updated for better documentation accessibility, with clear sections on project setup, control creation, and property exposure.
@@ -65,7 +81,7 @@ and this project adheres to [Semantic Versioning].
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
 - Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
-## [0.0.1] - 2025-04-03
+## [0.0.1][0.0.1] - 2025-04-03
 
 ### Updated
 
@@ -82,10 +98,11 @@ and this project adheres to [Semantic Versioning].
 - A changelog has been added to document these changes, adhering to the Keep a Changelog format. Resource files have also been included to support localization for the new feature.
 
 <!-- Links -->
-[keep a changelog]: https://keepachangelog.com/en/1.0.0/
-[semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
+
+[keep a changelog]: https://keepachangelog.com/en/1.0.0/
+[semantic versioning]: https://semver.org/spec/v2.0.0.html
 [unreleased]: https://github.com/lundeen-bryan/EZLogger-SLN/compare/v0.0.2...HEAD
 [0.0.2]: https://github.com/lundeen-bryan/EZLogger-SLN/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/lundeen-bryan/EZLogger-SLN/releases/tag/v0.0.1
