@@ -53,7 +53,12 @@ Partial Public Class ReportWizardPanel
         Dim patient = DatabaseHelper.GetPatientByNumber(patientNumber)
 
         If patient IsNot Nothing Then
-            Windows.MessageBox.Show($"Patient name: {patient.FullName}", "Record Found")
+            Dim message As String =
+            $"Full Name: {patient.FullName}" & Environment.NewLine &
+            $"County: {patient.County}" & Environment.NewLine &
+            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}"
+
+            Windows.MessageBox.Show(message, "Patient Details", MessageBoxButton.OK, MessageBoxImage.Information)
         Else
             Windows.MessageBox.Show("No patient record found.", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information)
         End If

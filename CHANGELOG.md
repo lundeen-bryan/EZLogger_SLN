@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-- /
+- Plan new EZL_DUAL table to track dual commitments separately from EZL
+- Use for future grid display and patient lookup logic supporting multiple legal statuses
+- Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
+- Use CustomMsgBox form in place of Windows.MessageBox -- low priority
+
+## [1.0.4] - 2025-04-07
+
+### Changed
+
+- Refactored GetPatientByNumber to GetPatientsByNumber, supporting up to 5 sorted results
+
+### Added
+
+- Temporarily shows matches in a MessageBox
 
 ## [1.0.3] - 2025-04-05
 
