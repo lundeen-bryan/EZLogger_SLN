@@ -44,24 +44,8 @@ Partial Public Class ReportWizardPanel
 
     Private Sub LookupDatabase_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = TextBoxPatientNumber.Text
-
-        If String.IsNullOrWhiteSpace(patientNumber) Then
-            Windows.MessageBox.Show("No patient number found. Please use the Search button first.", "Missing Data", MessageBoxButton.OK, MessageBoxImage.Warning)
-            Return
-        End If
-
-        Dim patient = DatabaseHelper.GetPatientByNumber(patientNumber)
-
-        If patient IsNot Nothing Then
-            Dim message As String =
-            $"Full Name: {patient.FullName}" & Environment.NewLine &
-            $"County: {patient.County}" & Environment.NewLine &
-            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}"
-
-            Windows.MessageBox.Show(message, "Patient Details", MessageBoxButton.OK, MessageBoxImage.Information)
-        Else
-            Windows.MessageBox.Show("No patient record found.", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information)
-        End If
+        Dim handler As New ReportWizardHandler()
+        handler.LookupPatientAndWriteProperties(patientNumber)
     End Sub
 
     Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
