@@ -7,7 +7,7 @@ Namespace Handlers
         Public Sub OnMoveCopyClick()
             Dim host As New MoveCopyHost()
             host.TopMost = True
-            host.StartPosition = FormStartPosition.CenterScreen
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host)
             host.Show()
         End Sub
 

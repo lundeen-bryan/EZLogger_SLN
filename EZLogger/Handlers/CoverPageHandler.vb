@@ -6,6 +6,7 @@ Namespace Handlers
 
 		Public Sub OnFileSaveHostClick()
 			Dim host As New CoverPageHost()
+			FormPositionHelper.MoveFormToTopLeftOfAllScreens(host)
 			host.Show()
 		End Sub
 

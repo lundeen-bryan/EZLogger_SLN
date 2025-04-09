@@ -62,6 +62,7 @@ Public Class EZLoggerRibbon
 
     Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
         Dim ptinfo As New PatientInfoHost()
+        FormPositionHelper.MoveFormToTopLeftOfAllScreens(ptinfo, 15, 15)
         ptinfo.Show()
     End Sub
 
