@@ -43,11 +43,22 @@ Public Module EnvironmentHelper
 
         Dim json = File.ReadAllText(configPath)
         Dim doc = JsonDocument.Parse(json)
+        Dim jsonValues = doc.RootElement _
+                            .GetProperty("paths") _
+                            .GetProperty("oneDriveDocumentsSubPath") _
+                            .GetString()
 
-        Return doc.RootElement _
-                  .GetProperty("paths") _
-                  .GetProperty("oneDriveDocumentsSubPath") _
-                  .GetString()
+        ' TODO: use a real try/catch here and check if the file in the oneDriveDocumentsSubPath
+        If jsonValues <> "" Then
+            Return jsonValues
+        Else
+            jsonValues = doc.RootElement _
+                            .GetProperty("paths") _
+                            .GetProperty("fallbackOneDrivePath") _
+                            .GetString()
+            Return jsonValues
+        End If
+
     End Function
 
 End Module
