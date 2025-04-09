@@ -7,7 +7,8 @@ Namespace Handlers
         Public Sub OnOpenOpinionFormClick()
             Dim host As New OpinionHost()
             host.TopMost = True
-            host.StartPosition = FormStartPosition.CenterScreen
+
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
             host.Show()
         End Sub
     End Class
