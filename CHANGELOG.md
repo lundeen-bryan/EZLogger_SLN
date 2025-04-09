@@ -16,8 +16,6 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
 - Add function to get sender's name and add it as a document property as "ProcessedBy"
-- Add function to position forms on the same screen as the Word application in the top left corner rather than in the center of the main screen see fnc_position_form in legacy
-- Add function to return full filepath or filename or ext of open word document
 - Add function to check if a file already exists in a directory
 - Function to return user's temp file path
 - Return users documents path for finding the user_config.json file
@@ -35,7 +33,8 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ### Added
 
-- Add function in a module to copy to clipboard since it will be used a lot in this app
+- Added function to return full filepath or filename or ext of open word document
+- Added function in a module to copy to clipboard since it will be used a lot in this app
 - Added a general get json method to get a value from json files
 - Added a window form positon helper module to position windows in the top left or a distance from the edge
 

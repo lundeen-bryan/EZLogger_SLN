@@ -89,5 +89,16 @@ Public Class EZLoggerRibbon
         Dim configHost As New ConfigHost()
         configHost.ShowDialog()
     End Sub
+
+    Private Sub GetFilename_Click(sender As Object, e As RibbonControlEventArgs) Handles GetFilename.Click
+        Try
+            ' Optionally test with filePath = Nothing to force fallback to ActiveDocument
+            Dim filePart As String = GetFilenameHelper.GetFilePart(1)
+
+            MsgBox("Base file name (no extension): " & filePart, MsgBoxStyle.Information, "Test Result")
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Test Error")
+        End Try
+    End Sub
 End Class
 

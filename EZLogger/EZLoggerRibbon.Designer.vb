@@ -65,6 +65,7 @@
         Me.AboutButton = Me.Factory.CreateRibbonButton
         Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Button2 = Me.Factory.CreateRibbonButton
+        Me.GetFilename = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -215,6 +216,7 @@
         Me.SetupGroup.Items.Add(Me.AboutButton)
         Me.SetupGroup.Items.Add(Me.SyncButton)
         Me.SetupGroup.Items.Add(Me.Button2)
+        Me.SetupGroup.Items.Add(Me.GetFilename)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -250,6 +252,11 @@
         '
         Me.Button2.Label = "Test Button"
         Me.Button2.Name = "Button2"
+        '
+        'GetFilename
+        '
+        Me.GetFilename.Label = "Filename"
+        Me.GetFilename.Name = "GetFilename"
         '
         'EZLoggerRibbon
         '
@@ -306,6 +313,7 @@
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button1 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents GetFilename As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection

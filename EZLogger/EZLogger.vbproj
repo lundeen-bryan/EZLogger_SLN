@@ -392,6 +392,7 @@
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
+    <Compile Include="Helpers\GetFilenameHelper.vb" />
     <Compile Include="Helpers\GetSenderHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="HostForms\ChiefApprovalHost.Designer.vb">
