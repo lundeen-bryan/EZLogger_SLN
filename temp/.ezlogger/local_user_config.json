@@ -1,11 +1,11 @@
 {
     "_comment":    "EZLogger Local User Configuration File - last updated 2024-12-19",
-    "user": {
-        "firstname": "Bryan"
-    },
     "this_config": {
         "_comment":    "Identifies this as a user-specific config file",
         "name":        "user config"
+    },
+    "user": {
+        "firstname": "Bryan"
     },
     "sp_filepath": {
         "_comment":                    "Local file paths used by the user for templates, contact databases, and shared config references",
