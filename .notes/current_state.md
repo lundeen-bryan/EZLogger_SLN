@@ -1,5 +1,7 @@
 ## 📘 Plan: Pull Patient Data from SQLite and Display in VB.NET
 
+> See Unreleased section of CHANGELOG.md for features planned to be released
+
 ### 🔹 Goal
 Retrieve patient data from a local SQLite database using the patient number entered into a WPF form (`TextBoxPatientNumber`). As a test, display the patient’s full name and total record count using a `MessageBox`.
 

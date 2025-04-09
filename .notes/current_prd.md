@@ -1,101 +1,97 @@
-Product Requirements Document: EZLogger and Configuration Editor
+# Product Requirements Document: EZLogger
 
-# Introduction
+## 1. Introduction
 
+**Purpose:**
+EZLogger is a VSTO Office Add-in developed in VB.NET with WPF using the MVVM pattern. It supports analysts who review and finalize forensic reports written by doctors. The tool streamlines the workflow by automating patient information validation, saving data to SharePoint, and converting documents to PDF. A built-in Configuration Editor guides users through a one-time setup process to configure file paths and locations used throughout the application.
 
-Purpose: EZLogger is a VSTO Office Add-in developed with VB.NET and WPF using the MVVM pattern. It streamlines the workflow for forensic report processing by automating the validation of patient identification data, saving information to SharePoint, and converting documents to PDF for sharing. Additionally, a WPF-based Configuration Editor is provided to allow non-technical users to manage specific editable sections of the EZLogger configuration files without interacting with raw JSON syntax.
+**Scope:**
+EZLogger integrates into Microsoft Word and works with local and synced file systems. It validates report data against patient records, manages file storage in locally synced SharePoint folders (via OneDrive), and generates PDFs for distribution. The Configuration Editor is only used the first time EZLogger is launched to help users set up local paths, including those for templates, doctor lists, and SharePoint sync folders.
 
-## Scope:
+---
 
-EZLogger operates within Microsoft Word and integrates with hospital systems, including the ODS (for patient data) and internal SQL Server databases (for sheriff, DA, court, and CONREP address information). It replaces a legacy VBA-based solution and offers a modern, reliable interface. The Configuration Editor enables users to load, view, and edit selected parts of the configuration JSON files (global_config.json or user_config.json) through a user-friendly interface.
-
-## Features and Functionalities
+## 2. Features and Functionalities
 
 ### 2.1 EZLogger Add-in
 
-#### Data Validation:
+- **Data Validation:**
+  - Validates critical fields such as Name, DOB, PFN, DOJ number, admission date, and hearing date using hospital ODS data.
+  - Displays mismatches and logs them for review.
 
-Validates patient information fields such as Name, DOB, PFN, DOJ number, admission date, and hearing date against ODS records.
-Flags mismatches visually and logs them for review.
+- **Document Management:**
+  - Adds cover pages using local templates selected by the user.
+  - Converts Word reports to PDF using naming conventions.
+  - Saves PDFs and Word documents to a synced SharePoint folder (via OneDrive).
 
-#### SharePoint Integration:
+- **Configuration Handling:**
+  - On first launch, EZLogger opens the Configuration Editor to collect and save local paths needed by the application.
+  - These include locations of templates, doctor lists, and SharePoint sync folders.
 
-Saves data and documents to SharePoint using REST API or CSOM.
-Supports retries and maintains logs of all interactions.
+### 2.2 Configuration Editor (One-Time Setup)
 
-#### PDF Conversion:
+- **First-Time Launch:**
+  - Automatically starts when EZLogger is used for the first time.
+  - Guides the analyst through setting up essential paths required for day-to-day use.
 
-Converts Word documents to PDF with customizable naming conventions and storage locations.
-Provides an option to save the converted PDFs directly to SharePoint.
+- **What It Configures:**
+  - Local folder for the SharePoint sync (used to save finalized documents).
+  - Path to the doctor list file.
+  - Any other file locations the app needs to read from or write to.
 
-#### Cover Page Generation:
+- **Design:**
+  - Form-based interface embedded within EZLogger.
+  - Simplified and user-friendly—no direct JSON editing required.
+  - Saves all settings into `local_user_config.json` or `global_config.json`.
 
-Adds cover pages to documents using local templates.
-Users can select templates from a form similar to the legacy version.
+---
 
-### 2.2 Configuration Editor
+## 3. User Interface
 
-#### File Handling:
+- **Ribbon Integration:**
+  - EZLogger adds a custom tab in Word’s ribbon, where users can access validation, PDF conversion, and save functions.
 
-Loads a single configuration file (global_config.json or user_config.json) from a specified location.
-Ensures that only one configuration file is open at a time.
-Provides options to load the appropriate file based on user selection (e.g., “Edit Global Config” or “Edit User Config”).
+- **Embedded Views:**
+  - Uses WPF UserControls hosted in WinForms ElementHost containers for seamless integration with Word.
+  - Includes panels for Report Type, Author selection, and data previews.
 
-#### User Interface:
+- **Config Editor:**
+  - Launches in a guided dialog format.
+  - Closes automatically when setup is complete and won’t appear again unless manually triggered.
 
-Displays tabs to separate user-specific configurations from global configurations.
-Presents editable sections in a user-friendly form-based UI, hiding non-editable sections from the user.
-Allows users to add, update, and delete entries in editable sections.
-Implements validation to ensure data integrity before saving changes.
+---
 
-#### Data Management:
+## 4. Security and Permissions
 
-Saves all changes to the loaded JSON file only when the “Save” button is clicked.
-Provides an option to discard changes and reload the original configuration.
-User Interface (UI)
+- **User Role:**
+  - All features are designed for analysts. No role-based permissions are enforced beyond what Windows/SharePoint already apply.
 
-#### EZLogger Add-in:
+- **Local File Handling:**
+  - Configuration settings are saved locally per user.
+  - No remote config server or shared editing—each analyst sets up their own environment.
 
-Integrates a custom ribbon tab within Microsoft Word, providing easy access to EZLogger functionalities.
-Offers intuitive controls for data validation, document conversion, and SharePoint operations.
+---
 
-#### Configuration Editor:
+## 5. Performance Requirements
 
-Features a tabbed interface to distinguish between user and global configurations.
-Utilizes form controls to facilitate the editing of JSON configuration sections, ensuring a seamless user experience for non-technical users.
-Security and Permissions
+- **Startup Performance:**
+  - Config Editor must load instantly on first launch.
+  - Regular EZLogger operations should not noticeably slow down Word.
 
-#### Access Control:
+- **File Access:**
+  - Reads and writes from/to the synced SharePoint folder must handle potential OneDrive sync delays gracefully.
 
-Restricts access to the Configuration Editor based on user roles, ensuring that only authorized personnel can modify configuration settings.
+---
 
-#### Data Integrity:
+## 6. Deployment and Maintenance
 
-Implements validation checks within the Configuration Editor to prevent invalid data entries.
-Ensures that changes are not saved unless they pass all validation criteria.
+- **Installation:**
+  - EZLogger is distributed as a VSTO add-in.
+  - Configuration setup is automatic on first use, minimizing IT involvement.
 
-### Performance Requirements
+- **Maintenance:**
+  - Once the config is set, it typically doesn't need to be edited again.
+  - No ongoing maintenance is expected unless file paths or sync folders change.
 
-#### Efficiency:
+---
 
-The Configuration Editor should load and save configuration files promptly, providing feedback to the user during these operations.
-
-#### Resource Utilization:
-
-Both EZLogger and the Configuration Editor should operate efficiently without causing significant performance degradation to Microsoft Word or the host system.
-
-### Deployment and Maintenance
-
-#### Installation:
-
-EZLogger and the Configuration Editor should be packaged together for streamlined deployment.
-Provide clear installation instructions and prerequisites.
-
-#### Configuration Management:
-
-Maintain version control for configuration files to track changes and facilitate rollback if necessary.
-
-#### Support and Updates:
-
-Establish a process for users to report issues and receive updates for both EZLogger and the Configuration Editor.
-This consolidated PRD outlines the comprehensive requirements for the EZLogger Add-in and its accompanying Configuration Editor, ensuring a cohesive and user-friendly experience for managing forensic report processing and configuration management.
+This updated PRD reflects the real-world flow of how analysts use EZLogger, including the one-time setup for file paths and SharePoint sync, and clarifies that the Configuration Editor is a built-in part of the experience.
