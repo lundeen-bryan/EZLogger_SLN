@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SQLite
 Imports System.Windows.Forms
 Imports EZLogger.Models ' Adjust if your Patient class is in a different namespace
+Imports MessageBox = System.Windows.MessageBox
 
 Namespace Handlers
 
@@ -37,7 +38,7 @@ Namespace Handlers
                 End Using
 
             Catch ex As Exception
-                Windows.MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
 
             Return Nothing

@@ -2,6 +2,7 @@
 Imports System.Windows.Controls
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports MessageBox = System.Windows.MessageBox
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
@@ -38,7 +39,7 @@ Partial Public Class ReportWizardPanel
         If Not String.IsNullOrWhiteSpace(patientNumber) Then
             TextBoxPatientNumber.Text = patientNumber
         Else
-            Windows.MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+            MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
         End If
     End Sub
 
@@ -73,7 +74,7 @@ Partial Public Class ReportWizardPanel
                 ReportTypeCbo.SelectedItem = newSelection
             End If
         Else
-            Windows.MessageBox.Show("Please select a report type first.", "No Selection")
+            MessageBox.Show("Please select a report type first.", "No Selection")
         End If
     End Sub
 

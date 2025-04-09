@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Grid display and patient lookup logic supporting multiple legal statuses
 - Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
 - Use CustomMsgBox form in place of Windows.MessageBox -- low priority if it enhances some aspect of the UI
-- Refactor anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 - Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
@@ -33,6 +32,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ### Added
 
+- Refactored anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 - Added function to return full filepath or filename or ext of open word document
 - Added function in a module to copy to clipboard since it will be used a lot in this app
 - Added a general get json method to get a value from json files
