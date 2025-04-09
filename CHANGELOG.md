@@ -26,8 +26,9 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 - Add function to capture the local user's first name and save it to json local_user_config.json file when they first setup the config.
+- Add function that gets the global config from the same directory as the solution/exe then gets the local config by deriving the filepath from the users OneDrive/Documents folder where it is saved in a .ezlogger hidden file. This ensures better security measures against malicious hackers. See ConfigPathHelper.GetGlobalConfigPath and EnvironmentHelper.LoadOneDriveSubPathFromConfig note the config filepath has a fallback in the json file. The users local_user_config.json will always be in a .ezlogger directory
 
-## [0.0.1] - 2025-04-08
+## [0.0.1][0.0.1] - 2025-04-08
 
 ### Added
 

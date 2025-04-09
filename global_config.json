@@ -137,6 +137,10 @@
         "_comment": "Identifies this config file type or scope",
         "name": "global config"
     },
+    "userpaths": {
+        "oneDriveDocumentsSubPath": "\\OneDrive - Department of State Hospitals\\Documents",
+        "fallbackOneDrivePath": "C:\\Users\\lunde\\repos\\cs\\ezlogger\\EZLogger_SLN\\temp\\"
+    },
     "version": {
         "_comment": "Version and maintenance info for the config",
         "date": "2025-01-31",

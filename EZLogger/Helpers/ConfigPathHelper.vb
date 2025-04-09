@@ -6,42 +6,29 @@ Imports System.Windows
 Namespace Helpers
     Public Module ConfigPathHelper
 
-        ' In production, replace this hardcoded path with the user's actual Documents path:
-        ' Example: Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".ezlogger", "local_user_config.json")
-        ' Or use: $"C:\Users\{Environment.UserName}\OneDrive - Department of State Hospitals\Documents\.ezlogger\local_user_config.json"
-        ' Hardcoded local config path for now
-        Private ReadOnly localConfigPath As String = "C:\Users\lunde\repos\cs\ezlogger\EZLogger_SLN\temp\local_user_config.json"
-
         ''' <summary>
-        ''' Reads the local_user_config.json and extracts the path to the global config file.
+        ''' Gets the global_config.json filepath from the root folder
         ''' </summary>
         ''' <returns>Full path to the global config file, or an empty string if not found.</returns>
         Public Function GetGlobalConfigPath() As String
             Try
-                If Not File.Exists(localConfigPath) Then
-                    MessageBox.Show("Local config file not found at:" & Environment.NewLine & localConfigPath, "Missing Config", MessageBoxButton.OK, MessageBoxImage.Warning)
+            	' Determine the directory of the solution file
+                Dim exeDir As String = Path.GetDirectoryName(Assembly.GetExecutingAssembply().Location)
+                Dim solutionDir As String = Directory.GetParent(Directory.GetParent(exeDir).FullName).FullName
+
+                ' Combine with expected global config filename
+                Dim globalConfigPath As String = Path.Combine(solutionDir, "global_config.json")
+
+                ' Check if the file exists
+                If Not File.Exists(globalConfigPath) Then
+                    MessageBox.Show("Global config file not found at: " & Environment.NewLine & globalConfigPath, "Missing Config", MessageBoxButton.Ok, MessageBoxImage.Warning)
                     Return String.Empty
                 End If
 
-                Dim jsonText As String = File.ReadAllText(localConfigPath)
-                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-                    Dim root = jsonDoc.RootElement
-
-                    Dim spFilepath As JsonElement
-                    If root.TryGetProperty("sp_filepath", spFilepath) Then
-                        Dim globalPathElement As JsonElement
-                        If spFilepath.TryGetProperty("global_config_file", globalPathElement) Then
-                            Return globalPathElement.GetString()
-                        End If
-                    End If
-
-                    MessageBox.Show("The key 'sp_filepath.global_config_file' was not found in the local config.", "Config Error", MessageBoxButton.OK, MessageBoxImage.Error)
-                    Return String.Empty
-                End Using
-
+                Return globalConfigPath
             Catch ex As Exception
-                MessageBox.Show("Error reading local config:" & Environment.NewLine & ex.Message, "Config Error", MessageBoxButton.OK, MessageBoxImage.Error)
-                Return String.Empty
+                MessageBox.Show("Error locating the global config." & ex.Message, "Error", MessageBoxButon.Ok, MessageBoxImage.Error)
+                ReturnString.Empty
             End Try
         End Function
 
