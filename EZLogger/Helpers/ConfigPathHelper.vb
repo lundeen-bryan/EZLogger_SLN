@@ -219,5 +219,51 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Retrieves a string value from a JSON file given a dot-notated key path (e.g., "user.firstname").
+        ''' Returns an empty string if the file or key is not found.
+        ''' </summary>
+        ''' <param name="filePath">Full path to the JSON file.</param>
+        ''' <param name="keyPath">Dot-notated path to the value (e.g., "user.firstname").</param>
+        ''' <returns>The string value at the specified key path, or empty string if not found.</returns>
+        Public Function GetJsonValue(filePath As String, keyPath As String) As String
+            Try
+                If Not File.Exists(filePath) Then
+                    Return String.Empty
+                End If
+
+                Dim jsonText As String = File.ReadAllText(filePath)
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim currentElement As JsonElement = jsonDoc.RootElement
+
+                    For Each key In keyPath.Split("."c)
+                        If currentElement.ValueKind = JsonValueKind.Object AndAlso currentElement.TryGetProperty(key, currentElement) Then
+                            Continue For
+                        Else
+                            Return String.Empty
+                        End If
+                    Next
+
+                    ' At this point, currentElement should be the final property
+                    If currentElement.ValueKind = JsonValueKind.String Then
+                        Return currentElement.GetString()
+                    Else
+                        Return currentElement.ToString() ' fallback: convert other types to string
+                    End If
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error reading JSON value: " & ex.Message, "JSON Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Return String.Empty
+            End Try
+
+        End Function
+        ''' <summary>
+        ''' Retrieves the user's first name from the local_user_config.json file.
+        ''' </summary>
+        Public Function GetLocalUserFirstName() As String
+            Return GetJsonValue(localConfigPath, "user.firstname")
+        End Function
+
     End Module
 End Namespace
