@@ -16,7 +16,6 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
 - Add function to get sender's name and add it as a document property as "ProcessedBy"
 - Add function to check if a file already exists in a directory
-- Function to return user's temp file path
 - Return users documents path for finding the user_config.json file
 - Update EZL to show a charges column and write function to return charges from ODS
 - Function to write metadata to the sharepoint site when the file is uploaded/saved there
@@ -32,6 +31,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ### Added
 
+- Added Function to return user's temp file path
 - Refactored anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 - Added function to return full filepath or filename or ext of open word document
 - Added function in a module to copy to clipboard since it will be used a lot in this app
