@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
-- Add function in a module to copy to clipboard since it will be used a lot in this app
 - Add function to get sender's name and add it as a document property as "ProcessedBy"
 - Add function to position forms on the same screen as the Word application in the top left corner rather than in the center of the main screen see fnc_position_form in legacy
 - Add function to return full filepath or filename or ext of open word document
@@ -30,6 +29,15 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function to insert signature
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
+- Add function to capture the local user's first name and save it to json local_user_config.json file when they first setup the config.
+
+## [0.0.1] - 2025-04-08
+
+### Added
+
+- Add function in a module to copy to clipboard since it will be used a lot in this app
+- Added a general get json method to get a value from json files
+- Added a window form positon helper module to position windows in the top left or a distance from the edge
 
 ## [0.0.1][0.0.1] - 2025-04-07
 
