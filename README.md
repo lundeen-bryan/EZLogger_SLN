@@ -2,12 +2,18 @@
 
 EZLogger is an Office Add-In developed using Visual Studio Tools for Office (VSTO) in VB.NET. The add-in integrates with Microsoft Word to provide various tools, including a report wizard, database operations, and task management.
 
+---
+
 ## Requirements
+
 To use the EZLogger add-in, you need the following:
+
 - **Microsoft Word**: The add-in is designed to work with Word.
 - **Microsoft Visual Studio 2022**: To compile and debug the add-in.
 - **.NET Framework 4.7.2 or higher**: The project targets .NET Framework 4.7.2.
 - **VSTO (Visual Studio Tools for Office)**: Required to run Office Add-ins.
+
+---
 
 ## Setup Instructions
 
@@ -19,7 +25,7 @@ To use the EZLogger add-in, you need the following:
    git clone https://github.com/lundeen-bryan/EZLogger_SLN.git
    ```
 
-  > Alternatively you can download the zip file to your local machine.
+   > Alternatively you can download the zip file to your local machine.
 
 2. **Open the Project in Visual Studio**
 
@@ -40,12 +46,32 @@ To use the EZLogger add-in, you need the following:
 
    If you're ready to deploy the add-in, package it with the necessary Office deployment tools, ensuring it meets your organization's guidelines.
 
+---
+
+## Configuration File Strategy
+
+Because EZLogger is a VSTO Add-In, it runs inside Microsoft Word's environment, not from a standalone executable. This means that traditional methods of locating configuration files relative to the application's executable are unreliable. Instead, EZLogger uses the following strategy:
+
+- **`local_user_config.json`** is stored in a known location on each user's machine, typically under their OneDrive-synced `Documents\.ezlogger` folder.
+- This local config file acts as a pointer to global resources, including:
+  - `global_config.json`
+  - shared templates
+  - paths to the SQLite database or doctor list
+- **`global_config.json`** is stored in a centrally managed location — typically a locally-synced SharePoint document library via OneDrive — making it easy to update, back up, and distribute.
+
+This approach ensures consistent behavior across machines and environments, avoids reliance on temporary assembly locations used by VSTO, and reflects the legacy structure used in the original VBA version of the app.
+
+---
+
 ## How to Use
 
 After running the add-in:
+
 - Open Microsoft Word.
 - Go to the **EZ Logger** tab in the ribbon to access the various tools.
 - Use the **Report Wizard** to generate reports or interact with the database options in the **Database Menu**.
+
+---
 
 ## Forking or Cloning the Repository
 
@@ -64,6 +90,8 @@ To fork or clone the repository:
 3. **Make Changes**:
    You can now make changes to the code on your local machine. If you make any significant changes, feel free to submit a pull request back to the main repository.
 
+---
+
 ## Versioning Strategy
 
 Versioning follows these principles:
@@ -76,20 +104,26 @@ Versioning follows these principles:
 - **Production Release (≥1.0.0)**:
   - v1.0.0 will mark our first stable release
   - Major version (x.0.0) increments with breaking changes
-  - Minor version (0.x.0) increments with backward-compatible new features
-  - Patch version (0.0.x) increments with backward-compatible bug fixes
+  - Minor version (x.y.0) increments with backward-compatible new features
+  - Patch version (x.y.z) increments with backward-compatible bug fixes
 
 #### Implementation Date
 
 This versioning change was implemented on 2025-04-08 with the release of v0.0.1, replacing all previous versioning.
 
+---
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute, please fork the repository, make your changes, and then submit a pull request with a detailed explanation of what you changed and why.
 
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+
+---
 
 ## Contact
 

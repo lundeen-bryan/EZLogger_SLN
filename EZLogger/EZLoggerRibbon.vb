@@ -66,7 +66,7 @@ Public Class EZLoggerRibbon
         ptinfo.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
+    Private Sub TestMsgBox_Click(sender As Object, e As RibbonControlEventArgs) Handles TestMsgBox.Click
         Dim lorem As String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " &
                           "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " &
                           "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " &
@@ -99,6 +99,10 @@ Public Class EZLoggerRibbon
         Catch ex As Exception
             MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Test Error")
         End Try
+    End Sub
+
+    Private Sub ConfigTest_Click(sender As Object, e As RibbonControlEventArgs) Handles ConfigTest.Click
+        Tests.TestConfigPathHelper.RunAllTests()
     End Sub
 End Class
 

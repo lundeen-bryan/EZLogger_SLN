@@ -452,6 +452,7 @@
     </Compile>
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Tests\TestConfigPathHelper.vb" />
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
       <DependentUpon>ChiefApprovalView.xaml</DependentUpon>
     </Compile>

@@ -4,8 +4,8 @@
     "name": "global config"
   },
   "userpaths": {
-    "oneDriveDocumentsSubPath": "\\OneDrive - Department of State Hospitals\\Documents",
-    "fallbackOneDrivePath": "C:\\Users\\lunde\\repos\\cs\\ezlogger\\EZLogger_SLN\\temp\\"
+    "oneDriveDocumentsSubPath": "\\OneDrive - Department of State Hospitals\\Documents\\",
+    "fallbackDocumentsPath": "C:\\Users\\lunde\\repos\\cs\\ezlogger\\EZLogger_SLN\\temp\\"
   },
   "Alerts": {
     "_comment": "Patient-specific alerts: Patient ID -> Message shown when processing their reports",

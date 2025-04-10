@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog][Keep a Changelog],
-and this project adheres to [Semantic Versioning][Semantic Versioning].
+The format is based on [Keep a Changelog],
+and this project adheres to [Semantic Versioning].
 
-## [Unreleased][Unreleased]
+## [Unreleased]
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
 - Grid display and patient lookup logic supporting multiple legal statuses
@@ -26,9 +26,26 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 - Add function to capture the local user's first name and save it to json local_user_config.json file when they first setup the config.
-- Add function that gets the global config from the same directory as the solution/exe then gets the local config by deriving the filepath from the users OneDrive/Documents folder where it is saved in a .ezlogger hidden file. This ensures better security measures against malicious hackers. See ConfigPathHelper.GetGlobalConfigPath and EnvironmentHelper.LoadOneDriveSubPathFromConfig note the config filepath has a fallback in the json file. The users local_user_config.json will always be in a .ezlogger directory
 
-## [0.0.1][0.0.1] - 2025-04-08
+## [0.0.1] - 2025-04-09
+
+### Changed
+
+- Refactored `ConfigPathHelper` to support environment-safe config loading using `GetLocalUserConfigPath()` and `LoadOneDriveOrFallbackPath()`
+- Removed hardcoded local paths and replaced them with dynamic config resulution from `local_user_config.json`
+
+### Deprecated
+
+- Deprecated `EnvironmentHelper.GetOneDriveDocumentsPath()` and its related config parser
+
+### Added
+
+- Centralized all path logic under `ConfigPathHelper` for easier maintenance and cross-environment support
+- Added development-mode override logic using #If DEBUG to support testing from source directories
+- Implemented new `Tests/TestConfigPathHelper.vb` to validate path logic via test logging
+- Updated README.md with new secton on **Configuration file Strategy**, explaining how VSTO hosting affects config loading and how EZLogger handles it
+
+## [0.0.1] - 2025-04-08
 
 ### Added
 
@@ -39,7 +56,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Added a general get json method to get a value from json files
 - Added a window form positon helper module to position windows in the top left or a distance from the edge
 
-## [0.0.1][0.0.1] - 2025-04-07
+## [0.0.1] - 2025-04-07
 
 ### Changed
 
@@ -54,7 +71,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - `AgeHelper.CalculateAge()` function to calculate a patient’s age from DOB, with full documentation and legacy logic preserved.
 - Conditional confirmation prompt ("Does this information match the report?") using Yes/No dialog before writing document properties.
 
-## [0.0.1][0.0.1] - 2025-04-05
+## [0.0.1] - 2025-04-05
 
 ### Added
 
@@ -73,7 +90,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - Removed unused imports from `OpinionView.vb`, `ReportAuthorView.vb`, and `ReportWizardPanel.vb`.
 
-## [0.0.1][0.0.1] - 2025-04-04
+## [0.0.1] - 2025-04-04
 
 - Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
 - Markdown files created/updated for better documentation accessibility, with clear sections on project setup, control creation, and property exposure.
@@ -89,7 +106,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
 - Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
-## [0.0.1][0.0.1] - 2025-04-03
+## [0.0.1] - 2025-04-03
 
 ### Updated
 

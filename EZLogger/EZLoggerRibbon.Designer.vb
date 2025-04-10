@@ -64,8 +64,10 @@
         Me.SettingsButton = Me.Factory.CreateRibbonButton
         Me.AboutButton = Me.Factory.CreateRibbonButton
         Me.SyncButton = Me.Factory.CreateRibbonButton
-        Me.Button2 = Me.Factory.CreateRibbonButton
+        Me.TestMsgBox = Me.Factory.CreateRibbonButton
         Me.GetFilename = Me.Factory.CreateRibbonButton
+        Me.Group1 = Me.Factory.CreateRibbonGroup
+        Me.ConfigTest = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -77,6 +79,7 @@
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
+        Me.Group1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -86,6 +89,7 @@
         Me.Tab1.Groups.Add(Me.DatabaseGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
         Me.Tab1.Groups.Add(Me.SetupGroup)
+        Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
         '
@@ -215,8 +219,6 @@
         Me.SetupGroup.Items.Add(Me.SettingsButton)
         Me.SetupGroup.Items.Add(Me.AboutButton)
         Me.SetupGroup.Items.Add(Me.SyncButton)
-        Me.SetupGroup.Items.Add(Me.Button2)
-        Me.SetupGroup.Items.Add(Me.GetFilename)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -248,15 +250,28 @@
         Me.SyncButton.Name = "SyncButton"
         Me.SyncButton.ShowImage = True
         '
-        'Button2
+        'TestMsgBox
         '
-        Me.Button2.Label = "Test Button"
-        Me.Button2.Name = "Button2"
+        Me.TestMsgBox.Label = "Test MsgBox"
+        Me.TestMsgBox.Name = "TestMsgBox"
         '
         'GetFilename
         '
         Me.GetFilename.Label = "Filename"
         Me.GetFilename.Name = "GetFilename"
+        '
+        'Group1
+        '
+        Me.Group1.Items.Add(Me.TestMsgBox)
+        Me.Group1.Items.Add(Me.GetFilename)
+        Me.Group1.Items.Add(Me.ConfigTest)
+        Me.Group1.Label = "Test Group"
+        Me.Group1.Name = "Group1"
+        '
+        'ConfigTest
+        '
+        Me.ConfigTest.Label = "Config Test"
+        Me.ConfigTest.Name = "ConfigTest"
         '
         'EZLoggerRibbon
         '
@@ -285,6 +300,8 @@
         Me.TypoBtnBox.PerformLayout()
         Me.SetupGroup.ResumeLayout(False)
         Me.SetupGroup.PerformLayout()
+        Me.Group1.ResumeLayout(False)
+        Me.Group1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -312,8 +329,10 @@
     Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button1 As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents TestMsgBox As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents GetFilename As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Group1 As Microsoft.Office.Tools.Ribbon.RibbonGroup
+    Friend WithEvents ConfigTest As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection
