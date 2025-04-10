@@ -9,6 +9,12 @@ Namespace Handlers
 
     Public Class ReportWizardHandler
 
+        Private ReadOnly _viewModel As MainVM
+
+        Public Sub New(viewModel As MainVM)
+            _viewModel = viewModel
+        End Sub
+
         ''' <summary>
         ''' Reads the patient number from the document footer.
         ''' </summary>
@@ -41,6 +47,7 @@ Namespace Handlers
 
                 If result = MessageBoxResult.Yes Then
                     DocumentPropertyWriter.WriteDataToDocProperties(patient)
+                    _viewModel.CourtNumbers = patient.CourtNumbers
                 Else
                     MessageBox.Show("Please check the patient number and try again.", "No Match", MessageBoxButton.OK, MessageBoxImage.Information)
                 End If

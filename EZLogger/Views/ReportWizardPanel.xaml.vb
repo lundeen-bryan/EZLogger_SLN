@@ -3,16 +3,30 @@ Imports System.Windows.Controls
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
+Imports EZLogger.ViewModels
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
 
+    Public Property ViewModel As MainVM
     Private ReadOnly _handler As ReportWizardHandler
 
-    Public Sub New()
+    Public Sub New(Optional viewModel As MainVM = Nothing)
         InitializeComponent()
-        _handler = New ReportWizardHandler()
 
+        ' Always use a ViewModel, even if caller didn't provide one
+        If viewModel IsNot Nothing Then
+            Me.ViewModel = viewModel
+        Else
+            Me.ViewModel = New MainVM()
+        End If
+
+        Me.DataContext = Me.ViewModel
+
+        ' Handler uses the same ViewModel
+        _handler = New ReportWizardHandler(Me.ViewModel)
+
+        ' Wire up buttons
         AddHandler BtnCoverPageForm.Click, AddressOf BtnCoverPageForm_Click
         AddHandler FindPatientId.Click, AddressOf FindPatientId_Click
         AddHandler LookupDatabase.Click, AddressOf LookupDatabase_Click
@@ -22,6 +36,9 @@ Partial Public Class ReportWizardPanel
         AddHandler ConfirmTypeBtn.Click, AddressOf ConfirmReportType_Click
         AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
         AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
+    End Sub
+    Public Sub New()
+        Me.New(New MainVM()) ' Delegate to the main constructor with a new ViewModel
     End Sub
 
     Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
@@ -45,8 +62,7 @@ Partial Public Class ReportWizardPanel
 
     Private Sub LookupDatabase_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = TextBoxPatientNumber.Text
-        Dim handler As New ReportWizardHandler()
-        handler.LookupPatientAndWriteProperties(patientNumber)
+        _handler.LookupPatientAndWriteProperties(patientNumber)
     End Sub
 
     Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
@@ -81,9 +97,7 @@ Partial Public Class ReportWizardPanel
     Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
         Dim reportTypes As List(Of String) = ConfigPathHelper.GetReportTypeList()
         ReportTypeCbo.ItemsSource = reportTypes
-
-        ' Optional: Pre-load something into CourtNumbersTextBlock
-        CourtNumbersTextBlock.Text = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
     End Sub
 
 End Class
+

@@ -270,6 +270,7 @@
                       Width="285"
                       BorderBrush="DarkGray">
                 <TextBlock x:Name="CourtNumbersTextBlock"
+                           Text="{Binding CourtNumbers}"
                            HorizontalAlignment="Left"
                            TextWrapping="Wrap"
                            Width="270"
