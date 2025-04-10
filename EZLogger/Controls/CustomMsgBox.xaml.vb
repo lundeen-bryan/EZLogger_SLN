@@ -2,6 +2,8 @@
 Imports System.Windows
 Imports EZLogger
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Window
+Imports EZLogger.Handlers
+Imports EZLogger.Enums
 
 Public Class CustomMsgBoxControl
     Inherits UserControl

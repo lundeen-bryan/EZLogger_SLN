@@ -44,7 +44,7 @@ Public Module SenderHelper
     ''' </summary>
     Public Sub WriteProcessedBy()
         Dim senderName As String = GetSenderName()
-        DocumentPropertyWriter.WriteCustomProperty("Processed By", senderName)
+        DocumentPropertyManager.WriteCustomProperty("Processed By", senderName)
     End Sub
 
 End Module

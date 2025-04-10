@@ -1,29 +1,32 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
+Imports EZLogger.Enums
 
-Public Class CustomMsgBoxHandler
+Namespace Handlers
+    Public Class CustomMsgBoxHandler
 
-    Public Shared Function Show(config As MessageBoxConfig, Optional ownerForm As Form = Nothing) As CustomMsgBoxResult
-        Dim control As New CustomMsgBoxControl(config)
-        Dim host As New CustomMsgBoxHost(control)
+        Public Shared Function Show(config As MessageBoxConfig, Optional ownerForm As Form = Nothing) As CustomMsgBoxResult
+            Dim control As New CustomMsgBoxControl(config)
+            Dim host As New CustomMsgBoxHost(control)
 
-        If ownerForm IsNot Nothing Then
-            host.StartPosition = FormStartPosition.Manual
-            host.Location = New Point(ownerForm.Left + 50, ownerForm.Top + 100)
-        Else
-            host.StartPosition = FormStartPosition.CenterScreen
-        End If
+            If ownerForm IsNot Nothing Then
+                host.StartPosition = FormStartPosition.Manual
+                host.Location = New Point(ownerForm.Left + 50, ownerForm.Top + 100)
+            Else
+                host.StartPosition = FormStartPosition.CenterScreen
+            End If
 
-        host.TopMost = True
+            host.TopMost = True
 
-        AddHandler control.ButtonClicked, Sub(result)
-                                              host.Result = result
-                                              host.Close()
-                                          End Sub
+            AddHandler control.ButtonClicked, Sub(result)
+                                                  host.Result = result
+                                                  host.Close()
+                                              End Sub
 
-        host.ShowDialog()
-        Return host.Result
-    End Function
+            host.ShowDialog()
+            Return host.Result
+        End Function
 
-End Class
+    End Class
 
+End Namespace

@@ -147,15 +147,13 @@
                 </GroupBox>
             </StackPanel>
             <Frame Content="Calculating the First PPR Cycle Due Date"
-                   Height="28"
+                   Height="76"
                    Width="450"
                    NavigationUIVisibility="Hidden"
                    Margin="0,12,0,0"
                    FontSize="18"
-                   VerticalContentAlignment="Center"
                    HorizontalContentAlignment="Center"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Padding="0,50,0,0" />
             <Label Content="To get the first PPR due Date, add 6 months to the commitment date."
                    Height="28"
                    Width="425"
@@ -168,7 +166,8 @@
                           Width="135"
                           BorderBrush="DarkGray"
                           Margin="6,0,0,0">
-                    <Label Content=""
+                    <Label x:Name="CommitmentLbl" 
+                           Content="{Binding CourtNumbers}"
                            HorizontalAlignment="Center"
                            Width="97"
                            Height="31"
@@ -189,43 +188,7 @@
                           Width="140"
                           BorderBrush="DarkGray">
                     <Label Content=""
-                           HorizontalAlignment="Center"
-                           Width="97"
-                           Height="31"
-                           FontFamily="Consolas"
-                           Padding="6,6,6,6"
-                           Background="#FFC1E0FF" />
-                </GroupBox>
-            </StackPanel>
-            <StackPanel Height="100"
-                        Width="445"
-                        Orientation="Horizontal">
-                <GroupBox Height="70"
-                          Header="Current Due Date"
-                          Width="135"
-                          BorderBrush="DarkGray"
-                          Margin="6,0,0,0">
-                    <Label Content=""
-                           HorizontalAlignment="Center"
-                           Width="97"
-                           Height="31"
-                           FontFamily="Consolas"
-                           Padding="6,6,6,6"
-                           Background="#FFC1E0FF" />
-                </GroupBox>
-                <Label Content="+ 6 months = "
-                       Height="48"
-                       Width="155"
-                       VerticalAlignment="Center"
-                       HorizontalContentAlignment="Center"
-                       VerticalContentAlignment="Center"
-                       FontFamily="Segoe Print"
-                       FontSize="18" />
-                <GroupBox Height="70"
-                          Header="Next Due Date"
-                          Width="140"
-                          BorderBrush="DarkGray">
-                    <Label Content=""
+                           x:Name="FirstPprDue"
                            HorizontalAlignment="Center"
                            Width="97"
                            Height="31"
@@ -253,7 +216,7 @@
                         Background="{x:Null}"
                         Cursor="Hand" />
                 <GroupBox Height="70"
-                          Header="Current Due Date"
+                          Header="Next Due Date"
                           Width="135"
                           BorderBrush="DarkGray"
                           Margin="12,0,0,0">
@@ -268,7 +231,7 @@
                     Width="266"
                     Background="{x:Null}"
                     HorizontalAlignment="Right"
-                    Margin="0,-5,12,0"
+                    Margin="0,50,12,0"
                     Cursor="Hand" />
         </StackPanel>
     </ScrollViewer>

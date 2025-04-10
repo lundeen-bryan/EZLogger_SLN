@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.Office.Tools.Ribbon
 Imports System.Windows.Forms
+Imports EZLogger.Handlers
+Imports EZLogger.Enums
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.

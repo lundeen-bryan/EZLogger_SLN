@@ -47,7 +47,7 @@
                          FontFamily="Lucida Console"
                          FontSize="14"
                          Height="31"
-                         Padding="6,6,6,6" />
+                         Padding="6,6,6,6" Text="219663-5" />
             </GroupBox>
             <GroupBox HorizontalAlignment="Left"
                       Height="69"
@@ -75,7 +75,9 @@
                       VerticalAlignment="Top"
                       Width="284"
                       BorderBrush="DarkGray">
-                <TextBox HorizontalAlignment="Left"
+                <TextBox x:Name="ExpirationTxtBx" 
+                         HorizontalAlignment="Left"
+                         Text="{Binding Expiration}"
                          Margin="6,6,0,0"
                          TextWrapping="Wrap"
                          Width="175"

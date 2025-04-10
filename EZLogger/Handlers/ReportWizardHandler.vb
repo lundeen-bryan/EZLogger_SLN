@@ -4,6 +4,7 @@ Imports System.Windows.Forms
 Imports EZLogger.Models
 Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
+Imports EZLogger.ViewModels
 
 Namespace Handlers
 
@@ -46,8 +47,11 @@ Namespace Handlers
                 Dim result As MessageBoxResult = MessageBox.Show(message, "Patient Details", MessageBoxButton.YesNo, MessageBoxImage.Question)
 
                 If result = MessageBoxResult.Yes Then
-                    DocumentPropertyWriter.WriteDataToDocProperties(patient)
+                    DocumentPropertyManager.WriteDataToDocProperties(patient)
+                    DocumentPropertyManager.LoadDataIntoViewModel(_viewModel, patient)
                     _viewModel.CourtNumbers = patient.CourtNumbers
+                    _viewModel.Expiration = DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")
+                    _viewModel.CommitmentDate = patient.CommitmentDate
                 Else
                     MessageBox.Show("Please check the patient number and try again.", "No Match", MessageBoxButton.OK, MessageBoxImage.Information)
                 End If
