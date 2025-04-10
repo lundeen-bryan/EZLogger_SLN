@@ -379,17 +379,12 @@
     <Compile Include="Handlers\PatientInfoHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
-    <Compile Include="EZLoggerRibbon.Designer.vb">
-      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
-    </Compile>
-    <Compile Include="EZLoggerRibbon.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\ClipboardHelper.vb" />
     <Compile Include="Helpers\ConfigPathHelper.vb" />
     <Compile Include="Helpers\DatabaseHelper.vb" />
+    <Compile Include="Helpers\DocumentHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
     <Compile Include="Helpers\EnvironmentHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
@@ -452,6 +447,17 @@
     </Compile>
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="My Project\Resources1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon1.Designer.vb">
+      <DependentUpon>Ribbon1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Tests\TestConfigPathHelper.vb" />
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
       <DependentUpon>ChiefApprovalView.xaml</DependentUpon>
@@ -526,6 +532,9 @@
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon1.resx">
+      <DependentUpon>Ribbon1.vb</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="EZLogger_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -536,14 +545,11 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <EmbeddedResource Include="EZLoggerRibbon.resx">
-      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -660,6 +666,7 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\folder_icon.png" />
     <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />
     <Resource Include="Resources\Letter_B.png" />
