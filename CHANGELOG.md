@@ -27,6 +27,24 @@ and this project adheres to [Semantic Versioning].
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 - Add function to capture the local user's first name and save it to json local_user_config.json file when they first setup the config.
 
+## [0.0.1] - 2025-04-10
+
+### Added
+
+- Integrated `DocumentPropertyManager.ReadCustomProperty` to load `Commitment`, `Court Number`, and other values directly from Word's custom document properties.
+- Added automatic calculation of `FirstPprDue` as 6 months after the `Commitment` date.
+- Applied standard date formatting (`MM/dd/yyyy`) to labels displaying dates from custom document properties.
+
+### Changed
+
+- Refactored `ReportTypeView.xaml.vb` to remove ViewModel usage and WPF bindings in favor of direct value assignments from document properties.
+- Replaced ViewModel-based binding logic with explicit `.Content` updates for labels like `CommitmentLbl` and `FirstPprDue`.
+
+### Fixed
+
+- Avoided redundant reads from `CustomDocumentProperties` by reading each property once and reusing the value.
+- Handled empty or invalid date values gracefully — labels remain blank instead of displaying errors.
+
 ## [0.0.1] - 2025-04-09
 
 ### Changed
