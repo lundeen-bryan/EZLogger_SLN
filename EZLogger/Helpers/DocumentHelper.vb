@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Diagnostics
+Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
 
@@ -54,6 +55,53 @@ Public Module DocumentHelper
             End If
         Catch ex As Exception
             MessageBox.Show("The document could not be closed: " & ex.Message, "Close Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Fills a Word bookmark with the specified text. If the bookmark is deleted in the process, it is recreated.
+    ''' </summary>
+    ''' <param name="bookmarkName">Name of the bookmark to fill.</param>
+    ''' <param name="bookmarkValue">Text to insert at the bookmark location.</param>
+    ''' <param name="doc">Optional: Word document. Defaults to ActiveDocument.</param>
+    Public Sub FillBookmark(bookmarkName As String, bookmarkValue As String, Optional doc As Word.Document = Nothing)
+        Try
+            If doc Is Nothing Then doc = Globals.ThisAddIn.Application.ActiveDocument
+
+            If doc.Bookmarks.Exists(bookmarkName) Then
+                Dim rangeObject As Word.Range = doc.Bookmarks(bookmarkName).Range
+                rangeObject.Text = bookmarkValue
+
+                ' Re-create the bookmark since inserting text deletes it
+                doc.Bookmarks.Add(Name:=bookmarkName, Range:=rangeObject)
+            Else
+                ' Log or handle missing bookmark as needed
+                Debug.WriteLine($"Bookmark '{bookmarkName}' not found.")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine($"Error in FillBookmark: {ex.Message}")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Updates and unlinks all fields in the document, including headers, footers, and story ranges.
+    ''' </summary>
+    ''' <param name="doc">The Word document to process.</param>
+    Public Sub UnlinkAllFields(doc As Word.Document)
+        Try
+            For Each storyRange As Word.Range In doc.StoryRanges
+                Dim currentRange As Word.Range = storyRange
+
+                ' Follow linked story ranges (headers, footers, etc.)
+                Do While Not currentRange Is Nothing
+                    currentRange.Fields.Update()
+                    currentRange.Fields.Unlink()
+                    currentRange = currentRange.NextStoryRange
+                Loop
+            Next
+        Catch ex As Exception
+            Debug.WriteLine("Error unlinking fields: " & ex.Message)
         End Try
     End Sub
 
