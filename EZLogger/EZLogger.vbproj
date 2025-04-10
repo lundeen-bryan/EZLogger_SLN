@@ -447,16 +447,11 @@
     </Compile>
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
-    <Compile Include="My Project\Resources1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Include="EZLoggerRibbon.Designer.vb">
+      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon1.Designer.vb">
-      <DependentUpon>Ribbon1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Ribbon1.vb">
-      <SubType>Form</SubType>
+    <Compile Include="EZLoggerRibbon.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tests\TestConfigPathHelper.vb" />
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
@@ -532,8 +527,8 @@
     <EmbeddedResource Include="HostForms\ReportWizardTaskPaneContainer.resx">
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ribbon1.resx">
-      <DependentUpon>Ribbon1.vb</DependentUpon>
+    <EmbeddedResource Include="EZLoggerRibbon.resx">
+      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="EZLogger_TemporaryKey.pfx" />
