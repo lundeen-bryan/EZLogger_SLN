@@ -2,7 +2,6 @@
 Imports System.Windows.Controls.UserControl
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
-Imports EZLogger.Enums
 
 Namespace EZLogger.Views
 

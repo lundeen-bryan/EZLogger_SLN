@@ -1,9 +1,9 @@
-﻿Imports Microsoft.Office.Interop.Word
-Imports System.Windows
+﻿Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Models
 Imports EZLogger.Helpers
+Imports EZLogger.Handlers ' If needed for the handler reference
 Imports MessageBox = System.Windows.MessageBox
+Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers
 
@@ -22,9 +22,12 @@ Namespace Handlers
         ''' and writes custom document properties if the patient is a match.
         ''' </summary>
         ''' <param name="patientNumber">The patient number to look up.</param>
-        Public Sub LookupPatientAndWriteProperties(patientNumber As String)
+        Public Sub LookupPatientAndWriteProperties(patientNumber As String, panel As ReportWizardPanel)
             If String.IsNullOrWhiteSpace(patientNumber) Then
-                MessageBox.Show("No patient number found. Please use the Search button first.", "Missing Data", MessageBoxButton.OK, MessageBoxImage.Warning)
+                MessageBox.Show("No patient number found. Please use the Search button first.",
+                                "Missing Data",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning)
                 Return
             End If
 
@@ -37,15 +40,31 @@ Namespace Handlers
                     $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
                     "Does this information match the report?"
 
-                Dim result As MessageBoxResult = MessageBox.Show(message, "Patient Details", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                Dim config As New MessageBoxConfig With {
+                    .Message = message,
+                    .ShowYes = True,
+                    .ShowNo = True
+                }
 
-                If result = MessageBoxResult.Yes Then
-                    DocumentPropertyWriter.WriteDataToDocProperties(patient)
-                Else
-                    MessageBox.Show("Please check the patient number and try again.", "No Match", MessageBoxButton.OK, MessageBoxImage.Information)
-                End If
+                ' Show modeless CustomMsgBox and continue in the callback
+                CustomMsgBoxHandler.ShowNonModal(config, Sub(result)
+                                                             If result = CustomMsgBoxResult.Yes Then
+                                                                 DocumentPropertyWriter.WriteDataToDocProperties(patient)
+                                                                 SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+                                                                 panel.RefreshPatientNameLabel()
+                                                             Else
+                                                                 MessageBox.Show("Please check the patient number and try again.",
+                                                                                 "No Match",
+                                                                                 MessageBoxButton.OK,
+                                                                                 MessageBoxImage.Information)
+                                                             End If
+                                                         End Sub)
+
             Else
-                MessageBox.Show("No patient record found.", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information)
+                MessageBox.Show("No patient record found.",
+                                "Not Found",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information)
             End If
         End Sub
 

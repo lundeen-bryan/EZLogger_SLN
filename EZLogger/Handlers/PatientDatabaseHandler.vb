@@ -1,6 +1,5 @@
 ﻿Imports System.Data.SQLite
 Imports System.Windows.Forms
-Imports EZLogger.Models ' Adjust if your Patient class is in a different namespace
 
 Namespace Handlers
 
