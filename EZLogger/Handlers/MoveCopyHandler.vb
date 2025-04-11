@@ -13,20 +13,20 @@ Namespace Handlers
 
         Public Sub HandleSearchClick(ownerForm As Form)
             Dim config As New MessageBoxConfig With {
-                .Message = "You pressed the search button.",
-                .ShowOk = True
-            }
+        .Message = "You pressed the search button.",
+        .ShowOk = True
+    }
 
-            CustomMsgBoxHandler.Show(config, ownerForm)
+            MsgBoxHelper.Show(config, onResult:=Sub(_unused) Return, ownerForm:=ownerForm)
         End Sub
 
         Public Sub HandleSaveAsClick(ownerForm As Form)
             Dim config As New MessageBoxConfig With {
-                .Message = "This would normally open a Save As dialog.",
-                .ShowOk = True
-            }
+        .Message = "This would normally open a Save As dialog.",
+        .ShowOk = True
+    }
 
-            CustomMsgBoxHandler.Show(config, ownerForm)
+            MsgBoxHelper.Show(config, onResult:=Sub(_unused) Return, ownerForm:=ownerForm)
         End Sub
 
     End Class

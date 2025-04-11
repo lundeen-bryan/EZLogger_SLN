@@ -1,21 +1,11 @@
-﻿Imports System.Windows
-Imports System.Windows.Forms
+﻿Imports System.Windows.Forms
 Imports EZLogger.Helpers
-Imports EZLogger.Handlers ' If needed for the handler reference
-Imports MessageBox = System.Windows.MessageBox
 Imports Microsoft.Office.Interop.Word
+Imports EZLogger.Enums
 
 Namespace Handlers
 
     Public Class ReportWizardHandler
-
-        ''' <summary>
-        ''' Reads the patient number from the document footer.
-        ''' </summary>
-        Public Function OnSearchButtonClick() As String
-            Dim reader As New WordFooterReader()
-            Return reader.FindPatientNumberInFooter()
-        End Function
 
         ''' <summary>
         ''' Looks up patient info by patient number, prompts the user to confirm,
@@ -23,11 +13,9 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="patientNumber">The patient number to look up.</param>
         Public Sub LookupPatientAndWriteProperties(patientNumber As String, panel As ReportWizardPanel)
+
             If String.IsNullOrWhiteSpace(patientNumber) Then
-                MessageBox.Show("No patient number found. Please use the Search button first.",
-                                "Missing Data",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning)
+                MsgBoxHelper.Show("No patient number found. Please use the Search button first.")
                 Return
             End If
 
@@ -46,26 +34,19 @@ Namespace Handlers
                     .ShowNo = True
                 }
 
-                ' Show modeless CustomMsgBox and continue in the callback
-                CustomMsgBoxHandler.ShowNonModal(config, Sub(result)
-                                                             If result = CustomMsgBoxResult.Yes Then
-                                                                 DocumentPropertyWriter.WriteDataToDocProperties(patient)
-                                                                 SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
-                                                                 panel.RefreshPatientNameLabel()
-                                                             Else
-                                                                 MessageBox.Show("Please check the patient number and try again.",
-                                                                                 "No Match",
-                                                                                 MessageBoxButton.OK,
-                                                                                 MessageBoxImage.Information)
-                                                             End If
-                                                         End Sub)
-
+                MsgBoxHelper.Show(config, Sub(result)
+                                              If result = CustomMsgBoxResult.Yes Then
+                                                  DocumentPropertyWriter.WriteDataToDocProperties(patient)
+                                                  SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+                                                  panel.RefreshPatientNameLabel()
+                                              Else
+                                                  MsgBoxHelper.Show("Please check the patient number and try again.")
+                                              End If
+                                          End Sub)
             Else
-                MessageBox.Show("No patient record found.",
-                                "Not Found",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information)
+                MsgBoxHelper.Show("No patient record found.")
             End If
+
         End Sub
 
     End Class

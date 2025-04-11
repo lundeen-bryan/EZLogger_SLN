@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Office.Tools.Ribbon
 Imports System.Windows.Forms
+Imports EZLogger.Helpers
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.
@@ -71,18 +72,11 @@ Public Class EZLoggerRibbon
                           "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " &
                           "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-        Dim config As New MessageBoxConfig With {
-        .Message = lorem,
-        .ShowOk = True,
-        .ShowYes = False,
-        .ShowNo = False
-    }
-
-        Dim result = CustomMsgBoxHandler.Show(config)
-
-        If result = CustomMsgBoxResult.OK Then
-            MsgBox("User acknowledged the long message.")
-        End If
+        MsgBoxHelper.Show(lorem, Sub(result)
+                                     If result = CustomMsgBoxResult.OK Then
+                                         MsgBox("User acknowledged the long message.")
+                                     End If
+                                 End Sub)
     End Sub
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
         Dim configHost As New ConfigHost()
