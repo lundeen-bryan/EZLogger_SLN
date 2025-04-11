@@ -1,8 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Word
-Imports Office = Microsoft.Office.Core
 Imports System.Windows.Forms
-Imports EZLogger.Models
-Imports EZLogger.Helpers
+
 
 Namespace Helpers
 
@@ -59,6 +57,44 @@ Namespace Helpers
                 MessageBox.Show("Error writing document properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
+
+        ''' <summary>
+        ''' Writes a single custom document property to the active Word document.
+        ''' </summary>
+        ''' <param name="doc">The target Word document.</param>
+        ''' <param name="name">The name of the property.</param>
+        ''' <param name="value">The value to write.</param>
+        Public Shared Sub WriteCustomProperty(doc As Document, name As String, value As String)
+            Try
+                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+
+                If String.IsNullOrWhiteSpace(value) Then Exit Sub
+
+                If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = name) Then
+                    props(name).Value = value
+                Else
+                    props.Add(name, False, Office.MsoDocProperties.msoPropertyTypeString, value)
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error writing custom property: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
+        Public Shared Function GetCustomProperty(name As String) As String
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+
+                If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = name) Then
+                    Return props(name).Value.ToString()
+                End If
+
+            Catch ex As Exception
+                ' Optional: log or ignore
+            End Try
+
+            Return String.Empty
+        End Function
 
     End Class
 

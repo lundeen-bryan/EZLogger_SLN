@@ -1,7 +1,6 @@
 ﻿Imports System.Windows
-Imports System.Windows.Controls
-Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports EZLogger.Handlers
 
 Partial Public Class ReportWizardPanel
     Inherits Controls.UserControl
@@ -12,15 +11,15 @@ Partial Public Class ReportWizardPanel
         InitializeComponent()
         _handler = New ReportWizardHandler()
 
-        AddHandler BtnCoverPageForm.Click, AddressOf BtnCoverPageForm_Click
-        AddHandler FindPatientId.Click, AddressOf FindPatientId_Click
-        AddHandler LookupDatabase.Click, AddressOf LookupDatabase_Click
-        AddHandler BtnOpenOpinionForm.Click, AddressOf BtnOpenOpinionForm_Click
-        AddHandler BtnSelectAuthor.Click, AddressOf BtnSelectAuthor_Click
-        AddHandler BtnSelectChief.Click, AddressOf BtnSelectChief_Click
-        AddHandler ConfirmTypeBtn.Click, AddressOf ConfirmReportType_Click
-        AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
-        AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
+        'AddHandler BtnCoverPageForm.Click, AddressOf BtnCoverPageForm_Click
+        'AddHandler FindPatientId.Click, AddressOf FindPatientId_Click
+        'AddHandler LookupDatabase.Click, AddressOf LookupDatabase_Click
+        'AddHandler BtnOpenOpinionForm.Click, AddressOf BtnOpenOpinionForm_Click
+        'AddHandler BtnSelectAuthor.Click, AddressOf BtnSelectAuthor_Click
+        'AddHandler BtnSelectChief.Click, AddressOf BtnSelectChief_Click
+        'AddHandler ConfirmTypeBtn.Click, AddressOf ConfirmReportType_Click
+        'AddHandler Me.Loaded, AddressOf ReportWizardPanel_Loaded
+        'AddHandler BtnSaveForm.Click, AddressOf BtnSaveForm_Click
     End Sub
 
     Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
@@ -33,19 +32,25 @@ Partial Public Class ReportWizardPanel
         fileHandler.OnFileSaveHostClick()
     End Sub
 
-    Private Sub FindPatientId_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub Btn_A_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = _handler.OnSearchButtonClick()
         If Not String.IsNullOrWhiteSpace(patientNumber) Then
             TextBoxPatientNumber.Text = patientNumber
         Else
-            Windows.MessageBox.Show("No patient number found in the document footer.", "Search Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim notfound As String = "No patient number found in the document footer."
+            Dim config As New MessageBoxConfig With {
+                .Message = notfound,
+                .ShowOk = True
+            }
+            Dim result = CustomMsgBoxHandler.Show(config)
         End If
     End Sub
 
-    Private Sub LookupDatabase_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
         Dim patientNumber As String = TextBoxPatientNumber.Text
         Dim handler As New ReportWizardHandler()
-        handler.LookupPatientAndWriteProperties(patientNumber)
+        handler.LookupPatientAndWriteProperties(patientNumber, Me)
+        SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
     End Sub
 
     Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
@@ -63,26 +68,30 @@ Partial Public Class ReportWizardPanel
         chHandler.OnOpenChiefHostClick()
     End Sub
 
-    Private Sub ConfirmReportType_Click(sender As Object, e As RoutedEventArgs)
-        Dim rHandler As New ReportTypeHandler()
-        Dim selectedItem = ReportTypeCbo.SelectedItem
-        If selectedItem IsNot Nothing Then
-            Dim currentSelection As String = selectedItem.ToString()
-            Dim newSelection As String = rHandler.OnConfirmReportTypeButtonClick(currentSelection)
-            If Not String.IsNullOrWhiteSpace(newSelection) AndAlso newSelection <> currentSelection Then
-                ReportTypeCbo.SelectedItem = newSelection
-            End If
-        Else
-            Windows.MessageBox.Show("Please select a report type first.", "No Selection")
-        End If
-    End Sub
+    'Private Sub ConfirmReportType_Click(sender As Object, e As RoutedEventArgs)
+    '    Dim rHandler As New ReportTypeHandler()
+    '    Dim selectedItem = ReportTypeCbo.SelectedItem
+    '    If selectedItem IsNot Nothing Then
+    '        Dim currentSelection As String = selectedItem.ToString()
+    '        Dim newSelection As String = rHandler.OnConfirmReportTypeButtonClick(currentSelection)
+    '        If Not String.IsNullOrWhiteSpace(newSelection) AndAlso newSelection <> currentSelection Then
+    '            ReportTypeCbo.SelectedItem = newSelection
+    '        End If
+    '    Else
+    '        Windows.MessageBox.Show("Please select a report type first.", "No Selection")
+    '    End If
+    'End Sub
 
     Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
-        Dim reportTypes As List(Of String) = ConfigPathHelper.GetReportTypeList()
-        ReportTypeCbo.ItemsSource = reportTypes
+        'Dim reportTypes As List(Of String) = ConfigPathHelper.GetReportTypeList()
+        'ReportTypeCbo.ItemsSource = reportTypes
 
-        ' Optional: Pre-load something into CourtNumbersTextBlock
-        CourtNumbersTextBlock.Text = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
+        '' Optional: Pre-load something into CourtNumbersTextBlock
+        'CourtNumbersTextBlock.Text = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
+    End Sub
+    Public Sub RefreshPatientNameLabel()
+        Dim name As String = DocumentPropertyWriter.GetCustomProperty("Patient Name")
+        LabelPatientName.Content = name
     End Sub
 
 End Class

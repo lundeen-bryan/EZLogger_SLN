@@ -2,7 +2,6 @@
 Imports System.IO
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
-Imports EZLogger.Models
 
 Public Module DatabaseHelper
 

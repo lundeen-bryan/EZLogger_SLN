@@ -28,7 +28,7 @@ Public Class ThisAddIn
         myTaskPane = Me.CustomTaskPanes.Add(myTaskPaneContainer, "EZ Logger Report Wizard")
 
         ' Set the initial size of the task pane
-        myTaskPane.Width = 340
+        myTaskPane.Width = 440
 
         ' Initially, keep the panel hidden
         myTaskPane.Visible = False
