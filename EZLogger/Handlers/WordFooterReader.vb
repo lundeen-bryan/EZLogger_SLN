@@ -2,7 +2,6 @@
 Imports System.Windows.Forms
 Imports Clipboard = System.Windows.Clipboard
 Imports EZLogger.Helpers
-Imports EZLogger.Enums
 
 Public Class WordFooterReader
 

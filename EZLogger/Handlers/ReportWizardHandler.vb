@@ -1,7 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
-Imports EZLogger.Enums
 
 Namespace Handlers
 
