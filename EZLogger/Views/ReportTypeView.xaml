@@ -168,7 +168,7 @@
                           Width="135"
                           BorderBrush="DarkGray"
                           Margin="6,0,0,0">
-                    <Label Content=""
+                    <Label x:Name="LabelCommitmentDate" Content=""
                            HorizontalAlignment="Center"
                            Width="97"
                            Height="31"

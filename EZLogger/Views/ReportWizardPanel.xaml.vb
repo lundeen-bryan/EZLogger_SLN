@@ -27,7 +27,7 @@ Partial Public Class ReportWizardPanel
         mvhandler.OnMoveCopyClick()
     End Sub
 
-    Private Sub BtnCoverPageForm_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub CoverPages_Click(sender As Object, e As RoutedEventArgs)
         Dim fileHandler As New CoverPageHandler()
         fileHandler.OnFileSaveHostClick()
     End Sub
@@ -45,6 +45,7 @@ Partial Public Class ReportWizardPanel
                     End Sub
     )
 
+        Btn_A_Checkbox.IsChecked = True
     End Sub
 
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
@@ -52,11 +53,21 @@ Partial Public Class ReportWizardPanel
         Dim handler As New ReportWizardHandler()
         handler.LookupPatientAndWriteProperties(patientNumber, Me)
         SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+        Btn_B_Checkbox.IsChecked = True
     End Sub
 
     Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
         Dim opHandler As New OpinionHandler()
         opHandler.OnOpenOpinionFormClick()
+    End Sub
+
+    Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
+        ' Retrieve the commitment date from custom document properties
+        Dim commitmentDate As String = DocumentPropertyWriter.GetCustomProperty("Commitment")
+
+        ' Create the handler and pass the value
+        Dim opHandler As New ReportTypeHandler()
+        opHandler.OnConfirmReportTypeButtonClick(commitmentDate)
     End Sub
 
     Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)

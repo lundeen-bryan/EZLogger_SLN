@@ -8,21 +8,31 @@ Namespace Handlers
         ' ✅ Called when the Confirm Type button is clicked
         '    Shows the host form, passes in the selected report type, waits for user to finish,
         '    then returns the selected value from the new form
-        Public Function OnConfirmReportTypeButtonClick(reportType As String) As String
+        Public Function OnConfirmReportTypeButtonClick(commitmentDate As String) As String
+
             Dim host As New ReportTypeHost()
 
-            ' Set the selected item on the WPF control inside the ElementHost
+            ' Get the WPF view hosted inside the ElementHost
             Dim reportTypeView = CType(host.ElementHost1.Child, ReportTypeView)
-            reportTypeView.InitialSelectedReportType = reportType
 
+            ' Set the commitment date label
+            If Not String.IsNullOrWhiteSpace(commitmentDate) Then
+                Dim parsedDate As Date
+                If Date.TryParse(commitmentDate, parsedDate) Then
+                    reportTypeView.LabelCommitmentDate.Content = parsedDate.ToString("MM/dd/yyyy")
+                Else
+                    reportTypeView.LabelCommitmentDate.Content = commitmentDate
+                End If
+            End If
+
+            ' Show the modal host form
             host.TopMost = True
             host.StartPosition = FormStartPosition.CenterScreen
-
-            ' Show the form modally
             host.ShowDialog()
 
-            ' Return the selected value (or Nothing if user closed without selecting)
+            ' Return the selected report type from the ComboBox
             Return reportTypeView.ReportTypeViewCbo.SelectedItem?.ToString()
+
         End Function
 
         Public Sub HandleSelectedReportType(report_type As String)
