@@ -188,7 +188,7 @@
                           Header="1st PPR Due Date"
                           Width="140"
                           BorderBrush="DarkGray">
-                    <Label Content=""
+                    <Label x:Name="LabelFirstDueDate" Content=""
                            HorizontalAlignment="Center"
                            Width="97"
                            Height="31"
