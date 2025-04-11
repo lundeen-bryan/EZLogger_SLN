@@ -1,15 +1,16 @@
 ﻿Imports Word = Microsoft.Office.Interop.Word
-Imports System.Windows
 Imports System.Windows.Forms
-Imports MessageBox = System.Windows.MessageBox
 Imports Clipboard = System.Windows.Clipboard
+Imports EZLogger.Helpers
+Imports EZLogger.Enums
 
 Public Class WordFooterReader
 
-    Public Function FindPatientNumberInFooter() As String
-        Dim functionThatCalls As String = "FindPatientNumberInFooter"
-        Dim patientNumber As String = ""
-        Dim numberLocated As Boolean = False
+    Public Sub BeginSearchForPatientNumber(
+        onFound As System.Action(Of String),
+        onNotFound As System.Action)
+
+        Dim functionThatCalls As String = "BeginSearchForPatientNumber"
         Dim repeatSearch As Integer = 1
         Const maxRepeatSearch As Integer = 5
 
@@ -19,38 +20,54 @@ Public Class WordFooterReader
 
             ResetFindParameters(footerRange)
 
-            Do Until numberLocated OrElse repeatSearch > maxRepeatSearch
+            Dim searchLoop As System.Action = Nothing
 
-                With footerRange.Find
-                    .Text = "[0-9]{6,}-[0-9]{1,}"
-                    .MatchWildcards = True
-                    .MatchWholeWord = True
-                    .Wrap = Word.WdFindWrap.wdFindStop
+            searchLoop = Sub()
+                             If repeatSearch > maxRepeatSearch Then
+                                 doc.Range(0, 0).Select()
+                                 onNotFound.Invoke()
+                                 Return
+                             End If
 
-                    If .Execute() Then
-                        Dim userChoice = MessageBox.Show("Does this look like a matching patient number?" & vbCrLf & footerRange.Text, "Confirm", MessageBoxButtons.YesNo)
-                        If userChoice = DialogResult.Yes Then
-                            patientNumber = footerRange.Text.Trim()
-                            numberLocated = True
-                            Clipboard.SetText(patientNumber)
-                        Else
-                            'footerRange.MoveStart(Word.WdUnits.wdWord, -1)
-                            footerRange.Start = footerRange.End
-                        End If
-                    End If
-                End With
+                             With footerRange.Find
+                                 .Text = "[0-9]{6,}-[0-9]{1,}"
+                                 .MatchWildcards = True
+                                 .MatchWholeWord = True
+                                 .Wrap = Word.WdFindWrap.wdFindStop
 
-                repeatSearch += 1
-            Loop
+                                 If .Execute() Then
+                                     Dim config As New MessageBoxConfig With {
+                                         .Message = "Does this look like a matching patient number?" & vbCrLf & footerRange.Text,
+                                         .ShowYes = True,
+                                         .ShowNo = True
+                                     }
 
-            doc.Range(0, 0).Select()
+                                     MsgBoxHelper.Show(config, Sub(result)
+                                                                   If result = CustomMsgBoxResult.Yes Then
+                                                                       Dim foundText = footerRange.Text.Trim()
+                                                                       Clipboard.SetText(foundText)
+                                                                       doc.Range(0, 0).Select()
+                                                                       onFound.Invoke(foundText)
+                                                                   Else
+                                                                       footerRange.Start = footerRange.End
+                                                                       repeatSearch += 1
+                                                                       searchLoop.Invoke()
+                                                                   End If
+                                                               End Sub)
+                                 Else
+                                     repeatSearch += 1
+                                     searchLoop.Invoke()
+                                 End If
+                             End With
+                         End Sub
+
+            searchLoop.Invoke()
 
         Catch ex As Exception
-            LogError(patientNumber, ex.Message, functionThatCalls)
+            LogError("", ex.Message, functionThatCalls)
+            onNotFound.Invoke()
         End Try
-
-        Return patientNumber
-    End Function
+    End Sub
 
     Private Sub ResetFindParameters(rng As Word.Range)
         With rng.Find
@@ -62,7 +79,6 @@ Public Class WordFooterReader
     End Sub
 
     Private Sub LogError(foundText As String, errorMessage As String, source As String)
-        ' Add your own error logging logic here
         MessageBox.Show($"Error in {source}:{vbCrLf}{errorMessage}", "Error")
     End Sub
 

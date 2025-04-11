@@ -1,4 +1,4 @@
-**Title: Building a Custom Resizable MessageBox in EZLogger (VSTO + WPF + WinForms)**
+**Title: Building a Custom Resizable MessageBox in EZLogger (VSTO + WPF + WinForms) (DEFUNCT See MsgBoxHelper article)**
 
 **Background:**
 Our forensic reporting tool, EZLogger, is built as a VSTO add-in that primarily uses WinForms to host WPF UserControls. Due to the constraints of the VSTO platform, we cannot use WPF `Window` objects directly. However, we wanted to create a custom MessageBox that supports:

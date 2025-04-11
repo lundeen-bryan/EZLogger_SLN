@@ -370,7 +370,6 @@
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
-    <Compile Include="Handlers\CustomMsgBoxHandler.vb" />
     <Compile Include="Handlers\CoverPageHandler.vb" />
     <Compile Include="Handlers\MoveCopyHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
@@ -391,7 +390,10 @@
     <Compile Include="Helpers\ConfigPathHelper.vb" />
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
+    <Compile Include="Helpers\FormPositionHelper.vb" />
+    <Compile Include="Helpers\GetFilenameHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
+    <Compile Include="Helpers\MsgBoxHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="HostForms\ChiefApprovalHost.Designer.vb">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>

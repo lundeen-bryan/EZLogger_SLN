@@ -33,17 +33,18 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_A_Click(sender As Object, e As RoutedEventArgs)
-        Dim patientNumber As String = _handler.OnSearchButtonClick()
-        If Not String.IsNullOrWhiteSpace(patientNumber) Then
-            TextBoxPatientNumber.Text = patientNumber
-        Else
-            Dim notfound As String = "No patient number found in the document footer."
-            Dim config As New MessageBoxConfig With {
-                .Message = notfound,
-                .ShowOk = True
-            }
-            Dim result = CustomMsgBoxHandler.Show(config)
-        End If
+
+        Dim reader As New WordFooterReader()
+
+        reader.BeginSearchForPatientNumber(
+        onFound:=Sub(patientNumber)
+                     TextBoxPatientNumber.Text = patientNumber
+                 End Sub,
+        onNotFound:=Sub()
+                        MsgBoxHelper.Show("No patient number found in the document footer.")
+                    End Sub
+    )
+
     End Sub
 
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
