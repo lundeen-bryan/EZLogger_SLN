@@ -96,6 +96,62 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Writes key metadata to the built-in document properties of the active Word document.
+        ''' </summary>
+        ''' <param name="patientName">Patient's full name.</param>
+        ''' <param name="reportType">Type of forensic report.</param>
+        ''' <param name="reportDate">Date of the report (string in "yyyy-MM-dd" format).</param>
+        ''' <param name="program">Program name or code.</param>
+        ''' <param name="unit">Unit or team identifier.</param>
+        ''' <param name="evaluator">Name of the evaluator or author.</param>
+        ''' <param name="processedBy">Name of the person who processed the report.</param>
+        ''' <param name="county">The county the report pertains to.</param>
+        Public Sub SaveBuiltInProperties(patientName As String,
+                                  reportType As String,
+                                  reportDate As String,
+                                  program As String,
+                                  unit As String,
+                                  evaluator As String,
+                                  processedBy As String,
+                                  county As String)
+
+            Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+            Dim todaysDate As String = DateTime.Now.ToString("yyyy-MM-dd")
+
+            ' Ensure reportDate is formatted consistently
+            Dim formattedReportDate As String
+            If DateTime.TryParse(reportDate, Nothing) Then
+                formattedReportDate = DateTime.Parse(reportDate).ToString("yyyy-MM-dd")
+            Else
+                formattedReportDate = reportDate ' fallback if it's already formatted
+            End If
+
+            ' Format Title: Proper-case name + report type + date
+            Dim titleValue As String = StrConv(patientName, VbStrConv.ProperCase) & " " &
+                               reportType & " " &
+                               formattedReportDate
+
+            ' Format Subject: Program and Unit
+            Dim subjectValue As String = "Program " & program & " Unit " & unit
+
+            ' Format Comments: Processed by info
+            Dim commentsValue As String = "Processed by " & processedBy & " " & todaysDate & vbCrLf &
+                                  "For " & county
+
+            Try
+                doc.BuiltInDocumentProperties("Title").Value = titleValue
+                doc.BuiltInDocumentProperties("Subject").Value = subjectValue
+                doc.BuiltInDocumentProperties("Author").Value = evaluator
+                doc.BuiltInDocumentProperties("Company").Value = "Unit " & unit
+                doc.BuiltInDocumentProperties("Comments").Value = commentsValue
+            Catch ex As Exception
+                ' You might want to log this or show a message to the user
+                System.Diagnostics.Debug.WriteLine("Failed to write built-in properties: " & ex.Message)
+            End Try
+
+        End Sub
+
     End Class
 
 End Namespace
