@@ -1,8 +1,5 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
-Imports EZLogger.Controls
-Imports EZLogger.Enums
-Imports EZLogger.HostForms
 
 ''' <summary>
 ''' Provides simplified access to the custom WPF-styled message box.
