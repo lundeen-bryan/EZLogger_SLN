@@ -16,13 +16,22 @@ Namespace Handlers
             Dim reportTypeView = CType(host.ElementHost1.Child, ReportTypeView)
 
             ' Set the commitment date label
+            ' Set the commitment date label
             If Not String.IsNullOrWhiteSpace(commitmentDate) Then
                 Dim parsedDate As Date
                 If Date.TryParse(commitmentDate, parsedDate) Then
                     reportTypeView.LabelCommitmentDate.Content = parsedDate.ToString("MM/dd/yyyy")
+
+                    ' Now set LabelFirstDueDate to 6 months later
+                    Dim firstDueDate As Date = parsedDate.AddMonths(6)
+                    reportTypeView.LabelFirstDueDate.Content = firstDueDate.ToString("MM/dd/yyyy")
                 Else
                     reportTypeView.LabelCommitmentDate.Content = commitmentDate
+                    reportTypeView.LabelFirstDueDate.Content = "(Invalid Date)"
                 End If
+            Else
+                reportTypeView.LabelCommitmentDate.Content = "(Missing)"
+                reportTypeView.LabelFirstDueDate.Content = "(Unavailable)"
             End If
 
             ' Show the modal host form
