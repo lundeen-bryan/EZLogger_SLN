@@ -67,6 +67,7 @@
                             Width="40"
                             Background="White" />
                     <CheckBox Content="01. Confirm patient number"
+                              x:Name="Btn_A_Checkbox"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -82,6 +83,7 @@
                             Width="40"
                             Background="White" />
                     <CheckBox Content="02. Pull data from database"
+                              x:Name="Btn_B_Checkbox"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -90,6 +92,7 @@
                             Orientation="Horizontal"
                             Background="#FFE0E0E0">
                     <Button x:Name="Btn_C"
+                            Click="Btn_C_Click"
                             Content="_C"
                             Height="40"
                             Margin="24,0,0,0"
