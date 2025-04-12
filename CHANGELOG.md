@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog][Keep a Changelog],
 and this project adheres to [Semantic Versioning][Semantic Versioning].
 
-## [Unreleased][Unreleased]
+## [Unreleased]
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
 - Grid display and patient lookup logic supporting multiple legal statuses
@@ -31,7 +31,19 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
-## [0.0.1][0.0.1] - 2025-04-07
+## [0.0.1] - 2025-04-12
+
+### Added
+
+- check for early 90-Day reports in database using DatabaseHelper
+- added colulmn in db for early_ninety_day
+- M/F for each patient in EZL db
+
+### Deprecated
+
+- PatientDatabaseHandler now we can use DatabaseHelper instead
+
+## [0.0.1] - 2025-04-07
 
 ### Changed
 
@@ -46,7 +58,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - `AgeHelper.CalculateAge()` function to calculate a patient’s age from DOB, with full documentation and legacy logic preserved.
 - Conditional confirmation prompt ("Does this information match the report?") using Yes/No dialog before writing document properties.
 
-## [0.0.1][0.0.1] - 2025-04-05
+## [0.0.1] - 2025-04-05
 
 ### Added
 
@@ -65,7 +77,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - Removed unused imports from `OpinionView.vb`, `ReportAuthorView.vb`, and `ReportWizardPanel.vb`.
 
-## [0.0.1][0.0.1] - 2025-04-04
+## [0.0.1] - 2025-04-04
 
 - Improved formatting and content clarity in HTML guides, including step-by-step instructions for WPF UserControls, event handling, and Windows Forms integration.
 - Markdown files created/updated for better documentation accessibility, with clear sections on project setup, control creation, and property exposure.
@@ -81,7 +93,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
 - Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
-## [0.0.1][0.0.1] - 2025-04-03
+## [0.0.1] - 2025-04-03
 
 ### Updated
 
