@@ -23,11 +23,20 @@ Public Module DatabaseHelper
             End If
 
             Dim connectionString As String = $"Data Source={dbPath};Version=3;"
-
             Using conn As New SQLiteConnection(connectionString)
                 conn.Open()
 
-                Dim query As String = "SELECT * FROM EZL WHERE patient_number = @patientNumber LIMIT 1"
+                ' Join EZL and EZL_IST, aggregate early_ninety_day
+                Dim query As String = "
+                SELECT 
+                    e.*, 
+                    MAX(ist.early_ninety_day) AS early_ninety_day
+                FROM EZL e
+                LEFT JOIN EZL_IST ist ON e.patient_number = ist.patient_number
+                WHERE e.patient_number = @patientNumber
+                GROUP BY e.patient_number
+                LIMIT 1
+            "
 
                 Using cmd As New SQLiteCommand(query, conn)
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
@@ -53,9 +62,14 @@ Public Module DatabaseHelper
                             .AssignedTo = reader("assigned_to").ToString(),
                             .RevokeDate = reader("revoke_date").ToString(),
                             .CourtNumbers = reader("court_numbers").ToString(),
-                            .Department = reader("department").ToString()
+                            .Department = reader("department").ToString(),
+                            .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
                         }
+
+                            LogHelper.LogDebugInfo("DBHelper found patient " & patient.PatientNumber & " with Early90Day = " & patient.EarlyNinetyDay)
                             Return patient
+                        Else
+                            LogHelper.LogDebugInfo("DBHelper could not find patient: " & patientNumber)
                         End If
                     End Using
                 End Using
@@ -63,6 +77,7 @@ Public Module DatabaseHelper
 
         Catch ex As Exception
             MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
         End Try
 
         Return Nothing

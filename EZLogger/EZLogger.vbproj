@@ -395,6 +395,7 @@
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
     <Compile Include="Helpers\GetFilenameHelper.vb" />
+    <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
