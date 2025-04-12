@@ -50,6 +50,7 @@ Namespace Helpers
                 writeProp("Admission", patient.AdmissionDate)
                 writeProp("Expiration", patient.Expiration)
                 writeProp("Assigned To", patient.AssignedTo)
+                writeProp("Early90Day", patient.EarlyNinetyDay.ToString())
 
                 MsgBoxHelper.Show("Document properties have been updated.")
 

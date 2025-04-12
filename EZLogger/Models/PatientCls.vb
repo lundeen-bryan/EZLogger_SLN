@@ -18,5 +18,7 @@
     Public Property RevokeDate As String
     Public Property CourtNumbers As String
     Public Property Department As String
+    Public Property EarlyNinetyDay As Integer
+
 End Class
 

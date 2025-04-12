@@ -1,0 +1,2 @@
+2025-04-12 09:39:34 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 09:41:22 - DBHelper found patient 218269-3 with Early90Day = 1

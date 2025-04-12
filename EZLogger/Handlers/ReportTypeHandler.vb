@@ -20,7 +20,6 @@ Namespace Handlers
             Dim reportTypeView = CType(host.ElementHost1.Child, ReportTypeView)
 
             ' Set the commitment date label
-            ' Set the commitment date label
             If Not String.IsNullOrWhiteSpace(commitmentDate) Then
                 Dim parsedDate As Date
                 If Date.TryParse(commitmentDate, parsedDate) Then
