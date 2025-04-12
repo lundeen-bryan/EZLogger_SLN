@@ -27,11 +27,17 @@ Public Class ReportTypeView
 
     Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
         LabelEarly90.Visibility = Visibility.Collapsed
+
         Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
         ReportTypeViewCbo.ItemsSource = reportTypes
 
         If Not String.IsNullOrEmpty(InitialSelectedReportType) AndAlso reportTypes.Contains(InitialSelectedReportType) Then
             ReportTypeViewCbo.SelectedItem = InitialSelectedReportType
+        End If
+
+        ' Ask the handler if early 90-day flag is present
+        If rthandler.HasEarlyNinetyDayFlag() Then
+            LabelEarly90.Visibility = Visibility.Visible
         End If
     End Sub
 
