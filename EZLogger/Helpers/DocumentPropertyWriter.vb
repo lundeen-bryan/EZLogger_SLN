@@ -51,10 +51,10 @@ Namespace Helpers
                 writeProp("Expiration", patient.Expiration)
                 writeProp("Assigned To", patient.AssignedTo)
 
-                MessageBox.Show("Document properties have been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MsgBoxHelper.Show("Document properties have been updated.")
 
             Catch ex As Exception
-                MessageBox.Show("Error writing document properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MsgBoxHelper.Show("Error writing document properties: " & ex.Message)
             End Try
         End Sub
 
