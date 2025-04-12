@@ -19,7 +19,7 @@ The data flow is driven by event handlers or ribbon button clicks. The flow begi
 flowchart TD
     A[User Input: Patient Number] --> B[Call PatientDatabaseHandler.GetPatientByNumber]
     B --> C[Query EZL and EZL_IST tables in SQLite]
-    C --> D[Return Patient Data (e.g., PatientCls)]
+    C --> D["Return Patient Data (e.g., PatientCls)"]
     D --> E[Call DocumentPropertyWriter.WriteDataToDocProperties]
     E --> F[Write Custom Document Properties in Word]
 ```
