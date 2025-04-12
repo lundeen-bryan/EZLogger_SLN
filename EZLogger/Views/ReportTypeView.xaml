@@ -15,6 +15,15 @@
     <ScrollViewer Margin="0,0,-20,0">
         <StackPanel>
             <Controls:FormHeaderControl HeaderText="CHOOSE A REPORT TYPE AND DUE DATES" />
+                <GroupBox Height="70"
+                          Header="Current Report Date"
+                          Width="200"
+                          BorderBrush="DarkGray"
+                          Margin="12,0,12,0">
+                    <DatePicker x:Name="CurrentReportDate" HorizontalAlignment="Left"
+                                Width="165"
+                                Height="31" />
+                </GroupBox>
             <StackPanel Height="80"
                         Width="440"
                         Orientation="Horizontal">
@@ -52,25 +61,25 @@
                               Header="90 Day Due Date"
                               Width="200"
                               BorderBrush="DarkGray">
-                        <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
+                        <Label x:Name="LabelNinetyDay" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
                     </GroupBox>
                     <GroupBox Height="70"
                               Header="9 Month Due Date"
                               Width="200"
                               BorderBrush="DarkGray">
-                        <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
+                        <Label x:Name="LabelNineMonth" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
                     </GroupBox>
                     <GroupBox Height="70"
                               Header="15 Month Due Date"
                               Width="200"
                               BorderBrush="DarkGray">
-                        <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
+                        <Label x:Name="LabelFifteenMonth" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
                     </GroupBox>
                     <GroupBox Height="70"
                               Header="21 Month Due Date"
                               Width="200"
                               BorderBrush="DarkGray">
-                        <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
+                        <Label x:Name="LabelTwentyOneMonth" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="280"
@@ -142,7 +151,7 @@
                    Height="28"
                    Width="450"
                    NavigationUIVisibility="Hidden"
-                   Margin="0,12,0,0"
+                   Margin="0,50,0,0"
                    FontSize="18"
                    VerticalContentAlignment="Center"
                    HorizontalContentAlignment="Center"
@@ -222,9 +231,9 @@
                     Height="38"
                     Width="266"
                     Background="{x:Null}"
-                    HorizontalAlignment="Right"
-                    Margin="0,-5,12,0"
-                    Cursor="Hand" />
+                    HorizontalAlignment="Center"
+                    Margin="0,25,12,0"
+                    Cursor="Hand" VerticalAlignment="Bottom" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>
