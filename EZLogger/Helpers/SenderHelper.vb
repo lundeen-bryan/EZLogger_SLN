@@ -49,7 +49,7 @@ Namespace Helpers
         ''' <param name="doc">The active Word document.</param>
         Public Sub WriteProcessedBy(doc As Document)
             Dim senderName As String = GetSenderName()
-            DocumentPropertyWriter.WriteCustomProperty(doc, "Processed By", senderName)
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Processed By", senderName)
         End Sub
 
     End Module

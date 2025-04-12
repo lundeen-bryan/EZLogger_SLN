@@ -38,6 +38,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - check for early 90-Day reports in database using DatabaseHelper
 - added colulmn in db for early_ninety_day
 - M/F for each patient in EZL db
+- Updated documentation on data flow
+- when pt has an early 90 day report it shows the label on the ReportTypeView
+
+### Changed
+
+- Changed DocumentPropertyWriter to DocumentPropertyHelper
 
 ### Deprecated
 

@@ -35,7 +35,7 @@ Namespace Handlers
 
                 MsgBoxHelper.Show(config, Sub(result)
                                               If result = CustomMsgBoxResult.Yes Then
-                                                  DocumentPropertyWriter.WriteDataToDocProperties(patient)
+                                                  DocumentPropertyHelper.WriteDataToDocProperties(patient)
                                                   SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
                                                   panel.RefreshPatientNameLabel()
                                               Else

@@ -63,7 +63,7 @@ Partial Public Class ReportWizardPanel
 
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
         ' Retrieve the commitment date from custom document properties
-        Dim commitmentDate As String = DocumentPropertyWriter.GetCustomProperty("Commitment")
+        Dim commitmentDate As String = DocumentPropertyHelper.GetPropertyValue("Commitment")
 
         ' Create the handler and pass the value
         Dim opHandler As New ReportTypeHandler()
@@ -102,7 +102,7 @@ Partial Public Class ReportWizardPanel
         'CourtNumbersTextBlock.Text = "123456H; 2344R5; 33456T; 33RRT5; 667788H; 9988-STC-456; VVR-45678; 1"
     End Sub
     Public Sub RefreshPatientNameLabel()
-        Dim name As String = DocumentPropertyWriter.GetCustomProperty("Patient Name")
+        Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
         LabelPatientName.Content = name
     End Sub
 
