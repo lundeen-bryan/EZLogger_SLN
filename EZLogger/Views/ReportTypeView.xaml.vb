@@ -22,6 +22,7 @@ Public Class ReportTypeView
     Private Sub BtnSelectedType_Click(sender As Object, e As RoutedEventArgs)
         Dim selectedType As String = TryCast(ReportTypeViewCbo.SelectedItem, String)
         _handler.HandleSelectedReportType(selectedType)
+        _handler.PopulateDueDates(Me)
     End Sub
 
     Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)

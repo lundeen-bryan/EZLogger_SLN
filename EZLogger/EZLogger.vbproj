@@ -393,7 +393,6 @@
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
     <Compile Include="Helpers\EnvironmentHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
-    <Compile Include="Helpers\FormPositionHelper.vb" />
     <Compile Include="Helpers\GetFilenameHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />

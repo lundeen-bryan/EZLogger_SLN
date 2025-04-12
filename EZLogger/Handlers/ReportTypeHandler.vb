@@ -56,6 +56,20 @@ Namespace Handlers
             Return ConfigPathHelper.GetReportTypeList()
         End Function
 
+        Public Sub PopulateDueDates(view As ReportTypeView)
+            Dim commitmentDateText As String = view.LabelCommitmentDate.Content?.ToString()
+            Dim commitmentDate As Date
+            If Date.TryParse(commitmentDateText, commitmentDate) Then
+                Dim ninetyDayDate As Date = commitmentDate.AddDays(90)
+                view.LabelNinetyDay.Content = ninetyDayDate.ToString("MM/dd/yyyy")
+                Dim ninemo As Date = ninetyDayDate.AddMonths(6)
+                view.LabelNineMonth.Content = ninemo.ToString("MM/dd/yyyy")
+                Dim fifteenmo As Date = ninemo.AddMonths(6)
+                view.LabelFifteenMonth.Content = fifteenmo.ToString("MM/dd/yyyy")
+                Dim twentyonemo As Date = ninemo.AddMonths(12)
+                view.LabelTwentyOneMonth.Content = twentyonemo.ToString("MM/dd/yyyy")
+            End If
+        End Sub
     End Class
 
 End Namespace
