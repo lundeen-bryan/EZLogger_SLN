@@ -82,5 +82,9 @@ Public Class EZLoggerRibbon
         Dim configHost As New ConfigHost()
         configHost.ShowDialog()
     End Sub
+
+    Private Sub BtnCloseDoc_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnCloseDoc.Click
+        DocumentHelper.CloseActiveDocument(showPrompt:=False)
+    End Sub
 End Class
 

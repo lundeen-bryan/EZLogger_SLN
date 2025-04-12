@@ -393,6 +393,7 @@
     <Compile Include="Helpers\DocumentPropertyWriter.vb" />
     <Compile Include="Helpers\EnvironmentHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
+    <Compile Include="Helpers\FormPositionHelper.vb" />
     <Compile Include="Helpers\GetFilenameHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
@@ -661,6 +662,7 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\folder.png" />
     <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />
     <Resource Include="Resources\Letter_B.png" />

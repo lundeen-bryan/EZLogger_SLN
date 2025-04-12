@@ -6,7 +6,7 @@
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
              x:Class="ReportTypeView"
              mc:Ignorable="d"
-             d:DesignHeight="910"
+             d:DesignHeight="1023"
              Width="450"
              FontFamily="Candara"
              FontSize="14"
@@ -15,6 +15,13 @@
     <ScrollViewer Margin="0,0,-20,0">
         <StackPanel>
             <Controls:FormHeaderControl HeaderText="CHOOSE A REPORT TYPE AND DUE DATES" />
+            <StackPanel Orientation="Horizontal">
+            <GroupBox Height="70"
+                Header="Commitment Date"
+                Width="200"
+                BorderBrush="DarkGray" Margin="20,0,0,0">
+                <Label x:Name="LabelCommitmentDate" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" Width="150" Height="34" Background="#FFC1E0FF"/>
+            </GroupBox>
                 <GroupBox Height="70"
                           Header="Current Report Date"
                           Width="200"
@@ -22,8 +29,9 @@
                           Margin="12,0,12,0">
                     <DatePicker x:Name="CurrentReportDate" HorizontalAlignment="Left"
                                 Width="165"
-                                Height="31" />
+                                Height="31" FontSize="16" />
                 </GroupBox>
+            </StackPanel>
             <StackPanel Height="80"
                         Width="440"
                         Orientation="Horizontal">
@@ -117,7 +125,7 @@
                 </StackPanel>
                 <StackPanel Height="280"
                             Width="175">
-                    <Label Content="* had early 90-day report"
+                    <Label x:Name="LabelEarly90" Content="* had early 90-day report"
                            Margin="0,32,6,6"
                            Background="#FFFFFFC0"
                            Foreground="Red"
@@ -136,7 +144,7 @@
                           Margin="12,0,12,0">
                     <DatePicker HorizontalAlignment="Left"
                                 Width="165"
-                                Height="31" />
+                                Height="31" FontSize="16" />
                 </GroupBox>
                 <GroupBox Height="70"
                           Header="Next Due Date"
@@ -144,7 +152,7 @@
                           BorderBrush="DarkGray">
                     <DatePicker HorizontalAlignment="Left"
                                 Width="165"
-                                Height="31" />
+                                Height="31" FontSize="16" />
                 </GroupBox>
             </StackPanel>
             <Frame Content="Calculating the First PPR Cycle Due Date"
@@ -169,7 +177,7 @@
                           Width="135"
                           BorderBrush="DarkGray"
                           Margin="6,0,0,0">
-                    <Label x:Name="LabelCommitmentDate" Content=""
+                    <Label x:Name="LabelCommitmentDate2" Content=""
                            HorizontalAlignment="Center"
                            Width="97"
                            Height="31"
@@ -205,34 +213,47 @@
                           Header="Current Due Date"
                           Width="135"
                           BorderBrush="DarkGray"
-                          Margin="6,0,0,0">
-                    <DatePicker HorizontalAlignment="Center"
+                          Margin="20,0,0,0">
+                    <DatePicker x:Name="PickCurrentDueDate" HorizontalAlignment="Center"
                                 Width="123"
-                                Height="34" />
+                                Height="34" FontSize="16" />
                 </GroupBox>
                 <Button Content="&lt;&lt; Switch >>"
                         Height="38"
-                        Width="123"
+                        Width="93"
                         Margin="12,0,0,0"
                         Background="{x:Null}"
                         Cursor="Hand" />
-                <GroupBox Height="70"
-                          Header="Current Due Date"
+                <GroupBox x:Name="GrpNextDueDate" Height="70"
+                          Header="Next Due Date"
                           Width="135"
                           BorderBrush="DarkGray"
                           Margin="12,0,0,0">
-                    <DatePicker HorizontalAlignment="Left"
+                    <DatePicker x:Name="PickNextDueDate" HorizontalAlignment="Left"
                                 Margin="3,0,0,0"
                                 Width="120"
-                                Height="34" />
+                                Height="34" FontSize="16" />
                 </GroupBox>
             </StackPanel>
+            <GroupBox Height="70"
+                Header="Expiration Date"
+                Width="135"
+                BorderBrush="DarkGray"
+                          >
+                <Label x:Name="LabelMaxDate" Content=""
+                    HorizontalAlignment="Center"
+                    Width="97"
+                    Height="31"
+                    FontFamily="Consolas"
+                    Padding="6,6,6,6"
+                    Background="#FFC1E0FF" />
+            </GroupBox>
             <Button Content="I made my choices and ready to continue"
                     Height="38"
                     Width="266"
                     Background="{x:Null}"
                     HorizontalAlignment="Center"
-                    Margin="0,25,12,0"
+                    Margin="0,20,12,0"
                     Cursor="Hand" VerticalAlignment="Bottom" />
         </StackPanel>
     </ScrollViewer>

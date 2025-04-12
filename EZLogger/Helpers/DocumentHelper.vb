@@ -38,10 +38,16 @@ Public Module DocumentHelper
     ''' </param>
     Public Sub CloseActiveDocument(Optional showPrompt As Boolean = False)
         Dim app As Application = Globals.ThisAddIn.Application
+
+        ' Check if there is an active document
+        If app.Documents.Count = 0 Then
+            MessageBox.Show("There is no active document to close.", "No Document Open", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Dim doc As Document = app.ActiveDocument
 
         Try
-            ' Optional: Show a custom confirmation message before closing
             If Not showPrompt Then
                 ' Attempt to save silently first
                 TrySaveActiveDocument()
@@ -52,6 +58,7 @@ Public Module DocumentHelper
                 ' Show default save prompt behavior
                 doc.Close(SaveChanges:=WdSaveOptions.wdPromptToSaveChanges)
             End If
+
         Catch ex As Exception
             MessageBox.Show("The document could not be closed: " & ex.Message, "Close Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End Try

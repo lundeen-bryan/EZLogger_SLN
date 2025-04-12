@@ -26,6 +26,7 @@ Public Class ReportTypeView
     End Sub
 
     Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
+        LabelEarly90.Visibility = Visibility.Collapsed
         Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
         ReportTypeViewCbo.ItemsSource = reportTypes
 
