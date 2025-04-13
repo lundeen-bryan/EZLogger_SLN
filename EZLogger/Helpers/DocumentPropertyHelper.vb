@@ -38,6 +38,7 @@ Namespace Helpers
                 writeProp("Unit", patient.U)
                 writeProp("Classification", patient.Classification)
                 writeProp("County", patient.County)
+                writeProp("Court Number", patient.CourtNumbers)
                 writeProp("DOB", patient.DOB)
 
                 ' Age calculated using a separate helper

@@ -1,8 +1,31 @@
 ﻿Imports System.Windows.Forms
+Imports EZLogger.EZLogger.Models
+Imports EZLogger.EZLogger.Views
+Imports Microsoft.Office.Core
+Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers
 
     Public Class PatientInfoHandler
+
+        Public Sub LoadCustomDocProperties(view As PatientInfoView)
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim properties As New List(Of DocPropertyEntry)
+
+                For Each prop As DocumentProperty In doc.CustomDocumentProperties
+                    properties.Add(New DocPropertyEntry With {
+                .PropertyName = prop.Name,
+                .Value = prop.Value?.ToString()
+            })
+                Next
+
+                view.DataGridPtInfo.ItemsSource = properties
+
+            Catch ex As Exception
+                MessageBox.Show("Unable to load document properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
 
         Public Sub HandleCloseClick(form As Form)
             If form IsNot Nothing Then form.Close()
