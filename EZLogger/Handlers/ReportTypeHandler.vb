@@ -10,9 +10,16 @@ Namespace Handlers
 
     Public Class ReportTypeHandler
 
-        ' ✅ Called when the Confirm Type button is clicked
-        '    Shows the host form, passes in the selected report type, waits for user to finish,
-        '    then returns the selected value from the new form
+        ''' <summary>
+        ''' Handles the confirmation of the report type selection.
+        ''' </summary>
+        ''' <param name="commitmentDate">The commitment date as a string, which is used to populate the view.</param>
+        ''' <returns>The selected report type as a string, or null if no selection is made.</returns>
+        ''' <remarks>
+        ''' This function initializes a modal form to display report type options, sets the commitment date label,
+        ''' and returns the selected report type from the ComboBox. If the commitment date is invalid or missing,
+        ''' appropriate labels are updated to reflect this.
+        ''' </remarks>
         Public Function OnConfirmReportTypeButtonClick(commitmentDate As String) As String
 
             Dim host As New ReportTypeHost()
@@ -54,6 +61,17 @@ Namespace Handlers
             Return ConfigPathHelper.GetReportTypeList()
         End Function
 
+        ''' <summary>
+        ''' Populates due dates and related labels in the provided ReportTypeView based on the active Word document.
+        ''' </summary>
+        ''' <param name="view">The ReportTypeView instance containing the controls to update.</param>
+        ''' <remarks>
+        ''' The function is triggered when the user selects the button that says I selected the report type
+        ''' This function retrieves custom properties from the active Word document, such as "Classification" and "Expiration",
+        ''' and uses them to calculate and populate various due dates. If the classification is "PC1370", extended due dates
+        ''' are calculated. Otherwise, standard due dates are determined based on the commitment date.
+        ''' If no active document is found or required properties are missing, appropriate labels are updated to reflect this.
+        ''' </remarks>
         Public Sub PopulateDueDates(view As ReportTypeView)
             Dim app As Word.Application = Globals.ThisAddIn.Application
             Dim doc As Word.Document = TryCast(app.ActiveDocument, Word.Document)
