@@ -1,96 +1,125 @@
 # EZLogger v0.0.1
 
-EZLogger is an Office Add-In developed using Visual Studio Tools for Office (VSTO) in VB.NET. The add-in integrates with Microsoft Word to provide various tools, including a report wizard, database operations, and task management.
+EZLogger is an Office Add-In developed using Visual Studio Tools for Office (VSTO) in VB.NET. The add-in integrates with Microsoft Word to support forensic report workflows, including patient lookup, due date automation, database tasks, and SharePoint integration.
 
-## Requirements
-To use the EZLogger add-in, you need the following:
-- **Microsoft Word**: The add-in is designed to work with Word.
-- **Microsoft Visual Studio 2022**: To compile and debug the add-in.
-- **.NET Framework 4.7.2 or higher**: The project targets .NET Framework 4.7.2.
-- **VSTO (Visual Studio Tools for Office)**: Required to run Office Add-ins.
+## 🧩 Project Overview
 
-## Setup Instructions
+EZLogger is designed for analysts who review and finalize court-related forensic reports submitted by doctors. It provides tools to streamline repetitive document tasks and automate interaction with synced SharePoint folders, patient databases, and document metadata.
+
+Key goals include:
+- Reduce manual data entry in Word reports
+- Log report processing steps
+- Improve accuracy by pulling patient data directly from a database
+- Automate due date calculations for PC1370 reports
+- Enable task management for pending and completed reports
+
+## 🏗 Architecture & Design Philosophy
+
+EZLogger was initially built following a full MVVM (Model-View-ViewModel) pattern to take advantage of WPF's data binding features. However, during development, I realized that full MVVM is impractical in a VSTO environment due to the lifecycle and limitations of WPF controls hosted inside `ElementHost` containers. As a result, I adopted a hybrid approach:
+
+- Views are still written in WPF and XAML.
+- Logic is delegated to handler classes (e.g., `ReportWizardHandler.vb`).
+- Buttons are wired using `.xaml.vb` files with event-driven code.
+- Helpers provide shared logic for config loading, Word automation, and database access.
+
+This pragmatic design ensures clean separation of concerns where possible, while accepting VSTO's constraints.
+
+### 🔖 Project Structure
+
+```plaintext
+EZLogger_SLN/
+├── Views/               # WPF UserControls for each UI screen
+├── Handlers/            # Event logic for each screen (e.g., ReportWizardHandler)
+├── Helpers/             # Reusable utilities (e.g., DocumentPropertyHelper, ConfigPathHelper)
+├── HostForms/           # WinForms containers for WPF screens
+├── data/                # SQLite database for local patient record lookups
+├── .ezlogger/           # Local user data and logs (e.g., processed reports JSON)
+```
+
+## ✅ Key Features
+
+- Retrieve patient data from a SQLite database based on patient number in Word footer
+- Write patient details into Word custom document properties for SharePoint search
+- Automate due date calculations for PC1370 reports
+- Load ComboBox values from config files (JSON)
+- Log processed reports to a user-specific log file for review
+- Maintain analyst notes for follow-up cases
+- Works seamlessly with SharePoint Document Libraries synced via OneDrive
+
+## 🖥 Requirements
+
+To build or run the EZLogger add-in:
+- **Microsoft Word** (Office 365 or Office 2019)
+- **Microsoft Visual Studio 2022**
+- **.NET Framework 4.7.2 or higher**
+- **VSTO (Visual Studio Tools for Office)**
+
+## 🚀 Setup Instructions
 
 1. **Clone the Repository**
 
-   To clone the repository to your local machine, use the following command:
-
    ```bash
    git clone https://github.com/lundeen-bryan/EZLogger_SLN.git
    ```
 
-  > Alternatively you can download the zip file to your local machine.
+   Or download the ZIP and extract locally.
 
 2. **Open the Project in Visual Studio**
 
-   - Open the solution file `EZLogger_SLN.sln` in Visual Studio 2022.
-   - Ensure that you have the correct version of Office installed (e.g., Word) for debugging the add-in.
+   - Open `EZLogger_SLN.sln` in Visual Studio 2022.
+   - Ensure Microsoft Word is installed on your system.
 
 3. **Restore NuGet Packages**
 
-   If you have any missing NuGet packages, restore them via Visual Studio:
-   - Go to **Tools > NuGet Package Manager > Restore NuGet Packages**.
+   - Go to **Tools > NuGet Package Manager > Restore NuGet Packages** if any are missing.
 
-4. **Build the Project**
+4. **Build and Debug**
 
-   - Press **F5** to build and run the project in Debug mode.
-   - The add-in will load in Word (if set as the host application).
+   - Press **F5** to launch Word with the add-in attached.
 
-5. **Deploy the Add-In**
+5. **Deploy**
 
-   If you're ready to deploy the add-in, package it with the necessary Office deployment tools, ensuring it meets your organization's guidelines.
+   - For production, package using ClickOnce or Office deployment methods.
 
-## How to Use
+## 🧠 Why VB.NET and VSTO?
 
-After running the add-in:
-- Open Microsoft Word.
-- Go to the **EZ Logger** tab in the ribbon to access the various tools.
-- Use the **Report Wizard** to generate reports or interact with the database options in the **Database Menu**.
+I chose VB.NET and VSTO for the following reasons:
+- The original system was built in VBA, making VB.NET a natural progression.
+- VSTO provides direct, stable access to Word's object model.
+- Many hospital systems still run Office desktop apps, making VSTO-based add-ins viable.
 
-## Forking or Cloning the Repository
+## 📌 Versioning Strategy
 
-To fork or clone the repository:
+I follow semantic versioning:
 
-1. **Fork the Repository**:
-   Click on the "Fork" button in the top-right corner of this GitHub page to create your own copy of the repository.
+- **0.x.y**: Development builds
+- **1.0.0+**: Production release
+  - MAJOR: Breaking changes
+  - MINOR: Backward-compatible features
+  - PATCH: Bug fixes
 
-2. **Clone the Repository**:
-   Once forked, you can clone the repository to your machine using the following command:
+### Implementation Date
 
-   ```bash
-   git clone https://github.com/lundeen-bryan/EZLogger_SLN.git
-   ```
+Versioning began with v0.0.1 on 2025-04-08.
 
-3. **Make Changes**:
-   You can now make changes to the code on your local machine. If you make any significant changes, feel free to submit a pull request back to the main repository.
+## 🤝 Contributing
 
-## Versioning Strategy
+I'm currently the sole developer, but contributions are welcome. To contribute:
+1. Fork the repository
+2. Make your changes
+3. Submit a pull request with a clear explanation
 
-Versioning follows these principles:
+## 📝 Changelog Strategy
 
-- **Development Phase (0.x.y)**:
-  - Starting at v0.0.1
-  - Minor version (0.x.0) increments with new features
-  - Patch version (0.0.x) increments with bug fixes
+I update the `CHANGELOG.md` alongside feature or bug fix commits. Git commit messages help populate the changelog and can be exported for review.
 
-- **Production Release (≥1.0.0)**:
-  - v1.0.0 will mark our first stable release
-  - Major version (x.0.0) increments with breaking changes
-  - Minor version (0.x.0) increments with backward-compatible new features
-  - Patch version (0.0.x) increments with backward-compatible bug fixes
+## 🪪 License
 
-#### Implementation Date
+This project is licensed under a custom license for non-commercial use only. Viewing and modifying the code for educational or internal development purposes is permitted. **Commercial use, resale, or redistribution is prohibited** without written permission.
 
-This versioning change was implemented on 2025-04-08 with the release of v0.0.1, replacing all previous versioning.
+See the full license terms in [LICENSE.txt](LICENSE.txt).
 
-## Contributing
+## 📬 Contact
 
-Contributions are welcome! If you'd like to contribute, please fork the repository, make your changes, and then submit a pull request with a detailed explanation of what you changed and why.
+For questions or bug reports, use GitHub Issues or email [lundeen-bryan@github].
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
-
-## Contact
-
-If you have any questions or issues, feel free to reach out via GitHub issues or directly contact [lundeen-bryan@github].
