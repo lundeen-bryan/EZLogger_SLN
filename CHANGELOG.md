@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Changed
 
 - Changed DocumentPropertyWriter to DocumentPropertyHelper
+- Changed `ReportWizardHandler` and `ReportWizardPanel.xaml.vb` to be easier to recognize by name
 
 ### Deprecated
 
