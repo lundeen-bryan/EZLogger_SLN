@@ -50,12 +50,13 @@
                     AutomationProperties.AcceleratorKey="R"
                     Foreground="Red" />
 
-            <Button x:Name="BtnDelete" Content="Delete"
+            <Button x:Name="BtnDelete" Content="Delete Selected
+                    "
                     Cursor="Hand"
                     HorizontalAlignment="Left"
                     Margin="15,86,0,0"
                     VerticalAlignment="Top"
-                    Width="60"
+                    Width="100"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
@@ -64,7 +65,7 @@
             <Button x:Name="BtnDeleteAll" Content="Delete All"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="82,86,0,0"
+                    Margin="120,86,0,0"
                     VerticalAlignment="Top"
                     Width="70"
                     Height="24"
@@ -75,7 +76,7 @@
             <Button x:Name="BtnAddEdit" Content="Add/Edit"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="159,86,0,0"
+                    Margin="195,86,0,0"
                     VerticalAlignment="Top"
                     Width="60"
                     Height="24"
@@ -86,7 +87,7 @@
             <Button x:Name="BtnCopy" Content="_Copy"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="225,86,0,0"
+                    Margin="195,120,0,0"
                     VerticalAlignment="Top"
                     Width="60"
                     Height="24"
@@ -108,7 +109,7 @@
             <Button x:Name="BtnLastPage" Content="_Last Page"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="100,120,0,0"
+                    Margin="105,120,0,0"
                     VerticalAlignment="Top"
                     Width="80"
                     Height="24"
@@ -144,17 +145,6 @@
                                         Width="2*" />
                 </DataGrid.Columns>
             </DataGrid>
-
-            <Button x:Name="BtnClose" Content="_Close"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    Margin="190,120,0,0"
-                    VerticalAlignment="Top"
-                    Width="80"
-                    Height="24"
-                    Background="{x:Null}"
-                    BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
 
         </Grid>
     </ScrollViewer>

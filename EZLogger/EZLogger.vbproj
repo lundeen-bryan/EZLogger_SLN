@@ -462,6 +462,12 @@
     <Compile Include="HostForms\TCARListHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\UpdateInfoHost.Designer.vb">
+      <DependentUpon>UpdateInfoHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\UpdateInfoHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Models\DocPropertyEntry.vb" />
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
@@ -512,6 +518,9 @@
     <Compile Include="Views\TCARListView.xaml.vb">
       <DependentUpon>TCARListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateInfoView.xaml.vb">
+      <DependentUpon>UpdateInfoView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HostForms\ChiefApprovalHost.resx">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -557,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\TCARListHost.resx">
       <DependentUpon>TCARListHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\UpdateInfoHost.resx">
+      <DependentUpon>UpdateInfoHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -633,6 +645,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TCARListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
