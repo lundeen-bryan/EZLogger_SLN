@@ -399,6 +399,7 @@
     <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
+    <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="Helpers\UserPathHelper.vb" />
     <Compile Include="HostForms\ChiefApprovalHost.Designer.vb">
