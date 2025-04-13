@@ -8,6 +8,14 @@ Imports Microsoft.Office.Interop.Word
 Namespace Handlers
 
     Public Class PatientInfoHandler
+        Public Sub HandleAddEditClick()
+            Try
+                Dim hostForm As New UpdateInfoHost()
+                hostForm.Show()
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to open Update Info form: " & ex.Message)
+            End Try
+        End Sub
 
         Public Sub LoadCustomDocProperties(view As PatientInfoView)
 
@@ -81,10 +89,6 @@ Namespace Handlers
             Catch ex As Exception
                 MsgBoxHelper.Show("Failed to delete all properties: " & ex.Message)
             End Try
-        End Sub
-
-        Public Sub HandleAddEditClick()
-            MsgBox("You clicked Add/Edit")
         End Sub
 
         Public Sub HandleCopyClick()

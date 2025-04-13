@@ -23,7 +23,7 @@ Partial Class UpdateInfoHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.UpdateInfoView1 = New EZLogger.UpdateInfoView()
+        Me.UpdateInfoView1 = New UpdateInfoView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -54,5 +54,5 @@ Partial Class UpdateInfoHost
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend UpdateInfoView1 As EZLogger.UpdateInfoView
+    Friend UpdateInfoView1 As UpdateInfoView
 End Class
