@@ -18,6 +18,7 @@ Public Class ReportTypeView
         AddHandler BtnSelectedType.Click, AddressOf BtnSelectedType_Click
         AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
         AddHandler BtnAcceptPPR.Click, AddressOf BtnAcceptPPR_Click
+        AddHandler BtnAcceptIstDueDate.Click, AddressOf BtnAcceptIstDueDate_Click
     End Sub
     Private Sub BtnAcceptPPR_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleAcceptPPR(Me)
@@ -43,6 +44,9 @@ Public Class ReportTypeView
         If rthandler.HasEarlyNinetyDayFlag() Then
             LabelEarly90.Visibility = Visibility.Visible
         End If
+    End Sub
+    Private Sub BtnAcceptIstDueDate_Click(sender As Object, e As RoutedEventArgs)
+        _handler.HandleAcceptIstDueDate(Me)
     End Sub
 
 End Class

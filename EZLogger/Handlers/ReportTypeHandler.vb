@@ -207,6 +207,90 @@ Namespace Handlers
             ' Write to custom document property
             DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysDifference.ToString())
         End Sub
+        Public Sub HandleAcceptIstDueDate(view As ReportTypeView)
+            ' Get active Word document
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            If doc Is Nothing Then
+                MsgBoxHelper.Show("No active Word document found.")
+                Exit Sub
+            End If
+
+            ' Determine which radio button is selected
+            Dim selectedLabel As System.Windows.Controls.Label = Nothing
+            Dim reportCycle As String = Nothing
+
+            If view.RadioA.IsChecked Then
+                selectedLabel = view.LabelNinetyDay
+                reportCycle = view.RadioA.Tag?.ToString()
+            ElseIf view.RadioB.IsChecked Then
+                selectedLabel = view.LabelNineMonth
+                reportCycle = view.RadioB.Tag?.ToString()
+            ElseIf view.RadioC.IsChecked Then
+                selectedLabel = view.LabelFifteenMonth
+                reportCycle = view.RadioC.Tag?.ToString()
+            ElseIf view.RadioD.IsChecked Then
+                selectedLabel = view.LabelTwentyOneMonth
+                reportCycle = view.RadioD.Tag?.ToString()
+            Else
+                MsgBoxHelper.Show("You must select a due date cycle before continuing.")
+                Exit Sub
+            End If
+
+            ' Set Report Cycle property
+            If Not String.IsNullOrWhiteSpace(reportCycle) Then
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
+            End If
+
+            ' Parse selected label content as current due date
+            Dim currentDueDate As Date
+            If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
+                MsgBoxHelper.Show("The selected due date is invalid or missing.")
+                Exit Sub
+            End If
+
+            ' Set CurrentDueDatePicker with this value
+            view.PickCurrentDueDate.SelectedDate = currentDueDate
+
+            ' Determine next label date (if available)
+            Dim nextLabelDate As Date = currentDueDate.AddMonths(6) ' fallback default
+
+            Dim nextLabelText As String = Nothing
+            If selectedLabel Is view.LabelNinetyDay Then
+                nextLabelText = view.LabelNineMonth.Content?.ToString()
+            ElseIf selectedLabel Is view.LabelNineMonth Then
+                nextLabelText = view.LabelFifteenMonth.Content?.ToString()
+            ElseIf selectedLabel Is view.LabelFifteenMonth Then
+                nextLabelText = view.LabelTwentyOneMonth.Content?.ToString()
+            End If
+
+            If Not String.IsNullOrWhiteSpace(nextLabelText) Then
+                Dim parsedNextLabel As Date
+                If Date.TryParse(nextLabelText, parsedNextLabel) Then
+                    ' Choose whichever is earlier: nextLabel OR +6 months
+                    If parsedNextLabel < nextLabelDate Then
+                        nextLabelDate = parsedNextLabel
+                    End If
+                End If
+            End If
+
+            ' Set NextDueDatePicker
+            view.PickNextDueDate.SelectedDate = nextLabelDate
+
+            ' Write all document properties
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextLabelDate.ToString("MM/dd/yyyy"))
+
+            ' Write Report Date (from CurrentReportDate picker)
+            If view.CurrentReportDate.SelectedDate.HasValue Then
+                Dim reportDate As Date = view.CurrentReportDate.SelectedDate.Value
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate.ToString("MM/dd/yyyy"))
+            End If
+
+            ' Calculate and write Rush Status and Days Since Due
+            RushStatusHelper.SetRushStatusAndDaysSinceDue(view)
+
+            MsgBoxHelper.Show("Report cycle and due dates have been saved.")
+        End Sub
 
     End Class
 
