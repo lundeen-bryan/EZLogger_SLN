@@ -5,14 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="600">
-
+             d:DesignHeight="400"
+             d:DesignWidth="600">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <DataGrid x:Name="TCARGrid"
                   Grid.Row="0"
                   AutoGenerateColumns="False"
@@ -26,23 +25,33 @@
                   AlternationCount="2"
                   GridLinesVisibility="Horizontal">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Name" Binding="{Binding PatientName}" Width="*" />
-                <DataGridTextColumn Header="Patient Number" Binding="{Binding Casenum}" Width="*" />
-                <DataGridTextColumn Header="Submitted Date" Binding="{Binding Subdate}" Width="*" />
-                <DataGridTextColumn Header="Opinion" Binding="{Binding OpinionDescription}" Width="*" />
+                <DataGridTextColumn Header="Patient Name"
+                                    Binding="{Binding PatientName}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Patient Number"
+                                    Binding="{Binding Casenum}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Submitted Date"
+                                    Binding="{Binding Subdate}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Opinion"
+                                    Binding="{Binding OpinionDescription}"
+                                    Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,15,0,0">
+        <StackPanel Grid.Row="1"
+                    Orientation="Vertical"
+                    Margin="0,15,0,0">
             <TextBlock Text="Please select a patient from the list or press the close button if the patient is not found."
                        Margin="0,0,0,10"
                        FontSize="14"
-                       TextWrapping="Wrap"/>
+                       TextWrapping="Wrap" />
             <Button Content="Select"
                     Width="70"
                     HorizontalAlignment="Right"
                     Padding="10,5"
-                    Click="BtnSelectPatient_Click" Background="{x:Null}"/>
+                    Click="BtnSelectPatient_Click"
+                    Background="{x:Null}" />
         </StackPanel>
     </Grid>
 </UserControl>

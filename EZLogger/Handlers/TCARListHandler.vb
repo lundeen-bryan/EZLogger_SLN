@@ -5,6 +5,15 @@ Imports Microsoft.Office.Interop.Word
 
 Public Module TCARListHandler
 
+    ''' <summary>
+    ''' Retrieves all active TCAR records from the database.
+    ''' </summary>
+    ''' <returns>A list of <see cref="TCARRecord"/> objects representing active TCAR records.</returns>
+    ''' <remarks>
+    ''' This function connects to the SQLite database, executes a query to fetch records
+    ''' where the "active" field is set to 1, and maps the results to a list of TCARRecord objects.
+    ''' If an error occurs during database access, an error message is displayed to the user.
+    ''' </remarks>
     Public Function LoadAllActive() As List(Of TCARRecord)
         Dim results As New List(Of TCARRecord)
         Dim connStr As String = $"Data Source={ConfigPathHelper.GetDatabasePath()}"
