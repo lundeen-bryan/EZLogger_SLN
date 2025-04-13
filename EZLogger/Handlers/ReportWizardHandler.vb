@@ -87,7 +87,8 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnDMessage()
-            MessageBox.Show("This will present the TCAR log.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim tcarForm As New TCARListHost()
+            tcarForm.Show()
         End Sub
 
         Public Sub ShowBtnEMessage()

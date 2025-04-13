@@ -31,6 +31,27 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-13
+
+### Added
+
+- `TCARListView.xaml` WPF UserControl to display active TCAR referrals from `tcar_list` table.
+- `TCARListHost.vb` as a WinForms host form for embedding the TCAR WPF view.
+- `TCARRecord.vb` model for mapping database rows to displayable data.
+- `TCARListHandler.vb` with methods to:
+- Load active TCAR records (`LoadAllActive`)
+- Handle "Select" button click and write TCAR data to Word custom document properties.
+
+### Changed
+
+- Updated `ReportWizardPanel.xaml.vb` to wire Btn_D to launch `TCARListHost`.
+- Updated `tcar_list` table schema to include `patient_name` for standalone lookup.
+
+### Fixed
+
+- Resolved issue where the TCAR list view was displaying empty due to missing SQL query logic.
+- Corrected handler logic to call `WriteCustomProperty` instead of non-existent `WriteProperty`.
+
 ## [0.0.1] - 2025-04-12
 
 ### Added

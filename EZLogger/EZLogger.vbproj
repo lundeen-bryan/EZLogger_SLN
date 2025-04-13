@@ -384,6 +384,7 @@
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Handlers\TCARListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\ClipboardHelper.vb" />
@@ -454,8 +455,15 @@
     <Compile Include="HostForms\ReportTypeHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\TCARListHost.Designer.vb">
+      <DependentUpon>TCARListHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\TCARListHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Models\TCARRecord.vb" />
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
       <DependentUpon>ChiefApprovalView.xaml</DependentUpon>
     </Compile>
@@ -499,6 +507,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <Compile Include="Views\TCARListView.xaml.vb">
+      <DependentUpon>TCARListView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HostForms\ChiefApprovalHost.resx">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -541,6 +552,9 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <EmbeddedResource Include="EZLoggerRibbon.resx">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\TCARListHost.resx">
+      <DependentUpon>TCARListHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -613,6 +627,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\EzLoggerRD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TCARListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
