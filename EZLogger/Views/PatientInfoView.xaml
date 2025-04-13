@@ -10,10 +10,14 @@
              Width="315"
              FontFamily="Candara"
              FontSize="14">
+
     <ScrollViewer HorizontalAlignment="Left"
                   VerticalAlignment="Top">
+
         <Grid HorizontalAlignment="Left"
-              VerticalAlignment="Top" Background="White">
+              VerticalAlignment="Top"
+              Background="White">
+
             <Label Content="PATIENT INFO SAVED IN REPORT"
                    HorizontalAlignment="Left"
                    Margin="12,12,0,0"
@@ -22,6 +26,7 @@
                    FontWeight="Bold"
                    FontStyle="Italic"
                    FontSize="18" />
+
             <Button x:Name="BtnRefresh" Content="Refresh List"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -32,6 +37,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnValidate" Content="Validate Fields"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -43,6 +49,7 @@
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R"
                     Foreground="Red" />
+
             <Button x:Name="BtnDelete" Content="Delete"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -53,6 +60,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnDeleteAll" Content="Delete All"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -63,6 +71,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnAddEdit" Content="Add/Edit"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -73,6 +82,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnCopy" Content="_Copy"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -83,6 +93,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnFirstPage" Content="_First Page"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -93,6 +104,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
+
             <Button x:Name="BtnLastPage" Content="_Last Page"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
@@ -103,22 +115,47 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" />
-            <ListBox x:Name="ListBoxPtInfo" HorizontalAlignment="Left"
-                     Height="575"
-                     Margin="12,160,0,0"
-                     VerticalAlignment="Top"
-                     Width="283"
-                     d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" />
+
+            <DataGrid x:Name="DataGridPtInfo"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      AlternatingRowBackground="LightGray"
+                      GridLinesVisibility="None"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeRows="False"
+                      IsReadOnly="True"
+                      Margin="12,160,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Width="283"
+                      Height="575"
+                      RowHeaderWidth="0"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Property"
+                                        Binding="{Binding PropertyName}"
+                                        Width="*"
+                                        FontWeight="Bold" />
+                    <DataGridTextColumn Header="Value"
+                                        Binding="{Binding Value}"
+                                        Width="2*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
             <Button x:Name="BtnClose" Content="_Close"
-                Cursor="Hand"
-                HorizontalAlignment="Left"
-                Margin="190,120,0,0"
-                VerticalAlignment="Top"
-                Width="80"
-                Height="24"
-                Background="{x:Null}"
-                BorderBrush="DarkGray"
-                AutomationProperties.AcceleratorKey="R" />
+                    Cursor="Hand"
+                    HorizontalAlignment="Left"
+                    Margin="190,120,0,0"
+                    VerticalAlignment="Top"
+                    Width="80"
+                    Height="24"
+                    Background="{x:Null}"
+                    BorderBrush="DarkGray"
+                    AutomationProperties.AcceleratorKey="R" />
+
         </Grid>
     </ScrollViewer>
 </UserControl>

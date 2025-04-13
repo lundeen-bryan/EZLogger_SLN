@@ -462,6 +462,7 @@
     <Compile Include="HostForms\TCARListHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\DocPropertyEntry.vb" />
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Models\TCARRecord.vb" />
