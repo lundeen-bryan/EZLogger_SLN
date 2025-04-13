@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ### Added
 
+- Implemented `HandleAcceptPPR` method in `ReportTypeHandler.vb` to calculate days until/since due date and update Word custom properties
+- Enhanced layout settings in `ReportTypeHost` for better form presentation
+- Added event handler in `ReportTypeView` for the new buton to trigger the PPR handling method
 - check for early 90-Day reports in database using DatabaseHelper
 - added colulmn in db for early_ninety_day
 - M/F for each patient in EZL db

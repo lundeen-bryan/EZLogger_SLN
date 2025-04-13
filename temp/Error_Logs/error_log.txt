@@ -13,3 +13,11 @@
 2025-04-12 11:46:08 - DBHelper found patient 219891-9 with Early90Day = 1
 2025-04-12 12:53:02 - DBHelper found patient 219891-9 with Early90Day = 1
 2025-04-12 13:07:21 - DBHelper found patient 219891-9 with Early90Day = 1
+2025-04-12 14:51:59 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 15:11:39 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 16:14:27 - DBHelper found patient 219891-9 with Early90Day = 1
+2025-04-12 16:15:16 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 16:39:13 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 16:51:31 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 17:13:05 - DBHelper found patient 219663-5 with Early90Day = 0
+2025-04-12 17:28:11 - DBHelper found patient 219663-5 with Early90Day = 0

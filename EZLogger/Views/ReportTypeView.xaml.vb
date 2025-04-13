@@ -17,6 +17,10 @@ Public Class ReportTypeView
 
         AddHandler BtnSelectedType.Click, AddressOf BtnSelectedType_Click
         AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
+        AddHandler BtnAcceptPPR.Click, AddressOf BtnAcceptPPR_Click
+    End Sub
+    Private Sub BtnAcceptPPR_Click(sender As Object, e As RoutedEventArgs)
+        _handler.HandleAcceptPPR(Me)
     End Sub
 
     Private Sub BtnSelectedType_Click(sender As Object, e As RoutedEventArgs)
