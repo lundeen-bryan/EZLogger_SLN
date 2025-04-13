@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Windows
+Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Application = Microsoft.Office.Interop.Word.Application
 Imports Word = Microsoft.Office.Interop.Word
@@ -155,6 +156,39 @@ Namespace Handlers
                 Return False
             End Try
         End Function
+
+        ''' <summary>
+        ''' Called when BtnAcceptPPR is clicked. Calculates days until/since due date,
+        ''' updates the label, and writes the number to a Word custom property.
+        ''' </summary>
+        ''' <param name="view">The ReportTypeView instance with the controls.</param>
+        Public Sub HandleAcceptPPR(view As ReportTypeView)
+            ' Ensure a date is selected
+            If Not view.PickCurrentDueDate.SelectedDate.HasValue Then
+                Windows.MessageBox.Show("Select the current due date", "Missing Due Date", MessageBoxButton.OK, MessageBoxImage.Warning)
+                Exit Sub
+            End If
+
+            ' Calculate day difference
+            Dim dueDate As Date = view.PickCurrentDueDate.SelectedDate.Value.Date
+            Dim today As Date = Date.Today
+            Dim daysDifference As Integer = (dueDate - today).Days
+
+            ' Update the label
+            view.LabelDaysSinceDueDate.Content = daysDifference.ToString()
+
+            ' Get the active document
+            Dim app As Word.Application = Globals.ThisAddIn.Application
+            Dim doc As Word.Document = TryCast(app.ActiveDocument, Word.Document)
+
+            If doc Is Nothing Then
+                Windows.MessageBox.Show("No active document found.", "EZLogger", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Write to custom document property
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysDifference.ToString())
+        End Sub
 
     End Class
 
