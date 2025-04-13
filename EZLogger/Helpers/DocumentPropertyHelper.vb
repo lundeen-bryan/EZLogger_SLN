@@ -164,6 +164,43 @@ Namespace Helpers
             Return String.Equals(actualValue, expectedValue, StringComparison.OrdinalIgnoreCase)
         End Function
 
+        ''' <summary>
+        ''' Deletes a specific custom document property from the active Word document.
+        ''' </summary>
+        Public Shared Sub DeleteCustomProperty(propertyName As String)
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+
+                If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = propertyName) Then
+                    props(propertyName).Delete()
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error deleting property: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Deletes all custom document properties from the active Word document.
+        ''' </summary>
+        Public Shared Sub DeleteAllCustomProperties()
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+
+                ' Copy property names to avoid modifying the collection while iterating
+                Dim namesToDelete = props.Cast(Of Office.DocumentProperty).Select(Function(p) p.Name).ToList()
+
+                For Each name In namesToDelete
+                    props(name).Delete()
+                Next
+
+            Catch ex As Exception
+                MessageBox.Show("Error deleting all properties: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
+
     End Class
 
 End Namespace
