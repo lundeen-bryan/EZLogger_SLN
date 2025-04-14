@@ -388,6 +388,7 @@
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\ClipboardHelper.vb" />
+    <Compile Include="Helpers\ColorHelper.vb" />
     <Compile Include="Helpers\ConfigPathHelper.vb" />
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentHelper.vb" />
@@ -715,7 +716,10 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
-    <Content Include="Views\EZLoggerIcon.png" />
+    <Resource Include="Resources\EZLoggerIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />
