@@ -402,6 +402,12 @@
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="Helpers\UserPathHelper.vb" />
+    <Compile Include="HostForms\AboutHost.Designer.vb">
+      <DependentUpon>AboutHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\AboutHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\ChiefApprovalHost.Designer.vb">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>
     </Compile>
@@ -472,6 +478,9 @@
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Models\TCARRecord.vb" />
+    <Compile Include="Views\AboutView.xaml.vb">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
       <DependentUpon>ChiefApprovalView.xaml</DependentUpon>
     </Compile>
@@ -521,6 +530,9 @@
     <Compile Include="Views\UpdateInfoView.xaml.vb">
       <DependentUpon>UpdateInfoView.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HostForms\AboutHost.resx">
+      <DependentUpon>AboutHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ChiefApprovalHost.resx">
       <DependentUpon>ChiefApprovalHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -597,6 +609,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\FormHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -699,6 +715,7 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <Content Include="Views\EZLoggerIcon.png" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />

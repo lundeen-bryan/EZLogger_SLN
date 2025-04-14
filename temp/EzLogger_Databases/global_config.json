@@ -139,6 +139,7 @@
     },
     "version": {
         "_comment": "Version and maintenance info for the config",
+        "created_by": "Bryan Lundeen",
         "date": "2025-01-31",
         "instructions": "fixed error handling when patient number doesn't match database",
         "number": "2.6.1",

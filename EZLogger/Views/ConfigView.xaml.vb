@@ -9,7 +9,7 @@ Public Class ConfigView
 
     Private ReadOnly _handler As ConfigViewHandler
 
-    Public Sub New()
+    Public Sub New(hostForm As Forms.Form)
         InitializeComponent()
 
         ' Set up the handler
