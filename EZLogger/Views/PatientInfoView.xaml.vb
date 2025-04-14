@@ -24,6 +24,7 @@ Namespace EZLogger.Views
 			AddHandler BtnFirstPage.Click, AddressOf BtnFirstPage_Click
 			AddHandler BtnLastPage.Click, AddressOf BtnLastPage_Click
 			AddHandler BtnAddEdit.Click, AddressOf BtnAddEdit_Click
+			AddHandler BtnRefresh.Click, AddressOf BtnRefresh_Click
 		End Sub
 
 		Private Sub PatientInfoView_Loaded(sender As Object, e As RoutedEventArgs)
@@ -48,7 +49,7 @@ Namespace EZLogger.Views
 			_handler.HandleLastPageClick()
 		End Sub
 		Private Sub BtnAddEdit_Click(sender As Object, e As RoutedEventArgs)
-			_handler.HandleAddEditClick()
+			_handler.HandleAddEditClick(Me)
 		End Sub
 
 	End Class
