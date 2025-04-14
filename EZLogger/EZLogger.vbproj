@@ -716,8 +716,9 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
-    <Content Include="Views\EZLoggerIcon.png" />
-    <Content Include="Views\EZLoggerLogo.png" />
+    <Resource Include="Resources\EZLoggerLogo128.png" />
+    <Resource Include="Resources\EZLoggerLogo32.png" />
+    <Resource Include="Resources\EZLoggerLogo64.png" />
     <Resource Include="Resources\EZLoggerIcon.png" />
     <Resource Include="Resources\EZLoggerLogo.png" />
     <None Include="Resources\Image1.bmp" />
