@@ -114,6 +114,40 @@ Namespace Helpers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Builds a unique ID string from standard document properties.
+        ''' </summary>
+        Public Shared Function CreateUniqueIdFromProperties() As String
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+
+                Dim getProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
+
+                Dim patientNumber = getProp("Patient Number")
+                Dim lname = getProp("Lastname")
+                Dim fname = getProp("Firstname")
+                Dim reportType = getProp("Report Type")
+                Dim county = getProp("County")
+                Dim reportDate = getProp("Report Date")
+                Dim program = getProp("Program")
+
+                ' Optional: Clean up or normalize values if needed
+                Dim parts As New List(Of String) From {
+            patientNumber, lname, fname, reportType, county, reportDate, program
+        }
+
+                ' Remove empty/null values
+                parts = parts.Where(Function(p) Not String.IsNullOrWhiteSpace(p)).ToList()
+
+                ' Return a hyphen-delimited ID
+                Return String.Join("-", parts)
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Error creating unique ID: " & ex.Message)
+                Return String.Empty
+            End Try
+        End Function
+
         ' ========================
         ' === READ OPERATIONS ===
         ' ========================

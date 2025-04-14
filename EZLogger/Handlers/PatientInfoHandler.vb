@@ -8,10 +8,53 @@ Imports Microsoft.Office.Interop.Word
 Namespace Handlers
 
     Public Class PatientInfoHandler
-        Public Sub HandleAddEditClick()
+
+        Public Sub HandleSavePropertyClick(view As UpdateInfoView)
             Try
+                Dim propName As String = view.TxbxPropertyName.Text.Trim()
+                Dim propValue As String = view.TxtbxPropertyValue.Text.Trim()
+
+                ' Basic validation
+                If String.IsNullOrWhiteSpace(propName) Then
+                    MsgBoxHelper.Show("Please enter a property name.")
+                    Return
+                End If
+
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+
+                ' Use helper to write or update the property
+                DocumentPropertyHelper.WriteCustomProperty(doc, propName, propValue)
+
+                MsgBoxHelper.Show($"Property '{propName}' was saved successfully.")
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to save the property: " & ex.Message)
+            End Try
+        End Sub
+
+        Public Sub HandleAddEditClick(view As PatientInfoView)
+            Try
+                ' Attempt to get the selected row from the DataGrid
+                Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
+
+                ' Open the UpdateInfoHost form
                 Dim hostForm As New UpdateInfoHost()
+                Dim updateView As UpdateInfoView = TryCast(hostForm.ElementHost1.Child, UpdateInfoView)
+
+                If updateView IsNot Nothing Then
+                    ' If a property is selected, pre-fill the fields (edit mode)
+                    If selectedEntry IsNot Nothing Then
+                        updateView.TxbxPropertyName.Text = selectedEntry.PropertyName
+                        updateView.TxtbxPropertyValue.Text = selectedEntry.Value
+                    Else
+                        ' Otherwise, start blank (add mode)
+                        updateView.TxbxPropertyName.Text = ""
+                        updateView.TxtbxPropertyValue.Text = ""
+                    End If
+                End If
+
                 hostForm.Show()
+
             Catch ex As Exception
                 MsgBoxHelper.Show("Failed to open Update Info form: " & ex.Message)
             End Try
