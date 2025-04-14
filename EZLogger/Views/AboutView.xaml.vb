@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Text.Json
 Imports EZLogger.Helpers
 Imports System.Windows.Forms
+Imports System.Windows.Media.Imaging
 
 Namespace EZLogger.Views
 
@@ -50,7 +51,6 @@ Namespace EZLogger.Views
         Private Sub BtnGoBack_Click(sender As Object, e As RoutedEventArgs)
             _hostForm.Close()
         End Sub
-
     End Class
 
 End Namespace
