@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="EZLogger.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="600" Width="400"
+             Background="White">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Title -->
+            <RowDefinition Height="Auto"/>
+            <!-- Spacer -->
+            <RowDefinition Height="Auto"/>
+            <!-- Info Fields -->
+            <RowDefinition Height="*"/>
+            <!-- Latest Change -->
+            <RowDefinition Height="Auto"/>
+            <!-- Buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Title Row -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Stretch">
+            <TextBlock Text="ABOUT EZ LOGGER"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       VerticalAlignment="Center" />
+            <Image Name="LogoImage"
+                   Width="67" Height="65"
+                   Margin="125,0,0,0" Source="/EZLogger;component/Views/EZLoggerIcon.png"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,20,0,10" VerticalAlignment="Top">
+            <!-- Created By -->
+            <Label Content="Created By" FontFamily="Candara" FontSize="16" />
+            <TextBlock Name="TxtCreatedBy" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
+
+            <!-- Support Contact -->
+            <Label Content="Support Contact" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
+            <TextBlock Name="TxtSupportContact" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
+
+            <!-- Last Update -->
+            <Label Content="Last Update" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
+            <TextBlock Name="TxtLastUpdate" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
+
+            <!-- Version -->
+            <Label Content="Version" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
+            <TextBlock Name="TxtVersion" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
+        </StackPanel>
+
+        <!-- Latest Change Section -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <Label Content="Latest Change" FontFamily="Candara" FontSize="16" />
+            <TextBox Name="TxtLatestChange"
+                     Background="#DCEEFF"
+                     Padding="6"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     Height="100" FontFamily="Consolas"/>
+        </StackPanel>
+
+        <!-- Button Panel -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Help" Name="BtnHelp" Width="75" Margin="5" FontFamily="Candara" FontSize="14"/>
+            <Button Content="Config" Name="BtnConfig" Width="75" Margin="5" FontFamily="Candara" FontSize="14" IsEnabled="False"/>
+            <Button Content="Alerts" Name="BtnAlerts" Width="75" Margin="5" IsEnabled="False" FontFamily="Candara" FontSize="14"/>
+            <Button Content="Go Back" Name="BtnGoBack" Width="75" Margin="5" FontFamily="Candara" FontSize="14" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ConfigHost
+Partial Class AboutHost
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,6 +23,7 @@ Partial Class ConfigHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
+        Me.AboutView1 = New EZLogger.Views.AboutView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -30,27 +31,27 @@ Partial Class ConfigHost
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(805, 657)
+        Me.ElementHost1.Size = New System.Drawing.Size(409, 586)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
-        Me.ElementHost1.Child = Me.ConfigView1
+        Me.ElementHost1.Child = Me.AboutView1
         '
-        'ConfigHost
+        'AboutHost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(805, 657)
+        Me.ClientSize = New System.Drawing.Size(409, 586)
         Me.Controls.Add(Me.ElementHost1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "ConfigHost"
+        Me.Name = "AboutHost"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend ConfigView1 As ConfigView
+    Friend AboutView1 As EZLogger.Views.AboutView
 End Class
