@@ -716,9 +716,10 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
-    <Resource Include="Resources\EZLoggerIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Views\EZLoggerIcon.png" />
+    <Content Include="Views\EZLoggerLogo.png" />
+    <Resource Include="Resources\EZLoggerIcon.png" />
+    <Resource Include="Resources\EZLoggerLogo.png" />
     <None Include="Resources\Image1.bmp" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\email.png" />
