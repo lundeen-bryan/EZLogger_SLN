@@ -370,7 +370,7 @@
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
-    <Compile Include="Handlers\CoverPageHandler.vb" />
+    <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\PatientInfoHandler.vb" />
@@ -382,6 +382,7 @@
     <Compile Include="EZLoggerRibbon.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Handlers\SaveFileHandler.vb" />
     <Compile Include="Handlers\TCARListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
