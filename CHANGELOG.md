@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - new methods in `OpinionHandler.vb` for user interactions, including form opening in far left side
 - Added code snippets for code behind xaml form and handler
+- Wired up AuthorView and SeniorView forms to show when H & G buttons are pressed respectively
 
 ### Removed
 

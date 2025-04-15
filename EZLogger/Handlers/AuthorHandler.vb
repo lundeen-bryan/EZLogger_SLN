@@ -7,7 +7,7 @@ Namespace Handlers
         Public Sub OnOpenAuthorFormClick()
             Dim host As New ReportAuthorHost()
             host.TopMost = True
-            host.StartPosition = FormStartPosition.CenterScreen
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
             host.Show()
         End Sub
         Public Sub HandleCloseClick(form As Form)
