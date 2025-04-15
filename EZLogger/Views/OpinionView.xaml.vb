@@ -7,7 +7,7 @@ Imports EZLogger.Handlers
 Public Class OpinionView
     Inherits System.Windows.Controls.UserControl
 
-    Private ReadOnly _handler As OpinionViewHandler
+    Private ReadOnly _handler As OpinionHandler
     Private ReadOnly _hostForm As Form ' ✅ Store the host WinForm
 
     ' ✅ Modified constructor to accept optional host
@@ -15,7 +15,7 @@ Public Class OpinionView
         InitializeComponent()
 
         _hostForm = hostForm
-        _handler = New OpinionViewHandler()
+        _handler = New OpinionHandler()
 
         ' Load combo data when the view is created
         AddHandler Me.Loaded, AddressOf OpinionView_Loaded

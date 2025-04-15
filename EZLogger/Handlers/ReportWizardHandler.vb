@@ -95,7 +95,8 @@ Namespace Handlers
             MessageBox.Show("This will present the HTV list.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
         End Sub
         Public Sub ShowBtnFMessage()
-            MessageBox.Show("This will handle function F.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim opHandler As New OpinionHandler()
+            opHandler.OnOpenOpinionFormClick()
         End Sub
 
         Public Sub ShowBtnGMessage()
