@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - new methods in `OpinionHandler.vb` for user interactions, including form opening in far left side
+- Added code snippets for code behind xaml form and handler
 
 ### Removed
 
