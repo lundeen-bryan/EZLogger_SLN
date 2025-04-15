@@ -6,14 +6,14 @@
 Public Module UserPathHelper
 
     ''' <summary>
-    ''' Returns the expected OneDrive "Documents" path for a Napa State Hospital employee.
+    ''' Returns the expected OneDrive "Documents" path for a User who syncs with OneDrive.
     ''' </summary>
     ''' <returns>Full path to the user's synced OneDrive Documents folder.</returns>
     ''' <example>
-    ''' Dim path As String = UserPathHelper.GetNapaOneDriveDocumentsPath()
+    ''' Dim path As String = UserPathHelper.GetOneDriveDocumentsPath()
     ''' ' Output: "C:\Users\lunde\OneDrive - Department of State Hospitals\Documents"
     ''' </example>
-    Public Function GetNapaOneDriveDocumentsPath() As String
+    Public Function GetOneDriveDocumentsPath() As String
         Dim userProfile As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
 
         ' Customize this part based on your org's OneDrive naming
