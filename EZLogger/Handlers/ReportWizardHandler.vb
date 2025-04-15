@@ -109,9 +109,10 @@ Namespace Handlers
             chHandler.OnOpenChiefHostClick()
         End Sub
 
-        Public Sub ShowBtnIMessage()
-            MessageBox.Show("This will handle function I.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
-        End Sub
+        'Public Sub ShowBtnIMessage()
+        '    Dim mvHandler As New MoveCopyHandler()
+        '    mvHandler.OnMoveCopyClick()
+        'End Sub
 
         Public Sub ShowBtnJMessage()
             MessageBox.Show("This will handle function J.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
