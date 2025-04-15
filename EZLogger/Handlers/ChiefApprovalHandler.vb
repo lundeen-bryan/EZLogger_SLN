@@ -8,7 +8,7 @@ Namespace Handlers
         Public Sub OnOpenChiefHostClick()
             Dim host As New ChiefApprovalHost()
             host.TopMost = True
-            host.StartPosition = FormStartPosition.CenterScreen
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
             host.Show()
         End Sub
 

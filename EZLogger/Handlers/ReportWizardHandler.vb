@@ -100,11 +100,13 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnGMessage()
-            MessageBox.Show("This will handle function G.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim auHandler As New AuthorHandler()
+            auHandler.OnOpenAuthorFormClick()
         End Sub
 
         Public Sub ShowBtnHMessage()
-            MessageBox.Show("This will handle function H.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim chHandler As New ChiefApprovalHandler()
+            chHandler.OnOpenChiefHostClick()
         End Sub
 
         Public Sub ShowBtnIMessage()
