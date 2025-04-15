@@ -10,7 +10,7 @@
              Height="630"
              Width="460"
              FontFamily="Candara"
-             FontSize="16">
+             FontSize="16" Background="White">
     <Grid>
         <Controls:FormHeaderControl HeaderText="SELECT PAGES AND CONVERT TO PDF" />
         <ListBox x:Name="ListBoxCoverPages"

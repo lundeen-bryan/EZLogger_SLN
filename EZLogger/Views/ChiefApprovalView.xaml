@@ -10,7 +10,7 @@
              FontFamily="Candara"
              FontSize="16"
              Padding="12,12,12,12"
-             Height="435">
+             Height="435" Background="White">
     <StackPanel>
         <Controls:FormHeaderControl HeaderText="CHIEF APPROVAL AND SIGNATURE" />
         <TextBlock TextWrapping="Wrap"
