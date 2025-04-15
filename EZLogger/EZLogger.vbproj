@@ -371,7 +371,6 @@
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\CoverPageHandler.vb" />
-    <Compile Include="Handlers\MoveCopyHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\PatientInfoHandler.vb" />
@@ -426,16 +425,10 @@
     <Compile Include="HostForms\CustomMsgBoxHost.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HostForms\CoverPageHost.Designer.vb">
-      <DependentUpon>CoverPageHost.vb</DependentUpon>
+    <Compile Include="HostForms\FaxCoverHost.Designer.vb">
+      <DependentUpon>FaxCoverHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\CoverPageHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\MoveCopyHost.Designer.vb">
-      <DependentUpon>MoveCopyHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\MoveCopyHost.vb">
+    <Compile Include="HostForms\FaxCoverHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\OpinionHost.Designer.vb">
@@ -460,6 +453,12 @@
       <DependentUpon>ReportTypeHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\ReportTypeHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HostForms\SaveFileHost.Designer.vb">
+      <DependentUpon>SaveFileHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\SaveFileHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\TCARListHost.Designer.vb">
@@ -487,14 +486,8 @@
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CoverPageView.xaml.vb">
-      <DependentUpon>CoverPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FileMoveView.xaml.vb">
-      <DependentUpon>FileMoveView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MoveCopyView.xaml.vb">
-      <DependentUpon>MoveCopyView.xaml</DependentUpon>
+    <Compile Include="Views\FaxCoverView.xaml.vb">
+      <DependentUpon>FaxCoverView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpinionView.xaml.vb">
       <DependentUpon>OpinionView.xaml</DependentUpon>
@@ -524,6 +517,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MainVM.vb" />
+    <Compile Include="Views\SaveFileView.xaml.vb">
+      <DependentUpon>SaveFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TCARListView.xaml.vb">
       <DependentUpon>TCARListView.xaml</DependentUpon>
     </Compile>
@@ -542,11 +538,8 @@
     <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\CoverPageHost.resx">
-      <DependentUpon>CoverPageHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\MoveCopyHost.resx">
-      <DependentUpon>MoveCopyHost.vb</DependentUpon>
+    <EmbeddedResource Include="HostForms\FaxCoverHost.resx">
+      <DependentUpon>FaxCoverHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\OpinionHost.resx">
       <DependentUpon>OpinionHost.vb</DependentUpon>
@@ -575,6 +568,9 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
     <EmbeddedResource Include="EZLoggerRibbon.resx">
       <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\SaveFileHost.resx">
+      <DependentUpon>SaveFileHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\TCARListHost.resx">
       <DependentUpon>TCARListHost.vb</DependentUpon>
@@ -624,15 +620,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CoverPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FileMoveView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MoveCopyView.xaml">
+    <Page Include="Views\FaxCoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -657,6 +645,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\EzLoggerRD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaveFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

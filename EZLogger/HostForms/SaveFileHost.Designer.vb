@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class CoverPageHost
+Partial Class SaveFileHost
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class CoverPageHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.FileSaveView1 = New FileSaveView()
+        Me.SaveFileView1 = New SaveFileView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -31,21 +31,20 @@ Partial Class CoverPageHost
         Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
         Me.ElementHost1.Name = "ElementHost1"
-        Me.ElementHost1.Size = New System.Drawing.Size(459, 654)
+        Me.ElementHost1.Size = New System.Drawing.Size(500, 664)
         Me.ElementHost1.TabIndex = 0
         Me.ElementHost1.Text = "ElementHost1"
-        Me.ElementHost1.Child = Me.FileSaveView1
+        Me.ElementHost1.Child = Me.SaveFileView1
         '
-        'FileSaveHost
+        'SaveFileHost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(459, 654)
+        Me.ClientSize = New System.Drawing.Size(500, 664)
         Me.Controls.Add(Me.ElementHost1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FileSaveHost"
+        Me.Name = "SaveFileHost"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TopMost = True
@@ -54,5 +53,5 @@ Partial Class CoverPageHost
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend FileSaveView1 As FileSaveView
+    Friend SaveFileView1 As SaveFileView
 End Class

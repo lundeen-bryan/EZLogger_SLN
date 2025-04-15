@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EZLogger.Views.MoveCopyView"
+﻿<UserControl x:Class="SaveFileView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              FontFamily="Candara"
