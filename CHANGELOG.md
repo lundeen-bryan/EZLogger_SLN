@@ -113,12 +113,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - `CheifApprovalView` user control.
-- Documentation: *About the ConfigPathHelper.md* explaining design choices.
+- Documentation: *About the ConfigHelper.md* explaining design choices.
 
 ### Changed
 
 - `EZLogger.vbproj` to include new view files.
-- `ConfigPathHelper.vb`: Added support for loading doctor names from JSON.
+- `ConfigHelper.vb`: Added support for loading doctor names from JSON.
 - `ConfigView`: Updated UI and logic for managing doctor lists.
 - `global_config.json`: Added alerts and email distribution lists.
 - `Doctors.txt`: Appended new doctor entries.
@@ -136,12 +136,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Modified `ReportWizardPanel` to use the shared `GetReportTypes` method for populating the ComboBox. (`EZLogger/Views/ReportWizardPanel.xaml.vb`)
 - Updated `ReportTypeView` to initialize the ComboBox with the shared report types and sync the selected item with `ReportWizardPanel`. (`EZLogger/Views/ReportTypeView.xaml.vb`)
 - Added new fields to `global_config.json` and `local_user_config.json` to support the ComboBox and other control values. (`temp/global_config.json`, `temp/local_user_config.json`)
-- Added `ConfigPathHelper.vb` in Helpers module to manage loading config paths and values from JSON.
+- Added `ConfigHelper.vb` in Helpers module to manage loading config paths and values from JSON.
 - Updated `ReportTypeHandler.vb` to retrieve report types dynamically from `global_config.json` instead of hardcoding.
 - Modified `OpinionView.xaml.vb` to populate `OpinionCbo` with values from the "opinions" section of the global config.
 - Implemented `ReportWizardPanel_Loaded` to populate `ReportTypeCbo` from the global config.
 - Refactored and structured `global_config.json` and `local_user_config.json` to support cleaner config access patterns.
-- Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigPathHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
+- Updated `EZLogger.vbproj` to include new handlers and forms for report authors. Added `GetDoctorList` function in `ConfigHelper.vb` to load doctors from a config file. Modified `ReportWizardPanel.xaml` to open the new author form. Updated `local_user_config.json` with the path for the doctors list. Created `AuthorHandler` class to manage author form interactions. Added `ReportAuthorHost`, its designer, and the `ReportAuthorView` for author selection functionality.
 
 ## [0.0.1][0.0.1] - 2025-04-03
 

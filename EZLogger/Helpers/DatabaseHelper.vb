@@ -16,7 +16,7 @@ Public Module DatabaseHelper
         End If
 
         Try
-            Dim dbPath As String = ConfigPathHelper.GetDatabasePath()
+            Dim dbPath As String = ConfigHelper.GetDatabasePath()
             If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
                 MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
                 Return Nothing
@@ -28,8 +28,8 @@ Public Module DatabaseHelper
 
                 ' Join EZL and EZL_IST, aggregate early_ninety_day
                 Dim query As String = "
-                SELECT 
-                    e.*, 
+                SELECT
+                    e.*,
                     MAX(ist.early_ninety_day) AS early_ninety_day
                 FROM EZL e
                 LEFT JOIN EZL_IST ist ON e.patient_number = ist.patient_number

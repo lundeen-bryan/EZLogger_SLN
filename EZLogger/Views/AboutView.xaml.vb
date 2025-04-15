@@ -12,7 +12,7 @@ Namespace EZLogger.Views
         Inherits Windows.Controls.UserControl
 
         Private ReadOnly _hostForm As Form
-        Private ReadOnly configFilePath As String = ConfigPathHelper.GetGlobalConfigPath()
+        Private ReadOnly configFilePath As String = ConfigHelper.GetGlobalConfigPath()
 
         Public Sub New(Optional hostForm As Form = Nothing)
             InitializeComponent()

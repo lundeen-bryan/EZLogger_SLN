@@ -1,6 +1,6 @@
-# Why Use a Module Instead of a Class for ConfigPathHelper in VB.NET
+# Why Use a Module Instead of a Class for ConfigHelper in VB.NET
 
-When building helper utilities like `ConfigPathHelper.vb` in a VB.NET WPF project, using a **Module** instead of a **Class** has clear benefits—especially when the helper is meant to provide shared functions across the entire application.
+When building helper utilities like `ConfigHelper.vb` in a VB.NET WPF project, using a **Module** instead of a **Class** has clear benefits—especially when the helper is meant to provide shared functions across the entire application.
 
 ---
 
@@ -8,7 +8,7 @@ When building helper utilities like `ConfigPathHelper.vb` in a VB.NET WPF projec
 A `Module` is a container for variables and methods that are shared across the application. All members in a module are implicitly `Shared`, which means:
 
 - You **don't need to instantiate** the module to use it.
-- Functions can be called directly: `ConfigPathHelper.GetDoctorList()`.
+- Functions can be called directly: `ConfigHelper.GetDoctorList()`.
 
 This is ideal for utility code that doesn’t need to store state or create multiple instances.
 
@@ -18,7 +18,7 @@ This is ideal for utility code that doesn’t need to store state or create mult
 
 ### Using a Module:
 ```vbnet
-Public Module ConfigPathHelper
+Public Module ConfigHelper
     Public Function GetDoctorList() As List(Of String)
         ' ...code here...
     End Function
@@ -26,12 +26,12 @@ End Module
 ```
 Usage:
 ```vbnet
-Dim doctors = ConfigPathHelper.GetDoctorList()
+Dim doctors = ConfigHelper.GetDoctorList()
 ```
 
 ### Using a Class:
 ```vbnet
-Public Class ConfigPathHelper
+Public Class ConfigHelper
     Public Function GetDoctorList() As List(Of String)
         ' ...code here...
     End Function
@@ -39,13 +39,13 @@ End Class
 ```
 Usage:
 ```vbnet
-Dim helper As New ConfigPathHelper()
+Dim helper As New ConfigHelper()
 Dim doctors = helper.GetDoctorList()
 ```
 
 ---
 
-## 💡 Why Use a Module for ConfigPathHelper?
+## 💡 Why Use a Module for ConfigHelper?
 
 ### 1. **Stateless and Shared**
 - The methods don’t rely on or maintain internal state.
@@ -56,7 +56,7 @@ Dim doctors = helper.GetDoctorList()
 - Your calling code stays simple and readable.
 
 ### 3. **Consistent with Purpose**
-- The `ConfigPathHelper` is a collection of stateless tools.
+- The `ConfigHelper` is a collection of stateless tools.
 - Modules reflect that "toolbox" purpose better than a class.
 
 ---
@@ -72,6 +72,6 @@ If you need to:
 ---
 
 ## ✅ Summary
-Use a `Module` for `ConfigPathHelper` because it contains stateless, utility-style functions that should be accessible throughout your project without creating object instances. It keeps your code simpler, cleaner, and aligns with VB.NET best practices for shared helpers.
+Use a `Module` for `ConfigHelper` because it contains stateless, utility-style functions that should be accessible throughout your project without creating object instances. It keeps your code simpler, cleaner, and aligns with VB.NET best practices for shared helpers.
 
 If later you find you need to store instance-specific state or configuration settings, you can always refactor it into a `Class`.
