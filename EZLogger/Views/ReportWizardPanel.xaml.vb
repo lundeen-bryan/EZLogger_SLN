@@ -35,11 +35,27 @@ Partial Public Class ReportWizardPanel
         Dim fileHandler As New CoverPageHandler()
         fileHandler.OnFileSaveHostClick()
     End Sub
-
-    Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
-        Dim opHandler As New OpinionHandler()
-        opHandler.OnOpenOpinionFormClick()
+    Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)
+        Dim auHandler As New AuthorHandler()
+        auHandler.OnOpenAuthorFormClick()
     End Sub
+
+    Private Sub BtnSelectChief_Click(sender As Object, e As RoutedEventArgs)
+        Dim chHandler As New ChiefApprovalHandler()
+        chHandler.OnOpenChiefHostClick()
+    End Sub
+
+    Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
+    End Sub
+    Public Sub RefreshPatientNameLabel()
+        Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
+        LabelPatientName.Content = name
+    End Sub
+
+    'Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
+    '    Dim opHandler As New OpinionHandler()
+    '    opHandler.OnOpenOpinionFormClick()
+    'End Sub
 
     Private Sub Btn_A_Click(sender As Object, e As RoutedEventArgs)
         _handler.SearchAndPopulatePatientNumber(Me)
@@ -61,23 +77,8 @@ Partial Public Class ReportWizardPanel
         _handler.ShowBtnEMessage()
     End Sub
 
-    Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)
-        Dim auHandler As New AuthorHandler()
-        auHandler.OnOpenAuthorFormClick()
-    End Sub
-
-    Private Sub BtnSelectChief_Click(sender As Object, e As RoutedEventArgs)
-        Dim chHandler As New ChiefApprovalHandler()
-        chHandler.OnOpenChiefHostClick()
-    End Sub
-
-    Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
-    End Sub
-    Public Sub RefreshPatientNameLabel()
-        Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
-        LabelPatientName.Content = name
-    End Sub
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
+        ' Should open the opinion form
         _handler.ShowBtnFMessage()
     End Sub
 

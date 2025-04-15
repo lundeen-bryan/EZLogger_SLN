@@ -373,7 +373,6 @@
     <Compile Include="Handlers\CoverPageHandler.vb" />
     <Compile Include="Handlers\MoveCopyHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
-    <Compile Include="Handlers\OpinionViewHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\PatientInfoHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />

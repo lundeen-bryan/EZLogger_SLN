@@ -31,6 +31,22 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-14
+
+### Changed
+
+- Updated `ReportWizardHandler.vb` to link opinion form opening button functionality
+- Modified `OpinionView.Xaml.vb` to use `OpinionHandler` and accept optional host form
+
+### Added
+
+- new methods in `OpinionHandler.vb` for user interactions, including form opening in far left side
+
+### Removed
+
+- `OpinionViewHandler` was named incorrectly and now it's consolidated with `OpinionHandler`
+- Removed outdated even handler in `ReportWizardHandler`
+
 ## [0.0.1] - 2025-04-13
 
 ### Added
