@@ -109,13 +109,14 @@ Namespace Handlers
             chHandler.OnOpenChiefHostClick()
         End Sub
 
-        'Public Sub ShowBtnIMessage()
-        '    Dim mvHandler As New MoveCopyHandler()
-        '    mvHandler.OnMoveCopyClick()
-        'End Sub
+        Public Sub ShowBtnIMessage()
+            Dim mvHandler As New SaveFileHandler()
+            mvHandler.ShowSaveMessage()
+        End Sub
 
         Public Sub ShowBtnJMessage()
-            MessageBox.Show("This will handle function J.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Dim fxHandler As New FaxCoverHandler()
+            fxHandler.ShowFaxCoverMessage()
         End Sub
 
         Public Sub ShowBtnKMessage()

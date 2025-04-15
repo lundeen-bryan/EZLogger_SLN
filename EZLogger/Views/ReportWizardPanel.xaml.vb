@@ -19,7 +19,7 @@ Partial Public Class ReportWizardPanel
         AddHandler Btn_F.Click, AddressOf Btn_F_Click
         AddHandler Btn_G.Click, AddressOf Btn_G_Click
         AddHandler Btn_H.Click, AddressOf Btn_H_Click
-        'AddHandler Btn_I.Click, AddressOf Btn_I_Click
+        AddHandler Btn_I.Click, AddressOf Btn_I_Click
         AddHandler Btn_J.Click, AddressOf Btn_J_Click
         AddHandler Btn_K.Click, AddressOf Btn_K_Click
         AddHandler Btn_L.Click, AddressOf Btn_L_Click
@@ -90,9 +90,9 @@ Partial Public Class ReportWizardPanel
         _handler.ShowBtnHMessage()
     End Sub
 
-    'Private Sub Btn_I_Click(sender As Object, e As RoutedEventArgs)
-    '    _handler.ShowBtnIMessage()
-    'End Sub
+    Private Sub Btn_I_Click(sender As Object, e As RoutedEventArgs)
+        _handler.ShowBtnIMessage()
+    End Sub
 
     Private Sub Btn_J_Click(sender As Object, e As RoutedEventArgs)
         _handler.ShowBtnJMessage()
