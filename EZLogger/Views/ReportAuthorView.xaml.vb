@@ -51,7 +51,7 @@ Namespace EZLogger.Views
             _handler.HandleCloseClick(_hostForm)
         End Sub
         Private Sub ReportAuthorView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-            Dim doctors As List(Of String) = ConfigPathHelper.GetDoctorList()
+            Dim doctors As List(Of String) = ConfigHelper.GetDoctorList()
             CboAuthor.ItemsSource = doctors
         End Sub
 

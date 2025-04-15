@@ -30,7 +30,7 @@ This pragmatic design ensures clean separation of concerns where possible, while
 EZLogger_SLN/
 ├── Views/               # WPF UserControls for each UI screen
 ├── Handlers/            # Event logic for each screen (e.g., ReportWizardHandler)
-├── Helpers/             # Reusable utilities (e.g., DocumentPropertyHelper, ConfigPathHelper)
+├── Helpers/             # Reusable utilities (e.g., DocumentPropertyHelper, ConfigHelper)
 ├── HostForms/           # WinForms containers for WPF screens
 ├── data/                # SQLite database for local patient record lookups
 ├── .ezlogger/           # Local user data and logs (e.g., processed reports JSON)

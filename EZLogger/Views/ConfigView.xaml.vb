@@ -30,7 +30,7 @@ Public Class ConfigView
 
     ' Move "Loaded" logic here
     Private Sub ConfigView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        TextBoxDoctors.Text = String.Join(Environment.NewLine, ConfigPathHelper.GetDoctorList())
+        TextBoxDoctors.Text = String.Join(Environment.NewLine, ConfigHelper.GetDoctorList())
     End Sub
 
     Private Sub BtnCreateConfig_Click(sender As Object, e As RoutedEventArgs)
@@ -70,7 +70,7 @@ Public Class ConfigView
     End Sub
 
     Private Sub BtnSaveDoctorsList_Click(sender As Object, e As RoutedEventArgs)
-        Dim filePath As String = ConfigPathHelper.GetDoctorListFilePath()
+        Dim filePath As String = ConfigHelper.GetDoctorListFilePath()
         File.WriteAllText(filePath, TextBoxDoctors.Text)
         MessageBox.Show("Doctor list saved.")
     End Sub

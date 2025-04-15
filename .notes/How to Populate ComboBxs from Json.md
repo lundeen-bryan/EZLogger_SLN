@@ -29,13 +29,13 @@ This guide walks you through populating a WPF `ComboBox` with values stored in a
 
 ---
 
-## Step 1: Create the ConfigPathHelper
-Create a helper module `ConfigPathHelper.vb` to load values from the config files.
+## Step 1: Create the ConfigHelper
+Create a helper module `ConfigHelper.vb` to load values from the config files.
 
 ### Essential Methods Only
 ```vbnet
 Namespace EZLogger.Helpers
-    Public Module ConfigPathHelper
+    Public Module ConfigHelper
 
         ' Hardcoded path to the local user config (prototype phase)
         Private ReadOnly localConfigPath As String = "C:\Users\you\yourproject\temp\local_user_config.json"
@@ -73,14 +73,14 @@ Imports EZLogger.Helpers
 
 Public Class OpinionView
     Private Sub OpinionView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        OpinionCbo.ItemsSource = ConfigPathHelper.GetOpinionList()
+        OpinionCbo.ItemsSource = ConfigHelper.GetOpinionList()
     End Sub
 End Class
 ```
 
 ### For Report Type ComboBox:
 ```vbnet
-ReportTypeCbo.ItemsSource = ConfigPathHelper.GetReportTypeList()
+ReportTypeCbo.ItemsSource = ConfigHelper.GetReportTypeList()
 ```
 
 ---
