@@ -31,6 +31,26 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-15
+
+### Added
+
+- Introduced `GetLocalConfigPath()` in `ConfigHelper.vb` to dynamically resolve and ensure the existence of `%USERPROFILE%\.ezlogger\local_user_config.json`.
+- Created `PromptForGlobalConfigFile()` to allow users to select the global configuration file from a synced SharePoint folder.
+- Implemented `UpdateLocalConfigWithGlobalPath()` to write the global config path into the local config file under `sp_filepath.global_config_file`.
+- Added manual test method `Test_UpdateLocalConfigWithGlobalPath()` in `TestHelper.vb` to validate config updates during development.
+- Added new WPF button handler `BtnCreateConfig` to walk through config file setup (local path + global config selection).
+
+### Changed
+
+- Refactored all usages of hardcoded `localConfigPath` to dynamically call `GetLocalConfigPath()` instead.
+- Removed obsolete `Private ReadOnly localConfigPath = ...` field from `ConfigHelper.vb`.
+
+### Fixed
+
+- ConfigView now shows appropriate fallback messages when config files are missing.
+- Clicking `[C]` properly creates the config file and updates UI with the paths.
+
 ## [0.0.1][0.0.1] - 2025-04-14
 
 ### Changed

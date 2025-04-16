@@ -91,5 +91,9 @@ Public Class EZLoggerRibbon
         Dim aboutHost As New AboutHost()
         aboutHost.ShowDialog()
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As RibbonControlEventArgs) Handles Button3.Click
+        TestHelper.Test_UpdateLocalConfigWithGlobalPath()
+    End Sub
 End Class
 
