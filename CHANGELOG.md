@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-16
+
+### Added
+
+- contact databases for saving in sharepoint saved to data folder
+
 ## [0.0.1] - 2025-04-15
 
 ### Added
