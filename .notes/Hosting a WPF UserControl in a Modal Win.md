@@ -25,7 +25,7 @@ Table of Contents
 2\. Create the Windows Form with ElementHost
 --------------------------------------------
 
-1.  Right-click the project and select **Add > Windows Form**.
+1.  Right-click the Hosts folder and select **Add > Windows Form**.
 2.  Name it `Form1.vb`.
 3.  In the Form designer, drag an **ElementHost** control from the Toolbox onto the form.
 4.  Set its **Name** to `ElementHost1` and **Dock** to `Fill`.
@@ -35,8 +35,8 @@ Table of Contents
 
 Double-click on the Form to open the code view and add the following to `Form1_Load`:
 
-    Imports System.Windows.Forms.Integration
-
+```vb
+Imports System.Windows.Forms.Integration
     Public Class Form1[the Hosting form name]
         Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             Dim myControl As New UserControl1()[The view or control name]
@@ -44,17 +44,20 @@ Double-click on the Form to open the code view and add the following to `Form1_L
             ElementHost1.Child = myControl
         End Sub
     End Class
+```
 
 4\. Add the Ribbon Button Logic
 -------------------------------
 
 Open your Ribbon class file (e.g., `EZLoggerRibbon.vb`) and add:
 
+```vb
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
         Dim aboutForm As New Form1()
         aboutForm.StartPosition = FormStartPosition.CenterScreen
         aboutForm.Show() ' Use ShowDialog() for true modal behavior
     End Sub
+```
 
 If you want to block interaction with Word while the window is open, replace `Show()` with `ShowDialog()`.
 
