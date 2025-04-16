@@ -392,16 +392,13 @@
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyHelper.vb" />
-    <Compile Include="Helpers\EnvironmentHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
-    <Compile Include="Helpers\GetFilenameHelper.vb" />
     <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
-    <Compile Include="Helpers\UserPathHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
       <DependentUpon>AboutHost.vb</DependentUpon>
     </Compile>
