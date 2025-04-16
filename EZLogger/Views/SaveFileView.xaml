@@ -6,57 +6,86 @@
              Width="400"
              Height="685">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="10" Background="White" Orientation="Vertical" Height="660">
-
+        <StackPanel Margin="10"
+                    Background="White"
+                    Orientation="Vertical"
+                    Height="660">
             <!-- Patient ID Search -->
-            <GroupBox Header="Enter Patient ID" Margin="0,0,0,10">
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <TextBox x:Name="TxtPatientId" Width="200" Margin="0,0,10,0"/>
-                    <Button x:Name="BtnSearchPatientId" Content="Search" Width="100"/>
+            <GroupBox Header="Enter Patient ID"
+                      Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal"
+                            Margin="10">
+                    <TextBox x:Name="TxtPatientId"
+                             Width="200"
+                             Margin="0,0,10,0" />
+                    <Button x:Name="BtnSearchPatientId"
+                            Content="Search"
+                            Width="100" />
                 </StackPanel>
             </GroupBox>
-
             <!-- Report Type -->
-            <GroupBox Header="Report Type" Margin="0,0,0,10">
-                <ComboBox x:Name="ReportTypeCbo" Margin="10" Width="250" Height="30"/>
+            <GroupBox Header="Report Type"
+                      Margin="0,0,0,10">
+                <ComboBox x:Name="ReportTypeCbo"
+                          Margin="10"
+                          Width="250"
+                          Height="30" />
             </GroupBox>
-
             <!-- Report Date -->
-            <GroupBox Header="Report Date" Margin="0,0,0,10">
-                <DatePicker x:Name="ReportDatePicker" Margin="10" Width="200"/>
+            <GroupBox Header="Report Date"
+                      Margin="0,0,0,10">
+                <DatePicker x:Name="ReportDatePicker"
+                            Margin="10"
+                            Width="200" />
             </GroupBox>
-
             <!-- Patient Info -->
-            <GroupBox Header="Patient Information" Margin="0,0,0,10">
+            <GroupBox Header="Patient Information"
+                      Margin="0,0,0,10">
                 <StackPanel Margin="10">
-                    <Label Content="Full Patient Name"/>
-                    <Label Content="Program"/>
-                    <Label Content="Unit"/>
-                    <Label Content="Classification"/>
+                    <Label Content="Full Patient Name" />
+                    <Label Content="Program" />
+                    <Label Content="Unit" />
+                    <Label Content="Classification" />
                 </StackPanel>
             </GroupBox>
-
             <!-- Radio Buttons: Move / Copy -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <RadioButton x:Name="RadioMove" Content="Move File" GroupName="FileAction" Margin="0,0,20,0"/>
-                <RadioButton x:Name="RadioCopy" Content="Copy File" GroupName="FileAction"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,0,0,10">
+                <RadioButton x:Name="RadioMove"
+                             Content="Move File"
+                             GroupName="FileAction"
+                             Margin="0,0,20,0" />
+                <RadioButton x:Name="RadioCopy"
+                             Content="Copy File"
+                             GroupName="FileAction" />
             </StackPanel>
-
             <!-- Show Path Button -->
-            <Button x:Name="BtnShowPath" Content="Show New Path Below" Width="200" Height="30" Margin="0,0,0,10"/>
-
+            <Button x:Name="BtnShowPath"
+                    Content="Show New Path Below"
+                    Width="200"
+                    Height="30"
+                    Margin="0,0,0,10" />
             <!-- New File Name -->
-            <GroupBox Header="New File Name" Margin="0,0,0,10" Height="118">
-                <TextBlock x:Name="TextBlockNewFileName" Margin="10" Text="Path will appear here..." TextWrapping="Wrap"/>
+            <GroupBox Header="New File Name"
+                      Margin="0,0,0,10"
+                      Height="118">
+                <TextBlock x:Name="TextBlockNewFileName"
+                           Margin="10"
+                           Text="Path will appear here..."
+                           TextWrapping="Wrap" />
             </GroupBox>
-
             <!-- Action Buttons -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
-                <Button x:Name="BtnSaveAs" Content="Save As..." Width="100" Margin="0,0,10,0"/>
-                <Button x:Name="BtnDone" Content="Done" Width="100"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,10">
+                <Button x:Name="BtnSaveAs"
+                        Content="Save As..."
+                        Width="100"
+                        Margin="0,0,10,0" />
+                <Button x:Name="BtnDone"
+                        Content="Done"
+                        Width="100" />
             </StackPanel>
-
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-

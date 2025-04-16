@@ -1,59 +1,175 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:EZLogger"
-             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="UpdateInfoView"
-             mc:Ignorable="d" 
-             d:DesignHeight="770" d:DesignWidth="475">
-    <Grid Height="770" VerticalAlignment="Top">
-        <ScrollViewer Height="770" VerticalAlignment="Center">
-            <StackPanel Height="771" Width="454" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <StackPanel Height="54" Width="455">
-                    <Controls:FormHeaderControl HeaderText="PATIENT INFORMATION UPDATE FORM"/>
+             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
+             x:Class="UpdateInfoView"
+             mc:Ignorable="d"
+             d:DesignHeight="770"
+             d:DesignWidth="475">
+    <Grid Height="770"
+          VerticalAlignment="Top">
+        <ScrollViewer Height="770"
+                      VerticalAlignment="Center">
+            <StackPanel Height="771"
+                        Width="454"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                <StackPanel Height="54"
+                            Width="455">
+                    <Controls:FormHeaderControl HeaderText="PATIENT INFORMATION UPDATE FORM" />
                 </StackPanel>
-                <StackPanel Height="76" Width="455">
-                    <GroupBox Header="Patient Number" FontFamily="Candara" FontSize="16" BorderBrush="Gray" Height="60" Margin="6,6,6,6" Width="167" HorizontalAlignment="Left">
-                        <Label x:Name="LblPatientNumber" Content="123456-7" Margin="6,0,0,0" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="14" Padding="6,6,6,6" HorizontalAlignment="Left" Width="101"/>
+                <StackPanel Height="76"
+                            Width="455">
+                    <GroupBox Header="Patient Number"
+                              FontFamily="Candara"
+                              FontSize="16"
+                              BorderBrush="Gray"
+                              Height="60"
+                              Margin="6,6,6,6"
+                              Width="167"
+                              HorizontalAlignment="Left">
+                        <Label x:Name="LblPatientNumber"
+                               Content="123456-7"
+                               Margin="6,0,0,0"
+                               Background="#FFC1E0FF"
+                               FontFamily="Lucida Console"
+                               FontSize="14"
+                               Padding="6,6,6,6"
+                               HorizontalAlignment="Left"
+                               Width="101" />
                     </GroupBox>
                 </StackPanel>
-                <StackPanel Height="76" Width="455">
-                    <GroupBox Header="Patient Name" FontFamily="Candara" FontSize="16" BorderBrush="Gray" Height="60" Margin="6,6,6,6" Width="427" HorizontalAlignment="Left">
-                        <Label x:Name="LblPatientName" Content="123456-7" Margin="6,0,13,0" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="14" Padding="6,6,6,6"/>
+                <StackPanel Height="76"
+                            Width="455">
+                    <GroupBox Header="Patient Name"
+                              FontFamily="Candara"
+                              FontSize="16"
+                              BorderBrush="Gray"
+                              Height="60"
+                              Margin="6,6,6,6"
+                              Width="427"
+                              HorizontalAlignment="Left">
+                        <Label x:Name="LblPatientName"
+                               Content="123456-7"
+                               Margin="6,0,13,0"
+                               Background="#FFC1E0FF"
+                               FontFamily="Lucida Console"
+                               FontSize="14"
+                               Padding="6,6,6,6" />
                     </GroupBox>
                 </StackPanel>
-                <StackPanel Height="76" Width="455">
-                    <GroupBox Header="Property Name" FontFamily="Candara" FontSize="16" BorderBrush="Gray" Height="60" Margin="6,6,6,6" Width="427" HorizontalAlignment="Left">
-                        <TextBox x:Name="TxbxPropertyName" Margin="6,6,13,0" TextWrapping="Wrap"/>
+                <StackPanel Height="76"
+                            Width="455">
+                    <GroupBox Header="Property Name"
+                              FontFamily="Candara"
+                              FontSize="16"
+                              BorderBrush="Gray"
+                              Height="60"
+                              Margin="6,6,6,6"
+                              Width="427"
+                              HorizontalAlignment="Left">
+                        <TextBox x:Name="TxbxPropertyName"
+                                 Margin="6,6,13,0"
+                                 TextWrapping="Wrap" />
                     </GroupBox>
                 </StackPanel>
-                <StackPanel Height="182" Width="455">
-                    <GroupBox Header="Property Value" FontFamily="Candara" FontSize="16" BorderBrush="Gray" Height="172" Margin="6,6,6,6" Width="427" HorizontalAlignment="Left">
-                        <TextBox x:Name="TxtbxPropertyValue" Margin="6,6,13,0" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                <StackPanel Height="182"
+                            Width="455">
+                    <GroupBox Header="Property Value"
+                              FontFamily="Candara"
+                              FontSize="16"
+                              BorderBrush="Gray"
+                              Height="172"
+                              Margin="6,6,6,6"
+                              Width="427"
+                              HorizontalAlignment="Left">
+                        <TextBox x:Name="TxtbxPropertyValue"
+                                 Margin="6,6,13,0"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 AcceptsReturn="True" />
                     </GroupBox>
                 </StackPanel>
-                <StackPanel Height="241" Width="455">
-                    <StackPanel Height="60" Orientation="Horizontal">
-                        <Button x:Name="BtnGenerateId" Content="_G" VerticalAlignment="Top" Margin="6,6,0,0" Height="45" Width="47" FontFamily="Lucida Fax" FontSize="18"/>
-                        <Label Content="Generate Unique ID For This Document" VerticalAlignment="Center" Margin="12,0,0,0" Width="358" FontFamily="Lucida Fax" FontSize="14"/>
+                <StackPanel Height="241"
+                            Width="455">
+                    <StackPanel Height="60"
+                                Orientation="Horizontal">
+                        <Button x:Name="BtnGenerateId"
+                                Content="_G"
+                                VerticalAlignment="Top"
+                                Margin="6,6,0,0"
+                                Height="45"
+                                Width="47"
+                                FontFamily="Lucida Fax"
+                                FontSize="18" />
+                        <Label Content="Generate Unique ID For This Document"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               Width="358"
+                               FontFamily="Lucida Fax"
+                               FontSize="14" />
                     </StackPanel>
-                    <StackPanel Height="60" Orientation="Horizontal">
-                        <Button x:Name="BtnEvaluator" Content="_E" VerticalAlignment="Top" Margin="6,6,0,0" Height="45" Width="47" FontFamily="Lucida Fax" FontSize="18"/>
-                        <Label Content="Select Evaluators From a List" VerticalAlignment="Center" Margin="12,0,0,0" Width="358" FontFamily="Lucida Fax" FontSize="14"/>
+                    <StackPanel Height="60"
+                                Orientation="Horizontal">
+                        <Button x:Name="BtnEvaluator"
+                                Content="_E"
+                                VerticalAlignment="Top"
+                                Margin="6,6,0,0"
+                                Height="45"
+                                Width="47"
+                                FontFamily="Lucida Fax"
+                                FontSize="18" />
+                        <Label Content="Select Evaluators From a List"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               Width="358"
+                               FontFamily="Lucida Fax"
+                               FontSize="14" />
                     </StackPanel>
-                    <StackPanel Height="60" Orientation="Horizontal">
-                        <Button x:Name="BtnSaveProperty" Content="_S" VerticalAlignment="Top" Margin="6,6,0,0" Height="45" Width="47" FontFamily="Lucida Fax" FontSize="18"/>
-                        <Label Content="Save New Value" VerticalAlignment="Center" Margin="12,0,0,0" Width="358" FontFamily="Lucida Fax" FontSize="14"/>
+                    <StackPanel Height="60"
+                                Orientation="Horizontal">
+                        <Button x:Name="BtnSaveProperty"
+                                Content="_S"
+                                VerticalAlignment="Top"
+                                Margin="6,6,0,0"
+                                Height="45"
+                                Width="47"
+                                FontFamily="Lucida Fax"
+                                FontSize="18" />
+                        <Label Content="Save New Value"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               Width="358"
+                               FontFamily="Lucida Fax"
+                               FontSize="14" />
                     </StackPanel>
-                    <StackPanel Height="60" Orientation="Horizontal">
-                        <Button x:Name="BtnCalendar" Content="_D" VerticalAlignment="Top" Margin="6,6,0,0" Height="45" Width="47" FontFamily="Lucida Fax" FontSize="18"/>
-                        <Label Content="Select Date From Calendar Pop Up" VerticalAlignment="Center" Margin="12,0,0,0" Width="358" FontFamily="Lucida Fax" FontSize="14"/>
+                    <StackPanel Height="60"
+                                Orientation="Horizontal">
+                        <Button x:Name="BtnCalendar"
+                                Content="_D"
+                                VerticalAlignment="Top"
+                                Margin="6,6,0,0"
+                                Height="45"
+                                Width="47"
+                                FontFamily="Lucida Fax"
+                                FontSize="18" />
+                        <Label Content="Select Date From Calendar Pop Up"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               Width="358"
+                               FontFamily="Lucida Fax"
+                               FontSize="14" />
                     </StackPanel>
                 </StackPanel>
-                <DatePicker x:Name="HiddenDatePicker" Width="160" Height="30" FontFamily="Candara" FontSize="18" Visibility="Collapsed"/>
+                <DatePicker x:Name="HiddenDatePicker"
+                            Width="160"
+                            Height="30"
+                            FontFamily="Candara"
+                            FontSize="18"
+                            Visibility="Collapsed" />
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </UserControl>

@@ -1,71 +1,130 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:hw="http://schemas.hpod9.com/haley/wpf"
-             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="EZLogger.Views.AboutView"
-             Height="600" Width="400"
+             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
+             x:Class="EZLogger.Views.AboutView"
+             Height="600"
+             Width="400"
              Background="White">
-
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Title -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Spacer -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Info Fields -->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <!-- Latest Change -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Buttons -->
         </Grid.RowDefinitions>
-
         <!-- Title Row -->
-        <Grid Grid.Row="0" Margin="0,0,0,10">
+        <Grid Grid.Row="0"
+              Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Controls:FormHeaderControl HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" HeaderText="ABOUT EZ LOGGER"/>
-            <Image HorizontalAlignment="Right" Margin="0,-5,0,-12" Width="75" Source="/EZLogger;component/Resources/EZLoggerLogo64.png"/>
+            <Controls:FormHeaderControl HorizontalAlignment="Left"
+                                        Margin="6,6,0,0"
+                                        VerticalAlignment="Top"
+                                        HeaderText="ABOUT EZ LOGGER" />
+            <Image HorizontalAlignment="Right"
+                   Margin="0,-5,0,-12"
+                   Width="75"
+                   Source="/EZLogger;component/Resources/EZLoggerLogo64.png" />
         </Grid>
-
-        <StackPanel Grid.Row="2" Margin="0,20,0,10" VerticalAlignment="Top">
+        <StackPanel Grid.Row="2"
+                    Margin="0,20,0,10"
+                    VerticalAlignment="Top">
             <!-- Created By -->
-            <Label Content="Created By" FontFamily="Candara" FontSize="16" />
-            <TextBlock x:Name="TxtCreatedBy" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
-
+            <Label Content="Created By"
+                   FontFamily="Candara"
+                   FontSize="16" />
+            <TextBlock x:Name="TxtCreatedBy"
+                       Background="#DCEEFF"
+                       Padding="6"
+                       FontFamily="Consolas" />
             <!-- Support Contact -->
-            <Label Content="Support Contact" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
-            <TextBlock x:Name="TxtSupportContact" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
-
+            <Label Content="Support Contact"
+                   Margin="0,10,0,0"
+                   FontFamily="Candara"
+                   FontSize="16" />
+            <TextBlock x:Name="TxtSupportContact"
+                       Background="#DCEEFF"
+                       Padding="6"
+                       FontFamily="Consolas" />
             <!-- Last Update -->
-            <Label Content="Last Update" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
-            <TextBlock x:Name="TxtLastUpdate" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
-
+            <Label Content="Last Update"
+                   Margin="0,10,0,0"
+                   FontFamily="Candara"
+                   FontSize="16" />
+            <TextBlock x:Name="TxtLastUpdate"
+                       Background="#DCEEFF"
+                       Padding="6"
+                       FontFamily="Consolas" />
             <!-- Version -->
-            <Label Content="Version" Margin="0,10,0,0" FontFamily="Candara" FontSize="16" />
-            <TextBlock x:Name="TxtVersion" Background="#DCEEFF" Padding="6" FontFamily="Consolas" />
+            <Label Content="Version"
+                   Margin="0,10,0,0"
+                   FontFamily="Candara"
+                   FontSize="16" />
+            <TextBlock x:Name="TxtVersion"
+                       Background="#DCEEFF"
+                       Padding="6"
+                       FontFamily="Consolas" />
         </StackPanel>
-
         <!-- Latest Change Section -->
-        <StackPanel Grid.Row="3" Margin="0,0,0,10">
-            <Label Content="Latest Change" FontFamily="Candara" FontSize="16" />
+        <StackPanel Grid.Row="3"
+                    Margin="0,0,0,10">
+            <Label Content="Latest Change"
+                   FontFamily="Candara"
+                   FontSize="16" />
             <TextBox x:Name="TxtLatestChange"
                      Background="#DCEEFF"
                      Padding="6"
                      IsReadOnly="True"
                      TextWrapping="Wrap"
                      VerticalScrollBarVisibility="Auto"
-                     Height="100" FontFamily="Consolas"/>
+                     Height="100"
+                     FontFamily="Consolas" />
         </StackPanel>
-
         <!-- Button Panel -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Content="Help" x:Name="BtnHelp" Width="75" Margin="5" FontFamily="Candara" FontSize="14" Background="{x:Null}"/>
-            <Button Content="Config" x:Name="BtnConfig" Width="75" Margin="5" FontFamily="Candara" FontSize="14" IsEnabled="False" Background="{x:Null}"/>
-            <Button Content="Alerts" x:Name="BtnAlerts" Width="75" Margin="5" IsEnabled="False" FontFamily="Candara" FontSize="14" Background="{x:Null}"/>
-            <Button Content="Go Back" x:Name="BtnGoBack" Width="75" Margin="5" FontFamily="Candara" FontSize="14" IsEnabled="False" Background="{x:Null}"/>
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,0">
+            <Button Content="Help"
+                    x:Name="BtnHelp"
+                    Width="75"
+                    Margin="5"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    Background="{x:Null}" />
+            <Button Content="Config"
+                    x:Name="BtnConfig"
+                    Width="75"
+                    Margin="5"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    IsEnabled="False"
+                    Background="{x:Null}" />
+            <Button Content="Alerts"
+                    x:Name="BtnAlerts"
+                    Width="75"
+                    Margin="5"
+                    IsEnabled="False"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    Background="{x:Null}" />
+            <Button Content="Go Back"
+                    x:Name="BtnGoBack"
+                    Width="75"
+                    Margin="5"
+                    FontFamily="Candara"
+                    FontSize="14"
+                    IsEnabled="False"
+                    Background="{x:Null}" />
         </StackPanel>
     </Grid>
 </UserControl>
