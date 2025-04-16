@@ -68,3 +68,5 @@ Anchor: Top, Left (This is ignored when Dock = Fill)
 - **`ReportWizardTaskPaneContainer`** should have the **`Size`** set to the desired width (e.g., **800px**) and height (e.g., **600px**), with **`AutoSize = False`** to prevent resizing based on content.
 - **`ElementHost1`** inside the container should have **`Dock = Fill`**, which ensures that it resizes automatically with the container, filling the entire available width and height.
 - The **`ReportWizardPanel1`** (WPF control) will automatically adjust to the size of the `ElementHost`, which is controlled by the parent container (`ReportWizardTaskPaneContainer`).
+
+<!-- @nested-tags:task-pane -->

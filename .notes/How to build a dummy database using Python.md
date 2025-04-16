@@ -163,3 +163,4 @@ When you're ready to expand your app, you'll already have data models and logic 
 
 Need help generating a custom version? Just tweak the helper functions or table structures as your project grows!
 
+<!-- @nested-tags:database -->

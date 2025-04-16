@@ -38,3 +38,4 @@ flowchart TD
 
 *Document version: 2025-04-12*
 
+<!-- @nested-tags:prd -->

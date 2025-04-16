@@ -178,3 +178,5 @@ If you encounter any issues implementing the button functionality or need furthe
     Can you provide a step-by-step guide on how to achieve this, including the necessary imports, event handlers, and any potential issues I might encounter?
 
 By using this prompt, the AI can provide you with detailed instructions and code snippets to help you implement or fix the solution.
+
+<!-- @nested-tags:wpf-user-control -->

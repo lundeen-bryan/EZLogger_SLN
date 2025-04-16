@@ -75,3 +75,5 @@ If you need to:
 Use a `Module` for `ConfigHelper` because it contains stateless, utility-style functions that should be accessible throughout your project without creating object instances. It keeps your code simpler, cleaner, and aligns with VB.NET best practices for shared helpers.
 
 If later you find you need to store instance-specific state or configuration settings, you can always refactor it into a `Class`.
+
+<!-- @nested-tags:config-files -->

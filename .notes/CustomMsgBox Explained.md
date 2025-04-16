@@ -90,3 +90,4 @@ End If
 **Conclusion:**
 This custom MessageBox approach bridges the gap between the limitations of VSTO (no native WPF windows) and our need for modern, flexible UI components. By splitting responsibilities cleanly between UI, hosting, and logic layers, we've created a robust, scalable solution that integrates seamlessly into the EZLogger application.
 
+<!-- @nested-tags:msgbox -->

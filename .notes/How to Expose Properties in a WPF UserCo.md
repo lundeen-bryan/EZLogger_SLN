@@ -163,3 +163,5 @@ You’ve now created a reusable control with exposed properties. This same techn
 *   Use dependency properties for any values you want to make public from a UserControl.
 *   Always bind using `RelativeSource AncestorType=UserControl` when referencing properties on the same control.
 *   Call `InitializeComponent()` in the constructor or your XAML won't show up at runtime.
+
+<!-- @nested-tags:wpf-user-control -->

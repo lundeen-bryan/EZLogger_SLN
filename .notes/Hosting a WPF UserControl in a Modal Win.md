@@ -81,3 +81,5 @@ Tips
 *   Ensure the `WindowsFormsIntegration` assembly is referenced in your project.
 *   Use `ShowDialog()` if you want to disable Word interaction while the form is open.
 *   Keep WPF logic inside the UserControl to keep the Form clean and reusable.
+
+<!-- @nested-tags:wpf-user-control -->
