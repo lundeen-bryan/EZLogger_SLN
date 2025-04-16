@@ -69,28 +69,22 @@ Because the `CustomTaskPanes.Add` method expects a Windows Forms UserControl, yo
 
 Update `ThisAddIn.vb` so that your WPF panel is hosted inside a custom task pane. Replace the file's content with the following code (or integrate these changes):
 
+```vb
 Imports System.Windows.Forms.Integration
 
 Public Class ThisAddIn
-
     Private myTaskPane As Microsoft.Office.Tools.CustomTaskPane
-
     Private Sub ThisAddIn\_Startup() Handles Me.Startup
         ' Create an instance of the container UserControl
         Dim myTaskPaneContainer As New ReportWizardTaskPaneContainer()
-
         ' Set the ElementHost within the container to fill the UserControl
         myTaskPaneContainer.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
-
         ' Create an instance of the WPF User Control (ReportWizardPanel)
         Dim myReportWizardPanel As New ReportWizardPanel()
-
         ' Assign the WPF control to the ElementHost's Child property
         myTaskPaneContainer.ElementHost1.Child = myReportWizardPanel
-
         ' Add the container to the CustomTaskPanes collection with the title "Report Wizard"
         myTaskPane = Me.CustomTaskPanes.Add(myTaskPaneContainer, "Report Wizard")
-
         ' Initially hide the task pane
         myTaskPane.Visible = False
     End Sub
@@ -98,7 +92,6 @@ Public Class ThisAddIn
     Private Sub ThisAddIn\_Shutdown() Handles Me.Shutdown
         ' Any necessary cleanup can be done here
     End Sub
-
     ' Expose the task pane so it can be accessed from the Ribbon code
     Public ReadOnly Property ReportWizardTaskPane As Microsoft.Office.Tools.CustomTaskPane
         Get
@@ -107,6 +100,7 @@ Public Class ThisAddIn
     End Property
 End Class
 
+```
 
 6\. Making the WPF Panel Scrollable
 -----------------------------------
