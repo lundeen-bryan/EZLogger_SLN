@@ -64,6 +64,7 @@
         Me.AboutButton = Me.Factory.CreateRibbonButton
         Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Button2 = Me.Factory.CreateRibbonButton
+        Me.Button3 = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -207,6 +208,7 @@
         Me.SetupGroup.Items.Add(Me.AboutButton)
         Me.SetupGroup.Items.Add(Me.SyncButton)
         Me.SetupGroup.Items.Add(Me.Button2)
+        Me.SetupGroup.Items.Add(Me.Button3)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -242,6 +244,11 @@
         '
         Me.Button2.Label = "Test Button"
         Me.Button2.Name = "Button2"
+        '
+        'Button3
+        '
+        Me.Button3.Label = "TestConfig"
+        Me.Button3.Name = "Button3"
         '
         'EZLoggerRibbon
         '
@@ -295,6 +302,7 @@
     Friend WithEvents Button1 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnCloseDoc As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Button3 As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection

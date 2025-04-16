@@ -1,10 +1,37 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
+Imports MessageBox = System.Windows.MessageBox
+Imports EZLogger.Helpers
 
 Namespace Handlers
     Public Class ConfigViewHandler
         Public Sub HandleCreateConfigClick()
-            MsgBox("You clicked Create Config")
+            ' Step 1: Ensure local_user_config.json exists in %USERPROFILE%\.ezlogger
+            Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
+            If String.IsNullOrEmpty(localConfigPath) Then
+                MessageBox.Show("Failed to create or locate local config file.", "Setup Failed")
+                Return
+            End If
+
+            ' Step 2: Prompt the user to select their global_config.json from the EZLogger_Databases SharePoint folder
+            Dim globalConfigPath As String = ConfigHelper.PromptForGlobalConfigFile()
+            If String.IsNullOrEmpty(globalConfigPath) Then
+                MessageBox.Show("Global config selection was cancelled or invalid.", "Setup Incomplete")
+                Return
+            End If
+
+            ' Step 3: Write the global config path into local_user_config.json under sp_filepath.global_config_file
+            ConfigHelper.UpdateLocalConfigWithGlobalPath(globalConfigPath)
+
+            ' Step 4: Notify the user of success
+            MessageBox.Show("Configuration setup complete!" & Environment.NewLine &
+                    "Local config stored at:" & Environment.NewLine & localConfigPath,
+                    "EZLogger Setup Complete")
+
+            ' Optional: Update visible labels in the form
+            ' (Assumes you're calling this from a host form that can access the text blocks)
+            ' configView.txtblock_local_config.Text = localConfigPath
+            ' configView.txtblock_global_config.Text = globalConfigPath
         End Sub
 
         Public Sub HandleSaveConfigClick()
