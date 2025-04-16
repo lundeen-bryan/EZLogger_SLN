@@ -49,3 +49,5 @@ In the parent control or window where you use your UserControl, set the property
 * * *
 
 _Tip: If you're using MVVM, you can bind the exposed property to your ViewModel for full data binding support._
+
+<!-- @nested-tags:xaml -->

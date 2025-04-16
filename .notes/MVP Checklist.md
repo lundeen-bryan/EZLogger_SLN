@@ -35,15 +35,15 @@ Target MVP Deadline: **May 1st**
 
 ### 5. Configuration Integration
 
-- [ ] Load global config (`global_config.json`) for report types and other settings
-- [ ] Load user config (`local_user_config.json`) for paths and user-specific values
+- [X] Load global config (`global_config.json`) for report types and other settings
+- [X] Load user config (`local_user_config.json`) for paths and user-specific values
 - [ ] Use config to populate ComboBoxes (e.g., report types, doctor list)
 
 ### 6. Core UI & Workflow
 
 - [ ] Ensure all major views are functional: `ReportWizardPanel`, `ReportTypeView`, `PatientInfoView`
 - [ ] Wire all buttons to handlers (even if using placeholder logic)
-- [ ] Confirm `CustomMsgBox` works with OK / Yes / No options
+- [X] Confirm `CustomMsgBox` works with OK / Yes / No options
 - [ ] Confirm everything works inside the Word task pane (WinForms ElementHost)
 
 ---
@@ -63,3 +63,5 @@ Target MVP Deadline: **May 1st**
 - Focus is on delivering a working workflow, not polishing UI or writing all helper tests yet.
 - PDF export and due date calculator are considered **core features**, not optional.
 - Logs must be written directly to SQLite, not to JSON files.
+
+<!-- @nested-tags:prd -->

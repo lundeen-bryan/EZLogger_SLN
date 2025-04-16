@@ -99,3 +99,5 @@ Maintain version control for configuration files to track changes and facilitate
 
 Establish a process for users to report issues and receive updates for both EZLogger and the Configuration Editor.
 This consolidated PRD outlines the comprehensive requirements for the EZLogger Add-in and its accompanying Configuration Editor, ensuring a cohesive and user-friendly experience for managing forensic report processing and configuration management.
+
+<!-- @nested-tags:prd -->

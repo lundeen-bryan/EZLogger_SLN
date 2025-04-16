@@ -155,3 +155,5 @@ Additional Tips
 *   Review the Visual Studio Output window for any errors or warnings that might assist in troubleshooting.
 
 By following these steps, you will have created a Word add-in in VB.NET that displays a WPF-based custom task pane. The pane can be toggled on and off using a Ribbon button, serving as a panel app or windows pane inside Word.
+
+<!-- @nested-tags:task-pane -->

@@ -108,3 +108,5 @@ ReportTypeCbo.ItemsSource = ConfigHelper.GetReportTypeList()
 ---
 
 Now you have a reusable way to dynamically populate dropdowns from config files. 🎉
+
+<!-- @nested-tags:populate-controls -->

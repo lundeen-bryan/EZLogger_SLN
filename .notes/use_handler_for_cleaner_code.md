@@ -76,3 +76,5 @@ End Class
 ## Conclusion
 
 Using handler classes in your WPF application is a great step toward cleaner, more maintainable code. It helps bridge the gap between simple code-behind logic and full MVVM architecture, giving you flexibility as you grow your project.
+
+<!-- @nested-tags:handler -->
