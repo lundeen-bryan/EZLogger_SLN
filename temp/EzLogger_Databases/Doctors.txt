@@ -3,7 +3,7 @@ Alina Mercer, Ph.D.
 Amanda Quinn, Ph.D.
 Benjamin Snow, Psy.D.
 Brenda Wallace, Ph.D.
-Bryan Lundee, Ph.D.
+Bryan Lundeen, Ph.D.
 Caleb Foster, Psy.D.
 Celeste Franco, Ph.D.
 Connor Reed, Psy.D.
@@ -19,6 +19,7 @@ Henry Dalton, Psy.D.
 Isabelle Nguyen, Ph.D.
 Jade Lin, Ph.D.
 Joe Baggodonuts, Psy.D.
+John Wayne, Ph.D.
 Jordan Wells, Psy.D.
 Julian West, Psy.D.
 Kevin Zhang, Psy.D.
@@ -38,5 +39,4 @@ Tasha Ivanova, Ph.D.
 Theo Marshall, Psy.D.
 Victor Alvarez, Ph.D.
 Wesley Grant, Psy.D.
-John Wayne, Ph.D.
 Xavier Boone, Psy.D.
