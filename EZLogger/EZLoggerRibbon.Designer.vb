@@ -44,21 +44,21 @@
         Me.Tab1 = Me.Factory.CreateRibbonTab
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
         Me.ReportWizardBox = Me.Factory.CreateRibbonBox
+        Me.ReportWizardButton = Me.Factory.CreateRibbonButton
         Me.DatabaseGroup = Me.Factory.CreateRibbonGroup
         Me.DbBtnBox = Me.Factory.CreateRibbonBox
+        Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.ToolsGroup = Me.Factory.CreateRibbonGroup
         Me.SaveBtnBox = Me.Factory.CreateRibbonBox
-        Me.PdfBtnBox = Me.Factory.CreateRibbonBox
-        Me.TypoBtnBox = Me.Factory.CreateRibbonBox
-        Me.SetupGroup = Me.Factory.CreateRibbonGroup
-        Me.ReportWizardButton = Me.Factory.CreateRibbonButton
-        Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.SaveButton = Me.Factory.CreateRibbonButton
         Me.Button1 = Me.Factory.CreateRibbonButton
+        Me.PdfBtnBox = Me.Factory.CreateRibbonBox
         Me.ConvertButton = Me.Factory.CreateRibbonButton
+        Me.TypoBtnBox = Me.Factory.CreateRibbonBox
         Me.TypoButton = Me.Factory.CreateRibbonButton
         Me.EmailButton = Me.Factory.CreateRibbonButton
         Me.BtnCloseDoc = Me.Factory.CreateRibbonButton
+        Me.SetupGroup = Me.Factory.CreateRibbonGroup
         Me.HelpButton = Me.Factory.CreateRibbonButton
         Me.SettingsButton = Me.Factory.CreateRibbonButton
         Me.AboutButton = Me.Factory.CreateRibbonButton
@@ -99,6 +99,14 @@
         Me.ReportWizardBox.Items.Add(Me.ReportWizardButton)
         Me.ReportWizardBox.Name = "ReportWizardBox"
         '
+        'ReportWizardButton
+        '
+        Me.ReportWizardButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.mouse_icon
+        Me.ReportWizardButton.Label = "Process Report"
+        Me.ReportWizardButton.Name = "ReportWizardButton"
+        Me.ReportWizardButton.ShowImage = True
+        '
         'DatabaseGroup
         '
         Me.DatabaseGroup.Items.Add(Me.DbBtnBox)
@@ -109,6 +117,15 @@
         '
         Me.DbBtnBox.Items.Add(Me.DatabaseMenu)
         Me.DbBtnBox.Name = "DbBtnBox"
+        '
+        'DatabaseMenu
+        '
+        Me.DatabaseMenu.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.DatabaseMenu.Dynamic = True
+        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
+        Me.DatabaseMenu.Label = "Select a Database"
+        Me.DatabaseMenu.Name = "DatabaseMenu"
+        Me.DatabaseMenu.ShowImage = True
         '
         'ToolsGroup
         '
@@ -126,44 +143,6 @@
         Me.SaveBtnBox.Items.Add(Me.SaveButton)
         Me.SaveBtnBox.Name = "SaveBtnBox"
         '
-        'PdfBtnBox
-        '
-        Me.PdfBtnBox.Items.Add(Me.ConvertButton)
-        Me.PdfBtnBox.Name = "PdfBtnBox"
-        '
-        'TypoBtnBox
-        '
-        Me.TypoBtnBox.Items.Add(Me.TypoButton)
-        Me.TypoBtnBox.Name = "TypoBtnBox"
-        '
-        'SetupGroup
-        '
-        Me.SetupGroup.Items.Add(Me.HelpButton)
-        Me.SetupGroup.Items.Add(Me.SettingsButton)
-        Me.SetupGroup.Items.Add(Me.AboutButton)
-        Me.SetupGroup.Items.Add(Me.SyncButton)
-        Me.SetupGroup.Items.Add(Me.Button2)
-        Me.SetupGroup.Items.Add(Me.Button3)
-        Me.SetupGroup.Label = "Setup Commands"
-        Me.SetupGroup.Name = "SetupGroup"
-        '
-        'ReportWizardButton
-        '
-        Me.ReportWizardButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.ReportWizardButton.Image = Global.EZLogger.My.Resources.Resources.mouse_icon
-        Me.ReportWizardButton.Label = "Process Report"
-        Me.ReportWizardButton.Name = "ReportWizardButton"
-        Me.ReportWizardButton.ShowImage = True
-        '
-        'DatabaseMenu
-        '
-        Me.DatabaseMenu.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.DatabaseMenu.Dynamic = True
-        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
-        Me.DatabaseMenu.Label = "Select a Database"
-        Me.DatabaseMenu.Name = "DatabaseMenu"
-        Me.DatabaseMenu.ShowImage = True
-        '
         'SaveButton
         '
         Me.SaveButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
@@ -180,6 +159,11 @@
         Me.Button1.Name = "Button1"
         Me.Button1.ShowImage = True
         '
+        'PdfBtnBox
+        '
+        Me.PdfBtnBox.Items.Add(Me.ConvertButton)
+        Me.PdfBtnBox.Name = "PdfBtnBox"
+        '
         'ConvertButton
         '
         Me.ConvertButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
@@ -187,6 +171,11 @@
         Me.ConvertButton.Label = "Convert To PDF"
         Me.ConvertButton.Name = "ConvertButton"
         Me.ConvertButton.ShowImage = True
+        '
+        'TypoBtnBox
+        '
+        Me.TypoBtnBox.Items.Add(Me.TypoButton)
+        Me.TypoBtnBox.Name = "TypoBtnBox"
         '
         'TypoButton
         '
@@ -211,6 +200,17 @@
         Me.BtnCloseDoc.Label = "Close Document"
         Me.BtnCloseDoc.Name = "BtnCloseDoc"
         Me.BtnCloseDoc.ShowImage = True
+        '
+        'SetupGroup
+        '
+        Me.SetupGroup.Items.Add(Me.HelpButton)
+        Me.SetupGroup.Items.Add(Me.SettingsButton)
+        Me.SetupGroup.Items.Add(Me.AboutButton)
+        Me.SetupGroup.Items.Add(Me.SyncButton)
+        Me.SetupGroup.Items.Add(Me.Button2)
+        Me.SetupGroup.Items.Add(Me.Button3)
+        Me.SetupGroup.Label = "Setup Commands"
+        Me.SetupGroup.Name = "SetupGroup"
         '
         'HelpButton
         '
