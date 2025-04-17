@@ -116,7 +116,7 @@ Namespace Handlers
 
         Public Sub ShowBtnJMessage()
             Dim fxHandler As New FaxCoverHandler()
-            fxHandler.ShowFaxCoverMessage()
+            fxHandler.OnOpenFaxHostClick()
         End Sub
 
         Public Sub ShowBtnKMessage()

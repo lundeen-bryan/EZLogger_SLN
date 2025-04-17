@@ -49,8 +49,6 @@
         Me.DbBtnBox = Me.Factory.CreateRibbonBox
         Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.ToolsGroup = Me.Factory.CreateRibbonGroup
-        Me.SaveBtnBox = Me.Factory.CreateRibbonBox
-        Me.SaveButton = Me.Factory.CreateRibbonButton
         Me.Button1 = Me.Factory.CreateRibbonButton
         Me.PdfBtnBox = Me.Factory.CreateRibbonBox
         Me.ConvertButton = Me.Factory.CreateRibbonButton
@@ -65,16 +63,17 @@
         Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Button2 = Me.Factory.CreateRibbonButton
         Me.Button3 = Me.Factory.CreateRibbonButton
+        Me.Group1 = Me.Factory.CreateRibbonGroup
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
         Me.DatabaseGroup.SuspendLayout()
         Me.DbBtnBox.SuspendLayout()
         Me.ToolsGroup.SuspendLayout()
-        Me.SaveBtnBox.SuspendLayout()
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
+        Me.Group1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -84,6 +83,7 @@
         Me.Tab1.Groups.Add(Me.DatabaseGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
         Me.Tab1.Groups.Add(Me.SetupGroup)
+        Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
         '
@@ -129,7 +129,6 @@
         '
         'ToolsGroup
         '
-        Me.ToolsGroup.Items.Add(Me.SaveBtnBox)
         Me.ToolsGroup.Items.Add(Me.Button1)
         Me.ToolsGroup.Items.Add(Me.PdfBtnBox)
         Me.ToolsGroup.Items.Add(Me.TypoBtnBox)
@@ -137,19 +136,6 @@
         Me.ToolsGroup.Items.Add(Me.BtnCloseDoc)
         Me.ToolsGroup.Label = "Tools"
         Me.ToolsGroup.Name = "ToolsGroup"
-        '
-        'SaveBtnBox
-        '
-        Me.SaveBtnBox.Items.Add(Me.SaveButton)
-        Me.SaveBtnBox.Name = "SaveBtnBox"
-        '
-        'SaveButton
-        '
-        Me.SaveButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.SaveButton.Image = Global.EZLogger.My.Resources.Resources.floppy
-        Me.SaveButton.Label = "Save Files"
-        Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.ShowImage = True
         '
         'Button1
         '
@@ -207,8 +193,6 @@
         Me.SetupGroup.Items.Add(Me.SettingsButton)
         Me.SetupGroup.Items.Add(Me.AboutButton)
         Me.SetupGroup.Items.Add(Me.SyncButton)
-        Me.SetupGroup.Items.Add(Me.Button2)
-        Me.SetupGroup.Items.Add(Me.Button3)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -250,6 +234,13 @@
         Me.Button3.Label = "TestConfig"
         Me.Button3.Name = "Button3"
         '
+        'Group1
+        '
+        Me.Group1.Items.Add(Me.Button2)
+        Me.Group1.Items.Add(Me.Button3)
+        Me.Group1.Label = "Testing"
+        Me.Group1.Name = "Group1"
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
@@ -267,14 +258,14 @@
         Me.DbBtnBox.PerformLayout()
         Me.ToolsGroup.ResumeLayout(False)
         Me.ToolsGroup.PerformLayout()
-        Me.SaveBtnBox.ResumeLayout(False)
-        Me.SaveBtnBox.PerformLayout()
         Me.PdfBtnBox.ResumeLayout(False)
         Me.PdfBtnBox.PerformLayout()
         Me.TypoBtnBox.ResumeLayout(False)
         Me.TypoBtnBox.PerformLayout()
         Me.SetupGroup.ResumeLayout(False)
         Me.SetupGroup.PerformLayout()
+        Me.Group1.ResumeLayout(False)
+        Me.Group1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -286,7 +277,6 @@
     Friend WithEvents ToolsGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents SetupGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents SettingsButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents SaveButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents AboutButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ConvertButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents SyncButton As Microsoft.Office.Tools.Ribbon.RibbonButton
@@ -295,7 +285,6 @@
     Friend WithEvents HelpButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ReportWizardBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents DbBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
-    Friend WithEvents SaveBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents PdfBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
@@ -303,6 +292,7 @@
     Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnCloseDoc As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button3 As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Group1 As Microsoft.Office.Tools.Ribbon.RibbonGroup
 End Class
 
 Partial Class ThisRibbonCollection
