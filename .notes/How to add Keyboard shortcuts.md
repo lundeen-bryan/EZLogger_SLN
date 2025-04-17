@@ -155,4 +155,4 @@ To wire a keyboard shortcut to a WPF button:
 
 This pattern ensures consistent keyboard behavior across all WPF panels hosted in EZLogger.
 
-<!-- @nested-tags:keyboard -->
+<!-- @nested-tags:wpf-user-control -->

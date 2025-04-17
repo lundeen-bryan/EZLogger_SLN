@@ -58,7 +58,7 @@ Namespace Handlers
         End Sub
 
         Public Function GetReportTypes() As List(Of String)
-            Return ConfigHelper.GetReportTypeList()
+            Return ConfigHelper.GetListFromGlobalConfig("listbox", "report_type")
         End Function
 
         ''' <summary>

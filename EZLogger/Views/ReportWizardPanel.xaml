@@ -33,7 +33,7 @@
                          Height="35"
                          FontFamily="Consolas"
                          FontSize="16"
-                         Padding="3,3,0,0" />
+                         Padding="6,6,0,0" />
             </GroupBox>
             <GroupBox Height="65"
                       Header="Patient Name"
