@@ -1,8 +1,8 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
 Imports System.Windows.Forms ' ✅ You need this for Form
-
 Imports EZLogger.Handlers
+Imports EZLogger.Helpers
 
 Namespace EZLogger.Views
 
@@ -22,6 +22,15 @@ Namespace EZLogger.Views
             AddHandler BtnApproval.Click, AddressOf BtnApproval_Click
             AddHandler BtnSignature.Click, AddressOf BtnSignature_Click
             AddHandler BtnClose.Click, AddressOf BtnClose_Click
+            ' Load combo data when the view is created
+            AddHandler Me.Loaded, AddressOf ChiefApprovalView_Loaded
+
+        End Sub
+
+        Private Sub ChiefApprovalView_Loaded(sender As Object, e As RoutedEventArgs)
+            Dim chiefs As List(Of String) = ConfigHelper.GetListFromGlobalConfig("listbox", "chief_approvals")
+            ListboxApproval.Items.Clear()
+            ListboxApproval.ItemsSource = chiefs
         End Sub
 
         Private Sub BtnApproval_Click(sender As Object, e As RoutedEventArgs)

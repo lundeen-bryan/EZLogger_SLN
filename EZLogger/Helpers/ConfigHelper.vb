@@ -9,11 +9,56 @@ Namespace Helpers
 
 Public Module ConfigHelper
 
-''' <summary>
-''' Ensures And returns the path To the local_user_config.json file inside %USERPROFILE%\.ezlogger.
-''' If the file Or folder does Not exist, it will be created automatically.
-''' </summary>
-Public Function GetLocalConfigPath() As String
+        ''' <summary>
+        ''' Retrieves a list of strings from the global_config.json file using the specified section and key.
+        ''' Example: section = "listbox", key = "report_type"
+        ''' </summary>
+        ''' <param name="section">Top-level section in the config (e.g., "listbox").</param>
+        ''' <param name="key">Key within the section (e.g., "report_type").</param>
+        ''' <returns>A list of strings from the specified location in the config.</returns>
+        ''' <exception cref="FileNotFoundException">Thrown when the config file is missing.</exception>
+        ''' <exception cref="KeyNotFoundException">Thrown if the section or key is missing.</exception>
+        Public Function GetListFromGlobalConfig(section As String, key As String) As List(Of String)
+            Dim resultList As New List(Of String)
+
+            Try
+                Dim globalPath As String = GetGlobalConfigPath()
+
+                If String.IsNullOrWhiteSpace(globalPath) OrElse Not File.Exists(globalPath) Then
+                    Throw New FileNotFoundException("Global config file not found at: " & globalPath)
+                End If
+
+                Dim jsonText As String = File.ReadAllText(globalPath)
+                Dim jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                Dim root As JsonElement = jsonDoc.RootElement
+
+                Dim sectionElement As JsonElement
+                If Not root.TryGetProperty(section, sectionElement) Then
+                    Throw New KeyNotFoundException($"Missing section '{section}' in config.")
+                End If
+
+                Dim keyElement As JsonElement
+                If Not sectionElement.TryGetProperty(key, keyElement) Then
+                    Throw New KeyNotFoundException($"Missing key '{key}' in section '{section}'.")
+                End If
+
+                For Each item In keyElement.EnumerateArray()
+                    resultList.Add(item.GetString())
+                Next
+
+            Catch ex As Exception
+                Throw New ApplicationException($"Error loading list from section '{section}', key '{key}'.", ex)
+            End Try
+
+            Return resultList
+        End Function
+
+
+        ''' <summary>
+        ''' Ensures And returns the path To the local_user_config.json file inside %USERPROFILE%\.ezlogger.
+        ''' If the file Or folder does Not exist, it will be created automatically.
+        ''' </summary>
+        Public Function GetLocalConfigPath() As String
     Return EnsureLocalUserConfigFileExists()
 End Function
 
@@ -178,73 +223,6 @@ Public Function GetGlobalConfigPath() As String
     MessageBox.Show("Error reading local config:" & Environment.NewLine & ex.Message, "Config Error", MessageBoxButton.OK, MessageBoxImage.Error )
     Return String.Empty
     End Try
-    End Function
-
-Public Function GetOpinionList() As List(Of String)
-    Dim opinionList As New List(Of String)
-
-    Try
-    Dim globalPath As String = GetGlobalConfigPath()
-
-    If String.IsNullOrWhiteSpace(globalPath) OrElse Not File.Exists(globalPath) Then
-    MessageBox.Show("Global config file Not found at:" & Environment.NewLine & globalPath, "Missing Config", MessageBoxButton.OK, MessageBoxImage.Warning)
-    Return opinionList
-    End If
-
-    Dim jsonText As String = File.ReadAllText(globalPath)
-    Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-    Dim root = jsonDoc.RootElement
-
-    If root.TryGetProperty("listbox", root) AndAlso
-    root.TryGetProperty("opinions", root) Then
-
-    For Each item In root.EnumerateArray()
-    opinionList.Add(item.GetString())
-    Next
-    Else
-    MessageBox.Show("Unable To find 'listbox.opinions' in the global config.", "Config Error", MessageBoxButton.OK, MessageBoxImage.Error )
-    End If
-    End Using
-
-    Catch ex As Exception
-    MessageBox.Show("Error loading opinion list: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error )
-    End Try
-
-    Return opinionList
-    End Function
-
-Public Function GetReportTypeList() As List(Of String)
-    Dim reportTypes As New List(Of String)
-
-    Try
-    Dim globalPath As String = GetGlobalConfigPath()
-
-    If String.IsNullOrWhiteSpace(globalPath) OrElse Not File.Exists(globalPath) Then
-    MessageBox.Show("Global config file Not found at:" & Environment.NewLine & globalPath, "Missing Config", MessageBoxButton.OK, MessageBoxImage.Warning)
-    Return reportTypes
-    End If
-
-    Dim jsonText As String = File.ReadAllText(globalPath)
-    Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-    Dim root = jsonDoc.RootElement
-
-    Dim listboxElement As JsonElement
-    If root.TryGetProperty("listbox", listboxElement) Then
-    Dim reportTypeElement As JsonElement
-    If listboxElement.TryGetProperty("report_type", reportTypeElement) Then
-    For Each item In reportTypeElement.EnumerateArray()
-    reportTypes.Add(item.GetString())
-    Next
-    End If
-    End If
-
-    End Using
-
-    Catch ex As Exception
-    MessageBox.Show("Error loading report types: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error )
-    End Try
-
-    Return reportTypes
     End Function
 
     ''' <summary>
