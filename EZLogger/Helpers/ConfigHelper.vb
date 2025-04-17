@@ -19,6 +19,7 @@ Public Module ConfigHelper
         ''' <exception cref="FileNotFoundException">Thrown when the config file is missing.</exception>
         ''' <exception cref="KeyNotFoundException">Thrown if the section or key is missing.</exception>
         Public Function GetListFromGlobalConfig(section As String, key As String) As List(Of String)
+            ' TODO:list
             Dim resultList As New List(Of String)
 
             Try
@@ -68,6 +69,7 @@ End Function
 ''' </summary>
 ''' <param name="globalConfigPath">The full path To the selected global_config.json file.</param>
 Public Sub UpdateLocalConfigWithGlobalPath(globalConfigPath As String)
+    ' TODO config
     Try
     ' Get the full path To local_user_config.json (auto-created If missing)
     Dim localConfigPath As String = GetLocalConfigPath()
@@ -105,6 +107,7 @@ Public Sub UpdateLocalConfigWithGlobalPath(globalConfigPath As String)
     ''' </summary>
     ''' <returns>Full path To the selected config file, Or empty string If cancelled.</returns>
 Public Function PromptForGlobalConfigFile() As String
+    ' TODO: config
     Dim dialog As New OpenFileDialog With {
     .Title = "Select your EZLogger global_config.json file",
     .Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
@@ -129,6 +132,7 @@ Public Function PromptForGlobalConfigFile() As String
     ''' </summary>
     ''' <returns>The selected folder path If valid, Or an empty string If cancelled Or invalid.</returns>
 Public Function PromptForOneDriveDocumentsFolder() As String
+    ' TODO: path
     Dim dialog As New FolderBrowserDialog With {
     .Description = "Please Select your OneDrive\Documents folder where EZLogger will store its configuration."
     }
@@ -154,6 +158,7 @@ Public Function PromptForOneDriveDocumentsFolder() As String
     ''' </summary>
     ''' <returns>The full path To local_user_config.json, Or an empty string If failed.</returns>
 Public Function EnsureLocalUserConfigFileExists() As String
+    'TODO: config
     Try
     ' Get the user's home directory
     Dim userHome As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
@@ -195,6 +200,7 @@ Public Function EnsureLocalUserConfigFileExists() As String
     ''' </summary>
     ''' <returns>Full path To the global config file, Or an empty string If Not found.</returns>
 Public Function GetGlobalConfigPath() As String
+    'TODO:config
     Dim configPath As String = GetLocalConfigPath()
 
     Try
@@ -231,6 +237,7 @@ Public Function GetGlobalConfigPath() As String
     ''' </summary>
     ''' <returns>A sorted List(Of String) containing one doctor name per line.</returns>
 Public Function GetDoctorList() As List(Of String)
+    'TODO:list
     Dim configPath As String = GetLocalConfigPath()
 
     Dim doctorList As New List(Of String)
@@ -281,6 +288,7 @@ Public Function GetDoctorList() As List(Of String)
 
 
 Public Function GetDoctorListFilePath() As String
+    'TODO:path
     Dim configPath As String = GetLocalConfigPath()
 
     Try
@@ -311,6 +319,7 @@ Public Function GetDoctorListFilePath() As String
     ''' Returns the full path To the EZLogger SQLite database from local_user_config.json.
     ''' </summary>
 Public Function GetDatabasePath() As String
+    'TODO:path
     Dim configPath As String = GetLocalConfigPath()
     Try
     If Not File.Exists(configPath) Then
@@ -346,6 +355,7 @@ Public Function GetDatabasePath() As String
     ''' ' Result: "C:\Users\lunde\AppData\Local\Temp\"
     ''' </example>
 Public Function GetUserTempPath() As String
+    'TODO:path
     Return Path.GetTempPath()
     End Function
 
@@ -354,6 +364,7 @@ Public Function GetUserTempPath() As String
     ''' </summary>
     ''' <returns>The path To OneDrive\Documents, Or empty string If Not available.</returns>
 Public Function GetOneDriveDocumentsPath() As String
+    'TODO:path
     Dim oneDriveRoot As String = Environment.GetEnvironmentVariable("OneDrive")
 
     If String.IsNullOrEmpty(oneDriveRoot) Then
@@ -376,6 +387,7 @@ Public Function GetOneDriveDocumentsPath() As String
     ''' </summary>
     ''' <returns>Subpath defined under "paths.oneDriveDocumentsSubPath".</returns>
 Private Function LoadOneDriveSubPathFromConfig() As String
+    'TODO:path
     Dim configPath As String = ConfigHelper.GetGlobalConfigPath()
 
     If Not File.Exists(configPath) Then
