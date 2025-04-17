@@ -159,6 +159,10 @@ Namespace Handlers
             End Try
         End Sub
 
+        Public Sub HandleCloseClick(form As Form)
+            If form IsNot Nothing Then form.Close()
+        End Sub
+
     End Class
 
 End Namespace

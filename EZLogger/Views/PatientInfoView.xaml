@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
              Height="745"
-             Width="315"
+             Width="390"
              FontFamily="Candara"
              FontSize="14">
 
@@ -19,13 +19,13 @@
               Background="White">
 
             <Label Content="PATIENT INFO SAVED IN REPORT"
-                   HorizontalAlignment="Left"
-                   Margin="12,12,0,0"
+                   HorizontalAlignment="Center"
+                   Margin="0,12,0,0"
                    VerticalAlignment="Top"
-                   Width="313"
+                   Width="348"
                    FontWeight="Bold"
                    FontStyle="Italic"
-                   FontSize="18" />
+                   FontSize="24" />
 
             <Button x:Name="BtnRefresh" Content="Refresh List"
                     Cursor="Hand"
@@ -36,7 +36,7 @@
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnValidate" Content="Validate Fields"
                     Cursor="Hand"
@@ -48,7 +48,7 @@
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R"
-                    Foreground="Red" />
+                    Foreground="Red" FontSize="16" />
 
             <Button x:Name="BtnDelete" Content="Delete Selected
                     "
@@ -56,44 +56,44 @@
                     HorizontalAlignment="Left"
                     Margin="15,86,0,0"
                     VerticalAlignment="Top"
-                    Width="100"
+                    Width="115"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnDeleteAll" Content="Delete All"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="120,86,0,0"
+                    Margin="135,86,0,0"
                     VerticalAlignment="Top"
-                    Width="70"
+                    Width="75"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnAddEdit" Content="Add/Edit"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="195,86,0,0"
+                    Margin="220,86,0,0"
                     VerticalAlignment="Top"
-                    Width="60"
+                    Width="65"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" RenderTransformOrigin="0.917,0.583" FontSize="16" />
 
             <Button x:Name="BtnCopy" Content="_Copy"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="195,120,0,0"
+                    Margin="216,120,0,0"
                     VerticalAlignment="Top"
                     Width="60"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnFirstPage" Content="_First Page"
                     Cursor="Hand"
@@ -104,18 +104,18 @@
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnLastPage" Content="_Last Page"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="105,120,0,0"
+                    Margin="115,120,0,0"
                     VerticalAlignment="Top"
                     Width="80"
                     Height="24"
                     Background="{x:Null}"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <DataGrid x:Name="DataGridPtInfo"
                       AutoGenerateColumns="False"
@@ -126,12 +126,12 @@
                       CanUserDeleteRows="False"
                       CanUserResizeRows="False"
                       IsReadOnly="True"
-                      Margin="12,160,3,0"
+                      Margin="12,160,12,0"
                       VerticalAlignment="Top"
                       Height="575"
                       RowHeaderWidth="0"
                       SelectionMode="Single"
-                      SelectionUnit="FullRow">
+                      SelectionUnit="FullRow" FontSize="16">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Property"
