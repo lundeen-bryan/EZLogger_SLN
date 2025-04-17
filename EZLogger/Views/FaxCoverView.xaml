@@ -14,13 +14,11 @@
     <Grid>
         <Controls:FormHeaderControl HeaderText="SELECT PAGES AND CONVERT TO PDF" />
         <ListBox x:Name="ListBoxCoverPages"
-                 HorizontalAlignment="Left"
                  Height="360"
-                 Margin="10,70,0,0"
+                 Margin="10,70,20,0"
                  VerticalAlignment="Top"
-                 Width="380"
                  d:ItemsSource="{d:SampleData ItemCount=5}" />
-        <StackPanel Margin="0,450,0,0">
+        <StackPanel Margin="0,450,0,0" HorizontalAlignment="Left" Width="460">
             <GroupBox Height="90"
                       Header="Convert my selection to:"
                       Width="430"
