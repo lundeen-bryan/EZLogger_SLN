@@ -28,7 +28,7 @@ Public Class OpinionView
     End Sub
 
     Private Sub OpinionView_Loaded(sender As Object, e As RoutedEventArgs)
-        Dim opinions As List(Of String) = ConfigHelper.GetListFromGlobalConfig("listbox", "opinions")
+        Dim opinions As List(Of String) = ListHelper.GetListFromGlobalConfig("listbox", "opinions")
         OpinionCbo.Items.Clear()
         OpinionCbo.ItemsSource = opinions
     End Sub

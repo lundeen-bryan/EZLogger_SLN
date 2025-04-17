@@ -9,6 +9,7 @@ Public Class ConfigHost
     Private ReadOnly configView As ConfigView
 
     Public Sub New()
+        InitializeComponent()
         ' Set up form properties
         Me.Text = "EZLogger Config"
         Me.ClientSize = New Drawing.Size(850, 700)

@@ -9,6 +9,7 @@ Public Class CustomMsgBoxHost
     Public Property Result As CustomMsgBoxResult = CustomMsgBoxResult.None
 
     Public Sub New(control As CustomMsgBoxControl)
+        InitializeComponent()
         Me.Text = "EZLogger Message"
         Me.StartPosition = FormStartPosition.CenterScreen
         Me.FormBorderStyle = FormBorderStyle.FixedDialog
