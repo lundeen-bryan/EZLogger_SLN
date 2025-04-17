@@ -16,7 +16,7 @@ Public Module DatabaseHelper
         End If
 
         Try
-            Dim dbPath As String = ConfigHelper.GetDatabasePath()
+            Dim dbPath As String = PathHelper.GetDatabasePath()
             If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
                 MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
                 Return Nothing
