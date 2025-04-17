@@ -383,6 +383,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\SaveFileHandler.vb" />
+    <Compile Include="Handlers\ShortcutHandler.vb" />
     <Compile Include="Handlers\TCARListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
@@ -399,6 +400,7 @@
     <Compile Include="Helpers\MsgBoxHelper.vb" />
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
+    <Compile Include="Helpers\UIHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
       <DependentUpon>AboutHost.vb</DependentUpon>
     </Compile>

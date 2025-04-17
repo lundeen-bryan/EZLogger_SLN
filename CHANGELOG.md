@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - contact databases for saving in sharepoint saved to data folder
+- Added keyboard shortcut keybinding to UpdateInfo and PatientInfo forms
 
 ## [0.0.1] - 2025-04-15
 
