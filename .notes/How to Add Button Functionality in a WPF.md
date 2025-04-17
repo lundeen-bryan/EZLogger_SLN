@@ -1,182 +1,153 @@
-  How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; } h1, h2, h3 { color: #333; } code { background-color: #eaeaea; padding: 2px 4px; border-radius: 4px; } pre { background-color: #eaeaea; padding: 10px; border-radius: 4px; overflow: auto; }
+# Adding Button Functionality in a WPF **UserControl** Hosted in a WinForms **ElementHost**
 
-How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form
-============================================================================
+> **Goal** – Keep all button‑handling logic in a dedicated *Handler* class while the WinForms host stays a thin container.
 
-This guide explains how to add functionality to a button in a WPF form that is hosted inside a Windows Forms form. It covers the steps involved, potential obstacles, and solutions to common issues.
+---
 
-Overview
---------
+## When you’d choose this pattern
+| Scenario | Why it fits |
+| --- | --- |
+| Simple modal prompts (Approve / Reject) | You want the UX polish of WPF but need the dialog to behave like a WinForms modal window under Word. |
+| Small data‑entry pop‑ups | Easy to embed validation logic in a WPF control while Word remains blocked. |
+| Decoupled testing | Handlers testable without Word or WinForms – pure VB classes. |
 
-In this guide, we will:
+---
 
-1.  Create a Windows Forms form that hosts a WPF form using `WindowsFormsHost`.
-2.  Add a button to the WPF form.
-3.  Write the event handler for the button click event.
-4.  Ensure the WPF form is displayed correctly in the center of the screen.
+## Preconditions & project layout
+```
+Solution EZLogger_SLN
+└── EZLogger (Word VSTO Add‑in – VB.NET | .NET 4.8)
+    ├── Views\ApprovedByView.xaml          ' WPF UserControl (UI)
+    ├── HostForms\ApprovedByHost.vb        ' WinForms Form (ElementHost only)
+    ├── Handlers\ApprovedByHandler.vb      ' Contains button‑click logic
+    ├── Ribbon\EZLoggerRibbon.vb           ' Ribbon button triggers popup
+    └── Helpers\WindowWrapper.vb           ' Optional owner wrapper
+```
+*No code‑behind in **ApprovedByHost** beyond hooking up the Handler; all business logic resides in **ApprovedByHandler***.
 
-Step-by-Step Guide
-------------------
+---
 
-### 1\. Create the Windows Forms Host Form
+## Step‑by‑step implementation
 
-First, create a Windows Forms form that will host the WPF form. In this example, we'll create a form named `ApprovedByHost`.
+### 1  Create the WPF **UserControl** (`ApprovedByView.xaml`)
+```xml
+<UserControl x:Class="EZLogger.Views.ApprovedByView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MinWidth="300" MinHeight="150">
+    <Grid>
+        <Button x:Name="BtnApprove"
+                Content="Approve"
+                Width="100" Height="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>
+```
+> **Tip –** We declare **no** click handler here; the Handler wires it at runtime.
 
-    Imports System.Windows.Forms
-    Imports System.Windows.Forms.Integration
+### 2  Create the WinForms **Host Form** (`ApprovedByHost.vb`)
+```vbnet
+Imports System.Windows.Forms
+Imports System.Windows.Forms.Integration
+Imports EZLogger.Views
+Imports EZLogger.Handlers
 
-    Public Class ApprovedByHost
-        Inherits Form
+Public Class ApprovedByHost
+    Inherits Form
 
-        Private elementHost As ElementHost
-        Private wpfForm As YourWpfForm ' Replace YourWpfForm with the actual WPF form class
+    Private ReadOnly _handler As ApprovedByHandler   ' business logic holder
+    Private ReadOnly _view As ApprovedByView         ' WPF UI
+    Private ReadOnly _elementHost As New ElementHost() With {.Dock = DockStyle.Fill}
 
-        Public Sub New()
-            InitializeComponent()
-        End Sub
+    Public Sub New()
+        ' 1️⃣  Instantiate UI and handler
+        _view = New ApprovedByView()
+        _handler = New ApprovedByHandler(_view, Me)   ' pass view + host if needed
 
-        Private Sub InitializeComponent()
-            Me.elementHost = New ElementHost()
-            Me.wpfForm = New YourWpfForm() ' Initialize your WPF form
+        ' 2️⃣  Embed WPF view
+        _elementHost.Child = _view
+        Controls.Add(_elementHost)
 
-            Me.elementHost.Dock = DockStyle.Fill
-            Me.elementHost.Child = Me.wpfForm
+        ' 3️⃣  Window appearance – pure shell duties
+        Text = "Approved By"
+        ClientSize = New Drawing.Size(380, 180)
+        StartPosition = FormStartPosition.CenterScreen
+        MinimizeBox = False : MaximizeBox = False : ShowIcon = False
+    End Sub
+End Class
+```
+The host *only* holds the UI and wires the handler – no business code.
 
-            Me.Controls.Add(Me.elementHost)
-            Me.Text = "Approved By"
+### 3  Implement the **Handler** (`ApprovedByHandler.vb`)
+```vbnet
+Imports System.Windows.Forms
+Imports EZLogger.Views
 
-            ' Set the start position to center screen
-            Me.StartPosition = FormStartPosition.CenterScreen
-        End Sub
-    End Class
+' Encapsulates all logic triggered by the Approve button.
+Public Class ApprovedByHandler
+    Private ReadOnly _view As ApprovedByView
+    Private ReadOnly _host As Form
 
-### 2\. Add the Button to the WPF Form
+    Public Sub New(view As ApprovedByView, host As Form)
+        _view = view  :  _host = host
 
-Next, add a button to your WPF form. In this example, we'll add a button named `btnApprove` to the XAML file of the WPF form.
+        ' Subscribe to the button click once.
+        AddHandler _view.BtnApprove.Click, AddressOf Approve_Click
+    End Sub
 
-    <Window x:Class="YourNamespace.Views.YourWpfForm"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            Title="YourWpfForm" Height="300" Width="400">
-        <Grid>
-            <Button x:Name="btnApprove" Content="Approve" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnApprove_Click"/>
-        </Grid>
-    </Window>
+    ' 👉  All business rules live here.
+    Private Sub Approve_Click(sender As Object, e As EventArgs)
+        MessageBox.Show(_host, "Approved!", "EZLogger", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        _host.Close()   ' Close the modal dialog after action.
+    End Sub
+End Class
+```
+> **Good** – Handler owns the business logic and can be unit‑tested.
+> **Bad** – Putting `MessageBox.Show` directly in the WPF click event.
 
-### 3\. Write the Event Handler for the Button Click Event
+### 4  Launch from the Ribbon
+```vbnet
+' EZLoggerRibbon.vb – minimal example
+Imports Microsoft.Office.Tools.Ribbon
 
-Now, write the event handler for the button click event in the code-behind file of the WPF form.
+Public Class EZLoggerRibbon
+    Private Sub BtnApprovedBy_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnApprovedBy.Click
+        Dim owner = New WindowWrapper(Globals.ThisAddIn.Application.Hwnd)
+        Using dlg As New HostForms.ApprovedByHost()
+            dlg.ShowDialog(owner)  ' modal over Word
+        End Using
+    End Sub
+End Class
+```
 
-    Imports System.Windows
+---
 
-    Namespace YourNamespace.Views
-        Partial Public Class YourWpfForm
-            Inherits Window
+## Good vs. Bad patterns
+| Aspect | ✅ Good | ❌ Bad |
+| --- | --- | --- |
+| Separation of concerns | Logic in `ApprovedByHandler`. | Logic in `ApprovedByView` code‑behind. |
+| Handler instantiation | One handler per dialog instance. | Static handler – accumulates event subscriptions. |
+| Disposal | `Using dlg … End Using` ensures dialog disposed. | Keep a global dialog instance – leaks memory. |
+| Modal owner | `ShowDialog(owner)` with `WindowWrapper`. | `Show()` – user can click behind dialog. |
 
-            Public Sub New()
-                InitializeComponent()
-            End Sub
+---
 
-            Private Sub btnApprove_Click(sender As Object, e As RoutedEventArgs)
-                MessageBox.Show("Approved!")
-            End Sub
-        End Class
-    End Namespace
+## Common pitfalls & fixes
+* **Keyboard shortcuts dead** – call `EnableModelessKeyboardInterop(_view)` if needed.
+* **Focus lost on closing** – in `FormClosed`, call `owner.Activate()`.
+* **High‑DPI clipping** – don’t hard‑code pixel sizes; use dynamic layout.
+* **Event leaks** – always `RemoveHandler` in Handler’s `Dispose` if you re‑use views.
 
-### 4\. Update Event Handler in `ReportWizardPanel.xaml.vb`
+---
 
-Finally, update the event handler in the `ReportWizardPanel.xaml.vb` file to open the `ApprovedByHost` form when the button is clicked.
+## Testing checklist
+- [ ] Ribbon button opens dialog centered.
+- [ ] Word UI blocked while dialog open.
+- [ ] Clicking **Approve** shows confirmation then closes dialog.
+- [ ] Dialog can be reopened repeatedly without memory growth.
 
-    Imports System.Windows
-    Imports System.Windows.Controls
-    Imports System.Windows.Forms
-    Imports System.Windows.Forms.Integration
+---
 
-    Partial Public Class ReportWizardPanel
-        Inherits UserControl
+<!-- @nested-tags:wpf-button-hosting, elementhost-pattern -->
 
-        Public Sub New()
-            InitializeComponent()
-
-            ' Assign event handlers to TaskStepControl instances
-            AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-
-            ' Add Loaded event handler for TaskStepControlH
-            AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
-        End Sub
-
-        ' Custom event handler for TaskStepControl
-        Private Sub TaskStepControl_ButtonClick(sender As Object, e As RoutedEventArgs)
-            Dim taskControl As TaskStepControl = CType(sender, TaskStepControl)
-
-            ' Implement your custom logic here based on the ButtonContent
-            Select Case taskControl.ButtonContent
-                Case "_A"
-                    ' Custom logic for button A click
-                Case "_B"
-                    ' Custom logic for button B click
-                Case "_C"
-                    ' Custom logic for button C click
-                Case "_D"
-                    ' Custom logic for button D click
-                Case "_E"
-                    ' Custom logic for button E click
-                Case "_F"
-                    ' Custom logic for button F click
-                Case "_G"
-                    ' Custom logic for button G click
-                Case "_H"
-                    Dim approvedForm As New ApprovedByHost()
-                    approvedForm.StartPosition = FormStartPosition.CenterScreen
-                    approvedForm.Show()
-                Case "_I"
-                    ' Custom logic for button I click
-                Case "_J"
-                    ' Custom logic for button J click
-                Case Else
-                    ' Custom logic for unknown button click
-            End Select
-        End Sub
-
-        ' Loaded event handler for TaskStepControlH
-        Private Sub TaskStepControl_Loaded(sender As Object, e As RoutedEventArgs)
-            ' Implement your custom logic here for when TaskStepControlH is loaded
-        End Sub
-    End Class
-
-Potential Obstacles and Solutions
----------------------------------
-
-Here are some common obstacles you might encounter and how to overcome them:
-
-*   **Missing References:** Ensure that you have added the necessary references for both WPF and Windows Forms in your project. You might need to add `System.Windows.Forms` and `System.Windows.Forms.Integration`.
-*   **Namespace Conflicts:** Be careful with namespace conflicts when using both WPF and Windows Forms. Use fully qualified names if necessary.
-*   **Hosting WPF in Windows Forms:** Use `WindowsFormsHost` to host WPF controls inside Windows Forms. Ensure you set the child property to your WPF form.
-*   **Event Handling:** Ensure that event handlers are correctly assigned and that methods are defined in the appropriate code-behind files.
-
-Conclusion
-----------
-
-By following this guide, you should be able to successfully add functionality to a button in a WPF form hosted inside a Windows Forms form. This approach allows you to leverage the strengths of both WPF and Windows Forms in your application.
-
-Using AI Assistance for Implementation
---------------------------------------
-
-If you encounter any issues implementing the button functionality or need further assistance, you can use an AI model like ChatGPT or Copilot to help you. Here is a prompt you can use to get the AI to help you with the implementation:
-
-    I'm working on a VB.NET project where I need to add functionality to a button in a WPF form hosted inside a Windows Forms form.
-    The WPF form should be displayed in the center of the screen when a specific button is clicked.
-    Can you provide a step-by-step guide on how to achieve this, including the necessary imports, event handlers, and any potential issues I might encounter?
-
-By using this prompt, the AI can provide you with detailed instructions and code snippets to help you implement or fix the solution.
-
-<!-- @nested-tags:wpf-user-control -->
