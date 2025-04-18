@@ -1,0 +1,98 @@
+[
+    {
+        "content_type_property_name":      "NAID",
+        "custom_property_name":            "Patient Number"
+    },
+    {
+        "content_type_property_name":      "Patient Name",
+        "custom_property_name":            "Patient Name"
+    },
+    {
+        "content_type_property_name":      "Program",
+        "custom_property_name":            "Program"
+    },
+    {
+        "content_type_property_name":      "Unit",
+        "custom_property_name":            "Unit"
+    },
+    {
+        "content_type_property_name":      "Classification",
+        "custom_property_name":            "Classification"
+    },
+    {
+        "content_type_property_name":      "County",
+        "custom_property_name":            "County"
+    },
+    {
+        "content_type_property_name":      "Expiration",
+        "custom_property_name":            "Expiration"
+    },
+    {
+        "content_type_property_name":      "Age",
+        "custom_property_name":            "Age"
+    },
+    {
+        "content_type_property_name":      "DOB",
+        "custom_property_name":            "DOB"
+    },
+    {
+        "content_type_property_name":      "Gender (on record)",
+        "custom_property_name":            "Gender"
+    },
+    {
+        "content_type_property_name":      "Commitment",
+        "custom_property_name":            "Commitment"
+    },
+    {
+        "content_type_property_name":      "Admission",
+        "custom_property_name":            "Admission"
+    },
+    {
+        "content_type_property_name":      "Assigned To",
+        "custom_property_name":            "Assigned To"
+    },
+    {
+        "content_type_property_name":      "Court Number",
+        "custom_property_name":            "Court Number"
+    },
+    {
+        "content_type_property_name":      "Report Date",
+        "custom_property_name":            "Report Date"
+    },
+    {
+        "content_type_property_name":      "Report Type",
+        "custom_property_name":            "Report Type"
+    },
+    {
+        "content_type_property_name":      "Due Date",
+        "custom_property_name":            "Due Date"
+    },
+    {
+        "content_type_property_name":      "Days Since Due Date (or before due)",
+        "custom_property_name":            "Days Since Due"
+    },
+    {
+        "content_type_property_name":      "TCAR",
+        "custom_property_name":            "TCAR Date"
+    },
+    {
+        "content_type_property_name":      "Evaluator",
+        "custom_property_name":            "Evaluator"
+    },
+    {
+        "content_type_property_name":      "Processed By",
+        "custom_property_name":            "Processed By"
+    },
+    {
+        "content_type_property_name":      "Pages",
+        "custom_property_name":            "Pages"
+    },
+    {
+        "content_type_property_name":      "Approved By",
+        "custom_property_name":            "Approved By"
+    },
+    {
+        "content_type_property_name":      "Unique ID",
+        "custom_property_name":            "Unique ID"
+    }
+]
