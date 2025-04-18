@@ -16,7 +16,7 @@ Public Module DatabaseHelper
         End If
 
         Try
-            Dim dbPath As String = ConfigHelper.GetDatabasePath()
+            Dim dbPath As String = PathHelper.GetDatabasePath()
             If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
                 MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
                 Return Nothing
@@ -66,10 +66,10 @@ Public Module DatabaseHelper
                             .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
                         }
 
-                            LogHelper.LogDebugInfo("DBHelper found patient " & patient.PatientNumber & " with Early90Day = " & patient.EarlyNinetyDay)
+                            'LogHelper.LogDebugInfo("DBHelper found patient " & patient.PatientNumber & " with Early90Day = " & patient.EarlyNinetyDay)
                             Return patient
                         Else
-                            LogHelper.LogDebugInfo("DBHelper could not find patient: " & patientNumber)
+                            'LogHelper.LogDebugInfo("DBHelper could not find patient: " & patientNumber)
                         End If
                     End Using
                 End Using
@@ -77,7 +77,8 @@ Public Module DatabaseHelper
 
         Catch ex As Exception
             MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
+            ' TODO: decide if I want to log this event and others in this module
+            'LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
         End Try
 
         Return Nothing

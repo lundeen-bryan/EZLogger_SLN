@@ -28,7 +28,7 @@ Namespace EZLogger.Views
         End Sub
 
         Private Sub ChiefApprovalView_Loaded(sender As Object, e As RoutedEventArgs)
-            Dim chiefs As List(Of String) = ConfigHelper.GetListFromGlobalConfig("listbox", "chief_approvals")
+            Dim chiefs As List(Of String) = ListHelper.GetListFromGlobalConfig("listbox", "chief_approvals")
             ListboxApproval.Items.Clear()
             ListboxApproval.ItemsSource = chiefs
         End Sub

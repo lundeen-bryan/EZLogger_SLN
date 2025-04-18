@@ -47,10 +47,10 @@
                         <ComboBox x:Name="ReportTypeViewCbo"
                                   Width="185"
                                   Height="31"
-                                  Margin="6" />
+                                  Margin="6" IsEditable="True" />
                     </GroupBox>
                     <Button x:Name="BtnSelectedType"
-                            Content="I Selected The Report Type"
+                            Content="I _Selected The Report Type"
                             Height="31"
                             Margin="6"
                             Cursor="Hand"
@@ -97,22 +97,22 @@
                         </GroupBox>
                     </StackPanel>
                     <StackPanel>
-                        <RadioButton x:Name="RadioA" Content="A"
+                        <RadioButton x:Name="RadioA" Content="_A"
                                      FontFamily="Consolas"
                                      FontWeight="Bold"
                                      FontSize="20"
                                      Margin="0,32,0,0" Tag="90-Day" />
-                        <RadioButton x:Name="RadioB" Content="B"
+                        <RadioButton x:Name="RadioB" Content="_B"
                                      FontFamily="Consolas"
                                      FontWeight="Bold"
                                      FontSize="20"
                                      Margin="0,45,0,0" Tag="9-month" />
-                        <RadioButton x:Name="RadioC" Content="C"
+                        <RadioButton x:Name="RadioC" Content="_C"
                                      FontFamily="Consolas"
                                      FontWeight="Bold"
                                      FontSize="20"
                                      Margin="0,50,0,0" Tag="15-month" />
-                        <RadioButton x:Name="RadioD" Content="D"
+                        <RadioButton x:Name="RadioD" Content="_D"
                                      FontFamily="Consolas"
                                      FontWeight="Bold"
                                      FontSize="20"
@@ -132,7 +132,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left"
                             Margin="24,0,0,0">
-                    <Button x:Name="BtnAcceptIstDueDate" Content="Accept 1370 Due Date"
+                    <Button x:Name="BtnAcceptIstDueDate" Content="Accep_t 1370 Due Date"
                             Height="39"
                             Width="144"
                             HorizontalContentAlignment="Center"
@@ -228,7 +228,7 @@
                     </GroupBox>
                 </StackPanel>
                 <Button x:Name="BtnAcceptPPR"
-                        Content="Accept PPR Due Dates"
+                        Content="Accept _PPR Due Dates"
                         Height="38"
                         Width="150"
                         Background="{x:Null}"
@@ -267,7 +267,7 @@
                                HorizontalAlignment="Center" />
                     </GroupBox>
                 </StackPanel>
-                <Button Content="I made my choices and ready to continue"
+                <Button Content="I _made my choices and ready to continue"
                         Height="38"
                         Width="266"
                         Background="{x:Null}"
