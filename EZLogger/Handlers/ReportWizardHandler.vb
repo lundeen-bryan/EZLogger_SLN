@@ -47,6 +47,8 @@ Namespace Handlers
             If patient IsNot Nothing Then
                 Dim message As String =
             $"Full Name: {patient.FullName}" & Environment.NewLine &
+            $"Court Number: {patient.CourtNumbers}" & Environment.NewLine &
+            $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
             $"County: {patient.County}" & Environment.NewLine &
             $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
             "Does this information match the report?"
