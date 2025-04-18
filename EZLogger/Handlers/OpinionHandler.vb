@@ -27,8 +27,17 @@ Namespace Handlers
             If String.IsNullOrWhiteSpace(opinion) Then
                 MsgBox("Please select an opinion before clicking OK.")
             Else
-                MsgBox("You selected: " & opinion)
+                ' Write the selected report type to the custom property
+                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                If doc IsNot Nothing Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Opinion", opinion)
+                    MsgBoxHelper.Show("Report type has been saved to the document.")
+                Else
+                    MsgBoxHelper.Show("No active Word document found.")
+                End If
             End If
+
+
         End Sub
 
         Public Sub HandleOpinionFirstPageClick()
