@@ -16,7 +16,7 @@ Public Module TCARListHandler
     ''' </remarks>
     Public Function LoadAllActive() As List(Of TCARRecord)
         Dim results As New List(Of TCARRecord)
-        Dim connStr As String = $"Data Source={ConfigHelper.GetDatabasePath()}"
+        Dim connStr As String = $"Data Source={PathHelper.GetDatabasePath()}"
 
         Try
             Using conn As New SQLite.SQLiteConnection(connStr)

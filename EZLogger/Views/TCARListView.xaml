@@ -46,7 +46,7 @@
                        Margin="0,0,0,10"
                        FontSize="14"
                        TextWrapping="Wrap" />
-            <Button Content="Select"
+            <Button Content="_Select"
                     Width="70"
                     HorizontalAlignment="Right"
                     Padding="10,5"

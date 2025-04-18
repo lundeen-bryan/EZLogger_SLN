@@ -395,9 +395,12 @@
     <Compile Include="Helpers\DocumentPropertyHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
+    <Compile Include="Helpers\ListHelper.vb" />
     <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
+    <Compile Include="Helpers\NavigationHelper.vb" />
+    <Compile Include="Helpers\PathHelper.vb" />
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
@@ -510,9 +513,6 @@
     </Compile>
     <Compile Include="HostForms\ReportWizardTaskPaneContainer.vb">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Ribbon.vb">
-      <XmlRibbon>true</XmlRibbon>
     </Compile>
     <Compile Include="ThisAddIn.vb">
       <SubType>Code</SubType>
@@ -667,9 +667,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wizard1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Ribbon.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Wizard2.png" />

@@ -24,7 +24,7 @@ Public Class FaxCoverView
     End Sub
 
     Private Sub FaxCoverView_Loaded(sender As Object, e As RoutedEventArgs)
-        Dim coverPages As List(Of String) = ConfigHelper.GetListFromGlobalConfig("listbox", "cover_pages")
+        Dim coverPages As List(Of String) = ListHelper.GetListFromGlobalConfig("listbox", "cover_pages")
         ListBoxCoverPages.Items.Clear()
         ListBoxCoverPages.ItemsSource = coverPages
     End Sub
