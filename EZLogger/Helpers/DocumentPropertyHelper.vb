@@ -185,6 +185,7 @@ Namespace Helpers
                     End If
                 Next
             Catch ex As Exception
+                ' Log or swallow errors as needed
             End Try
 
             Return Nothing
