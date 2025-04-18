@@ -17,6 +17,10 @@ Public Class SaveFileView
 
     Private Sub WireUpButtons()
         AddHandler BtnDone.Click, AddressOf Btn_Close_Click
+        AddHandler BtnSearchPatientId.Click, AddressOf BtnSearchPatientId_Click
+    End Sub
+    Private Sub BtnSearchPatientId_Click(sender As Object, e As RoutedEventArgs) Handles BtnSearchPatientId.Click
+        _handler.HandleSearchPatientIdClick(Me)
     End Sub
 
     Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
