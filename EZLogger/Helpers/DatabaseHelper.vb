@@ -77,7 +77,8 @@ Public Module DatabaseHelper
 
         Catch ex As Exception
             MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
+            ' TODO: decide if I want to log this event
+            'LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
         End Try
 
         Return Nothing
