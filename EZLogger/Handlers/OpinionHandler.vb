@@ -1,8 +1,17 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
+Imports EZLogger.Helpers
+Imports Word = Microsoft.Office.Interop.Word
 
 Namespace Handlers
     Public Class OpinionHandler
+
+        Private ReadOnly _wordApp As Word.Application
+
+        Public Sub New(wordApp As Word.Application)
+            _wordApp = wordApp
+        End Sub
+
 
         ''' <summary>
         ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets, 
@@ -23,15 +32,15 @@ Namespace Handlers
         End Sub
 
         Public Sub HandleOpinionFirstPageClick()
-            MsgBox("You clicked First Page (Opinion)")
+            NavigationHelper.GoToFirstPage(_wordApp)
         End Sub
 
         Public Sub HandleOpinionLastPageClick()
-            MsgBox("You clicked Last Page (Opinion)")
+            NavigationHelper.GoToLastPage(_wordApp)
         End Sub
 
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
     End Class

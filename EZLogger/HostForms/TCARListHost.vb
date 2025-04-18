@@ -1,5 +1,4 @@
 ﻿Imports System.Windows.Forms.Integration
-Imports EZLogger.Views ' Adjust namespace if needed
 
 Public Class TCARListHost
 
