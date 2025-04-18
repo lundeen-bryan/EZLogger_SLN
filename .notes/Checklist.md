@@ -1,0 +1,101 @@
+# EZLogger - Legacy Workflow Reference
+
+This document outlines the original workflow of each task pane button from the legacy version of EZLogger.
+
+---
+
+## A Button – Confirm Patient Number
+- [ ] Reads patient number from the document footer.
+- [ ] Displays number in a message box for confirmation.
+- [ ] On “Yes,” copies the number to clipboard.
+- [ ] Places the number into the patient number textbox.
+
+---
+
+## B Button – Pull Data from Database
+- [ ] Opens a data grid view of patient information.
+- [ ] Allows the user to confirm the correct patient by reviewing database entries.
+- [ ] Confirmed patient data is loaded into the form for further processing.
+
+---
+
+## C Button – Select Report Type and Due Dates
+- [ ] Opens a form displaying report types, report date, and associated due dates.
+- [ ] User selects the appropriate report type.
+- [ ] Selected report type and due dates are used to set scheduling and deadlines for the report.
+
+---
+
+## D Button – Check for Due Report in TCAR
+- [ ] Checks SQL table for patient name and due date.
+- [ ] Prompts user with confirmation if found.
+- [ ] On “Yes,” logs:
+  - Name from report
+  - Report submitted date
+  - Report processed date
+- [ ] Appends the data to another SQL logging table.
+
+---
+
+## F Button – Confirm Report Opinion
+- [ ] Opens opinion form with a list of preloaded opinion phrases.
+- [ ] Allows user to compare phrases to report using First Page / Last Page buttons.
+- [ ] User selects opinion and clicks OK.
+- [ ] Saves selected opinion to Word custom document properties.
+
+---
+
+## G Button – Select Evaluator / Author
+- [ ] Opens Evaluator and Author Information form.
+- [ ] Drop-down allows autocomplete while typing.
+- [ ] User selects correct author and clicks “Done Selecting Evaluator.”
+- [ ] Selected name is written to Word custom document properties.
+
+---
+
+## H Button – Chief Approval & Signature
+- [ ] Opens list of approvers (Morgan, Powers, Yang, Judd).
+- [ ] User selects name and clicks “Approved By.”
+- [ ] Shows confirmation message with selected approver.
+- [ ] “Insert Sig” button inserts signature at current cursor location.
+- [ ] “Go Back” button returns to main task pane.
+
+---
+
+## I Button – Rename and Save File
+- [ ] Opens a Move/Copy form with textboxes and a Search button.
+- [ ] Search retrieves:
+  - Patient number
+  - Report type
+  - Report date
+  - Name
+  - Program
+  - Unit
+- [ ] Patient last and first names are copied to clipboard.
+- [ ] If “Move File”:
+  - Shows path
+  - Opens Save As dialog
+  - Moves file to selected location
+- [ ] If “Copy File”:
+  - Shows path
+  - Opens Save As dialog
+  - Copies file to new location
+
+---
+
+## J Button – Select Pages and Convert to PDF
+- [ ] Opens form with a list of templates (A–T).
+- [ ] User selects a template.
+- [ ] Scroll wheel adjusts number of pages (if required).
+- [ ] Click “Convert” to save as PDF in Documents folder.
+- [ ] “Go Back” returns to previous menu.
+
+---
+
+## K Button – Finalize and Log Report
+- [ ] Creates a .txt log file in the Documents folder.
+- [ ] Syncs custom document properties to SharePoint document library.
+- [ ] Displays final confirmation message box.
+
+---
+
