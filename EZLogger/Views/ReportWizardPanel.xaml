@@ -60,7 +60,6 @@
                             Orientation="Horizontal"
                             Background="#FFE0E0E0">
                     <Button x:Name="Btn_A"
-                            Click="Btn_A_Click"
                             Content="_A"
                             Height="40"
                             Margin="24,0,0,0"
@@ -76,7 +75,6 @@
                             Orientation="Horizontal"
                             Background="White">
                     <Button x:Name="Btn_B"
-                            Click="Btn_B_Click"
                             Content="_B"
                             Height="40"
                             Margin="24,0,0,0"
@@ -92,7 +90,6 @@
                             Orientation="Horizontal"
                             Background="#FFE0E0E0">
                     <Button x:Name="Btn_C"
-                            Click="Btn_C_Click"
                             Content="_C"
                             Height="40"
                             Margin="24,0,0,0"

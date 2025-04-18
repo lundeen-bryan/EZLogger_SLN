@@ -14,6 +14,9 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub WireUpButtons()
+        AddHandler Btn_A.Click, AddressOf Btn_A_Click
+        AddHandler Btn_B.Click, AddressOf Btn_B_Click
+        AddHandler Btn_C.Click, AddressOf Btn_C_Click
         AddHandler Btn_D.Click, AddressOf Btn_D_Click
         AddHandler Btn_E.Click, AddressOf Btn_E_Click
         AddHandler Btn_F.Click, AddressOf Btn_F_Click
@@ -35,6 +38,12 @@ Partial Public Class ReportWizardPanel
     ''    Dim fileHandler As New CoverPageHandler()
     ''    fileHandler.OnFileSaveHostClick()
     'End Sub
+
+    'Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
+    '    Dim opHandler As New OpinionHandler()
+    '    opHandler.OnOpenOpinionFormClick()
+    'End Sub
+
     Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)
         Dim auHandler As New AuthorHandler()
         auHandler.OnOpenAuthorFormClick()
@@ -52,16 +61,13 @@ Partial Public Class ReportWizardPanel
         LabelPatientName.Content = name
     End Sub
 
-    'Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
-    '    Dim opHandler As New OpinionHandler()
-    '    opHandler.OnOpenOpinionFormClick()
-    'End Sub
-
     Private Sub Btn_A_Click(sender As Object, e As RoutedEventArgs)
+        ' Searches footer for the patient number and populates the text box
         _handler.SearchAndPopulatePatientNumber(Me)
     End Sub
 
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
+        ' Pull data from database and save as doc properties
         _handler.LookupPatientAndWriteProperties(TextBoxPatientNumber.Text, Me)
     End Sub
 
