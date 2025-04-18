@@ -47,7 +47,7 @@
                         <ComboBox x:Name="ReportTypeViewCbo"
                                   Width="185"
                                   Height="31"
-                                  Margin="6" />
+                                  Margin="6" IsEditable="True" />
                     </GroupBox>
                     <Button x:Name="BtnSelectedType"
                             Content="I Selected The Report Type"

@@ -32,7 +32,11 @@ Namespace Handlers
                 Dim GetProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
 
                 view.TxtPatientId.Text = GetProp("Patient Number")
-                view.ReportTypeCbo.SelectedItem = GetProp("Report Type")
+
+                Dim reportType As String = GetProp("Report Type")
+                If view.ReportTypeCbo.Items.Contains(reportType) Then
+                    view.ReportTypeCbo.SelectedItem = reportType
+                End If
 
                 Dim dateStr = GetProp("Report Date")
                 If Date.TryParse(dateStr, Nothing) Then

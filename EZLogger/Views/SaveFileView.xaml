@@ -32,7 +32,7 @@
                 <ComboBox x:Name="ReportTypeCbo"
                           Margin="10"
                           Width="250"
-                          Height="30" IsEditable="True" FontFamily="Lucida Console" />
+                          Height="30" FontFamily="Lucida Console" IsEditable="True" />
             </GroupBox>
             <!-- Report Date -->
             <GroupBox Header="Report Date"
