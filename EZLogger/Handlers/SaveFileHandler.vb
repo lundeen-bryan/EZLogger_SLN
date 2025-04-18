@@ -17,6 +17,9 @@ Namespace Handlers
             FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
             host.Show()
         End Sub
+        Public Sub HandleCloseClick(form As Form)
+            If form IsNot Nothing Then form.Close()
+        End Sub
 
     End Class
 
