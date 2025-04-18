@@ -15,9 +15,9 @@
 
             <!-- Button panel -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
-                <Button x:Name="YesButton" Content="Yes" Width="75" Margin="5"/>
-                <Button x:Name="NoButton" Content="No" Width="75" Margin="5"/>
-                <Button x:Name="OkButton" Content="OK" Width="75" Margin="5"/>
+                <Button x:Name="YesButton" Content="_Yes" Width="75" Margin="5"/>
+                <Button x:Name="NoButton" Content="_No" Width="75" Margin="5"/>
+                <Button x:Name="OkButton" Content="_OK" Width="75" Margin="5"/>
             </StackPanel>
         </StackPanel>
     </Border>
