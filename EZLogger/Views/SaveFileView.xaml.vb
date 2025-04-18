@@ -8,6 +8,7 @@ Public Class SaveFileView
 
     Private ReadOnly _handler As New SaveFileHandler()
     Private ReadOnly _hostForm As Form
+    Private ReadOnly rthandler As New ReportTypeHandler()
 
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
@@ -23,6 +24,10 @@ Public Class SaveFileView
         _handler.HandleSearchPatientIdClick(Me)
     End Sub
 
+    Private Sub SaveFileView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
+        ReportTypeCbo.ItemsSource = reportTypes
+    End Sub
     Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleCloseClick(_hostForm)
     End Sub

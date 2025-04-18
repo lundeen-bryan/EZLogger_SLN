@@ -11,13 +11,13 @@ Public Class SaveFileHost
         ElementHost1.Child = view
 
         ' Set form size and title
-        Me.ClientSize = New Drawing.Size(415, 725)
+        Me.ClientSize = New Drawing.Size(415, 735)
 
         ' Optional UI settings
         Me.MinimizeBox = False
         Me.MaximizeBox = False
         Me.ShowIcon = False
-        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = FormBorderStyle.FixedDialog
 
         ' Optional: manually size and position the ElementHost
         ElementHost1.Width = Me.ClientSize.Width - 40

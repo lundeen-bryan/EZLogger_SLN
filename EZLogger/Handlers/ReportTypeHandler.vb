@@ -54,6 +54,16 @@ Namespace Handlers
         Public Sub HandleSelectedReportType(report_type As String)
             If String.IsNullOrWhiteSpace(report_type) Then
                 MsgBoxHelper.Show("Please select a  report type before confirming.")
+                Exit Sub
+            End If
+
+            ' Write the selected report type to the custom property
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            If doc IsNot Nothing Then
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", report_type)
+                MsgBoxHelper.Show("Report type has been saved to the document.")
+            Else
+                MsgBoxHelper.Show("No active Word document found.")
             End If
         End Sub
 
