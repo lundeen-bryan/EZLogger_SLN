@@ -196,6 +196,72 @@ Namespace Handlers
             End If
         End Sub
 
+        Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
+            ' Get the active Word document
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            If doc Is Nothing Then
+                MsgBoxHelper.Show("No active Word document found.")
+                Exit Sub
+            End If
+
+            ' Determine which radio button is selected and map to its corresponding label
+            Dim selectedLabel As System.Windows.Controls.Label = Nothing
+            Dim reportCycle As String = Nothing
+
+            If view.NinetyDayRdo.IsChecked Then
+                selectedLabel = view.NinetyDayLbl
+                reportCycle = view.NinetyDayRdo.Tag?.ToString()
+            ElseIf view.NineMoRdo.IsChecked Then
+                selectedLabel = view.NineMoLbl
+                reportCycle = view.NineMoRdo.Tag?.ToString()
+            ElseIf view.FifteenMoRdo.IsChecked Then
+                selectedLabel = view.FifteenMoLbl
+                reportCycle = view.FifteenMoRdo.Tag?.ToString()
+            ElseIf view.TwentyOneMoRdo.IsChecked Then
+                selectedLabel = view.TwentyOneMoLbl
+                reportCycle = view.TwentyOneMoRdo.Tag?.ToString()
+            Else
+                MsgBoxHelper.Show("You must select a due date cycle before saving.")
+                Exit Sub
+            End If
+
+            ' Write Report Cycle to document properties
+            If Not String.IsNullOrWhiteSpace(reportCycle) Then
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
+            End If
+
+            ' Parse current due date from selected label
+            Dim currentDueDate As Date
+            If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
+                MsgBoxHelper.Show("Invalid or missing current due date.")
+                Exit Sub
+            End If
+
+            ' Determine the next due date
+            Dim nextDueDate As Date = currentDueDate ' default to same date (for 21-month case)
+            If selectedLabel Is view.NinetyDayLbl Then
+                Date.TryParse(view.NineMoLbl.Content?.ToString(), nextDueDate)
+            ElseIf selectedLabel Is view.NineMoLbl Then
+                Date.TryParse(view.FifteenMoLbl.Content?.ToString(), nextDueDate)
+            ElseIf selectedLabel Is view.FifteenMoLbl Then
+                Date.TryParse(view.TwentyOneMoLbl.Content?.ToString(), nextDueDate)
+            End If
+            ' If TwentyOneMoLbl is selected, nextDueDate remains the same as currentDueDate
+
+            ' Write due dates to document properties
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
+
+            ' Calculate days since due (can be negative if due date is in the future)
+            Dim daysSinceDue As Integer = (currentDueDate - Date.Today).Days
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysSinceDue.ToString())
+
+            ' (Rush Status helper to be added later)
+
+            ' Notify logic complete (no MsgBox per your request)
+            HandleGoBackClick(view.HostForm)
+        End Sub
+
 
     End Class
 End Namespace
