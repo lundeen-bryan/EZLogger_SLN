@@ -11,24 +11,24 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Height="375" Width="180" VerticalAlignment="Top" Margin="0,75,0,0">
                 <GroupBox Height="75" Header="90 Day Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
+                    <Label x:Name="NinetyDayLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
                 <GroupBox Height="75" Header="9 Month Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
+                    <Label x:Name="NineMoLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
                 <GroupBox Height="75" Header="15 Month Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
+                    <Label x:Name="FifteenMoLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
                 <GroupBox Height="75" Header="21 Month Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
+                    <Label x:Name="TwentyOneMoLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
             </StackPanel>
             <StackPanel Height="375" Width="185" VerticalAlignment="Top" Margin="0,75,0,0">
-                <RadioButton Content="_A" Margin="0,35,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24"/>
-                <RadioButton Content="_B" Margin="0,55,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24"/>
-                <RadioButton Content="_C" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24"/>
-                <RadioButton Content="_D" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24"/>
-                <Button x:Name="Save1370ChoiceBtn" Content="Save Choice" Background="{x:Null}" Margin="0,50,12,0"/>
+                <RadioButton x:Name="NinetyDayRdo" Content="_A" Margin="0,35,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="90-Day"/>
+                <RadioButton x:Name="NineMoRdo" Content="_B" Margin="0,55,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="9-month"/>
+                <RadioButton x:Name="FifteenMoRdo" Content="_C" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="15-month"/>
+                <RadioButton x:Name="TwentyOneMoRdo" Content="_D" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="21-month"/>
+                <Button x:Name="Save1370ChoiceBtn" Content="_Save Choice" Background="{x:Null}" Margin="0,50,12,0"/>
             </StackPanel>
         </StackPanel>
 
