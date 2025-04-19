@@ -370,6 +370,7 @@
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
+    <Compile Include="Handlers\DueDates1370Handler.vb" />
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
@@ -426,6 +427,12 @@
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\CustomMsgBoxHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HostForms\DueDates1370Host.Designer.vb">
+      <DependentUpon>DueDates1370Host.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\DueDates1370Host.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\FaxCoverHost.Designer.vb">
@@ -490,6 +497,9 @@
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DueDates1370View.xaml.vb">
+      <DependentUpon>DueDates1370View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FaxCoverView.xaml.vb">
       <DependentUpon>FaxCoverView.xaml</DependentUpon>
     </Compile>
@@ -538,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\DueDates1370Host.resx">
+      <DependentUpon>DueDates1370Host.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\FaxCoverHost.resx">
       <DependentUpon>FaxCoverHost.vb</DependentUpon>
@@ -618,6 +631,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DueDates1370View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

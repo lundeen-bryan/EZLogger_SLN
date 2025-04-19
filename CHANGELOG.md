@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Changed
 
 - divided the `ConfigHelper.vb` into `PathHelper` and `ListHelper`
+- complete change to `ReportTypeView` which is now split into 2 sub views
 
 ## [0.0.1] - 2025-04-16
 
