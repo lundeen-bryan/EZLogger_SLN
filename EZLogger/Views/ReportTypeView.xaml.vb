@@ -30,8 +30,4 @@ Public Class ReportTypeView
         _handler.ReportTypeSelectedBtnClick(selectedReportType, _hostForm)
     End Sub
 
-    ' Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
-    ' 		_handler.HandleCloseClick(_hostForm)
-    ' End Sub
-
 End Class

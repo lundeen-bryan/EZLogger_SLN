@@ -111,7 +111,6 @@ Namespace Handlers
         ''' are calculated. Otherwise, standard due dates are determined based on the commitment date.
         ''' If no active document is found or required properties are missing, appropriate labels are updated to reflect this.
         ''' </remarks>
-
         Public Sub PopulateDueDates(view As DueDates1370View)
             Dim app As Word.Application = Globals.ThisAddIn.Application
             Dim doc As Word.Document = TryCast(app.ActiveDocument, Word.Document)
