@@ -65,6 +65,8 @@
         Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Button2 = Me.Factory.CreateRibbonButton
         Me.Button3 = Me.Factory.CreateRibbonButton
+        Me.Group1 = Me.Factory.CreateRibbonGroup
+        Me.RandomPatientNumberButton = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -75,6 +77,7 @@
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
+        Me.Group1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -84,6 +87,7 @@
         Me.Tab1.Groups.Add(Me.DatabaseGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
         Me.Tab1.Groups.Add(Me.SetupGroup)
+        Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
         '
@@ -207,8 +211,6 @@
         Me.SetupGroup.Items.Add(Me.SettingsButton)
         Me.SetupGroup.Items.Add(Me.AboutButton)
         Me.SetupGroup.Items.Add(Me.SyncButton)
-        Me.SetupGroup.Items.Add(Me.Button2)
-        Me.SetupGroup.Items.Add(Me.Button3)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -250,6 +252,19 @@
         Me.Button3.Label = "TestConfig"
         Me.Button3.Name = "Button3"
         '
+        'Group1
+        '
+        Me.Group1.Items.Add(Me.Button2)
+        Me.Group1.Items.Add(Me.Button3)
+        Me.Group1.Items.Add(Me.RandomPatientNumberButton)
+        Me.Group1.Label = "Test Group"
+        Me.Group1.Name = "Group1"
+        '
+        'RandomPatientNumberButton
+        '
+        Me.RandomPatientNumberButton.Label = "Random Patient"
+        Me.RandomPatientNumberButton.Name = "RandomPatientNumberButton"
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
@@ -275,6 +290,8 @@
         Me.TypoBtnBox.PerformLayout()
         Me.SetupGroup.ResumeLayout(False)
         Me.SetupGroup.PerformLayout()
+        Me.Group1.ResumeLayout(False)
+        Me.Group1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,6 +320,8 @@
     Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnCloseDoc As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button3 As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Group1 As Microsoft.Office.Tools.Ribbon.RibbonGroup
+    Friend WithEvents RandomPatientNumberButton As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection

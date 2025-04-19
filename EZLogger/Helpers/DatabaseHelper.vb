@@ -44,27 +44,27 @@ Public Module DatabaseHelper
                     Using reader As SQLiteDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
-                            .PatientNumber = reader("patient_number").ToString(),
-                            .CommitmentDate = reader("commitment_date").ToString(),
-                            .AdmissionDate = reader("admission_date").ToString(),
-                            .Expiration = reader("expiration").ToString(),
-                            .DOB = reader("dob").ToString(),
-                            .FullName = reader("fullname").ToString(),
-                            .LName = reader("lname").ToString(),
-                            .FName = reader("fname").ToString(),
-                            .MName = reader("mname").ToString(),
-                            .BedStatus = reader("bed_status").ToString(),
-                            .P = reader("p").ToString(),
-                            .U = reader("u").ToString(),
-                            .Classification = reader("class").ToString(),
-                            .County = reader("county").ToString(),
-                            .Language = reader("language").ToString(),
-                            .AssignedTo = reader("assigned_to").ToString(),
-                            .RevokeDate = reader("revoke_date").ToString(),
-                            .CourtNumbers = reader("court_numbers").ToString(),
-                            .Department = reader("department").ToString(),
-                            .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
-                        }
+                                .PatientNumber = reader("patient_number").ToString(),
+                                .CommitmentDate = reader("commitment_date").ToString(),
+                                .AdmissionDate = reader("admission_date").ToString(),
+                                .Expiration = reader("expiration").ToString(),
+                                .DOB = reader("dob").ToString(),
+                                .FullName = reader("fullname").ToString(),
+                                .LName = reader("lname").ToString(),
+                                .FName = reader("fname").ToString(),
+                                .MName = reader("mname").ToString(),
+                                .BedStatus = reader("bed_status").ToString(),
+                                .P = reader("p").ToString(),
+                                .U = reader("u").ToString(),
+                                .Classification = reader("class").ToString(),
+                                .County = reader("county").ToString(),
+                                .Language = reader("language").ToString(),
+                                .AssignedTo = reader("assigned_to").ToString(),
+                                .RevokeDate = reader("revoke_date").ToString(),
+                                .CourtNumbers = reader("court_numbers").ToString(),
+                                .Department = reader("department").ToString(),
+                                .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
+                            }
 
                             'LogHelper.LogDebugInfo("DBHelper found patient " & patient.PatientNumber & " with Early90Day = " & patient.EarlyNinetyDay)
                             Return patient
@@ -82,6 +82,21 @@ Public Module DatabaseHelper
         End Try
 
         Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' Builds and returns a valid SQLite connection string based on the configured database path.
+    ''' </summary>
+    ''' <returns>A SQLite connection string if the path is valid; otherwise, an empty string.</returns>
+    Public Function GetConnectionString() As String
+        Dim dbPath As String = PathHelper.GetDatabasePath()
+
+        If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
+            MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
+            Return String.Empty
+        End If
+
+        Return $"Data Source={dbPath};Version=3;"
     End Function
 
 End Module

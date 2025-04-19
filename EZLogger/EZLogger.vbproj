@@ -487,6 +487,7 @@
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Models\TCARRecord.vb" />
+    <Compile Include="ReportWizardHost.vb" />
     <Compile Include="Tests\TestHelper.vb" />
     <Compile Include="Views\AboutView.xaml.vb">
       <DependentUpon>AboutView.xaml</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.Office.Tools.Ribbon
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports HostForms
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.
@@ -94,6 +95,10 @@ Public Class EZLoggerRibbon
 
     Private Sub Button3_Click(sender As Object, e As RibbonControlEventArgs) Handles Button3.Click
         TestHelper.Test_UpdateLocalConfigWithGlobalPath()
+    End Sub
+
+    Private Sub RandomPatientNumberButton_Click(sender As Object, e As RibbonControlEventArgs) Handles RandomPatientNumberButton.Click
+        TestHelper.PromptRandomPatientNumberForTest()
     End Sub
 End Class
 
