@@ -1,52 +1,37 @@
-﻿' Top of the file
+﻿Imports System.Windows
+Imports EZLogger.Helpers
 Imports EZLogger.Handlers
-Imports System.Collections.Generic
-Imports System.Windows
+Imports System.Windows.Forms
 
 Public Class ReportTypeView
+    Inherits Controls.UserControl
 
-    Public Property InitialSelectedReportType As String
-    Private ReadOnly _handler As ReportTypeHandler
-    Private ReadOnly rthandler As ReportTypeHandler
+    Private ReadOnly _handler As New ReportTypeHandler()
+    Private ReadOnly _hostForm As Form
 
-    Public Sub New(Optional hostForm As FormatException = Nothing)
+    Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
-
-        _handler = New ReportTypeHandler()
-        rthandler = New ReportTypeHandler()
-
-        AddHandler BtnSelectedType.Click, AddressOf BtnSelectedType_Click
-        AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
-        AddHandler BtnAcceptPPR.Click, AddressOf BtnAcceptPPR_Click
-        AddHandler BtnAcceptIstDueDate.Click, AddressOf BtnAcceptIstDueDate_Click
-    End Sub
-    Private Sub BtnAcceptPPR_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleAcceptPPR(Me)
+        _hostForm = hostForm
+        WireUpButtons()
     End Sub
 
-    Private Sub BtnSelectedType_Click(sender As Object, e As RoutedEventArgs)
-        Dim selectedType As String = TryCast(ReportTypeViewCbo.SelectedItem, String)
-        _handler.HandleSelectedReportType(selectedType)
-        _handler.PopulateDueDates(Me)
+    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Dim reportTypes As List(Of String) = _handler.GetReportTypes()
+        ReportTypeCbo.ItemsSource = reportTypes
     End Sub
 
-    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
-        LabelEarly90.Visibility = Visibility.Collapsed
-
-        Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
-        ReportTypeViewCbo.ItemsSource = reportTypes
-
-        If Not String.IsNullOrEmpty(InitialSelectedReportType) AndAlso reportTypes.Contains(InitialSelectedReportType) Then
-            ReportTypeViewCbo.SelectedItem = InitialSelectedReportType
-        End If
-
-        ' Ask the handler if early 90-day flag is present
-        If rthandler.HasEarlyNinetyDayFlag() Then
-            LabelEarly90.Visibility = Visibility.Visible
-        End If
+    Private Sub WireUpButtons()
+        'AddHandler Btn_Close.Click, AddressOf Btn_Close_Click
+        AddHandler ReportTypeSelectedBtn.Click, AddressOf ReportTypeSelectedBtn_Click
     End Sub
-    Private Sub BtnAcceptIstDueDate_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleAcceptIstDueDate(Me)
+
+    Private Sub ReportTypeSelectedBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim selectedReportType As String = TryCast(ReportTypeCbo.SelectedItem, String)
+        _handler.ReportTypeSelectedBtnClick(selectedReportType, _hostForm)
     End Sub
+
+    ' Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
+    ' 		_handler.HandleCloseClick(_hostForm)
+    ' End Sub
 
 End Class
