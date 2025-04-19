@@ -12,12 +12,17 @@ Public Class DueDates1370View
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
         _hostForm = hostForm
-        'WireUpButtons()
+        WireUpButtons()
     End Sub
 
-    'Private Sub WireUpButtons()
-    '    AddHandler Btn_Close.Click, AddressOf Btn_Close_Click
-    'End Sub
+    Private Sub WireUpButtons()
+        AddHandler GoBackBtn.Click, AddressOf GoBackBtn_Click
+    End Sub
+
+    Private Sub GoBackBtn_Click(sender As Object, e As RoutedEventArgs)
+        ' Call the handler to handle the button click
+        _handler.HandleGoBackClick(_hostForm)
+    End Sub
 
     'Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
     '    _handler.HandleCloseClick(_hostForm)

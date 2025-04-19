@@ -22,13 +22,14 @@
                 <GroupBox Height="75" Header="21 Month Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
                     <Label x:Name="TwentyOneMoLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
+                <Button x:Name="GoBackBtn" Content="Go _Back" Background="{x:Null}" Margin="12,32,12,0"/>
             </StackPanel>
             <StackPanel Height="375" Width="185" VerticalAlignment="Top" Margin="0,75,0,0">
                 <RadioButton x:Name="NinetyDayRdo" Content="_A" Margin="0,35,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="90-Day"/>
                 <RadioButton x:Name="NineMoRdo" Content="_B" Margin="0,55,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="9-month"/>
                 <RadioButton x:Name="FifteenMoRdo" Content="_C" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="15-month"/>
                 <RadioButton x:Name="TwentyOneMoRdo" Content="_D" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="21-month"/>
-                <Button x:Name="Save1370ChoiceBtn" Content="_Save Choice" Background="{x:Null}" Margin="0,50,12,0"/>
+                <Button x:Name="Save1370ChoiceBtn" Content="_Save Choice" Background="{x:Null}" Margin="12,50,12,0"/>
             </StackPanel>
         </StackPanel>
 

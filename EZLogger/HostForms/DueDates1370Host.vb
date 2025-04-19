@@ -1,10 +1,7 @@
-﻿Imports System.Windows.Forms.Integration
-Imports Views ' Adjust namespace if needed
-
-Public Class DueDates1370Host
+﻿Public Class DueDates1370Host
 
 	Private Sub DueDates1370Host_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		Dim view As New DueDates1370View()
+		Dim view As New DueDates1370View(Me)
 		ElementHost1.Child = view
 
 		' Set form size and title
