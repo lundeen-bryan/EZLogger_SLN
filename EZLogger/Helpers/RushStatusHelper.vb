@@ -1,4 +1,4 @@
-﻿Imports System.Windows
+﻿Imports System
 Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
@@ -6,42 +6,36 @@ Namespace Helpers
     Public Module RushStatusHelper
 
         ''' <summary>
-        ''' Calculates rush status based on due date and writes to document properties.
+        ''' Calculates "Days Since Due" and "Rush Status" from the given due date,
+        ''' then writes both values to Word document custom properties.
         ''' </summary>
-        Public Sub SetRushStatusAndDaysSinceDue(view As ReportTypeView)
-            'If Not view.PickCurrentDueDate.SelectedDate.HasValue Then
-            'Exit Sub
-            'End If
+        ''' <param name="dueDate">The current due date to compare with today.</param>
+        Public Sub SetRushStatusAndDaysSinceDue(dueDate As Date)
+            Dim today As Date = Date.Today
+            Dim daysUntilDue As Integer = (dueDate - today).Days
 
-            'Dim dueDate As Date = view.PickCurrentDueDate.SelectedDate.Value.Date
-            'Dim today As Date = Date.Today
-            'Dim daysTilDue As Integer = DateDiff(DateInterval.Day, today, dueDate)
+            ' Get the active Word document
+            Dim doc As Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Document)
+            If doc Is Nothing Then Exit Sub
 
-            '' Write to "Days Since Due" custom property
-            'Dim doc As Word.Document = Globals.ThisAddIn.Application.ActiveDocument
-            'DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysTilDue.ToString())
+            ' Write "Days Since Due" (can be negative)
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysUntilDue.ToString())
 
-            '' Set label text
-            'If daysTilDue >= 0 Then
-            '    view.LabelDaysSinceDueDate.Content = daysTilDue & " til due"
-            'Else
-            '    view.LabelDaysSinceDueDate.Content = (daysTilDue * -1) & " past due"
-            'End If
+            ' Determine Rush Status
+            Dim rushText As String
+            Select Case True
+                Case (daysUntilDue > 5 AndAlso daysUntilDue < 11)
+                    rushText = "RUSH"
+                Case (daysUntilDue > 0 AndAlso daysUntilDue <= 5)
+                    rushText = "SUPER RUSH"
+                Case (daysUntilDue <= 0)
+                    rushText = "PAST DUE"
+                Case Else
+                    rushText = "ON TIME"
+            End Select
 
-            '' Determine Rush Status
-            'Dim rushText As String
-            'Select Case True
-            '    Case (daysTilDue > 5 AndAlso daysTilDue < 11)
-            '        rushText = "RUSH"
-            '    Case (daysTilDue > 0 AndAlso daysTilDue <= 5)
-            '        rushText = "SUPER RUSH"
-            '    Case (daysTilDue <= 0)
-            '        rushText = "PAST DUE"
-            '    Case Else
-            '        rushText = "ON TIME"
-            'End Select
-
-            'DocumentPropertyHelper.WriteCustomProperty(doc, "Rush Status", rushText)
+            ' Write "Rush Status"
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Rush Status", rushText)
         End Sub
 
     End Module
