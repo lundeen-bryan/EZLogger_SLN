@@ -76,16 +76,16 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Called by Btn_C. Launches the Report Type wizard, using the commitment
+        ''' Called by Btn_C. Launches the Report Type View, using the commitment
         ''' date from the current Word document.
         ''' </summary>
-        Public Sub LaunchReportTypeWizard()
+        Public Sub ShowBtnCMessage()
             ' Retrieve commitment date from Word document
             Dim commitmentDate As String = DocumentPropertyHelper.GetPropertyValue("Commitment")
 
             ' Launch the report type selection dialog
             Dim rtHandler As New ReportTypeHandler()
-            rtHandler.OnConfirmReportTypeButtonClick(commitmentDate)
+            rtHandler.LaunchReportTypeView(commitmentDate)
         End Sub
 
         Public Sub ShowBtnDMessage()

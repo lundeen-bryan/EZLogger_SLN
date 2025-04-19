@@ -72,7 +72,7 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
-        _handler.LaunchReportTypeWizard()
+        _handler.ShowBtnCMessage()
     End Sub
 
     Private Sub Btn_D_Click(sender As Object, e As RoutedEventArgs)

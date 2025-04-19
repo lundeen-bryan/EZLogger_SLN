@@ -20,7 +20,7 @@ Namespace Handlers
         ''' and returns the selected report type from the ComboBox. If the commitment date is invalid or missing,
         ''' appropriate labels are updated to reflect this.
         ''' </remarks>
-        Public Function OnConfirmReportTypeButtonClick(commitmentDate As String) As String
+        Public Function LaunchReportTypeView(commitmentDate As String) As String
 
             Dim host As New ReportTypeHost()
 
@@ -41,9 +41,8 @@ Namespace Handlers
                 reportTypeView.LabelFirstDueDate.Content = "(Unavailable)"
             End If
 
-            ' Show the modal host form
-            host.TopMost = True
-            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
+            ' Show ReportTypeHost which will contain ReportTypeView
+            ' Host handles positioning and behavior
             host.Show()
 
             ' Return the selected report type from the ComboBox
