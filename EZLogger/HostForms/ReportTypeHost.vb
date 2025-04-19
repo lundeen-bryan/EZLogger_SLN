@@ -16,6 +16,10 @@ Public Class ReportTypeHost
         ' Clean, consistent spacing
         Me.Padding = New Padding(0)
 
+        Me.TopMost = True
+        FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
+        Me.Show()
+
         ' Resize the ElementHost manually
         ElementHost1.Width = Me.ClientSize.Width - 40
         ElementHost1.Height = Me.ClientSize.Height - 40
