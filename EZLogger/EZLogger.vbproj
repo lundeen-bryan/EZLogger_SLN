@@ -366,6 +366,9 @@
     <Compile Include="Controls\FormHeaderControl.xaml.vb">
       <DependentUpon>FormHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ViewTemplate.xaml.vb">
+      <DependentUpon>ViewTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enums\CustomMsgBoxResult.vb" />
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
@@ -427,6 +430,12 @@
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\CustomMsgBoxHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HostForms\DueDatePprHost.Designer.vb">
+      <DependentUpon>DueDatePprHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\DueDatePprHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\DueDates1370Host.Designer.vb">
@@ -498,6 +507,9 @@
     <Compile Include="Views\ConfigView.xaml.vb">
       <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DueDatePprView.xaml.vb">
+      <DependentUpon>DueDatePprView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DueDates1370View.xaml.vb">
       <DependentUpon>DueDates1370View.xaml</DependentUpon>
     </Compile>
@@ -549,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\CustomMsgBoxHost.resx">
       <DependentUpon>CustomMsgBoxHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\DueDatePprHost.resx">
+      <DependentUpon>DueDatePprHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\DueDates1370Host.resx">
       <DependentUpon>DueDates1370Host.vb</DependentUpon>
@@ -623,6 +638,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -632,6 +651,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DueDatePprView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
