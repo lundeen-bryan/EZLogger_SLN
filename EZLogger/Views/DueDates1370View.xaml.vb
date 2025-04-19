@@ -33,8 +33,4 @@ Public Class DueDates1370View
         _handler.HandleSave1370ChoiceClick(Me)
     End Sub
 
-    'Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
-    '    _handler.HandleCloseClick(_hostForm)
-    'End Sub
-
 End Class
