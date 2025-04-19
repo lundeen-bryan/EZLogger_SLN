@@ -237,6 +237,9 @@ Namespace Handlers
                 Exit Sub
             End If
 
+            ' Write Rush Status and Days Since Due to doc properties
+            RushStatusHelper.SetRushStatusAndDaysSinceDue(currentDueDate)
+
             ' Determine the next due date
             Dim nextDueDate As Date = currentDueDate ' default to same date (for 21-month case)
             If selectedLabel Is view.NinetyDayLbl Then
@@ -251,10 +254,6 @@ Namespace Handlers
             ' Write due dates to document properties
             DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
             DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
-
-            ' Calculate days since due (can be negative if due date is in the future)
-            Dim daysSinceDue As Integer = (currentDueDate - Date.Today).Days
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysSinceDue.ToString())
 
             ' (Rush Status helper to be added later)
 
