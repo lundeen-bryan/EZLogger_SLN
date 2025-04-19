@@ -51,8 +51,6 @@ Namespace Helpers
                 writeProp("Assigned To", patient.AssignedTo)
                 writeProp("Early90Day", patient.EarlyNinetyDay.ToString())
 
-                MsgBoxHelper.Show("Document properties have been updated.")
-
             Catch ex As Exception
                 MsgBoxHelper.Show("Error writing document properties: " & ex.Message)
             End Try

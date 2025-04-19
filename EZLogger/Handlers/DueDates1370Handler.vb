@@ -15,25 +15,6 @@ Namespace Handlers
             hostForm?.Close()
         End Sub
 
-        ''' <summary>
-        ''' Checks if the active Word document has early_ninety_day = 1
-        ''' </summary>
-        ''' <returns>True if early_ninety_day is set to 1, otherwise False</returns>
-        Public Function HasEarlyNinetyDayFlag() As Boolean
-            Try
-                Dim app As Word.Application = Globals.ThisAddIn.Application
-                Dim doc As Word.Document = TryCast(app.ActiveDocument, Word.Document)
-
-                If doc Is Nothing Then Return False
-
-                Dim value As Object = doc.CustomDocumentProperties("Early90Day").Value
-                Return value IsNot Nothing AndAlso value.ToString() = "1"
-            Catch ex As Exception
-                ' Property not found or other error; assume not flagged
-                Return False
-            End Try
-        End Function
-
         Public Sub HandleAcceptIstDueDate(view As DueDates1370View)
             ' Get active Word document
             Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
