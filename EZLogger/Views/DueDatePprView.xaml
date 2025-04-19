@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="DueDatePprView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EZLogger"
+             mc:Ignorable="d" 
+             d:DesignHeight="375" Background="White" FontFamily="Candara" FontSize="18" Width="560">
+    <StackPanel Margin="10" VerticalAlignment="Top">
+
+        <TextBlock Text="Calculating the First PPR Cycle Due Date"
+                       FontWeight="Bold"
+                       FontSize="14" />
+
+        <Border Background="LightYellow" Margin="0,5,0,10" Padding="5">
+            <TextBlock Text="To get the first PPR due Date, add 6 months to the commitment date." />
+        </Border>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                <Label Content="Commitment Date" />
+                <TextBox x:Name="CommitmentDateTxt" Width="150" />
+            </StackPanel>
+
+            <TextBlock Grid.Column="1" Text="+ 6 months =" VerticalAlignment="Center"
+                           Margin="10,30,10,10" FontSize="16" FontFamily="Segoe Print" />
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+                <Label Content="1st PPR Due Date" />
+                <TextBox x:Name="FirstDueDateTxt" Width="150" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                <Label Content="Current Due Date" />
+                <DatePicker x:Name="CurrentDueDatePick" Width="150" />
+            </StackPanel>
+
+            <Button x:Name="SwitchDatesBtn" Grid.Column="1" Content="  Switch  " Margin="10,15,10,3"
+                        VerticalAlignment="Bottom" Background="{x:Null}" />
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+                <Label Content="Next Due Date" />
+                <DatePicker x:Name="NextDueDatePick" Width="150" />
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="AcceptDatesBtn" Content="Accept PPR Due Dates" Width="200" HorizontalAlignment="Center"
+                    Margin="0,0,0,10" Background="{x:Null}" />
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                <Label Content="Expiration Date" />
+                <TextBox x:Name="MaxDateTxt" Width="150" Margin="0,0,24,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                <Label Content="Days Since Due" Margin="24,0,0,0" />
+                <TextBox x:Name="DaysSinceTxt" Width="150" Margin="24,0,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="ContinueBtn" Content="Selected Dates Complete and Ready to Continue"
+                    HorizontalAlignment="Center"
+                    Padding="10,5" Background="{x:Null}" />
+
+    </StackPanel>
+</UserControl>
+

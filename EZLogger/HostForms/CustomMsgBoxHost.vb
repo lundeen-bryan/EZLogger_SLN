@@ -1,7 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports System.Windows.Forms.Integration
 Imports System.Windows
-Imports EZLogger
 
 Public Class CustomMsgBoxHost
     Inherits Form
@@ -10,7 +9,7 @@ Public Class CustomMsgBoxHost
 
     Public Sub New(control As CustomMsgBoxControl)
         ' NOTE: Do not call InitializeComponent() here – this form is built entirely in code
-        Me.Text = "EZLogger Message"
+        Me.Text = "EZLogger Message Box"
         Me.StartPosition = FormStartPosition.CenterScreen
         Me.FormBorderStyle = FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
