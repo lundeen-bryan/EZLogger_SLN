@@ -1,0 +1,28 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EZLogger"
+             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="ViewTemplate"
+             mc:Ignorable="d" 
+           d:DesignHeight="555"
+           d:DesignWidth="365"
+           FontFamily="Candara"
+           FontSize="18"
+           Background="White">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Shared header -->
+                <Controls:FormHeaderControl HeaderText="Shared Header" />
+
+                <!-- Placeholder for injected content -->
+                <ContentPresenter x:Name="CustomContentArea" />
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
