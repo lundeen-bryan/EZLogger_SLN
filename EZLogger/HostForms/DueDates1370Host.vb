@@ -2,7 +2,7 @@
 
 	Private Sub DueDates1370Host_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		Dim view As New DueDates1370View(Me)
-		ElementHost1.Child = view
+		'ElementHost1.Child = view
 
 		' Set form size and title
 		Me.ClientSize = New Drawing.Size(375, 565)

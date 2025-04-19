@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - `DueDate1370View` to pick due dates for 1370
+- `Early90DayLbl` now shows if it had an early 90-Day report
 
 ## [0.0.1] - 2025-04-17
 
