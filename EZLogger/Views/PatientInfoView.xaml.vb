@@ -14,9 +14,11 @@ Namespace EZLogger.Views
 
 		Public Sub New(Optional hostForm As Form = Nothing)
 			InitializeComponent()
-
 			_handler = New PatientInfoHandler()
+			WireUpButtons()
+		End Sub
 
+		Private Sub WireUpButtons()
 			' Hook up all button events to dedicated subroutines
 			AddHandler Me.Loaded, AddressOf PatientInfoView_Loaded
 			AddHandler BtnDelete.Click, AddressOf BtnDelete_Click
