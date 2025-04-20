@@ -62,10 +62,10 @@ Namespace Handlers
             "Does this information match the report?"
 
                 Dim config As New MessageBoxConfig With {
-            .Message = message,
-            .ShowYes = True,
-            .ShowNo = True
-        }
+                    .Message = message,
+                    .ShowYes = True,
+                    .ShowNo = True
+                }
 
                 MsgBoxHelper.Show(config, Sub(result)
                                               If result = CustomMsgBoxResult.Yes Then

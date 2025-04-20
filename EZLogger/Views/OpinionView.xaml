@@ -22,7 +22,7 @@
         <StackPanel Height="395"
                     Width="870"
                     Background="White">
-            <controls:FormHeaderControl HeaderText="OPINION AND TYPE FORM" />
+            <controls:FormHeaderControl HeaderText="OPINION AND TYPE OF REPORT" />
             <DataGrid ItemsSource="{Binding Source={StaticResource ReportTypeData}}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
