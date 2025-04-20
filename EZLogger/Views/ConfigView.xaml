@@ -45,10 +45,10 @@
                            Margin="42,32,0,0"
                            VerticalAlignment="Top"
                            Width="355" />
-                    <GroupBox HorizontalAlignment="Center"
+                    <GroupBox HorizontalAlignment="Left"
                               Height="75"
                               Header="Local Configuration File"
-                              Margin="0,58,0,0"
+                              Margin="12,58,0,0"
                               VerticalAlignment="Top"
                               Width="760"
                               BorderBrush="DarkGray">
@@ -59,10 +59,10 @@
                                    Width="729"
                                    Background="#FFC1E0FF" />
                     </GroupBox>
-                    <GroupBox HorizontalAlignment="Center"
+                    <GroupBox HorizontalAlignment="Left"
                               Height="75"
                               Header="Global Configuration File"
-                              Margin="0,139,0,0"
+                              Margin="12,139,0,0"
                               VerticalAlignment="Top"
                               Width="760"
                               BorderBrush="DarkGray">
