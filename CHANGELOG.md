@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - View now only updates UI controls using values from the DTO, improving separation of concerns and maintainability.
 - Added `HasError` and `ErrorMessage` pattern to enable consistent error reporting from handlers to views.
 - Added an article about DTO models for future documentation 
+- AddAlertPopup now pops up to let user add name or county to alerts in configview
 
 ### Changed
 

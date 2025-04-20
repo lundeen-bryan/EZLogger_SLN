@@ -8,6 +8,132 @@ Imports System.Text.Json
 
 Namespace Handlers
     Public Class ConfigViewHandler
+
+        Public Sub AddCountyAlertButtonClick()
+            Dim popup As New AddAlertPopup(True)
+            Dim result = popup.ShowDialog()
+
+            If result = True Then
+                Dim key = popup.AlertKey
+                Dim value = popup.AlertValue
+
+                Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+                If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+
+                Dim jsonText As String = File.ReadAllText(globalPath)
+                Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+
+                Dim countyDict As Dictionary(Of String, String)
+                If rootDict.ContainsKey("county_alerts") Then
+                    countyDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(rootDict("county_alerts").ToString())
+                Else
+                    countyDict = New Dictionary(Of String, String)()
+                End If
+
+                countyDict(key) = value
+                rootDict("county_alerts") = countyDict
+
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
+            End If
+        End Sub
+
+        Public Sub AddAlertButtonClick()
+            Dim popup As New AddAlertPopup(False)
+            Dim result = popup.ShowDialog()
+
+            If result = True Then
+                Dim key = popup.AlertKey
+                Dim value = popup.AlertValue
+
+                Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+                If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+
+                Dim jsonText As String = File.ReadAllText(globalPath)
+                Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+
+                ' Get or create Alerts section
+                Dim alertDict As Dictionary(Of String, String)
+                If rootDict.ContainsKey("Alerts") Then
+                    alertDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(rootDict("Alerts").ToString())
+                Else
+                    alertDict = New Dictionary(Of String, String)()
+                End If
+
+                ' Add or update
+                alertDict(key) = value
+                rootDict("Alerts") = alertDict
+
+                ' Save updated JSON
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
+            End If
+        End Sub
+
+        Public Sub DeletePatientAlertByKey(patientNumber As String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+
+            Dim jsonText As String = File.ReadAllText(globalPath)
+            Dim doc = JsonDocument.Parse(jsonText)
+
+            Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+
+            If rootDict.ContainsKey("Alerts") Then
+                Dim alertDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(
+            doc.RootElement.GetProperty("Alerts").ToString())
+
+                If alertDict.ContainsKey(patientNumber) Then
+                    alertDict.Remove(patientNumber)
+                End If
+
+                rootDict("Alerts") = alertDict
+
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
+            End If
+        End Sub
+
+        Public Sub DeleteCountyAlertByKey(countyName As String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+
+            Dim jsonText As String = File.ReadAllText(globalPath)
+            Dim doc = JsonDocument.Parse(jsonText)
+
+            Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+
+            If rootDict.ContainsKey("county_alerts") Then
+                Dim countyAlerts = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(
+            doc.RootElement.GetProperty("county_alerts").ToString())
+
+                If countyAlerts.ContainsKey(countyName) Then
+                    countyAlerts.Remove(countyName)
+                End If
+
+                rootDict("county_alerts") = countyAlerts
+
+                ' Save the updated config
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
+            End If
+        End Sub
+
+
+        Public Function LoadPatientAlerts() As List(Of String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            Dim alerts = ConfigHelper.GetPatientAlerts(globalPath)
+
+            Return alerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
+        End Function
+
+        Public Function LoadCountyAlerts() As List(Of String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            Dim countyAlerts = ConfigHelper.GetCountyAlerts(globalPath)
+
+            Return countyAlerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
+        End Function
+
         Public Sub HandleSetupFolderPathsClick()
             ' Step 1: Prompt user for folders
             Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
@@ -159,24 +285,9 @@ Namespace Handlers
             MsgBox("You clicked Save Config")
         End Sub
 
-        Public Sub AddAlertButtonClick()
-            MsgBox("You clicked Add Alert button")
-        End Sub
-
-        Public Sub EditAlertButtonClick()
-            MsgBox("You clicked Edit Alert button")
-        End Sub
 
         Public Sub DeleteAlertButtonClick()
             MsgBox("You clicked Delete Alert button")
-        End Sub
-
-        Public Sub AddCountyAlertButtonClick()
-            MsgBox("You clicked Add County Alert button")
-        End Sub
-
-        Public Sub EditCountyAlertButtonClick()
-            MsgBox("You clicked Edit County Alert button")
         End Sub
 
         Public Sub DeleteCountyAlertButtonClick()

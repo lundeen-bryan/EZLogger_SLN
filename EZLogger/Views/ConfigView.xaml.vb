@@ -24,12 +24,11 @@ Public Class ConfigView
         AddHandler BtnSaveDoctorsList.Click, AddressOf BtnSaveDoctorsList_Click
         AddHandler BtnSaveConfig.Click, AddressOf BtnSaveConfig_Click
         AddHandler AddAlertButton.Click, AddressOf AddAlertButton_Click
-        AddHandler EditAlertButton.Click, AddressOf EditAlertButton_Click
-        AddHandler DeleteAlertButton.Click, AddressOf DeleteAlertButton_Click
+        AddHandler DeleteAlertBtn.Click, AddressOf DeleteAlertBtn_Click
         AddHandler AddCountyAlertButton.Click, AddressOf AddCountyAlertButton_Click
-        AddHandler EditCountyAlertButton.Click, AddressOf EditCountyAlertButton_Click
-        AddHandler DeleteCountyAlertButton.Click, AddressOf DeleteCountyAlertButton_Click
+        AddHandler DeleteCountyAlertBtn.Click, AddressOf DeleteCountyAlertBtn_Click
         AddHandler EditEmail.Click, AddressOf BtnEditEmail_Click
+        AddHandler DeleteAlertBtn.Click, AddressOf DeleteAlertBtn_Click
     End Sub
 
     ' Move "Loaded" logic here
@@ -42,6 +41,14 @@ Public Class ConfigView
         ForensicDatabaseTxtBlk.Text = result.ForensicDatabasePath
         ForensicLibraryPathTxtBlk.Text = result.ForensicLibraryPath
         ForensicOfficePathTxtBlk.Text = result.ForensicOfficePath
+        Dim alertList As List(Of String) = _handler.LoadPatientAlerts()
+        AlertsListBox.ItemsSource = alertList
+        Dim countyAlertList As List(Of String) = _handler.LoadCountyAlerts()
+        CountyAlertsListBox.ItemsSource = countyAlertList
+
+        If countyAlertList.Count = 0 Then
+            CountyAlertsListBox.ItemsSource = New List(Of String) From {"(No county alerts configured)"}
+        End If
 
     End Sub
 
@@ -53,28 +60,46 @@ Public Class ConfigView
         _handler.HandleSaveConfigClick()
     End Sub
 
-    Private Sub AddAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.AddAlertButtonClick()
+    Private Sub DeleteAlertBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim selected As String = CType(AlertsListBox.SelectedItem, String)
+        If String.IsNullOrWhiteSpace(selected) Then
+            MessageBox.Show("Please select a patient alert to delete.")
+            Return
+        End If
+
+        Dim key = selected.Split("="c)(0).Trim()
+
+        Dim result = MessageBox.Show(
+        $"Are you sure you want to delete the alert for patient: {key}?",
+        "Confirm Delete",
+        MessageBoxButton.YesNo,
+        MessageBoxImage.Warning)
+
+        If result = MessageBoxResult.Yes Then
+            _handler.DeletePatientAlertByKey(key)
+            AlertsListBox.ItemsSource = _handler.LoadPatientAlerts()
+        End If
     End Sub
 
-    Private Sub EditAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.EditAlertButtonClick()
-    End Sub
+    Private Sub DeleteCountyAlertBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim selected As String = CType(CountyAlertsListBox.SelectedItem, String)
+        If String.IsNullOrWhiteSpace(selected) Then
+            MessageBox.Show("Please select a county alert to delete.")
+            Return
+        End If
 
-    Private Sub DeleteAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.DeleteAlertButtonClick()
-    End Sub
+        Dim key = selected.Split("="c)(0).Trim()
 
-    Private Sub AddCountyAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.AddCountyAlertButtonClick()
-    End Sub
+        Dim result = MessageBox.Show(
+        $"Are you sure you want to delete the alert for county: {key}?",
+        "Confirm Delete",
+        MessageBoxButton.YesNo,
+        MessageBoxImage.Warning)
 
-    Private Sub EditCountyAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.EditCountyAlertButtonClick()
-    End Sub
-
-    Private Sub DeleteCountyAlertButton_Click(sender As Object, e As RoutedEventArgs)
-        _handler.DeleteCountyAlertButtonClick()
+        If result = MessageBoxResult.Yes Then
+            _handler.DeleteCountyAlertByKey(key)
+            CountyAlertsListBox.ItemsSource = _handler.LoadCountyAlerts()
+        End If
     End Sub
 
     Private Sub BtnEditEmail_Click(sender As Object, e As RoutedEventArgs)
@@ -84,4 +109,15 @@ Public Class ConfigView
     Private Sub BtnSaveDoctorsList_Click(sender As Object, e As RoutedEventArgs)
         _handler.SaveDoctorsList(TextBoxDoctors.Text)
     End Sub
+
+    Private Sub AddAlertButton_Click(sender As Object, e As RoutedEventArgs)
+        _handler.AddAlertButtonClick()
+        AlertsListBox.ItemsSource = _handler.LoadPatientAlerts()
+    End Sub
+
+    Private Sub AddCountyAlertButton_Click(sender As Object, e As RoutedEventArgs)
+        _handler.AddCountyAlertButtonClick()
+        CountyAlertsListBox.ItemsSource = _handler.LoadCountyAlerts()
+    End Sub
+
 End Class

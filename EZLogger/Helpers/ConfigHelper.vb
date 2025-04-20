@@ -10,6 +10,48 @@ Namespace Helpers
 
 Public Module ConfigHelper
 
+        Public Function GetCountyAlerts(globalConfigPath As String) As Dictionary(Of String, String)
+            Dim countyAlertsDict As New Dictionary(Of String, String)
+
+            If Not File.Exists(globalConfigPath) Then Return countyAlertsDict
+
+            Dim jsonText As String = File.ReadAllText(globalConfigPath)
+            Dim doc = JsonDocument.Parse(jsonText)
+
+            Dim countyAlertsSection As JsonElement
+
+            If doc.RootElement.TryGetProperty("county_alerts", countyAlertsSection) Then
+                For Each prop In countyAlertsSection.EnumerateObject()
+                    If prop.Name <> "_comment" Then
+                        countyAlertsDict(prop.Name) = prop.Value.GetString()
+                    End If
+                Next
+            End If
+
+            Return countyAlertsDict
+        End Function
+
+        Public Function GetPatientAlerts(globalConfigPath As String) As Dictionary(Of String, String)
+            Dim alertsDict As New Dictionary(Of String, String)
+
+            If Not File.Exists(globalConfigPath) Then Return alertsDict
+
+            Dim jsonText As String = File.ReadAllText(globalConfigPath)
+            Dim doc = JsonDocument.Parse(jsonText)
+
+            Dim alertsSection As JsonElement ' ← Add this line
+
+            If doc.RootElement.TryGetProperty("Alerts", alertsSection) Then
+                For Each prop In alertsSection.EnumerateObject()
+                    If prop.Name <> "_comment" Then
+                        alertsDict(prop.Name) = prop.Value.GetString()
+                    End If
+                Next
+            End If
+
+            Return alertsDict
+        End Function
+
         ''' <summary>
         ''' Prompts the user to select a folder and returns the selected path.
         ''' </summary>
