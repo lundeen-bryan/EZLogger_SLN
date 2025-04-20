@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports MessageBox = System.Windows.MessageBox
 
 Public Module DatabaseHelper
 

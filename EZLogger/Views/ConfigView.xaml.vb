@@ -3,6 +3,7 @@ Imports System.Windows
 Imports System.Windows.Controls
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
+Imports MessageBox = System.Windows.MessageBox
 
 Public Class ConfigView
     Inherits UserControl

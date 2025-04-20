@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Word
 Imports System.Windows.Forms
+Imports MessageBox = System.Windows.MessageBox
 
 Namespace Helpers
 
