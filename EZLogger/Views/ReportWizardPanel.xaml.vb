@@ -28,47 +28,16 @@ Partial Public Class ReportWizardPanel
         AddHandler Btn_L.Click, AddressOf Btn_L_Click
     End Sub
 
-
-    'Private Sub BtnSaveForm_Click(sender As Object, e As RoutedEventArgs)
-    '    Dim mvhandler As New MoveCopyHandler()
-    '    mvhandler.OnMoveCopyClick()
-    'End Sub
-
-    ''Private Sub CoverPages_Click(sender As Object, e As RoutedEventArgs)
-    ''    Dim fileHandler As New CoverPageHandler()
-    ''    fileHandler.OnFileSaveHostClick()
-    'End Sub
-
-    'Private Sub BtnOpenOpinionForm_Click(sender As Object, e As RoutedEventArgs)
-    '    Dim opHandler As New OpinionHandler()
-    '    opHandler.OnOpenOpinionFormClick()
-    'End Sub
-
-    Private Sub BtnSelectAuthor_Click(sender As Object, e As RoutedEventArgs)
-        Dim auHandler As New AuthorHandler()
-        auHandler.OnOpenAuthorFormClick()
-    End Sub
-
-    Private Sub BtnSelectChief_Click(sender As Object, e As RoutedEventArgs)
-        Dim chHandler As New ChiefApprovalHandler()
-        chHandler.OnOpenChiefHostClick()
-    End Sub
-
     Private Sub ReportWizardPanel_Loaded(sender As Object, e As RoutedEventArgs)
     End Sub
-    Public Sub RefreshPatientNameLabel()
-        Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
-        LabelPatientName.Content = name
-    End Sub
-
     Private Sub Btn_A_Click(sender As Object, e As RoutedEventArgs)
         ' Searches footer for the patient number and populates the text box
-        _handler.SearchAndPopulatePatientNumber(Me)
+        _handler.ShowBtnAMessage(Me)
     End Sub
 
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
         ' Pull data from database and save as doc properties
-        _handler.LookupPatientAndWriteProperties(TextBoxPatientNumber.Text, Me)
+        _handler.ShowBtnBMessage(TextBoxPatientNumber.Text, Me)
     End Sub
 
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)

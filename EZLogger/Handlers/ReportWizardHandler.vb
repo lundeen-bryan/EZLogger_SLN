@@ -11,9 +11,10 @@ Namespace Handlers
         ''' <summary>
         ''' Called by Btn_A. Searches the Word document footer for a patient number
         ''' and populates the TextBox if found. Alerts the user if not found.
+        ''' Formerly named SearchAndPopulatePatientNumber
         ''' </summary>
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
-        Public Sub SearchAndPopulatePatientNumber(panel As ReportWizardPanel)
+        Public Sub ShowBtnAMessage(panel As ReportWizardPanel)
 
             Dim reader As New WordFooterReader()
 
@@ -29,13 +30,19 @@ Namespace Handlers
 
         End Sub
 
+        Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
+            Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
+            panel.LabelPatientName.Content = name
+        End Sub
+
         ''' <summary>
         ''' Called by Btn_B. Looks up a patient by number, shows confirmation,
         ''' writes data to custom document properties, and updates the UI.
+        ''' Formerly called LookupPatientAndWriteProperties
         ''' </summary>
         ''' <param name="patientNumber">Patient number to look up.</param>
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
-        Public Sub LookupPatientAndWriteProperties(patientNumber As String, panel As ReportWizardPanel)
+        Public Sub ShowBtnBMessage(patientNumber As String, panel As ReportWizardPanel)
 
             If String.IsNullOrWhiteSpace(patientNumber) Then
                 MsgBoxHelper.Show("No patient number found. Please use the Search button first.")
@@ -64,7 +71,7 @@ Namespace Handlers
                                               If result = CustomMsgBoxResult.Yes Then
                                                   DocumentPropertyHelper.WriteDataToDocProperties(patient)
                                                   SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
-                                                  panel.RefreshPatientNameLabel()
+                                                  RefreshPatientNameLabel(panel)
                                                   panel.Btn_B_Checkbox.IsChecked = True
                                               Else
                                                   MsgBoxHelper.Show("Please check the patient number and try again.")
