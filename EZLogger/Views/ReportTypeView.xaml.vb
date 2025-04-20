@@ -15,14 +15,14 @@ Public Class ReportTypeView
         WireUpButtons()
     End Sub
 
-    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Dim reportTypes As List(Of String) = _handler.GetReportTypes()
-        ReportTypeCbo.ItemsSource = reportTypes
+    Private Sub WireUpButtons()
+        AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
+        AddHandler ReportTypeSelectedBtn.Click, AddressOf ReportTypeSelectedBtn_Click
     End Sub
 
-    Private Sub WireUpButtons()
-        'AddHandler Btn_Close.Click, AddressOf Btn_Close_Click
-        AddHandler ReportTypeSelectedBtn.Click, AddressOf ReportTypeSelectedBtn_Click
+    Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
+        Dim reportTypes As List(Of String) = _handler.GetReportTypes()
+        ReportTypeCbo.ItemsSource = reportTypes
     End Sub
 
     Private Sub ReportTypeSelectedBtn_Click(sender As Object, e As RoutedEventArgs)
