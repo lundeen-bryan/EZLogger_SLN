@@ -4,9 +4,60 @@ Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
 Imports EZLogger.Helpers
 Imports System.IO
+Imports System.Text.Json
 
 Namespace Handlers
     Public Class ConfigViewHandler
+        Public Sub HandleSetupFolderPathsClick()
+            ' Step 1: Prompt user for folders
+            Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
+            Dim libPath As String = ConfigHelper.PromptForFolder("Select the Forensic Reports Library folder")
+            Dim edoPath As String = ConfigHelper.PromptForFolder("Select the EDO - Forensic Office folder")
+
+            ' Step 2: Ensure all folders were selected
+            If String.IsNullOrEmpty(dbPath) OrElse String.IsNullOrEmpty(libPath) OrElse String.IsNullOrEmpty(edoPath) Then
+                MessageBox.Show("Please select all required folders.", "Incomplete Setup", MessageBoxButton.OK, MessageBoxImage.Warning)
+                Return
+            End If
+
+            ' Step 3: Load the config file
+            Dim configPath As String = ConfigHelper.GetLocalConfigPath()
+            Dim configText As String = File.ReadAllText(configPath)
+            Dim config = JsonSerializer.Deserialize(Of Models.LocalUserConfig)(configText)
+
+            ' Step 4: Update config fields
+            config.sp_filepath.databases = dbPath
+            config.sp_filepath.user_forensic_database = dbPath
+            config.sp_filepath.user_forensic_library = libPath
+            config.sp_filepath.court_contact = Path.Combine(dbPath, "Court_Contact_Database.xlsx")
+            config.sp_filepath.da_contact_database = Path.Combine(dbPath, "Da_Contact_Database.xlsx")
+            config.sp_filepath.doctors_list = Path.Combine(dbPath, "Doctors.txt")
+            config.sp_filepath.hlv_data = Path.Combine(dbPath, "HLV_Report_Database.xlsm")
+            config.sp_filepath.hlv_due = Path.Combine(dbPath, "HLV Due for Visit.txt")
+            config.sp_filepath.ods_filepath = Path.Combine(dbPath, "ODS.xlsm")
+            config.sp_filepath.properties_list = Path.Combine(dbPath, "document_properties.txt")
+            config.sp_filepath.templates = Path.Combine(dbPath, "Templates")
+
+            config.edo_filepath.forensic_office = edoPath
+            config.edo_filepath.processed_reports = "\Programming\EZ Logger\ProcessedReports"
+            config.edo_filepath.tcars_folder = "\1370 FS Report Tracking"
+
+            ' Step 5: Save updated config
+            Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+            File.WriteAllText(configPath, JsonSerializer.Serialize(config, options))
+
+            MessageBox.Show("EZLogger config paths saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
+        End Sub
+
+        Public Sub HandleTestFolderPickerClick()
+            Dim selectedPath As String = ConfigHelper.PromptForFolder("Select your EZLogger_Databases folder")
+
+            If Not String.IsNullOrEmpty(selectedPath) Then
+                MessageBox.Show("You selected: " & selectedPath, "Folder Picker Test")
+            Else
+                MessageBox.Show("No folder was selected.", "Folder Picker Test")
+            End If
+        End Sub
 
         Public Sub SaveDoctorsList(doctorsText As String)
             Dim filePath As String = ListHelper.GetDoctorListFilePath()
@@ -48,32 +99,59 @@ Namespace Handlers
         End Function
 
         Public Sub HandleCreateConfigClick()
-            ' Step 1: Ensure local_user_config.json exists in %USERPROFILE%\.ezlogger
+            ' Step 1: Ensure local_user_config.json exists
             Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
             If String.IsNullOrEmpty(localConfigPath) Then
                 MessageBox.Show("Failed to create or locate local config file.", "Setup Failed")
                 Return
             End If
 
-            ' Step 2: Prompt the user to select their global_config.json from the EZLogger_Databases SharePoint folder
+            ' Step 2: Prompt the user to select global_config.json
             Dim globalConfigPath As String = ConfigHelper.PromptForGlobalConfigFile()
             If String.IsNullOrEmpty(globalConfigPath) Then
                 MessageBox.Show("Global config selection was cancelled or invalid.", "Setup Incomplete")
                 Return
             End If
 
-            ' Step 3: Write the global config path into local_user_config.json under sp_filepath.global_config_file
-            ConfigHelper.UpdateLocalConfigWithGlobalPath(globalConfigPath)
+            ' Step 3: Load config and apply global_config_file
+            Dim configText As String = File.ReadAllText(localConfigPath)
+            Dim config = JsonSerializer.Deserialize(Of Models.LocalUserConfig)(configText)
+            config.sp_filepath.global_config_file = globalConfigPath
 
-            ' Step 4: Notify the user of success
+            ' Step 4: Prompt for supporting folders
+            Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
+            Dim libPath As String = ConfigHelper.PromptForFolder("Select the Forensic Reports Library folder")
+            Dim edoPath As String = ConfigHelper.PromptForFolder("Select the EDO - Forensic Office folder")
+
+            If String.IsNullOrEmpty(dbPath) OrElse String.IsNullOrEmpty(libPath) OrElse String.IsNullOrEmpty(edoPath) Then
+                MessageBox.Show("All folder paths are required to complete setup.", "Missing Info", MessageBoxButton.OK, MessageBoxImage.Warning)
+                Return
+            End If
+
+            ' Step 5: Fill in other sp_filepath and edo_filepath values
+            config.sp_filepath.databases = dbPath
+            config.sp_filepath.user_forensic_database = dbPath
+            config.sp_filepath.user_forensic_library = libPath
+            config.sp_filepath.court_contact = Path.Combine(dbPath, "Court_Contact_Database.xlsx")
+            config.sp_filepath.da_contact_database = Path.Combine(dbPath, "Da_Contact_Database.xlsx")
+            config.sp_filepath.doctors_list = Path.Combine(dbPath, "Doctors.txt")
+            config.sp_filepath.hlv_data = Path.Combine(dbPath, "HLV_Report_Database.xlsm")
+            'config.sp_filepath.hlv_due = Path.Combine(dbPath, "HLV Due for Visit.txt")
+            'config.sp_filepath.ods_filepath = Path.Combine(dbPath, "ODS.xlsm")
+            'config.sp_filepath.properties_list = Path.Combine(dbPath, "document_properties.txt")
+            config.sp_filepath.templates = Path.Combine(dbPath, "Templates")
+
+            config.edo_filepath.forensic_office = edoPath
+            config.edo_filepath.processed_reports = "\Programming\EZ Logger\ProcessedReports"
+            config.edo_filepath.tcars_folder = "\1370 FS Report Tracking"
+
+            ' Step 6: Write back to config
+            Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+            File.WriteAllText(localConfigPath, JsonSerializer.Serialize(config, options))
+
             MessageBox.Show("Configuration setup complete!" & Environment.NewLine &
                     "Local config stored at:" & Environment.NewLine & localConfigPath,
                     "EZLogger Setup Complete")
-
-            ' Optional: Update visible labels in the form
-            ' (Assumes you're calling this from a host form that can access the text blocks)
-            ' configView.txtblock_local_config.Text = localConfigPath
-            ' configView.txtblock_global_config.Text = globalConfigPath
         End Sub
 
         Public Sub HandleSaveConfigClick()

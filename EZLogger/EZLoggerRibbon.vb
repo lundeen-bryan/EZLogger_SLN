@@ -1,4 +1,5 @@
-﻿Imports EZLogger.Helpers
+﻿Imports EZLogger.Handlers
+Imports EZLogger.Helpers
 Imports Microsoft.Office.Tools.Ribbon
 Imports System.Windows
 Imports System.Windows.Forms
@@ -109,6 +110,11 @@ Public Class EZLoggerRibbon
         Catch ex As Exception
             MessageBox.Show("Failed to clear properties: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
+    End Sub
+
+    Private Sub BtnTestFolder_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnTestFolder.Click
+        Dim handler As New ConfigViewHandler()
+        handler.HandleTestFolderPickerClick()
     End Sub
 End Class
 

@@ -497,6 +497,7 @@
     <Compile Include="Models\AboutInfoResult.vb" />
     <Compile Include="Models\ConfigViewLoadResult.vb" />
     <Compile Include="Models\DocPropertyEntry.vb" />
+    <Compile Include="Models\LocalUserConfig.vb" />
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Models\TCARRecord.vb" />

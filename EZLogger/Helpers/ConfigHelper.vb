@@ -3,12 +3,32 @@ Imports System.IO
 Imports System.Text.Json
 Imports System.Windows
 Imports System.Windows.Forms
+Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
 
 Namespace Helpers
 
 Public Module ConfigHelper
 
+        ''' <summary>
+        ''' Prompts the user to select a folder and returns the selected path.
+        ''' </summary>
+        ''' <param name="title">The description shown in the folder picker dialog.</param>
+        ''' <returns>Selected folder path, or empty string if canceled.</returns>
+        Public Function PromptForFolder(title As String) As String
+            Dim dialog As New OpenFileDialog With {
+                .Title = title,
+                .CheckFileExists = False,
+                .CheckPathExists = True,
+                .FileName = "Select Folder"
+            }
+
+            If dialog.ShowDialog() = DialogResult.OK Then
+                Return Path.GetDirectoryName(dialog.FileName)
+            End If
+
+            Return String.Empty
+        End Function
 
         ''' <summary>
         ''' Ensures And returns the path To the local_user_config.json file inside %USERPROFILE%\.ezlogger.
@@ -18,50 +38,44 @@ Public Module ConfigHelper
     Return EnsureLocalUserConfigFileExists()
 End Function
 
-''' <summary>
-''' Updates the local_user_config.json file (in %USERPROFILE%\.ezlogger)
-''' To include the selected path To the global_config.json under sp_filepath.global_config_file.
-''' </summary>
-''' <param name="globalConfigPath">The full path To the selected global_config.json file.</param>
-Public Sub UpdateLocalConfigWithGlobalPath(globalConfigPath As String)
-    ' TODO config
-    Try
-    ' Get the full path To local_user_config.json (auto-created If missing)
-    Dim localConfigPath As String = GetLocalConfigPath()
+        ''' <summary>
+        ''' Updates the local_user_config.json file (in %USERPROFILE%\.ezlogger)
+        ''' To include the selected path To the global_config.json under sp_filepath.global_config_file.
+        ''' </summary>
+        ''' <param name="globalConfigPath">The full path To the selected global_config.json file.</param>
+        Public Sub UpdateLocalConfigWithGlobalPath(globalConfigPath As String)
+            Try
+                Dim localConfigPath As String = GetLocalConfigPath()
+                Dim json As String = File.ReadAllText(localConfigPath)
 
-    ' Read existing contents of the config file
-    Dim json As String = File.ReadAllText(localConfigPath)
-    Dim doc = JsonDocument.Parse(json)
+                Dim config = JsonSerializer.Deserialize(Of LocalUserConfig)(json)
 
-    ' Convert current root structure To a dictionary
-    Dim rootDict As New Dictionary(Of String, Object)
-    For Each prop In doc.RootElement.EnumerateObject()
-    rootDict(prop.Name) = prop.Value
-    Next
+                If config Is Nothing Then
+                    Throw New Exception("Unable to parse local config file.")
+                End If
 
-    ' Overwrite Or create the sp_filepath section With the New global config path
-    Dim spSection As New Dictionary(Of String, String) From {
-    {"global_config_file", globalConfigPath }
-    }
-    rootDict("sp_filepath") = spSection
+                If config.sp_filepath Is Nothing Then
+                    config.sp_filepath = New SPFilePathSection()
+                End If
 
-    ' Serialize the updated structure back To JSON
-    Dim options As New JsonSerializerOptions With {.WriteIndented = True }
-    Dim updatedJson As String = JsonSerializer.Serialize(rootDict, options)
+                config.sp_filepath.global_config_file = globalConfigPath
 
-    ' Write the updated content To local_user_config.json
-    File.WriteAllText(localConfigPath, updatedJson)
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                Dim updatedJson As String = JsonSerializer.Serialize(config, options)
 
-    Catch ex As Exception
-    MessageBox.Show("Failed To update local_user_config.json: " & ex.Message, "Write Error", MessageBoxButton.OK, MessageBoxImage.Error )
-    End Try
-    End Sub
+                File.WriteAllText(localConfigPath, updatedJson)
 
-    ''' <summary>
-    ''' Prompts the user To Select their global_config.json file And returns the selected path.
-    ''' </summary>
-    ''' <returns>Full path To the selected config file, Or empty string If cancelled.</returns>
-Public Function PromptForGlobalConfigFile() As String
+            Catch ex As Exception
+                MessageBox.Show("Failed to update local_user_config.json: " & ex.Message,
+                        "Write Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Prompts the user To Select their global_config.json file And returns the selected path.
+        ''' </summary>
+        ''' <returns>Full path To the selected config file, Or empty string If cancelled.</returns>
+        Public Function PromptForGlobalConfigFile() As String
     ' TODO: config
     Dim dialog As New OpenFileDialog With {
     .Title = "Select your EZLogger global_config.json file",
@@ -81,53 +95,71 @@ Public Function PromptForGlobalConfigFile() As String
     Return String.Empty
     End Function
 
-    ''' <summary>
-    ''' Ensures the local EZLogger configuration folder And config file exist in the user's home directory.
-    ''' </summary>
-    ''' <returns>The full path To local_user_config.json, Or an empty string If failed.</returns>
-Public Function EnsureLocalUserConfigFileExists() As String
-    'TODO: config
-    Try
-    ' Get the user's home directory
-    Dim userHome As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
+        ''' <summary>
+        ''' Ensures the local EZLogger configuration folder And config file exist in the user's home directory.
+        ''' </summary>
+        ''' <returns>The full path To local_user_config.json, Or an empty string If failed.</returns>
+        Public Function EnsureLocalUserConfigFileExists() As String
+            Try
+                Dim userHome As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
+                Dim ezloggerDir As String = Path.Combine(userHome, ".ezlogger")
+                Dim configFile As String = Path.Combine(ezloggerDir, "local_user_config.json")
 
-    ' Build the path To the .ezlogger directory
-    Dim ezloggerDir As String = Path.Combine(userHome, ".ezlogger")
+                If Not Directory.Exists(ezloggerDir) Then
+                    Directory.CreateDirectory(ezloggerDir)
+                End If
 
-    ' Build the path To the config file
-    Dim configFile As String = Path.Combine(ezloggerDir, "local_user_config.json")
+                If Not File.Exists(configFile) Then
+                    Dim config As New LocalUserConfig With {
+                ._comment = "EZLogger Local User Configuration File - last updated " & DateTime.Now.ToString("yyyy-MM-dd"),
+                .this_config = New ThisConfigSection With {
+                    ._comment = "Identifies this as a user-specific config file",
+                    .name = "user config"
+                },
+                .sp_filepath = New SPFilePathSection With {
+                    ._comment = "Local file paths used by the user for templates, contact databases, and shared config references",
+                    .databases = "TBD",
+                    .user_forensic_database = "TBD",
+                    .user_forensic_library = "TBD",
+                    .court_contact = "TBD",
+                    .da_contact_database = "TBD",
+                    .doctors_list = "TBD",
+                    .global_config_file = "",
+                    .hlv_data = "TBD",
+                    .hlv_due = "TBD",
+                    .ods_filepath = "TBD",
+                    .properties_list = "TBD",
+                    .sheriff_addresses = "TBD",
+                    .templates = "TBD",
+                    .ezl_database = "TBD"
+                },
+                .edo_filepath = New EDOFilePathSection With {
+                    ._comment = "Shortcuts to shared drive paths, relative to a network root",
+                    .forensic_office = "TBD",
+                    .processed_reports = "TBD",
+                    .tcars_folder = "TBD"
+                }
+            }
 
-    ' Create the .ezlogger folder If it doesn't exist
-    If Not Directory.Exists(ezloggerDir) Then
-    Directory.CreateDirectory(ezloggerDir)
-    End If
+                    Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                    Dim json As String = JsonSerializer.Serialize(config, options)
+                    File.WriteAllText(configFile, json)
+                End If
 
-    ' Create a basic config file If it doesn't exist
-    If Not File.Exists(configFile) Then
-    Dim initialJson = New With {
-    .status = "created",
-    .created_at = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")
-    }
+                Return configFile
 
-    Dim options As New JsonSerializerOptions With {.WriteIndented = True }
-    Dim json As String = JsonSerializer.Serialize(initialJson, options)
-    File.WriteAllText(configFile, json)
-    End If
+            Catch ex As Exception
+                MessageBox.Show("Error creating local_user_config.json in the user profile: " & ex.Message,
+                        "EZLogger Config Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Return String.Empty
+            End Try
+        End Function
 
-    ' Return the full path
-    Return configFile
-
-    Catch ex As Exception
-    MessageBox.Show("Error creating local_user_config.json in the user profile: " & ex.Message, "EZLogger Config Error", MessageBoxButton.OK, MessageBoxImage.Error )
-    Return String.Empty
-    End Try
-    End Function
-
-    ''' <summary>
-    ''' Reads the local_user_config.json And extracts the path To the global config file.
-    ''' </summary>
-    ''' <returns>Full path To the global config file, Or an empty string If Not found.</returns>
-Public Function GetGlobalConfigPath() As String
+        ''' <summary>
+        ''' Reads the local_user_config.json And extracts the path To the global config file.
+        ''' </summary>
+        ''' <returns>Full path To the global config file, Or an empty string If Not found.</returns>
+        Public Function GetGlobalConfigPath() As String
     'TODO:config
     Dim configPath As String = GetLocalConfigPath()
 
