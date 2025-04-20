@@ -20,10 +20,15 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ## [0.0.1] - 2025-04-20
 
+### Added
+
+- 
+
 ### Changed
 
 - report wizard panel removed and cleaned up old code
 - cleaned up PatientInfoView
+- moved HandleYearDown button click to the handler from the code behind the xaml
 
 ## [0.0.1] - 2025-04-19
 

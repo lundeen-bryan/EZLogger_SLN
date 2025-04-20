@@ -10,6 +10,24 @@ Namespace Handlers
     Public Class DueDatePprHandler
 
         ''' <summary>
+        ''' Called when the user clicks the Year Down button to subtract one year from the current due date.
+        ''' </summary>
+        ''' <param name="view">The DueDatePprView instance.</param>
+        Public Sub HandleYearDownClick(view As DueDatePprView)
+            Try
+                If view.CurrentDueDatePick.SelectedDate.HasValue Then
+                    Dim selectedDate As Date = view.CurrentDueDatePick.SelectedDate.Value
+                    Dim newDate As Date = selectedDate.AddYears(-1)
+                    view.CurrentDueDatePick.SelectedDate = newDate
+                Else
+                    MessageBox.Show("Please select a current due date first.", "Missing Date", MessageBoxButton.OK, MessageBoxImage.Warning)
+                End If
+            Catch ex As Exception
+                MessageBox.Show($"Error adjusting year: {ex.Message}", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
+        End Sub
+
+        ''' <summary>
         ''' Called when the user clicks SwitchDatesBtn to swap current and next due dates.
         ''' </summary>
         ''' <param name="view">The DueDatePprView instance.</param>
