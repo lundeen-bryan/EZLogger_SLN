@@ -38,13 +38,7 @@ Public Class DueDatePprView
         _handler.HandleSwitchDatesClick(Me)
     End Sub
     Private Sub YearDownBtn_Click(sender As Object, e As RoutedEventArgs)
-        If CurrentDueDatePick.SelectedDate.HasValue Then
-            Dim selectedDate As Date = CurrentDueDatePick.SelectedDate.Value
-            Dim newDate As Date = selectedDate.AddYears(-1)
-            CurrentDueDatePick.SelectedDate = newDate
-        Else
-            MessageBox.Show("Please select a current due date first.", "Missing Date", MessageBoxButton.OK, MessageBoxImage.Warning)
-        End If
+        _handler.HandleYearDownClick(Me)
     End Sub
 
 End Class
