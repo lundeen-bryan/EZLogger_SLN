@@ -506,6 +506,9 @@
     <Compile Include="Views\AboutView.xaml.vb">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddAlertPopup.xaml.vb">
+      <DependentUpon>AddAlertPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChiefApprovalView.xaml.vb">
       <DependentUpon>ChiefApprovalView.xaml</DependentUpon>
     </Compile>
@@ -648,6 +651,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddAlertPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

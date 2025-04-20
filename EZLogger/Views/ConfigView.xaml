@@ -166,12 +166,7 @@
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
-                        <Button x:Name="EditAlertButton"
-                                Content="_Edit"
-                                Width="100"
-                                Margin="10,0"
-                                Background="{x:Null}" />
-                        <Button x:Name="DeleteAlertButton"
+                        <Button x:Name="DeleteAlertBtn"
                                 Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
@@ -212,12 +207,7 @@
                                 Width="100"
                                 Margin="10,0"
                                 Background="{x:Null}" />
-                        <Button x:Name="EditCountyAlertButton"
-                                Content="_Edit"
-                                Width="100"
-                                Margin="10,0"
-                                Background="{x:Null}" />
-                        <Button x:Name="DeleteCountyAlertButton"
+                        <Button x:Name="DeleteCountyAlertBtn"
                                 Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
