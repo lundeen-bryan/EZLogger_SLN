@@ -19,6 +19,9 @@
         ''' Global config file path or a message if it is not set.
         ''' </summary>
         Public Property GlobalConfigPathMessage As String
+        Public Property ForensicDatabasePath As String
+        Public Property ForensicLibraryPath As String
+        Public Property ForensicOfficePath As String
 
     End Class
 

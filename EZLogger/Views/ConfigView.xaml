@@ -90,7 +90,7 @@
                               VerticalAlignment="Top"
                               Width="760"
                               BorderBrush="DarkGray">
-                        <TextBlock x:Name="txtblock_forensic_office"
+                        <TextBlock x:Name="ForensicOfficePathTxtBlk"
                                    HorizontalAlignment="Left"
                                    Margin="6,6,6,0"
                                    TextWrapping="Wrap"
@@ -104,7 +104,7 @@
                               VerticalAlignment="Top"
                               Width="760"
                               BorderBrush="DarkGray">
-                        <TextBlock x:Name="txtblock_forensic_library"
+                        <TextBlock x:Name="ForensicLibraryPathTxtBlk"
                                    HorizontalAlignment="Left"
                                    Margin="6,6,6,0"
                                    TextWrapping="Wrap"
@@ -118,7 +118,7 @@
                               VerticalAlignment="Top"
                               Width="760"
                               BorderBrush="DarkGray">
-                        <TextBlock x:Name="txtblock_forensic_database"
+                        <TextBlock x:Name="ForensicDatabaseTxtBlk"
                                    HorizontalAlignment="Left"
                                    Margin="6,6,6,0"
                                    TextWrapping="Wrap"
