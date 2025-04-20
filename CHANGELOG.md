@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
 - Grid display and patient lookup logic supporting multiple legal statuses
-- Adjust UI to reflect dual status where relevant with a dual status field on Report Wizard Panel.
-- Use CustomMsgBox form in place of Windows.MessageBox -- low priority if it enhances some aspect of the UI
-- Refactor anywhere that it says Windows.MessageBox instead to use Imports MessageBox = System.Windows.MessageBox
 - Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
@@ -39,6 +36,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - `Early90DayLbl` now shows if it had an early 90-Day report
 - Added a test helper and button to the ribbon to pull a random patient from the database for testing purposes.
 - Added Due date handler to show the PPR due dates form with proper due dates and expiration date
+- Added a trash icon to Ribbon to delete all custom document properties
 
 ## [0.0.1] - 2025-04-17
 

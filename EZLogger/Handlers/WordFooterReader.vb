@@ -2,6 +2,7 @@
 Imports System.Windows.Forms
 Imports Clipboard = System.Windows.Clipboard
 Imports EZLogger.Helpers
+Imports MessageBox = System.Windows.Messagebox
 
 Public Class WordFooterReader
 

@@ -5,6 +5,7 @@ Imports System.Text.Json
 Imports EZLogger.Helpers
 Imports System.Windows.Forms
 Imports System.Windows.Media.Imaging
+Imports MessageBox = System.Windows.MessageBox
 
 Namespace EZLogger.Views
 
@@ -40,12 +41,12 @@ Namespace EZLogger.Views
                 TxtLatestChange.Text = versionElement.GetProperty("instructions").GetString()
 
             Catch ex As Exception
-                Windows.MessageBox.Show("Failed to load About information: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                MessageBox.Show("Failed to load About information: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
             End Try
         End Sub
 
         Private Sub BtnHelp_Click(sender As Object, e As RoutedEventArgs)
-            Windows.MessageBox.Show("Help file not yet available.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            MessageBox.Show("Help file not yet available.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
         End Sub
 
         Private Sub BtnGoBack_Click(sender As Object, e As RoutedEventArgs)
