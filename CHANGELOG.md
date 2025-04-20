@@ -8,22 +8,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ## [Unreleased][Unreleased]
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
-- Grid display and patient lookup logic supporting multiple legal statuses
-- Cleanup and remove remnants of WriteMailMergeDataToDocProperties since MailMerge can't read from SQLite db files
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
 - Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
-- Add function in a module to copy to clipboard since it will be used a lot in this app
-- Add function to get sender's name and add it as a document property as "ProcessedBy"
-- Add function to position forms on the same screen as the Word application in the top left corner rather than in the center of the main screen see fnc_position_form in legacy
-- Add function to return full filepath or filename or ext of open word document
 - Add function to check if a file already exists in a directory
-- Function to return user's temp file path
-- Return users documents path for finding the user_config.json file
 - Update EZL to show a charges column and write function to return charges from ODS
 - Function to write metadata to the sharepoint site when the file is uploaded/saved there
-- Functiion to close the document without notifications to the user
 - Functions to convert document to pdf and xps
-- Function to go to last page and first page and header/footer of document
 - Function to insert signature
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
