@@ -1,5 +1,6 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
+Imports EZLogger.EZLogger
 Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
 Imports Word = Microsoft.Office.Interop.Word
