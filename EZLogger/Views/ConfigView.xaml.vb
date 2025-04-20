@@ -15,7 +15,10 @@ Public Class ConfigView
 
         ' Set up the handler
         _handler = New ConfigViewHandler()
+        WireUpButtons()
+    End Sub
 
+    Private Sub WireUpButtons()
         ' Wire up buttons
         AddHandler BtnCreateConfig.Click, AddressOf BtnCreateConfig_Click
         AddHandler BtnSaveDoctorsList.Click, AddressOf BtnSaveDoctorsList_Click
@@ -31,33 +34,11 @@ Public Class ConfigView
 
     ' Move "Loaded" logic here
     Private Sub ConfigView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        ' Load doctor list (this already works)
-        TextBoxDoctors.Text = String.Join(Environment.NewLine, ListHelper.GetDoctorList())
+        Dim result = _handler.HandleViewLoaded()
 
-        ' Step 1: Build expected path to local config file
-        Dim localConfigPath As String = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".ezlogger\local_user_config.json"
-        )
-
-        ' Step 2: If local config file is missing, prompt user to create it
-        If Not File.Exists(localConfigPath) Then
-            txtblock_local_config.Text = "No config found. Please click the [C] button to create one."
-            txtblock_global_config.Text = "No global config path available."
-            Return
-        End If
-
-        ' Step 3: Show local config file path
-        txtblock_local_config.Text = localConfigPath
-
-        ' Step 4: Load global config file path from inside the local config
-        Dim globalConfigPath As String = ConfigHelper.GetGlobalConfigPath()
-
-        If String.IsNullOrEmpty(globalConfigPath) Then
-            txtblock_global_config.Text = "Global config path not set. Please click [C] to configure it."
-        Else
-            txtblock_global_config.Text = globalConfigPath
-        End If
+        TextBoxDoctors.Text = String.Join(Environment.NewLine, result.DoctorList)
+        txtblock_local_config.Text = result.LocalConfigPath
+        txtblock_global_config.Text = result.GlobalConfigPathMessage
     End Sub
 
     Private Sub BtnCreateConfig_Click(sender As Object, e As RoutedEventArgs)

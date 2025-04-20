@@ -493,6 +493,7 @@
     <Compile Include="HostForms\UpdateInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ConfigViewLoadResult.vb" />
     <Compile Include="Models\DocPropertyEntry.vb" />
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />

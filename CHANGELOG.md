@@ -28,6 +28,9 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - report wizard panel removed and cleaned up old code
 - cleaned up PatientInfoView
+- Refactored `ConfigView_Loaded` logic to use a `ConfigViewLoadResult` DTO returned by `ConfigViewHandler.HandleViewLoaded`.
+- Moved configuration and file validation logic out of the view and into the handler for better separation of concerns.
+- The view now only handles UI updates; all business logic (e.g., loading doctor list, checking config files) resides in the handler.
 - moved HandleYearDown button click to the handler from the code behind the xaml
 
 ## [0.0.1] - 2025-04-19

@@ -1,10 +1,45 @@
 ﻿Imports System.Windows
 Imports System.Windows.Forms
+Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
 Imports EZLogger.Helpers
 
 Namespace Handlers
     Public Class ConfigViewHandler
+
+        ''' <summary>
+        ''' Performs logic needed when ConfigView is loaded.
+        ''' Returns the doctors list, local config path, and global config path status message.
+        ''' </summary>
+        Public Function HandleViewLoaded() As ConfigViewLoadResult
+            Dim result As New ConfigViewLoadResult()
+
+            result.DoctorList = ListHelper.GetDoctorList()
+
+            ' Build expected local config path
+            Dim localConfigPath As String = System.IO.Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                ".ezlogger\local_user_config.json"
+            )
+
+            If Not System.IO.File.Exists(localConfigPath) Then
+                result.LocalConfigPath = "No config found. Please click the [C] button to create one."
+                result.GlobalConfigPathMessage = "No global config path available."
+                Return result
+            End If
+
+            result.LocalConfigPath = localConfigPath
+
+            Dim globalConfigPath As String = ConfigHelper.GetGlobalConfigPath()
+            If String.IsNullOrEmpty(globalConfigPath) Then
+                result.GlobalConfigPathMessage = "Global config path not set. Please click [C] to configure it."
+            Else
+                result.GlobalConfigPathMessage = globalConfigPath
+            End If
+
+            Return result
+        End Function
+
         Public Sub HandleCreateConfigClick()
             ' Step 1: Ensure local_user_config.json exists in %USERPROFILE%\.ezlogger
             Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
