@@ -1,5 +1,8 @@
-﻿Imports Microsoft.Office.Tools.Ribbon
+﻿Imports EZLogger.Helpers
+Imports Microsoft.Office.Tools.Ribbon
+Imports System.Windows
 Imports System.Windows.Forms
+Imports MessageBox = System.Windows.MessageBox
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.
@@ -97,6 +100,15 @@ Public Class EZLoggerRibbon
 
     Private Sub RandomPatientNumberButton_Click(sender As Object, e As RibbonControlEventArgs) Handles RandomPatientNumberButton.Click
         TestHelper.PromptRandomPatientNumberForTest()
+    End Sub
+
+    Private Sub DeleteDocPropsBtn_Click(sender As Object, e As RibbonControlEventArgs) Handles DeleteDocPropsBtn.Click
+        Try
+            DocumentPropertyHelper.DeleteAllCustomProperties()
+            MessageBox.Show("All custom document properties have been cleared.", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
+        Catch ex As Exception
+            MessageBox.Show("Failed to clear properties: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
     End Sub
 End Class
 
