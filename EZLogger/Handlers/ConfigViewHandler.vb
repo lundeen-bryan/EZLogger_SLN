@@ -3,9 +3,16 @@ Imports System.Windows.Forms
 Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
 Imports EZLogger.Helpers
+Imports System.IO
 
 Namespace Handlers
     Public Class ConfigViewHandler
+
+        Public Sub SaveDoctorsList(doctorsText As String)
+            Dim filePath As String = ListHelper.GetDoctorListFilePath()
+            File.WriteAllText(filePath, doctorsText)
+            MessageBox.Show("Doctor list saved.")
+        End Sub
 
         ''' <summary>
         ''' Performs logic needed when ConfigView is loaded.
