@@ -212,6 +212,43 @@ Namespace Handlers
             host.ElementHost1.Height = host.ClientSize.Height - 40
             host.ElementHost1.Location = New Drawing.Point(20, 20)
 
+            Try
+                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                If doc IsNot Nothing Then
+                    ' Prefill CommitmentDateTxt and FirstDueDateTxt
+                    Dim commitmentRaw As Object = doc.CustomDocumentProperties("Commitment").Value
+                    Dim commitmentDate As Date
+                    If Date.TryParse(commitmentRaw.ToString(), commitmentDate) Then
+                        view.CommitmentDateTxt.Text = commitmentDate.ToString("MM/dd/yyyy")
+                        view.FirstDueDateTxt.Text = commitmentDate.AddMonths(6).ToString("MM/dd/yyyy")
+
+                        ' === MOVE THESE HERE ===
+                        ' Set CurrentDueDatePick and NextDueDatePick
+                        Try
+                            Dim currentYearDate As New Date(Date.Today.Year, commitmentDate.Month, commitmentDate.Day)
+                            view.CurrentDueDatePick.SelectedDate = currentYearDate
+                            view.NextDueDatePick.SelectedDate = currentYearDate.AddMonths(6)
+                        Catch ex As Exception
+                            view.CurrentDueDatePick.SelectedDate = Nothing
+                            view.NextDueDatePick.SelectedDate = Nothing
+                        End Try
+                    End If
+
+                    ' Set MaxDateTxt from Expiration
+                    Try
+                        Dim expirationRaw As Object = doc.CustomDocumentProperties("Expiration").Value
+                        Dim expirationDate As Date
+                        If Date.TryParse(expirationRaw.ToString(), expirationDate) Then
+                            view.MaxDateTxt.Text = expirationDate.ToString("MM/dd/yyyy")
+                        End If
+                    Catch ex As Exception
+                        view.MaxDateTxt.Text = ""
+                    End Try
+                End If
+            Catch ex As Exception
+                ' Silent fallback
+            End Try
+
             host.Show()
         End Sub
 
