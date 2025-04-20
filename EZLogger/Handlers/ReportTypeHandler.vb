@@ -39,6 +39,19 @@ Namespace Handlers
                 view.CommitmentDateLbl.Content = "(Missing)"
             End If
 
+            ' === Show Report Type if present ===
+            Try
+                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                If doc IsNot Nothing Then
+                    Dim reportTypeValue As String = doc.CustomDocumentProperties("Report Type").Value.ToString()
+                    If Not String.IsNullOrWhiteSpace(reportTypeValue) Then
+                        view.ReportTypeCbo.SelectedItem = reportTypeValue
+                    End If
+                End If
+            Catch ex As Exception
+                ' Do nothing if missing
+            End Try
+
             ' ✅ Populate the ComboBox
             Dim reportTypes As List(Of String) = GetReportTypes()
             view.ReportTypeCbo.ItemsSource = reportTypes
@@ -198,7 +211,7 @@ Namespace Handlers
             End Try
 
             ' Layout & styling (matches DueDates1370View)
-            host.ClientSize = New Drawing.Size(560, 460)
+            host.ClientSize = New Drawing.Size(660, 560)
             host.Text = ""
             host.MinimizeBox = False
             host.MaximizeBox = False
