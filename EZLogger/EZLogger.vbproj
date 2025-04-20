@@ -373,6 +373,7 @@
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
+    <Compile Include="Handlers\DueDatePprHandler.vb" />
     <Compile Include="Handlers\DueDates1370Handler.vb" />
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
