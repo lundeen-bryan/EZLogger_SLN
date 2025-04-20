@@ -6,6 +6,8 @@ Imports EZLogger.Helpers
 Imports System.Windows.Forms
 Imports System.Windows.Media.Imaging
 Imports MessageBox = System.Windows.MessageBox
+Imports stdole
+Imports EZLogger.Handlers
 
 Namespace EZLogger.Views
 
@@ -14,6 +16,7 @@ Namespace EZLogger.Views
 
         Private ReadOnly _hostForm As Form
         Private ReadOnly configFilePath As String = ConfigHelper.GetGlobalConfigPath()
+        Private ReadOnly _handler As New AboutWinHandler()
 
         Public Sub New(Optional hostForm As Form = Nothing)
             InitializeComponent()
@@ -22,27 +25,29 @@ Namespace EZLogger.Views
 
             AddHandler BtnHelp.Click, AddressOf BtnHelp_Click
             AddHandler BtnGoBack.Click, AddressOf BtnGoBack_Click
+            AddHandler Me.Loaded, AddressOf OnViewLoaded
+        End Sub
+        Private Sub OnViewLoaded(sender As Object, e As RoutedEventArgs)
+            LoadAboutInfo()
         End Sub
 
         ''' <summary>
-        ''' Loads the version info section from the global config.
+        ''' Loads version information from the global config using AboutViewHandler.
+        ''' Displays the data in UI text fields or shows an error message if loading fails.
         ''' </summary>
         Private Sub LoadAboutInfo()
-            Try
-                Dim jsonText As String = File.ReadAllText(configFilePath)
-                Dim doc As JsonDocument = JsonDocument.Parse(jsonText)
+            Dim result = _handler.LoadAboutInfo(ConfigHelper.GetGlobalConfigPath())
 
-                Dim versionElement As JsonElement = doc.RootElement.GetProperty("version")
+            If result.HasError Then
+                MessageBox.Show(result.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Return
+            End If
 
-                TxtCreatedBy.Text = versionElement.GetProperty("created_by").GetString()
-                TxtSupportContact.Text = versionElement.GetProperty("support_email").GetString()
-                TxtLastUpdate.Text = versionElement.GetProperty("date").GetString()
-                TxtVersion.Text = versionElement.GetProperty("number").GetString()
-                TxtLatestChange.Text = versionElement.GetProperty("instructions").GetString()
-
-            Catch ex As Exception
-                MessageBox.Show("Failed to load About information: " & ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error)
-            End Try
+            TxtCreatedBy.Text = result.CreatedBy
+            TxtSupportContact.Text = result.SupportEmail
+            TxtLastUpdate.Text = result.LastUpdate
+            TxtVersion.Text = result.VersionNumber
+            TxtLatestChange.Text = result.LatestChange
         End Sub
 
         Private Sub BtnHelp_Click(sender As Object, e As RoutedEventArgs)
