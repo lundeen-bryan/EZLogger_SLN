@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Created `AboutWinHandler` to centralize config parsing logic and return a structured result object.
 - View now only updates UI controls using values from the DTO, improving separation of concerns and maintainability.
 - Added `HasError` and `ErrorMessage` pattern to enable consistent error reporting from handlers to views.
+- Added an article about DTO models for future documentation 
 
 ### Changed
 
