@@ -49,8 +49,11 @@
                 <DatePicker x:Name="CurrentDueDatePick" Width="150" />
             </StackPanel>
 
-            <Button x:Name="SwitchDatesBtn" Grid.Column="1" Content="  Switch  " Margin="10,15,10,3"
-                        VerticalAlignment="Bottom" Background="{x:Null}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10,15,10,3">
+                <Button x:Name="YearDownBtn" Content="🡇" Width="22" Height="22" FontSize="12"
+            ToolTip="Move Current Due Date back one year" Margin="0,0,4,0" />
+                <Button x:Name="SwitchDatesBtn" Content="Switch" />
+            </StackPanel>
 
             <StackPanel Grid.Column="2" HorizontalAlignment="Left">
                 <Label Content="Next Due Date" />

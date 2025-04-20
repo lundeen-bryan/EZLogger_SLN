@@ -24,7 +24,7 @@
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top" BorderBrush="DarkGray">
                     <Label x:Name="CommitmentDateLbl"
-                           Content="01/12/2025"
+                           Content=""
                            HorizontalAlignment="Left"
                            Margin="6,0,0,0"
                            Width="140"

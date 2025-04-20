@@ -7,9 +7,19 @@ Namespace Handlers
     Public Class DueDates1370Handler ' Example: ConfigViewHandler
 
         Public Sub HandleGoBackClick(hostForm As Form)
-            ' Re-open the ReportTypeView
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim commitmentRaw As String = ""
+
+            If doc IsNot Nothing Then
+                Try
+                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+                Catch ex As Exception
+                    commitmentRaw = ""
+                End Try
+            End If
+
             Dim reportTypeHandler As New ReportTypeHandler()
-            reportTypeHandler.LaunchReportTypeView("")
+            reportTypeHandler.LaunchReportTypeView(commitmentRaw)
 
             ' Close the current form
             hostForm?.Close()

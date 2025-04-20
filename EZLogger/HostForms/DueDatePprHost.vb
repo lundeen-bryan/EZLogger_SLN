@@ -5,7 +5,7 @@
 		' ElementHost1.Child = view
 
 		' Set form size and title
-		Me.ClientSize = New Drawing.Size(570, 425)
+		Me.ClientSize = New Drawing.Size(590, 425)
 		Me.Text = ""
 
 		' Optional UI settings
