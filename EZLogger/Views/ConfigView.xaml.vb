@@ -78,8 +78,6 @@ Public Class ConfigView
     End Sub
 
     Private Sub BtnSaveDoctorsList_Click(sender As Object, e As RoutedEventArgs)
-        Dim filePath As String = ListHelper.GetDoctorListFilePath()
-        File.WriteAllText(filePath, TextBoxDoctors.Text)
-        MessageBox.Show("Doctor list saved.")
+        _handler.SaveDoctorsList(TextBoxDoctors.Text)
     End Sub
 End Class
