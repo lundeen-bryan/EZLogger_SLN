@@ -22,7 +22,10 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 ### Added
 
-- 
+- Introduced `AboutInfoResult` DTO to encapsulate version metadata from `global_config.json`.
+- Created `AboutWinHandler` to centralize config parsing logic and return a structured result object.
+- View now only updates UI controls using values from the DTO, improving separation of concerns and maintainability.
+- Added `HasError` and `ErrorMessage` pattern to enable consistent error reporting from handlers to views.
 
 ### Changed
 
@@ -32,6 +35,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Moved configuration and file validation logic out of the view and into the handler for better separation of concerns.
 - The view now only handles UI updates; all business logic (e.g., loading doctor list, checking config files) resides in the handler.
 - moved HandleYearDown button click to the handler from the code behind the xaml
+- Refactored AboutView to remove direct JSON parsing and file logic from the code-behind.
 
 ## [0.0.1] - 2025-04-19
 

@@ -370,6 +370,7 @@
       <DependentUpon>ViewTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enums\CustomMsgBoxResult.vb" />
+    <Compile Include="Handlers\AboutWinHandler.vb" />
     <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
@@ -493,6 +494,7 @@
     <Compile Include="HostForms\UpdateInfoHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\AboutInfoResult.vb" />
     <Compile Include="Models\ConfigViewLoadResult.vb" />
     <Compile Include="Models\DocPropertyEntry.vb" />
     <Compile Include="Models\PatientCls.vb" />
