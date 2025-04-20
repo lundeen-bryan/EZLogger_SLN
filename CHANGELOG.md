@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - `DueDate1370View` to pick due dates for 1370
 - `Early90DayLbl` now shows if it had an early 90-Day report
 - Added a test helper and button to the ribbon to pull a random patient from the database for testing purposes.
+- Added Due date handler to show the PPR due dates form with proper due dates and expiration date
 
 ## [0.0.1] - 2025-04-17
 
