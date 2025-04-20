@@ -39,6 +39,10 @@ Public Class ConfigView
         TextBoxDoctors.Text = String.Join(Environment.NewLine, result.DoctorList)
         txtblock_local_config.Text = result.LocalConfigPath
         txtblock_global_config.Text = result.GlobalConfigPathMessage
+        ForensicDatabaseTxtBlk.Text = result.ForensicDatabasePath
+        ForensicLibraryPathTxtBlk.Text = result.ForensicLibraryPath
+        ForensicOfficePathTxtBlk.Text = result.ForensicOfficePath
+
     End Sub
 
     Private Sub BtnCreateConfig_Click(sender As Object, e As RoutedEventArgs)

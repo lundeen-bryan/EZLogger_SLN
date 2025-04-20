@@ -71,29 +71,30 @@ Namespace Handlers
         ''' </summary>
         Public Function HandleViewLoaded() As ConfigViewLoadResult
             Dim result As New ConfigViewLoadResult()
-
             result.DoctorList = ListHelper.GetDoctorList()
 
-            ' Build expected local config path
-            Dim localConfigPath As String = System.IO.Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                ".ezlogger\local_user_config.json"
-            )
-
-            If Not System.IO.File.Exists(localConfigPath) Then
-                result.LocalConfigPath = "No config found. Please click the [C] button to create one."
-                result.GlobalConfigPathMessage = "No global config path available."
-                Return result
-            End If
-
+            Dim localConfigPath As String = ConfigHelper.GetLocalConfigPath()
             result.LocalConfigPath = localConfigPath
 
             Dim globalConfigPath As String = ConfigHelper.GetGlobalConfigPath()
-            If String.IsNullOrEmpty(globalConfigPath) Then
-                result.GlobalConfigPathMessage = "Global config path not set. Please click [C] to configure it."
-            Else
-                result.GlobalConfigPathMessage = globalConfigPath
-            End If
+            result.GlobalConfigPathMessage = If(String.IsNullOrEmpty(globalConfigPath),
+                                        "Global config path not set. Please click [C] to configure it.",
+                                        globalConfigPath)
+
+            ' Load config and populate new paths
+            Try
+                Dim jsonText As String = File.ReadAllText(localConfigPath)
+                Dim config = JsonSerializer.Deserialize(Of Models.LocalUserConfig)(jsonText)
+
+                result.ForensicDatabasePath = config.sp_filepath.user_forensic_database
+                result.ForensicLibraryPath = config.sp_filepath.user_forensic_library
+                result.ForensicOfficePath = config.edo_filepath.forensic_office
+            Catch ex As Exception
+                ' Fallback if config isn't valid
+                result.ForensicDatabasePath = "(config not loaded)"
+                result.ForensicLibraryPath = "(config not loaded)"
+                result.ForensicOfficePath = "(config not loaded)"
+            End Try
 
             Return result
         End Function
