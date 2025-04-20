@@ -172,8 +172,47 @@ Namespace Handlers
                 LaunchDueDates1370View()
                 hostForm?.Close()
             Else
-                MsgBoxHelper.Show($"Report type '{selectedReportType}' does not require due date tracking.")
+                LaunchDueDatesPprView()
+                hostForm?.Close()
             End If
+        End Sub
+
+        Public Sub LaunchDueDatesPprView()
+            Dim host As New DueDatePprHost()
+            Dim view As New DueDatePprView(host)
+            host.ElementHost1.Child = view
+
+            ' Optional: read commitment date from Word and prefill the textbox
+            Try
+                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                If doc IsNot Nothing Then
+                    Dim commitmentRaw As Object = doc.CustomDocumentProperties("Commitment").Value
+                    Dim parsedDate As Date
+                    If Date.TryParse(commitmentRaw.ToString(), parsedDate) Then
+                        view.CommitmentDateTxt.Text = parsedDate.ToString("MM/dd/yyyy")
+                        view.FirstDueDateTxt.Text = parsedDate.AddMonths(6).ToString("MM/dd/yyyy")
+                    End If
+                End If
+            Catch ex As Exception
+                ' If not found or invalid, silently continue with empty fields
+            End Try
+
+            ' Layout & styling (matches DueDates1370View)
+            host.ClientSize = New Drawing.Size(560, 460)
+            host.Text = ""
+            host.MinimizeBox = False
+            host.MaximizeBox = False
+            host.ShowIcon = False
+            host.FormBorderStyle = FormBorderStyle.FixedSingle
+            host.TopMost = True
+
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
+
+            host.ElementHost1.Width = host.ClientSize.Width - 40
+            host.ElementHost1.Height = host.ClientSize.Height - 40
+            host.ElementHost1.Location = New Drawing.Point(20, 20)
+
+            host.Show()
         End Sub
 
         '''' <summary>
