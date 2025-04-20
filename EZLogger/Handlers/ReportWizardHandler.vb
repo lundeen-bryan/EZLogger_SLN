@@ -64,7 +64,8 @@ Namespace Handlers
                 Dim config As New MessageBoxConfig With {
                     .Message = message,
                     .ShowYes = True,
-                    .ShowNo = True
+                    .ShowNo = True,
+                    .ShowOK = False
                 }
 
                 MsgBoxHelper.Show(config, Sub(result)
