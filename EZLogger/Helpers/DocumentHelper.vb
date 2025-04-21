@@ -33,7 +33,7 @@ Public Module DocumentHelper
     ''' Defaults to silent close without prompting to save.
     ''' </summary>
     ''' <param name="showPrompt">
-    ''' If True, user is asked whether to save changes. 
+    ''' If True, user is asked whether to save changes.
     ''' If False, the document is closed without any dialog.
     ''' </param>
     Public Sub CloseActiveDocument(Optional showPrompt As Boolean = False)
@@ -48,12 +48,17 @@ Public Module DocumentHelper
         Dim doc As Document = app.ActiveDocument
 
         Try
-            If Not showPrompt Then
-                ' Attempt to save silently first
-                TrySaveActiveDocument()
+        	' Check if the document has been previously saved
+            Dim isPreviouslySaved As Boolean = Not String.IsNullOrWhiteSpace(doc.Path)
 
-                ' Close the document without prompting
-                doc.Close(SaveChanges:=WdSaveOptions.wdDoNotSaveChanges)
+            If Not showPrompt Then
+                If isPreviouslySaved Then
+                    ' Attempt to save silently first
+                    TrySaveActiveDocument()
+                Else
+                    ' Close the document without prompting
+                    doc.Close(SaveChanges:=WdSaveOptions.wdDoNotSaveChanges)
+                End If
             Else
                 ' Show default save prompt behavior
                 doc.Close(SaveChanges:=WdSaveOptions.wdPromptToSaveChanges)
