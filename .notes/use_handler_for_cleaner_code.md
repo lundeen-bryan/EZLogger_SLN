@@ -28,7 +28,7 @@ In your WPF user control or window, define a button and connect its `Click` even
 
 Create a new class in a separate folder (e.g., `Handlers`) that contains the logic for the action:
 
-```vbnet
+```vb
 Public Class ActionHandler
     Public Sub Run()
         MessageBox.Show("Action has been executed.")
@@ -42,7 +42,7 @@ End Class
 
 In the code-behind file for the WPF form, create an instance of the handler and call its method when the button is clicked:
 
-```vbnet
+```vb
 Partial Public Class SomePanel
     Inherits UserControl
 
