@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-21
+
+### Changed
+
+- Updated most documentation in .notes
+
 ## [0.0.1] - 2025-04-20
 
 ### Added
@@ -26,7 +32,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Created `AboutWinHandler` to centralize config parsing logic and return a structured result object.
 - View now only updates UI controls using values from the DTO, improving separation of concerns and maintainability.
 - Added `HasError` and `ErrorMessage` pattern to enable consistent error reporting from handlers to views.
-- Added an article about DTO models for future documentation 
+- Added an article about DTO models for future documentation
 - AddAlertPopup now pops up to let user add name or county to alerts in configview
 - `AlertHelper` to find the County or patient number in `global_config.json` and show user an alert
 - Added a timer feature to `ReportWizardPanel` so that every button requires the user wait 2 seconds before they can press it again to prevent it from being accidently pressed twice in a row
