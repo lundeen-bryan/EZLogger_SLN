@@ -1,5 +1,3 @@
- How to Expose Properties in a WPF UserControl body { font-family: Arial, Helvetica, sans-serif; background-color: #ffffff; padding: 2em; line-height: 1.7; color: #1a1a1a; font-size: 16px; } h1, h2, h3 { color: #202020; } code { background-color: #f4f4f4; padding: 0.1em 0.4em; font-family: Consolas, monospace; border-radius: 4px; font-size: 0.95em; } pre { background-color: #f4f4f4; padding: 1em; border-radius: 5px; overflow-x: auto; font-family: Consolas, monospace; font-size: 0.95em; } ul { margin-left: 1.5em; }
-
 How to Expose Properties in a WPF UserControl (Step-by-Step)
 ============================================================
 
@@ -12,6 +10,7 @@ Step 1: Create the XAML File for Your Custom Control
 
 In Visual Studio, create a new **UserControl** called `TaskStepControl.xaml`. Then, open the file and replace its contents with the following:
 
+```xml
     <UserControl x:Class="TaskStepControl"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,7 +19,6 @@ In Visual Studio, create a new **UserControl** called `TaskStepControl.xaml`. Th
                  xmlns:local="clr-namespace:EZLogger"
                  mc:Ignorable="d"
                  d:DesignHeight="450" d:DesignWidth="800">
-
         <Grid>
             <GroupBox Margin="5,5,0,0"
                       VerticalAlignment="Top"
@@ -30,13 +28,11 @@ In Visual Studio, create a new **UserControl** called `TaskStepControl.xaml`. Th
                       Foreground="#FF464646"
                       HorizontalAlignment="Left"
                       Width="335">
-
                 <StackPanel Margin="-5,-14,-7,-6" Orientation="Horizontal">
                     <Button Content="{Binding ButtonContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
                             Height="35"
                             Width="45"
                             Margin="12,6,0,0"/>
-
                     <CheckBox Content="{Binding CheckBoxContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
                               Height="25"
                               Width="130"
@@ -44,11 +40,12 @@ In Visual Studio, create a new **UserControl** called `TaskStepControl.xaml`. Th
                 </StackPanel>
             </GroupBox>
         </Grid>
-
     </UserControl>
-
+```
 
 This creates a basic layout with a button and a checkbox. The `Content` of both elements is bound to properties we’ll expose next.
+
+Note the use of curly brackets and the keywords Binding and RelativeSource are necessary to make it work in the properties tab of a user control.
 
 * * *
 
@@ -57,17 +54,15 @@ Step 2: Create the Code-Behind File (xaml.vb)
 
 Now open the `TaskStepControl.xaml.vb` file and replace any existing code with this:
 
+```vb
     Imports System.Windows
     Imports System.Windows.Controls
-
     Public Class TaskStepControl
         Inherits UserControl
-
         ' Constructor
         Public Sub New()
             InitializeComponent()
         End Sub
-
         ' Define ButtonContent as a dependency property
         Public Shared ReadOnly ButtonContentProperty As DependencyProperty =
             DependencyProperty.Register(
@@ -75,7 +70,6 @@ Now open the `TaskStepControl.xaml.vb` file and replace any existing code with t
                 GetType(String),
                 GetType(TaskStepControl),
                 New PropertyMetadata("Button"))
-
         Public Property ButtonContent As String
             Get
                 Return CType(GetValue(ButtonContentProperty), String)
@@ -84,7 +78,6 @@ Now open the `TaskStepControl.xaml.vb` file and replace any existing code with t
                 SetValue(ButtonContentProperty, value)
             End Set
         End Property
-
         ' Define CheckBoxContent as a dependency property
         Public Shared ReadOnly CheckBoxContentProperty As DependencyProperty =
             DependencyProperty.Register(
@@ -92,7 +85,6 @@ Now open the `TaskStepControl.xaml.vb` file and replace any existing code with t
                 GetType(String),
                 GetType(TaskStepControl),
                 New PropertyMetadata("CheckBox"))
-
         Public Property CheckBoxContent As String
             Get
                 Return CType(GetValue(CheckBoxContentProperty), String)
@@ -102,7 +94,7 @@ Now open the `TaskStepControl.xaml.vb` file and replace any existing code with t
             End Set
         End Property
     End Class
-
+```
 
 These are dependency properties. They let the control expose values that can be set from XAML or changed dynamically in code.
 
@@ -117,7 +109,9 @@ Now go to the XAML of your main window — for example, `MainWindow.xaml` — an
 
 At the top of your XAML file, add this to the `<Window>` element:
 
+```xml
     xmlns:local="clr-namespace:EZLogger"
+```
 
 This lets you access the `TaskStepControl` from within the window.
 
@@ -125,10 +119,12 @@ This lets you access the `TaskStepControl` from within the window.
 
 Inside the window’s layout, add the control like this:
 
+```xml
     <local:TaskStepControl
         ButtonContent="Run"
         CheckBoxContent="Enable Logging"
         Margin="20" />
+```
 
 
 This renders your custom control with a button that says "Run" and a checkbox that says "Enable Logging".
@@ -140,15 +136,19 @@ Step 4: (Optional) Set the Properties in Code
 
 If you gave your control a name in the window’s XAML:
 
+```xml
     <local:TaskStepControl x:Name="MyTaskStepControl"
                             ButtonContent="Save"
                             CheckBoxContent="Confirm" />
+```
 
 
 You can set or change the property values in your code-behind file like this:
 
-    MyTaskStepControl.ButtonContent = "Start"
-    MyTaskStepControl.CheckBoxContent = "Agree to Terms"
+```vb
+MyTaskStepControl.ButtonContent = "Start"
+MyTaskStepControl.CheckBoxContent = "Agree to Terms"
+```
 
 
 * * *
