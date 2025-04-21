@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="400"
-             d:DesignWidth="600">
+             d:DesignWidth="600" Background="#FFFDFDFD">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -46,12 +46,18 @@
                        Margin="0,0,0,10"
                        FontSize="14"
                        TextWrapping="Wrap" />
-            <Button Content="_Select"
+            <StackPanel Height="30" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="_Select"
                     Width="70"
-                    HorizontalAlignment="Right"
                     Padding="10,5"
                     Click="BtnSelectPatient_Click"
+                    Background="{x:Null}" Margin="0,0,24,0" />
+                <Button x:Name="CloseBtn" 
+                    Content="_Close"
+                    Width="70"
+                    Padding="10,5"
                     Background="{x:Null}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
