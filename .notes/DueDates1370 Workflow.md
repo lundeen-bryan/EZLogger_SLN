@@ -9,7 +9,7 @@ This document explains the workflow for launching and interacting with the `DueD
 The `DueDates1370View` is a WPF UserControl embedded inside a WinForms host (`DueDates1370Host.vb`). It is used to:
 
 - Display the **Commitment date** from the Word document's custom properties
-- Allow the analyst to calculate and log due dates relevant to Welfare & Institutions Code §1370 reports
+- Allow the analyst to calculate and log due dates relevant to California Penal Code §1370 reports
 - Write back calculated values (e.g., Days Since Due) to Word document properties
 
 ---
