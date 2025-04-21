@@ -2,6 +2,8 @@
 
 This guide explains how to make any WPF button respond to a keyboard shortcut (like Alt+S) when the button is hosted inside a WinForms `ElementHost` — as used in EZLogger.
 
+Note that for most cases it works well enough to add an underscore before the letter that you want to use as an accelerator key (in the XAML), however, sometimes in VSTO the Word Object is in front and then keyboard shortcuts are activated in the Word document Ribbon instead. So this article applies to those cases where you need to set focus back on the WPF user control. 
+
 ## Requirements
 - The WPF `UserControl` is hosted inside a WinForms form (`ElementHost1.Child = New SomeView()`)
 - The button already exists in the XAML and has a name (e.g., `BtnSave`)
@@ -46,7 +48,7 @@ In your host form (e.g., `UpdateInfoHost.vb`), follow these steps.
 
 #### Add the following imports at the top:
 
-```vbnet
+```vb
 Imports Keys = System.Windows.Forms.Keys
 Imports System.Windows.Forms
 Imports System.Windows.Forms.Keys
@@ -57,7 +59,7 @@ Imports EZLogger.Views
 
 #### In the Load Event, wire up the ElementHost and ShortcutHandler
 
-```vbnet
+```vb
 Private _shortcutHandler As ShortcutHandler
 
 Private Sub UpdateInfoHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -98,7 +100,7 @@ End Sub
 ## Reuse Tip
 If you’re doing this often, you can make a helper method to reduce repetition when simulating button clicks from keyboard shortcuts. This helper receives a WPF `Button` and programmatically raises its `Click` event using WPF's routed event system:
 
-```vbnet
+```vb
 Public Sub TriggerButtonClick(button As System.Windows.Controls.Button)
     button.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
 End Sub
@@ -107,7 +109,7 @@ End Sub
 ### Example 1: Trigger Save Button
 If you want `Alt+S` to trigger `BtnSave`:
 
-```vbnet
+```vb
 _shortcutHandler.RegisterShortcut(Keys.S, Keys.Alt, Sub()
     Dim view = TryCast(ElementHost1.Child, UpdateInfoView)
     If view IsNot Nothing Then
@@ -119,7 +121,7 @@ End Sub)
 ### Example 2: Trigger Generate ID Button
 If you want `Alt+G` to trigger `BtnGenerateId`:
 
-```vbnet
+```vb
 _shortcutHandler.RegisterShortcut(Keys.G, Keys.Alt, Sub()
     Dim view = TryCast(ElementHost1.Child, UpdateInfoView)
     If view IsNot Nothing Then
@@ -130,7 +132,7 @@ End Sub)
 
 This allows you to keep all button click simulation logic consistent and reusable.
 
-```vbnet
+```vb
 Public Sub TriggerButtonClick(button As System.Windows.Controls.Button)
     button.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
 End Sub
@@ -138,7 +140,7 @@ End Sub
 
 Then your shortcut registration becomes:
 
-```vbnet
+```vb
 RegisterShortcut(Keys.S, Keys.Alt, Sub() TriggerButtonClick(view.BtnSave))
 ```
 
