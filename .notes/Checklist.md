@@ -1,6 +1,6 @@
 # EZLogger - Legacy Workflow Reference
 
-This document outlines the original workflow of each task pane button from the legacy version of EZLogger.
+This document outlines the original workflow of each task pane button from the legacy version of EZLogger. A "True" checkbox indicates the logic has been translated into the VB.NET version of EZLogger, unchecked means it hasn't. 
 
 ---
 
@@ -25,9 +25,9 @@ This document outlines the original workflow of each task pane button from the l
 
 ## C Button – Select Report Type and Due Dates
 
-- [ ] Opens a form displaying report types, report date, and associated due dates.
-- [ ] Make sure size of all forms are the same size, color and font styles
-- [ ] User selects the appropriate report type.
+- [X] Opens a form displaying report types, report date, and associated due dates.
+- [X] Make sure size of all forms are the same size, color and font styles
+- [X] User selects the appropriate report type.
 - [ ] Selected report type and due dates are used to set scheduling and deadlines for the report.
 
 ---
