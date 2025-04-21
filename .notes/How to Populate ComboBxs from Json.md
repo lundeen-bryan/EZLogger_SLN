@@ -33,7 +33,7 @@ This guide walks you through populating a WPF `ComboBox` with values stored in a
 Create a helper module `ConfigHelper.vb` to load values from the config files.
 
 ### Essential Methods Only
-```vbnet
+```vb
 Namespace EZLogger.Helpers
     Public Module ConfigHelper
 
@@ -68,7 +68,7 @@ End Namespace
 In your `.xaml.vb` file, add the following:
 
 ### For Opinion ComboBox:
-```vbnet
+```vb
 Imports EZLogger.Helpers
 
 Public Class OpinionView
@@ -79,7 +79,7 @@ End Class
 ```
 
 ### For Report Type ComboBox:
-```vbnet
+```vb
 ReportTypeCbo.ItemsSource = ConfigHelper.GetReportTypeList()
 ```
 
