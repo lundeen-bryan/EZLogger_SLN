@@ -410,6 +410,7 @@
     <Compile Include="Helpers\PathHelper.vb" />
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
+    <Compile Include="Helpers\TimerHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
       <DependentUpon>AboutHost.vb</DependentUpon>

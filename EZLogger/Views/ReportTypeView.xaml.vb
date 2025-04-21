@@ -27,7 +27,17 @@ Public Class ReportTypeView
 
     Private Sub ReportTypeSelectedBtn_Click(sender As Object, e As RoutedEventArgs)
         Dim selectedReportType As String = TryCast(ReportTypeCbo.SelectedItem, String)
-        _handler.ReportTypeSelectedBtnClick(selectedReportType, _hostForm)
+        Dim selectedReportDate As String = GetSelectedReportDate()
+
+        _handler.ReportTypeSelectedBtnClick(selectedReportType, selectedReportDate, _hostForm)
     End Sub
+
+    Public Function GetSelectedReportDate() As String
+        If CurrentReportDate.SelectedDate.HasValue Then
+            Return CurrentReportDate.SelectedDate.Value.ToString("MM/dd/yyyy")
+        Else
+            Return String.Empty
+        End If
+    End Function
 
 End Class

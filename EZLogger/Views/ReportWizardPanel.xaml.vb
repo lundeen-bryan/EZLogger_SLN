@@ -38,23 +38,28 @@ Partial Public Class ReportWizardPanel
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
         ' Pull data from database and save as doc properties
         _handler.ShowBtnBMessage(TextBoxPatientNumber.Text, Me)
+        TimerHelper.DisableTemporarily(Btn_B, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
         _handler.ShowBtnCMessage()
+        TimerHelper.DisableTemporarily(Btn_C, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_D_Click(sender As Object, e As RoutedEventArgs)
         _handler.ShowBtnDMessage()
+        TimerHelper.DisableTemporarily(Btn_D, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_E_Click(sender As Object, e As RoutedEventArgs)
         _handler.ShowBtnEMessage()
+        TimerHelper.DisableTemporarily(Btn_E, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
         ' Should open the opinion form
         _handler.ShowBtnFMessage()
+        TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_G_Click(sender As Object, e As RoutedEventArgs)
