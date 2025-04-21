@@ -1,5 +1,3 @@
-  How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; } h1, h2, h3 { color: #333; } code { background-color: #eaeaea; padding: 2px 4px; border-radius: 4px; } pre { background-color: #eaeaea; padding: 10px; border-radius: 4px; overflow: auto; }
-
 How to Add Button Functionality in a WPF Form Hosted in a Windows Forms Form
 ============================================================================
 
@@ -22,136 +20,101 @@ Step-by-Step Guide
 
 First, create a Windows Forms form that will host the WPF form. In this example, we'll create a form named `ApprovedByHost`.
 
+```vb
     Imports System.Windows.Forms
     Imports System.Windows.Forms.Integration
-
     Public Class ApprovedByHost
         Inherits Form
-
         Private elementHost As ElementHost
         Private wpfForm As YourWpfForm ' Replace YourWpfForm with the actual WPF form class
-
         Public Sub New()
             InitializeComponent()
         End Sub
-
         Private Sub InitializeComponent()
             Me.elementHost = New ElementHost()
             Me.wpfForm = New YourWpfForm() ' Initialize your WPF form
-
             Me.elementHost.Dock = DockStyle.Fill
             Me.elementHost.Child = Me.wpfForm
-
             Me.Controls.Add(Me.elementHost)
             Me.Text = "Approved By"
-
             ' Set the start position to center screen
             Me.StartPosition = FormStartPosition.CenterScreen
         End Sub
     End Class
+```
 
 ### 2\. Add the Button to the WPF Form
 
 Next, add a button to your WPF form. In this example, we'll add a button named `btnApprove` to the XAML file of the WPF form.
 
+```vb
     <Window x:Class="YourNamespace.Views.YourWpfForm"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             Title="YourWpfForm" Height="300" Width="400">
         <Grid>
-            <Button x:Name="btnApprove" Content="Approve" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnApprove_Click"/>
+            <Button x:Name="btnApprove"
+            Content="Approve"
+            Width="100"
+            Height="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Click="btnApprove_Click"/>
         </Grid>
     </Window>
+```
 
 ### 3\. Write the Event Handler for the Button Click Event
 
 Now, write the event handler for the button click event in the code-behind file of the WPF form.
 
+```vb
     Imports System.Windows
-
     Namespace YourNamespace.Views
         Partial Public Class YourWpfForm
             Inherits Window
-
             Public Sub New()
                 InitializeComponent()
             End Sub
-
             Private Sub btnApprove_Click(sender As Object, e As RoutedEventArgs)
                 MessageBox.Show("Approved!")
             End Sub
         End Class
     End Namespace
+```
 
 ### 4\. Update Event Handler in `ReportWizardPanel.xaml.vb`
 
 Finally, update the event handler in the `ReportWizardPanel.xaml.vb` file to open the `ApprovedByHost` form when the button is clicked.
 
-    Imports System.Windows
-    Imports System.Windows.Controls
-    Imports System.Windows.Forms
-    Imports System.Windows.Forms.Integration
-
-    Partial Public Class ReportWizardPanel
+```vb
+    Public Class ReportWizardPanel
         Inherits UserControl
-
         Public Sub New()
             InitializeComponent()
-
             ' Assign event handlers to TaskStepControl instances
             AddHandler TaskStepControlA.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
             AddHandler TaskStepControlB.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlC.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlD.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlE.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlF.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlG.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlH.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlI.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-            AddHandler TaskStepControlJ.TaskButtonClick, AddressOf TaskStepControl_ButtonClick
-
-            ' Add Loaded event handler for TaskStepControlH
-            AddHandler TaskStepControlH.Loaded, AddressOf TaskStepControl_Loaded
         End Sub
-
         ' Custom event handler for TaskStepControl
         Private Sub TaskStepControl_ButtonClick(sender As Object, e As RoutedEventArgs)
             Dim taskControl As TaskStepControl = CType(sender, TaskStepControl)
-
             ' Implement your custom logic here based on the ButtonContent
             Select Case taskControl.ButtonContent
                 Case "_A"
                     ' Custom logic for button A click
                 Case "_B"
                     ' Custom logic for button B click
-                Case "_C"
-                    ' Custom logic for button C click
-                Case "_D"
-                    ' Custom logic for button D click
-                Case "_E"
-                    ' Custom logic for button E click
-                Case "_F"
-                    ' Custom logic for button F click
-                Case "_G"
-                    ' Custom logic for button G click
-                Case "_H"
-                    Dim approvedForm As New ApprovedByHost()
-                    approvedForm.StartPosition = FormStartPosition.CenterScreen
-                    approvedForm.Show()
-                Case "_I"
-                    ' Custom logic for button I click
-                Case "_J"
-                    ' Custom logic for button J click
                 Case Else
                     ' Custom logic for unknown button click
             End Select
         End Sub
-
         ' Loaded event handler for TaskStepControlH
         Private Sub TaskStepControl_Loaded(sender As Object, e As RoutedEventArgs)
             ' Implement your custom logic here for when TaskStepControlH is loaded
         End Sub
     End Class
+```
 
 Potential Obstacles and Solutions
 ---------------------------------
