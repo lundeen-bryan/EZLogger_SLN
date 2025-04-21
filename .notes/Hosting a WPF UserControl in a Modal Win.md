@@ -1,5 +1,3 @@
- Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in) body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; } h1, h2, h3 { color: #333; } pre { background-color: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto; } code { background-color: #f4f4f4; padding: 2px 4px; } .step { margin-bottom: 20px; } ul, ol { margin-left: 20px; } a { text-decoration: none; color: #0066cc; }
-
 Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in)
 ======================================================================
 
@@ -34,6 +32,8 @@ Table of Contents
 --------------------------------------
 
 Double-click on the Form to open the code view and add the following to `Form1_Load`:
+
+(see "code_behind_WinForm_Host.json" for template code)
 
 ```vb
 Imports System.Windows.Forms.Integration
