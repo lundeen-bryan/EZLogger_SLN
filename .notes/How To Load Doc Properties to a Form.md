@@ -121,5 +121,5 @@ You can expand the mappings as the project grows.
 
 ---
 
-With this pattern, you can wire up any document field to any control in your project cleanly and consistently. Let me know if you’d like to generate templates or snippets to speed up reuse!
+With this pattern, you can wire up any document field to any control in your project cleanly and consistently. 
 
