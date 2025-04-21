@@ -74,10 +74,15 @@ Namespace Handlers
                                                   SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
                                                   RefreshPatientNameLabel(panel)
                                                   panel.Btn_B_Checkbox.IsChecked = True
+
+                                                  ' ✅ Show alerts — one after another if both exist
+                                                  AlertHelper.ShowCountyAlertIfExists(patient.County)
+                                                  AlertHelper.ShowPatientAlertIfExists(patient.PatientNumber)
                                               Else
                                                   MsgBoxHelper.Show("Please check the patient number and try again.")
                                               End If
                                           End Sub)
+
             Else
                 MsgBoxHelper.Show("No patient record found.")
             End If
