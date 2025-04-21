@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Added an article about DTO models for future documentation 
 - AddAlertPopup now pops up to let user add name or county to alerts in configview
 - `AlertHelper` to find the County or patient number in `global_config.json` and show user an alert
+- Added a timer feature to `ReportWizardPanel` so that every button requires the user wait 2 seconds before they can press it again to prevent it from being accidently pressed twice in a row
 
 ### Changed
 
