@@ -393,6 +393,7 @@
     <Compile Include="Handlers\TCARListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
+    <Compile Include="Helpers\AlertHelper.vb" />
     <Compile Include="Helpers\ClipboardHelper.vb" />
     <Compile Include="Helpers\ColorHelper.vb" />
     <Compile Include="Helpers\ConfigHelper.vb" />
