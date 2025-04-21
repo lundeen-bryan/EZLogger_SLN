@@ -17,13 +17,13 @@ This guide explains:
 
 ## Public Methods
 
-```vbnet
+```vb
 Public Sub GoToFirstPage(wordApp As Word.Application)
 ```
 
 Navigates to the first page of the active Word document.
 
-```vbnet
+```vb
 Public Sub GoToLastPage(wordApp As Word.Application)
 ```
 
@@ -42,7 +42,7 @@ Before adding code:
 ### In the Handler:
 - Ensure the handler class (e.g., `{HandlerNameHere}`) includes a constructor that requires a `Word.Application` object.
 
-```vbnet
+```vb
   Public Sub New(wordApp As Word.Application)
       _wordApp = wordApp
   End Sub
@@ -50,7 +50,7 @@ Before adding code:
 
 - Whenever you create a new instance of this handler, you **must** pass the `Word.Application` explicitly:
 
-```vbnet
+```vb
   Dim handler As New {HandlerNameHere}(Globals.ThisAddIn.Application)
 ```
 
@@ -63,7 +63,9 @@ Once these are verified, proceed to implementation.
 ## Sample Usage in a Handler
 Create or update a handler class (e.g., `{HandlerNameHere}.vb`) and call the `NavigationHelper` methods:
 
-```vbnet
+This code would go in a handler not in the code behind a xaml user control
+
+```vb
 Imports Word = Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
 
@@ -91,7 +93,7 @@ End Class
 ## Wiring Up the View
 Inside your WPF form (e.g., `SomeView.xaml.vb`), wire up the buttons like this:
 
-```vbnet
+```vb
 Private _handler As New {HandlerNameHere}(Globals.ThisAddIn.Application)
 
 Private Sub BtnFirstPage_Click(sender As Object, e As RoutedEventArgs)
@@ -105,7 +107,7 @@ End Sub
 
 If you prefer to use `AddHandler` in the constructor:
 
-```vbnet
+```vb
 AddHandler BtnFirstPage.Click, AddressOf BtnFirstPage_Click
 AddHandler BtnLastPage.Click, AddressOf BtnLastPage_Click
 ```
