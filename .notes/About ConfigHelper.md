@@ -115,7 +115,7 @@ A new user installs EZLogger and launches it for the first time. The app checks 
 
 ## 8. User Story
 
-> As a **user of EZLogger**, I want the system to automatically manage my configuration files so I don't have to manually create or edit JSON files in my Documents folder.
+> As a **user of EZLogger**, I want the system to automatically manage my configuration files so I don't have to manually create or edit JSON files on my computer.
 
 ---
 
@@ -123,6 +123,7 @@ A new user installs EZLogger and launches it for the first time. The app checks 
 - If `local_user_config.json` becomes corrupted, the app may throw JSON parsing errors.
 - Missing `sp_filepath.global_config_file` will prompt a warning message and return an empty string.
 - Always ensure the selected file has a `.json` extension.
+- Pressing the "C" button in the config manager of EZLogger will re-create the local json settings file.
 
 ---
 
