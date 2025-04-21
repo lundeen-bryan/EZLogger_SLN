@@ -165,7 +165,7 @@ Namespace Handlers
         ''' <remarks>
         ''' This method launches the DueDates1370View and closes the provided host form.
         ''' </remarks>
-        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, hostForm As Form)
+        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, reportDate As String, hostForm As Form)
             If String.IsNullOrWhiteSpace(selectedReportType) Then
                 MsgBoxHelper.Show("Please select a report type before continuing.")
                 Exit Sub
@@ -173,6 +173,15 @@ Namespace Handlers
 
             HandleSelectedReportType(selectedReportType)
 
+            ' Save the selected report date to Word doc properties
+            If Not String.IsNullOrWhiteSpace(reportDate) Then
+                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                If doc IsNot Nothing Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
+                End If
+            End If
+
+            ' === Continue with due date logic ===
             Dim typesNeedingDueDates As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
                 "1370(b)(1)",
                 "1372(a)(1)",
@@ -183,11 +192,11 @@ Namespace Handlers
 
             If typesNeedingDueDates.Contains(selectedReportType.Trim()) Then
                 LaunchDueDates1370View()
-                hostForm?.Close()
             Else
                 LaunchDueDatesPprView()
-                hostForm?.Close()
             End If
+
+            hostForm?.Close()
         End Sub
 
         Public Sub LaunchDueDatesPprView()
