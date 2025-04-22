@@ -1,88 +1,153 @@
-Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in)
-======================================================================
+# Hosting a WPF UserControl in a Modal Windows Form (VB.NET VSTO Add-in)
 
-This guide explains how to host a WPF `UserControl` inside a modal-like Windows Form window in a VB.NET VSTO Word Add-in.
+---
 
-Table of Contents
------------------
+## About This Article
 
-1.  [Create the WPF UserControl](#create-usercontrol)
-2.  [Create the Windows Form with ElementHost](#create-form)
-3.  [Write Code to Load the WPF Control](#form-logic)
-4.  [Add the Ribbon Button Logic](#ribbon-code)
-5.  [Rename for Clarity (Optional)](#optional-names)
-6.  [Test the Modal Window](#testing)
+This article provides a step-by-step guide for VB.NET developers building VSTO Add-ins for Microsoft Word. It details how to host a WPF `UserControl` inside a Windows Form using the `ElementHost` control, and how to invoke the form modally from a Ribbon button. This approach allows developers to use modern WPF controls in a familiar Windows Forms environment.
 
-1\. Create the WPF UserControl
-------------------------------
+---
 
-1.  Right-click the project and select **Add > New Item**.
-2.  Choose **WPF User Control** and name it `UserControl1.xaml`.
-3.  Design the control, for example by adding a Label that says "About This Add-in".
+## Applies To
 
-2\. Create the Windows Form with ElementHost
---------------------------------------------
+- Microsoft Office Word
+- VSTO Add-ins
+- VB.NET
+- .NET Framework (Windows-only)
 
-1.  Right-click the Hosts folder and select **Add > Windows Form**.
-2.  Name it `Form1.vb`.
-3.  In the Form designer, drag an **ElementHost** control from the Toolbox onto the form.
-4.  Set its **Name** to `ElementHost1` and **Dock** to `Fill`.
+---
 
-3\. Write Code to Load the WPF Control
---------------------------------------
+## Prerequisites
 
-Double-click on the Form to open the code view and add the following to `Form1_Load`:
+- Visual Studio with VB.NET support
+- A VSTO Word Add-in project
+- Basic knowledge of WPF and Windows Forms
+- Reference to `WindowsFormsIntegration.dll`
 
-(see "code_behind_WinForm_Host.json" for template code)
+---
 
-```vb
+## Summary
+
+You can integrate WPF UI into VSTO Add-ins by hosting a `UserControl` within a Windows Form using the `ElementHost` control. This allows for a modal-like user interface, offering a modern WPF-based experience with the simplicity of Windows Forms.
+
+---
+
+## Key Components
+
+| Type           | Name           | Description                                          |
+|----------------|----------------|------------------------------------------------------|
+| WPF Control    | `UserControl1.xaml` | WPF user interface element to be hosted             |
+| Windows Form   | `Form1.vb`     | Hosts the WPF control using `ElementHost`           |
+| Ribbon Button  | `AboutButton`  | Triggers the display of the modal form              |
+| Integration    | `ElementHost`  | Hosts the WPF control within the Windows Form       |
+
+---
+
+## Code Examples
+
+### Hosting WPF Control in Windows Form
+
+Create a WinForm as the host, add an Element host in the Winform.
+
+```vbnet
 Imports System.Windows.Forms.Integration
-    Public Class Form1[the Hosting form name]
-        Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            Dim myControl As New UserControl1()[The view or control name]
-            ElementHost1.Dock = DockStyle.Fill
-            ElementHost1.Child = myControl
-        End Sub
-    End Class
-```
 
-4\. Add the Ribbon Button Logic
--------------------------------
-
-Open your Ribbon class file (e.g., `EZLoggerRibbon.vb`) and add:
-
-```vb
-    Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
-        Dim aboutForm As New Form1()
-        aboutForm.StartPosition = FormStartPosition.CenterScreen
-        aboutForm.Show() ' Use ShowDialog() for true modal behavior
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim myControl As New UserControl1()
+        ElementHost1.Dock = DockStyle.Fill
+        ElementHost1.Child = myControl
     End Sub
+End Class
 ```
 
-If you want to block interaction with Word while the window is open, replace `Show()` with `ShowDialog()`.
+### Triggering the Modal Form from Ribbon
 
-5\. Rename for Clarity (Optional)
----------------------------------
+```vbnet
+Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
+    Dim aboutForm As New Form1()
+    aboutForm.StartPosition = FormStartPosition.CenterScreen
+    aboutForm.ShowDialog() ' Use Show() for non-blocking behavior
+End Sub
+```
 
-You can rename these components to better reflect their purpose:
+---
 
-*   **Form1** → `AboutWindow`
-*   **UserControl1** → `AboutControl`
+## Execution Flow
 
-Be sure to update all references accordingly in your code.
+1. Add a WPF UserControl to your project and design it (e.g., add a Label).
+2. Add a Windows Form to the project and place an `ElementHost` on it.
+3. In the Form’s Load event, instantiate and embed the UserControl into the `ElementHost`.
+4. Add a Ribbon button and handle its click event to display the form.
+5. Run the project and test the modal window.
 
-6\. Test the Modal Window
--------------------------
+---
 
-1.  Press **F5** in Visual Studio to launch Word with your Add-in.
-2.  Click the Ribbon button (e.g., **About**).
-3.  The modal-like window should appear, centered, hosting your WPF control.
+## Sample Input / Output
 
-Tips
-----
+**Expected Behavior:**
 
-*   Ensure the `WindowsFormsIntegration` assembly is referenced in your project.
-*   Use `ShowDialog()` if you want to disable Word interaction while the form is open.
-*   Keep WPF logic inside the UserControl to keep the Form clean and reusable.
+- When the Ribbon button is clicked, the form opens and displays the WPF control.
+- If `ShowDialog()` is used, interaction with Word is blocked until the form is closed.
+
+---
+
+## Use Case
+
+**Scenario**:
+An add-in developer wants to present an "About This Add-in" UI. Instead of creating a plain Windows Form, they use a WPF UserControl to provide modern styling. The control is hosted in a modal form and invoked via a Ribbon button.
+
+---
+
+## Related Features or Dependencies
+
+- `System.Windows.Forms`
+- `System.Windows.Forms.Integration`
+- VSTO Ribbon customization
+- .NET Framework for Windows
+
+---
+
+## User Story
+
+> As an **Office Add-in developer**, I want to use WPF UI in my modal forms so that I can create a more modern and visually appealing experience for my users.
+
+---
+
+## Troubleshooting
+
+- Make sure `WindowsFormsIntegration.dll` is referenced.
+- Ensure `ElementHost` is properly docked.
+- Use `ShowDialog()` if Word interaction should be blocked.
+- Verify all renames (e.g., `Form1` to `AboutWindow`) are reflected in code.
+
+---
+
+## Diagram
+
+```
+[ Ribbon Button Clicked ]
+           ↓
+[ Form1 Opens ]
+           ↓
+[ ElementHost Loads WPF UserControl ]
+           ↓
+[ Modal Window Displays WPF UI ]
+```
+
+---
+
+## Development Status
+
+- [x] WPF UserControl added and styled
+- [x] Windows Form hosts WPF control via ElementHost
+- [x] Ribbon integration working
+- [x] Modal display logic functional
+
+---
+
+## See Also
+
+*(No additional links specified)*
 
 <!-- @nested-tags:wpf-user-control -->
