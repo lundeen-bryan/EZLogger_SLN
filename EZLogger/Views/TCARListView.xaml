@@ -52,8 +52,8 @@
                     Padding="10,5"
                     Click="BtnSelectPatient_Click"
                     Background="{x:Null}" Margin="0,0,24,0" />
-                <Button x:Name="CloseBtn" 
-                    Content="_Close"
+                <Button x:Name="DoneBtn"
+                    Content="_Done"
                     Width="70"
                     Padding="10,5"
                     Background="{x:Null}" />
