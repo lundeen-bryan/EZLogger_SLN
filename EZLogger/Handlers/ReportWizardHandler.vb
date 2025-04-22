@@ -97,20 +97,20 @@ Namespace Handlers
             ' Retrieve commitment date from Word document
             Dim commitmentDate As String = DocumentPropertyHelper.GetPropertyValue("Commitment")
 
-            ' Launch the report type selection dialog
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            Dim commitmentRaw As String = ""
+            ' ' Launch the report type selection dialog
+            ' Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            ' Dim commitmentRaw As String = ""
 
-            If doc IsNot Nothing Then
-                Try
-                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
-                Catch ex As Exception
-                    commitmentRaw = ""
-                End Try
-            End If
+            ' If doc IsNot Nothing Then
+            '     Try
+            '         commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+            '     Catch ex As Exception
+            '         commitmentRaw = ""
+            '     End Try
+            ' End If
 
             Dim reportTypeHandler As New ReportTypeHandler()
-            reportTypeHandler.LaunchReportTypeView(commitmentRaw)
+            reportTypeHandler.LaunchReportTypeView(commitmentDate)
 
         End Sub
 
