@@ -307,6 +307,10 @@ Namespace Handlers
         '    DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysDifference.ToString())
         'End Sub
 
+        Public Sub HandleCloseClick(form As Form)
+            If form IsNot Nothing Then form.Close()
+        End Sub
+
     End Class
 
 End Namespace

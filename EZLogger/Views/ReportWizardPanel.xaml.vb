@@ -42,6 +42,8 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
+        ' Set Task Pane Helper
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnCMessage()
         TimerHelper.DisableTemporarily(Btn_C, 2000) ' Disable for 2 seconds
     End Sub
@@ -91,5 +93,19 @@ Partial Public Class ReportWizardPanel
         _handler.ShowBtnLMessage()
         TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
     End Sub
+
+    Public Sub MarkCheckboxAsDone(stepID As String)
+        Select Case stepID
+            Case "Btn_C"
+                Btn_C_Checkbox.IsChecked = True
+            Case "Btn_D"
+                Btn_D_Checkbox.IsChecked = True
+            Case "Btn_E"
+                Btn_E_Checkbox.IsChecked = True
+            Case "Btn_F"
+                Btn_F_Checkbox.IsChecked = True
+        End Select
+    End Sub
+
 
 End Class
