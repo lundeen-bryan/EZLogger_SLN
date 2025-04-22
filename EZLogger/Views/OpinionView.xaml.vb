@@ -15,7 +15,10 @@ Public Class OpinionView
         InitializeComponent()
         _hostForm = hostForm
         _handler = New OpinionHandler(Globals.ThisAddIn.Application)
+        WireUpButtons()
+    End Sub
 
+    Public Sub WireUpButtons()
         ' Load combo data when the view is created
         AddHandler Me.Loaded, AddressOf OpinionView_Loaded
 
@@ -45,7 +48,12 @@ Public Class OpinionView
         _handler.HandleOpinionLastPageClick()
     End Sub
 
+    '''<summary>
+    '''Checks the checkbox and closes the form
+    '''</summary>
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim panel = TaskPaneHelper.GetTaskPane()
+        panel?.MarkCheckboxAsDone("Btn_F")
         _handler.HandleCloseClick(_hostForm)
     End Sub
 End Class

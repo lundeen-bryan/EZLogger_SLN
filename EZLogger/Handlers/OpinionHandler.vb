@@ -49,8 +49,6 @@ Namespace Handlers
         End Sub
 
         Public Sub HandleCloseClick(hostForm As Form)
-            Dim panel = TaskPaneHelper.GetTaskPane()
-            panel?.MarkCheckboxAsDone("Btn_D")
             hostForm?.Close()
         End Sub
 
