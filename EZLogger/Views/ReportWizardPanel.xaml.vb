@@ -104,6 +104,18 @@ Partial Public Class ReportWizardPanel
                 Btn_E_Checkbox.IsChecked = True
             Case "Btn_F"
                 Btn_F_Checkbox.IsChecked = True
+            Case "Btn_G"
+                Btn_G_Checkbox.IsChecked = True
+            Case "Btn_H"
+                Btn_H_Checkbox.IsChecked = True
+            Case "Btn_I"
+                Btn_I_Checkbox.IsChecked = True
+            Case "Btn_J"
+                Btn_J_Checkbox.IsChecked = True
+            Case "Btn_K"
+                Btn_K_Checkbox.IsChecked = True
+            Case "Btn_L"
+                Btn_L_Checkbox.IsChecked = True
         End Select
     End Sub
 
