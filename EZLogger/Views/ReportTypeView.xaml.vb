@@ -41,6 +41,14 @@ Public Class ReportTypeView
         End If
     End Function
 
+    '''<summary>
+    '''Closes the ReportTypeView form when the Done button is clicked in ReportTypeView
+    '''</summary>
+    '''<param name="form">The instance of the form to be closed (ReportTypeView)</param>
+    '''<remarks>
+    '''This function is called when the user presses DoneBtn. In that function the
+    '''checkbox is checked before calling this function and closing the view window.
+    '''</remarks>
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
         Dim panel = TaskPaneHelper.GetTaskPane()
         panel?.MarkCheckboxAsDone("Btn_C")
