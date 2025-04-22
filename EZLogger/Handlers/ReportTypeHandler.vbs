@@ -63,6 +63,15 @@ Namespace Handlers
             Return view.ReportTypeCbo.SelectedItem?.ToString()
         End Function
 
+        '''<summary>
+        ''' Saves the selected report type to the current active Word Document's custom properties.
+        '''</summary>
+        '''<param name="report_type">The selected report type from the combobox</param>
+        '''<remarks>
+        ''' This funciton checks if the report type is non-empty then
+        ''' confirms the presense of an active Word Document, and then
+        ''' writes the value to a custom property named "Report Type"
+        '''</remarks>
         Public Sub HandleSelectedReportType(report_type As String)
             If String.IsNullOrWhiteSpace(report_type) Then
                 MsgBoxHelper.Show("Please select a  report type before confirming.")
@@ -79,6 +88,14 @@ Namespace Handlers
             End If
         End Sub
 
+        '''<summary>
+        '''Retreieves a list of available report types from the global_config.json file
+        '''</summary>
+        '''</returns> A list of report type strings for use in Comboboxes or other UI elements</returns>
+        '''<remarks>
+        '''This function loads report types from the report_type key
+        '''inside the listbox section of the global_config.json file
+        '''</remarks>
         Public Function GetReportTypes() As List(Of String)
             Return ListHelper.GetListFromGlobalConfig("listbox", "report_type")
         End Function
@@ -102,6 +119,20 @@ Namespace Handlers
             End Try
         End Function
 
+        '''<summary>
+        '''Launch the dueDates1370View window and populates it with
+        '''relevant data from the active Word document</summary>
+        '''<remarks>
+        '''This function manually constructs and initializes the
+        '''DueDates1370View and its host form (DueDates1370Host).  It
+        '''retrieves the "Commitment" custom document property and sets
+        '''the CommitmentDateLbl in the view. If the "early_nintey_day"
+        '''flag is set in the document, it also makes the Early 90DayLbl
+        '''visible. Form layout and position are explicitly set in the
+        '''handler to ensure proper display bypassing the usual Form_load
+        '''logic in the host form. The DueDate1370Handler is called to
+        '''populate the view with calculated due dates.
+        '''</remarks>
         Public Sub LaunchDueDates1370View()
             Dim host As New DueDates1370Host()
             Dim view As New DueDates1370View(host)
@@ -199,6 +230,17 @@ Namespace Handlers
             hostForm?.Close()
         End Sub
 
+        '''<summary>
+        '''Launch the DueDatesPprView window and populates it with
+        '''relevant data from the active Word document</summary>
+        '''<remarks>
+        '''This function manually constructs and initializes the
+        '''DueDatesPprView and its host form (DueDatesPprHost).  It
+        '''retrieves the "Commitment" custom document property and sets
+        '''the CommitmentDateLbl in the view.
+        '''The DueDatesPprHandler is called to populate the view with
+        '''calculated due dates.
+        '''</remarks>
         Public Sub LaunchDueDatesPprView()
             Dim host As New DueDatePprHost()
             Dim view As New DueDatePprView(host)
@@ -274,39 +316,14 @@ Namespace Handlers
             host.Show()
         End Sub
 
-        '''' <summary>
-        '''' Called when BtnAcceptPPR is clicked. Calculates days until/since due date,
-        '''' updates the label, and writes the number to a Word custom property.
-        '''' </summary>
-        '''' <param name="view">The ReportTypeView instance with the controls.</param>
-        'Public Sub HandleAcceptPPR(view As ReportTypeView)
-        '    ' Ensure a date is selected
-        '    If Not view.PickCurrentDueDate.SelectedDate.HasValue Then
-        '        Windows.MessageBox.Show("Select the current due date", "Missing Due Date", MessageBoxButton.OK, MessageBoxImage.Warning)
-        '        Exit Sub
-        '    End If
-
-        '    ' Calculate day difference
-        '    Dim dueDate As Date = view.PickCurrentDueDate.SelectedDate.Value.Date
-        '    Dim today As Date = Date.Today
-        '    Dim daysDifference As Integer = (dueDate - today).Days
-
-        '    ' Update the label
-        '    view.LabelDaysSinceDueDate.Content = daysDifference.ToString()
-
-        '    ' Get the active document
-        '    Dim app As Word.Application = Globals.ThisAddIn.Application
-        '    Dim doc As Word.Document = TryCast(app.ActiveDocument, Word.Document)
-
-        '    If doc Is Nothing Then
-        '        Windows.MessageBox.Show("No active document found.", "EZLogger", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '        Exit Sub
-        '    End If
-
-        '    ' Write to custom document property
-        '    DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since Due", daysDifference.ToString())
-        'End Sub
-
+        '''<summary>
+        '''Closes the ReportTypeView form when the Done button is clicked in ReportTypeView
+        '''</summary>
+        '''<param name="form">The instance of the form to be closed (ReportTypeView)</param>
+        '''<remarks>
+        '''This function is called when the user presses DoneBtn. In that function the
+        '''checkbox is checked before calling this function and closing the view window.
+        '''</remarks>
         Public Sub HandleCloseClick(form As Form)
             If form IsNot Nothing Then form.Close()
         End Sub
