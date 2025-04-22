@@ -95,7 +95,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="03. Select report type and dates"
+                    <CheckBox x:Name="Btn_C_Checkbox" Content="03. Select report type and dates"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -109,7 +109,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="04. Check TCAR log"
+                    <CheckBox x:Name="Btn_D_Checkbox" Content="04. Check TCAR log"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -123,7 +123,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="05. Check date of last HLV"
+                    <CheckBox x:Name="Btn_E_Checkbox" Content="05. Check date of last HLV"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -137,7 +137,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="06. Confirm report opinion"
+                    <CheckBox x:Name="Btn_F_Checkbox" Content="06. Confirm report opinion"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -151,7 +151,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="07. Select report author"
+                    <CheckBox x:Name="Btn_G_Checkbox" Content="07. Select report author"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -165,7 +165,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="08. Select who authorized approval"
+                    <CheckBox x:Name="Btn_H_Checkbox" Content="08. Select who authorized approval"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -179,7 +179,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="09. Rename and save file"
+                    <CheckBox x:Name="Btn_I_Checkbox" Content="09. Rename and save file"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -193,7 +193,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="10. Select cover pages to print"
+                    <CheckBox x:Name="Btn_J_Checkbox" Content="10. Select cover pages to print"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -207,7 +207,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="11. Log report details"
+                    <CheckBox x:Name="Btn_K_Checkbox" Content="11. Log report details"
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
@@ -221,7 +221,7 @@
                             Margin="24,0,0,0"
                             Width="40"
                             Background="White" />
-                    <CheckBox Content="12. Check notifications=,."
+                    <CheckBox x:Name="Btn_L_Checkbox" Content="12. Check notifications=,."
                               Height="20"
                               Margin="12,0,0,0" />
                 </StackPanel>
