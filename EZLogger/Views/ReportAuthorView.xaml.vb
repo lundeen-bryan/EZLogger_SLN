@@ -22,13 +22,22 @@ Namespace EZLogger.Views
 
             _hostForm = hostForm
             _handler = New AuthorHandler()
+            WireUpButtons()
+        End Sub
+
+        Private Sub WireUpButtons()
+            AddHandler Me.Loaded, AddressOf ReportAuthorView_Loaded
 
             AddHandler BtnAddAuthor.Click, AddressOf BtnAddAuthor_Click
             AddHandler BtnAuthorFirstPage.Click, AddressOf BtnAuthorFirstPage_Click
             AddHandler BtnAuthorLastPage.Click, AddressOf BtnAuthorLastPage_Click
             AddHandler BtnAuthorDone.Click, AddressOf BtnAuthorDone_Click
-            AddHandler BtnClose.Click, AddressOf BtnClose_Click
-            AddHandler Me.Loaded, AddressOf ReportAuthorView_Loaded
+            AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
+        End Sub
+
+        Private Sub ReportAuthorView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+            Dim doctors As List(Of String) = ListHelper.GetDoctorList()
+            CboAuthor.ItemsSource = doctors
         End Sub
 
         Private Sub BtnAddAuthor_Click(sender As Object, e As RoutedEventArgs)
@@ -47,12 +56,10 @@ Namespace EZLogger.Views
             _handler.HandleDoneSelectingClick()
         End Sub
 
-        Private Sub BtnClose_Click(sender As Object, e As RoutedEventArgs)
+        Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
+            Dim panel = TaskPaneHelper.GetTaskPane()
+            panel?.MarkCheckboxAsDone("Btn_G")
             _handler.HandleCloseClick(_hostForm)
-        End Sub
-        Private Sub ReportAuthorView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-            Dim doctors As List(Of String) = ListHelper.GetDoctorList()
-            CboAuthor.ItemsSource = doctors
         End Sub
 
     End Class
