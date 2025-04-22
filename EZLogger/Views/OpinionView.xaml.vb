@@ -10,7 +10,7 @@ Public Class OpinionView
     Private ReadOnly _handler As OpinionHandler
     Private ReadOnly _hostForm As Form
 
-    ' ✅ Constructor
+    ' Constructor
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
         _hostForm = hostForm
