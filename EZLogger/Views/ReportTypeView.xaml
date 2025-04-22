@@ -6,7 +6,7 @@
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
              x:Class="ReportTypeView"
              mc:Ignorable="d"
-             d:DesignHeight="365"
+             d:DesignHeight="380"
              d:DesignWidth="440"
              Background="White"
              FontFamily="Candara"
@@ -47,7 +47,7 @@
                               FontSize="18" />
                 </GroupBox>
             </StackPanel>
-            <StackPanel Height="95"
+            <StackPanel Height="120"
                         Width="440"
                         Orientation="Horizontal">
                 <GroupBox Header="Report Type"
@@ -62,14 +62,24 @@
                               VerticalAlignment="Top"
                               Margin="6,6,0,0" />
                 </GroupBox>
+                <StackPanel Orientation="Vertical" Height="120">
                 <Button x:Name="ReportTypeSelectedBtn"
-                        Content="Report Type Selected"
+                        Content="_Report Type Selected"
                         Height="40"
                         VerticalAlignment="Top"
-                        Margin="12,24,0,0"
+                        Margin="12,12,0,0"
                         Width="183"
                         Background="{x:Null}"
                         FontSize="16" />
+                <Button x:Name="DoneBtn"
+                        Content="_Done"
+                        Height="40"
+                        VerticalAlignment="Top"
+                        Margin="12,6,0,0"
+                        Width="183"
+                        Background="{x:Null}"
+                        FontSize="16" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>
