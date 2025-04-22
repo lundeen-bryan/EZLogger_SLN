@@ -12,23 +12,35 @@ Public Class UpdateInfoView
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
         _hostForm = hostForm
+        _handler = New PatientInfoHandler(Globals.ThisAddIn.Application)
+        WireUpButtons()
     End Sub
-    Private Sub BtnSaveProperty_Click(sender As Object, e As RoutedEventArgs) Handles BtnSaveProperty.Click
+
+    Public Sub WireUpButtons()
+        AddHandler BtnSaveProperty.Click, AddressOf BtnSaveProperty_Click
+        AddHandler BtnCalendar.Click, AddressOf BtnCalendar_Click
+        AddHandler HiddenDatePicker.SelectedDateChanged, AddressOf HiddenDatePicker_SelectedDateChanged
+        AddHandler BtnGenerateId.Click, AddressOf BtnGenerateId_Click
+        AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
+    End Sub
+
+    Private Sub BtnSaveProperty_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleSavePropertyClick(Me)
     End Sub
-    Private Sub BtnCalendar_Click(sender As Object, e As RoutedEventArgs) Handles BtnCalendar.Click
+
+    Private Sub BtnCalendar_Click(sender As Object, e As RoutedEventArgs)
         ' Simulate a popup by temporarily making it visible
         HiddenDatePicker.Visibility = Visibility.Visible
         HiddenDatePicker.IsDropDownOpen = True
     End Sub
-    Private Sub HiddenDatePicker_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs) Handles HiddenDatePicker.SelectedDateChanged
+    Private Sub HiddenDatePicker_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
         If HiddenDatePicker.SelectedDate.HasValue Then
             TxtbxPropertyValue.Text = HiddenDatePicker.SelectedDate.Value.ToString("MM/dd/yyyy")
         End If
 
         HiddenDatePicker.Visibility = Visibility.Collapsed
     End Sub
-    Private Sub BtnGenerateId_Click(sender As Object, e As RoutedEventArgs) Handles BtnGenerateId.Click
+    Private Sub BtnGenerateId_Click(sender As Object, e As RoutedEventArgs)
         Dim uniqueId As String = DocumentPropertyHelper.CreateUniqueIdFromProperties()
 
         If Not String.IsNullOrWhiteSpace(uniqueId) Then
@@ -37,7 +49,7 @@ Public Class UpdateInfoView
             MsgBoxHelper.Show("Could not generate ID. Make sure required properties are filled in.")
         End If
     End Sub
-    Private Sub BtnClose_Click(sender As Object, e As RoutedEventArgs) Handles BtnClose.Click
+    Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
         'If _hostForm IsNot Nothing Then _hostForm.Close()
         _handler.HandleCloseClick(_hostForm)
     End Sub
