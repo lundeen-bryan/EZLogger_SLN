@@ -23,7 +23,7 @@ Public Class OpinionView
         AddHandler BtnOpinionOk.Click, AddressOf BtnOpinionOk_Click
         AddHandler BtnOpinionFirstPage.Click, AddressOf BtnOpinionFirstPage_Click
         AddHandler BtnOpinionLastPage.Click, AddressOf BtnOpinionLastPage_Click
-        AddHandler BtnClose.Click, AddressOf BtnClose_Click
+        AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
     End Sub
 
     Private Sub OpinionView_Loaded(sender As Object, e As RoutedEventArgs)
@@ -45,7 +45,7 @@ Public Class OpinionView
         _handler.HandleOpinionLastPageClick()
     End Sub
 
-    Private Sub BtnClose_Click(sender As Object, e As RoutedEventArgs)
+    Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleCloseClick(_hostForm)
     End Sub
 End Class
