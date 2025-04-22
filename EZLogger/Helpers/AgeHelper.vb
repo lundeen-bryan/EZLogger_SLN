@@ -1,4 +1,7 @@
-﻿Namespace Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=AgeHelper.vb
+' !See Label ProcedureFooter for notes
+Namespace Helpers
 
     ''' <summary>
     ''' Helper class for calculating age from a date of birth.
@@ -14,11 +17,11 @@
         ''' <remarks>
         ''' This method accounts for whether the birthday has occurred yet in the current year.
         ''' If the current month and day are before the birth month and day, one year is subtracted.
-        ''' 
+        '''
         ''' For example:
         ''' - DOB: April 7, 2000 — As of April 6, 2025 → Age = 24
         ''' - DOB: April 7, 2000 — As of April 7, 2025 → Age = 25
-        ''' 
+        '''
         ''' This mirrors legacy behavior from the original VBA function 'return_age_int_fnc'.
         ''' </remarks>
         Public Shared Function CalculateAge(birthDate As Date, Optional asOfDate As Date? = Nothing) As Integer
@@ -38,3 +41,21 @@
     End Class
 
 End Namespace
+
+ProcedureFooter:
+''===========================================================================================
+'' Procedure: ......... AgeHelper.vb
+'' Description: ....... Calculates the age of the person by DOB up to the month and day
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-04-22
+'' Updated: ........... 2025-04-22
+'' Module URL: ........ https://github.com/lundeen-bryan/EZLogger_SLN/tree/dev
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... Word
+'' Contact Author: .... lundeen-bry;an
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Called by: ......... DocumentPropertyHelper.WriteDataToDocProperties
+'' Calls to: .......... n/a
+'' Notes: ............. _
+ (1) notes_here
+''===========================================================================================
