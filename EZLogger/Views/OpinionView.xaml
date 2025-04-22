@@ -88,9 +88,9 @@
                         Background="{x:Null}"
                         Margin="12,0,12,0"
                         Cursor="Hand" />
-                <Button x:Name="BtnClose"
+                <Button x:Name="DoneBtn"
                         Width="88"
-                        Content="_Close"
+                        Content="_Done"
                         BorderBrush="Gray"
                         Height="31"
                         Background="{x:Null}"

@@ -14,7 +14,7 @@ Namespace Handlers
 
 
         ''' <summary>
-        ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets, 
+        ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets,
         ''' and ensures it stays on top of other windows.
         ''' </summary>
         Public Sub OnOpenOpinionFormClick()
@@ -49,6 +49,8 @@ Namespace Handlers
         End Sub
 
         Public Sub HandleCloseClick(hostForm As Form)
+            Dim panel = TaskPaneHelper.GetTaskPane()
+            panel?.MarkCheckboxAsDone("Btn_D")
             hostForm?.Close()
         End Sub
 
