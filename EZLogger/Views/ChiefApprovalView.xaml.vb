@@ -19,12 +19,16 @@ Namespace EZLogger.Views
             _hostForm = hostForm
             _handler = New ChiefApprovalHandler()
 
-            AddHandler BtnApproval.Click, AddressOf BtnApproval_Click
-            AddHandler BtnSignature.Click, AddressOf BtnSignature_Click
-            AddHandler BtnClose.Click, AddressOf BtnClose_Click
+            WireUpButtons()
+        End Sub
+
+        Public Sub WireUpButtons()
             ' Load combo data when the view is created
             AddHandler Me.Loaded, AddressOf ChiefApprovalView_Loaded
 
+            AddHandler BtnApproval.Click, AddressOf BtnApproval_Click
+            AddHandler BtnSignature.Click, AddressOf BtnSignature_Click
+            AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
         End Sub
 
         Private Sub ChiefApprovalView_Loaded(sender As Object, e As RoutedEventArgs)
@@ -41,7 +45,9 @@ Namespace EZLogger.Views
             _handler.HandleSignatureClick()
         End Sub
 
-        Private Sub BtnClose_Click(sender As Object, e As RoutedEventArgs)
+        Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
+            Dim panel = TaskPaneHelper.GetTaskPane()
+            panel?.MarkCheckboxAsDone("Btn_H")
             _handler.HandleCloseClick(_hostForm)
         End Sub
 
