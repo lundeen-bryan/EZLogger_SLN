@@ -1,6 +1,6 @@
 ﻿''' Namespace=EZLogger/Helpers
 ''' Filename=AgeHelper.vb
-''' !See Label ProcedureFooter for notes
+''' !See Label FileFooter for notes
 Namespace Helpers
 
     ''' <summary>
@@ -42,7 +42,7 @@ Namespace Helpers
 
 End Namespace
 
-ProcedureFooter:
+FileFooter:
 '''===========================================================================================
 ''' Procedure: ......... AgeHelper.vb
 ''' Description: ....... Calculates the age of the person by DOB up to the month and day
