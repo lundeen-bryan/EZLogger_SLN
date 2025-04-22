@@ -18,6 +18,7 @@ Public Class ReportTypeView
     Private Sub WireUpButtons()
         AddHandler Me.Loaded, AddressOf ReportTypeView_Loaded
         AddHandler ReportTypeSelectedBtn.Click, AddressOf ReportTypeSelectedBtn_Click
+        AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
     End Sub
 
     Private Sub ReportTypeView_Loaded(sender As Object, e As RoutedEventArgs)
@@ -39,5 +40,11 @@ Public Class ReportTypeView
             Return String.Empty
         End If
     End Function
+
+    Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim panel = TaskPaneHelper.GetTaskPane()
+        panel?.MarkCheckboxAsDone("Btn_C")
+        _handler.HandleCloseClick(_hostForm)
+    End Sub
 
 End Class
