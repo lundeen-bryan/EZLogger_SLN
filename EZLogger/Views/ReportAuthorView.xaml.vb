@@ -3,10 +3,10 @@ Imports System.Windows.Forms
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
 
-Namespace EZLogger.Views
+Namespace Views
 
     Partial Public Class ReportAuthorView
-        Inherits System.Windows.Controls.UserControl
+        Inherits Controls.UserControl
 
         Private ReadOnly _hostForm As Form
         Private ReadOnly _handler As AuthorHandler
@@ -35,7 +35,7 @@ Namespace EZLogger.Views
             AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
         End Sub
 
-        Private Sub ReportAuthorView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Private Sub ReportAuthorView_Loaded(sender As Object, e As RoutedEventArgs)
             Dim doctors As List(Of String) = ListHelper.GetDoctorList()
             CboAuthor.ItemsSource = doctors
         End Sub
