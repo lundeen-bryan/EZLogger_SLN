@@ -1,4 +1,8 @@
-﻿Imports System.Windows
+﻿' Namespace=EZLogger/Views
+' Filename=ReportTypeView.xaml.vb
+' !See Label Footer for notes
+
+Imports System.Windows
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
 Imports System.Windows.Forms
@@ -29,7 +33,6 @@ Public Class ReportTypeView
     Private Sub ReportTypeSelectedBtn_Click(sender As Object, e As RoutedEventArgs)
         Dim selectedReportType As String = TryCast(ReportTypeCbo.SelectedItem, String)
         Dim selectedReportDate As String = GetSelectedReportDate()
-
         _handler.ReportTypeSelectedBtnClick(selectedReportType, selectedReportDate, _hostForm)
     End Sub
 
@@ -56,3 +59,19 @@ Public Class ReportTypeView
     End Sub
 
 End Class
+
+'Footer:
+''===========================================================================================
+'' Procedure: ......... ReportTypeView.xaml.vb/
+'' Description: ....... View for the report type selected
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-04-23
+'' Updated: ........... 2025-04-23
+'' Module URL: ........ weburl
+'' Installs to: ....... EZLogger/Views
+'' Compatibility: ..... Word VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+' (1)  📌  Passing values from the view to the handler.md 📝 🗑️
+''===========================================================================================
