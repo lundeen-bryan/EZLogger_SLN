@@ -1,4 +1,8 @@
-﻿Imports System.Windows
+﻿' Namespace=EZLogger/Views
+' Filename=UpdateInfoView.xaml.vb
+' !See Label Footer for notes
+
+Imports System.Windows
 Imports System.Windows.Controls
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
@@ -42,6 +46,7 @@ Public Class UpdateInfoView
         HiddenDatePicker.Visibility = Visibility.Visible
         HiddenDatePicker.IsDropDownOpen = True
     End Sub
+
     Private Sub HiddenDatePicker_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs)
         If HiddenDatePicker.SelectedDate.HasValue Then
             TxtbxPropertyValue.Text = HiddenDatePicker.SelectedDate.Value.ToString("MM/dd/yyyy")
@@ -49,6 +54,7 @@ Public Class UpdateInfoView
 
         HiddenDatePicker.Visibility = Visibility.Collapsed
     End Sub
+
     Private Sub BtnGenerateId_Click(sender As Object, e As RoutedEventArgs)
         Dim uniqueId As String = DocumentPropertyHelper.CreateUniqueIdFromProperties()
 
@@ -58,9 +64,26 @@ Public Class UpdateInfoView
             MsgBoxHelper.Show("Could not generate ID. Make sure required properties are filled in.")
         End If
     End Sub
+
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
         'If _hostForm IsNot Nothing Then _hostForm.Close()
         _handler.HandleCloseClick(_hostForm)
     End Sub
 
 End Class
+
+''Footer:
+''===========================================================================================
+'' Procedure: ......... UpdateInfoView.xaml.vb/
+'' Description: ....... Updates info from the Patient Info form
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-04-23
+'' Updated: ........... 2025-04-23
+'' Module URL: ........ weburl
+'' Installs to: ....... EZLogger/Views
+'' Compatibility: ..... Word, VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+' (1)  📌  Geting data from one view to another.md 📝 🗑️
+''===========================================================================================
