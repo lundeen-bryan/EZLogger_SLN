@@ -13,7 +13,12 @@ Public Class AddAlertPopup
         LabelKey.Content = If(_isCounty, "County Name:", "Patient Number:")
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As RoutedEventArgs) Handles BtnSave.Click
+    Private Sub WireUpButtons()
+        AddHandler BtnSave.Click, AddressOf BtnSave_Click
+        AddHandler CancelBtn.Click, AddressOf CancelBtn_Click
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As RoutedEventArgs)
         AlertKey = KeyBox.Text.Trim()
         AlertValue = ValueBox.Text.Trim()
 
@@ -25,7 +30,7 @@ Public Class AddAlertPopup
         Me.DialogResult = True
     End Sub
 
-    Private Sub BtnCancel_Click(sender As Object, e As RoutedEventArgs) Handles BtnCancel.Click
+    Private Sub CancelBtn_Click(sender As Object, e As RoutedEventArgs)
         Me.DialogResult = False
     End Sub
 End Class
