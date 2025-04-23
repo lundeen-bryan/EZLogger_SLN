@@ -57,7 +57,7 @@ Public Class UpdateInfoHost
                                                             End Sub)
         ' Alt+C = Close Form
         _shortcutHandler.RegisterShortcut(Keys.C, Keys.Alt, Sub()
-                                                                TriggerButtonClick(view.BtnClose)
+                                                                TriggerButtonClick(view.DoneBtn)
                                                             End Sub)
 
     End Sub

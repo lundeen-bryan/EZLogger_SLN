@@ -1,15 +1,20 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
+Imports System.Windows.Forms
 Imports EZLogger.Handlers
+Imports EZLogger.Helpers
 
 Public Class TCARListView
-    Inherits UserControl
+    Inherits Controls.UserControl
 
-    Public Sub New()
+    Private ReadOnly _handler As New TCARListHandler()
+    Private ReadOnly _hostForm As Form
+
+    Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
 
         _hostForm = hostForm
-        _handler = New TCARListHandler(Globals.ThisAddIn.Application)
+        _handler = New TCARListHandler()
         WireUpButtons()
     End Sub
 
@@ -20,7 +25,7 @@ Public Class TCARListView
 
     Private Sub TCARListView_Loaded(sender As Object, e As RoutedEventArgs)
         ' Load TCAR records from the handler
-        Dim records As List(Of TCARRecord) = TCARListHandler.LoadAllActive()
+        Dim records As List(Of TCARRecord) = _handler.LoadAllActive()
 
         ' Set the DataGrid's item source
         TCARGrid.ItemsSource = records
@@ -28,7 +33,7 @@ Public Class TCARListView
 
     ' This method is wired up in XAML and simply delegates to the handler
     Private Sub BtnSelectPatient_Click(sender As Object, e As RoutedEventArgs)
-        TCARListHandler.HandleTCARSelect(TCARGrid)
+        _handler.HandleTCARSelect(TCARGrid)
     End Sub
 
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)

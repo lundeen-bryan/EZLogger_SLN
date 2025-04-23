@@ -12,7 +12,7 @@ Public Class UpdateInfoView
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
         _hostForm = hostForm
-        _handler = New PatientInfoHandler(Globals.ThisAddIn.Application)
+        _handler = New PatientInfoHandler()
         WireUpButtons()
     End Sub
 

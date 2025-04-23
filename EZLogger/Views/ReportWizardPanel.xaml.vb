@@ -49,6 +49,8 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_D_Click(sender As Object, e As RoutedEventArgs)
+        ' Set Task Pane Helper
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnDMessage()
         TimerHelper.DisableTemporarily(Btn_D, 2000) ' Disable for 2 seconds
     End Sub
