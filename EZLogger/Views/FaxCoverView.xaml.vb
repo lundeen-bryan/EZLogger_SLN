@@ -16,11 +16,24 @@ Public Class FaxCoverView
 
         _hostForm = hostForm
         _handler = New FaxCoverHandler()
+        WireUpButtons()
+    End Sub
 
+    Public Sub WireUpButtons()
+        ' Wire up buttons
         ' Load combo data when the view is created
         AddHandler Me.Loaded, AddressOf FaxCoverView_Loaded
+        AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
 
-        ' Wire up buttons
+    End Sub
+
+    '''<summary>
+    '''Checks the checkbox and closes the form
+    '''</summary>
+    Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim panel = TaskPaneHelper.GetTaskPane()
+        panel?.MarkCheckboxAsDone("Btn_J")
+        _handler.HandleCloseClick(_hostForm)
     End Sub
 
     Private Sub FaxCoverView_Loaded(sender As Object, e As RoutedEventArgs)

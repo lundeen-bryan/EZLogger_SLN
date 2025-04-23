@@ -56,42 +56,50 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_E_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnEMessage()
         TimerHelper.DisableTemporarily(Btn_E, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         ' Should open the opinion form
         _handler.ShowBtnFMessage()
         TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_G_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnGMessage()
         TimerHelper.DisableTemporarily(Btn_G, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_H_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnHMessage()
         TimerHelper.DisableTemporarily(Btn_H, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_I_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnIMessage()
         TimerHelper.DisableTemporarily(Btn_I, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_J_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnJMessage()
         TimerHelper.DisableTemporarily(Btn_J, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_K_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnKMessage()
         TimerHelper.DisableTemporarily(Btn_K, 2000) ' Disable for 2 seconds
     End Sub
 
     Private Sub Btn_L_Click(sender As Object, e As RoutedEventArgs)
+        TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnLMessage()
         TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
     End Sub

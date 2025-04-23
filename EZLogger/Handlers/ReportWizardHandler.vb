@@ -120,7 +120,7 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnEMessage()
-            MessageBox.Show("This will present the HTV list.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            MessageBox.Show("This will present the HLV list.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
         End Sub
         Public Sub ShowBtnFMessage()
             Dim opHandler As New OpinionHandler(Globals.ThisAddIn.Application)
