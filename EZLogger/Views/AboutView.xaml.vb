@@ -22,11 +22,15 @@ Namespace EZLogger.Views
             InitializeComponent()
             _hostForm = hostForm
             LoadAboutInfo()
+            WireUpButtons()
+        End Sub
 
+        Private Sub WireUpButtons()
             AddHandler BtnHelp.Click, AddressOf BtnHelp_Click
             AddHandler BtnGoBack.Click, AddressOf BtnGoBack_Click
             AddHandler Me.Loaded, AddressOf OnViewLoaded
         End Sub
+
         Private Sub OnViewLoaded(sender As Object, e As RoutedEventArgs)
             LoadAboutInfo()
         End Sub

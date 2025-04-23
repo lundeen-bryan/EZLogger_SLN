@@ -11,6 +11,7 @@ Public Class AddAlertPopup
         InitializeComponent()
         _isCounty = isCounty
         LabelKey.Content = If(_isCounty, "County Name:", "Patient Number:")
+        WireUpButtons()
     End Sub
 
     Private Sub WireUpButtons()
