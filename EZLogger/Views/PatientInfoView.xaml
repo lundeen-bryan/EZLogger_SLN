@@ -73,7 +73,8 @@
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
-            <Button x:Name="BtnAddEdit" Content="Add/Edit"
+            <Button x:Name="BtnAddEdit" 
+                    Content="Add/Edit"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
                     Margin="220,86,0,0"
@@ -84,7 +85,8 @@
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" RenderTransformOrigin="0.917,0.583" FontSize="16" />
 
-            <Button x:Name="BtnCopy" Content="_Copy"
+            <Button x:Name="BtnCopy" 
+                    Content="_Copy"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
                     Margin="216,120,0,0"
@@ -131,7 +133,7 @@
                       Height="575"
                       RowHeaderWidth="0"
                       SelectionMode="Single"
-                      SelectionUnit="FullRow" FontSize="16">
+                      SelectionUnit="FullRow" FontSize="16" FontFamily="Lucida Console">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Property"
