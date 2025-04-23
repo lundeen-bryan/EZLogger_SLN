@@ -98,3 +98,8 @@ A typical scenario is copying a selected document property from `PatientInfoView
 ## Summary
 When working in a WinForms-hosted WPF environment inside a VSTO add-in, transferring values between views requires careful attention to control initialization timing. Use public properties and the `Loaded` event to reliably transfer and apply values before the view is shown. The included diagram illustrates the data flow from selection to rendering, making the process easier to visualize and replicate.
 
+## See Also
+
+Geting data from one view to another.md
+
+<!-- @nested-tags:reusing-properties -->
