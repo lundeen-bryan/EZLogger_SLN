@@ -60,9 +60,14 @@
                     <Button x:Name="BtnConvert"
                             Content="_Convert"
                             Height="35"
-                            Margin="100,0,0,0"
-                            Width="131"
+                            Margin="50,0,0,0"
+                            Width="92"
                             Background="{x:Null}" />
+                    <Button x:Name="DoneBtn"
+                            Content="_Done"
+                            Height="35"
+                            Width="92"
+                            Background="{x:Null}" Margin="24,0,0,0" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

@@ -29,6 +29,8 @@ Public Class SaveFileView
         ReportTypeCbo.ItemsSource = reportTypes
     End Sub
     Private Sub Btn_Close_Click(sender As Object, e As RoutedEventArgs)
+        Dim panel = TaskPaneHelper.GetTaskPane()
+        panel?.MarkCheckboxAsDone("Btn_I")
         _handler.HandleCloseClick(_hostForm)
     End Sub
 

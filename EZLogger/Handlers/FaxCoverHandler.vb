@@ -18,6 +18,10 @@ Namespace Handlers
             host.Show()
         End Sub
 
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
     End Class
 
 End Namespace
