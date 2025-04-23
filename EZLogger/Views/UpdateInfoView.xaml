@@ -31,7 +31,7 @@
                               Width="167"
                               HorizontalAlignment="Left">
                         <Label x:Name="LblPatientNumber"
-                               Content="123456-7"
+                               Content=""
                                Margin="6,0,0,0"
                                Background="#FFC1E0FF"
                                FontFamily="Lucida Console"
@@ -52,7 +52,7 @@
                               Width="427"
                               HorizontalAlignment="Left">
                         <Label x:Name="LblPatientName"
-                               Content="123456-7"
+                               Content=""
                                Margin="6,0,13,0"
                                Background="#FFC1E0FF"
                                FontFamily="Lucida Console"
@@ -72,7 +72,7 @@
                               HorizontalAlignment="Left">
                         <TextBox x:Name="TxbxPropertyName"
                                  Margin="6,6,13,0"
-                                 TextWrapping="Wrap" />
+                                 TextWrapping="Wrap" FontFamily="Lucida Console" />
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="182"
@@ -89,7 +89,7 @@
                                  Margin="6,6,13,0"
                                  TextWrapping="Wrap"
                                  VerticalScrollBarVisibility="Auto"
-                                 AcceptsReturn="True" />
+                                 AcceptsReturn="True" FontFamily="Lucida Console" />
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="306"

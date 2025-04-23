@@ -27,10 +27,15 @@ Namespace EZLogger.Views
 			AddHandler BtnLastPage.Click, AddressOf BtnLastPage_Click
 			AddHandler BtnAddEdit.Click, AddressOf BtnAddEdit_Click
 			AddHandler BtnRefresh.Click, AddressOf BtnRefresh_Click
+			AddHandler BtnCopy.Click, AddressOf BtnCopy_Click
 		End Sub
 
 		Private Sub PatientInfoView_Loaded(sender As Object, e As RoutedEventArgs)
 			_handler.LoadCustomDocProperties(Me)
+		End Sub
+
+		Private Sub BtnCopy_Click(sender As Object, e As RoutedEventArgs)
+			_handler.HandleCopyClick(Me)
 		End Sub
 
 		Private Sub BtnDelete_Click(sender As Object, e As RoutedEventArgs)

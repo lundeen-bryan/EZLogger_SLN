@@ -39,18 +39,15 @@ Namespace Handlers
 
                 ' Open the UpdateInfoHost form
                 Dim hostForm As New UpdateInfoHost()
-                Dim updateView As UpdateInfoView = TryCast(hostForm.ElementHost1.Child, UpdateInfoView)
+                Dim updateView As New UpdateInfoView(hostForm)
 
-                If updateView IsNot Nothing Then
-                    ' If a property is selected, pre-fill the fields (edit mode)
-                    If selectedEntry IsNot Nothing Then
-                        updateView.TxbxPropertyName.Text = selectedEntry.PropertyName
-                        updateView.TxtbxPropertyValue.Text = selectedEntry.Value
-                    Else
-                        ' Otherwise, start blank (add mode)
-                        updateView.TxbxPropertyName.Text = ""
-                        updateView.TxtbxPropertyValue.Text = ""
-                    End If
+                ' Assign the view manually
+                hostForm.ElementHost1.Child = updateView
+
+                ' Set initial values before the form loads
+                If selectedEntry IsNot Nothing Then
+                    updateView.InitialPropertyName = selectedEntry.PropertyName
+                    updateView.InitialPropertyValue = selectedEntry.Value
                 End If
 
                 hostForm.Show()
@@ -134,8 +131,15 @@ Namespace Handlers
             End Try
         End Sub
 
-        Public Sub HandleCopyClick()
-            MsgBox("You clicked Copy")
+        Public Sub HandleCopyClick(view As PatientInfoView)
+            Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
+
+            If selectedEntry IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(selectedEntry.Value) Then
+                Clipboard.SetText(selectedEntry.Value)
+                MsgBoxHelper.Show("Copied: " & selectedEntry.Value)
+            Else
+                MsgBoxHelper.Show("No value selected to copy.")
+            End If
         End Sub
 
         Public Sub HandleFirstPageClick()

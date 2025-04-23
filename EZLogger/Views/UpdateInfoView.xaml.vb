@@ -8,6 +8,8 @@ Public Class UpdateInfoView
 
     Private ReadOnly _handler As New PatientInfoHandler()
     Private ReadOnly _hostForm As Form
+    Public Property InitialPropertyName As String = ""
+    Public Property InitialPropertyValue As String = ""
 
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
@@ -17,12 +19,19 @@ Public Class UpdateInfoView
     End Sub
 
     Public Sub WireUpButtons()
+        AddHandler Me.Loaded, AddressOf UpdateInfoView_Loaded
         AddHandler BtnSaveProperty.Click, AddressOf BtnSaveProperty_Click
         AddHandler BtnCalendar.Click, AddressOf BtnCalendar_Click
         AddHandler HiddenDatePicker.SelectedDateChanged, AddressOf HiddenDatePicker_SelectedDateChanged
         AddHandler BtnGenerateId.Click, AddressOf BtnGenerateId_Click
         AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
     End Sub
+
+    Private Sub UpdateInfoView_Loaded(sender As Object, e As RoutedEventArgs)
+        TxbxPropertyName.Text = InitialPropertyName
+        TxtbxPropertyValue.Text = InitialPropertyValue
+    End Sub
+
 
     Private Sub BtnSaveProperty_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleSavePropertyClick(Me)

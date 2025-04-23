@@ -14,7 +14,7 @@ Public Class UpdateInfoHost
     Private Sub UpdateInfoHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Instantiate and assign the WPF UserControl
         Dim view As New UpdateInfoView(Me)
-        ElementHost1.Child = view
+        'ElementHost1.Child = view
 
         ' Set form size and title
         Me.ClientSize = New Drawing.Size(485, 770)
