@@ -164,8 +164,8 @@
                     </StackPanel>
                     <StackPanel Height="60"
                                 Orientation="Horizontal">
-                        <Button x:Name="BtnClose"
-                                Content="_C"
+                        <Button x:Name="DoneBtn"
+                                Content="_B"
                                 VerticalAlignment="Top"
                                 Margin="6,6,0,0"
                                 Height="45"

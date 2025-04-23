@@ -1,6 +1,6 @@
-﻿''' Namespace=EZLogger/Helpers
-''' Filename=AgeHelper.vb
-''' !See Label FileFooter for notes
+﻿' Namespace=EZLogger/Helpers
+' Filename=AgeHelper.vb
+' !See Label FileFooter for notes
 Namespace Helpers
 
     ''' <summary>
@@ -42,19 +42,19 @@ Namespace Helpers
 
 End Namespace
 
-FileFooter:
-'''===========================================================================================
-''' Procedure: ......... AgeHelper.vb
-''' Description: ....... Calculates the age of the person by DOB up to the month and day
-''' Created: ........... 2025-04-22
-''' Updated: ........... 2025-04-22
-''' Module URL: ........ https://github.com/lundeen-bryan/EZLogger_SLN/tree/dev
-''' Installs to: ....... EZLogger/Helpers
-''' Compatibility: ..... Word VSTO
-''' Contact Author: .... lundeen-bry;an
-''' Copyright:  ........ ©2025. All rights reserved.
-''' Called by: ......... DocumentPropertyHelper.WriteDataToDocProperties
-''' Calls to: .......... n/a
-''' Notes: ............. _
+''FileFooter:
+''===========================================================================================
+'' Procedure: ......... AgeHelper.vb
+'' Description: ....... Calculates the age of the person by DOB up to the month and day
+'' Created: ........... 2025-04-22
+'' Updated: ........... 2025-04-22
+'' Module URL: ........ https://github.com/lundeen-bryan/EZLogger_SLN/tree/dev
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... Word VSTO
+'' Contact Author: .... lundeen-bry;an
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Called by: ......... DocumentPropertyHelper.WriteDataToDocProperties
+'' Calls to: .......... n/a
+'' Notes: ............. _
 ' (1) notes_here
-'''===========================================================================================
+''===========================================================================================

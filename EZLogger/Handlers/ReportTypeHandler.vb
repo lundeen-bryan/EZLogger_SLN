@@ -91,7 +91,7 @@ Namespace Handlers
         '''<summary>
         '''Retreieves a list of available report types from the global_config.json file
         '''</summary>
-        '''</returns> A list of report type strings for use in Comboboxes or other UI elements</returns>
+        '''<returns> A list of report type strings for use in Comboboxes or other UI elements</returns>
         '''<remarks>
         '''This function loads report types from the report_type key
         '''inside the listbox section of the global_config.json file
