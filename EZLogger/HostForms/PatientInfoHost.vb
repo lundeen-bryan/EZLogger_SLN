@@ -9,5 +9,6 @@ Public Class PatientInfoHost
         ElementHost1.Child = view
         Me.Text = ""
         Me.ClientSize = New Drawing.Size(400, 755)
+        Me.MinimumSize = New Drawing.Size(400, 400)
     End Sub
 End Class

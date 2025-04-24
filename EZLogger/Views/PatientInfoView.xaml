@@ -19,8 +19,8 @@
               Background="White">
 
             <Label Content="PATIENT INFO SAVED IN REPORT"
-                   HorizontalAlignment="Center"
-                   Margin="0,12,0,0"
+                   HorizontalAlignment="Left"
+                   Margin="12,12,0,0"
                    VerticalAlignment="Top"
                    Width="348"
                    FontWeight="Bold"
@@ -133,7 +133,7 @@
                       Height="575"
                       RowHeaderWidth="0"
                       SelectionMode="Single"
-                      SelectionUnit="FullRow" FontSize="16" FontFamily="Lucida Console">
+                      SelectionUnit="FullRow" FontSize="16" FontFamily="Lucida Console" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Property"
