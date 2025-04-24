@@ -8,8 +8,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:models="clr-namespace:EZLogger.EZLogger.Models"
              mc:Ignorable="d"
-             d:DesignHeight="395"
-             d:DesignWidth="870"
+             d:DesignHeight="400"
+             d:DesignWidth="720"
              FontFamily="Candara"
              FontSize="14"
              Padding="0,0,-4,0">
@@ -19,20 +19,20 @@
                             MethodName="GetReportTypes" />
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <StackPanel Height="395"
-                    Width="870"
+        <StackPanel Height="396"
+                    Width="720"
                     Background="White">
-            <controls:FormHeaderControl HeaderText="OPINION AND TYPE OF REPORT" />
+            <controls:FormHeaderControl HeaderText="OPINION AND TYPE OF REPORT" Width="720" HorizontalAlignment="Left" />
             <DataGrid ItemsSource="{Binding Source={StaticResource ReportTypeData}}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       GridLinesVisibility="All"
                       HeadersVisibility="Column"
                       Margin="6,10,6,0"
-                      Height="261"
+                      Height="285"
                       Background="White"
                       BorderBrush="Black"
-                      Padding="6,0,6,0" FontSize="14" IsHitTestVisible="False">
+                      Padding="6,0,6,0" FontSize="14" IsHitTestVisible="False" Width="699" HorizontalAlignment="Left">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Choice"
                                         Binding="{Binding Choice}"
@@ -54,13 +54,13 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Height="55"
-                        Width="850"
+                        Width="720"
                         Orientation="Horizontal">
                 <ComboBox x:Name="OpinionCbo"
                           Width="215"
                           Height="26"
                           FontFamily="Lucida Fax"
-                          Margin="0,0,12,0">
+                          Margin="12,0,12,0">
                     <ComboBoxItem Content="1370(b)(1)" />
                     <ComboBoxItem Content="1372(a)(1)" />
                 </ComboBox>
