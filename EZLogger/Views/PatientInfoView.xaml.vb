@@ -5,7 +5,7 @@ Imports EZLogger.Handlers
 Namespace EZLogger.Views
 
 	Partial Public Class PatientInfoView
-		Inherits Controls.UserControl
+		Inherits Windows.Controls.UserControl
 
 		Private ReadOnly _handler As PatientInfoHandler
 		Private ReadOnly _hostForm As New Form()

@@ -85,7 +85,7 @@
                         Content="Save As..."
                         Width="100"
                         Margin="12,0,10,0" Background="{x:Null}" />
-                <Button x:Name="BtnDone"
+                <Button x:Name="DoneBtn"
                         Content="Done"
                         Width="100" Background="{x:Null}" />
             </StackPanel>

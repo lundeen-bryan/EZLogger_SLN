@@ -1,13 +1,10 @@
-﻿Imports System.Windows
-Imports System.Windows.Forms
+﻿Imports System.Windows.Forms
 
 Namespace Handlers
-    Public Class AuthorHandler
+    Public Class EvaluatorHandler ' Example: ConfigViewHandler
 
-        Public Sub OnOpenAuthorFormClick()
-            Dim host As New ReportAuthorHost()
-            host.TopMost = True
-            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
+        Public Sub OnOpenEvaluatorViewClick()
+            Dim host As New EvaluatorHost()
             host.Show()
         End Sub
         Public Sub HandleCloseClick(form As Form)
@@ -28,6 +25,7 @@ Namespace Handlers
         Public Sub HandleDoneSelectingClick()
             MsgBox("You clicked Done Selecting")
         End Sub
+
 
     End Class
 End Namespace

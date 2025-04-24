@@ -371,11 +371,11 @@
     </Compile>
     <Compile Include="Enums\CustomMsgBoxResult.vb" />
     <Compile Include="Handlers\AboutWinHandler.vb" />
-    <Compile Include="Handlers\AuthorHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\DueDatePprHandler.vb" />
     <Compile Include="Handlers\DueDates1370Handler.vb" />
+    <Compile Include="Handlers\EvaluatorHandler.vb" />
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientDatabaseHandler.vb" />
@@ -449,6 +449,12 @@
     <Compile Include="HostForms\DueDates1370Host.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\EvaluatorHost.Designer.vb">
+      <DependentUpon>EvaluatorHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\EvaluatorHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\FaxCoverHost.Designer.vb">
       <DependentUpon>FaxCoverHost.vb</DependentUpon>
     </Compile>
@@ -465,12 +471,6 @@
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
     </Compile>
     <Compile Include="HostForms\PatientInfoHost.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HostForms\ReportAuthorHost.Designer.vb">
-      <DependentUpon>ReportAuthorHost.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HostForms\ReportAuthorHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\ReportTypeHost.Designer.vb">
@@ -524,6 +524,9 @@
     <Compile Include="Views\DueDates1370View.xaml.vb">
       <DependentUpon>DueDates1370View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EvaluatorView.xaml.vb">
+      <DependentUpon>EvaluatorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FaxCoverView.xaml.vb">
       <DependentUpon>FaxCoverView.xaml</DependentUpon>
     </Compile>
@@ -532,9 +535,6 @@
     </Compile>
     <Compile Include="Views\PatientInfoView.xaml.vb">
       <DependentUpon>PatientInfoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReportAuthorView.xaml.vb">
-      <DependentUpon>ReportAuthorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportTypeView.xaml.vb">
       <DependentUpon>ReportTypeView.xaml</DependentUpon>
@@ -579,6 +579,9 @@
     <EmbeddedResource Include="HostForms\DueDates1370Host.resx">
       <DependentUpon>DueDates1370Host.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\EvaluatorHost.resx">
+      <DependentUpon>EvaluatorHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\FaxCoverHost.resx">
       <DependentUpon>FaxCoverHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -587,9 +590,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\PatientInfoHost.resx">
       <DependentUpon>PatientInfoHost.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\ReportAuthorHost.resx">
-      <DependentUpon>ReportAuthorHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\ReportTypeHost.resx">
       <DependentUpon>ReportTypeHost.vb</DependentUpon>
@@ -677,6 +677,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EvaluatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FaxCoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -686,10 +690,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientInfoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ReportAuthorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
