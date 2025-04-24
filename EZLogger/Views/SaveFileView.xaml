@@ -18,8 +18,8 @@
                       Margin="0,0,0,10">
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
-                    <Button x:Name="BtnSearchPatientId"
-                            Content="Search"
+                    <Button x:Name="SearchPatientIdBtn"
+                            Content="_Search"
                             Width="100" Margin="0,0,12,0" Background="{x:Null}" />
                     <TextBox x:Name="TxtPatientId"
                              Width="200"
@@ -64,7 +64,7 @@
             </StackPanel>
             <!-- Show Path Button -->
             <Button x:Name="BtnShowPath"
-                    Content="Show New Path Below"
+                    Content="Show New _Path Below"
                     Width="200"
                     Height="30"
                     Margin="0,0,0,10" Background="{x:Null}" />
@@ -82,11 +82,11 @@
                         HorizontalAlignment="Left"
                         Margin="0,0,0,10">
                 <Button x:Name="BtnSaveAs"
-                        Content="Save As..."
+                        Content="Save _As..."
                         Width="100"
                         Margin="12,0,10,0" Background="{x:Null}" />
                 <Button x:Name="DoneBtn"
-                        Content="Done"
+                        Content="_Done"
                         Width="100" Background="{x:Null}" />
             </StackPanel>
         </StackPanel>
