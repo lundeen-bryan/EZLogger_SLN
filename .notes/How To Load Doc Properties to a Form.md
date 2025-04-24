@@ -1,5 +1,7 @@
 # 📖 How To Load Word Document Properties into Any Form in EZLogger
 
+> Note the use of the word "Form" is a carry over from WinForms, but in reality, we are talking about a UserControl referred to as a "View." 
+
 This guide describes a generalized pattern for retrieving **custom document properties** from an active Word document and loading those values into WPF controls hosted within WinForms in the **EZLogger** VSTO project.
 
 This pattern works across any form in the project and allows for scalable, centralized property loading behavior using shared helper methods and consistent handler architecture.
@@ -36,6 +38,7 @@ For each field you want to populate:
 - **Target Control in Form:** E.g., `TxtPatientId.Text`
 
 Create a map of fields for reuse:
+
 ```vb
 Dim fieldMap As New Dictionary(Of String, Action(Of String)) From {
     {"Patient Number", Sub(val) view.TxtPatientId.Text = val},
@@ -52,6 +55,7 @@ Dim fieldMap As New Dictionary(Of String, Action(Of String)) From {
 ### ② Use DocumentPropertyHelper to Get Values
 
 For each key in the map:
+
 ```vb
 For Each pair In fieldMap
     Dim value = DocumentPropertyHelper.GetPropertyValue(pair.Key)
@@ -78,6 +82,7 @@ This approach lets you scale up easily by adding more keys without repeating log
 ## 🚀 Advanced: Create a Reusable Loader Method
 
 In your handler base or shared utilities:
+
 ```vb
 Public Sub LoadPropertiesToView(view As Object, mappings As Dictionary(Of String, Action(Of String)))
     For Each pair In mappings
@@ -90,6 +95,7 @@ End Sub
 ```
 
 Then in your specific view handler:
+
 ```vb
 LoadPropertiesToView(view, New Dictionary(Of String, Action(Of String)) From {
     {"Patient Number", Sub(val) view.TxtPatientId.Text = val},
@@ -121,5 +127,4 @@ You can expand the mappings as the project grows.
 
 ---
 
-With this pattern, you can wire up any document field to any control in your project cleanly and consistently. 
-
+With this pattern, you can wire up any document field to any control in your project cleanly and consistently.

@@ -1,5 +1,7 @@
 # How to Add Keyboard Shortcuts to WPF Buttons Hosted in WinForms (EZLogger Pattern)
 
+> Editor's note: it's easiest to simply put the underscore in front of a letter that you want to use as an accelerator in the xaml as "content" for a button. However this article is geared towards use cases where you want to add button functionality to situations where the keyboard shortcut is captured by the main Word object and triggers the Word Ribbon rather than the view. 
+
 This guide explains how to make any WPF button respond to a keyboard shortcut (like Alt+S) when the button is hosted inside a WinForms `ElementHost` — as used in EZLogger.
 
 Note that for most cases it works well enough to add an underscore before the letter that you want to use as an accelerator key (in the XAML), however, sometimes in VSTO the Word Object is in front and then keyboard shortcuts are activated in the Word document Ribbon instead. So this article applies to those cases where you need to set focus back on the WPF user control. 
