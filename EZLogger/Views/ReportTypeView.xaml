@@ -13,7 +13,7 @@
              FontSize="18">
     <Grid>
         <StackPanel>
-            <Controls:FormHeaderControl HeaderText="REPORT TYPE AND DATES" />
+            <Controls:FormHeaderControl HeaderText="SAVE DATE AND TYPE OF REPORT" />
             <StackPanel Height="215"
                         Width="440"
                         Orientation="Horizontal">
@@ -51,32 +51,32 @@
                         Width="440"
                         Orientation="Horizontal">
                 <GroupBox Header="Report Type"
-                          Width="218"
+                          Width="263"
                           Height="80"
                           Margin="12,6,0,0"
                           VerticalAlignment="Top" BorderBrush="DarkGray">
                     <ComboBox x:Name="ReportTypeCbo"
                               HorizontalAlignment="Left"
-                              Width="196"
+                              Width="237"
                               Height="32"
                               VerticalAlignment="Top"
                               Margin="6,6,0,0" />
                 </GroupBox>
                 <StackPanel Orientation="Vertical" Height="120">
-                <Button x:Name="ReportTypeSelectedBtn"
-                        Content="_Report Type Selected"
+                    <Button x:Name="ReportTypeSelectedBtn"
+                        Content="_Save"
                         Height="40"
                         VerticalAlignment="Top"
                         Margin="12,12,0,0"
-                        Width="183"
+                        Width="100"
                         Background="{x:Null}"
                         FontSize="16" />
-                <Button x:Name="DoneBtn"
+                    <Button x:Name="DoneBtn"
                         Content="_Done"
                         Height="40"
                         VerticalAlignment="Top"
                         Margin="12,6,0,0"
-                        Width="183"
+                        Width="100"
                         Background="{x:Null}"
                         FontSize="16" />
                 </StackPanel>
