@@ -5,14 +5,14 @@
 		' ElementHost1.Child = view
 
 		' Set form size and title
-		Me.ClientSize = New Drawing.Size(590, 425)
+		Me.ClientSize = New Drawing.Size(590, 455)
 		Me.Text = ""
 
 		' Optional UI settings
 		Me.MinimizeBox = False
 		Me.MaximizeBox = False
 		Me.ShowIcon = False
-		Me.FormBorderStyle = FormBorderStyle.FixedSingle
+		Me.FormBorderStyle = FormBorderStyle.FixedDialog
 		Me.TopMost = True
 
 		' Optional: center the window
