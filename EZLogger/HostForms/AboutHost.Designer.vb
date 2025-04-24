@@ -23,7 +23,7 @@ Partial Class AboutHost
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
-        Me.AboutView1 = New EZLogger.Views.AboutView()
+        Me.AboutView1 = New AboutView()
         Me.SuspendLayout()
         '
         'ElementHost1
@@ -53,5 +53,5 @@ Partial Class AboutHost
     End Sub
 
     Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
-    Friend AboutView1 As EZLogger.Views.AboutView
+    Friend AboutView1 As AboutView
 End Class

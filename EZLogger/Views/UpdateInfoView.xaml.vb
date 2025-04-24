@@ -79,11 +79,10 @@ End Class
 '' Version: ........... 1.0.0 - major.minor.patch
 '' Created: ........... 2025-04-23
 '' Updated: ........... 2025-04-23
-'' Module URL: ........ weburl
 '' Installs to: ....... EZLogger/Views
 '' Compatibility: ..... Word, VSTO
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ n/a ©2025. All rights reserved.
 '' Notes: ............. _
-' (1)  📌  Geting data from one view to another.md 📝 🗑️
+' (1) See Wiki article: 📌  Getting data from one view to another.md 📝 🗑️
 ''===========================================================================================

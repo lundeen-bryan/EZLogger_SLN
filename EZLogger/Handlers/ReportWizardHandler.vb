@@ -128,8 +128,8 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnGMessage()
-            Dim auHandler As New AuthorHandler()
-            auHandler.OnOpenAuthorFormClick()
+            Dim auHandler As New EvaluatorHandler()
+            auHandler.OnOpenEvaluatorViewClick()
         End Sub
 
         Public Sub ShowBtnHMessage()
