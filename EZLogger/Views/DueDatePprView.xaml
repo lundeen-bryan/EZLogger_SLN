@@ -26,7 +26,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Controls:FormHeaderControl HeaderText="PPR DUE DATES" Grid.Row="0" />
+        <Controls:FormHeaderControl HeaderText="SELECT DUE DATES FOR PPR" Grid.Row="0" />
 
         <TextBlock Grid.Row="1" Text="Calculating the First PPR Cycle Due Date"
                    FontWeight="Bold"
@@ -81,7 +81,7 @@
             </StackPanel>
         </Grid>
 
-        <Button Grid.Row="5" x:Name="AcceptDatesBtn" Content="Accept PPR Due Dates" Width="200"
+        <Button Grid.Row="5" x:Name="AcceptDatesBtn" Content="_Accept These Dates" Width="200"
                 HorizontalAlignment="Center" Margin="0,0,0,10" Background="{x:Null}" />
 
         <Grid Grid.Row="6" Margin="0,0,0,10">
@@ -101,10 +101,10 @@
             </StackPanel>
         </Grid>
 
-        <Button Grid.Row="7" x:Name="ContinueBtn" Content="Selected Dates Complete and Ready to Continue"
-                HorizontalAlignment="Center" Padding="10,5" Background="{x:Null}" />
+        <Button Grid.Row="7" x:Name="ContinueBtn" Content="_Save"
+                HorizontalAlignment="Center" Padding="10,5" Background="{x:Null}" Width="100" />
 
-        <Button Grid.Row="8" x:Name="GoBackBtn" Content="Go Back" Padding="10,5"
-                Background="{x:Null}" Width="95" Margin="0,6,0,0" HorizontalAlignment="Center" />
+        <Button Grid.Row="8" x:Name="GoBackBtn" Content="_Done" Padding="10,5"
+                Background="{x:Null}" Width="100" Margin="0,6,0,0" HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
