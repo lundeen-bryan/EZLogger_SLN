@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers
     Public Class EvaluatorHandler ' Example: ConfigViewHandler
@@ -15,11 +16,24 @@ Namespace Handlers
         End Sub
 
         Public Sub HandleFirstPageClick()
-            MsgBox("You clicked First Page")
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
+                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
+            Catch ex As Exception
+                MsgBoxHelper.Show("Could not go to first page: " & ex.Message)
+            End Try
         End Sub
 
         Public Sub HandleLastPageClick()
-            MsgBox("You clicked Last Page")
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
+                Dim totalPages As Integer = doc.ComputeStatistics(WdStatistic.wdStatisticPages)
+                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:=totalPages.ToString())
+            Catch ex As Exception
+                MsgBoxHelper.Show("Could not go to last page: " & ex.Message)
+            End Try
         End Sub
 
         Public Sub HandleDoneSelectingClick()
