@@ -9,7 +9,7 @@ Public Class TCARListHost
 
         ' Updated form size
         Me.ClientSize = New Drawing.Size(900, 500)
-        Me.Text = "View TCAR Referrals"
+        Me.Text = ""
     End Sub
 
 End Class
