@@ -25,7 +25,7 @@ Namespace Handlers
         End Sub
         Public Sub HandleOpinionOkClick(opinion As String)
             If String.IsNullOrWhiteSpace(opinion) Then
-                MsgBox("Please select an opinion before clicking OK.")
+                MsgBox("Please select an opinion before clicking Save.")
             Else
                 ' Write the selected report type to the custom property
                 Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
