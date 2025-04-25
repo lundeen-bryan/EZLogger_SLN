@@ -17,23 +17,25 @@
         <ObjectDataProvider x:Key="ReportTypeData"
                             ObjectType="{x:Type models:ReportTypeEntry}"
                             MethodName="GetReportTypes" />
-    <Style TargetType="Button">
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Black"
-                                  Direction="320"
-                                  ShadowDepth="4"
-                                  Opacity="0.5"
-                                  BlurRadius="6"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="6" />
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
         <StackPanel Height="396"
                     Width="720"
                     Background="White">
-            <controls:FormHeaderControl HeaderText="OPINION AND TYPE OF REPORT" Width="720" HorizontalAlignment="Left" />
+            <controls:FormHeaderControl HeaderText="OPINION AND TYPE OF REPORT"
+                                        Width="720"
+                                        HorizontalAlignment="Left" />
             <DataGrid ItemsSource="{Binding Source={StaticResource ReportTypeData}}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
@@ -43,7 +45,11 @@
                       Height="285"
                       Background="White"
                       BorderBrush="Black"
-                      Padding="6,0,6,0" FontSize="14" IsHitTestVisible="False" Width="699" HorizontalAlignment="Left">
+                      Padding="6,0,6,0"
+                      FontSize="14"
+                      IsHitTestVisible="False"
+                      Width="699"
+                      HorizontalAlignment="Left">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Choice"
                                         Binding="{Binding Choice}"
@@ -82,7 +88,8 @@
                         BorderBrush="Gray"
                         Height="31"
                         Background="White"
-                        Cursor="Hand" FontSize="16" />
+                        Cursor="Hand"
+                        FontSize="16" />
                 <Button x:Name="BtnOpinionFirstPage"
                         Width="88"
                         Content="_First Page"
@@ -90,7 +97,8 @@
                         Margin="12,0,12,0"
                         Height="31"
                         Background="White"
-                        Cursor="Hand" FontSize="16" />
+                        Cursor="Hand"
+                        FontSize="16" />
                 <Button x:Name="BtnOpinionLastPage"
                         Width="88"
                         Content="_Last Page"
@@ -98,7 +106,8 @@
                         Height="31"
                         Background="White"
                         Margin="12,0,12,0"
-                        Cursor="Hand" FontSize="16" />
+                        Cursor="Hand"
+                        FontSize="16" />
                 <Button x:Name="DoneBtn"
                         Width="88"
                         Content="_Done"
@@ -106,7 +115,8 @@
                         Height="31"
                         Background="White"
                         Margin="12,0,12,0"
-                        Cursor="Hand" FontSize="16" />
+                        Cursor="Hand"
+                        FontSize="16" />
             </StackPanel>
         </StackPanel>
     </StackPanel>

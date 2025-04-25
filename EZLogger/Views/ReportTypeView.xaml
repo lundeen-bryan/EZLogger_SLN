@@ -11,7 +11,7 @@
              Background="White"
              FontFamily="Candara"
              FontSize="18">
-<!-- Style block here-->
+    <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Effect">
@@ -20,12 +20,11 @@
                                       Direction="320"
                                       ShadowDepth="4"
                                       Opacity="0.5"
-                                      BlurRadius="8"/>
+                                      BlurRadius="8" />
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid>
         <StackPanel>
             <Controls:FormHeaderControl HeaderText="SAVE DATE AND TYPE OF REPORT" />
@@ -37,7 +36,8 @@
                           Height="80"
                           Margin="12,6,0,0"
                           HorizontalAlignment="Left"
-                          VerticalAlignment="Top" BorderBrush="DarkGray">
+                          VerticalAlignment="Top"
+                          BorderBrush="DarkGray">
                     <Label x:Name="CommitmentDateLbl"
                            Content=""
                            HorizontalAlignment="Left"
@@ -54,7 +54,8 @@
                           Height="205"
                           Margin="12,6,0,0"
                           HorizontalAlignment="Left"
-                          VerticalAlignment="Top" BorderBrush="DarkGray">
+                          VerticalAlignment="Top"
+                          BorderBrush="DarkGray">
                     <Calendar x:Name="CurrentReportDate"
                               HorizontalAlignment="Left"
                               Margin="6,6,0,0"
@@ -69,7 +70,8 @@
                           Width="263"
                           Height="80"
                           Margin="12,6,0,0"
-                          VerticalAlignment="Top" BorderBrush="DarkGray">
+                          VerticalAlignment="Top"
+                          BorderBrush="DarkGray">
                     <ComboBox x:Name="ReportTypeCbo"
                               HorizontalAlignment="Left"
                               Width="237"
@@ -77,23 +79,24 @@
                               VerticalAlignment="Top"
                               Margin="6,6,0,0" />
                 </GroupBox>
-                <StackPanel Orientation="Vertical" Height="120">
+                <StackPanel Orientation="Vertical"
+                            Height="120">
                     <Button x:Name="ReportTypeSelectedBtn"
-                        Content="_Save"
-                        Height="40"
-                        VerticalAlignment="Top"
-                        Margin="12,12,0,0"
-                        Width="100"
-                        Background="White"
-                        FontSize="16" />
+                            Content="_Save"
+                            Height="40"
+                            VerticalAlignment="Top"
+                            Margin="12,12,0,0"
+                            Width="100"
+                            Background="White"
+                            FontSize="16" />
                     <Button x:Name="DoneBtn"
-                        Content="_Done"
-                        Height="40"
-                        VerticalAlignment="Top"
-                        Margin="12,6,0,0"
-                        Width="100"
-                        Background="White"
-                        FontSize="16" />
+                            Content="_Done"
+                            Height="40"
+                            VerticalAlignment="Top"
+                            Margin="12,6,0,0"
+                            Width="100"
+                            Background="White"
+                            FontSize="16" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -7,22 +7,22 @@
              x:Class="UpdateInfoView"
              mc:Ignorable="d"
              d:DesignHeight="805"
-             d:DesignWidth="475" Background="White">
-    <!-- Style block here-->
-        <UserControl.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect Color="Black"
-                                          Direction="320"
-                                          ShadowDepth="4"
-                                          Opacity="0.5"
-                                          BlurRadius="8"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </UserControl.Resources>
-
+             d:DesignWidth="475"
+             Background="White">
+    <!-- Style block here -->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Height="805"
           VerticalAlignment="Center">
         <ScrollViewer Height="804"
@@ -33,7 +33,8 @@
                         VerticalAlignment="Top">
                 <StackPanel Height="54"
                             Width="455">
-                    <Controls:FormHeaderControl HeaderText="PATIENT INFORMATION UPDATE FORM" FontFamily="Candara" />
+                    <Controls:FormHeaderControl HeaderText="PATIENT INFORMATION UPDATE FORM"
+                                                FontFamily="Candara" />
                 </StackPanel>
                 <StackPanel Height="76"
                             Width="455">
@@ -87,7 +88,8 @@
                               HorizontalAlignment="Left">
                         <TextBox x:Name="TxbxPropertyName"
                                  Margin="6,6,13,0"
-                                 TextWrapping="Wrap" FontFamily="Lucida Console" />
+                                 TextWrapping="Wrap"
+                                 FontFamily="Lucida Console" />
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="182"
@@ -104,7 +106,8 @@
                                  Margin="6,6,13,0"
                                  TextWrapping="Wrap"
                                  VerticalScrollBarVisibility="Auto"
-                                 AcceptsReturn="True" FontFamily="Lucida Console" />
+                                 AcceptsReturn="True"
+                                 FontFamily="Lucida Console" />
                     </GroupBox>
                 </StackPanel>
                 <StackPanel Height="306"
@@ -118,7 +121,8 @@
                                 Height="45"
                                 Width="47"
                                 FontFamily="Lucida Fax"
-                                FontSize="18" Background="White" />
+                                FontSize="18"
+                                Background="White" />
                         <Label Content="Generate Unique ID For This Document"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
@@ -135,7 +139,8 @@
                                 Height="45"
                                 Width="47"
                                 FontFamily="Lucida Fax"
-                                FontSize="18" Background="White" />
+                                FontSize="18"
+                                Background="White" />
                         <Label Content="Select Evaluators From a List"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
@@ -152,7 +157,8 @@
                                 Height="45"
                                 Width="47"
                                 FontFamily="Lucida Fax"
-                                FontSize="18" Background="White" />
+                                FontSize="18"
+                                Background="White" />
                         <Label Content="Save New Value"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
@@ -169,7 +175,8 @@
                                 Height="45"
                                 Width="47"
                                 FontFamily="Lucida Fax"
-                                FontSize="18" Background="White" />
+                                FontSize="18"
+                                Background="White" />
                         <Label Content="Select Date From Calendar Pop Up"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
@@ -186,7 +193,8 @@
                                 Height="45"
                                 Width="47"
                                 FontFamily="Lucida Fax"
-                                FontSize="18" Background="White" />
+                                FontSize="18"
+                                Background="White" />
                         <Label Content="Close Form and Go Back"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
