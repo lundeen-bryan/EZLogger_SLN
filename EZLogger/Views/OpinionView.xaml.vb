@@ -3,9 +3,10 @@ Imports System.Windows.Controls
 Imports System.Windows.Forms ' Needed for Form
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
+Imports UserControl = System.Windows.Controls.UserControl
 
 Public Class OpinionView
-    Inherits Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As OpinionHandler
     Private ReadOnly _hostForm As Form

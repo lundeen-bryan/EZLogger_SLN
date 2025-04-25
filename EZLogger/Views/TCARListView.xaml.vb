@@ -3,9 +3,10 @@ Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports UserControl = System.Windows.Controls.UserControl
 
 Public Class TCARListView
-    Inherits Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As New TCARListHandler()
     Private ReadOnly _hostForm As Form

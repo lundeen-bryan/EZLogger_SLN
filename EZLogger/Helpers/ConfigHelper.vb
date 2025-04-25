@@ -10,6 +10,39 @@ Namespace Helpers
 
 Public Module ConfigHelper
 
+        ''' <summary>
+        ''' Reads a specific nested value from local_user_config.json by section and key.
+        ''' </summary>
+        ''' <param name="section">Top-level section name, like 'sp_filepath'</param>
+        ''' <param name="key">Key within that section, like 'hlv_data'</param>
+        ''' <returns>String value if found, otherwise an empty string.</returns>
+        Public Function GetLocalConfigValue(section As String, key As String) As String
+            Try
+                Dim configPath As String = GetLocalConfigPath()
+
+                If Not File.Exists(configPath) Then Return String.Empty
+
+                Dim jsonText As String = File.ReadAllText(configPath)
+                Using doc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = doc.RootElement
+
+                    Dim sectionElement As JsonElement
+                    If root.TryGetProperty(section, sectionElement) Then
+                        Dim keyElement As JsonElement
+                        If sectionElement.TryGetProperty(key, keyElement) Then
+                            Return keyElement.GetString()
+                        End If
+                    End If
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error reading local_user_config.json: " & ex.Message,
+                        "Config Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
+
+            Return String.Empty
+        End Function
+
         Public Function GetCountyAlerts(globalConfigPath As String) As Dictionary(Of String, String)
             Dim countyAlertsDict As New Dictionary(Of String, String)
 

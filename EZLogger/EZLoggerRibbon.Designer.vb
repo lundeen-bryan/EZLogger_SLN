@@ -69,6 +69,7 @@
         Me.Button3 = Me.Factory.CreateRibbonButton
         Me.RandomPatientNumberButton = Me.Factory.CreateRibbonButton
         Me.BtnTestFolder = Me.Factory.CreateRibbonButton
+        Me.LookupHlvBtn = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -259,6 +260,7 @@
         Me.Group1.Items.Add(Me.Button3)
         Me.Group1.Items.Add(Me.RandomPatientNumberButton)
         Me.Group1.Items.Add(Me.BtnTestFolder)
+        Me.Group1.Items.Add(Me.LookupHlvBtn)
         Me.Group1.Label = "Test Group"
         Me.Group1.Name = "Group1"
         '
@@ -281,6 +283,11 @@
         '
         Me.BtnTestFolder.Label = "Test Folder Picker"
         Me.BtnTestFolder.Name = "BtnTestFolder"
+        '
+        'LookupHlvBtn
+        '
+        Me.LookupHlvBtn.Label = "LookupHLV"
+        Me.LookupHlvBtn.Name = "LookupHlvBtn"
         '
         'EZLoggerRibbon
         '
@@ -341,6 +348,7 @@
     Friend WithEvents RandomPatientNumberButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents DeleteDocPropsBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnTestFolder As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents LookupHlvBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection
