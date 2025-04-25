@@ -12,7 +12,6 @@
              Padding="12"
              Height="525"
              Background="White">
-
     <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
@@ -22,70 +21,69 @@
                                       Direction="320"
                                       ShadowDepth="4"
                                       Opacity="0.5"
-                                      BlurRadius="8"/>
+                                      BlurRadius="8" />
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-
-    <Grid HorizontalAlignment="Left" Width="280">
+    <Grid HorizontalAlignment="Left"
+          Width="280">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Header -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Instruction 1 -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- ListBox -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Instruction 2 -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- BtnApproval + Label -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Instruction 3 -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- BtnSignature + Label -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- DoneBtn + Label -->
-            <RowDefinition Height="*"   />
+            <RowDefinition Height="*" />
             <!-- Spacer -->
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <!-- Buttons -->
             <ColumnDefinition Width="*" />
             <!-- Labels -->
         </Grid.ColumnDefinitions>
-
         <!-- Header -->
-        <Controls:FormHeaderControl Grid.Row="0" Grid.ColumnSpan="2"
+        <Controls:FormHeaderControl Grid.Row="0"
+                                    Grid.ColumnSpan="2"
                                     HeaderText="APPROVAL/SIGNATURE" />
-
         <!-- Instruction 1 -->
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2"
+        <TextBlock Grid.Row="1"
+                   Grid.ColumnSpan="2"
                    TextWrapping="Wrap"
                    Text="01. Select the name of the senior that approved the report"
                    FontFamily="Lucida Fax"
                    FontSize="14"
-                   Padding="6"/>
-
+                   Padding="6" />
         <!-- ListBox -->
-        <ListBox Grid.Row="2" Grid.ColumnSpan="2"
+        <ListBox Grid.Row="2"
+                 Grid.ColumnSpan="2"
                  x:Name="ListboxApproval"
                  Height="100"
-                 d:ItemsSource="{d:SampleData ItemCount=5}"/>
-
+                 d:ItemsSource="{d:SampleData ItemCount=5}" />
         <!-- Instruction 2 -->
-        <TextBlock Grid.Row="3" Grid.ColumnSpan="2"
+        <TextBlock Grid.Row="3"
+                   Grid.ColumnSpan="2"
                    TextWrapping="Wrap"
                    Margin="0,12,0,0"
                    Text="02. While the doctor is still selected, press the Approved by button"
                    FontFamily="Lucida Fax"
                    FontSize="14"
-                   Padding="6"/>
-
+                   Padding="6" />
         <!-- BtnApproval + Label -->
-        <Button Grid.Row="4" Grid.Column="0"
+        <Button Grid.Row="4"
+                Grid.Column="0"
                 x:Name="BtnApproval"
                 Content="_A"
                 Width="33"
@@ -93,23 +91,25 @@
                 Background="White"
                 Margin="0,6,0,0"
                 HorizontalAlignment="Left" />
-        <Label Grid.Row="4" Grid.Column="1"
+        <Label Grid.Row="4"
+               Grid.Column="1"
                Content="Approved By"
                VerticalAlignment="Center"
                FontFamily="Candara"
-               FontSize="16" Margin="12,0,0,0" />
-
+               FontSize="16"
+               Margin="12,0,0,0" />
         <!-- Instruction 3 -->
-        <TextBlock Grid.Row="5" Grid.ColumnSpan="2"
+        <TextBlock Grid.Row="5"
+                   Grid.ColumnSpan="2"
                    TextWrapping="Wrap"
                    Margin="0,12,0,0"
                    Text="03. Select the place in the document where you want to insert the signature. You should select the table/paragraph where the medical director's name is typed. Then press insert signature."
                    FontFamily="Lucida Fax"
                    FontSize="14"
-                   Padding="6"/>
-
+                   Padding="6" />
         <!-- BtnSignature + Label -->
-        <Button Grid.Row="6" Grid.Column="0"
+        <Button Grid.Row="6"
+                Grid.Column="0"
                 x:Name="BtnSignature"
                 Content="_I"
                 Width="33"
@@ -117,14 +117,16 @@
                 Background="White"
                 Margin="0,6,0,0"
                 HorizontalAlignment="Left" />
-        <Label Grid.Row="6" Grid.Column="1"
+        <Label Grid.Row="6"
+               Grid.Column="1"
                Content="Insert Signature"
                VerticalAlignment="Center"
                FontFamily="Candara"
-               FontSize="16" Margin="12,0,0,0" />
-
+               FontSize="16"
+               Margin="12,0,0,0" />
         <!-- DoneBtn + Label -->
-        <Button Grid.Row="7" Grid.Column="0"
+        <Button Grid.Row="7"
+                Grid.Column="0"
                 x:Name="DoneBtn"
                 Content="_D"
                 Width="33"
@@ -132,12 +134,12 @@
                 Background="White"
                 Margin="0,6,0,0"
                 HorizontalAlignment="Left" />
-        <Label Grid.Row="7" Grid.Column="1"
+        <Label Grid.Row="7"
+               Grid.Column="1"
                Content="Done"
                VerticalAlignment="Center"
                FontFamily="Candara"
-               FontSize="16" Margin="12,0,0,0" />
-
+               FontSize="16"
+               Margin="12,0,0,0" />
     </Grid>
-
 </UserControl>

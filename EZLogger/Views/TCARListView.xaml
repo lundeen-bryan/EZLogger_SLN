@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls" x:Class="TCARListView"
+             xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
+             x:Class="TCARListView"
              mc:Ignorable="d"
              d:DesignHeight="400"
              d:DesignWidth="600"
              Background="#FFFDFDFD">
-<!-- Style block here-->
+    <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Effect">
@@ -19,25 +18,24 @@
                                       Direction="320"
                                       ShadowDepth="4"
                                       Opacity="0.5"
-                                      BlurRadius="8"/>
+                                      BlurRadius="8" />
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- NEW: Header row -->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <!-- DataGrid row -->
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <!-- Footer/buttons row -->
         </Grid.RowDefinitions>
-
         <!-- HEADER ROW -->
-        <Controls:FormHeaderControl HorizontalAlignment="Center" VerticalAlignment="Top" HeaderText="TCAR LIST"/>
-
+        <Controls:FormHeaderControl HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    HeaderText="TCAR LIST" />
         <!-- DATAGRID ROW -->
         <DataGrid x:Name="TCARGrid"
                   Grid.Row="1"
@@ -53,13 +51,20 @@
                   GridLinesVisibility="Horizontal"
                   FontFamily="Lucida Fax">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Name" Binding="{Binding PatientName}" Width="*" />
-                <DataGridTextColumn Header="Patient Number" Binding="{Binding Casenum}" Width="*" />
-                <DataGridTextColumn Header="Submitted Date" Binding="{Binding Subdate}" Width="*" />
-                <DataGridTextColumn Header="Opinion" Binding="{Binding OpinionDescription}" Width="*" />
+                <DataGridTextColumn Header="Patient Name"
+                                    Binding="{Binding PatientName}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Patient Number"
+                                    Binding="{Binding Casenum}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Submitted Date"
+                                    Binding="{Binding Subdate}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Opinion"
+                                    Binding="{Binding OpinionDescription}"
+                                    Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
         <!-- BUTTONS + INSTRUCTIONS ROW -->
         <StackPanel Grid.Row="2"
                     Orientation="Vertical"
@@ -69,7 +74,6 @@
                        FontSize="18"
                        TextWrapping="Wrap"
                        FontFamily="Candara" />
-
             <StackPanel Height="30"
                         Orientation="Horizontal"
                         HorizontalAlignment="Right">
@@ -81,7 +85,6 @@
                         Margin="0,0,24,0"
                         FontFamily="Candara"
                         FontSize="18" />
-
                 <Button x:Name="DoneBtn"
                         Content="_Done"
                         Width="100"

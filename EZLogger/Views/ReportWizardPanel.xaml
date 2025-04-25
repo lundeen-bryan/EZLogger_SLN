@@ -11,7 +11,7 @@
              FontSize="16"
              Background="White"
              Margin="3">
-<!-- Style block here-->
+    <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Effect">
@@ -20,12 +20,12 @@
                                       Direction="320"
                                       ShadowDepth="4"
                                       Opacity="0.5"
-                                      BlurRadius="8"/>
+                                      BlurRadius="8" />
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-
+    <!-- End Style block -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -79,8 +79,7 @@
                             Height="40"
                             Margin="24,0,0,0"
                             Width="40"
-                            Background="White" >
-                    </Button>
+                            Background="White" />
                     <CheckBox Content="01. Confirm patient number"
                               x:Name="Btn_A_Checkbox"
                               Height="20"

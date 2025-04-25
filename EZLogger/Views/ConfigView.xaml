@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="635"
              d:DesignWidth="800">
-<!-- Style block here-->
+    <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Effect">
@@ -17,12 +17,11 @@
                                       Direction="320"
                                       ShadowDepth="4"
                                       Opacity="0.5"
-                                      BlurRadius="8"/>
+                                      BlurRadius="8" />
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid Background="White">
         <Controls:FormHeaderControl HorizontalAlignment="Left"
                                     Margin="6,6,0,0"
@@ -47,7 +46,8 @@
                            BorderBrush="DarkGray"
                            BorderThickness="1,1,1,1"
                            Padding="6,6,6,6" />
-                    <Button x:Name="BtnCreateConfig" Content="_C"
+                    <Button x:Name="BtnCreateConfig"
+                            Content="_C"
                             HorizontalAlignment="Left"
                             Margin="17,35,0,0"
                             VerticalAlignment="Top"
@@ -140,7 +140,8 @@
                                    Width="729"
                                    Background="#FFC1E0FF" />
                     </GroupBox>
-                    <Button x:Name="BtnSaveConfig" Content="S_ave This Configuration"
+                    <Button x:Name="BtnSaveConfig"
+                            Content="S_ave This Configuration"
                             HorizontalAlignment="Left"
                             Margin="634,512,0,0"
                             VerticalAlignment="Top"
@@ -296,7 +297,7 @@
                                      VerticalContentAlignment="Bottom"
                                      Margin="0,60,0,0" />
                     </StackPanel>
-                    <Button x:Name="EditEmail" 
+                    <Button x:Name="EditEmail"
                             Content="_Edit"
                             HorizontalAlignment="Left"
                             Margin="27,53,0,0"
