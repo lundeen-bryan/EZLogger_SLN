@@ -11,6 +11,21 @@
              FontSize="16"
              Background="White"
              Margin="3">
+<!-- Style block here-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -64,7 +79,8 @@
                             Height="40"
                             Margin="24,0,0,0"
                             Width="40"
-                            Background="White" />
+                            Background="White" >
+                    </Button>
                     <CheckBox Content="01. Confirm patient number"
                               x:Name="Btn_A_Checkbox"
                               Height="20"

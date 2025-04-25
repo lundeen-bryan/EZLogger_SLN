@@ -7,9 +7,22 @@
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d"
              Height="745"
-             Width="390"
+             Width="440"
              FontFamily="Candara"
              FontSize="14">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                  Direction="320"
+                                  ShadowDepth="4"
+                                  Opacity="0.5"
+                                  BlurRadius="6"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
     <ScrollViewer HorizontalAlignment="Left"
                   VerticalAlignment="Top">
@@ -27,97 +40,96 @@
                    FontStyle="Italic"
                    FontSize="24" />
 
-            <Button x:Name="BtnRefresh" Content="Refresh List"
+            <Button x:Name="BtnRefresh" Content="_R"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
                     Margin="15,54,0,0"
                     VerticalAlignment="Top"
-                    Width="115"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
-            <Button x:Name="BtnValidate" Content="Validate Fields"
+            <Button x:Name="BtnValidate" Content="_V"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="170,54,0,0"
+                    Margin="15,85,0,0"
                     VerticalAlignment="Top"
-                    Width="115"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R"
                     Foreground="Red" FontSize="16" />
 
-            <Button x:Name="BtnDelete" Content="Delete Selected
-                    "
+            <Button x:Name="BtnDelete" Content="_S"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="15,86,0,0"
+                    Margin="15,116,0,0"
                     VerticalAlignment="Top"
-                    Width="115"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
-            <Button x:Name="BtnDeleteAll" Content="Delete All"
+            <Button x:Name="BtnDeleteAll" Content="_A"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="135,86,0,0"
+                    Margin="15,151,0,0"
                     VerticalAlignment="Top"
-                    Width="75"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
             <Button x:Name="BtnAddEdit" 
-                    Content="Add/Edit"
+                    Content="_E"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="220,86,0,0"
+                    Margin="220,55,0,0"
                     VerticalAlignment="Top"
-                    Width="65"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" RenderTransformOrigin="0.917,0.583" FontSize="16" />
 
             <Button x:Name="BtnCopy" 
-                    Content="_Copy"
+                    Content="_C"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="216,120,0,0"
+                    Margin="220,86,0,0"
                     VerticalAlignment="Top"
-                    Width="60"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
-            <Button x:Name="BtnFirstPage" Content="_First Page"
+            <Button x:Name="BtnFirstPage" Content="_F"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="15,120,0,0"
+                    Margin="220,150,0,0"
                     VerticalAlignment="Top"
-                    Width="80"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R" FontSize="16" />
 
-            <Button x:Name="BtnLastPage" Content="_Last Page"
+            <Button x:Name="BtnLastPage" Content="_L"
                     Cursor="Hand"
                     HorizontalAlignment="Left"
-                    Margin="115,120,0,0"
+                    Margin="220,116,0,0"
                     VerticalAlignment="Top"
-                    Width="80"
+                    Width="30"
                     Height="24"
-                    Background="{x:Null}"
+                    Background="White"
                     BorderBrush="DarkGray"
-                    AutomationProperties.AcceleratorKey="R" FontSize="16" />
+                    AutomationProperties.AcceleratorKey="R" FontSize="16" RenderTransformOrigin="0.5,0.583" />
 
             <DataGrid x:Name="DataGridPtInfo"
                       AutoGenerateColumns="False"
@@ -128,9 +140,9 @@
                       CanUserDeleteRows="False"
                       CanUserResizeRows="False"
                       IsReadOnly="True"
-                      Margin="12,160,12,0"
+                      Margin="12,185,12,0"
                       VerticalAlignment="Top"
-                      Height="575"
+                      Height="550"
                       RowHeaderWidth="0"
                       SelectionMode="Single"
                       SelectionUnit="FullRow" FontSize="16" FontFamily="Lucida Console" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -145,6 +157,14 @@
                                         Width="2*" />
                 </DataGrid.Columns>
             </DataGrid>
+            <Label Content="Refresh List" HorizontalAlignment="Left" Height="25" Margin="52,53,0,0" VerticalAlignment="Top" Width="158"/>
+            <Label Content="Validate Fields" HorizontalAlignment="Left" Height="25" Margin="55,85,0,0" VerticalAlignment="Top" Width="155"/>
+            <Label Content="Delete Selected Fields" HorizontalAlignment="Left" Height="25" Margin="55,115,0,0" VerticalAlignment="Top" Width="155"/>
+            <Label Content="Delete All Fields" HorizontalAlignment="Left" Height="25" Margin="55,150,0,0" VerticalAlignment="Top" Width="155"/>
+            <Label Content="Add/Edit Fields" HorizontalAlignment="Left" Height="25" Margin="260,55,0,0" VerticalAlignment="Top" Width="155"/>
+            <Label Content="Copy" HorizontalAlignment="Left" Height="25" Margin="260,85,0,0" VerticalAlignment="Top" Width="155" Padding="5,3,5,5" VerticalContentAlignment="Center"/>
+            <Label Content="Last Page" HorizontalAlignment="Left" Height="25" Margin="260,115,0,0" VerticalAlignment="Top" Width="155" Padding="5,3,5,5" VerticalContentAlignment="Center"/>
+            <Label Content="First Page" HorizontalAlignment="Left" Height="25" Margin="260,150,0,0" VerticalAlignment="Top" Width="155" Padding="5,3,5,5" VerticalContentAlignment="Center"/>
 
         </Grid>
     </ScrollViewer>
