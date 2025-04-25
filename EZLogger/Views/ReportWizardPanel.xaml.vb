@@ -80,6 +80,7 @@ Partial Public Class ReportWizardPanel
     End Sub
 
     Private Sub Btn_G_Click(sender As Object, e As RoutedEventArgs)
+        ' Select report author
         TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnGMessage()
         TimerHelper.DisableTemporarily(Btn_G, 2000) ' Disable for 2 seconds

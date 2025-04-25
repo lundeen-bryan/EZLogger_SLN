@@ -43,7 +43,7 @@ Public Class EvaluatorView
     End Sub
 
     Private Sub BtnAuthorDone_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleDoneSelectingClick()
+        _handler.HandleDoneSelectingClick(Me)
     End Sub
 
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
