@@ -11,6 +11,21 @@
              FontSize="16"
              Padding="12,12,12,12"
              Height="435" Background="White">
+<!-- Style block here-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <StackPanel>
         <Controls:FormHeaderControl HeaderText="CHIEF APPROVAL AND SIGNATURE" />
         <TextBlock TextWrapping="Wrap"
@@ -29,7 +44,7 @@
                    Padding="6,6,6,6" />
         <Button x:Name="BtnApproval"
                 Content="_Approved By"
-                Background="{x:Null}"
+                Background="White"
                 Width="150" Height="35" />
         <TextBlock TextWrapping="Wrap"
                    Text="03. Select the place in the document where you want to insert the signature. You should select the table/paragraph where the medical directors name is typed. Then press insert signature"
@@ -40,11 +55,11 @@
         <StackPanel Height="40" Width="362" Orientation="Horizontal">
             <Button x:Name="BtnSignature"
                 Content="_Insert Signature"
-                Background="{x:Null}"
+                Background="White"
                 Width="150" Margin="18,0,0,0" Height="35" />
             <Button x:Name="DoneBtn"
             Content="_Done"
-            Background="{x:Null}"
+            Background="White"
             Width="150" Margin="24,0,0,0" Height="35" />
         </StackPanel>
     </StackPanel>
