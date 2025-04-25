@@ -1,5 +1,9 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Windows
+Imports System.Windows.Forms
+Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
+Imports System.Windows.Controls
+Imports System.Windows.RoutedEventArgs
 
 Namespace Handlers
     Public Class EvaluatorHandler ' Example: ConfigViewHandler
@@ -36,10 +40,46 @@ Namespace Handlers
             End Try
         End Sub
 
-        Public Sub HandleDoneSelectingClick()
-            MsgBox("You clicked Done Selecting")
+        Public Sub HandleDoneSelectingClick(view As EvaluatorView)
+            Try
+                Dim selectedEvaluator As String = TryCast(view.AuthorCbo.SelectedItem, String)
+
+                If String.IsNullOrWhiteSpace(selectedEvaluator) Then
+                    MsgBoxHelper.Show("Please select an evaluator before saving.")
+                    Return
+                End If
+
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Evaluator", selectedEvaluator)
+
+                MsgBoxHelper.Show($"Evaluator '{selectedEvaluator}' saved successfully.")
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Error saving evaluator: " & ex.Message)
+            End Try
         End Sub
 
+        Public Sub RegisterKeyboardShortcuts(shortcutHelper As ShortcutHandler, view As EvaluatorView)
+            ' Control+F → First Page
+            shortcutHelper.RegisterShortcut(Keys.F, Keys.Control, Sub()
+                                                                      view.BtnAuthorFirstPage.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
+                                                                  End Sub)
+
+            ' Control+L → Last Page
+            shortcutHelper.RegisterShortcut(Keys.L, Keys.Control, Sub()
+                                                                      view.BtnAuthorLastPage.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
+                                                                  End Sub)
+
+            ' Control+S → Save Selection
+            shortcutHelper.RegisterShortcut(Keys.S, Keys.Control, Sub()
+                                                                      view.BtnAuthorDone.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
+                                                                  End Sub)
+
+            ' Control+D → Done (mark checkbox and close)
+            shortcutHelper.RegisterShortcut(Keys.D, Keys.Control, Sub()
+                                                                      view.DoneBtn.RaiseEvent(New RoutedEventArgs(System.Windows.Controls.Button.ClickEvent))
+                                                                  End Sub)
+        End Sub
 
     End Class
 End Namespace
