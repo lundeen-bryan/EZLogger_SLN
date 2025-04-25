@@ -38,7 +38,7 @@ In multi-step task pane workflows, each view (e.g., `ReportTypeView`) may need t
 
 ## Introducing `TaskPaneHelper`
 
-To simplify the reference-sharing process, we created a module called `TaskPaneHelper`.
+To simplify the reference-sharing process, I created a module called `TaskPaneHelper`.
 
 ```vbnet
 Namespace Helpers
@@ -147,7 +147,3 @@ By introducing a `TaskPaneHelper` module to store and retrieve the current `Repo
 ---
 
 ## See Also
-
-- [Hosting WPF Content in WinForms with ElementHost](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/walkthrough-hosting-a-wpf-control-in-windows-forms)
-- [Working with VSTO Add-ins for Office](https://learn.microsoft.com/en-us/visualstudio/vsto/create-vsto-add-ins-for-office-by-using-visual-studio)
-- [MVVM Alternatives for VSTO-WPF Apps](https://learn.microsoft.com/en-us/archive/msdn-magazine/2010/december/wpf-in-microsoft-word-building-a-document-task-pane-app-part-1)
