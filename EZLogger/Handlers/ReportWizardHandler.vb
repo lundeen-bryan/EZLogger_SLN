@@ -3,6 +3,7 @@ Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
+Imports System.Threading.Tasks.Task
 
 Namespace Handlers
 
@@ -119,9 +120,40 @@ Namespace Handlers
             tcarForm.Show()
         End Sub
 
-        Public Sub ShowBtnEMessage()
-            MessageBox.Show("This will present the HLV list.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+        ''' <summary>
+        ''' Looks up the CONREP provider value in the HLV Excel workbook using the provided patient number.
+        ''' Displays a busy indicator during processing. If a match is found, the provider value is saved
+        ''' to the current Word document's custom properties under the key "CONREP".
+        ''' </summary>
+        ''' <param name="patientNumber">The patient number used as a lookup key in the HLV Excel workbook.</param>
+        ''' <remarks>
+        ''' This method runs the Excel lookup on a background thread using Tasks.Task.Run to avoid blocking the UI.
+        ''' It shows a BusyHost form with an indeterminate progress bar during the lookup.
+        ''' If a provider is found, it is written to the custom document property "CONREP".
+        ''' </remarks>
+        Public Async Sub ShowBtnEMessage(patientNumber As String)
+            Dim provider As String = Nothing
+            Dim busyForm As New BusyHost()
+            busyForm.Show()
+
+            Await Delay(100) ' Give UI time to render the BusyControl
+
+            Try
+                provider = Await Run(Function()
+                                         Return ExcelHelper.GetProviderFromHLV(patientNumber)
+                                     End Function)
+            Finally
+                busyForm.Close()
+            End Try
+
+            If Not String.IsNullOrWhiteSpace(provider) Then
+                DocumentPropertyHelper.WriteCustomProperty(Globals.ThisAddIn.Application.ActiveDocument, "CONREP", provider)
+                MsgBoxHelper.Show($"Provider found and saved to CONREP: {provider}")
+            Else
+                MsgBoxHelper.Show($"No provider found for patient number: {patientNumber}")
+            End If
         End Sub
+
         Public Sub ShowBtnFMessage()
             Dim opHandler As New OpinionHandler(Globals.ThisAddIn.Application)
             opHandler.OnOpenOpinionFormClick()

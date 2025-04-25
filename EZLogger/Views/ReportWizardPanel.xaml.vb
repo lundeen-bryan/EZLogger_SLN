@@ -58,8 +58,17 @@ Partial Public Class ReportWizardPanel
 
     Private Sub Btn_E_Click(sender As Object, e As RoutedEventArgs)
         TaskPaneHelper.SetTaskPane(Me)
-        _handler.ShowBtnEMessage()
-        TimerHelper.DisableTemporarily(Btn_E, 2000) ' Disable for 2 seconds
+
+        Dim patientNumber As String = TextBoxPatientNumber.Text?.Trim()
+
+        If String.IsNullOrWhiteSpace(patientNumber) Then
+            MsgBoxHelper.Show("No patient number found. Please return to Step A to complete this information.")
+            Exit Sub
+        End If
+
+        _handler.ShowBtnEMessage(patientNumber)
+
+        TimerHelper.DisableTemporarily(Btn_E, 2000)
     End Sub
 
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
