@@ -6,11 +6,11 @@
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
              x:Class="EZLogger.Views.ChiefApprovalView"
              mc:Ignorable="d"
-             d:DesignWidth="300"
+             d:DesignWidth="365"
              FontFamily="Candara"
              FontSize="16"
              Padding="12"
-             Background="White">
+             Background="White" d:DesignHeight="585">
     <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">
@@ -25,8 +25,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Left"
-          Width="280">
+    <Grid HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <!-- Header -->
@@ -104,7 +103,7 @@
                    Margin="0,12,0,0"
                    Text="03. Select the place in the document where you want to insert the signature. You should select the table/paragraph where the medical director's name is typed. Then press insert signature."
                    FontFamily="Lucida Fax"
-                   FontSize="14"
+                   FontSize="18"
                    Padding="6" />
         <!-- BtnSignature + Label -->
         <Button Grid.Row="6"
@@ -138,7 +137,7 @@
                Content="Done"
                VerticalAlignment="Center"
                FontFamily="Candara"
-               FontSize="16"
+               FontSize="18"
                Margin="12,0,0,0" />
     </Grid>
 </UserControl>
