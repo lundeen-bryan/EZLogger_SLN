@@ -10,36 +10,7 @@ Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.
     Private Sub EZLoggerRibbon_Load(ByVal sender As System.Object, ByVal e As RibbonUIEventArgs) Handles MyBase.Load
-        ' Clear any existing items from the DatabaseMenu control.
-        DatabaseMenu.Items.Clear()
-
-        ' Create the "Minute Orders" menu item.
-        Dim item1 As Microsoft.Office.Tools.Ribbon.RibbonButton = Me.Factory.CreateRibbonButton()
-        item1.Label = "Minute Orders"
-        item1.Tag = "minuteOrders"
-        AddHandler item1.Click, AddressOf DatabaseMenuItem_Click
-        DatabaseMenu.Items.Add(item1)
-
-        ' Create the "TCARs" menu item.
-        Dim item2 As Microsoft.Office.Tools.Ribbon.RibbonButton = Me.Factory.CreateRibbonButton()
-        item2.Label = "TCARs"
-        item2.Tag = "tcars"
-        AddHandler item2.Click, AddressOf DatabaseMenuItem_Click
-        DatabaseMenu.Items.Add(item2)
-
-        ' Create the "CONREP" menu item.
-        Dim item3 As Microsoft.Office.Tools.Ribbon.RibbonButton = Me.Factory.CreateRibbonButton()
-        item3.Label = "CONREP"
-        item3.Tag = "conrep"
-        AddHandler item3.Click, AddressOf DatabaseMenuItem_Click
-        DatabaseMenu.Items.Add(item3)
-
-        ' Create the "Notifications" menu item.
-        Dim item4 As Microsoft.Office.Tools.Ribbon.RibbonButton = Me.Factory.CreateRibbonButton()
-        item4.Label = "Notifications"
-        item4.Tag = "notifications"
-        AddHandler item4.Click, AddressOf DatabaseMenuItem_Click
-        DatabaseMenu.Items.Add(item4)
+        'TBD
     End Sub
 
     ' This button toggles the Report Wizard Task Pane.

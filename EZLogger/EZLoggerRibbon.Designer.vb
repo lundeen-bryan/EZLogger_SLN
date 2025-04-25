@@ -45,13 +45,8 @@
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
         Me.ReportWizardBox = Me.Factory.CreateRibbonBox
         Me.ReportWizardButton = Me.Factory.CreateRibbonButton
-        Me.DatabaseGroup = Me.Factory.CreateRibbonGroup
-        Me.DbBtnBox = Me.Factory.CreateRibbonBox
-        Me.DatabaseMenu = Me.Factory.CreateRibbonMenu
         Me.ToolsGroup = Me.Factory.CreateRibbonGroup
         Me.DeleteDocPropsBtn = Me.Factory.CreateRibbonButton
-        Me.SaveBtnBox = Me.Factory.CreateRibbonBox
-        Me.SaveButton = Me.Factory.CreateRibbonButton
         Me.Button1 = Me.Factory.CreateRibbonButton
         Me.PdfBtnBox = Me.Factory.CreateRibbonBox
         Me.ConvertButton = Me.Factory.CreateRibbonButton
@@ -73,10 +68,7 @@
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
-        Me.DatabaseGroup.SuspendLayout()
-        Me.DbBtnBox.SuspendLayout()
         Me.ToolsGroup.SuspendLayout()
-        Me.SaveBtnBox.SuspendLayout()
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
@@ -87,7 +79,6 @@
         '
         Me.Tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office
         Me.Tab1.Groups.Add(Me.WizardGroup)
-        Me.Tab1.Groups.Add(Me.DatabaseGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
         Me.Tab1.Groups.Add(Me.SetupGroup)
         Me.Tab1.Groups.Add(Me.Group1)
@@ -114,30 +105,9 @@
         Me.ReportWizardButton.Name = "ReportWizardButton"
         Me.ReportWizardButton.ShowImage = True
         '
-        'DatabaseGroup
-        '
-        Me.DatabaseGroup.Items.Add(Me.DbBtnBox)
-        Me.DatabaseGroup.Label = "Databases"
-        Me.DatabaseGroup.Name = "DatabaseGroup"
-        '
-        'DbBtnBox
-        '
-        Me.DbBtnBox.Items.Add(Me.DatabaseMenu)
-        Me.DbBtnBox.Name = "DbBtnBox"
-        '
-        'DatabaseMenu
-        '
-        Me.DatabaseMenu.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.DatabaseMenu.Dynamic = True
-        Me.DatabaseMenu.Image = Global.EZLogger.My.Resources.Resources.database
-        Me.DatabaseMenu.Label = "Select a Database"
-        Me.DatabaseMenu.Name = "DatabaseMenu"
-        Me.DatabaseMenu.ShowImage = True
-        '
         'ToolsGroup
         '
         Me.ToolsGroup.Items.Add(Me.DeleteDocPropsBtn)
-        Me.ToolsGroup.Items.Add(Me.SaveBtnBox)
         Me.ToolsGroup.Items.Add(Me.Button1)
         Me.ToolsGroup.Items.Add(Me.PdfBtnBox)
         Me.ToolsGroup.Items.Add(Me.TypoBtnBox)
@@ -153,19 +123,6 @@
         Me.DeleteDocPropsBtn.Label = "Delete Properties"
         Me.DeleteDocPropsBtn.Name = "DeleteDocPropsBtn"
         Me.DeleteDocPropsBtn.ShowImage = True
-        '
-        'SaveBtnBox
-        '
-        Me.SaveBtnBox.Items.Add(Me.SaveButton)
-        Me.SaveBtnBox.Name = "SaveBtnBox"
-        '
-        'SaveButton
-        '
-        Me.SaveButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.SaveButton.Image = Global.EZLogger.My.Resources.Resources.floppy
-        Me.SaveButton.Label = "Save Files"
-        Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.ShowImage = True
         '
         'Button1
         '
@@ -300,14 +257,8 @@
         Me.WizardGroup.PerformLayout()
         Me.ReportWizardBox.ResumeLayout(False)
         Me.ReportWizardBox.PerformLayout()
-        Me.DatabaseGroup.ResumeLayout(False)
-        Me.DatabaseGroup.PerformLayout()
-        Me.DbBtnBox.ResumeLayout(False)
-        Me.DbBtnBox.PerformLayout()
         Me.ToolsGroup.ResumeLayout(False)
         Me.ToolsGroup.PerformLayout()
-        Me.SaveBtnBox.ResumeLayout(False)
-        Me.SaveBtnBox.PerformLayout()
         Me.PdfBtnBox.ResumeLayout(False)
         Me.PdfBtnBox.PerformLayout()
         Me.TypoBtnBox.ResumeLayout(False)
@@ -323,20 +274,15 @@
     Friend WithEvents Tab1 As Microsoft.Office.Tools.Ribbon.RibbonTab
     Friend WithEvents WizardGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents ReportWizardButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents DatabaseGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents ToolsGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents SetupGroup As Microsoft.Office.Tools.Ribbon.RibbonGroup
     Friend WithEvents SettingsButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents SaveButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents AboutButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ConvertButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents SyncButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents TypoButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents DatabaseMenu As Microsoft.Office.Tools.Ribbon.RibbonMenu
     Friend WithEvents HelpButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ReportWizardBox As Microsoft.Office.Tools.Ribbon.RibbonBox
-    Friend WithEvents DbBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
-    Friend WithEvents SaveBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents PdfBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
