@@ -1,9 +1,11 @@
 ﻿Imports System.Windows
+Imports Microsoft.Office.Interop.Word
+Imports Application = Microsoft.Office.Interop.Word.Application
 
 Namespace Helpers
 
     ''' <summary>
-    ''' Provides helper methods for interacting with the system clipboard.
+    ''' Provides helper methods for interacting with the system clipboard and Word status bar.
     ''' </summary>
     Public Module ClipboardHelper
 
@@ -20,13 +22,29 @@ Namespace Helpers
 
             Try
                 Clipboard.SetText(text)
+                ShowStatusBarMessage($"{text} was copied to the clipboard")
                 Return True
+
             Catch ex As Exception
                 ' Optional: Log the error or show a custom message box
                 ' Example: CustomMsgBox.Show("Clipboard error: " & ex.Message)
+                ShowStatusBarMessage("Could not copy text to the clipboard.")
                 Return False
             End Try
         End Function
+
+        ''' <summary>
+        ''' Displays a message in the Word status bar.
+        ''' </summary>
+        ''' <param name="message">The message to show in the status bar.</param>
+        Public Sub ShowStatusBarMessage(message As String)
+            Try
+                Dim wordApp As Application = Globals.ThisAddIn.Application
+                wordApp.StatusBar = message
+            Catch ex As Exception
+                ' Optional: Handle or log error if Word is not available
+            End Try
+        End Sub
 
         ''' <summary>
         ''' Retrieves plain text currently stored on the clipboard.

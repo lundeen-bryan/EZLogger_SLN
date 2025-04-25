@@ -39,13 +39,14 @@ Public Class WordFooterReader
                                      Dim config As New MessageBoxConfig With {
                                          .Message = "Does this look like a matching patient number?" & vbCrLf & footerRange.Text,
                                          .ShowYes = True,
-                                         .ShowNo = True
+                                         .ShowNo = True,
+                                         .ShowOk = False
                                      }
 
                                      MsgBoxHelper.Show(config, Sub(result)
                                                                    If result = CustomMsgBoxResult.Yes Then
                                                                        Dim foundText = footerRange.Text.Trim()
-                                                                       Clipboard.SetText(foundText)
+                                                                       ClipboardHelper.CopyText(foundText)
                                                                        doc.Range(0, 0).Select()
                                                                        onFound.Invoke(foundText)
                                                                    Else
