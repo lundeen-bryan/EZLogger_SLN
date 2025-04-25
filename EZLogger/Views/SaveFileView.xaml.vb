@@ -6,9 +6,10 @@ Imports System.Windows
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
 Imports System.Windows.Forms
+Imports UserControl = System.Windows.Controls.UserControl
 
 Public Class SaveFileView
-    Inherits Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As New SaveFileHandler()
     Private ReadOnly _hostForm As Form

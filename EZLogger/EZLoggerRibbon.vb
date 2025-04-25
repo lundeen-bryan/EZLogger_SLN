@@ -4,6 +4,8 @@ Imports Microsoft.Office.Tools.Ribbon
 Imports System.Windows
 Imports System.Windows.Forms
 Imports MessageBox = System.Windows.MessageBox
+Imports EZLogger.Controls
+Imports System.Threading.Tasks
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.
@@ -115,6 +117,33 @@ Public Class EZLoggerRibbon
     Private Sub BtnTestFolder_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnTestFolder.Click
         Dim handler As New ConfigViewHandler()
         handler.HandleTestFolderPickerClick()
+    End Sub
+
+    Private Async Sub LookupHlvBtn_Click(sender As Object, e As RibbonControlEventArgs) Handles LookupHlvBtn.Click
+        Dim patientNumber As String = "219891-9"
+        Dim provider As String = Nothing
+
+        ' Just show the spinner — SpinnerHost handles everything internally
+        Using hostForm As New BusyHost()
+            hostForm.Show()
+
+            Await Task.Delay(100) ' Give UI time to finish rendering
+
+            Try
+                ' Run the Excel work on a background thread
+                provider = Await Task.Run(Function()
+                                              Return ExcelHelper.GetProviderFromHLV(patientNumber)
+                                          End Function)
+            Finally
+                hostForm.Close()
+            End Try
+        End Using
+
+        If Not String.IsNullOrWhiteSpace(provider) Then
+            MsgBoxHelper.Show($"Provider for patient {patientNumber}:{vbCrLf}{provider}")
+        Else
+            MsgBoxHelper.Show($"No provider found for patient number: {patientNumber}")
+        End If
     End Sub
 End Class
 

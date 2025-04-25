@@ -2,9 +2,10 @@
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
 Imports System.Windows.Forms
+Imports UserControl = System.Windows.Controls.UserControl
 
 Public Class EvaluatorView
-    Inherits Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As New EvaluatorHandler()
     Private ReadOnly _hostForm As Form

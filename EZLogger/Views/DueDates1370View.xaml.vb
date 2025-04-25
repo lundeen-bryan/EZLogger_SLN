@@ -2,9 +2,10 @@
 Imports EZLogger.Helpers
 Imports EZLogger.Handlers
 Imports System.Windows.Forms
+Imports UserControl = System.Windows.Controls.UserControl
 
 Public Class DueDates1370View
-    Inherits Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As New DueDates1370Handler()
     Private ReadOnly _hostForm As Form

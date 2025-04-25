@@ -11,7 +11,7 @@ Public Module ExcelHelper
     ''' <returns>The provider name if found; otherwise, returns Nothing.</returns>
     Public Function GetProviderFromHLV(patientNumber As String) As String
         Dim xlApp As New Microsoft.Office.Interop.Excel.Application()
-        xlApp.Visible = True
+        xlApp.Visible = False
         Dim xlBook As Workbook = Nothing
         Dim xlSheet As Worksheet = Nothing
 
