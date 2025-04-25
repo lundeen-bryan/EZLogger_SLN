@@ -69,6 +69,7 @@ Partial Public Class ReportWizardPanel
         _handler.ShowBtnEMessage(patientNumber)
 
         TimerHelper.DisableTemporarily(Btn_E, 2000)
+        Me?.MarkCheckboxAsDone("Btn_E")
     End Sub
 
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
