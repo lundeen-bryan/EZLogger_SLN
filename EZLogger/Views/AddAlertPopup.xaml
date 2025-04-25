@@ -6,6 +6,21 @@
         Width="400"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
+<!-- Style block here-->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -37,11 +52,11 @@
                     Content="Cancel"
                     Width="75"
                     Margin="0,0,5,0"
-                    Background="{x:Null}" />
+                    Background="White" />
             <Button x:Name="BtnSave"
                     Content="Save"
                     Width="75"
-                    Background="{x:Null}" />
+                    Background="White" />
         </StackPanel>
     </Grid>
 </Window>

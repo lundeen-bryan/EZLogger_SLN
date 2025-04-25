@@ -6,6 +6,21 @@
              Height="600"
              Width="400"
              Background="White">
+<!-- Style block here-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -100,7 +115,7 @@
                     Margin="5"
                     FontFamily="Candara"
                     FontSize="14"
-                    Background="{x:Null}" />
+                    Background="White" />
             <Button Content="Config"
                     x:Name="BtnConfig"
                     Width="75"
@@ -108,7 +123,7 @@
                     FontFamily="Candara"
                     FontSize="14"
                     IsEnabled="False"
-                    Background="{x:Null}" />
+                    Background="White" />
             <Button Content="Alerts"
                     x:Name="BtnAlerts"
                     Width="75"
@@ -116,7 +131,7 @@
                     IsEnabled="False"
                     FontFamily="Candara"
                     FontSize="14"
-                    Background="{x:Null}" />
+                    Background="White" />
             <Button Content="Go Back"
                     x:Name="BtnGoBack"
                     Width="75"
@@ -124,7 +139,7 @@
                     FontFamily="Candara"
                     FontSize="14"
                     IsEnabled="False"
-                    Background="{x:Null}" />
+                    Background="White" />
         </StackPanel>
     </Grid>
 </UserControl>

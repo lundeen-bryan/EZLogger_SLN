@@ -8,6 +8,21 @@
              mc:Ignorable="d"
              d:DesignHeight="635"
              d:DesignWidth="800">
+<!-- Style block here-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="White">
         <Controls:FormHeaderControl HorizontalAlignment="Left"
                                     Margin="6,6,0,0"
@@ -39,7 +54,7 @@
                             Width="25"
                             Height="25"
                             Padding="3,3,3,3"
-                            Background="{x:Null}" />
+                            Background="White" />
                     <Label Content="Click here to create the configuration files"
                            HorizontalAlignment="Left"
                            Margin="42,32,0,0"
@@ -129,7 +144,7 @@
                             HorizontalAlignment="Left"
                             Margin="634,512,0,0"
                             VerticalAlignment="Top"
-                            Background="{x:Null}"
+                            Background="White"
                             Padding="6,6,6,6" />
                 </Grid>
             </TabItem>
@@ -165,12 +180,12 @@
                                 Content="_Add"
                                 Width="100"
                                 Margin="10,0"
-                                Background="{x:Null}" />
+                                Background="White" />
                         <Button x:Name="DeleteAlertBtn"
                                 Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
-                                Background="{x:Null}" />
+                                Background="White" />
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -206,12 +221,12 @@
                                 Content="_Add"
                                 Width="100"
                                 Margin="10,0"
-                                Background="{x:Null}" />
+                                Background="White" />
                         <Button x:Name="DeleteCountyAlertBtn"
                                 Content="_Delete"
                                 Width="100"
                                 Margin="10,0"
-                                Background="{x:Null}" />
+                                Background="White" />
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -287,7 +302,7 @@
                             Margin="27,53,0,0"
                             VerticalAlignment="Top"
                             Width="100"
-                            Background="{x:Null}" />
+                            Background="White" />
                 </Grid>
             </TabItem>
             <TabItem Header="Doctors">
@@ -321,7 +336,7 @@
                             VerticalAlignment="Top"
                             Width="100"
                             Height="31"
-                            Background="{x:Null}" />
+                            Background="White" />
                 </Grid>
             </TabItem>
         </TabControl>

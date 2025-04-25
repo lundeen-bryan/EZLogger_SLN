@@ -6,6 +6,21 @@
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d" 
              d:DesignHeight="555" d:DesignWidth="365" FontFamily="Candara" FontSize="18" Background="White">
+<!-- Style block here-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="4"
+                                      Opacity="0.5"
+                                      BlurRadius="8"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <StackPanel>
             <Controls:FormHeaderControl HeaderText="DUE DATES FOR 1370 REPORTS" />
@@ -27,7 +42,7 @@
                 <GroupBox Height="75" Header="21 Month Due Date" BorderBrush="DarkGray" Width="164" HorizontalAlignment="Left" Margin="6,0,0,0">
                     <Label x:Name="TwentyOneMoLbl" Content="" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="140" Height="37" Background="#FFC1E0FF" FontFamily="Lucida Console" FontSize="16"/>
                 </GroupBox>
-                <Button x:Name="GoBackBtn" Content="Go _Back" Background="{x:Null}" Margin="12,32,12,0"/>
+                <Button x:Name="GoBackBtn" Content="Go _Back" Background="White" Margin="12,32,12,0"/>
             </StackPanel>
             <StackPanel Height="480" Width="185" VerticalAlignment="Top" Margin="0,75,0,0">
                 <GroupBox Height="75" Header="Max Commit Date" BorderBrush="DarkGray" Width="164">
@@ -38,7 +53,7 @@
                 <RadioButton x:Name="NineMoRdo" Content="_B" Margin="0,55,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="9-month"/>
                 <RadioButton x:Name="FifteenMoRdo" Content="_C" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="15-month"/>
                 <RadioButton x:Name="TwentyOneMoRdo" Content="_D" Margin="0,50,0,0" FontFamily="Lucida Console" FontWeight="Bold" FontSize="24" Tag="21-month"/>
-                <Button x:Name="Save1370ChoiceBtn" Content="_Save Choice" Background="{x:Null}" Margin="12,48,12,0.1"/>
+                <Button x:Name="Save1370ChoiceBtn" Content="_Save Choice" Background="White" Margin="12,48,12,0.1"/>
             </StackPanel>
         </StackPanel>
 
