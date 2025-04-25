@@ -7,6 +7,21 @@
              FontSize="16"
              Width="400"
              Height="715" Background="White" Padding="12,1,0,0">
+    <!-- Style block here-->
+        <UserControl.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="Black"
+                                          Direction="320"
+                                          ShadowDepth="4"
+                                          Opacity="0.5"
+                                          BlurRadius="8"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="0,10,10,10"
                     Background="White"
@@ -20,7 +35,7 @@
                             Margin="10">
                     <Button x:Name="SearchPatientIdBtn"
                             Content="_Search"
-                            Width="100" Margin="0,0,12,0" Background="{x:Null}" />
+                            Width="100" Margin="0,0,12,0" Background="White" />
                     <TextBox x:Name="TxtPatientId"
                              Width="200"
                              Margin="0,0,10,0" FontFamily="Lucida Console" Padding="6,6,0,0" FontSize="14" />
@@ -67,7 +82,7 @@
                     Content="Show New _Path Below"
                     Width="200"
                     Height="30"
-                    Margin="0,0,0,10" Background="{x:Null}" />
+                    Margin="0,0,0,10" Background="White" />
             <!-- New File Name -->
             <GroupBox Header="New File Name"
                       Margin="0,0,0,10"
@@ -84,10 +99,10 @@
                 <Button x:Name="BtnSaveAs"
                         Content="Save _As..."
                         Width="100"
-                        Margin="12,0,10,0" Background="{x:Null}" />
+                        Margin="12,0,10,0" Background="White" />
                 <Button x:Name="DoneBtn"
                         Content="_Done"
-                        Width="100" Background="{x:Null}" />
+                        Width="100" Background="White" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
