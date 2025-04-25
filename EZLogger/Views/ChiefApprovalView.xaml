@@ -6,11 +6,11 @@
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
              x:Class="EZLogger.Views.ChiefApprovalView"
              mc:Ignorable="d"
-             d:DesignWidth="365"
+             d:DesignWidth="435"
              FontFamily="Candara"
              FontSize="16"
              Padding="12"
-             Background="White" d:DesignHeight="585">
+             Background="White" d:DesignHeight="550">
     <!-- Style block here -->
     <UserControl.Resources>
         <Style TargetType="Button">

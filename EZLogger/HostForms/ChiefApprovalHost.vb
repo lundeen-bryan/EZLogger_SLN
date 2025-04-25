@@ -9,7 +9,7 @@ Public Class ChiefApprovalHost
         ElementHost1.Child = view
 
         ' Set form size and title
-        Me.ClientSize = New Drawing.Size(375, 585)
+        Me.ClientSize = New Drawing.Size(445, 560)
         Me.Text = ""
 
         ' Optional UI settings
