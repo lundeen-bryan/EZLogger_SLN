@@ -18,6 +18,20 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-25
+
+### Added
+
+- When clipboardhelper copies text it shows a statusbar msg
+
+### Changed
+
+- WordFooterReader uses clipboardHelper and shows what was copied in the statusbar
+
+### Deprecated
+
+- Removed database group from ribbon to decrease over-engineering
+
 ## [0.0.1] - 2025-04-24
 
 ### Added
