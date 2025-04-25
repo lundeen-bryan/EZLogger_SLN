@@ -18,6 +18,26 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-24
+
+### Added
+
+- ShowBtnEMessage(patientNumber) in ReportWizardHandler.vb to perform asynchronous Excel lookups for the "CONREP" provider using ExcelHelper.GetProviderFromHLV.
+
+- Custom BusyControl.xaml with an indeterminate progress bar to visually indicate background activity.
+
+- BusyHost.vb form to host the WPF-based busy control using ElementHost.
+
+- Integration of BusyHost into ShowBtnEMessage with Await Task.Delay(100) and Await Task.Run(...) to ensure responsive UI during long-running Excel operations.
+
+- Error handling and user feedback via MsgBoxHelper when provider values are found or missing.
+
+### Changed
+
+- Btn_E_Click in ReportWizardPanel.xaml.vb now retrieves the patient number from TextBoxPatientNumber and calls ShowBtnEMessage directly.
+
+- Prevents double-clicking of Btn_E with TimerHelper.DisableTemporarily.
+
 ## [0.0.1] - 2025-04-21
 
 ### Changed
