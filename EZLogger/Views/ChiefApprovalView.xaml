@@ -82,7 +82,7 @@
         <!-- BtnApproval + Label -->
         <Button Grid.Row="4"
                 Grid.Column="0"
-                x:Name="BtnApproval"
+                x:Name="ApprovalBtn"
                 Content="_A"
                 Width="33"
                 Height="35"

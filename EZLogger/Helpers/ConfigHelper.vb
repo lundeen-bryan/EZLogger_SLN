@@ -1,14 +1,49 @@
 ﻿Imports System.Collections.Generic
+Imports System.Data.Entity.Core
+Imports Newtonso
 Imports System.IO
 Imports System.Text.Json
 Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
-
 Namespace Helpers
 
-Public Module ConfigHelper
+    Public Module ConfigHelper
+
+        ''' <summary>
+        ''' Reads a specific nested value from global_config.json by section and key.
+        ''' </summary>
+        ''' <param name="section">Top-level section name, like 'report_approvals'</param>
+        ''' <param name="key">Key within that section, like 'morgan_sig'</param>
+        ''' <returns>String value if found, otherwise an empty string.</returns>
+        Public Function GetGlobalConfigValue(section As String, key As String) As String
+            Try
+                Dim configPath As String = GetGlobalConfigPath()
+
+                If Not File.Exists(configPath) Then Return String.Empty
+
+                Dim jsonText As String = File.ReadAllText(configPath)
+
+                Using doc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = doc.RootElement
+
+                    Dim sectionElement As JsonElement
+                    If root.TryGetProperty(section, sectionElement) Then
+                        Dim keyElement As JsonElement
+                        If sectionElement.TryGetProperty(key, keyElement) Then
+                            Return keyElement.GetString()
+                        End If
+                    End If
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error reading global_config.json: " & ex.Message,
+                        "Config Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
+
+            Return String.Empty
+        End Function
 
         ''' <summary>
         ''' Reads a specific nested value from local_user_config.json by section and key.

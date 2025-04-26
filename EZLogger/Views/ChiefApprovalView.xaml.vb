@@ -26,7 +26,7 @@ Namespace EZLogger.Views
             ' Load combo data when the view is created
             AddHandler Me.Loaded, AddressOf ChiefApprovalView_Loaded
 
-            AddHandler BtnApproval.Click, AddressOf BtnApproval_Click
+            AddHandler ApprovalBtn.Click, AddressOf ApprovalBtn_Click
             AddHandler BtnSignature.Click, AddressOf BtnSignature_Click
             AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
         End Sub
@@ -37,12 +37,17 @@ Namespace EZLogger.Views
             ListboxApproval.ItemsSource = chiefs
         End Sub
 
-        Private Sub BtnApproval_Click(sender As Object, e As RoutedEventArgs)
-            _handler.HandleApprovalClick()
+        Private Sub ApprovalBtn_Click(sender As Object, e As RoutedEventArgs)
+            Dim selectedName As String = TryCast(ListboxApproval.SelectedItem, String)
+            _handler.HandleApprovalClick(selectedName)
         End Sub
 
         Private Sub BtnSignature_Click(sender As Object, e As RoutedEventArgs)
-            _handler.HandleSignatureClick()
+            ' Get the selected name from the Listbox
+            Dim selectedName As String = TryCast(ListboxApproval.SelectedItem, String)
+
+            ' Pass it to the handler
+            _handler.HandleSignatureClick(selectedName)
         End Sub
 
         Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
