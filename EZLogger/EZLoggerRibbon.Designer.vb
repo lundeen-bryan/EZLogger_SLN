@@ -65,6 +65,7 @@
         Me.RandomPatientNumberButton = Me.Factory.CreateRibbonButton
         Me.BtnTestFolder = Me.Factory.CreateRibbonButton
         Me.LookupHlvBtn = Me.Factory.CreateRibbonButton
+        Me.EZLoggerMenu = Me.Factory.CreateRibbonMenu
         Me.Tab1.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
@@ -246,9 +247,19 @@
         Me.LookupHlvBtn.Label = "LookupHLV"
         Me.LookupHlvBtn.Name = "LookupHlvBtn"
         '
+        'EZLoggerMenu
+        '
+        Me.EZLoggerMenu.Label = "EZLogger"
+        Me.EZLoggerMenu.Name = "EZLoggerMenu"
+        Me.EZLoggerMenu.ShowImage = True
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
+        '
+        'EZLoggerRibbon.OfficeMenu
+        '
+        Me.OfficeMenu.Items.Add(Me.EZLoggerMenu)
         Me.RibbonType = "Microsoft.Word.Document"
         Me.Tabs.Add(Me.Tab1)
         Me.Tab1.ResumeLayout(False)
@@ -295,6 +306,7 @@
     Friend WithEvents DeleteDocPropsBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnTestFolder As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents LookupHlvBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents EZLoggerMenu As Microsoft.Office.Tools.Ribbon.RibbonMenu
 End Class
 
 Partial Class ThisRibbonCollection
