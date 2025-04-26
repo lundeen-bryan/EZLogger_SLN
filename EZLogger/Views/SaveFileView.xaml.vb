@@ -25,14 +25,29 @@ Public Class SaveFileView
         AddHandler Me.Loaded, AddressOf SaveFileView_Loaded
         AddHandler DoneBtn.Click, AddressOf DoneBtn_Click
         AddHandler SearchPatientIdBtn.Click, AddressOf SearchPatientIdBtn_Click
+        AddHandler ShowPathBtn.Click, AddressOf ShowPathBtn_Click
+        AddHandler SaveAsBtn.Click, AddressOf SaveAsBtn_Click ' <-- ADD THIS
     End Sub
+
+    Private Sub SaveAsBtn_Click(sender As Object, e As RoutedEventArgs)
+        _handler.HandleSaveAsClick(Me)
+    End Sub
+
+    Private Sub ShowPathBtn_Click(sender As Object, e As RoutedEventArgs)
+        _handler.HandleShowPathClick(Me)
+    End Sub
+
     Private Sub SearchPatientIdBtn_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleSearchPatientIdClick(Me)
     End Sub
 
     Private Sub SaveFileView_Loaded(sender As Object, e As RoutedEventArgs)
+        ' Load report types for the ComboBox
         Dim reportTypes As List(Of String) = rthandler.GetReportTypes()
         ReportTypeCbo.ItemsSource = reportTypes
+
+        ' Load Move/Copy root paths early
+        _handler.LoadRootPaths()
     End Sub
 
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)

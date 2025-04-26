@@ -18,6 +18,16 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-04-26
+
+### Added
+
+- Added methods in `SaveFileHandler` to load and validate Move/Copy paths, and handle Save As operations with old file deletion.
+- Introduced `TryDeleteOldFile` for safe deletion of original files after Move, including legacy file handling.
+- Updated `SaveFileView` to wire up new button handlers for Show Path and Save As, and modified UI components accordingly.
+- Adjusted `SaveFileHost` for proper form positioning.
+- Created a design document for `SaveFileView` outlining its purpose, workflow, UI components, and technical behavior.
+
 ## [0.0.1] - 2025-04-25
 
 ### Added

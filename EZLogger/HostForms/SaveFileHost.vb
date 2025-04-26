@@ -12,10 +12,14 @@ Public Class SaveFileHost
         Me.ClientSize = New Drawing.Size(710, 480)
 
         ' Optional UI settings
+        Me.TopMost = True
         Me.MinimizeBox = False
         Me.MaximizeBox = False
         Me.ShowIcon = False
         Me.FormBorderStyle = FormBorderStyle.FixedDialog
+
+        ' Move form to top left
+        FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
 
         ' Optional: manually size and position the ElementHost
         ElementHost1.Width = Me.ClientSize.Width - 40
