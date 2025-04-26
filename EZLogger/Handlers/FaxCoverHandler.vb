@@ -13,8 +13,6 @@ Namespace Handlers
         ''' </summary>
         Public Sub ShowFaxCoverMessage()
             Dim host As New FaxCoverHost()
-            host.TopMost = True
-            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
             host.Show()
         End Sub
 

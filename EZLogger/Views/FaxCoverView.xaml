@@ -27,7 +27,7 @@
     </UserControl.Resources>
     <Grid>
         <Controls:FormHeaderControl HeaderText="SELECT PAGES AND CONVERT TO PDF" />
-        <ListBox x:Name="ListBoxCoverPages"
+        <ListBox x:Name="CoverPagesLbx"
                  Height="360"
                  Margin="10,70,20,0"
                  VerticalAlignment="Top"
@@ -43,13 +43,13 @@
                             VerticalAlignment="Bottom"
                             Orientation="Horizontal">
                     <RadioButton x:Name="RadioPdf"
-                                 Content="Convert to PDF"
+                                 Content="Save as PDF"
                                  Height="29"
                                  Margin="12,0,24,0"
                                  Width="160"
                                  IsChecked="True" />
                     <RadioButton x:Name="RadioWord"
-                                 Content="Convert to Word"
+                                 Content="Save as Word"
                                  Height="29"
                                  Width="160" />
                 </StackPanel>
@@ -61,19 +61,19 @@
                 <StackPanel Height="69"
                             VerticalAlignment="Bottom"
                             Orientation="Horizontal">
-                    <Label x:Name="LabelPages"
+                    <Label x:Name="PagesLbl"
                            Content="0"
                            Height="29"
                            Margin="24,0,0,0"
                            VerticalContentAlignment="Center"
                            FontFamily="Lucida Fax" />
-                    <Label x:Name="LabelPages_Copy"
+                    <Label x:Name="PlusLbl"
                            Content="+"
                            Height="29"
                            VerticalContentAlignment="Center" />
                     <hw:Incrementer x:Name="IncrementerTotalPages"
                                     FontFamily="Lucida Fax" />
-                    <Button x:Name="BtnConvert"
+                    <Button x:Name="ConvertPdfBtn"
                             Content="_Convert"
                             Height="35"
                             Margin="50,0,0,0"

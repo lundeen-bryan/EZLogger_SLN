@@ -36,9 +36,17 @@ Public Class FaxCoverView
         _handler.HandleCloseClick(_hostForm)
     End Sub
 
+    ''' <summary>
+    ''' Loads cover page options and updates the page count from the active Word document.
+    ''' </summary>
     Private Sub FaxCoverView_Loaded(sender As Object, e As RoutedEventArgs)
+        ' Load available cover pages into the listbox
         Dim coverPages As List(Of String) = ListHelper.GetListFromGlobalConfig("listbox", "cover_pages")
-        ListBoxCoverPages.Items.Clear()
-        ListBoxCoverPages.ItemsSource = coverPages
+        CoverPagesLbx.Items.Clear()
+        CoverPagesLbx.ItemsSource = coverPages
+
+        ' Update the PagesLbl with the number of pages in the active Word document
+        PagesLbl.Content = WordAppHelper.GetActiveDocumentPageCount().ToString()
     End Sub
+
 End Class
