@@ -78,9 +78,9 @@
         'Tab1
         '
         Me.Tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office
+        Me.Tab1.Groups.Add(Me.SetupGroup)
         Me.Tab1.Groups.Add(Me.WizardGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
-        Me.Tab1.Groups.Add(Me.SetupGroup)
         Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
