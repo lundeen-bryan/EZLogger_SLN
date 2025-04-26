@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - When clipboardhelper copies text it shows a statusbar msg
+- Added feature to insert signature and write approved by to doc properties
 
 ### Changed
 
