@@ -418,6 +418,7 @@
     <Compile Include="Helpers\TaskPaneHelper.vb" />
     <Compile Include="Helpers\TimerHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
+    <Compile Include="Helpers\WordAppHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
       <DependentUpon>AboutHost.vb</DependentUpon>
     </Compile>

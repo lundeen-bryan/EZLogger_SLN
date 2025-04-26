@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports System.Windows.Forms.Integration
-Imports Views ' Adjust namespace if needed
+Imports EZLogger.Views ' Adjust namespace if needed
 
 Public Class FaxCoverHost
 
@@ -16,10 +16,11 @@ Public Class FaxCoverHost
         Me.MinimizeBox = False
         Me.MaximizeBox = False
         Me.ShowIcon = False
+        Me.TopMost = True
         Me.FormBorderStyle = FormBorderStyle.FixedSingle
 
         ' Optional: center the window
-        Me.StartPosition = FormStartPosition.CenterScreen
+        FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
 
         ' Optional: manually size and position the ElementHost
         ElementHost1.Width = Me.ClientSize.Width - 40
