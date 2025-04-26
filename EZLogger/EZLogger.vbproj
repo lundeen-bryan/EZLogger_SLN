@@ -397,18 +397,23 @@
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\AlertHelper.vb" />
+    <Compile Include="Helpers\BookmarkHelper.vb" />
     <Compile Include="Helpers\ClipboardHelper.vb" />
     <Compile Include="Helpers\ColorHelper.vb" />
     <Compile Include="Helpers\ConfigHelper.vb" />
+    <Compile Include="Helpers\CoverTemplateMap.vb" />
     <Compile Include="Helpers\DatabaseHelper.vb" />
     <Compile Include="Helpers\DocumentHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyHelper.vb" />
     <Compile Include="Helpers\ExcelHelper.vb" />
+    <Compile Include="Helpers\ExportPdfHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
     <Compile Include="Helpers\ListHelper.vb" />
     <Compile Include="Helpers\LogHelper.vb" />
+    <Compile Include="Helpers\MailMergeHelper.vb" />
     <Compile Include="Helpers\MessageBoxConfig.vb" />
+    <Compile Include="Helpers\MetadataHelper.vb" />
     <Compile Include="Helpers\MsgBoxHelper.vb" />
     <Compile Include="Helpers\NavigationHelper.vb" />
     <Compile Include="Helpers\PathHelper.vb" />
@@ -416,9 +421,11 @@
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="Helpers\SignatureHelper.vb" />
     <Compile Include="Helpers\TaskPaneHelper.vb" />
+    <Compile Include="Helpers\TempFileHelper.vb" />
     <Compile Include="Helpers\TimerHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
     <Compile Include="Helpers\WordAppHelper.vb" />
+    <Compile Include="Helpers\WordTemplateHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
       <DependentUpon>AboutHost.vb</DependentUpon>
     </Compile>

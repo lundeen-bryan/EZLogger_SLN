@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Created a design document for `SaveFileView` outlining its purpose, workflow, UI components, and technical behavior.
 - Included `WordAppHelper.vb` for Word-related methods.
 - Added `FaxCoverView_Loaded` method in `FaxCoverView.xaml.vb` to load cover page options and update page count.
+- Added new helper files: BookmarkHelper, CoverTemplateMap, ExportPdfHelper, MailMergeHelper, MetadataHelper, TempFileHelper, and WordTemplateHelper for improved document management functionalities.
 
 ### Changed
 
@@ -34,6 +35,11 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Modified `ShowFaxCoverMessage` in `FaxCoverHandler.vb` to position the `FaxCoverHost` form correctly.
 - Adjusted `SaveFileHost` for proper form positioning.
 - Renamed controls in `FaxCoverView.xaml` for clarity and consistency.
+- Updated EZLoggerRibbon with new buttons: SetupGroup, HelpButton, SettingsButton, AboutButton, and SyncButton to enhance user interaction.
+- Implemented SavePropsButton_Click method to save built-in document properties based on custom properties.
+- Modified FaxCoverHandler to include methods for creating fax covers and exporting documents to PDF.
+- Updated SaveFileHandler to capture built-in document properties during file saves.
+- Improved button click handling and cover page loading in FaxCoverView for better user experience.
 
 ## [0.0.1] - 2025-04-25
 

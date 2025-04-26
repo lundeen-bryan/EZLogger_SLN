@@ -116,5 +116,36 @@ Public Class EZLoggerRibbon
             MsgBoxHelper.Show($"No provider found for patient number: {patientNumber}")
         End If
     End Sub
+
+    Private Sub SavePropsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SavePropsButton.Click
+        Try
+            ' Pull values from the document's custom properties
+            Dim patientName As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
+            Dim reportType As String = DocumentPropertyHelper.GetPropertyValue("Report Type")
+            Dim reportDate As String = DocumentPropertyHelper.GetPropertyValue("Report Date")
+            Dim program As String = DocumentPropertyHelper.GetPropertyValue("Program")
+            Dim unit As String = DocumentPropertyHelper.GetPropertyValue("Unit")
+            Dim evaluator As String = DocumentPropertyHelper.GetPropertyValue("Evaluator")
+            Dim processedBy As String = DocumentPropertyHelper.GetPropertyValue("Processed By")
+            Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
+
+            ' Save them into built-in properties
+            MetadataHelper.SaveBuiltProperties(
+            patientName:=patientName,
+            reportType:=reportType,
+            reportDate:=reportDate,
+            program:=program,
+            unit:=unit,
+            evaluator:=evaluator,
+            processedBy:=processedBy,
+            county:=county
+        )
+
+            System.Windows.Forms.MessageBox.Show("Built-in document properties saved successfully from custom properties.", "EZLogger Test", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            System.Windows.Forms.MessageBox.Show("Failed to save built-in document properties: " & ex.Message, "EZLogger Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class
 
