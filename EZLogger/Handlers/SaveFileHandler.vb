@@ -69,11 +69,11 @@ Namespace Handlers
 
                 ' Open Save As dialog
                 Dim saveDialog As New SaveFileDialog With {
-            .Title = "Save As...",
-            .InitialDirectory = initialFolder,
-            .FileName = initialFilename,
-            .Filter = "Word Documents (*.docx)|*.docx|All Files (*.*)|*.*"
-        }
+                    .Title = "Save As...",
+                    .InitialDirectory = initialFolder,
+                    .FileName = initialFilename,
+                    .Filter = "Word Documents (*.docx)|*.docx|All Files (*.*)|*.*"
+                }
 
                 If saveDialog.ShowDialog() = DialogResult.OK Then
                     Dim savePath As String = saveDialog.FileName
@@ -81,6 +81,18 @@ Namespace Handlers
                     ' Capture old file path before SaveAs
                     Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
                     Dim oldFilePath As String = doc.FullName
+
+                    ' NEW: Set built-in document properties before saving
+                    MetadataHelper.SaveBuiltProperties(
+                        patientName:=view.LblPatientName.Content?.ToString(),
+                        reportType:=view.ReportTypeCbo.Text,
+                        reportDate:=view.ReportDatePicker.SelectedDate?.ToString(),
+                        program:=view.LblProgram.Content?.ToString(),
+                        unit:=view.LblUnit.Content?.ToString(),
+                        evaluator:=DocumentPropertyHelper.GetPropertyValue("Evaluator"),
+                        processedBy:=DocumentPropertyHelper.GetPropertyValue("Processed By"),
+                        county:=DocumentPropertyHelper.GetPropertyValue("County")
+                    )
 
                     ' Save to new location
                     doc.SaveAs2(FileName:=savePath)

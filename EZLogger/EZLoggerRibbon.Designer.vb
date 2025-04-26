@@ -42,6 +42,11 @@
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Tab1 = Me.Factory.CreateRibbonTab
+        Me.SetupGroup = Me.Factory.CreateRibbonGroup
+        Me.HelpButton = Me.Factory.CreateRibbonButton
+        Me.SettingsButton = Me.Factory.CreateRibbonButton
+        Me.AboutButton = Me.Factory.CreateRibbonButton
+        Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
         Me.ReportWizardBox = Me.Factory.CreateRibbonBox
         Me.ReportWizardButton = Me.Factory.CreateRibbonButton
@@ -54,11 +59,6 @@
         Me.TypoButton = Me.Factory.CreateRibbonButton
         Me.EmailButton = Me.Factory.CreateRibbonButton
         Me.BtnCloseDoc = Me.Factory.CreateRibbonButton
-        Me.SetupGroup = Me.Factory.CreateRibbonGroup
-        Me.HelpButton = Me.Factory.CreateRibbonButton
-        Me.SettingsButton = Me.Factory.CreateRibbonButton
-        Me.AboutButton = Me.Factory.CreateRibbonButton
-        Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.Group1 = Me.Factory.CreateRibbonGroup
         Me.Button2 = Me.Factory.CreateRibbonButton
         Me.Button3 = Me.Factory.CreateRibbonButton
@@ -66,13 +66,14 @@
         Me.BtnTestFolder = Me.Factory.CreateRibbonButton
         Me.LookupHlvBtn = Me.Factory.CreateRibbonButton
         Me.EZLoggerMenu = Me.Factory.CreateRibbonMenu
+        Me.SavePropsButton = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
+        Me.SetupGroup.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
         Me.ReportWizardBox.SuspendLayout()
         Me.ToolsGroup.SuspendLayout()
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
-        Me.SetupGroup.SuspendLayout()
         Me.Group1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -85,6 +86,43 @@
         Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
+        '
+        'SetupGroup
+        '
+        Me.SetupGroup.Items.Add(Me.HelpButton)
+        Me.SetupGroup.Items.Add(Me.SettingsButton)
+        Me.SetupGroup.Items.Add(Me.AboutButton)
+        Me.SetupGroup.Items.Add(Me.SyncButton)
+        Me.SetupGroup.Label = "Setup Commands"
+        Me.SetupGroup.Name = "SetupGroup"
+        '
+        'HelpButton
+        '
+        Me.HelpButton.Image = Global.EZLogger.My.Resources.Resources.help
+        Me.HelpButton.Label = "Help"
+        Me.HelpButton.Name = "HelpButton"
+        Me.HelpButton.ShowImage = True
+        '
+        'SettingsButton
+        '
+        Me.SettingsButton.Image = Global.EZLogger.My.Resources.Resources.cog
+        Me.SettingsButton.Label = "Settings"
+        Me.SettingsButton.Name = "SettingsButton"
+        Me.SettingsButton.ShowImage = True
+        '
+        'AboutButton
+        '
+        Me.AboutButton.Image = Global.EZLogger.My.Resources.Resources.about
+        Me.AboutButton.Label = "About"
+        Me.AboutButton.Name = "AboutButton"
+        Me.AboutButton.ShowImage = True
+        '
+        'SyncButton
+        '
+        Me.SyncButton.Image = Global.EZLogger.My.Resources.Resources.sharepoint
+        Me.SyncButton.Label = "Sync With SharePoint"
+        Me.SyncButton.Name = "SyncButton"
+        Me.SyncButton.ShowImage = True
         '
         'WizardGroup
         '
@@ -175,43 +213,6 @@
         Me.BtnCloseDoc.Name = "BtnCloseDoc"
         Me.BtnCloseDoc.ShowImage = True
         '
-        'SetupGroup
-        '
-        Me.SetupGroup.Items.Add(Me.HelpButton)
-        Me.SetupGroup.Items.Add(Me.SettingsButton)
-        Me.SetupGroup.Items.Add(Me.AboutButton)
-        Me.SetupGroup.Items.Add(Me.SyncButton)
-        Me.SetupGroup.Label = "Setup Commands"
-        Me.SetupGroup.Name = "SetupGroup"
-        '
-        'HelpButton
-        '
-        Me.HelpButton.Image = Global.EZLogger.My.Resources.Resources.help
-        Me.HelpButton.Label = "Help"
-        Me.HelpButton.Name = "HelpButton"
-        Me.HelpButton.ShowImage = True
-        '
-        'SettingsButton
-        '
-        Me.SettingsButton.Image = Global.EZLogger.My.Resources.Resources.cog
-        Me.SettingsButton.Label = "Settings"
-        Me.SettingsButton.Name = "SettingsButton"
-        Me.SettingsButton.ShowImage = True
-        '
-        'AboutButton
-        '
-        Me.AboutButton.Image = Global.EZLogger.My.Resources.Resources.about
-        Me.AboutButton.Label = "About"
-        Me.AboutButton.Name = "AboutButton"
-        Me.AboutButton.ShowImage = True
-        '
-        'SyncButton
-        '
-        Me.SyncButton.Image = Global.EZLogger.My.Resources.Resources.sharepoint
-        Me.SyncButton.Label = "Sync With SharePoint"
-        Me.SyncButton.Name = "SyncButton"
-        Me.SyncButton.ShowImage = True
-        '
         'Group1
         '
         Me.Group1.Items.Add(Me.Button2)
@@ -219,6 +220,7 @@
         Me.Group1.Items.Add(Me.RandomPatientNumberButton)
         Me.Group1.Items.Add(Me.BtnTestFolder)
         Me.Group1.Items.Add(Me.LookupHlvBtn)
+        Me.Group1.Items.Add(Me.SavePropsButton)
         Me.Group1.Label = "Test Group"
         Me.Group1.Name = "Group1"
         '
@@ -253,6 +255,11 @@
         Me.EZLoggerMenu.Name = "EZLoggerMenu"
         Me.EZLoggerMenu.ShowImage = True
         '
+        'SavePropsButton
+        '
+        Me.SavePropsButton.Label = "Save Properties"
+        Me.SavePropsButton.Name = "SavePropsButton"
+        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
@@ -264,6 +271,8 @@
         Me.Tabs.Add(Me.Tab1)
         Me.Tab1.ResumeLayout(False)
         Me.Tab1.PerformLayout()
+        Me.SetupGroup.ResumeLayout(False)
+        Me.SetupGroup.PerformLayout()
         Me.WizardGroup.ResumeLayout(False)
         Me.WizardGroup.PerformLayout()
         Me.ReportWizardBox.ResumeLayout(False)
@@ -274,8 +283,6 @@
         Me.PdfBtnBox.PerformLayout()
         Me.TypoBtnBox.ResumeLayout(False)
         Me.TypoBtnBox.PerformLayout()
-        Me.SetupGroup.ResumeLayout(False)
-        Me.SetupGroup.PerformLayout()
         Me.Group1.ResumeLayout(False)
         Me.Group1.PerformLayout()
         Me.ResumeLayout(False)
@@ -307,6 +314,7 @@
     Friend WithEvents BtnTestFolder As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents LookupHlvBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents EZLoggerMenu As Microsoft.Office.Tools.Ribbon.RibbonMenu
+    Friend WithEvents SavePropsButton As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection
