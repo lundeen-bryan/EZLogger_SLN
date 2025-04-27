@@ -53,11 +53,24 @@ Public Class FaxCoverView
         Dim selectedText As String = CoverPagesLbx.SelectedItem.ToString()
         Dim letter As String = selectedText.Substring(0, 1).ToUpper()
 
-        Dim saveToTemp As Boolean = RadioPdf.IsChecked ' For now, assume PDF = save locally, Word = temp (or adjust logic later)
+        Dim saveToTemp As Boolean = RadioPdf.IsChecked
         Dim convertToPdf As Boolean = RadioPdf.IsChecked
 
-        _handler.CreateFaxCover(letter, saveToTemp, convertToPdf)
+        ' 📋 New: Read page numbers
+        Dim reportPages As Integer = 0
+        Dim additionalPages As Integer = 0
 
+        If Integer.TryParse(PagesLbl.Content.ToString(), reportPages) AndAlso
+       Integer.TryParse(IncrementerTotalPages.Text.ToString(), additionalPages) Then
+
+            Dim totalPages As Integer = reportPages + additionalPages
+
+            ' 📋 Updated: Pass totalPages and reportPages to the handler
+            _handler.CreateFaxCover(letter, saveToTemp, convertToPdf, totalPages, reportPages)
+
+        Else
+            MsgBoxHelper.Show("Invalid page number entries. Please check the form.")
+        End If
     End Sub
 
     ''' <summary>
