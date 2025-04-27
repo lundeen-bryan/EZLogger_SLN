@@ -69,4 +69,21 @@ Public Module DocumentHelper
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Saves the active Word document as a .docx file to the specified path.
+    ''' </summary>
+    ''' <param name="destinationPath">Full path where the .docx file should be saved.</param>
+    Public Sub SaveActiveDocumentAsDocx(destinationPath As String)
+        Dim app As Application = Globals.ThisAddIn.Application
+        Dim doc As Document = app.ActiveDocument
+
+        Try
+            If doc IsNot Nothing Then
+                doc.SaveAs2(FileName:=destinationPath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error saving document as Word file: " & ex.Message, "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Module
