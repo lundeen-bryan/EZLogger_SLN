@@ -3,6 +3,7 @@ Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
 Imports EZLogger.Models
+Imports System.Diagnostics
 
 Namespace Handlers
 
@@ -35,74 +36,97 @@ Namespace Handlers
         ''' <param name="saveToTemp">Whether to save intermediate .docx to Temp.</param>
         ''' <param name="convertToPdf">Whether to export the result to PDF.</param>
         Public Sub CreateFaxCover(letter As String, saveToTemp As Boolean, convertToPdf As Boolean)
-            ' 1) Grab the active document as the source for bookmarks and filename
+            ' 1) Get the active document (source forensic report)
             Dim sourceDoc As Document = WordAppHelper.GetWordApp().ActiveDocument
             If sourceDoc Is Nothing Then
                 MsgBoxHelper.Show("No active document found to base the cover on.")
                 Return
             End If
 
-            Select Case letter.ToUpper().Trim()
-                Case "A"
-                    ' Convert active document directly to PDF
-                    Dim folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                    ' Use the original document's filename (without extension)
-                    Dim originalName = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
-                    ExportPdfHelper.ExportActiveDocumentToPdf(folder, originalName)
+            ' 2) Special case: "A" = export the report directly
+            If letter.ToUpper().Trim() = "A" Then
+                Dim folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                Dim originalName = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
+                ExportPdfHelper.ExportActiveDocumentToPdf(folder, originalName)
+                MsgBoxHelper.Show("PDF exported successfully.")
+                Return
+            End If
 
-                Case "B" To "T"
-                    ' 2) Load common properties and paths
-                    Dim info As FaxCoverInfo = PopulateFaxCoverInfo()
-                    info.TemplateFileName = Path.Combine(info.TemplatesPath, CoverTemplateMap.GetTemplateFileName(letter))
+            ' 3) Load document properties and template info
+            Dim info As FaxCoverInfo = PopulateFaxCoverInfo()
+            info.TemplateFileName = Path.Combine(info.TemplatesPath, CoverTemplateMap.GetTemplateFileName(letter))
 
-                    ' 3) Open the template document
-                    Dim coverDoc As Document = WordTemplateHelper.CreateDocumentFromTemplate(info.TemplateFileName)
-                    If coverDoc Is Nothing Then
-                        MsgBoxHelper.Show($"Template not found: {info.TemplateFileName}")
+            ' 4) Create a new document from the template
+            Dim coverDoc As Document = WordTemplateHelper.CreateDocumentFromTemplate(info.TemplateFileName)
+            If coverDoc Is Nothing Then
+                MsgBoxHelper.Show($"Template not found: {info.TemplateFileName}")
+                Return
+            End If
+
+            Try
+                ' 5) Fill bookmarks from the source document
+                BookmarkHelper.FillBookmarksFromDocumentProperties(sourceDoc, coverDoc)
+
+                ' 6) If this cover type requires mail merge, connect and merge
+                Dim mapInfo = CoverTemplateMap.GetTemplateInfo(letter)
+                Dim mergedDoc As Document = coverDoc ' Start assuming mergedDoc = coverDoc
+
+                If mapInfo IsNot Nothing AndAlso mapInfo.NeedsMailMerge Then
+                    Dim dataPath = ConfigHelper.GetLocalConfigValue("sp_filepath", mapInfo.MailMergeSourceKey)
+                    If File.Exists(dataPath) Then
+                        Dim sheet = CoverTemplateMap.GetMailMergeSheet(letter)
+
+                        ' 6a) Connect to Excel
+                        MailMergeHelper.ConnectToExcelDataSource(coverDoc, dataPath, sheet)
+
+                        ' 6b) Select correct record by county
+                        MailMergeHelper.SelectRecordByCounty(coverDoc, info.County)
+
+                        ' 6c) Execute the mail merge
+                        MailMergeHelper.ExecuteMailMerge(coverDoc)
+
+                        ' 6d) Switch to the newly merged document
+                        mergedDoc = WordAppHelper.GetWordApp().ActiveDocument
+
+                        ' 6e) Unlink fields
+                        MailMergeHelper.UnlinkAllFields(mergedDoc)
+
+                        ' 6f) Close the original template copy (coverDoc)
+                        coverDoc.Close(SaveChanges:=False)
+                    Else
+                        MsgBoxHelper.Show($"Mail merge data source not found: {dataPath}")
+                        coverDoc.Close(False)
                         Return
                     End If
+                End If
 
-                    ' 4) Fill bookmarks from the original document
-                    BookmarkHelper.FillBookmarksFromDocumentProperties(sourceDoc, coverDoc)
+                ' 7) Save merged document to temp folder if requested
+                If saveToTemp Then
+                    Dim tempPath = TempFileHelper.GetSavePath(mergedDoc, letter, True)
+                    mergedDoc.SaveAs2(FileName:=tempPath, FileFormat:=WdSaveFormat.wdFormatDocumentDefault)
+                End If
 
-                    ' 5) Perform mail merge if required
-                    Dim mapInfo = CoverTemplateMap.GetTemplateInfo(letter)
-                    If mapInfo IsNot Nothing AndAlso mapInfo.NeedsMailMerge Then
-                        Dim dataPath = ConfigHelper.GetLocalConfigValue("sp_filepath", mapInfo.MailMergeSourceKey)
-                        If File.Exists(dataPath) Then
-                            Dim sheet = CoverTemplateMap.GetMailMergeSheet(letter)
-                            MailMergeHelper.ConnectToExcelDataSource(coverDoc, dataPath, sheet)
-                            MailMergeHelper.UnlinkAllFields(coverDoc)
-                        Else
-                            MsgBoxHelper.Show($"Mail merge data source not found: {dataPath}")
-                            coverDoc.Close(False)
-                            Return
-                        End If
-                    End If
+                ' 8) Export merged document to PDF if requested
+                If convertToPdf Then
+                    ' 🆕 Activate the merged document first
+                    mergedDoc.Activate()
 
-                    ' 6) Save the intermediate .docx to Temp, if requested
-                    If saveToTemp Then
-                        Dim tempPath = TempFileHelper.GetSavePath(coverDoc, letter, True)
-                        coverDoc.SaveAs2(FileName:=tempPath, FileFormat:=WdSaveFormat.wdFormatDocumentDefault)
-                    End If
+                    Dim outputFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                    Dim originalBase = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
+                    Dim coverTypeName = TempFileHelper.GetCoverTypeName(letter)
+                    Dim outputName = $"{originalBase} {coverTypeName}"
 
-                    ' 7) Export to PDF using the original document's name + cover type
-                    If convertToPdf Then
-                        Dim outputFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                        Dim originalBase = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
-                        Dim coverTypeName = TempFileHelper.GetCoverTypeName(letter)
-                        Dim outputName = $"{originalBase} {coverTypeName}"
-                        ExportPdfHelper.ExportActiveDocumentToPdf(outputFolder, outputName)
-                    End If
+                    ExportPdfHelper.ExportActiveDocumentToPdf(outputFolder, outputName)
+                End If
 
-                    ' 8) Close the template doc without saving
-                    coverDoc.Close(False)
+                ' 9) (Optional) You could close mergedDoc if you want, but not required
+                ' mergedDoc.Close(SaveChanges:=False)
 
-                Case Else
-                    MsgBoxHelper.Show($"Cover type '{letter}' is not implemented yet.")
-                    Return
-            End Select
+            Finally
+                ' Nothing else to do here; everything is already handled
+            End Try
 
+            ' 10) Success message
             MsgBoxHelper.Show("Cover page generated successfully.")
         End Sub
 
