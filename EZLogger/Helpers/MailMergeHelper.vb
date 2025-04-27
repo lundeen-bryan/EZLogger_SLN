@@ -22,17 +22,17 @@ Namespace Helpers
             Try
                 With doc.MailMerge
                     .MainDocumentType = WdMailMergeMainDocType.wdFormLetters
-                    .OpenDataSource( _
-                        Name:=excelPath, _
-                        ConfirmConversions:=False, _
-                        ReadOnly:=True, _
-                        LinkToSource:=True, _
-                        AddToRecentFiles:=False, _
-                        Revert:=False, _
-                        Format:=WdOpenFormat.wdOpenFormatAuto, _
-                        Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" & _
-                                   "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""", _
-                        SQLStatement:="SELECT * FROM " & tableRef _
+                    .OpenDataSource(
+                        Name:=excelPath,
+                        ConfirmConversions:=False,
+                        ReadOnly:=True,
+                        LinkToSource:=True,
+                        AddToRecentFiles:=False,
+                        Revert:=False,
+                        Format:=WdOpenFormat.wdOpenFormatAuto,
+                        Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" &
+                                   "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""",
+                        SQLStatement:="SELECT * FROM " & tableRef
                     )
                 End With
             Catch ex As Exception

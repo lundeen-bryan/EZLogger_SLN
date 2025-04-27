@@ -58,7 +58,6 @@ Public Class FaxCoverView
 
         _handler.CreateFaxCover(letter, saveToTemp, convertToPdf)
 
-        MsgBoxHelper.Show("Cover page generated successfully.")
     End Sub
 
     ''' <summary>
