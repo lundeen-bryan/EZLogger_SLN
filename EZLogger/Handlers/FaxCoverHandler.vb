@@ -103,8 +103,22 @@ Namespace Handlers
 
                 ' 7) Save merged document to temp folder if requested
                 If saveToTemp Then
+                    ' Save temp copy of the merged cover page
                     Dim tempPath = TempFileHelper.GetSavePath(mergedDoc, letter, True)
                     mergedDoc.SaveAs2(FileName:=tempPath, FileFormat:=WdSaveFormat.wdFormatDocumentDefault)
+
+                Else
+                    ' 🆕 Save the COVER PAGE (mergedDoc) into Documents, NOT the forensic report
+                    Dim outputFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                    Dim originalBase = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
+                    Dim coverTypeName = TempFileHelper.GetCoverTypeName(letter)
+                    Dim outputName = $"{originalBase} {coverTypeName}.docx"
+                    Dim savePath = Path.Combine(outputFolder, outputName)
+
+                    ' Save the merged cover page as .docx
+                    mergedDoc.SaveAs2(FileName:=savePath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
+
+                    MsgBoxHelper.Show("Word cover page saved successfully.")
                 End If
 
                 ' 8) Export merged document to PDF if requested
