@@ -120,7 +120,7 @@ Namespace Handlers
                 End If
 
                 ' 9) (Optional) You could close mergedDoc if you want, but not required
-                ' mergedDoc.Close(SaveChanges:=False)
+                mergedDoc.Close(SaveChanges:=False)
 
             Finally
                 ' Nothing else to do here; everything is already handled
