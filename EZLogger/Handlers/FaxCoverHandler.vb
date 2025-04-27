@@ -35,13 +35,14 @@ Namespace Handlers
         ''' <param name="letter">Cover type code (A–T).</param>
         ''' <param name="saveToTemp">Whether to save intermediate .docx to Temp.</param>
         ''' <param name="convertToPdf">Whether to export the result to PDF.</param>
-        Public Sub CreateFaxCover(letter As String, saveToTemp As Boolean, convertToPdf As Boolean)
+        Public Sub CreateFaxCover(letter As String, saveToTemp As Boolean, convertToPdf As Boolean, totalPages As Integer, originalReportPages As Integer)
             ' 1) Get the active document (source forensic report)
-            Dim sourceDoc As Document = WordAppHelper.GetWordApp().ActiveDocument
-            If sourceDoc Is Nothing Then
-                MsgBoxHelper.Show("No active document found to base the cover on.")
-                Return
-            End If
+            Dim app = WordAppHelper.GetWordApp()
+            Dim sourceDoc = app.ActiveDocument
+
+            ' Update Pages property to include extra pages
+            DocumentPropertyHelper.WriteCustomProperty(sourceDoc, "Pages", totalPages.ToString())
+
 
             ' 2) Special case: "A" = export the report directly
             If letter.ToUpper().Trim() = "A" Then
@@ -128,6 +129,10 @@ Namespace Handlers
 
             ' 10) Success message
             MsgBoxHelper.Show("Cover page generated successfully.")
+
+            ' Restore original Pages property
+            DocumentPropertyHelper.WriteCustomProperty(sourceDoc, "Pages", originalReportPages.ToString())
+
         End Sub
 
         ''' <summary>
