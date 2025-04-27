@@ -45,7 +45,7 @@ Public Class FaxCoverView
     ''' </summary>
     Private Sub ConvertPdfBtn_Click(sender As Object, e As RoutedEventArgs)
         If CoverPagesLbx.SelectedItem Is Nothing Then
-            System.Windows.MessageBox.Show("Please select a cover page template first.", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Warning)
+            MsgBoxHelper.Show("Please select a cover page template first.")
             CoverPagesLbx.Focus()
             Exit Sub
         End If
@@ -58,7 +58,7 @@ Public Class FaxCoverView
 
         _handler.CreateFaxCover(letter, saveToTemp, convertToPdf)
 
-        System.Windows.MessageBox.Show("Cover page generated successfully.", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Information)
+        MsgBoxHelper.Show("Cover page generated successfully.")
     End Sub
 
     ''' <summary>

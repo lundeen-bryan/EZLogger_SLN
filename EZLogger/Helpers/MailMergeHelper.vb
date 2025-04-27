@@ -4,23 +4,36 @@ Imports System.IO
 Namespace Helpers
 
     ''' <summary>
-    ''' Provides helper methods for connecting Word documents to external Excel datasources for mail merge operations.
+    ''' Provides helper methods for connecting Word documents to external Excel data sources for mail merge operations.
     ''' </summary>
     Public Module MailMergeHelper
 
-        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, Optional filterCounty As String = Nothing)
+        ''' <summary>
+        ''' Opens an Excel file as the mail-merge data source, pointing at the specified worksheet.
+        ''' </summary>
+        ''' <param name="doc">The Word document to connect.</param>
+        ''' <param name="excelPath">Full path to the Excel file.</param>
+        ''' <param name="sheetName">Name of the worksheet to use (without $).</param>
+        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, sheetName As String)
             If doc Is Nothing OrElse String.IsNullOrEmpty(excelPath) OrElse Not File.Exists(excelPath) Then Exit Sub
+
+            Dim tableRef = $"[{sheetName}$]"
 
             Try
                 With doc.MailMerge
                     .MainDocumentType = WdMailMergeMainDocType.wdFormLetters
-                    .OpenDataSource(Name:=excelPath,
-                                    ConfirmConversions:=False,
-                                    ReadOnly:=True,
-                                    LinkToSource:=True,
-                                    AddToRecentFiles:=False,
-                                    Revert:=False,
-                                    Format:=WdOpenFormat.wdOpenFormatAuto)
+                    .OpenDataSource( _
+                        Name:=excelPath, _
+                        ConfirmConversions:=False, _
+                        ReadOnly:=True, _
+                        LinkToSource:=True, _
+                        AddToRecentFiles:=False, _
+                        Revert:=False, _
+                        Format:=WdOpenFormat.wdOpenFormatAuto, _
+                        Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" & _
+                                   "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""", _
+                        SQLStatement:="SELECT * FROM " & tableRef _
+                    )
                 End With
             Catch ex As Exception
                 ' Optional: log the exception
@@ -28,47 +41,9 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
-        ''' Fills bookmarks using fields from the mail merge data source.
-        ''' Expandable: simply add new entries to the dictionary if needed.
+        ''' Unlinks all fields in the document after mail merge completes.
         ''' </summary>
-        ''' <param name="doc">The Word document whose bookmarks are to be filled.</param>
-        Public Sub FillAddressBookmarksFromDataSource(doc As Document)
-            If doc Is Nothing Then Exit Sub
-
-            Try
-                Dim datasource = doc.MailMerge.DataSource
-
-                If datasource IsNot Nothing AndAlso datasource.DataFields.Count > 0 Then
-                    ' Define mappings: {BookmarkName} -> {DataFieldName}
-                    Dim fieldMappings As New Dictionary(Of String, String) From {
-                        {"Phone", "Phone"},
-                        {"Fax", "Fax"},
-                        {"Street", "Street"},
-                        {"City", "City"},
-                        {"Zip", "Zip"},
-                        {"CONREP", "conrep_name"},
-                        {"Sheriff_Name", "Name"},
-                        {"CourtAddress", "CourtAddress"} ' Example of adding a new bookmark easily
-                    }
-
-                    For Each kvp In fieldMappings
-                        Dim bookmarkName = kvp.Key
-                        Dim dataFieldName = kvp.Value
-
-                        ' Safely check if the DataField exists before trying to fill it
-                        If DataFieldExists(datasource, dataFieldName) Then
-                            BookmarkHelper.InsertTextIntoBookmark(doc, bookmarkName, datasource.DataFields(dataFieldName).Value)
-                        End If
-                    Next
-                End If
-            Catch ex As Exception
-                ' Optional: log or handle error
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Unlinks all fields in the document after mail merge.
-        ''' </summary>
+        ''' <param name="doc">The Word document whose merge fields should be unlinked.</param>
         Public Sub UnlinkAllFields(doc As Document)
             If doc Is Nothing Then Exit Sub
 
@@ -77,28 +52,11 @@ Namespace Helpers
                     storyRange.Fields.Update()
                     storyRange.Fields.Unlink()
                 Next
-
                 doc.MailMerge.MainDocumentType = WdMailMergeMainDocType.wdNotAMergeDocument
             Catch ex As Exception
                 ' Optional: log or handle error
             End Try
         End Sub
-
-        ''' <summary>
-        ''' Checks if a DataField exists in the MailMerge DataSource.
-        ''' </summary>
-        Private Function DataFieldExists(datasource As MailMergeDataSource, fieldName As String) As Boolean
-            Try
-                For i As Integer = 1 To datasource.DataFields.Count
-                    If String.Equals(datasource.DataFields(i).Name, fieldName, StringComparison.OrdinalIgnoreCase) Then
-                        Return True
-                    End If
-                Next
-            Catch
-                ' Ignore errors
-            End Try
-            Return False
-        End Function
 
     End Module
 
