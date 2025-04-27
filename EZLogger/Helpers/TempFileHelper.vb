@@ -42,7 +42,7 @@ Namespace Helpers
         ''' <summary>
         ''' Gets the user's Temp folder path.
         ''' </summary>
-        Private Function GetTempFolder() As String
+        Public Function GetTempFolder() As String
             Return Path.GetTempPath()
         End Function
 
@@ -57,7 +57,7 @@ Namespace Helpers
         ''' Returns a human-readable name for the cover type based on the letter selected.
         ''' (Simple placeholder; can be expanded later if needed.)
         ''' </summary>
-        Private Function GetCoverTypeName(letter As String) As String
+        Public Function GetCoverTypeName(letter As String) As String
             Select Case letter.ToUpper()
                 Case "A" : Return "Standard Fax Cover"
                 Case "B" : Return "Court Fax Cover"
@@ -87,7 +87,7 @@ Namespace Helpers
         ''' <summary>
         ''' Removes illegal file name characters from a string.
         ''' </summary>
-        Private Function RemoveIllegalFileNameChars(fileName As String) As String
+        Public Function RemoveIllegalFileNameChars(fileName As String) As String
             Dim invalidChars = Path.GetInvalidFileNameChars()
             For Each c In invalidChars
                 fileName = fileName.Replace(c, "_"c)

@@ -9,25 +9,23 @@ Namespace Helpers
     Public Module BookmarkHelper
 
         ''' <summary>
-        ''' Fills bookmarks in the document based on the custom document properties.
-        ''' Property names will have spaces replaced by underscores when matching bookmarks.
+        ''' Copies custom properties from one document into bookmarks of another.
         ''' </summary>
-        ''' <param name="doc">The Word document where bookmarks will be filled.</param>
-        Public Sub FillBookmarksFromDocumentProperties(doc As Document)
-            If doc Is Nothing Then Exit Sub
+        Public Sub FillBookmarksFromDocumentProperties(sourceDoc As Document, targetDoc As Document)
+            If sourceDoc Is Nothing OrElse targetDoc Is Nothing Then Return
 
             Try
-                Dim sourceProperties As DocumentProperties = CType(doc.CustomDocumentProperties, DocumentProperties)
-
-                For Each prop As DocumentProperty In sourceProperties
-                    Dim bookmarkName As String = prop.Name.Replace(" ", "_")
-
-                    If doc.Bookmarks.Exists(bookmarkName) Then
-                        InsertTextIntoBookmark(doc, bookmarkName, prop.Value.ToString())
+                Dim props = CType(sourceDoc.CustomDocumentProperties, DocumentProperties)
+                For Each prop As DocumentProperty In props
+                    Dim name = prop.Name.Replace(" ", "_")
+                    If targetDoc.Bookmarks.Exists(name) Then
+                        Dim bmRange = targetDoc.Bookmarks(name).Range
+                        bmRange.Text = prop.Value.ToString()
+                        targetDoc.Bookmarks.Add(name, bmRange)
                     End If
                 Next
             Catch ex As Exception
-                ' Optional: Add logging or error handling if desired
+                ' Optional logging
             End Try
         End Sub
 
