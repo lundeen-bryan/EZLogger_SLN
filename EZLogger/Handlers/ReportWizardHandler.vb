@@ -180,7 +180,24 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnKMessage()
-            MessageBox.Show("This will handle function K.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Try
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+
+                If doc Is Nothing Then
+                    MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                    Exit Sub
+                End If
+
+                ' Call PrcHandler to process the report
+                PrcHandler.SaveProcessedReport(doc)
+
+                ' Show success message
+                MessageBox.Show("The report has been processed and logged successfully.", "K Function Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+
+            Catch ex As Exception
+                LogHelper.LogError("ReportWizardHandler.ShowBtnKMessage", ex.Message)
+                MessageBox.Show("An error occurred while processing the report.", "Processing Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
         End Sub
 
         Public Sub ShowBtnLMessage()

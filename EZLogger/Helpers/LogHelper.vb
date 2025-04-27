@@ -31,6 +31,29 @@ Namespace Helpers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Writes a timestamped error message to the error log.
+        ''' </summary>
+        ''' <param name="source">The method or class where the error occurred.</param>
+        ''' <param name="errorMessage">The error message to write.</param>
+        Public Sub LogError(source As String, errorMessage As String)
+            Try
+                Dim logDir As String = "C:\Users\lunde\repos\cs\ezlogger\EZLogger_SLN\temp\Error_Logs"
+                Dim logPath As String = Path.Combine(logDir, "error_log.txt")
+
+                If Not Directory.Exists(logDir) Then
+                    Directory.CreateDirectory(logDir)
+                End If
+
+                Dim fullMessage As String = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [ERROR] [{source}] {errorMessage}{Environment.NewLine}"
+
+                File.AppendAllText(logPath, fullMessage)
+
+            Catch
+                ' Optional: silently fail
+            End Try
+        End Sub
+
     End Module
 
 End Namespace

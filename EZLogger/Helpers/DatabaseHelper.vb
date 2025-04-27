@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SQLite
 Imports System.IO
+Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
@@ -99,5 +100,51 @@ Public Module DatabaseHelper
 
         Return $"Data Source={dbPath};Version=3;"
     End Function
+
+    ''' <summary>
+    ''' Inserts a new record into the EZL_PRC table.
+    ''' </summary>
+    ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
+    Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object))
+        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
+
+        Dim dbPath As String = PathHelper.GetDatabasePath()
+        Dim connectionString As String = $"Data Source={dbPath};Version=3;"
+        Dim insertSuccess As Boolean = False
+
+        Dim columns As String = String.Join(",", prcData.Keys)
+        Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
+        Dim sql As String = $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
+
+        ' Attempt insert, retry once if needed
+        For attempt As Integer = 1 To 2
+            Try
+                Using conn As New SQLiteConnection(connectionString)
+                    conn.Open()
+
+                    Using cmd As New SQLiteCommand(sql, conn)
+                        ' Add parameters
+                        For Each kvp In prcData
+                            cmd.Parameters.AddWithValue("@" & kvp.Key, If(kvp.Value IsNot Nothing, kvp.Value, DBNull.Value))
+                        Next
+
+                        cmd.ExecuteNonQuery()
+                    End Using
+
+                    insertSuccess = True
+                    Exit For ' Exit loop if success
+                End Using
+
+            Catch ex As Exception
+                LogHelper.LogError("DatabaseHelper.InsertPrcTable (Attempt " & attempt & ")", ex.Message)
+                System.Threading.Thread.Sleep(100) ' Small delay before retry
+            End Try
+        Next
+
+        ' If insert still failed, show popup
+        If Not insertSuccess Then
+            MessageBox.Show("Failed to save processed report data to EZL_PRC table after retrying.", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End If
+    End Sub
 
 End Module
