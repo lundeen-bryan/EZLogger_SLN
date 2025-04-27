@@ -382,6 +382,7 @@
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
     <Compile Include="Handlers\PatientInfoHandler.vb" />
+    <Compile Include="Handlers\PrcHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
     <Compile Include="EZLoggerRibbon.Designer.vb">
@@ -419,10 +420,12 @@
     <Compile Include="Helpers\RushStatusHelper.vb" />
     <Compile Include="Helpers\SenderHelper.vb" />
     <Compile Include="Helpers\SignatureHelper.vb" />
+    <Compile Include="Helpers\SpHelper.vb" />
     <Compile Include="Helpers\TaskPaneHelper.vb" />
     <Compile Include="Helpers\TempFileHelper.vb" />
     <Compile Include="Helpers\TimerHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
+    <Compile Include="Helpers\UserTodoHelper.vb" />
     <Compile Include="Helpers\WordAppHelper.vb" />
     <Compile Include="Helpers\WordTemplateHelper.vb" />
     <Compile Include="HostForms\AboutHost.Designer.vb">
