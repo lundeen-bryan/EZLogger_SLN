@@ -381,7 +381,6 @@
     <Compile Include="Handlers\EvaluatorHandler.vb" />
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
-    <Compile Include="Handlers\PatientDatabaseHandler.vb" />
     <Compile Include="Handlers\PatientInfoHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
