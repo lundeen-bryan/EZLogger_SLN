@@ -12,6 +12,16 @@ Namespace Helpers
     Public Module ConfigHelper
 
         ''' <summary>
+        ''' Returns the full path to the _LogTheseFiles.txt file.
+        ''' </summary>
+        Public Function GetLogTheseFilesPath() As String
+            ' Example implementation (adjust folder as needed)
+            Dim userDocuments As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim ezLoggerFolder As String = Path.Combine(userDocuments, "EZLogger")
+            Return Path.Combine(ezLoggerFolder, "_LogTheseFiles.txt")
+        End Function
+
+        ''' <summary>
         ''' Reads a specific nested value from global_config.json by section and key.
         ''' </summary>
         ''' <param name="section">Top-level section name, like 'report_approvals'</param>

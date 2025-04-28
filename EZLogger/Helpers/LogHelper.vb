@@ -5,6 +5,30 @@ Namespace Helpers
     Public Module LogHelper
 
         ''' <summary>
+        ''' Appends a line to the _LogTheseFiles.txt file containing full report details.
+        ''' </summary>
+        ''' <param name="patientNumber">Patient number associated with the report.</param>
+        ''' <param name="reportType">Type of the report.</param>
+        ''' <param name="sender">Name of the person processing the report.</param>
+        ''' <param name="fileName">Name of the report file (not full path).</param>
+        Public Sub AppendToLogTheseFiles(patientNumber As String, reportType As String, sender As String, fileName As String)
+            Try
+                ' Get the full path to _LogTheseFiles.txt
+                Dim logFilePath As String = ConfigHelper.GetLogTheseFilesPath()
+
+                ' Build the line to append
+                Dim logLine As String = $"{DateTime.Now:MM/dd/yyyy HH:mm} | {patientNumber} | {reportType} | {sender} | {fileName}"
+
+                ' Append the line to the file
+                File.AppendAllText(logFilePath, logLine & Environment.NewLine)
+
+            Catch ex As Exception
+                ' Optional: Log the error or show a message box
+                MsgBox($"Failed to append to _LogTheseFiles.txt: {ex.Message}", MsgBoxStyle.Critical)
+            End Try
+        End Sub
+
+        ''' <summary>
         ''' Writes a timestamped debug message to a local development folder.
         ''' </summary>
         ''' <param name="message">The message to write.</param>
