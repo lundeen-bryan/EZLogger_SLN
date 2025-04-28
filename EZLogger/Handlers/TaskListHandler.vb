@@ -2,8 +2,8 @@
 Imports System.Collections.ObjectModel
 Imports System.Collections.Specialized
 Imports System.ComponentModel
-Imports Models
-Imports Helpers
+Imports EZLogger.Models
+Imports EZLogger.Helpers
 
 Public Class TaskListHandler
 
@@ -18,7 +18,7 @@ Public Class TaskListHandler
         AddHandler Tasks.CollectionChanged, AddressOf OnCollectionChanged
 
         ' Hook existing items
-        For Each ti In Tasks
+        For Each ti As TaskItem In Tasks
             AddHandler ti.PropertyChanged, AddressOf OnItemChanged
         Next
     End Sub

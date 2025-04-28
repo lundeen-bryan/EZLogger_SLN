@@ -1,14 +1,15 @@
 ﻿Imports System
 Imports System.IO
 Imports System.Xml.Serialization
-Imports Models
+Imports EZLogger.Helpers
+Imports EZLogger.Models
 
 Module TasksIO
 
     ' Determine the path for Tasks.xml beside your existing user config
     Private ReadOnly Property TasksFilePath As String
         Get
-            Dim configJsonPath = ConfigPathHelper.GetLocalUserConfigPath()
+            Dim configJsonPath = ConfigHelper.GetLocalConfigPath()
             Dim folder = Path.GetDirectoryName(configJsonPath)
             Return Path.Combine(folder, "Tasks.xml")
         End Get
@@ -30,7 +31,7 @@ Module TasksIO
             End Using
 
         Catch ex As Exception
-            CustomMsgBoxHelper.ShowError($"Failed to load tasks:{Environment.NewLine}{ex.Message}")
+            MsgBoxHelper.Show($"Failed to load tasks:{Environment.NewLine}{ex.Message}")
             Return New List(Of TaskItem)()
         End Try
     End Function
@@ -50,7 +51,7 @@ Module TasksIO
             End Using
 
         Catch ex As Exception
-            CustomMsgBoxHelper.ShowError($"Failed to save tasks:{Environment.NewLine}{ex.Message}")
+            MsgBoxHelper.Show($"Failed to save tasks:{Environment.NewLine}{ex.Message}")
         End Try
     End Sub
 
