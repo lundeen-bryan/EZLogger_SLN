@@ -1,56 +1,56 @@
-﻿Imports System.Collections.ObjectModel
+﻿Imports System
+Imports System.Collections.ObjectModel
 Imports System.Collections.Specialized
-Imports EZLogger.Models
-Imports EZLogger.Helpers
+Imports System.ComponentModel
+Imports Models
+Imports Helpers
 
-Namespace Handlers
+Public Class TaskListHandler
 
-    Public Class TaskListHandler
+    Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
 
-        Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
+    Public Sub New()
+        ' Load existing tasks
+        Dim list = TasksIO.LoadTasks()
+        Tasks = New ObservableCollection(Of TaskItem)(list)
 
-        Public Sub New()
-            Dim list = ConfigHelper.LoadTasks()
-            Tasks = New ObservableCollection(Of TaskItem)(list)
+        ' When items are added/removed, re-hook events and save
+        AddHandler Tasks.CollectionChanged, AddressOf OnCollectionChanged
 
-            ' Save whenever items are added/removed
-            AddHandler Tasks.CollectionChanged, AddressOf OnCollectionChanged
+        ' Hook existing items
+        For Each ti In Tasks
+            AddHandler ti.PropertyChanged, AddressOf OnItemChanged
+        Next
+    End Sub
 
-            ' Save when any property changes on an item
-            For Each itm In Tasks
-                AddHandler itm.PropertyChanged, AddressOf OnItemPropertyChanged
+    Private Sub OnCollectionChanged(sender As Object, e As NotifyCollectionChangedEventArgs)
+        ' Hook new items
+        If e.NewItems IsNot Nothing Then
+            For Each itm In e.NewItems.OfType(Of TaskItem)()
+                AddHandler itm.PropertyChanged, AddressOf OnItemChanged
             Next
-        End Sub
+        End If
+        SaveAll()
+    End Sub
 
-        Private Sub OnCollectionChanged(sender As Object, e As NotifyCollectionChangedEventArgs)
-            If e.NewItems IsNot Nothing Then
-                For Each itm In e.NewItems.OfType(Of TaskItem)()
-                    AddHandler itm.PropertyChanged, AddressOf OnItemPropertyChanged
-                Next
+    Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
+        SaveAll()
+    End Sub
+
+    ''' <summary>
+    ''' Remove all tasks marked completed.
+    ''' </summary>
+    Public Sub RemoveCompletedTasks()
+        For i = Tasks.Count - 1 To 0 Step -1
+            If Tasks(i).IsCompleted Then
+                Tasks.RemoveAt(i)
             End If
-            SaveAll()
-        End Sub
+        Next
+        SaveAll()
+    End Sub
 
-        Private Sub OnItemPropertyChanged(sender As Object, e As ComponentModel.PropertyChangedEventArgs)
-            SaveAll()
-        End Sub
+    Private Sub SaveAll()
+        TasksIO.SaveTasks(Tasks.ToList())
+    End Sub
 
-        ''' <summary>
-        ''' Removes all completed tasks from the collection.
-        ''' </summary>
-        Public Sub RemoveCompletedTasks()
-            For i = Tasks.Count - 1 To 0 Step -1
-                If Tasks(i).IsCompleted Then
-                    Tasks.RemoveAt(i)
-                End If
-            Next
-            SaveAll()
-        End Sub
-
-        Private Sub SaveAll()
-            ConfigHelper.SaveTasks(Tasks.ToList())
-        End Sub
-
-    End Class
-
-End Namespace
+End Class
