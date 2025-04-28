@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - When clipboardhelper copies text it shows a statusbar msg
 - Added feature to insert signature and write approved by to doc properties
+- Updated `EZLogger.vbproj` to include new Ribbon files and resources. Removed several buttons and groups from `EZLoggerRibbon.Designer.vb`.
+- Introduced `EZLoggerRibbonXml` class for XML handling and updated event handlers in `EZLoggerRibbon.vb`. Modified `ThisAddIn` to instantiate the new Ribbon functionality.
 
 ### Changed
 

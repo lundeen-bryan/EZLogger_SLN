@@ -15,6 +15,7 @@ Public Class EZLoggerRibbon
 
     ' This button toggles the Report Wizard Task Pane.
     Private Sub ReportWizardButton_Click(sender As Object, e As RibbonControlEventArgs) Handles ReportWizardButton.Click
+        'Keep this is the main entry point mouse button
         Globals.ThisAddIn.ReportWizardTaskPane.Visible = Not Globals.ThisAddIn.ReportWizardTaskPane.Visible
     End Sub
 
@@ -38,11 +39,13 @@ Public Class EZLoggerRibbon
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As RibbonControlEventArgs) Handles Button1.Click
+        'Keep
         Dim ptinfo As New PatientInfoHost()
         ptinfo.Show()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         Dim lorem As String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " &
                           "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " &
                           "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " &
@@ -55,28 +58,33 @@ Public Class EZLoggerRibbon
                                  End Sub)
     End Sub
     Private Sub SettingsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SettingsButton.Click
+        'Keep
         Dim configHost As New ConfigHost()
         configHost.ShowDialog()
     End Sub
 
     Private Sub BtnCloseDoc_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnCloseDoc.Click
+        'Keep
         DocumentHelper.CloseActiveDocument(showPrompt:=False)
     End Sub
 
     Private Sub AboutButton_Click(sender As Object, e As RibbonControlEventArgs) Handles AboutButton.Click
+        'Keep
         Dim aboutHost As New AboutHost()
         aboutHost.ShowDialog()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As RibbonControlEventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         TestHelper.Test_UpdateLocalConfigWithGlobalPath()
     End Sub
 
-    Private Sub RandomPatientNumberButton_Click(sender As Object, e As RibbonControlEventArgs) Handles RandomPatientNumberButton.Click
+    Private Sub RandomPatientNumberButton_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         TestHelper.PromptRandomPatientNumberForTest()
     End Sub
 
-    Private Sub DeleteDocPropsBtn_Click(sender As Object, e As RibbonControlEventArgs) Handles DeleteDocPropsBtn.Click
+    Private Sub DeleteDocPropsBtn_Click(sender As Object, e As RibbonControlEventArgs)
         Try
             DocumentPropertyHelper.DeleteAllCustomProperties()
             MessageBox.Show("All custom document properties have been cleared.", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
@@ -85,12 +93,14 @@ Public Class EZLoggerRibbon
         End Try
     End Sub
 
-    Private Sub BtnTestFolder_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnTestFolder.Click
+    Private Sub BtnTestFolder_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         Dim handler As New ConfigViewHandler()
         handler.HandleTestFolderPickerClick()
     End Sub
 
-    Private Async Sub LookupHlvBtn_Click(sender As Object, e As RibbonControlEventArgs) Handles LookupHlvBtn.Click
+    Private Async Sub LookupHlvBtn_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         Dim patientNumber As String = "219891-9"
         Dim provider As String = Nothing
 
@@ -117,7 +127,8 @@ Public Class EZLoggerRibbon
         End If
     End Sub
 
-    Private Sub SavePropsButton_Click(sender As Object, e As RibbonControlEventArgs) Handles SavePropsButton.Click
+    Private Sub SavePropsButton_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
         Try
             ' Pull values from the document's custom properties
             Dim patientName As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
@@ -146,6 +157,22 @@ Public Class EZLoggerRibbon
         Catch ex As Exception
             System.Windows.Forms.MessageBox.Show("Failed to save built-in document properties: " & ex.Message, "EZLogger Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub EmailButton_Click(sender As Object, e As RibbonControlEventArgs) Handles EmailButton.Click
+        'Keep
+    End Sub
+
+    Private Sub TypoButton_Click(sender As Object, e As RibbonControlEventArgs) Handles TypoButton.Click
+        'Keep
+    End Sub
+
+    Private Sub SyncButton_Click(sender As Object, e As RibbonControlEventArgs)
+        'Remove
+    End Sub
+
+    Private Sub HelpButton_Click(sender As Object, e As RibbonControlEventArgs) Handles HelpButton.Click
+        'Remove
     End Sub
 End Class
 

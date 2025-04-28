@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+    <ribbon>
+        <tabs>
+            <tab idMso="TabAddIns" label="EZ Logger">
+                <group id="SetupGroup" label="Setup Commands">
+                    <button id="HelpButton" onAction="HelpButton_Click" label="Help" />
+                    <button id="SettingsButton" onAction="SettingsButton_Click" label="Settings" />
+                    <button id="AboutButton" onAction="AboutButton_Click" label="About" />
+                </group>
+                <group id="WizardGroup" label="Wizards">
+                    <box id="ReportWizardBox" boxStyle="vertical">
+                        <button id="ReportWizardButton" onAction="ReportWizardButton_Click" label="Process Report" size="large" />
+                    </box>
+                </group>
+                <group id="ToolsGroup" label="Tools">
+                    <button id="Button1" onAction="Button1_Click" label="Patient Info" size="large" />
+                    <box id="PdfBtnBox">
+                        <button id="ConvertButton" label="Convert To PDF" size="large" />
+                    </box>
+                    <box id="TypoBtnBox">
+                        <button id="TypoButton" onAction="TypoButton_Click" label="Report a Typo" size="large" />
+                    </box>
+                    <button id="EmailButton" onAction="EmailButton_Click" label="Email Report" size="large" />
+                    <button id="BtnCloseDoc" onAction="BtnCloseDoc_Click" label="Close Document" size="large" />
+                </group>
+            </tab>
+        </tabs>
+    </ribbon>
+</customUI>

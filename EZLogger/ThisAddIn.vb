@@ -38,4 +38,8 @@ Public Class ThisAddIn
         ' Any necessary cleanup can be done here
     End Sub
 
+    Protected Overrides Function CreateRibbonExtensibilityObject() As Office.IRibbonExtensibility
+        Return New EZLoggerRibbonXml()
+    End Function
+
 End Class
