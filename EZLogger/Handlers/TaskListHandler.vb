@@ -23,6 +23,30 @@ Public Class TaskListHandler
         Next
     End Sub
 
+    ''' <summary>
+    ''' Adds a new task to the task list based on the report filename.
+    ''' </summary>
+    ''' <param name="fileName">The name of the report file (no path).</param>
+    Public Sub AddTaskFromReport(fileName As String)
+        Try
+            ' Create new task item
+            Dim newTask As New TaskItem With {
+                .Notes = fileName,
+                .DateAdded = DateTime.Now,
+                .IsCompleted = False
+            }
+
+            ' Add to in-memory list
+            Tasks.Add(newTask)
+
+            ' Save updated list to Tasks.xml
+            TasksIO.SaveTasks(Tasks.ToList())
+
+        Catch ex As Exception
+            MsgBox($"Failed to add new task: {ex.Message}", MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
     Private Sub OnCollectionChanged(sender As Object, e As NotifyCollectionChangedEventArgs)
         ' Hook new items
         If e.NewItems IsNot Nothing Then
