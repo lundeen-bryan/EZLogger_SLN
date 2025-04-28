@@ -62,6 +62,16 @@ Public Class EZLoggerRibbonXml
         'Keep
     End Sub
 
+    Public Sub OpenTaskList_Click(control As Microsoft.Office.Core.IRibbonControl)
+        Try
+            Dim frm As New TaskListHost()
+            frm.Show()
+        Catch ex As Exception
+            ' Ideally use your custom error handler here
+            System.Windows.Forms.MessageBox.Show("Error opening Task List: " & ex.Message)
+        End Try
+    End Sub
+
 
 
 #Region "Ribbon Callbacks"
