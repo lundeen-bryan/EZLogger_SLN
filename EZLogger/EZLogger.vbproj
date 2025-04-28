@@ -526,6 +526,7 @@
     <Compile Include="Models\LocalUserConfig.vb" />
     <Compile Include="Models\PatientCls.vb" />
     <Compile Include="Models\ReportTypeEntry.vb" />
+    <Compile Include="Models\TaskItem.vb" />
     <Compile Include="Models\TCARRecord.vb" />
     <Compile Include="ReportWizardHost.vb" />
     <Compile Include="Ribbon.vb">
