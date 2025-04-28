@@ -655,6 +655,9 @@
     <EmbeddedResource Include="HostForms\SaveFileHost.resx">
       <DependentUpon>SaveFileHost.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\TaskListHost.resx">
+      <DependentUpon>TaskListHost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\TCARListHost.resx">
       <DependentUpon>TCARListHost.vb</DependentUpon>
     </EmbeddedResource>

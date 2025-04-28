@@ -22,9 +22,30 @@ Partial Class TaskListHost
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.ElementHost1 = New System.Windows.Forms.Integration.ElementHost()
+        Me.SuspendLayout()
+        '
+        'ElementHost1
+        '
+        Me.ElementHost1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ElementHost1.Location = New System.Drawing.Point(0, 0)
+        Me.ElementHost1.Name = "ElementHost1"
+        Me.ElementHost1.Size = New System.Drawing.Size(800, 450)
+        Me.ElementHost1.TabIndex = 0
+        Me.ElementHost1.Text = "ElementHost1"
+        Me.ElementHost1.Child = Nothing
+        '
+        'TaskListHost
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.ElementHost1)
+        Me.Name = "TaskListHost"
         Me.Text = "TaskListHost"
+        Me.ResumeLayout(False)
+
     End Sub
+
+    Friend WithEvents ElementHost1 As Windows.Forms.Integration.ElementHost
 End Class
