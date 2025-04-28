@@ -509,6 +509,12 @@
     <Compile Include="HostForms\SaveFileHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\TaskListHost.Designer.vb">
+      <DependentUpon>TaskListHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\TaskListHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\TCARListHost.Designer.vb">
       <DependentUpon>TCARListHost.vb</DependentUpon>
     </Compile>
@@ -584,6 +590,9 @@
     <Compile Include="ViewModels\MainVM.vb" />
     <Compile Include="Views\SaveFileView.xaml.vb">
       <DependentUpon>SaveFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskListView.xaml.vb">
+      <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TCARListView.xaml.vb">
       <DependentUpon>TCARListView.xaml</DependentUpon>
@@ -743,6 +752,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SaveFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

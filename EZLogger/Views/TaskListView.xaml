@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="TaskListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EZLogger"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White" FontFamily="Candara" FontSize="18">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Button row -->
+            <RowDefinition Height="*"/>
+            <!-- Task list row -->
+        </Grid.RowDefinitions>
+
+        <!-- Top Row: Remove Completed Button and Label -->
+        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0">
+            <Button x:Name="RemoveCompletedBtn"
+              Content="_R"
+              Width="30" Height="30"
+              ToolTip="Remove Completed Tasks (Alt+R)"
+              Margin="0,0,5,0">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Label Content="Remove Completed Tasks"
+             VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Main Row: Task List DataGrid -->
+        <DataGrid x:Name="TasksDataGrid"
+              Grid.Row="1"
+              ItemsSource="{Binding Tasks}"
+              AutoGenerateColumns="False"
+              CanUserAddRows="True"
+              CanUserDeleteRows="True"
+              AlternatingRowBackground="LightGray"
+              HeadersVisibility="Column"
+              IsReadOnly="False"
+              SelectionMode="Single"
+              Margin="5"
+              AllowDrop="True"
+              ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Done"
+                                Binding="{Binding IsCompleted}"
+                                SortMemberPath="IsCompleted"/>
+
+                <DataGridTextColumn Header="Date Added"
+                            Binding="{Binding DateAdded, StringFormat=d}"
+                            IsReadOnly="True"
+                            SortMemberPath="DateAdded"/>
+
+                <DataGridTextColumn Header="Notes"
+                            Binding="{Binding Notes}"
+                            Width="*"
+                            SortMemberPath="Notes"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</UserControl>
