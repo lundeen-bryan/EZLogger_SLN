@@ -28,7 +28,6 @@ Partial Public Class TaskListView
     Private Sub OnPreviewMouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs)
         _startPoint = e.GetPosition(Nothing)
 
-        ' Try to find the clicked row
         Dim element = CType(e.OriginalSource, DependencyObject)
         While element IsNot Nothing AndAlso Not TypeOf element Is DataGridRow
             element = VisualTreeHelper.GetParent(element)
@@ -36,7 +35,14 @@ Partial Public Class TaskListView
 
         If element IsNot Nothing Then
             Dim row = CType(element, DataGridRow)
-            _draggedItem = CType(row.Item, TaskItem)
+
+            ' Check if the row item really is a TaskItem before casting
+            Dim possibleItem = TryCast(row.Item, TaskItem)
+            If possibleItem IsNot Nothing Then
+                _draggedItem = possibleItem
+            Else
+                _draggedItem = Nothing
+            End If
         Else
             _draggedItem = Nothing
         End If
@@ -58,9 +64,35 @@ Partial Public Class TaskListView
         End If
     End Sub
 
-    Private Sub OnDrop(sender As Object, e As System.Windows.DragEventArgs)
-        ' Will add code later
+    Private Sub OnDrop(sender As Object, e As DragEventArgs)
+        If _draggedItem Is Nothing Then Exit Sub
+
+        Dim target = TryCast(GetRowItemUnderMouse(e), TaskItem)
+        If target Is Nothing OrElse target Is _draggedItem Then Exit Sub
+
+        Dim oldIndex = _handler.Tasks.IndexOf(_draggedItem)
+        Dim newIndex = _handler.Tasks.IndexOf(target)
+
+        If oldIndex >= 0 AndAlso newIndex >= 0 AndAlso oldIndex <> newIndex Then
+            _handler.Tasks.Move(oldIndex, newIndex)
+        End If
+
+        ' Clear dragged item
+        _draggedItem = Nothing
     End Sub
 
+    Private Function GetRowItemUnderMouse(e As DragEventArgs) As Object
+        Dim element = CType(e.OriginalSource, DependencyObject)
+        While element IsNot Nothing AndAlso Not TypeOf element Is DataGridRow
+            element = VisualTreeHelper.GetParent(element)
+        End While
+
+        If element IsNot Nothing Then
+            Dim row = CType(element, DataGridRow)
+            Return row.Item
+        End If
+
+        Return Nothing
+    End Function
 
 End Class
