@@ -1,29 +1,72 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+<customUI onLoad="Ribbon_Load"
+          xmlns="http://schemas.microsoft.com/office/2006/01/customui">
     <ribbon>
         <tabs>
-            <tab idMso="TabAddIns" label="EZ Logger">
-                <group id="SetupGroup" label="Setup Commands">
-                    <button id="HelpButton" onAction="HelpButton_Click" label="Help" imageMso="Help" />
-                    <button id="SettingsButton" onAction="SettingsButton_Click" label="Settings" imageMso="AddInManager"  />
-                    <button id="AboutButton" onAction="AboutButton_Click" label="About" imageMso="RefreshStatus" />
+            <tab idMso="TabAddIns"
+                 label="EZ Logger">
+                <group id="SetupGroup"
+                       label="Setup Commands">
+                    <button id="HelpButton"
+                            onAction="HelpButton_Click"
+                            label="Help"
+                            imageMso="Help" />
+                    <button id="SettingsButton"
+                            onAction="SettingsButton_Click"
+                            label="Settings"
+                            imageMso="AddInManager" />
+                    <button id="AboutButton"
+                            onAction="AboutButton_Click"
+                            label="About"
+                            imageMso="RefreshStatus" />
                 </group>
-                <group id="WizardGroup" label="Wizards">
-                    <box id="ReportWizardBox" boxStyle="vertical">
-                        <button id="ReportWizardButton" onAction="ReportWizardButton_Click" label="Process Report" size="large" imageMso="AnimationOnClick" />
+                <group id="WizardGroup"
+                       label="Wizards">
+                    <box id="ReportWizardBox"
+                         boxStyle="vertical">
+                        <button id="ReportWizardButton"
+                                onAction="ReportWizardButton_Click"
+                                label="Process Report"
+                                size="large"
+                                imageMso="AnimationOnClick" />
                     </box>
                 </group>
-                <group id="ToolsGroup" label="Tools">
-                    <button id="PatientInfoBtn" onAction="PatientInfoBtn_Click" label="Patient Info" size="large" imageMso="InviteAttendees" />
+                <group id="ToolsGroup"
+                       label="Tools">
+                    <button id="PatientInfoBtn"
+                            onAction="PatientInfoBtn_Click"
+                            label="Patient Info"
+                            size="large"
+                            imageMso="InviteAttendees" />
                     <box id="PdfBtnBox">
-                        <button id="ConvertButton" label="Convert To PDF" onAction="OnConvertPdfClick" size="large" getImage="GetConvertButtonImage" />
+                        <button id="ConvertButton"
+                                label="Convert To PDF"
+                                onAction="OnConvertPdfClick"
+                                size="large"
+                                getImage="GetConvertButtonImage" />
                     </box>
                     <box id="TypoBtnBox">
-                        <button id="TypoButton" onAction="TypoButton_Click" label="Report a Typo" size="large" getImage="GetTypoButtonImage" />
+                        <button id="TypoButton"
+                                onAction="TypoButton_Click"
+                                label="Report a Typo"
+                                size="large"
+                                getImage="GetTypoButtonImage" />
                     </box>
-                    <button id="EmailButton" onAction="EmailButton_Click" label="Email Report" size="large" imageMso="ReplyToAttendeesWithMessage" />
-                    <button id="BtnCloseDoc" onAction="BtnCloseDoc_Click" label="Close Document" size="large" imageMso="FileClose" />
-                    <button id="OpenTaskList" onAction="OpenTaskList_Click" label="Open Task List" size="large" imageMso="NewTask" />
+                    <button id="EmailButton"
+                            onAction="EmailButton_Click"
+                            label="Email Report"
+                            size="large"
+                            imageMso="ReplyToAttendeesWithMessage" />
+                    <button id="BtnCloseDoc"
+                            onAction="BtnCloseDoc_Click"
+                            label="Close Document"
+                            size="large"
+                            imageMso="FileClose" />
+                    <button id="OpenTaskList"
+                            onAction="OpenTaskList_Click"
+                            label="Open Task List"
+                            size="large"
+                            imageMso="NewTask" />
                 </group>
             </tab>
         </tabs>
