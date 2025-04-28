@@ -4,6 +4,7 @@ Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 Imports System.Threading.Tasks.Task
+Imports System.Diagnostics
 
 Namespace Handlers
 
@@ -65,8 +66,8 @@ Namespace Handlers
                 Dim config As New MessageBoxConfig With {
                     .Message = message,
                     .ShowYes = True,
-                    .ShowNo = True,
-                    .ShowOK = False
+.ShowNo = True,
+                    .ShowOk = False
                 }
 
                 MsgBoxHelper.Show(config, Sub(result)
@@ -201,7 +202,22 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnLMessage()
-            MessageBox.Show("This will handle function L.", "Coming Soon", MessageBoxButton.OK, MessageBoxImage.Information)
+            Try
+                Dim doc As Microsoft.Office.Interop.Word.Document = Globals.ThisAddIn.Application.ActiveDocument
+
+                If doc Is Nothing Then
+                    MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                    Exit Sub
+                End If
+
+                AlertHelper.AddAlertsToTaskList(doc)
+
+                MsgBoxHelper.Show("Patient and county alerts added to the task list.")
+
+            Catch ex As Exception
+                LogHelper.LogError("ReportWizardHandler.ShowBtnLMessage", ex.Message)
+                MessageBox.Show("An error occurred while processing alerts.", "Processing Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
         End Sub
 
     End Class

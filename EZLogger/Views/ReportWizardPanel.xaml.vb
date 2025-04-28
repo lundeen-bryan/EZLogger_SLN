@@ -146,9 +146,10 @@ Partial Public Class ReportWizardPanel
         TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnLMessage()
         TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
+        Me?.MarkCheckboxAsDone("Btn_L")
     End Sub
 
-	''' <summary>
+    ''' <summary>
     ''' Call to mark a checkbox as true or checked
     ''' </summary>
     Public Sub MarkCheckboxAsDone(stepID As String)
