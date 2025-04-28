@@ -373,6 +373,7 @@
       <DependentUpon>ViewTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enums\CustomMsgBoxResult.vb" />
+    <Compile Include="EZLoggerRibbonXml.vb" />
     <Compile Include="Handlers\AboutWinHandler.vb" />
     <Compile Include="Handlers\ChiefApprovalHandler.vb" />
     <Compile Include="Handlers\ConfigViewHandler.vb" />
@@ -527,6 +528,9 @@
     <Compile Include="Models\ReportTypeEntry.vb" />
     <Compile Include="Models\TCARRecord.vb" />
     <Compile Include="ReportWizardHost.vb" />
+    <Compile Include="Ribbon.vb">
+      <XmlRibbon>true</XmlRibbon>
+    </Compile>
     <Compile Include="Tests\TestHelper.vb" />
     <Compile Include="Views\AboutView.xaml.vb">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -816,8 +820,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EZLoggerRibbonXml.xml" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
+    <EmbeddedResource Include="Ribbon.xml" />
     <Resource Include="Resources\trash_icon.png" />
     <Resource Include="Resources\mouse_icon.png" />
     <Resource Include="Resources\logo.png" />

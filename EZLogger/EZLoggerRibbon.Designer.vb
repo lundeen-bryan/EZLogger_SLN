@@ -46,12 +46,10 @@
         Me.HelpButton = Me.Factory.CreateRibbonButton
         Me.SettingsButton = Me.Factory.CreateRibbonButton
         Me.AboutButton = Me.Factory.CreateRibbonButton
-        Me.SyncButton = Me.Factory.CreateRibbonButton
         Me.WizardGroup = Me.Factory.CreateRibbonGroup
         Me.ReportWizardBox = Me.Factory.CreateRibbonBox
         Me.ReportWizardButton = Me.Factory.CreateRibbonButton
         Me.ToolsGroup = Me.Factory.CreateRibbonGroup
-        Me.DeleteDocPropsBtn = Me.Factory.CreateRibbonButton
         Me.Button1 = Me.Factory.CreateRibbonButton
         Me.PdfBtnBox = Me.Factory.CreateRibbonBox
         Me.ConvertButton = Me.Factory.CreateRibbonButton
@@ -59,14 +57,6 @@
         Me.TypoButton = Me.Factory.CreateRibbonButton
         Me.EmailButton = Me.Factory.CreateRibbonButton
         Me.BtnCloseDoc = Me.Factory.CreateRibbonButton
-        Me.Group1 = Me.Factory.CreateRibbonGroup
-        Me.Button2 = Me.Factory.CreateRibbonButton
-        Me.Button3 = Me.Factory.CreateRibbonButton
-        Me.RandomPatientNumberButton = Me.Factory.CreateRibbonButton
-        Me.BtnTestFolder = Me.Factory.CreateRibbonButton
-        Me.LookupHlvBtn = Me.Factory.CreateRibbonButton
-        Me.EZLoggerMenu = Me.Factory.CreateRibbonMenu
-        Me.SavePropsButton = Me.Factory.CreateRibbonButton
         Me.Tab1.SuspendLayout()
         Me.SetupGroup.SuspendLayout()
         Me.WizardGroup.SuspendLayout()
@@ -74,7 +64,6 @@
         Me.ToolsGroup.SuspendLayout()
         Me.PdfBtnBox.SuspendLayout()
         Me.TypoBtnBox.SuspendLayout()
-        Me.Group1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -83,7 +72,6 @@
         Me.Tab1.Groups.Add(Me.SetupGroup)
         Me.Tab1.Groups.Add(Me.WizardGroup)
         Me.Tab1.Groups.Add(Me.ToolsGroup)
-        Me.Tab1.Groups.Add(Me.Group1)
         Me.Tab1.Label = "EZ Logger"
         Me.Tab1.Name = "Tab1"
         '
@@ -92,7 +80,6 @@
         Me.SetupGroup.Items.Add(Me.HelpButton)
         Me.SetupGroup.Items.Add(Me.SettingsButton)
         Me.SetupGroup.Items.Add(Me.AboutButton)
-        Me.SetupGroup.Items.Add(Me.SyncButton)
         Me.SetupGroup.Label = "Setup Commands"
         Me.SetupGroup.Name = "SetupGroup"
         '
@@ -117,13 +104,6 @@
         Me.AboutButton.Name = "AboutButton"
         Me.AboutButton.ShowImage = True
         '
-        'SyncButton
-        '
-        Me.SyncButton.Image = Global.EZLogger.My.Resources.Resources.sharepoint
-        Me.SyncButton.Label = "Sync With SharePoint"
-        Me.SyncButton.Name = "SyncButton"
-        Me.SyncButton.ShowImage = True
-        '
         'WizardGroup
         '
         Me.WizardGroup.Items.Add(Me.ReportWizardBox)
@@ -146,7 +126,6 @@
         '
         'ToolsGroup
         '
-        Me.ToolsGroup.Items.Add(Me.DeleteDocPropsBtn)
         Me.ToolsGroup.Items.Add(Me.Button1)
         Me.ToolsGroup.Items.Add(Me.PdfBtnBox)
         Me.ToolsGroup.Items.Add(Me.TypoBtnBox)
@@ -154,14 +133,6 @@
         Me.ToolsGroup.Items.Add(Me.BtnCloseDoc)
         Me.ToolsGroup.Label = "Tools"
         Me.ToolsGroup.Name = "ToolsGroup"
-        '
-        'DeleteDocPropsBtn
-        '
-        Me.DeleteDocPropsBtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.DeleteDocPropsBtn.Image = Global.EZLogger.My.Resources.Resources.trash_icon
-        Me.DeleteDocPropsBtn.Label = "Delete Properties"
-        Me.DeleteDocPropsBtn.Name = "DeleteDocPropsBtn"
-        Me.DeleteDocPropsBtn.ShowImage = True
         '
         'Button1
         '
@@ -213,60 +184,9 @@
         Me.BtnCloseDoc.Name = "BtnCloseDoc"
         Me.BtnCloseDoc.ShowImage = True
         '
-        'Group1
-        '
-        Me.Group1.Items.Add(Me.Button2)
-        Me.Group1.Items.Add(Me.Button3)
-        Me.Group1.Items.Add(Me.RandomPatientNumberButton)
-        Me.Group1.Items.Add(Me.BtnTestFolder)
-        Me.Group1.Items.Add(Me.LookupHlvBtn)
-        Me.Group1.Items.Add(Me.SavePropsButton)
-        Me.Group1.Label = "Test Group"
-        Me.Group1.Name = "Group1"
-        '
-        'Button2
-        '
-        Me.Button2.Label = "Test Button"
-        Me.Button2.Name = "Button2"
-        '
-        'Button3
-        '
-        Me.Button3.Label = "TestConfig"
-        Me.Button3.Name = "Button3"
-        '
-        'RandomPatientNumberButton
-        '
-        Me.RandomPatientNumberButton.Label = "Random Patient"
-        Me.RandomPatientNumberButton.Name = "RandomPatientNumberButton"
-        '
-        'BtnTestFolder
-        '
-        Me.BtnTestFolder.Label = "Test Folder Picker"
-        Me.BtnTestFolder.Name = "BtnTestFolder"
-        '
-        'LookupHlvBtn
-        '
-        Me.LookupHlvBtn.Label = "LookupHLV"
-        Me.LookupHlvBtn.Name = "LookupHlvBtn"
-        '
-        'EZLoggerMenu
-        '
-        Me.EZLoggerMenu.Label = "EZLogger"
-        Me.EZLoggerMenu.Name = "EZLoggerMenu"
-        Me.EZLoggerMenu.ShowImage = True
-        '
-        'SavePropsButton
-        '
-        Me.SavePropsButton.Label = "Save Properties"
-        Me.SavePropsButton.Name = "SavePropsButton"
-        '
         'EZLoggerRibbon
         '
         Me.Name = "EZLoggerRibbon"
-        '
-        'EZLoggerRibbon.OfficeMenu
-        '
-        Me.OfficeMenu.Items.Add(Me.EZLoggerMenu)
         Me.RibbonType = "Microsoft.Word.Document"
         Me.Tabs.Add(Me.Tab1)
         Me.Tab1.ResumeLayout(False)
@@ -283,8 +203,6 @@
         Me.PdfBtnBox.PerformLayout()
         Me.TypoBtnBox.ResumeLayout(False)
         Me.TypoBtnBox.PerformLayout()
-        Me.Group1.ResumeLayout(False)
-        Me.Group1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -297,7 +215,6 @@
     Friend WithEvents SettingsButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents AboutButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ConvertButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents SyncButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents TypoButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents HelpButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents ReportWizardBox As Microsoft.Office.Tools.Ribbon.RibbonBox
@@ -305,16 +222,7 @@
     Friend WithEvents TypoBtnBox As Microsoft.Office.Tools.Ribbon.RibbonBox
     Friend WithEvents EmailButton As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents Button1 As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents Button2 As Microsoft.Office.Tools.Ribbon.RibbonButton
     Friend WithEvents BtnCloseDoc As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents Button3 As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents Group1 As Microsoft.Office.Tools.Ribbon.RibbonGroup
-    Friend WithEvents RandomPatientNumberButton As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents DeleteDocPropsBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents BtnTestFolder As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents LookupHlvBtn As Microsoft.Office.Tools.Ribbon.RibbonButton
-    Friend WithEvents EZLoggerMenu As Microsoft.Office.Tools.Ribbon.RibbonMenu
-    Friend WithEvents SavePropsButton As Microsoft.Office.Tools.Ribbon.RibbonButton
 End Class
 
 Partial Class ThisRibbonCollection
