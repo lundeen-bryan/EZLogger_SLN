@@ -23,6 +23,7 @@
                     </box>
                     <button id="EmailButton" onAction="EmailButton_Click" label="Email Report" size="large" imageMso="ReplyToAttendeesWithMessage" />
                     <button id="BtnCloseDoc" onAction="BtnCloseDoc_Click" label="Close Document" size="large" imageMso="FileClose" />
+                    <button id="OpenTaskList" onAction="OpenTaskList_Click" label="Open Task List" size="large" imageMso="NewTask" />
                 </group>
             </tab>
         </tabs>
