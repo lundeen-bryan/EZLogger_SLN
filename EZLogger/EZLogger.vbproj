@@ -394,6 +394,7 @@
     </Compile>
     <Compile Include="Handlers\SaveFileHandler.vb" />
     <Compile Include="Handlers\ShortcutHandler.vb" />
+    <Compile Include="Handlers\TaskListHandler.vb" />
     <Compile Include="Handlers\TCARListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
