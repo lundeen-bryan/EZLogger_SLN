@@ -8,7 +8,7 @@ Public Class TaskListHost
 
         ' Set form size and title
         Me.ClientSize = New Drawing.Size(600, 540)
-        Me.Text = "To Do List Manager"
+        Me.Text = "Task List Manager"
 
         ' Optional UI settings
         Me.MinimizeBox = False
