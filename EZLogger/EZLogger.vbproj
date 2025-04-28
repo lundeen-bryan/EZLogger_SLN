@@ -423,6 +423,7 @@
     <Compile Include="Helpers\SignatureHelper.vb" />
     <Compile Include="Helpers\SpHelper.vb" />
     <Compile Include="Helpers\TaskPaneHelper.vb" />
+    <Compile Include="Helpers\TasksIO.vb" />
     <Compile Include="Helpers\TempFileHelper.vb" />
     <Compile Include="Helpers\TimerHelper.vb" />
     <Compile Include="Helpers\UIHelper.vb" />
