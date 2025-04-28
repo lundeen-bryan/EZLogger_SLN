@@ -73,6 +73,17 @@ Namespace Handlers
 
                 UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
 
+                ' Step 4: Add to TaskList (Tasks.xml) if not already present
+                Dim fileName As String = Path.GetFileName(doc.FullName)
+                Dim taskHandler As New TaskListHandler()
+
+                Dim alreadyExists As Boolean = taskHandler.Tasks.Any(Function(t) String.Equals(t.Notes, fileName, StringComparison.OrdinalIgnoreCase))
+
+                If Not alreadyExists Then
+                    taskHandler.AddTaskFromReport(fileName)
+                End If
+
+
                 ' Save document to finalize SharePoint changes
                 doc.Save()
 
