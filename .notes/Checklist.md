@@ -111,3 +111,18 @@ This document outlines the original workflow of each task pane button from the l
 - [ ] Displays final confirmation message box.
 
 ---
+
+## L Button – Add Notifications to Task List (See Ribbon)
+
+- [ ] Checks the notifications in the global config
+- [ ] Adds notifications to the Task List Manager (see Ribbon)
+
+---
+
+## RIBBON FEATURES
+
+**Under the Tools Group**
+
+- [X] Print to PDF
+- [ ] Send report via email (UI not created)
+- [ ] Track typos that we fix (UI not created)
