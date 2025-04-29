@@ -71,3 +71,51 @@ not_sent (meaning we don't know the HLV when the report is processed)
 tcars (log of the tcars completed)
 typo_log
 processed_report.ini (this is a simple list of reports processed)
+
+Use the following database to show all the fields needed for the EZL table
+
+```SQL
+SELECT
+		[Commitment] = CPS.Rpt_LC_Start_Date
+	, [Admission] = ADM.Admission_Date
+	, [Expiration] = CPS.Rpt_LC_End_Date
+	, [DOB] = ADM.DOB
+	,	[Name] = CPS.Patient_Lastname + ', ' + CPS.Patient_Firstname
+	,	[FullName] = IIF(
+			CPS.Patient_Middlename != NULL,
+			CPS.Patient_Lastname + ', ' + CPS.Patient_Firstname + ' ' + CPS.Patient_Middlename,
+			CPS.Patient_Lastname + ', ' + CPS.Patient_Firstname
+		)
+	, [PatientNumber] = CPS.Case_Number
+	, [Lname] = CPS.Patient_Lastname
+	, [Fname] = CPS.Patient_Firstname
+	, [Mname] = CPS.Patient_Middlename
+	, [Location] = CPS.Status_Text
+	, [Program]	= CASE
+			WHEN CPS.[Program] = 'V' THEN '5'
+			WHEN CPS.[Program] = 'IV' THEN '4'
+			WHEN CPS.[Program] = 'III' THEN '3'
+			WHEN CPS.[Program] = 'II' THEN '2'
+			ELSE '1'
+		END
+	, [Unit] = CPS.Unit
+	, [Class] = CPS.Rpt_Legal_Class_Text
+	, [CII] = ADM.CII_Number
+	, [Gender] = ADM.Sex
+	, [County] = CPS.Rpt_LC_County_Text
+	, [Psychiatrist] = CPS.Attending_Physician_Name
+	, [Language] = ADM.Language
+	, [Evaluator] = DRS.AssignedPhy
+FROM MHNODSSQL1P.ODS.dbo.Admission AS ADM
+INNER JOIN
+MHNODSSQL1P.ODS.dbo.Current_Patient_Status AS CPS
+ON
+	ADM.ADM_Key = CPS.ADM_Key
+INNER JOIN
+nshsql1p.CoRTReport24.dbo.AssignedDrs AS DRS
+ON
+	CPS.First_Hospital_Case_Nbr = DRS.CaseNum
+WHERE 1 = 1
+		AND ADM.Case_Number = CPS.Case_Number
+ORDER BY CPS.Patient_Lastname
+```
