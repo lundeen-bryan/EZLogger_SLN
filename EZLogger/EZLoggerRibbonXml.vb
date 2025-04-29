@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Reflection
 Imports System.Windows.Forms
+Imports EZLogger.Helpers
 
 'TODO:  Follow these steps to enable the Ribbon (XML) item:
 
@@ -19,7 +20,7 @@ Imports System.Windows.Forms
 
 'For more information, see the Ribbon XML documentation in the Visual Studio Tools for Office Help.
 
-<Runtime.InteropServices.ComVisible(True)> _
+<Runtime.InteropServices.ComVisible(True)>
 Public Class EZLoggerRibbonXml
     Implements Office.IRibbonExtensibility
 
@@ -72,6 +73,44 @@ Public Class EZLoggerRibbonXml
         End Try
     End Sub
 
+    Public Sub RandomPatientNumberButton_Click(control As Microsoft.Office.Core.IRibbonControl)
+        ' Part of the test group
+        TestHelper.PromptRandomPatientNumberForTest()
+    End Sub
+
+    Public Sub ExportPdfButton_Click(control As Microsoft.Office.Core.IRibbonControl)
+        Try
+            ' Get base file name (without extension) first
+            Dim baseFileName As String = IO.Path.GetFileNameWithoutExtension(Globals.ThisAddIn.Application.ActiveDocument.Name)
+
+            ' Prompt user with SaveFileDialog
+            Using dialog As New SaveFileDialog()
+                dialog.Title = "Save PDF As"
+                dialog.Filter = "PDF files (*.pdf)|*.pdf"
+                dialog.FileName = baseFileName
+                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+
+                If dialog.ShowDialog() = DialogResult.OK Then
+                    Dim selectedPath As String = dialog.FileName
+
+                    ' Separate the folder and filename without extension
+                    Dim destinationFolder As String = IO.Path.GetDirectoryName(selectedPath)
+                    Dim fileNameWithoutExtension As String = IO.Path.GetFileNameWithoutExtension(selectedPath)
+
+                    ' Call Export
+                    ExportPdfHelper.ExportActiveDocumentToPdf(destinationFolder, fileNameWithoutExtension)
+
+                    MsgBoxHelper.Show($"Exported to PDF successfully." & vbCrLf & $"File: {selectedPath}")
+                Else
+                    ' User canceled
+                    Exit Sub
+                End If
+            End Using
+
+        Catch ex As Exception
+            MsgBoxHelper.Show("PDF export failed: " & ex.Message)
+        End Try
+    End Sub
 
 
 #Region "Ribbon Callbacks"

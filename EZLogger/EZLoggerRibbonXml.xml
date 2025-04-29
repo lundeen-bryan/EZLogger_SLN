@@ -41,7 +41,7 @@
                     <box id="PdfBtnBox">
                         <button id="ConvertButton"
                                 label="Convert To PDF"
-                                onAction="OnConvertPdfClick"
+                                onAction="ExportPdfButton_Click"
                                 size="large"
                                 getImage="GetConvertButtonImage" />
                     </box>
@@ -67,6 +67,14 @@
                             label="Open Task List"
                             size="large"
                             imageMso="NewTask" />
+                </group>
+                <group id="TestGroup"
+                       label="Tests">
+                    <button id="RandomPt"
+                            onAction="RandomPatientNumberButton_Click"
+                            label="Random Patient"
+                            size="large"
+                            imageMso="ContactUs" />
                 </group>
             </tab>
         </tabs>
