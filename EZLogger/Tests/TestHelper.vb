@@ -66,16 +66,16 @@ Module TestHelper
 
                 While keepTrying
                     Dim sql As String = "
-                    SELECT patient_number, class 
-                    FROM EZL 
-                    WHERE TRIM(patient_number) <> '' 
-                    ORDER BY RANDOM() 
+                    SELECT patient_number, classification
+                    FROM EZL
+                    WHERE TRIM(patient_number) <> ''
+                    ORDER BY RANDOM()
                     LIMIT 1"
                     Using cmd As New SQLite.SQLiteCommand(sql, conn)
                         Using reader = cmd.ExecuteReader()
                             If reader.Read() Then
-                                Dim patientNumber As String = reader("patient_number").ToString()
-                                Dim classification As String = reader("class").ToString()
+                                Dim patientNumber As String = FormatPatientNumber(reader("patient_number").ToString())
+                                Dim classification As String = reader("classification").ToString()
 
                                 ' Build and show confirmation prompt
                                 Dim msg As String = $"Patient Number: {patientNumber}" & vbCrLf &

@@ -30,15 +30,31 @@ Public Module DatabaseHelper
 
                 ' Join EZL and EZL_IST, aggregate early_ninety_day
                 Dim query As String = "
-                SELECT
-                    e.*,
-                    MAX(ist.early_ninety_day) AS early_ninety_day
-                FROM EZL e
-                LEFT JOIN EZL_IST ist ON e.patient_number = ist.patient_number
-                WHERE e.patient_number = @patientNumber
-                GROUP BY e.patient_number
-                LIMIT 1
-            "
+                    SELECT
+                        e.patient_number,
+                        e.commitment_date,
+                        e.admission_date,
+                        e.expiration,
+                        e.dob,
+                        e.fullname,
+                        e.lname,
+                        e.fname,
+                        e.mname,
+                        e.location,
+                        e.program,
+                        e.unit,
+                        e.classification,
+                        e.county,
+                        e.language,
+                        e.psychiatrist,
+                        e.evaluator,
+                        MAX(ist.early_ninety_day) AS early_ninety_day
+                    FROM EZL e
+                    LEFT JOIN EZL_IST ist ON e.patient_number = ist.patient_number
+                    WHERE e.patient_number = @patientNumber
+                    GROUP BY e.patient_number
+                    LIMIT 1;"
+
 
                 Using cmd As New SQLiteCommand(query, conn)
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
@@ -55,16 +71,13 @@ Public Module DatabaseHelper
                                 .LName = reader("lname").ToString(),
                                 .FName = reader("fname").ToString(),
                                 .MName = reader("mname").ToString(),
-                                .BedStatus = reader("bed_status").ToString(),
-                                .P = reader("p").ToString(),
-                                .U = reader("u").ToString(),
-                                .Classification = reader("class").ToString(),
+                                .Location = reader("location").ToString(),
+                                .Program = reader("program").ToString(),
+                                .Unit = reader("unit").ToString(),
+                                .Classification = reader("classification").ToString(),
+                                .Psychiatrist = reader("psychiatrist").ToString(),
+                                .Evaluator = reader("evaluator").ToString(),
                                 .County = reader("county").ToString(),
-                                .Language = reader("language").ToString(),
-                                .AssignedTo = reader("assigned_to").ToString(),
-                                .RevokeDate = reader("revoke_date").ToString(),
-                                .CourtNumbers = reader("court_numbers").ToString(),
-                                .Department = reader("department").ToString(),
                                 .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
                             }
 
@@ -146,5 +159,37 @@ Public Module DatabaseHelper
             MessageBox.Show("Failed to save processed report data to EZL_PRC table after retrying.", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End If
     End Sub
+
+    ''' <summary>
+    ''' Formats an 8-digit raw patient number (e.g. "41234567") to display as "123456-7".
+    ''' </summary>
+    Public Function FormatPatientNumber(rawNumber As String) As String
+        If String.IsNullOrWhiteSpace(rawNumber) OrElse rawNumber.Length <> 8 Then
+            Return rawNumber
+        End If
+
+        Dim body As String = rawNumber.Substring(1, 6)
+        Dim checkDigit As String = rawNumber.Substring(7, 1)
+        Return $"{body}-{checkDigit}"
+    End Function
+
+    ''' <summary>
+    ''' Converts a user-friendly patient number (e.g. "123456-7") back into the raw 8-digit format ("41234567").
+    ''' </summary>
+    Public Function ReverseFormatPatientNumber(formattedNumber As String) As String
+        If String.IsNullOrWhiteSpace(formattedNumber) Then Return formattedNumber
+
+        Dim parts = formattedNumber.Split("-"c)
+        If parts.Length <> 2 Then Return formattedNumber
+
+        Dim sixDigits = parts(0)
+        Dim lastDigit = parts(1)
+
+        If sixDigits.Length <> 6 OrElse lastDigit.Length <> 1 Then
+            Return formattedNumber ' invalid format
+        End If
+
+        Return "4" & sixDigits & lastDigit
+    End Function
 
 End Module

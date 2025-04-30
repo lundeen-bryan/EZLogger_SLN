@@ -46,6 +46,8 @@ Namespace Handlers
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
         Public Sub ShowBtnBMessage(patientNumber As String, panel As ReportWizardPanel)
 
+            patientNumber = ReverseFormatPatientNumber(patientNumber).ToString()
+
             If String.IsNullOrWhiteSpace(patientNumber) Then
                 MsgBoxHelper.Show("No patient number found. Please use the Search button first.")
                 Return
@@ -57,16 +59,18 @@ Namespace Handlers
                 Dim message As String =
             $"Full Name: {patient.FullName}" & Environment.NewLine &
             $"Classification: {patient.Classification}" & Environment.NewLine &
-            $"Court Number: {patient.CourtNumbers}" & Environment.NewLine &
             $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
             $"County: {patient.County}" & Environment.NewLine &
             $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
             "Does this information match the report?"
 
+                ' TODO EZL_CTN when getting new schema fix this
+                '$"Court Number: {patient.CourtNumbers}" & Environment.NewLine &
+
                 Dim config As New MessageBoxConfig With {
                     .Message = message,
                     .ShowYes = True,
-.ShowNo = True,
+                    .ShowNo = True,
                     .ShowOk = False
                 }
 
@@ -79,7 +83,7 @@ Namespace Handlers
 
                                                   ' ✅ Show alerts — one after another if both exist
                                                   AlertHelper.ShowCountyAlertIfExists(patient.County)
-                                                  AlertHelper.ShowPatientAlertIfExists(patient.PatientNumber)
+                                                  AlertHelper.ShowPatientAlertIfExists(FormatPatientNumber(patient.PatientNumber))
                                               Else
                                                   MsgBoxHelper.Show("Please check the patient number and try again.")
                                               End If

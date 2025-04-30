@@ -31,15 +31,16 @@ Namespace Helpers
                                     End If
                                 End Sub
 
-                writeProp("Patient Number", patient.PatientNumber)
+                writeProp("Patient Number", FormatPatientNumber(patient.PatientNumber))
                 writeProp("Patient Name", patient.FullName)
                 writeProp("Firstname", patient.FName)
                 writeProp("Lastname", patient.LName)
-                writeProp("Program", patient.P)
-                writeProp("Unit", patient.U)
+                writeProp("Program", patient.Program)
+                writeProp("Unit", patient.Unit)
                 writeProp("Classification", patient.Classification)
                 writeProp("County", patient.County)
-                writeProp("Court Number", patient.CourtNumbers)
+                ' TODO EZL_CTN when getting new database add this back
+                'writeProp("Court Number", patient.CourtNumbers)
                 writeProp("DOB", patient.DOB)
 
                 ' Age calculated using a separate helper
@@ -49,7 +50,7 @@ Namespace Helpers
                 writeProp("Commitment", patient.CommitmentDate)
                 writeProp("Admission", patient.AdmissionDate)
                 writeProp("Expiration", patient.Expiration)
-                writeProp("Assigned To", patient.AssignedTo)
+                writeProp("Assigned To", patient.Evaluator)
                 writeProp("Early90Day", patient.EarlyNinetyDay.ToString())
 
             Catch ex As Exception
