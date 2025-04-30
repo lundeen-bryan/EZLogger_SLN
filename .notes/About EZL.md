@@ -9,7 +9,7 @@ GO
 IF OBJECT_ID(
 	'CoRTReport24.dbo.EZL', 'U'
 ) IS NOT NULL
-DROP TABLE dbo.EZL_CTN;
+DROP TABLE dbo.EZL;
 
 SELECT
 		[Commitment] = CPS.Rpt_LC_Start_Date
@@ -26,7 +26,7 @@ SELECT
 	, [Lname] = CPS.Patient_Lastname
 	, [Fname] = CPS.Patient_Firstname
 	, [Mname] = CPS.Patient_Middlename
-	, [Location] = CPS.Status_Text
+	, [Discharge Status] = CPS.Status_Text
 	, [Program]	= CASE
 			WHEN CPS.[Program] = 'V' THEN '5'
 			WHEN CPS.[Program] = 'IV' THEN '4'
@@ -35,7 +35,7 @@ SELECT
 			ELSE '1'
 		END
 	, [Unit] = CPS.Unit
-	, [Class] = CPS.Rpt_Legal_Class_Text
+	, [Classification] = CPS.Rpt_Legal_Class_Text
 	, [CII] = ADM.CII_Number
 	, [Gender] = ADM.Sex
 	, [County] = CPS.Rpt_LC_County_Text
@@ -84,10 +84,10 @@ SELECT [Commitment]
       ,[Lname]
       ,[Fname]
       ,[Mname]
-      ,[Location]
+      ,[Discharge Status]
       ,[Program]
       ,[Unit]
-      ,[Class]
+      ,[Classification]
       ,[CII]
       ,[Gender]
       ,[County]
