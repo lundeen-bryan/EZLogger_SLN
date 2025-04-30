@@ -119,3 +119,32 @@ WHERE 1 = 1
 		AND ADM.Case_Number = CPS.Case_Number
 ORDER BY CPS.Patient_Lastname
 ```
+
+The new data query for SQLite should look like this:
+
+```sql
+CREATE TABLE EZL (
+    EZLID INTEGER PRIMARY KEY AUTOINCREMENT,
+    patient_number TEXT NOT NULL, -- should be in the format of starting with number '4' followed by 7 digits. The first 3 of the 7 digits should be '219' the numbers that follow can be random
+    commitment_date TEXT, -- in ISO date format
+    admission_date TEXT, -- ISO date format
+    expiration TEXT, -- ISO date format
+    dob TEXT, -- This is the date of birth in ISO date format
+    name TEXT, -- Name is only the Last name in all caps followed by ", " followed by the first name in sentence case
+    fullname TEXT, -- fullname is LAST, First Middle name with the last name only in upper case but first and middle in sentence case
+    lname TEXT, -- UPPER CASE
+    fname TEXT, -- Proper case
+    mname TEXT, -- Proper case
+    location TEXT, -- would always be "RES. ON UNIT" but some can randomly be "DISCHARGED" or "OUT TO COURT"
+    program TEXT, -- a number from 1 to 5
+    unit TEXT, -- the letter 'T' followd by a number between 1 to 10
+    classification TEXT,  -- renamed from "class"
+    cii TEXT, -- I think this is an 9-digit alphanumeric identifier; can be random
+    gender TEXT, -- either M for male or F for female majority are male by default
+    county TEXT, -- one of 50 main counties in California always upper case
+    psychiatrist TEXT, -- Lastname, Firstname always in proper case or sentence case
+    language TEXT, -- majority will be English but 20% can be Spanish, followed by a few other languages of random choice but at least 90% speak english
+    evaluator TEXT -- Same as psychiatrist this is Lastname, Firstname in Proper case
+);
+
+```
