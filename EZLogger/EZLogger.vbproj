@@ -541,6 +541,7 @@
     <Compile Include="Ribbon.vb">
       <XmlRibbon>true</XmlRibbon>
     </Compile>
+    <Compile Include="Tests\SqlServerTestHandler.vb" />
     <Compile Include="Tests\TestHelper.vb" />
     <Compile Include="Views\AboutView.xaml.vb">
       <DependentUpon>AboutView.xaml</DependentUpon>

@@ -1,9 +1,10 @@
-﻿Imports System.Data.SQLite
+﻿Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
+
 
 Public Module DatabaseHelper
 
@@ -13,101 +14,85 @@ Public Module DatabaseHelper
     ''' <param name="patientNumber">The patient number to search for.</param>
     ''' <returns>A PatientCls object if found; otherwise, Nothing.</returns>
     Public Function GetPatientByNumber(patientNumber As String) As PatientCls
-        If String.IsNullOrWhiteSpace(patientNumber) Then
-            Return Nothing
-        End If
+        If String.IsNullOrWhiteSpace(patientNumber) Then Return Nothing
+
+        Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
 
         Try
-            Dim dbPath As String = PathHelper.GetDatabasePath()
-            If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
-                MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
-                Return Nothing
-            End If
-
-            Dim connectionString As String = $"Data Source={dbPath};Version=3;"
-            Using conn As New SQLiteConnection(connectionString)
+            Using conn As New SqlConnection(connStr)
                 conn.Open()
 
-                ' Join EZL and EZL_IST, aggregate early_ninety_day
                 Dim query As String = "
-                    SELECT
-                        e.patient_number,
-                        e.commitment_date,
-                        e.admission_date,
-                        e.expiration,
-                        e.dob,
-                        e.fullname,
-                        e.lname,
-                        e.fname,
-                        e.mname,
-                        e.location,
-                        e.program,
-                        e.unit,
-                        e.classification,
-                        e.county,
-                        e.language,
-                        e.psychiatrist,
-                        e.evaluator,
-                        MAX(ist.early_ninety_day) AS early_ninety_day
-                    FROM EZL e
-                    LEFT JOIN EZL_IST ist ON e.patient_number = ist.patient_number
-                    WHERE e.patient_number = @patientNumber
-                    GROUP BY e.patient_number
-                    LIMIT 1;"
+                SELECT
+                    patient_number,
+                    commitment_date,
+                    admission_date,
+                    expiration,
+                    dob,
+                    fullname,
+                    lname,
+                    fname,
+                    mname,
+                    dischargeStatus,  -- renamed from location
+                    program,
+                    unit,
+                    classification,
+                    county,
+                    language,
+                    psychiatrist,
+                    evaluator
+                    -- TODO: Add early_ninety_day later if/when EZL_IST table is migrated
+                FROM EZL
+                WHERE patient_number = @patientNumber;
+            "
 
-
-                Using cmd As New SQLiteCommand(query, conn)
+                Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
-                    Using reader As SQLiteDataReader = cmd.ExecuteReader()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
-                                .PatientNumber = reader("patient_number").ToString(),
-                                .CommitmentDate = reader("commitment_date").ToString(),
-                                .AdmissionDate = reader("admission_date").ToString(),
-                                .Expiration = reader("expiration").ToString(),
-                                .DOB = reader("dob").ToString(),
-                                .FullName = reader("fullname").ToString(),
-                                .LName = reader("lname").ToString(),
-                                .FName = reader("fname").ToString(),
-                                .MName = reader("mname").ToString(),
-                                .Location = reader("location").ToString(),
-                                .Program = reader("program").ToString(),
-                                .Unit = reader("unit").ToString(),
-                                .Classification = reader("classification").ToString(),
-                                .Psychiatrist = reader("psychiatrist").ToString(),
-                                .Evaluator = reader("evaluator").ToString(),
-                                .County = reader("county").ToString(),
-                                .EarlyNinetyDay = If(IsDBNull(reader("early_ninety_day")), 0, Convert.ToInt32(reader("early_ninety_day")))
-                            }
-
-                            'LogHelper.LogDebugInfo("DBHelper found patient " & patient.PatientNumber & " with Early90Day = " & patient.EarlyNinetyDay)
+                            .PatientNumber = reader("patient_number").ToString(),
+                            .CommitmentDate = reader("commitment_date").ToString(),
+                            .AdmissionDate = reader("admission_date").ToString(),
+                            .Expiration = reader("expiration").ToString(),
+                            .DOB = reader("dob").ToString(),
+                            .FullName = reader("fullname").ToString(),
+                            .LName = reader("lname").ToString(),
+                            .FName = reader("fname").ToString(),
+                            .MName = reader("mname").ToString(),
+                            .Location = reader("dischargeStatus").ToString(),
+                            .Program = reader("program").ToString(),
+                            .Unit = reader("unit").ToString(),
+                            .Classification = reader("classification").ToString(),
+                            .County = reader("county").ToString(),
+                            .Language = reader("language").ToString(),
+                            .Psychiatrist = reader("psychiatrist").ToString(),
+                            .Evaluator = reader("evaluator").ToString(),
+                            .EarlyNinetyDay = 0 ' placeholder; EZL_IST not yet implemented
+                        }
                             Return patient
-                        Else
-                            'LogHelper.LogDebugInfo("DBHelper could not find patient: " & patientNumber)
                         End If
                     End Using
                 End Using
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error retrieving patient data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            ' TODO: decide if I want to log this event and others in this module
-            'LogHelper.LogDebugInfo("Error in DBHelper.GetPatientByNumber: " & ex.Message)
+            MessageBox.Show("SQL Server error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
         Return Nothing
     End Function
 
     ''' <summary>
-    ''' Builds and returns a valid SQLite connection string based on the configured database path.
+    ''' Builds and returns a valid SQL connection string based on the configured database path.
     ''' </summary>
-    ''' <returns>A SQLite connection string if the path is valid; otherwise, an empty string.</returns>
+    ''' <returns>A SQL connection string if the path is valid; otherwise, an empty string.</returns>
     Public Function GetConnectionString() As String
         Dim dbPath As String = PathHelper.GetDatabasePath()
 
         If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
-            MessageBox.Show("SQLite database path not found or file does not exist.", "Config Error")
+            MessageBox.Show("SQL database path not found or file does not exist.", "Config Error")
             Return String.Empty
         End If
 
@@ -132,10 +117,10 @@ Public Module DatabaseHelper
         ' Attempt insert, retry once if needed
         For attempt As Integer = 1 To 2
             Try
-                Using conn As New SQLiteConnection(connectionString)
+                Using conn As New SqlConnection(connectionString)
                     conn.Open()
 
-                    Using cmd As New SQLiteCommand(sql, conn)
+                    Using cmd As New SqlCommand(sql, conn)
                         ' Add parameters
                         For Each kvp In prcData
                             cmd.Parameters.AddWithValue("@" & kvp.Key, If(kvp.Value IsNot Nothing, kvp.Value, DBNull.Value))

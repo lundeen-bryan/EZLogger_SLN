@@ -2,6 +2,8 @@
 Imports System.Reflection
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports EZLogger.Tests
+
 
 'TODO:  Follow these steps to enable the Ribbon (XML) item:
 
@@ -109,6 +111,14 @@ Public Class EZLoggerRibbonXml
 
         Catch ex As Exception
             MsgBoxHelper.Show("PDF export failed: " & ex.Message)
+        End Try
+    End Sub
+
+    Public Sub OnTestSqlClick(control As Microsoft.Office.Core.IRibbonControl)
+        Try
+            SqlServerTestHandler.RunBasicSqlTest()
+        Catch ex As Exception
+            MsgBox("SQL test failed: " & ex.Message)
         End Try
     End Sub
 

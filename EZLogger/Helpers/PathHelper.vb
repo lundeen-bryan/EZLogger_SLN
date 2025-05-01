@@ -37,7 +37,7 @@ Namespace Helpers
         End Function
 
         ''' <summary>
-        ''' Returns the full path To the EZLogger SQLite database from local_user_config.json.
+        ''' Returns the full path To the EZLogger SQL database from local_user_config.json.
         ''' </summary>
         Public Function GetDatabasePath() As String
             'TODO:path

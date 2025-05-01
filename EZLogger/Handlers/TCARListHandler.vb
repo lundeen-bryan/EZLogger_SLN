@@ -21,6 +21,7 @@ Namespace Handlers
             Dim connStr As String = $"Data Source={PathHelper.GetDatabasePath()}"
 
             Try
+            	' TODO: Replace SQLite code after building the new TCAR_List table
                 Using conn As New SQLite.SQLiteConnection(connStr)
                     conn.Open()
 

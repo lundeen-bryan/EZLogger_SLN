@@ -75,6 +75,11 @@
                             label="Random Patient"
                             size="large"
                             imageMso="ContactUs" />
+                    <button id="btnTestSql"
+                            onAction="OnTestSqlClick"
+                            label="Test SQL"
+                            size="large"
+                            imageMso="Database" />
                 </group>
             </tab>
         </tabs>

@@ -5,6 +5,8 @@ Imports System.IO
 Imports System.Data
 Imports EZLogger.Handlers
 Imports System.Windows
+Imports System.Data.SqlClient
+
 
 Module TestHelper
     Public Sub Test_UpdateLocalConfigWithGlobalPath()
@@ -53,31 +55,27 @@ Module TestHelper
     ''' </summary>
     Public Sub PromptRandomPatientNumberForTest()
         Try
-            Dim connectionString As String = DatabaseHelper.GetConnectionString()
-            If String.IsNullOrEmpty(connectionString) Then
-                MsgBoxHelper.Show("Database not found.")
-                Exit Sub
-            End If
+            Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
 
-            Using conn As New SQLite.SQLiteConnection(connectionString)
+            Using conn As New SqlConnection(connStr)
                 conn.Open()
 
                 Dim keepTrying As Boolean = True
 
                 While keepTrying
                     Dim sql As String = "
-                    SELECT patient_number, classification
+                    SELECT TOP 1 patient_number, classification
                     FROM EZL
-                    WHERE TRIM(patient_number) <> ''
-                    ORDER BY RANDOM()
-                    LIMIT 1"
-                    Using cmd As New SQLite.SQLiteCommand(sql, conn)
+                    WHERE LTRIM(RTRIM(patient_number)) <> ''
+                    ORDER BY NEWID()
+                "
+
+                    Using cmd As New SqlCommand(sql, conn)
                         Using reader = cmd.ExecuteReader()
                             If reader.Read() Then
                                 Dim patientNumber As String = FormatPatientNumber(reader("patient_number").ToString())
                                 Dim classification As String = reader("classification").ToString()
 
-                                ' Build and show confirmation prompt
                                 Dim msg As String = $"Patient Number: {patientNumber}" & vbCrLf &
                                                 $"Classification: {classification}" & vbCrLf & vbCrLf &
                                                 "Use this record for testing?"
@@ -94,13 +92,11 @@ Module TestHelper
                                                                   MsgBoxHelper.Show($"Copied '{patientNumber}' to clipboard.")
                                                                   keepTrying = False
                                                               Else
-                                                                  ' Try again
                                                                   keepTrying = True
                                                               End If
                                                           End Sub)
 
-                                ' Wait for the dialog to return
-                                Exit While ' MsgBox is async, so prevent loop continuation here
+                                Exit While ' prevent loop continuation until dialog returns
                             Else
                                 MsgBoxHelper.Show("No patient records found.")
                                 keepTrying = False
@@ -108,12 +104,12 @@ Module TestHelper
                         End Using
                     End Using
                 End While
-
             End Using
 
         Catch ex As Exception
             MsgBoxHelper.Show("Test failed: " & ex.Message)
         End Try
     End Sub
+
 
 End Module
