@@ -26,8 +26,9 @@ Namespace Handlers
                 ' Step 2: Prepare data for SQL insertion
                 Dim prcData As New Dictionary(Of String, Object) From {
                     {"PatientNumber", GetDocProp(doc, "Patient Number")},
+                    {"FirstPatientNumber", GetDocProp(doc, "First Patient Number")},
                     {"Created", DateTime.UtcNow.ToString("yyyy-MM-dd")},
-                    {"FIlename", Path.GetFileName(doc.FullName)},
+                    {"Filename", Path.GetFileName(doc.FullName)},
                     {"PatientName", GetDocProp(doc, "Patient Name")},
                     {"DueDate", SafeFormatDate(GetDocProp(doc, "Due Date"))},
                     {"RushStatus", GetDocProp(doc, "Rush Status")},
@@ -37,7 +38,7 @@ Namespace Handlers
                     {"County", GetDocProp(doc, "County")},
                     {"Classification", GetDocProp(doc, "Classification")},
                     {"Evaluator", GetDocProp(doc, "Evaluator")},
-                    {"ApprovedBby", GetDocProp(doc, "Approved By")},
+                    {"ApprovedBy", GetDocProp(doc, "Approved By")},
                     {"ProcessedBy", GetDocProp(doc, "Processed By")},
                     {"Program", GetDocProp(doc, "Program")},
                     {"Unit", GetDocProp(doc, "Unit")},
@@ -54,6 +55,7 @@ Namespace Handlers
                     {"Pages", GetDocProp(doc, "Pages")},
                     {"Psychiatrist", GetDocProp(doc, "Psychiatrist")},
                     {"UID", GetDocProp(doc, "Unique ID")},
+                    {"MinuteOrder", GetDocProp(doc, "Minute Order")},
                     {"Malingering", GetDocProp(doc, "Malingering")},
                     {"IMO", GetDocProp(doc, "IMO")},
                     {"JBCT", GetDocProp(doc, "JBCT")},

@@ -25,6 +25,7 @@ Public Module DatabaseHelper
                 Dim query As String = "
                 SELECT
                     PatientNumber,
+                    FirstPatientNumber,
                     CommitmentDate,
                     AdmissionDate,
                     Expiration,
@@ -53,6 +54,7 @@ Public Module DatabaseHelper
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
                             .PatientNumber = reader("PatientNumber").ToString(),
+                            .FirstPatientNumber = reader("FirstPatientNumber").ToString(),
                             .CommitmentDate = reader("CommitmentDate").ToString(),
                             .AdmissionDate = reader("AdmissionDate").ToString(),
                             .Expiration = reader("Expiration").ToString(),
