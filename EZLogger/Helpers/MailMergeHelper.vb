@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.Office.Interop.Word
+Imports System.Windows.Forms
 Imports System.IO
 
 Namespace Helpers
@@ -117,6 +118,33 @@ Namespace Helpers
 
             Catch ex As Exception
                 ' Optional: log error
+            End Try
+        End Sub
+
+        Public Sub CleanMailMergeDocument(doc As Word.Document)
+            Try
+                ' 1. Unlink all fields in the document
+                For Each fld As Word.Field In doc.Fields
+                    fld.Unlink()
+                Next
+
+                ' 2. Convert the document to a non-mail merge type
+                If doc.MailMerge.MainDocumentType <> Word.WdMailMergeMainDocType.wdNotAMergeDocument Then
+                    doc.MailMerge.MainDocumentType = Word.WdMailMergeMainDocType.wdNotAMergeDocument
+                End If
+
+                ' 3. Detach the template and reattach Normal.dotm
+                doc.AttachedTemplate = Globals.ThisAddIn.Application.NormalTemplate.FullName
+
+                ' 4. Optionally, try to close any lingering data source
+                Try
+                    doc.MailMerge.DataSource.Close()
+                Catch
+                    ' Ignore errors if there's no active data source
+                End Try
+
+            Catch ex As Exception
+                MessageBox.Show("Error cleaning document: " & ex.Message)
             End Try
         End Sub
 

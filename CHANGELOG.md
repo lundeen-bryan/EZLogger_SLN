@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [0.0.1] - 2025-05-01
+
+### Added
+
+- Function to remove MailMerge and template using `CleanMailMergeDocument`
+
 ## [0.0.1] - 2025-04-26
 
 ### Added

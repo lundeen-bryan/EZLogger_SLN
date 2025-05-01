@@ -79,6 +79,11 @@ Public Class EZLoggerRibbonXml
         ' Part of the test group
         TestHelper.PromptRandomPatientNumberForTest()
     End Sub
+    'RemoveMailMerge_Click
+    Public Sub RemoveMailMerge_Click(control As Microsoft.Office.Core.IRibbonControl)
+        ' Part of the test group
+        MailMergeHelper.CleanMailMergeDocument(Globals.ThisAddIn.Application.ActiveDocument)
+    End Sub
 
     Public Sub ExportPdfButton_Click(control As Microsoft.Office.Core.IRibbonControl)
         Try
