@@ -24,26 +24,26 @@ Public Module DatabaseHelper
 
                 Dim query As String = "
                 SELECT
-                    patient_number,
-                    commitment_date,
-                    admission_date,
-                    expiration,
-                    dob,
-                    fullname,
-                    lname,
-                    fname,
-                    mname,
-                    dischargeStatus,  -- renamed from location
-                    program,
-                    unit,
-                    classification,
-                    county,
-                    language,
-                    psychiatrist,
-                    evaluator
+                    PatientNumber,
+                    CommitmentDate,
+                    AdmissionDate,
+                    Expiration,
+                    Dob,
+                    PatientName,
+                    Lname,
+                    Fname,
+                    Mname,
+                    DischargeStatus,  -- renamed from location
+                    Program,
+                    Unit,
+                    Classification,
+                    County,
+                    Language,
+                    Psychiatrist,
+                    Evaluator
                     -- TODO: Add early_ninety_day later if/when EZL_IST table is migrated
                 FROM EZL
-                WHERE patient_number = @patientNumber;
+                WHERE PatientNumber = @patientNumber;
             "
 
                 Using cmd As New SqlCommand(query, conn)
@@ -52,23 +52,23 @@ Public Module DatabaseHelper
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
-                            .PatientNumber = reader("patient_number").ToString(),
-                            .CommitmentDate = reader("commitment_date").ToString(),
-                            .AdmissionDate = reader("admission_date").ToString(),
-                            .Expiration = reader("expiration").ToString(),
-                            .DOB = reader("dob").ToString(),
-                            .FullName = reader("fullname").ToString(),
-                            .LName = reader("lname").ToString(),
-                            .FName = reader("fname").ToString(),
-                            .MName = reader("mname").ToString(),
-                            .Location = reader("dischargeStatus").ToString(),
-                            .Program = reader("program").ToString(),
-                            .Unit = reader("unit").ToString(),
-                            .Classification = reader("classification").ToString(),
-                            .County = reader("county").ToString(),
-                            .Language = reader("language").ToString(),
-                            .Psychiatrist = reader("psychiatrist").ToString(),
-                            .Evaluator = reader("evaluator").ToString(),
+                            .PatientNumber = reader("PatientNumber").ToString(),
+                            .CommitmentDate = reader("CommitmentDate").ToString(),
+                            .AdmissionDate = reader("AdmissionDate").ToString(),
+                            .Expiration = reader("Expiration").ToString(),
+                            .DOB = reader("Dob").ToString(),
+                            .FullName = reader("Fullname").ToString(),
+                            .LName = reader("Lname").ToString(),
+                            .FName = reader("Fname").ToString(),
+                            .MName = reader("Mname").ToString(),
+                            .Location = reader("DischargeStatus").ToString(),
+                            .Program = reader("Program").ToString(),
+                            .Unit = reader("Unit").ToString(),
+                            .Classification = reader("Classification").ToString(),
+                            .County = reader("County").ToString(),
+                            .Language = reader("Language").ToString(),
+                            .Psychiatrist = reader("Psychiatrist").ToString(),
+                            .Evaluator = reader("Evaluator").ToString(),
                             .EarlyNinetyDay = 0 ' placeholder; EZL_IST not yet implemented
                         }
                             Return patient

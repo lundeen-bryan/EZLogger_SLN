@@ -64,16 +64,16 @@ Module TestHelper
 
                 While keepTrying
                     Dim sql As String = "
-                    SELECT TOP 1 patient_number, classification
+                    SELECT TOP 1 PatientNumber, Classification
                     FROM EZL
-                    WHERE LTRIM(RTRIM(patient_number)) <> ''
+                    WHERE LTRIM(RTRIM(PatientNumber)) <> ''
                     ORDER BY NEWID()
                 "
 
                     Using cmd As New SqlCommand(sql, conn)
                         Using reader = cmd.ExecuteReader()
                             If reader.Read() Then
-                                Dim patientNumber As String = FormatPatientNumber(reader("patient_number").ToString())
+                                Dim patientNumber As String = FormatPatientNumber(reader("PatientNumber").ToString())
                                 Dim classification As String = reader("classification").ToString()
 
                                 Dim msg As String = $"Patient Number: {patientNumber}" & vbCrLf &

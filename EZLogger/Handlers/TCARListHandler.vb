@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Data.SqlClient
 Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
@@ -12,34 +13,34 @@ Namespace Handlers
         ''' </summary>
         ''' <returns>A list of <see cref="TCARRecord"/> objects representing active TCAR records.</returns>
         ''' <remarks>
-        ''' This function connects to the SQLite database, executes a query to fetch records
+        ''' This function connects to the SQL database, executes a query to fetch records
         ''' where the "active" field is set to 1, and maps the results to a list of TCARRecord objects.
         ''' If an error occurs during database access, an error message is displayed to the user.
         ''' </remarks>
         Public Function LoadAllActive() As List(Of TCARRecord)
             Dim results As New List(Of TCARRecord)
-            Dim connStr As String = $"Data Source={PathHelper.GetDatabasePath()}"
+            Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
 
             Try
-            	' TODO: Replace SQLite code after building the new TCAR_List table
-                Using conn As New SQLite.SQLiteConnection(connStr)
+                Using conn As New SqlConnection(connStr)
                     conn.Open()
 
                     Dim query As String = "
-                SELECT casenum, patient_name, subdate, opID
-                FROM tcar_list
-                WHERE active = 1;
-            "
+                        SELECT casenum, patient_name, subdate, opID
+                        FROM tcar_list
+                        WHERE active = 1
+                        ORDER BY subdate DESC
+                    "
 
-                    Using cmd As New SQLite.SQLiteCommand(query, conn)
-                        Using reader As SQLite.SQLiteDataReader = cmd.ExecuteReader()
+                    Using cmd As New SqlCommand(query, conn)
+                        Using reader As SqlDataReader = cmd.ExecuteReader()
                             While reader.Read()
                                 results.Add(New TCARRecord With {
-                            .Casenum = reader("casenum").ToString(),
-                            .PatientName = reader("patient_name").ToString(),
-                            .Subdate = reader("subdate").ToString(),
-                            .OpID = Convert.ToInt32(reader("opID"))
-                        })
+                                    .Casenum = reader("casenum").ToString(),
+                                    .PatientName = reader("patient_name").ToString(),
+                                    .Subdate = reader("subdate").ToString(),
+                                    .OpID = Convert.ToInt32(reader("opID"))
+                                })
                             End While
                         End Using
                     End Using
@@ -50,7 +51,6 @@ Namespace Handlers
 
             Return results
         End Function
-
         ''' <summary>
         ''' Called when the user presses the Select button in TCARListView.
         ''' If a row is selected, logs TCAR details to Word document custom properties.
