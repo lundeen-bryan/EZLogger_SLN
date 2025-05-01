@@ -1,6 +1,7 @@
 ﻿Public Class PatientCls
 
     Public Property PatientNumber As String
+    Public Property FirstPatientNumber As String
 
     Public Property CommitmentDate As String
 

@@ -32,6 +32,7 @@ Namespace Helpers
                                 End Sub
 
                 writeProp("Patient Number", FormatPatientNumber(patient.PatientNumber))
+                writeProp("First Patient Number", FormatPatientNumber(patient.FirstPatientNumber))
                 writeProp("Patient Name", patient.PatientName)
                 writeProp("Firstname", patient.FName)
                 writeProp("Lastname", patient.LName)

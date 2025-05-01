@@ -78,3 +78,7 @@
 2025-05-01 06:40:14 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.
 2025-05-01 06:40:14 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
 2025-05-01 06:40:14 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 11:38:33 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
+2025-05-01 11:39:01 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 11:56:03 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
+2025-05-01 11:56:03 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
