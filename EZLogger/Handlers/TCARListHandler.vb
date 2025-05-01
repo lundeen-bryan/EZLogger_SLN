@@ -19,7 +19,11 @@ Namespace Handlers
         ''' </remarks>
         Public Function LoadAllActive() As List(Of TCARRecord)
             Dim results As New List(Of TCARRecord)
-            Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
+            Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+            If String.IsNullOrWhiteSpace(connStr) Then
+                MsgBoxHelper.Show("SQL Server connection string not found in global_config.json.")
+                Exit Function
+            End If
 
             Try
                 Using conn As New SqlConnection(connStr)

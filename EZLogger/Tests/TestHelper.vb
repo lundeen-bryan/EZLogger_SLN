@@ -55,7 +55,11 @@ Module TestHelper
     ''' </summary>
     Public Sub PromptRandomPatientNumberForTest()
         Try
-            Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
+            Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+            If String.IsNullOrWhiteSpace(connStr) Then
+                MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
+                Exit Sub
+            End If
 
             Using conn As New SqlConnection(connStr)
                 conn.Open()

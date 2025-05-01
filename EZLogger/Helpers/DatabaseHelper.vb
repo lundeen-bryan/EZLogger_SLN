@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Diagnostics
 Imports System.IO
 Imports System.Windows
 Imports System.Windows.Forms
@@ -16,7 +17,11 @@ Public Module DatabaseHelper
     Public Function GetPatientByNumber(patientNumber As String) As PatientCls
         If String.IsNullOrWhiteSpace(patientNumber) Then Return Nothing
 
-        Dim connStr As String = "Server=LEN-MINI;Database=CoRTReport24;Trusted_Connection=True;"
+        Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+        If String.IsNullOrWhiteSpace(connStr) Then
+            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
+            Exit Function
+        End If
 
         Try
             Using conn As New SqlConnection(connStr)
@@ -109,7 +114,11 @@ Public Module DatabaseHelper
         If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
 
         Dim dbPath As String = PathHelper.GetDatabasePath()
-        Dim connectionString As String = $"Data Source={dbPath};Version=3;"
+        Dim connectionString As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+        If String.IsNullOrWhiteSpace(connectionString) Then
+            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
+            Exit Sub
+        End If
         Dim insertSuccess As Boolean = False
 
         Dim columns As String = String.Join(",", prcData.Keys)
@@ -136,7 +145,18 @@ Public Module DatabaseHelper
                 End Using
 
             Catch ex As Exception
-                LogHelper.LogError("DatabaseHelper.InsertPrcTable (Attempt " & attempt & ")", ex.Message)
+                Dim debugInfo As String = $"Attempt {attempt} failed: {ex.Message}" & vbCrLf &
+                              $"SQL: {sql}" & vbCrLf &
+                              $"Parameters:" & vbCrLf &
+                              String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
+
+                Debug.Print(debugInfo)
+                LogHelper.LogError("DatabaseHelper.InsertPrcTable", debugInfo)
+
+#If DEBUG Then
+                MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
+#End If
+
                 System.Threading.Thread.Sleep(100) ' Small delay before retry
             End Try
         Next
