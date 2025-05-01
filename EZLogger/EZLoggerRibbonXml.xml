@@ -10,6 +10,7 @@
                     <button id="HelpButton"
                             onAction="HelpButton_Click"
                             label="Help"
+                            getVisible="GetBtnVisibility"
                             imageMso="Help" />
                     <button id="SettingsButton"
                             onAction="SettingsButton_Click"
@@ -50,6 +51,7 @@
                                 onAction="TypoButton_Click"
                                 label="Report a Typo"
                                 size="large"
+                                getVisible="GetBtnVisibility"
                                 getImage="GetTypoButtonImage" />
                     </box>
                     <button id="EmailButton"
@@ -75,11 +77,6 @@
                             label="Random Patient"
                             size="large"
                             imageMso="ContactUs" />
-                    <button id="btnTestSql"
-                            onAction="OnTestSqlClick"
-                            label="Test SQL"
-                            size="large"
-                            imageMso="Database" />
                 </group>
             </tab>
         </tabs>

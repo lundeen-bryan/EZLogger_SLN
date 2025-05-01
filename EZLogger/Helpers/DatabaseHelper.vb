@@ -57,7 +57,7 @@ Public Module DatabaseHelper
                             .AdmissionDate = reader("AdmissionDate").ToString(),
                             .Expiration = reader("Expiration").ToString(),
                             .DOB = reader("Dob").ToString(),
-                            .FullName = reader("Fullname").ToString(),
+                            .PatientName = reader("PatientName").ToString(),
                             .LName = reader("Lname").ToString(),
                             .FName = reader("Fname").ToString(),
                             .MName = reader("Mname").ToString(),

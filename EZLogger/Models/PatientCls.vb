@@ -10,7 +10,7 @@
 
     Public Property DOB As String
 
-    Public Property FullName As String
+    Public Property PatientName As String
 
     Public Property LName As String
 
