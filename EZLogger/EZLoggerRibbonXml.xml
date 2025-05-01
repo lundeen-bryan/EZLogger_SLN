@@ -77,6 +77,11 @@
                             label="Random Patient"
                             size="large"
                             imageMso="ContactUs" />
+                    <button id="RemoveMerge"
+                            onAction="RemoveMailMerge_Click"
+                            label="Remove MailMerge"
+                            size="large"
+                            imageMso="EnvelopesAndLabels" />
                 </group>
             </tab>
         </tabs>
