@@ -114,13 +114,6 @@ Public Class EZLoggerRibbonXml
         End Try
     End Sub
 
-    Public Sub OnTestSqlClick(control As Microsoft.Office.Core.IRibbonControl)
-        Try
-            SqlServerTestHandler.RunBasicSqlTest()
-        Catch ex As Exception
-            MsgBox("SQL test failed: " & ex.Message)
-        End Try
-    End Sub
 
 
 #Region "Ribbon Callbacks"
@@ -128,6 +121,15 @@ Public Class EZLoggerRibbonXml
     Public Sub Ribbon_Load(ByVal ribbonUI As Office.IRibbonUI)
         Me.ribbon = ribbonUI
     End Sub
+
+    Private HiddenButtons As HashSet(Of String) = New HashSet(Of String) From {
+        "HelpButton",
+        "TypoButton"
+    }
+
+    Public Function GetBtnVisibility(control As Office.IRibbonControl) As Boolean
+        Return Not HiddenButtons.Contains(control.Id)
+    End Function
 
     Public Function GetConvertButtonImage(control As Office.IRibbonControl) As stdole.IPictureDisp
         ' Load the pdf1.png from project Resources
