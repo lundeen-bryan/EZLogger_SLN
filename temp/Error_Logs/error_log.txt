@@ -82,3 +82,88 @@
 2025-05-01 11:39:01 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
 2025-05-01 11:56:03 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
 2025-05-01 11:56:03 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 12:59:58 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
+2025-05-01 12:59:58 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 13:01:12 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
+2025-05-01 13:01:12 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 13:03:19 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 1)] Keyword not supported: 'version'.
+2025-05-01 13:03:19 [ERROR] [DatabaseHelper.InsertPrcTable (Attempt 2)] Keyword not supported: 'version'.
+2025-05-01 13:12:07 [ERROR] [DatabaseHelper.InsertPrcTable] Attempt 1 failed: Keyword not supported: 'version'.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = 219472-5
+FirstPatientNumber = 
+Created = 2025-05-01
+Filename = LARSON, MARY DAWN 1370(b)(1) 2025-05-14.docx
+PatientName = LARSON, MARY DAWN
+DueDate = 2023-11-01
+RushStatus = PAST DUE
+ReportDate = 2025-05-14
+ReportType = 1370(b)(1)
+ReportCycle = 15-month
+County = RIVERSIDE
+Classification = PC1370
+Evaluator = 
+ApprovedBy = Morgan
+ProcessedBy = Bryan Lundeen
+Program = 4
+Unit = T3
+DueDateOffset = -547
+Commitment = 8/3/2022 12:00:00 AM
+Admission = 8/14/2022 12:00:00 AM
+Expiration = 8/13/2025 12:00:00 AM
+CourtNumber = 
+Charges = 
+Sex = 
+Dob = 1952-08-01
+Age = 72
+Language = 
+Pages = 
+Psychiatrist = 
+UID = 
+MinuteOrder = 
+Malingering = 
+IMO = 
+JBCT = 
+TCAR = 2025-02-12
+TcarOffset = 78
+2025-05-01 13:13:11 [ERROR] [DatabaseHelper.InsertPrcTable] Attempt 2 failed: Keyword not supported: 'version'.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = 219472-5
+FirstPatientNumber = 
+Created = 2025-05-01
+Filename = LARSON, MARY DAWN 1370(b)(1) 2025-05-14.docx
+PatientName = LARSON, MARY DAWN
+DueDate = 2023-11-01
+RushStatus = PAST DUE
+ReportDate = 2025-05-14
+ReportType = 1370(b)(1)
+ReportCycle = 15-month
+County = RIVERSIDE
+Classification = PC1370
+Evaluator = 
+ApprovedBy = Morgan
+ProcessedBy = Bryan Lundeen
+Program = 4
+Unit = T3
+DueDateOffset = -547
+Commitment = 8/3/2022 12:00:00 AM
+Admission = 8/14/2022 12:00:00 AM
+Expiration = 8/13/2025 12:00:00 AM
+CourtNumber = 
+Charges = 
+Sex = 
+Dob = 1952-08-01
+Age = 72
+Language = 
+Pages = 
+Psychiatrist = 
+UID = 
+MinuteOrder = 
+Malingering = 
+IMO = 
+JBCT = 
+TCAR = 2025-02-12
+TcarOffset = 78
+2025-05-01 13:53:59 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.
