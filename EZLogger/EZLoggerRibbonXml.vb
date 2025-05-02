@@ -42,8 +42,22 @@ Public Class EZLoggerRibbonXml
     End Sub
 
     Public Sub ReportWizardButton_Click(control As Office.IRibbonControl)
-        'Keep this is the main entry point mouse button
-        Globals.ThisAddIn.ReportWizardTaskPane.Visible = Not Globals.ThisAddIn.ReportWizardTaskPane.Visible
+
+        ' Toggle visibility
+        Dim pane = Globals.ThisAddIn.ReportWizardTaskPane
+
+        If pane IsNot Nothing Then
+            ' Assign the UserControl if it hasn't been assigned yet
+            If Globals.ThisAddIn.ReportWizardTaskPaneContainer Is Nothing Then
+                Dim container = TryCast(pane.Control, ReportWizardTaskPaneContainer)
+                If container IsNot Nothing Then
+                    Globals.ThisAddIn.ReportWizardTaskPaneContainer = container
+                End If
+            End If
+
+            pane.Visible = Not pane.Visible
+        End If
+
     End Sub
 
     Public Sub PatientInfoBtn_Click(control As Office.IRibbonControl)
@@ -63,6 +77,10 @@ Public Class EZLoggerRibbonXml
 
     Public Sub TypoButton_Click(control As Office.IRibbonControl)
         'Keep
+    End Sub
+
+    Public Sub CloseDocBtn_Click(control As Office.IRibbonControl)
+        DocumentHelper.CloseActiveDocument()
     End Sub
 
     Public Sub OpenTaskList_Click(control As Microsoft.Office.Core.IRibbonControl)
