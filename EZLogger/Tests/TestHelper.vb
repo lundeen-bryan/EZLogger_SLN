@@ -87,7 +87,8 @@ Module TestHelper
                                 Dim config As New MessageBoxConfig With {
                                 .Message = msg,
                                 .ShowYes = True,
-                                .ShowNo = True
+                                .ShowNo = True,
+                                .ShowOk = False
                             }
 
                                 MsgBoxHelper.Show(config, Sub(result)
