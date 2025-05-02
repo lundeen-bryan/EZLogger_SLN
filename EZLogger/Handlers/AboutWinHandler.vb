@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text.Json
+Imports System.Windows.Forms
 Imports EZLogger.Models
 
 Namespace Handlers
@@ -29,6 +30,9 @@ Namespace Handlers
 
             Return result
         End Function
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
 
     End Class
 End Namespace

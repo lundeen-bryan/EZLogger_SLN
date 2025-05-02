@@ -42,8 +42,7 @@ Namespace Helpers
                 writeProp("Classification", patient.Classification)
                 writeProp("County", patient.County)
                 writeProp("Bed Status", patient.BedStatus)
-                ' TODO EZL_CTN when getting new database add this back
-                'writeProp("Court Number", patient.CourtNumbers)
+                writeProp("Court Number", patient.CourtNumber)
                 writeProp("DOB", patient.DOB)
 
                 ' Age calculated using a separate helper
@@ -68,7 +67,8 @@ Namespace Helpers
             Try
                 Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
 
-                If String.IsNullOrWhiteSpace(value) Then Exit Sub
+                'If String.IsNullOrWhiteSpace(value) Then Exit Sub
+                '^--If no value is passed exit sub, commented out to give blank properties
 
                 If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = name) Then
                     props(name).Value = value
