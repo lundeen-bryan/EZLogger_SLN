@@ -116,12 +116,12 @@
                     FontSize="14"
                     Background="White" />
             <Button Content="Config"
-                    x:Name="BtnConfig"
+                    x:Name="ConfigBtn"
                     Width="75"
                     Margin="5"
                     FontFamily="Candara"
                     FontSize="14"
-                    IsEnabled="False"
+                    IsEnabled="True"
                     Background="White" />
             <Button Content="Alerts"
                     x:Name="BtnAlerts"

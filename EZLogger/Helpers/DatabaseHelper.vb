@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Imports System.Diagnostics
 Imports System.IO
 Imports System.Windows
@@ -8,6 +9,45 @@ Imports MessageBox = System.Windows.MessageBox
 
 
 Public Module DatabaseHelper
+
+    ''' <summary>
+    ''' Retrieves the CourtNumber for a given patient using the uspEZL_CTN stored procedure.
+    ''' </summary>
+    ''' <param name="patientNumber">The patient number to search for.</param>
+    ''' <returns>The CourtNumber string if found; otherwise, an empty string.</returns>
+    Public Function GetCourtNumberByPatientNumber(patientNumber As String) As String
+        If String.IsNullOrWhiteSpace(patientNumber) Then Return String.Empty
+
+        Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+        If String.IsNullOrWhiteSpace(connStr) Then
+            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
+            Return String.Empty
+        End If
+
+        Try
+            Using conn As New SqlConnection(connStr)
+                conn.Open()
+
+                Using cmd As New SqlCommand("uspEZL_CTN", conn)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@PatientNumber", patientNumber)
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            ' Safe null check; will return empty string if DBNull
+                            Return If(reader("CourtNumber") IsNot DBNull.Value, reader("CourtNumber").ToString(), "")
+                        End If
+                    End Using
+                End Using
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("SQL Server error while retrieving Court Number: " & ex.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
+
+        Return String.Empty
+    End Function
+
 
     ''' <summary>
     ''' Retrieves a single patient record matching the given patient number.
@@ -56,7 +96,7 @@ Public Module DatabaseHelper
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
                     Using reader As SqlDataReader = cmd.ExecuteReader()
-                    '^--Reader pulls the following data from PatientCls
+                        '^--Reader pulls the following data from PatientCls
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
                             .PatientNumber = reader("PatientNumber").ToString(),

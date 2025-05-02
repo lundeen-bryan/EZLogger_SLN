@@ -26,11 +26,21 @@ Partial Public Class AboutView
     Private Sub WireUpButtons()
         AddHandler BtnHelp.Click, AddressOf BtnHelp_Click
         AddHandler BtnGoBack.Click, AddressOf BtnGoBack_Click
+        AddHandler ConfigBtn.Click, AddressOf ConfigBtn_Click
         AddHandler Me.Loaded, AddressOf OnViewLoaded
     End Sub
 
     Private Sub OnViewLoaded(sender As Object, e As RoutedEventArgs)
         LoadAboutInfo()
+    End Sub
+
+    Private Sub ConfigBtn_Click(sender As Object, e As RoutedEventArgs)
+        Dim hostform As New ConfigHost()
+        ' TODO find way to show ConfigView and bring to the front
+        _hostForm.Hide()
+        hostform.Show()
+        hostform.BringToFront()
+        hostform.Activate()
     End Sub
 
     ''' <summary>

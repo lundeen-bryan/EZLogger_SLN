@@ -46,6 +46,7 @@ Namespace Handlers
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
         Public Sub ShowBtnBMessage(patientNumber As String, panel As ReportWizardPanel)
 
+            ' Convert from formatted (e.g., 123456-7) to raw database format (e.g., 41234567)
             patientNumber = ReverseFormatPatientNumber(patientNumber).ToString()
 
             If String.IsNullOrWhiteSpace(patientNumber) Then
@@ -53,20 +54,28 @@ Namespace Handlers
                 Return
             End If
 
+            ' Retrieve patient data from EZL
             Dim patient = DatabaseHelper.GetPatientByNumber(patientNumber)
 
             If patient IsNot Nothing Then
+
+                ' Retrieve court number via stored procedure and assign to patient object
+                Dim courtNumber As String = DatabaseHelper.GetCourtNumberByPatientNumber(patientNumber)
+                If Not String.IsNullOrWhiteSpace(courtNumber) Then
+                    patient.CourtNumber = courtNumber
+                End If
+
+                ' Construct confirmation message
                 Dim message As String =
             $"Full Name: {patient.PatientName}" & Environment.NewLine &
             $"Classification: {patient.Classification}" & Environment.NewLine &
             $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
             $"County: {patient.County}" & Environment.NewLine &
-            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
+            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine &
+            If(Not String.IsNullOrEmpty(patient.CourtNumber), $"Court Number: {patient.CourtNumber}" & Environment.NewLine & Environment.NewLine, "") &
             "Does this information match the report?"
 
-                ' TODO EZL_CTN when getting new schema fix this
-                '$"Court Number: {patient.CourtNumbers}" & Environment.NewLine &
-
+                ' Show custom confirmation box with Yes/No
                 Dim config As New MessageBoxConfig With {
                     .Message = message,
                     .ShowYes = True,
@@ -76,14 +85,18 @@ Namespace Handlers
 
                 MsgBoxHelper.Show(config, Sub(result)
                                               If result = CustomMsgBoxResult.Yes Then
+                                                  ' Write patient data and sender to document properties
                                                   DocumentPropertyHelper.WriteDataToDocProperties(patient)
                                                   SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+
+                                                  ' Refresh UI
                                                   RefreshPatientNameLabel(panel)
                                                   panel.Btn_B_Checkbox.IsChecked = True
 
-                                                  ' ✅ Show alerts — one after another if both exist
+                                                  ' Show any configured alerts
                                                   AlertHelper.ShowCountyAlertIfExists(patient.County)
                                                   AlertHelper.ShowPatientAlertIfExists(FormatPatientNumber(patient.PatientNumber))
+
                                               Else
                                                   MsgBoxHelper.Show("Please check the patient number and try again.")
                                               End If
