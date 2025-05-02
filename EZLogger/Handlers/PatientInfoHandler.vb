@@ -33,28 +33,49 @@ Namespace Handlers
         End Sub
 
         Public Sub HandleAddEditClick(view As PatientInfoView)
+
             Try
-                ' Attempt to get the selected row from the DataGrid
+                ' Selected row in the grid
                 Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
 
-                ' Open the UpdateInfoHost form
+                ' Pull from the current Word document
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim patientName As String = ""
+                Dim patientNumber As String = ""
+
+                ' Try to read custom doc properties
+                For Each prop As DocumentProperty In doc.CustomDocumentProperties
+                    If prop.Name.Equals("Patient Name", StringComparison.OrdinalIgnoreCase) Then
+                        patientName = TryCast(prop.Value, String)
+                    ElseIf prop.Name.Equals("Patient Number", StringComparison.OrdinalIgnoreCase) Then
+                        patientNumber = TryCast(prop.Value, String)
+                    End If
+                Next
+
+                ' Create and show the UpdateInfoHost and View
                 Dim hostForm As New UpdateInfoHost()
                 Dim updateView As New UpdateInfoView(hostForm)
 
-                ' Assign the view manually
+                ' Assign to host form
                 hostForm.ElementHost1.Child = updateView
 
-                ' Set initial values before the form loads
+                ' Set values
                 If selectedEntry IsNot Nothing Then
                     updateView.InitialPropertyName = selectedEntry.PropertyName
                     updateView.InitialPropertyValue = selectedEntry.Value
                 End If
 
+                ' Set patient name and number for the new view
+                updateView.InitialPatientName = patientName
+                updateView.InitialPatientNumber = patientNumber
+
+                ' Show form
                 hostForm.Show()
 
             Catch ex As Exception
                 MsgBoxHelper.Show("Failed to open Update Info form: " & ex.Message)
             End Try
+
         End Sub
 
         Public Sub LoadCustomDocProperties(view As PatientInfoView)

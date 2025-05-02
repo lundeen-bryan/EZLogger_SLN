@@ -16,6 +16,10 @@
         ''' </summary>
         Public Property Value As String
 
+        Public Property PatientName As String
+
+        Public Property PatientNumber As String
+
     End Class
 
 End Namespace

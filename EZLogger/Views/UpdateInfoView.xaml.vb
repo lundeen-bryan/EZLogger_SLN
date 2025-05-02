@@ -14,6 +14,8 @@ Public Class UpdateInfoView
     Private ReadOnly _hostForm As Form
     Public Property InitialPropertyName As String = ""
     Public Property InitialPropertyValue As String = ""
+    Public Property InitialPatientName As String = ""
+    Public Property InitialPatientNumber As String = ""
 
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
@@ -34,6 +36,8 @@ Public Class UpdateInfoView
     Private Sub UpdateInfoView_Loaded(sender As Object, e As RoutedEventArgs)
         TxbxPropertyName.Text = InitialPropertyName
         TxtbxPropertyValue.Text = InitialPropertyValue
+        PatientNumberLbl.Content = InitialPatientNumber
+        PatientNameLbl.Content = InitialPatientName
     End Sub
 
 
