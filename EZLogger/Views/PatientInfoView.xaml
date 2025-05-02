@@ -48,7 +48,7 @@
                     BorderBrush="DarkGray"
                     AutomationProperties.AcceleratorKey="R"
                     FontSize="16" />
-            <Button x:Name="BtnValidate"
+            <Button x:Name="ValidateBtn"
                     Content="_V"
                     Cursor="Hand"
                     HorizontalAlignment="Left"

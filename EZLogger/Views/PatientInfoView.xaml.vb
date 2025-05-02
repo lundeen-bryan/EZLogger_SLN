@@ -26,6 +26,7 @@ Namespace EZLogger.Views
 			AddHandler BtnAddEdit.Click, AddressOf BtnAddEdit_Click
 			AddHandler BtnRefresh.Click, AddressOf BtnRefresh_Click
 			AddHandler BtnCopy.Click, AddressOf BtnCopy_Click
+			AddHandler ValidateBtn.Click, AddressOf ValidateBtn_Click
 		End Sub
 
 		Private Sub PatientInfoView_Loaded(sender As Object, e As RoutedEventArgs)
@@ -58,6 +59,10 @@ Namespace EZLogger.Views
 
 		Private Sub BtnAddEdit_Click(sender As Object, e As RoutedEventArgs)
 			_handler.HandleAddEditClick(Me)
+		End Sub
+
+		Private Sub ValidateBtn_Click(sender As Object, e As RoutedEventArgs)
+			_handler.HandleValidateClick(Me)
 		End Sub
 
 	End Class

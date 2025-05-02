@@ -120,8 +120,19 @@ Namespace Handlers
             LoadCustomDocProperties(view)
         End Sub
 
-        Public Sub HandleValidateClick()
-            MsgBox("You clicked Validate Fields")
+        Public Sub HandleValidateClick(view As PatientInfoView)
+            Try
+                ' Step 1: Validate custom properties
+                DocumentPropertyValidator.ValidateRequiredCustomProperties()
+
+                ' Step 2: Optionally refresh the listbox after adding missing properties
+                LoadCustomDocProperties(view)
+
+                MessageBox.Show("Custom properties validated successfully.")
+
+            Catch ex As Exception
+                MessageBox.Show("Error during validation: " & ex.Message)
+            End Try
         End Sub
 
         Public Sub HandleDeleteClick(view As PatientInfoView)
