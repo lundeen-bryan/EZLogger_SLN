@@ -40,6 +40,7 @@ Public Module DocumentHelper
     ''' If False, the document is closed without any dialog.
     ''' </param>
     Public Sub CloseActiveDocument(Optional showPrompt As Boolean = False)
+
         Dim app As Application = Globals.ThisAddIn.Application
 
         ' Check if there is an active document
@@ -51,43 +52,41 @@ Public Module DocumentHelper
         Dim doc As Document = app.ActiveDocument
 
         Try
-            ' Check if the document has been previously saved
             Dim isPreviouslySaved As Boolean = Not String.IsNullOrWhiteSpace(doc.Path)
 
             If Not showPrompt Then
                 If isPreviouslySaved Then
-                    ' Attempt to save silently first
                     TrySaveActiveDocument()
                 Else
-                    ' Close the document without prompting
                     doc.Close(SaveChanges:=WdSaveOptions.wdDoNotSaveChanges)
                 End If
             Else
-                ' Show default save prompt behavior
                 doc.Close(SaveChanges:=WdSaveOptions.wdPromptToSaveChanges)
             End If
 
         Catch ex As Exception
             MsgBoxHelper.Show("The document could not be closed: " & ex.Message)
         End Try
-    End Sub
 
-    ''' <summary>
-    ''' Saves the active Word document as a .docx file to the specified path.
-    ''' </summary>
-    ''' <param name="destinationPath">Full path where the .docx file should be saved.</param>
-    Public Sub SaveActiveDocumentAsDocx(destinationPath As String)
-        Dim app As Application = Globals.ThisAddIn.Application
-        Dim doc As Document = app.ActiveDocument
-
+        ' ✅ Reset ReportWizardPanel if available
         Try
-            If doc IsNot Nothing Then
-                doc.SaveAs2(FileName:=destinationPath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
+            ' Assuming ReportWizardTaskPaneContainer is globally accessible
+            Dim hostForm As ReportWizardTaskPaneContainer = Globals.ThisAddIn.ReportWizardTaskPaneContainer
+
+            If hostForm IsNot Nothing AndAlso hostForm.ElementHost1 IsNot Nothing Then
+                Dim wizardPanel = TryCast(hostForm.ElementHost1.Child, ReportWizardPanel)
+                If wizardPanel IsNot Nothing Then
+                    ResetAllControls(wizardPanel)
+                End If
             End If
+
         Catch ex As Exception
-            MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
+            ' Optional: comment out for silent failure
+            MsgBox("Could not reset Report Wizard panel: " & ex.Message)
         End Try
+
     End Sub
+
     Public Sub ResetAllControls(container As DependencyObject)
 
         For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(container) - 1
@@ -118,6 +117,23 @@ Public Module DocumentHelper
             ResetAllControls(child)
         Next
 
+    End Sub
+
+    ''' <summary>
+    ''' Saves the active Word document as a .docx file to the specified path.
+    ''' </summary>
+    ''' <param name="destinationPath">Full path where the .docx file should be saved.</param>
+    Public Sub SaveActiveDocumentAsDocx(destinationPath As String)
+        Dim app As Application = Globals.ThisAddIn.Application
+        Dim doc As Document = app.ActiveDocument
+
+        Try
+            If doc IsNot Nothing Then
+                doc.SaveAs2(FileName:=destinationPath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
+            End If
+        Catch ex As Exception
+            MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
+        End Try
     End Sub
 
 End Module

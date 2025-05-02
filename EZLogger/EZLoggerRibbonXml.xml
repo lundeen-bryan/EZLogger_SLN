@@ -59,8 +59,8 @@
                             label="Email Report"
                             size="large"
                             imageMso="ReplyToAttendeesWithMessage" />
-                    <button id="BtnCloseDoc"
-                            onAction="BtnCloseDoc_Click"
+                    <button id="CloseDocBtn"
+                            onAction="CloseDocBtn_Click"
                             label="Close Document"
                             size="large"
                             imageMso="FileClose" />
