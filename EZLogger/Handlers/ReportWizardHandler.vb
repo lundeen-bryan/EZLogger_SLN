@@ -5,6 +5,7 @@ Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 Imports System.Threading.Tasks.Task
 Imports System.Diagnostics
+Imports Application = Microsoft.Office.Interop.Word.Application
 
 Namespace Handlers
 
@@ -45,6 +46,15 @@ Namespace Handlers
         ''' <param name="patientNumber">Patient number to look up.</param>
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
         Public Sub ShowBtnBMessage(patientNumber As String, panel As ReportWizardPanel)
+
+            Dim wordApp As Application = WordAppHelper.GetWordApp()
+
+            Dim History As String = DocumentPropertyHelper.GetPropertyValue("Logged")
+            If History <> "" Then
+                If DateDiff("d", History, Date.Today()) > 2 Then
+                    MsgBoxHelper.Show("The last time this report was opened and logged was " & History & " so you might not need to process this report again.")
+                End If
+            End If
 
             ' Convert from formatted (e.g., 123456-7) to raw database format (e.g., 41234567)
             patientNumber = ReverseFormatPatientNumber(patientNumber).ToString()
@@ -88,6 +98,7 @@ Namespace Handlers
                                                   ' Write patient data and sender to document properties
                                                   DocumentPropertyHelper.WriteDataToDocProperties(patient)
                                                   SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+                                                  DocumentPropertyHelper.WriteCustomProperty(wordApp?.ActiveDocument, "Logged", Date.Today())
 
                                                   ' Refresh UI
                                                   RefreshPatientNameLabel(panel)
