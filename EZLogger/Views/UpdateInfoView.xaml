@@ -46,7 +46,7 @@
                               Margin="6,6,6,6"
                               Width="167"
                               HorizontalAlignment="Left">
-                        <Label x:Name="LblPatientNumber"
+                        <Label x:Name="PatientNumberLbl"
                                Content=""
                                Margin="6,0,0,0"
                                Background="#FFC1E0FF"
@@ -67,7 +67,7 @@
                               Margin="6,6,6,6"
                               Width="427"
                               HorizontalAlignment="Left">
-                        <Label x:Name="LblPatientName"
+                        <Label x:Name="PatientNameLbl"
                                Content=""
                                Margin="6,0,13,0"
                                Background="#FFC1E0FF"

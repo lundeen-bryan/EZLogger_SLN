@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 ### Added
 
 - Function to remove MailMerge and template using `CleanMailMergeDocument`
+- PatientName and PatientNumber loads in the blue labels when the Add/Edit view opens
 
 ## [0.0.1] - 2025-04-26
 
