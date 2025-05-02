@@ -1,4 +1,7 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Windows
+Imports System.Windows.Forms
+Imports System.Windows.Media
+Imports System.Windows.Controls
 Imports Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
 
@@ -41,14 +44,14 @@ Public Module DocumentHelper
 
         ' Check if there is an active document
         If app.Documents.Count = 0 Then
-            MessageBox.Show("There is no active document to close.", "No Document Open", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MsgBoxHelper.Show("There is no active document to close.")
             Exit Sub
         End If
 
         Dim doc As Document = app.ActiveDocument
 
         Try
-        	' Check if the document has been previously saved
+            ' Check if the document has been previously saved
             Dim isPreviouslySaved As Boolean = Not String.IsNullOrWhiteSpace(doc.Path)
 
             If Not showPrompt Then
@@ -65,7 +68,7 @@ Public Module DocumentHelper
             End If
 
         Catch ex As Exception
-            MessageBox.Show("The document could not be closed: " & ex.Message, "Close Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MsgBoxHelper.Show("The document could not be closed: " & ex.Message)
         End Try
     End Sub
 
@@ -82,8 +85,39 @@ Public Module DocumentHelper
                 doc.SaveAs2(FileName:=destinationPath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
             End If
         Catch ex As Exception
-            MessageBox.Show("Error saving document as Word file: " & ex.Message, "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
         End Try
+    End Sub
+    Public Sub ResetAllControls(container As DependencyObject)
+
+        For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(container) - 1
+            Dim child As DependencyObject = VisualTreeHelper.GetChild(container, i)
+
+            Select Case True
+                Case TypeOf child Is Controls.TextBox
+                    CType(child, Controls.TextBox).Clear()
+
+                Case TypeOf child Is Controls.Label
+                    CType(child, Controls.Label).Content = ""
+
+                Case TypeOf child Is Controls.CheckBox
+                    CType(child, Controls.CheckBox).IsChecked = False
+
+                Case TypeOf child Is Controls.ComboBox
+                    CType(child, Controls.ComboBox).SelectedIndex = -1
+
+                Case TypeOf child Is Controls.ListBox
+                    CType(child, Controls.ListBox).UnselectAll()
+
+                Case TypeOf child Is DatePicker
+                    CType(child, DatePicker).SelectedDate = Nothing
+
+            End Select
+
+            ' Recurse into child elements
+            ResetAllControls(child)
+        Next
+
     End Sub
 
 End Module
