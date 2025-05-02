@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function to remove MailMerge and template using `CleanMailMergeDocument`
 - PatientName and PatientNumber loads in the blue labels when the Add/Edit view opens
 - When doc is closed then the `ReportWizardPanel` is cleared of all valules
+- New feature to save name to Task list if found on TCAR list
 
 ## [0.0.1] - 2025-04-26
 

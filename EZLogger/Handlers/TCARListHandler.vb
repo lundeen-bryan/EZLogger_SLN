@@ -1,12 +1,16 @@
 ﻿Imports System.Data
+Imports System.Linq
 Imports System.Data.SqlClient
 Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports Haley.Utils
 Imports Microsoft.Office.Interop.Word
+Imports System.Collections.ObjectModel
 
 Namespace Handlers
     Public Class TCARListHandler
+        Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
 
         ''' <summary>
         ''' Retrieves all active TCAR records from the database.
@@ -61,6 +65,7 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="grid">The DataGrid displaying TCAR records.</param>
         Public Sub HandleTCARSelect(grid As System.Windows.Controls.DataGrid)
+
             Dim selected As TCARRecord = TryCast(grid.SelectedItem, TCARRecord)
 
             If selected Is Nothing Then
@@ -78,11 +83,21 @@ Namespace Handlers
                 Dim daysSince As Integer = (DateTime.Now - DateTime.Parse(selected.Subdate)).Days
                 DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since TCAR", daysSince.ToString())
 
+                ' ✅ Add task to TaskList
+                Dim message As String = $"{selected.PatientName.ToUpper()} found on TCAR List"
+                Dim taskHandler As New TaskListHandler()
+                taskHandler.AddTaskFromReport(message)
+
                 MsgBoxHelper.Show("TCAR referral details recorded successfully.")
 
             Catch ex As Exception
                 MsgBoxHelper.Show("Unable to access the active Word document. " & ex.Message)
             End Try
+
+        End Sub
+
+        Public Sub Save()
+            TasksIO.SaveTasks(Tasks.ToList())
         End Sub
 
         Public Sub HandleCloseClick(form As Form)
