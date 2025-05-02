@@ -39,7 +39,7 @@ Public Module DatabaseHelper
                     Lname,
                     Fname,
                     Mname,
-                    DischargeStatus,  -- renamed from location
+                    BedStatus,  -- renamed from location
                     Program,
                     Unit,
                     Classification,
@@ -56,6 +56,7 @@ Public Module DatabaseHelper
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+                    '^--Reader pulls the following data from PatientCls
                         If reader.Read() Then
                             Dim patient As New PatientCls With {
                             .PatientNumber = reader("PatientNumber").ToString(),
@@ -68,7 +69,7 @@ Public Module DatabaseHelper
                             .LName = reader("Lname").ToString(),
                             .FName = reader("Fname").ToString(),
                             .MName = reader("Mname").ToString(),
-                            .Location = reader("DischargeStatus").ToString(),
+                            .BedStatus = reader("BedStatus").ToString(),
                             .Program = reader("Program").ToString(),
                             .Unit = reader("Unit").ToString(),
                             .Classification = reader("Classification").ToString(),
