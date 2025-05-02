@@ -167,3 +167,4 @@ JBCT =
 TCAR = 2025-02-12
 TcarOffset = 78
 2025-05-01 13:53:59 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.
+2025-05-02 07:34:41 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.

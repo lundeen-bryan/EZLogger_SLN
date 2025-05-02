@@ -1,6 +1,7 @@
 ﻿Public Class PatientCls
 
     Public Property PatientNumber As String
+
     Public Property FirstPatientNumber As String
 
     Public Property CommitmentDate As String
@@ -19,7 +20,7 @@
 
     Public Property MName As String
 
-    Public Property Location As String          ' Renamed from BedStatus
+    Public Property BedStatus As String          ' Renamed from BedStatus
 
     Public Property Program As String           ' Renamed from P
 

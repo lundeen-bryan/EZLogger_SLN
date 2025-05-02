@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.Office.Interop.Word
+Imports System.IdentityModel.Protocols.WSTrust
 Imports System.Windows.Forms
 Imports MessageBox = System.Windows.MessageBox
 
@@ -40,6 +41,7 @@ Namespace Helpers
                 writeProp("Unit", patient.Unit)
                 writeProp("Classification", patient.Classification)
                 writeProp("County", patient.County)
+                writeProp("Bed Status", patient.BedStatus)
                 ' TODO EZL_CTN when getting new database add this back
                 'writeProp("Court Number", patient.CourtNumbers)
                 writeProp("DOB", patient.DOB)
