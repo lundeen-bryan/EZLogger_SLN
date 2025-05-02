@@ -49,7 +49,7 @@ Namespace Helpers
         ''' <summary>
         ''' Gets the user's Documents folder path.
         ''' </summary>
-        Private Function GetDocumentsFolder() As String
+        Public Function GetDocumentsFolder() As String
             Return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
         End Function
 

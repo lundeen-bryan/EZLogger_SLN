@@ -393,6 +393,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handlers\SaveFileHandler.vb" />
+    <Compile Include="Handlers\SendEmailHandler.vb" />
     <Compile Include="Handlers\ShortcutHandler.vb" />
     <Compile Include="Handlers\TaskListHandler.vb" />
     <Compile Include="Handlers\TCARListHandler.vb" />
@@ -510,6 +511,12 @@
     <Compile Include="HostForms\SaveFileHost.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\SendEmailHost.Designer.vb">
+      <DependentUpon>SendEmailHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\SendEmailHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\TaskListHost.Designer.vb">
       <DependentUpon>TaskListHost.vb</DependentUpon>
     </Compile>
@@ -593,6 +600,9 @@
     <Compile Include="Views\SaveFileView.xaml.vb">
       <DependentUpon>SaveFileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SendEmailView.xaml.vb">
+      <DependentUpon>SendEmailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TaskListView.xaml.vb">
       <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
@@ -656,6 +666,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\SaveFileHost.resx">
       <DependentUpon>SaveFileHost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\SendEmailHost.resx">
+      <DependentUpon>SendEmailHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\TaskListHost.resx">
       <DependentUpon>TaskListHost.vb</DependentUpon>
@@ -760,6 +773,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SendEmailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TaskListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -826,6 +843,24 @@
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole1">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
