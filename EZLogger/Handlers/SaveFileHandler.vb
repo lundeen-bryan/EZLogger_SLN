@@ -1,4 +1,5 @@
-﻿Imports System.Windows
+﻿Imports System.Globalization
+Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
@@ -181,7 +182,10 @@ Namespace Handlers
             End If
 
             ' Pull data from view
-            Dim patientName As String = view.LblPatientName.Content?.ToString()
+            Dim Lname As String = DocumentPropertyHelper.GetPropertyValue("Lastname")
+            Dim Fname As String = DocumentPropertyHelper.GetPropertyValue("Firstname").ToLower()
+            Dim textInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
+            Dim patientName As String = Lname & ", " & textInfo.ToTitleCase(Fname)
             Dim reportType As String = view.ReportTypeCbo.Text
             Dim reportDate As Date? = view.ReportDatePicker.SelectedDate
 
