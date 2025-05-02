@@ -72,7 +72,12 @@ Public Class EZLoggerRibbonXml
     End Sub
 
     Public Sub EmailButton_Click(control As Office.IRibbonControl)
-        'Keep
+        Try
+            Dim emailHost As New SendEmailHost()
+            emailHost.Show()
+        Catch ex As Exception
+            MsgBox("Failed to open Email window: " & ex.Message)
+        End Try
     End Sub
 
     Public Sub TypoButton_Click(control As Office.IRibbonControl)
