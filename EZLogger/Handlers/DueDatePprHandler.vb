@@ -74,10 +74,10 @@ Namespace Handlers
                     DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due Date", nextDueDate.Value.ToString("MM/dd/yyyy"))
                 End If
 
-                MessageBox.Show("PPR due dates saved to document properties.", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Information)
+                MsgBoxHelper.Show("PPR due dates saved to document properties.")
 
             Catch ex As Exception
-                MessageBox.Show($"Unexpected error: {ex.Message}", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Error)
+                MsgBoxHelper.Show($"Unexpected error: {ex.Message}")
             End Try
         End Sub
 
