@@ -68,9 +68,6 @@ Namespace Handlers
                 Exit Sub
             End If
 
-            ' Set CurrentDueDatePicker with this value
-            'view.PickCurrentDueDate.SelectedDate = currentDueDate
-
             ' Determine next label date (if available)
             Dim nextLabelDate As Date = currentDueDate.AddMonths(6) ' fallback default
 
@@ -93,22 +90,10 @@ Namespace Handlers
                 End If
             End If
 
-			' TODO: add this back in if necessary
-            ' Set NextDueDatePicker
-            ''''view.PickNextDueDate.SelectedDate = nextLabelDate
-
             ' Write all document properties
             DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
             DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextLabelDate.ToString("MM/dd/yyyy"))
 
-            ' Write Report Date (from CurrentReportDate picker)
-            'If view.CurrentReportDate.SelectedDate.HasValue Then
-            '    Dim reportDate As Date = view.CurrentReportDate.SelectedDate.Value
-            '    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate.ToString("MM/dd/yyyy"))
-            'End If
-
-            ' Calculate and write Rush Status and Days Since Due
-            'RushStatusHelper.SetRushStatusAndDaysSinceDue(view)
 
             MsgBoxHelper.Show("Report cycle and due dates have been saved.")
         End Sub
@@ -162,10 +147,6 @@ Namespace Handlers
                 Exit Sub ' If no valid date, just stop
             End If
 
-            'If view.ReportTypeViewCbo.SelectedValue = "" Then
-            '    Exit Sub ' No report type selected
-            'End If
-
             If classification = "PC1370" Then
                 ' Fill extended date labels
                 Dim ninetyDayDate As Date = parsedDate.AddDays(90)
@@ -192,19 +173,6 @@ Namespace Handlers
                     currentDueDate = New Date(currentYear, parsedDate.Month, 1).AddMonths(1)
                 End Try
 
-                ' Next Due Date is 6 months after the current due date
-                Dim nextDueDate As Date = currentDueDate.AddMonths(6)
-
-                ' LabelFirstDueDate is always 6 months after original commitment date
-                Dim firstDueFromCommitment As Date = parsedDate.AddMonths(6)
-
-                ' Set labels
-                'view.LabelCommitmentDate2.Content = parsedDate.ToString("MM/dd/yyyy")
-                'view.LabelFirstDueDate.Content = firstDueFromCommitment.ToString("MM/dd/yyyy")
-
-                '' Set date pickers
-                'view.PickCurrentDueDate.SelectedDate = currentDueDate
-                'view.PickNextDueDate.SelectedDate = nextDueDate
             End If
         End Sub
 
