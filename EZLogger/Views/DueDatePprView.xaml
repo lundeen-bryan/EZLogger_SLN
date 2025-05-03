@@ -141,16 +141,16 @@
                          Margin="24,0,0,0" />
             </StackPanel>
         </Grid>
-        <Button Grid.Row="7"
+        <Button Grid.Row="6"
                 x:Name="ContinueBtn"
-                Content="_Save"
+                Content="_Save Choice"
                 HorizontalAlignment="Center"
                 Padding="10,5"
                 Background="White"
-                Width="100" />
+                Width="120" Margin="0,65,0,0" Grid.RowSpan="2" />
         <Button Grid.Row="8"
                 x:Name="GoBackBtn"
-                Content="_Done"
+                Content="Go _Back"
                 Padding="10,5"
                 Background="White"
                 Width="100"
