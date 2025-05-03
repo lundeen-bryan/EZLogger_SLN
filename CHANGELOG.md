@@ -23,6 +23,11 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - when filename is created it shows firstname in title case lastname in upper
 
+### Added
+
+- check config func
+- can send email
+
 ## [0.0.1] - 2025-05-01
 
 ### Added
