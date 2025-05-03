@@ -3,23 +3,23 @@
 ' !See Label Footer for notes
 
 Imports EZLogger.Helpers
+Imports Microsoft.Office.Interop.Word
 Imports System.Windows
 Imports System.Windows.Forms
-Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers
+    ''' <summary>
+    ''' Adds a new author to the list of doctors
+    ''' </summary>
+    ''' <remarks>Config manager also adds authors</remarks>
     Public Class EvaluatorHandler ' Example: ConfigViewHandler
 
         ''' <summary>
-        ''' Opens the Evaluator View by creating and showing a new EvaluatorHost instance.
+        ''' Adds a new author to the doctors list
         ''' </summary>
-        ''' <remarks>
-        ''' This method is typically called when the user requests to open the Evaluator View,
-        ''' such as clicking a button or selecting a menu item.
-        ''' </remarks>
-        Public Sub OnOpenEvaluatorViewClick()
-            Dim host As New EvaluatorHost()
-            host.Show()
+        ''' <remarks>See config manager where you can also add authors/doctors</remarks>
+        Public Sub HandleAddAuthorClick()
+            MsgBox("You clicked Add New Author")
         End Sub
 
         ''' <summary>
@@ -30,12 +30,40 @@ Namespace Handlers
         ''' This method checks if the provided form is not null before attempting to close it.
         ''' If the form is null, no action is taken.
         ''' </remarks>
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
-        Public Sub HandleAddAuthorClick()
-            MsgBox("You clicked Add New Author")
+        ''' <summary>
+        ''' Handles the action when the user finishes selecting an evaluator.
+        ''' This method saves the selected evaluator as a custom property in the active document.
+        ''' </summary>
+        ''' <param name="view">The EvaluatorView instance containing the UI elements, including the combo box with the selected evaluator.</param>
+        ''' <remarks>
+        ''' This method performs the following actions:
+        ''' 1. Retrieves the selected evaluator from the combo box.
+        ''' 2. Validates that an evaluator has been selected.
+        ''' 3. Saves the selected evaluator as a custom property in the active document.
+        ''' 4. Displays a success message if the evaluator is saved successfully.
+        ''' 5. Displays an error message if any exception occurs during the process.
+        ''' </remarks>
+        Public Sub HandleDoneSelectingClick(view As EvaluatorView)
+            Try
+                Dim selectedEvaluator As String = TryCast(view.AuthorCbo.SelectedItem, String)
+
+                If String.IsNullOrWhiteSpace(selectedEvaluator) Then
+                    MsgBoxHelper.Show("Please select an evaluator before saving.")
+                    Return
+                End If
+
+                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Evaluator", selectedEvaluator)
+
+                MsgBoxHelper.Show($"Evaluator '{selectedEvaluator}' saved successfully.")
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Error saving evaluator: " & ex.Message)
+            End Try
         End Sub
 
         ''' <summary>
@@ -81,35 +109,15 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Handles the action when the user finishes selecting an evaluator.
-        ''' This method saves the selected evaluator as a custom property in the active document.
+        ''' Opens the Evaluator View by creating and showing a new EvaluatorHost instance.
         ''' </summary>
-        ''' <param name="view">The EvaluatorView instance containing the UI elements, including the combo box with the selected evaluator.</param>
         ''' <remarks>
-        ''' This method performs the following actions:
-        ''' 1. Retrieves the selected evaluator from the combo box.
-        ''' 2. Validates that an evaluator has been selected.
-        ''' 3. Saves the selected evaluator as a custom property in the active document.
-        ''' 4. Displays a success message if the evaluator is saved successfully.
-        ''' 5. Displays an error message if any exception occurs during the process.
+        ''' This method is typically called when the user requests to open the Evaluator View,
+        ''' such as clicking a button or selecting a menu item.
         ''' </remarks>
-        Public Sub HandleDoneSelectingClick(view As EvaluatorView)
-            Try
-                Dim selectedEvaluator As String = TryCast(view.AuthorCbo.SelectedItem, String)
-
-                If String.IsNullOrWhiteSpace(selectedEvaluator) Then
-                    MsgBoxHelper.Show("Please select an evaluator before saving.")
-                    Return
-                End If
-
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Evaluator", selectedEvaluator)
-
-                MsgBoxHelper.Show($"Evaluator '{selectedEvaluator}' saved successfully.")
-
-            Catch ex As Exception
-                MsgBoxHelper.Show("Error saving evaluator: " & ex.Message)
-            End Try
+        Public Sub OnOpenEvaluatorViewClick()
+            Dim host As New EvaluatorHost()
+            host.Show()
         End Sub
 
         ''' <summary>

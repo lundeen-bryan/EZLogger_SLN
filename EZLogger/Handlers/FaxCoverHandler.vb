@@ -11,8 +11,6 @@ Imports Microsoft.Office.Interop.Word
 Namespace Handlers
     Public Class FaxCoverHandler
 
-        Private Const Sep As String = "\"
-
         ''' <summary>
         ''' Displays the Fax Cover form in a new window.
         ''' </summary>
@@ -187,7 +185,8 @@ Namespace Handlers
 
                 ' Paths
                 .TempFolder = TempFileHelper.GetTempFolder()
-                .TemplatesPath = ConfigHelper.GetLocalConfigValue("sp_filepath", "databases") & Sep & "Templates"
+                .TemplatesPath = Path.Combine(ConfigHelper.GetLocalConfigValue("sp_filepath", "databases"), "Templates")
+                '^-- Combine path segments safely using Path.Combine to ensure correct path formatting
             End With
             Return info
         End Function

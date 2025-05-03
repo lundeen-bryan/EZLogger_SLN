@@ -51,7 +51,6 @@ Public Class SendEmailHandler
             Dim outlookApp = New Microsoft.Office.Interop.Outlook.Application()
             Dim mailItem As MailItem = CType(outlookApp.CreateItem(OlItemType.olMailItem), MailItem)
 
-            Dim globalConfigPath = ConfigHelper.GetGlobalConfigPath()
             Dim toAddress = ConfigHelper.GetGlobalConfigValue("Dsh_Holdovers", "email")
 
             'Sender
@@ -72,6 +71,9 @@ Public Class SendEmailHandler
                 .UnRead = False
                 .Display()
             End With
+
+            ' Close the SendEmailView after the email is generated
+            hostForm?.Close()
 
         Catch ex As SystemException
             MessageBox.Show("Error preparing email: " & ex.Message)

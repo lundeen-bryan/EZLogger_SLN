@@ -4,17 +4,17 @@ Imports UserControl = System.Windows.Controls.UserControl
 Imports System.Windows
 Imports System.Windows.Forms
 
-Public Class TCARListView
+Public Class TcarListView
     Inherits UserControl
 
-    Private ReadOnly _handler As New TCARListHandler()
+    Private ReadOnly _handler As New TcarListHandler()
     Private ReadOnly _hostForm As Form
 
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
 
         _hostForm = hostForm
-        _handler = New TCARListHandler()
+        _handler = New TcarListHandler()
         WireUpButtons()
     End Sub
 
@@ -33,7 +33,7 @@ Public Class TCARListView
 
     ' This method is wired up in XAML and simply delegates to the handler
     Private Sub BtnSelectPatient_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleTCARSelect(TCARGrid)
+        _handler.HandleTcarSelect(TCARGrid)
     End Sub
 
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)

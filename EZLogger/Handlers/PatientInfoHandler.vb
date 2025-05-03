@@ -274,8 +274,12 @@ Namespace Handlers
             End Try
         End Sub
 
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        ''' <summary>
+        ''' Closes the PatientInfoView
+        ''' </summary>
+        ''' <remarks>Safer closing approach</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
     End Class

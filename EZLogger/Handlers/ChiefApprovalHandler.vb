@@ -9,18 +9,6 @@ Namespace Handlers
     Public Class ChiefApprovalHandler
 
         ''' <summary>
-        ''' Opens and displays the Chief Approval Host window.
-        ''' </summary>
-        ''' <remarks>
-        ''' This method creates a new instance of the ChiefApprovalHost form and shows it to the user.
-        ''' It is typically called when the user initiates the chief approval process.
-        ''' </remarks>
-        Public Sub OnOpenChiefHostClick()
-            Dim host As New ChiefApprovalHost()
-            host.Show()
-        End Sub
-
-        ''' <summary>
         ''' Handles the approval process when an approver is selected.
         ''' </summary>
         ''' <param name="selectedName">The name of the selected approver.</param>
@@ -46,6 +34,18 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
+        ''' Handles the closing of a specified form.
+        ''' </summary>
+        ''' <param name="form">The Form object to be closed. If null, no action is taken.</param>
+        ''' <remarks>
+        ''' This method checks if the provided form is not null before attempting to close it.
+        ''' It's typically used to safely close a form when a close action is triggered.
+        ''' </remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close
+        End Sub
+
+        ''' <summary>
         ''' Handles the process of inserting a signature when an approver is selected.
         ''' </summary>
         ''' <param name="selectedName">The name of the selected approver whose signature will be inserted.</param>
@@ -67,15 +67,15 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Handles the closing of a specified form.
+        ''' Opens and displays the Chief Approval Host window.
         ''' </summary>
-        ''' <param name="form">The Form object to be closed. If null, no action is taken.</param>
         ''' <remarks>
-        ''' This method checks if the provided form is not null before attempting to close it.
-        ''' It's typically used to safely close a form when a close action is triggered.
+        ''' This method creates a new instance of the ChiefApprovalHost form and shows it to the user.
+        ''' It is typically called when the user initiates the chief approval process.
         ''' </remarks>
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        Public Sub OnOpenChiefHostClick()
+            Dim host As New ChiefApprovalHost()
+            host.Show()
         End Sub
 
     End Class

@@ -8,12 +8,12 @@ Imports System.Windows.Forms
 Namespace Handlers
     Public Class OpinionHandler
 
-        Private ReadOnly _wordApp As Word.Application
+        Private ReadOnly _wordApp As Word.Application = GetWordApp()
+        '^--Cached Word application instance, retrieved from global context
 
-        Public Sub New(wordApp As Word.Application)
-            _wordApp = wordApp
+        Public Sub New()
+            ' Intentionally empty
         End Sub
-
 
         ''' <summary>
         ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets,
@@ -51,14 +51,26 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Moves cursor to first page
+        ''' </summary>
+        ''' <remarks>Use with LastPageClick</remarks>
         Public Sub HandleOpinionFirstPageClick()
             NavigationHelper.GoToFirstPage(_wordApp)
         End Sub
 
+        ''' <summary>
+        ''' Moves cursor to last page
+        ''' </summary>
+        ''' <remarks>Use with Handle FirstPageClick</remarks>
         Public Sub HandleOpinionLastPageClick()
             NavigationHelper.GoToLastPage(_wordApp)
         End Sub
 
+        ''' <summary>
+        ''' Closes the OpinionView when clicked
+        ''' </summary>
+        ''' <remarks>must pass hostform (Me)</remarks>
         Public Sub HandleCloseClick(hostForm As Form)
             hostForm?.Close()
         End Sub

@@ -8,25 +8,20 @@ Imports System.Windows.Forms
 Namespace Handlers
     Public Class DueDates1370Handler
 
-        Public Sub HandleGoBackClick(hostForm As Form)
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            Dim commitmentRaw As String = ""
-
-            If doc IsNot Nothing Then
-                Try
-                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
-                Catch ex As Exception
-                    commitmentRaw = ""
-                End Try
-            End If
-
-            Dim reportTypeHandler As New ReportTypeHandler()
-            reportTypeHandler.LaunchReportTypeView(commitmentRaw)
-
-            ' Close the current form
-            hostForm?.Close()
-        End Sub
-
+        ''' <summary>
+        ''' Handles the acceptance of the first due date for a 1370 report.
+        ''' </summary>
+        ''' <param name="view">The DueDates1370View instance containing the UI elements and user selections.</param>
+        ''' <remarks>
+        ''' This function performs the following actions:
+        ''' 1. Retrieves the active Word document.
+        ''' 2. Determines the selected due date cycle from radio buttons.
+        ''' 3. Sets the Report Cycle property in the document.
+        ''' 4. Parses and validates the current due date.
+        ''' 5. Calculates the next due date based on the selected cycle.
+        ''' 6. Writes current and next due dates to document properties.
+        ''' 7. Displays a confirmation message to the user.
+        ''' </remarks>
         Public Sub HandleAcceptIstDueDate(view As DueDates1370View)
             ' Get active Word document
             Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
@@ -96,6 +91,119 @@ Namespace Handlers
 
 
             MsgBoxHelper.Show("Report cycle and due dates have been saved.")
+        End Sub
+
+        ''' <summary>
+        ''' Handles the "Go Back" action, returning to the previous view and closing the current form.
+        ''' </summary>
+        ''' <param name="hostForm">The Form instance representing the current view to be closed.</param>
+        ''' <remarks>
+        ''' This function performs the following actions:
+        ''' 1. Attempts to retrieve the "Commitment" custom property from the active Word document.
+        ''' 2. Launches the ReportTypeView with the retrieved commitment value.
+        ''' 3. Closes the current form (hostForm).
+        ''' If no active document is found or the "Commitment" property is not available, an empty string is used.
+        ''' </remarks>
+        Public Sub HandleGoBackClick(hostForm As Form)
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim commitmentRaw As String = ""
+
+            If doc IsNot Nothing Then
+                Try
+                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+                Catch ex As Exception
+                    commitmentRaw = ""
+                End Try
+            End If
+
+            Dim reportTypeHandler As New ReportTypeHandler()
+            reportTypeHandler.LaunchReportTypeView(commitmentRaw)
+
+            ' Close the current form
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
+        ''' Handles the saving of the 1370 choice selected by the user.
+        ''' This function processes the selected due date cycle, updates document properties,
+        ''' and calculates the next due date based on the user's selection.
+        ''' </summary>
+        ''' <param name="view">The DueDates1370View instance containing the UI elements and user selections.</param>
+        ''' <remarks>
+        ''' This function performs the following actions:
+        ''' 1. Retrieves the active Word document.
+        ''' 2. Determines the selected due date cycle from radio buttons.
+        ''' 3. Writes the Report Cycle to document properties.
+        ''' 4. Parses and validates the current due date.
+        ''' 5. Updates Rush Status and Days Since Due.
+        ''' 6. Calculates the next due date based on the selected cycle.
+        ''' 7. Writes current and next due dates to document properties.
+        ''' 8. Closes the current view and returns to the previous screen.
+        ''' </remarks>
+        Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
+            ' TODO: use handler instead of this code
+            ' Get the active Word document
+            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            If doc Is Nothing Then
+                MsgBoxHelper.Show("No active Word document found.")
+                Exit Sub
+            End If
+
+            ' Determine which radio button is selected and map to its corresponding label
+            Dim selectedLabel As System.Windows.Controls.Label = Nothing
+            Dim reportCycle As String = Nothing
+
+            If view.NinetyDayRdo.IsChecked Then
+                selectedLabel = view.NinetyDayLbl
+                reportCycle = view.NinetyDayRdo.Tag?.ToString()
+            ElseIf view.NineMoRdo.IsChecked Then
+                selectedLabel = view.NineMoLbl
+                reportCycle = view.NineMoRdo.Tag?.ToString()
+            ElseIf view.FifteenMoRdo.IsChecked Then
+                selectedLabel = view.FifteenMoLbl
+                reportCycle = view.FifteenMoRdo.Tag?.ToString()
+            ElseIf view.TwentyOneMoRdo.IsChecked Then
+                selectedLabel = view.TwentyOneMoLbl
+                reportCycle = view.TwentyOneMoRdo.Tag?.ToString()
+            Else
+                MsgBoxHelper.Show("You must select a due date cycle before saving.")
+                Exit Sub
+            End If
+
+            ' Write Report Cycle to document properties
+            If Not String.IsNullOrWhiteSpace(reportCycle) Then
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
+            End If
+
+            ' Parse current due date from selected label
+            Dim currentDueDate As Date
+            If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
+                MsgBoxHelper.Show("Invalid or missing current due date.")
+                Exit Sub
+            End If
+
+            ' Write Rush Status and Days Since Due to doc properties
+            RushStatusHelper.SetRushStatusAndDaysSinceDue(currentDueDate)
+
+            ' Determine the next due date
+            Dim nextDueDate As Date = currentDueDate ' default to same date (for 21-month case)
+            If selectedLabel Is view.NinetyDayLbl Then
+                Date.TryParse(view.NineMoLbl.Content?.ToString(), nextDueDate)
+            ElseIf selectedLabel Is view.NineMoLbl Then
+                Date.TryParse(view.FifteenMoLbl.Content?.ToString(), nextDueDate)
+            ElseIf selectedLabel Is view.FifteenMoLbl Then
+                Date.TryParse(view.TwentyOneMoLbl.Content?.ToString(), nextDueDate)
+            End If
+            ' If TwentyOneMoLbl is selected, nextDueDate remains the same as currentDueDate
+
+            ' Write due dates to document properties
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
+            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
+
+            ' (Rush Status helper to be added later)
+
+            ' Notify logic complete (no MsgBox per your request)
+            HandleGoBackClick(view.HostForm)
         End Sub
 
         ''' <summary>
@@ -174,89 +282,6 @@ Namespace Handlers
                 End Try
 
             End If
-        End Sub
-
-        ''' <summary>
-        ''' Handles the saving of the 1370 choice selected by the user.
-        ''' This function processes the selected due date cycle, updates document properties,
-        ''' and calculates the next due date based on the user's selection.
-        ''' </summary>
-        ''' <param name="view">The DueDates1370View instance containing the UI elements and user selections.</param>
-        ''' <remarks>
-        ''' This function performs the following actions:
-        ''' 1. Retrieves the active Word document.
-        ''' 2. Determines the selected due date cycle from radio buttons.
-        ''' 3. Writes the Report Cycle to document properties.
-        ''' 4. Parses and validates the current due date.
-        ''' 5. Updates Rush Status and Days Since Due.
-        ''' 6. Calculates the next due date based on the selected cycle.
-        ''' 7. Writes current and next due dates to document properties.
-        ''' 8. Closes the current view and returns to the previous screen.
-        ''' </remarks>
-        Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
-        	' TODO: use handler instead of this code
-            ' Get the active Word document
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            If doc Is Nothing Then
-                MsgBoxHelper.Show("No active Word document found.")
-                Exit Sub
-            End If
-
-            ' Determine which radio button is selected and map to its corresponding label
-            Dim selectedLabel As System.Windows.Controls.Label = Nothing
-            Dim reportCycle As String = Nothing
-
-            If view.NinetyDayRdo.IsChecked Then
-                selectedLabel = view.NinetyDayLbl
-                reportCycle = view.NinetyDayRdo.Tag?.ToString()
-            ElseIf view.NineMoRdo.IsChecked Then
-                selectedLabel = view.NineMoLbl
-                reportCycle = view.NineMoRdo.Tag?.ToString()
-            ElseIf view.FifteenMoRdo.IsChecked Then
-                selectedLabel = view.FifteenMoLbl
-                reportCycle = view.FifteenMoRdo.Tag?.ToString()
-            ElseIf view.TwentyOneMoRdo.IsChecked Then
-                selectedLabel = view.TwentyOneMoLbl
-                reportCycle = view.TwentyOneMoRdo.Tag?.ToString()
-            Else
-                MsgBoxHelper.Show("You must select a due date cycle before saving.")
-                Exit Sub
-            End If
-
-            ' Write Report Cycle to document properties
-            If Not String.IsNullOrWhiteSpace(reportCycle) Then
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
-            End If
-
-            ' Parse current due date from selected label
-            Dim currentDueDate As Date
-            If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
-                MsgBoxHelper.Show("Invalid or missing current due date.")
-                Exit Sub
-            End If
-
-            ' Write Rush Status and Days Since Due to doc properties
-            RushStatusHelper.SetRushStatusAndDaysSinceDue(currentDueDate)
-
-            ' Determine the next due date
-            Dim nextDueDate As Date = currentDueDate ' default to same date (for 21-month case)
-            If selectedLabel Is view.NinetyDayLbl Then
-                Date.TryParse(view.NineMoLbl.Content?.ToString(), nextDueDate)
-            ElseIf selectedLabel Is view.NineMoLbl Then
-                Date.TryParse(view.FifteenMoLbl.Content?.ToString(), nextDueDate)
-            ElseIf selectedLabel Is view.FifteenMoLbl Then
-                Date.TryParse(view.TwentyOneMoLbl.Content?.ToString(), nextDueDate)
-            End If
-            ' If TwentyOneMoLbl is selected, nextDueDate remains the same as currentDueDate
-
-            ' Write due dates to document properties
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
-
-            ' (Rush Status helper to be added later)
-
-            ' Notify logic complete (no MsgBox per your request)
-            HandleGoBackClick(view.HostForm)
         End Sub
 
 

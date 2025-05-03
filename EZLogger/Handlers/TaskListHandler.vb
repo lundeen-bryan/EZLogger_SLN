@@ -79,10 +79,17 @@ Public Class TaskListHandler
         SaveAll()
     End Sub
 
+    ''' <summary>
+    ''' Calls SaveAll so items can be changed on the fly
+    ''' </summary>
     Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
         SaveAll()
     End Sub
 
+    ''' <summary>
+    ''' Saves given task to Tasks.xml
+    ''' </summary>
+    ''' <remarks>See Config manager for location of local config and tasks.xml</remarks>
     Private Sub SaveAll()
         TasksIO.SaveTasks(Tasks.ToList())
     End Sub

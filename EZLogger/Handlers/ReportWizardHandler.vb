@@ -192,7 +192,7 @@ Namespace Handlers
         End Sub
 
         Public Sub ShowBtnFMessage()
-            Dim opHandler As New OpinionHandler(Globals.ThisAddIn.Application)
+            Dim opHandler As New OpinionHandler()
             opHandler.OnOpenOpinionFormClick()
         End Sub
 

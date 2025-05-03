@@ -4,9 +4,9 @@
 
 Imports EZLogger.Helpers
 Imports EZLogger.Models
+Imports System.IO
 Imports System.Windows
 Imports MessageBox = System.Windows.MessageBox
-Imports System.IO
 Imports System.Text.Json
 
 Namespace Handlers
@@ -441,6 +441,16 @@ Namespace Handlers
             MsgBox("You clicked Delete County Alert button")
         End Sub
 
+        ''' <summary>
+        ''' Handles the click event for editing email settings based on selected radio buttons.
+        ''' </summary>
+        ''' <param name="r1">RadioButton representing the "Secretaries" option.</param>
+        ''' <param name="r2">RadioButton representing the "Friday" option.</param>
+        ''' <param name="r3">RadioButton representing the "Competent" option.</param>
+        ''' <remarks>
+        ''' This method checks which radio button is selected and displays a message box accordingly.
+        ''' If no radio button is selected, it shows a message indicating that no option is selected.
+        ''' </remarks>
         Public Sub HandleEditEmailClick(r1 As System.Windows.Controls.RadioButton, r2 As System.Windows.Controls.RadioButton, r3 As System.Windows.Controls.RadioButton)
             If r1.IsChecked = True Then
                 MsgBox("Secretaries radio is selected")
