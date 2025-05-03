@@ -1,13 +1,12 @@
-﻿Imports System.Windows
+﻿' Namespace=EZLogger/Handlers
+' Filename=ReportTypeHandler.vb
+' !See Label Footer for notes
+
+Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
-Imports Application = Microsoft.Office.Interop.Word.Application
-Imports Word = Microsoft.Office.Interop.Word
-
-
 
 Namespace Handlers
-
     Public Class ReportTypeHandler
 
         ''' <summary>
@@ -329,6 +328,18 @@ Namespace Handlers
         End Sub
 
     End Class
-
 End Namespace
 
+' Footer:
+''===========================================================================================
+'' Filename: .......... ReportTypeHandler.vb
+'' Description: ....... Handles button clicks in the ReportTypeView
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

@@ -1,12 +1,11 @@
-﻿Imports System.Windows
+﻿' Namespace=EZLogger/Handlers
+' Filename=DueDatePprHandler.vb
+' !See Label Footer for notes
+
 Imports System.Windows.Forms
-Imports EZLogger.EZLogger
 Imports EZLogger.Helpers
-Imports MessageBox = System.Windows.MessageBox
-Imports Word = Microsoft.Office.Interop.Word
 
 Namespace Handlers
-
     Public Class DueDatePprHandler
 
         ''' <summary>
@@ -20,10 +19,10 @@ Namespace Handlers
                     Dim newDate As Date = selectedDate.AddYears(-1)
                     view.CurrentDueDatePick.SelectedDate = newDate
                 Else
-                    MessageBox.Show("Please select a current due date first.", "Missing Date", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    MsgBoxHelper.Show("Please select a current due date first.")
                 End If
             Catch ex As Exception
-                MessageBox.Show($"Error adjusting year: {ex.Message}", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Error)
+                MsgBoxHelper.Show($"Error adjusting year: {ex.Message}")
             End Try
         End Sub
 
@@ -41,10 +40,10 @@ Namespace Handlers
                     view.CurrentDueDatePick.SelectedDate = nextDue
                     view.NextDueDatePick.SelectedDate = current
                 Else
-                    MessageBox.Show("Both due dates must be selected to switch them.", "Missing Dates", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    MsgBoxHelper.Show("Both due dates must be selected to switch them.")
                 End If
             Catch ex As Exception
-                MessageBox.Show($"Error switching dates: {ex.Message}", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Error)
+                MsgBoxHelper.Show($"Error switching dates: {ex.Message}")
             End Try
         End Sub
 
@@ -57,7 +56,7 @@ Namespace Handlers
                 ' Get the active Word document
                 Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
                 If doc Is Nothing Then
-                    MessageBox.Show("No active Word document found.", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    MsgBoxHelper.Show("No active Word document found.")
                     Exit Sub
                 End If
 
@@ -95,10 +94,10 @@ Namespace Handlers
                     ' Positive if due date is in the future, negative if overdue
                     view.DaysSinceTxt.Text = daysDifference.ToString()
                 Else
-                    MessageBox.Show("Please select a Current Due Date before proceeding.", "Missing Date", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    MsgBoxHelper.Show("Please select a Current Due Date before proceeding.")
                 End If
             Catch ex As Exception
-                MessageBox.Show($"Error calculating days difference: {ex.Message}", "EZLogger", MessageBoxButton.OK, MessageBoxImage.Error)
+                MsgBoxHelper.Show($"Error calculating days difference: {ex.Message}")
             End Try
         End Sub
 
@@ -125,5 +124,18 @@ Namespace Handlers
         End Sub
 
     End Class
-
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DueDatePprHandler.vb
+'' Description: ....... description
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

@@ -1,4 +1,8 @@
-﻿Imports System.Globalization
+﻿' Namespace=EZLogger/Handlers
+' Filename=SaveFileHandler.vb
+' !See Label Footer for notes
+
+Imports System.Globalization
 Imports System.Windows
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
@@ -6,10 +10,6 @@ Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 
 Namespace Handlers
-
-    ''' <summary>
-    ''' Provides logic for save-related operations in EZLogger.
-    ''' </summary>
     Public Class SaveFileHandler
 
         Private _moveRootPath As String
@@ -252,5 +252,18 @@ Namespace Handlers
             End Try
         End Sub
     End Class
-
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... SaveFileHandler.vb
+'' Description: ....... Provides logic for save-related operations in EZLogger.
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

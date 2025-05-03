@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Outlook
+﻿' Namespace=EZLogger/Handlers
+' Filename=SendEmailHandler.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Outlook
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
 
@@ -103,3 +107,17 @@ Public Class SendEmailHandler
     End Function
 
 End Class
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... SendEmailHandler.vb
+'' Description: ....... Handles the task of creating an Outlook email for sending reports
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

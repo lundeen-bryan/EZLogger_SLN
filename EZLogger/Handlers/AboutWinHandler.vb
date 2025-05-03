@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿' Namespace=EZLogger/Handlers
+' Filename=AboutWinHandler.vb
+Imports System.IO
 Imports System.Text.Json
 Imports System.Windows.Forms
 Imports EZLogger.Models
@@ -7,8 +9,14 @@ Namespace Handlers
     Public Class AboutWinHandler
 
         ''' <summary>
-        ''' Reads version metadata from the global config file.
+        ''' Loads and parses the About information from the specified configuration file.
         ''' </summary>
+        ''' <param name="configFilePath">The full path to the configuration file containing the About information.</param>
+        ''' <returns>An AboutInfoResult object containing the parsed About information or an error message if the loading fails.</returns>
+        ''' <remarks>
+        ''' This function reads a JSON configuration file and extracts version-related information.
+        ''' If an error occurs during the process, the error message is stored in the ErrorMessage property of the returned AboutInfoResult.
+        ''' </remarks>
         Public Function LoadAboutInfo(configFilePath As String) As AboutInfoResult
             Dim result As New AboutInfoResult()
 
@@ -36,3 +44,16 @@ Namespace Handlers
 
     End Class
 End Namespace
+' Footer:
+''===========================================================================================
+'' Filename: .......... AboutWinHandler.vb
+'' Description: ....... Shows the about EZLogger form
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

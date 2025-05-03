@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
+﻿' Namespace=EZLogger/Handlers
+' Filename=PrcHandler.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
 Imports System.IO
 
@@ -134,3 +138,17 @@ Namespace Handlers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... PrcHandler.vb
+'' Description: ....... Handles the adding of data to the EZL_PRC table
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

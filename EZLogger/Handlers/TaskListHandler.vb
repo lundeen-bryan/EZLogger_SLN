@@ -1,9 +1,10 @@
-﻿Imports System
+﻿' Namespace=EZLogger/Handlers
+' Filename=TaskListHandler.vb
+' !See Label Footer for notes
+
 Imports System.Collections.ObjectModel
 Imports System.Collections.Specialized
 Imports System.ComponentModel
-Imports EZLogger.Models
-Imports EZLogger.Helpers
 
 Public Class TaskListHandler
 
@@ -47,6 +48,15 @@ Public Class TaskListHandler
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Handles changes in the Tasks collection, specifically when new items are added.
+    ''' </summary>
+    ''' <param name="sender">The source of the collection changed event.</param>
+    ''' <param name="e">A NotifyCollectionChangedEventArgs that contains the event data.</param>
+    ''' <remarks>
+    ''' This method attaches the OnItemChanged event handler to each new TaskItem added to the collection.
+    ''' After processing new items, it calls SaveAll() to persist the changes.
+    ''' </remarks>
     Private Sub OnCollectionChanged(sender As Object, e As NotifyCollectionChangedEventArgs)
         ' Hook new items
         If e.NewItems IsNot Nothing Then
@@ -54,10 +64,6 @@ Public Class TaskListHandler
                 AddHandler itm.PropertyChanged, AddressOf OnItemChanged
             Next
         End If
-        SaveAll()
-    End Sub
-
-    Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
         SaveAll()
     End Sub
 
@@ -73,8 +79,26 @@ Public Class TaskListHandler
         SaveAll()
     End Sub
 
+    Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
+        SaveAll()
+    End Sub
+
     Private Sub SaveAll()
         TasksIO.SaveTasks(Tasks.ToList())
     End Sub
 
 End Class
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... TaskListHandler.vb
+'' Description: ....... Handles the task list, adding and updating
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================
