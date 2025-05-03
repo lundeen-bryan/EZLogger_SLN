@@ -1,22 +1,25 @@
-﻿Imports System.IO
+﻿' Namespace=EZLogger/Handlers
+' Filename=FaxCoverHandler.vb
+' !See Label Footer for notes
+
+Imports System.IO
 Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
 Imports EZLogger.Models
-Imports System.Diagnostics
 
 Namespace Handlers
-
-    ''' <summary>
-    ''' Provides logic related to generating or managing fax cover sheets in EZLogger.
-    ''' </summary>
     Public Class FaxCoverHandler
 
         Private Const Sep As String = "\"
 
         ''' <summary>
-        ''' Displays the Fax Cover form (hosted view).
+        ''' Displays the Fax Cover form in a new window.
         ''' </summary>
+        ''' <remarks>
+        ''' This method creates a new instance of the FaxCoverHost form and shows it to the user.
+        ''' The form is displayed modally, meaning it will block interaction with other windows until it is closed.
+        ''' </remarks>
         Public Sub ShowFaxCoverMessage()
             Dim host As New FaxCoverHost()
             host.Show()
@@ -150,8 +153,15 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Reads document properties and config paths into a FaxCoverInfo object.
+        ''' Populates and returns a FaxCoverInfo object with information retrieved from document properties and configuration settings.
         ''' </summary>
+        ''' <returns>
+        ''' A FaxCoverInfo object containing patient information, report details, and relevant paths for fax cover generation.
+        ''' </returns>
+        ''' <remarks>
+        ''' This function retrieves various pieces of information from document properties using the DocumentPropertyHelper,
+        ''' parses dates, and sets up necessary paths. It's used to prepare all the required data for generating a fax cover sheet.
+        ''' </remarks>
         Private Function PopulateFaxCoverInfo() As FaxCoverInfo
             Dim info As New FaxCoverInfo()
             With info
@@ -184,3 +194,17 @@ Namespace Handlers
 
     End Class
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... FaxCoverHandler.vb
+'' Description: ....... Provides logic related to generating or managing fax cover sheets in EZLogger
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

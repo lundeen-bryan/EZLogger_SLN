@@ -1,10 +1,12 @@
-﻿Imports System.Windows.Forms
+﻿' Namespace=EZLogger/Handlers
+' Filename=DueDates1370Handler.vb
+' !See Label Footer for notes
+
+Imports System.Windows.Forms
 Imports EZLogger.Helpers
-Imports Application = Microsoft.Office.Interop.Word.Application
-Imports Word = Microsoft.Office.Interop.Word
 
 Namespace Handlers
-    Public Class DueDates1370Handler ' Example: ConfigViewHandler
+    Public Class DueDates1370Handler
 
         Public Sub HandleGoBackClick(hostForm As Form)
             Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
@@ -91,6 +93,7 @@ Namespace Handlers
                 End If
             End If
 
+			' TODO: add this back in if necessary
             ' Set NextDueDatePicker
             ''''view.PickNextDueDate.SelectedDate = nextLabelDate
 
@@ -205,7 +208,25 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Handles the saving of the 1370 choice selected by the user.
+        ''' This function processes the selected due date cycle, updates document properties,
+        ''' and calculates the next due date based on the user's selection.
+        ''' </summary>
+        ''' <param name="view">The DueDates1370View instance containing the UI elements and user selections.</param>
+        ''' <remarks>
+        ''' This function performs the following actions:
+        ''' 1. Retrieves the active Word document.
+        ''' 2. Determines the selected due date cycle from radio buttons.
+        ''' 3. Writes the Report Cycle to document properties.
+        ''' 4. Parses and validates the current due date.
+        ''' 5. Updates Rush Status and Days Since Due.
+        ''' 6. Calculates the next due date based on the selected cycle.
+        ''' 7. Writes current and next due dates to document properties.
+        ''' 8. Closes the current view and returns to the previous screen.
+        ''' </remarks>
         Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
+        	' TODO: use handler instead of this code
             ' Get the active Word document
             Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
             If doc Is Nothing Then
@@ -273,3 +294,17 @@ Namespace Handlers
 
     End Class
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DueDates1370Handler.vb
+'' Description: ....... manages the logic for calculating, displaying and saving 1370 report due dates
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

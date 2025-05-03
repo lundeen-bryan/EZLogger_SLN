@@ -1,7 +1,8 @@
-﻿Imports System.Data
-Imports System.Linq
+﻿' Namespace=EZLogger/Handlers
+' Filename=TCARListHandler.vb
+' !See Label Footer for notes
+
 Imports System.Data.SqlClient
-Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Haley.Utils
@@ -59,6 +60,7 @@ Namespace Handlers
 
             Return results
         End Function
+
         ''' <summary>
         ''' Called when the user presses the Select button in TCARListView.
         ''' If a row is selected, logs TCAR details to Word document custom properties.
@@ -96,6 +98,13 @@ Namespace Handlers
 
         End Sub
 
+        ''' <summary>
+        ''' Saves the current list of tasks to a task list
+        ''' </summary>
+        ''' <remarks>
+        ''' This method converts the ObservableCollection of Tasks to a List and uses the TasksIO utility to save them.
+        ''' It should be called whenever changes to the task list need to be persisted.
+        ''' </remarks>
         Public Sub Save()
             TasksIO.SaveTasks(Tasks.ToList())
         End Sub
@@ -105,5 +114,18 @@ Namespace Handlers
         End Sub
 
     End Class
-
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... TCARListHandler.vb
+'' Description: ....... Handles adding, updating, displaying the TCAR List
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

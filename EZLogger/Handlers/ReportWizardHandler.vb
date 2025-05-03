@@ -1,14 +1,15 @@
-﻿Imports System.Windows
-Imports System.Windows.Forms
+﻿' Namespace=EZLogger/Handlers
+' Filename=ReportWizardHandler.vb
+' !See Label Footer for notes
+
+Imports System.Windows
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 Imports System.Threading.Tasks.Task
-Imports System.Diagnostics
 Imports Application = Microsoft.Office.Interop.Word.Application
 
 Namespace Handlers
-
     Public Class ReportWizardHandler
 
         ''' <summary>
@@ -33,6 +34,13 @@ Namespace Handlers
 
         End Sub
 
+        ''' <summary>
+        ''' Refreshes the patient name label in the Report Wizard panel.
+        ''' </summary>
+        ''' <param name="panel">The ReportWizardPanel instance containing the label to be updated.</param>
+        ''' <remarks>
+        ''' This method retrieves the patient name from the document properties and updates the corresponding label in the panel.
+        ''' </remarks>
         Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
             Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
             panel.LabelPatientName.Content = name
@@ -249,5 +257,18 @@ Namespace Handlers
         End Sub
 
     End Class
-
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ReportWizardHandler.vb
+'' Description: ....... Main handler for the entry point of the app, for the task panel
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

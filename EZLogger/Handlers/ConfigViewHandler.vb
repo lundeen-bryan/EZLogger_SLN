@@ -1,5 +1,8 @@
-﻿Imports System.Windows
-Imports System.Windows.Forms
+﻿' Namespace=EZLogger/Handlers
+' Filename=ConfigViewHandler.vb
+' !See Label Footer for notes
+
+Imports System.Windows
 Imports EZLogger.Models
 Imports MessageBox = System.Windows.MessageBox
 Imports EZLogger.Helpers
@@ -9,6 +12,19 @@ Imports System.Text.Json
 Namespace Handlers
     Public Class ConfigViewHandler
 
+        ''' <summary>
+        ''' Handles the click event for adding a new county alert.
+        ''' This method opens a popup for user input, and if confirmed, adds or updates the county alert in the global configuration file.
+        ''' </summary>
+        ''' <remarks>
+        ''' The method performs the following steps:
+        ''' 1. Opens an AddAlertPopup dialog to get user input.
+        ''' 2. If the user confirms, retrieves the alert key and value from the popup.
+        ''' 3. Loads the global configuration file.
+        ''' 4. Deserializes the JSON content of the file.
+        ''' 5. Adds or updates the county alert in the configuration.
+        ''' 6. Serializes and saves the updated configuration back to the file.
+        ''' </remarks>
         Public Sub AddCountyAlertButtonClick()
             Dim popup As New AddAlertPopup(True)
             Dim result = popup.ShowDialog()
@@ -38,6 +54,19 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Handles the click event for adding a new alert.
+        ''' This method opens a popup for user input, and if confirmed, adds or updates the alert in the global configuration file.
+        ''' </summary>
+        ''' <remarks>
+        ''' The method performs the following steps:
+        ''' 1. Opens an AddAlertPopup dialog to get user input.
+        ''' 2. If the user confirms, retrieves the alert key and value from the popup.
+        ''' 3. Loads the global configuration file.
+        ''' 4. Deserializes the JSON content of the file.
+        ''' 5. Adds or updates the alert in the configuration.
+        ''' 6. Serializes and saves the updated configuration back to the file.
+        ''' </remarks>
         Public Sub AddAlertButtonClick()
             Dim popup As New AddAlertPopup(False)
             Dim result = popup.ShowDialog()
@@ -70,6 +99,19 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Deletes a patient alert from the global configuration file based on the provided patient number.
+        ''' </summary>
+        ''' <param name="patientNumber">The unique identifier of the patient whose alert should be deleted.</param>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Retrieves the global configuration file path.
+        ''' 2. Reads and parses the JSON content of the file.
+        ''' 3. Checks if the "Alerts" section exists in the configuration.
+        ''' 4. If the patient number exists in the alerts, it removes the corresponding alert.
+        ''' 5. Updates the configuration file with the modified alerts.
+        ''' If the global configuration file doesn't exist or the "Alerts" section is not present, the method will exit without making any changes.
+        ''' </remarks>
         Public Sub DeletePatientAlertByKey(patientNumber As String)
             Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
             If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
@@ -94,6 +136,19 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Deletes a county alert from the global configuration file based on the provided county name.
+        ''' </summary>
+        ''' <param name="countyName">The name of the county whose alert should be deleted.</param>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Retrieves the global configuration file path.
+        ''' 2. Reads and parses the JSON content of the file.
+        ''' 3. Checks if the "county_alerts" section exists in the configuration.
+        ''' 4. If the county name exists in the alerts, it removes the corresponding alert.
+        ''' 5. Updates the configuration file with the modified county alerts.
+        ''' If the global configuration file doesn't exist or the "county_alerts" section is not present, the method will exit without making any changes.
+        ''' </remarks>
         Public Sub DeleteCountyAlertByKey(countyName As String)
             Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
             If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
@@ -120,6 +175,20 @@ Namespace Handlers
         End Sub
 
 
+        ''' <summary>
+        ''' Loads patient alerts from the global configuration file and formats them as a list of strings.
+        ''' </summary>
+        ''' <returns>
+        ''' A List(Of String) containing formatted patient alerts. Each string in the list represents
+        ''' an alert in the format "PatientNumber = AlertMessage".
+        ''' </returns>
+        ''' <remarks>
+        ''' This function performs the following steps:
+        ''' 1. Retrieves the path to the global configuration file.
+        ''' 2. Calls ConfigHelper.GetPatientAlerts to obtain the patient alerts from the configuration.
+        ''' 3. Formats each alert as a string with the patient number as the key and the alert message as the value.
+        ''' 4. Returns the formatted alerts as a List(Of String).
+        ''' </remarks>
         Public Function LoadPatientAlerts() As List(Of String)
             Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
             Dim alerts = ConfigHelper.GetPatientAlerts(globalPath)
@@ -127,6 +196,20 @@ Namespace Handlers
             Return alerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
         End Function
 
+        ''' <summary>
+        ''' Loads county alerts from the global configuration file and formats them as a list of strings.
+        ''' </summary>
+        ''' <returns>
+        ''' A List(Of String) containing formatted county alerts. Each string in the list represents
+        ''' an alert in the format "CountyName = AlertMessage".
+        ''' </returns>
+        ''' <remarks>
+        ''' This function performs the following steps:
+        ''' 1. Retrieves the path to the global configuration file.
+        ''' 2. Calls ConfigHelper.GetCountyAlerts to obtain the county alerts from the configuration.
+        ''' 3. Formats each alert as a string with the county name as the key and the alert message as the value.
+        ''' 4. Returns the formatted alerts as a List(Of String).
+        ''' </remarks>
         Public Function LoadCountyAlerts() As List(Of String)
             Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
             Dim countyAlerts = ConfigHelper.GetCountyAlerts(globalPath)
@@ -134,6 +217,22 @@ Namespace Handlers
             Return countyAlerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
         End Function
 
+        ''' <summary>
+        ''' Handles the setup of folder paths for the EZLogger application.
+        ''' This method prompts the user to select essential folders, updates the configuration with the selected paths,
+        ''' and saves the updated configuration to the local config file.
+        ''' </summary>
+        ''' <remarks>
+        ''' The method performs the following steps:
+        ''' 1. Prompts the user to select the EZLogger_Databases, Forensic Reports Library, and EDO - Forensic Office folders.
+        ''' 2. Validates that all required folders have been selected.
+        ''' 3. Loads the existing local configuration file.
+        ''' 4. Updates the configuration with the new folder paths and derived file paths.
+        ''' 5. Saves the updated configuration back to the local config file.
+        ''' 6. Displays a success message to the user.
+        ''' </remarks>
+        ''' <exception cref="System.IO.FileNotFoundException">Thrown when the local configuration file cannot be found.</exception>
+        ''' <exception cref="System.IO.IOException">Thrown when there's an error reading from or writing to the configuration file.</exception>
         Public Sub HandleSetupFolderPathsClick()
             ' Step 1: Prompt user for folders
             Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
@@ -175,6 +274,16 @@ Namespace Handlers
             MessageBox.Show("EZLogger config paths saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
         End Sub
 
+        ''' <summary>
+        ''' Handles the click event for testing the folder picker functionality.
+        ''' This method prompts the user to select a folder and displays the selected path or a message if no folder was selected.
+        ''' </summary>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Prompts the user to select the EZLogger_Databases folder using ConfigHelper.PromptForFolder.
+        ''' 2. Checks if a folder was selected.
+        ''' 3. Displays a message box with the selected path if a folder was chosen, or a message indicating no selection otherwise.
+        ''' </remarks>
         Public Sub HandleTestFolderPickerClick()
             Dim selectedPath As String = ConfigHelper.PromptForFolder("Select your EZLogger_Databases folder")
 
@@ -185,6 +294,16 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Saves the provided list of doctors to a file.
+        ''' </summary>
+        ''' <param name="doctorsText">A string containing the list of doctors, typically with each doctor's name on a separate line.</param>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Retrieves the file path for the doctors list using ListHelper.GetDoctorListFilePath().
+        ''' 2. Writes the provided doctorsText to the file, overwriting any existing content.
+        ''' 3. Displays a message box to confirm that the doctor list has been saved.
+        ''' </remarks>
         Public Sub SaveDoctorsList(doctorsText As String)
             Dim filePath As String = ListHelper.GetDoctorListFilePath()
             File.WriteAllText(filePath, doctorsText)
@@ -192,9 +311,24 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Performs logic needed when ConfigView is loaded.
-        ''' Returns the doctors list, local config path, and global config path status message.
+        ''' Handles the loading of the configuration view, populating various configuration paths and settings.
         ''' </summary>
+        ''' <returns>
+        ''' A ConfigViewLoadResult object containing:
+        ''' - DoctorList: A list of doctors retrieved from the system.
+        ''' - LocalConfigPath: The path to the local configuration file.
+        ''' - GlobalConfigPathMessage: A message indicating the status of the global configuration path.
+        ''' - ForensicDatabasePath: The path to the forensic wizard database on SharePoint.
+        ''' - ForensicLibraryPath: The path to the forensic library on SharePoint.
+        ''' - ForensicOfficePath: The path to the forensic office on EDO.
+        ''' </returns>
+        ''' <remarks>
+        ''' This function performs the following operations:
+        ''' 1. Retrieves the doctor list.
+        ''' 2. Gets the local and global configuration paths.
+        ''' 3. Attempts to load the local configuration file and extract relevant paths.
+        ''' 4. If the configuration loading fails, it sets default values for the paths.
+        ''' </remarks>
         Public Function HandleViewLoaded() As ConfigViewLoadResult
             Dim result As New ConfigViewLoadResult()
             result.DoctorList = ListHelper.GetDoctorList()
@@ -225,6 +359,20 @@ Namespace Handlers
             Return result
         End Function
 
+        ''' <summary>
+        ''' Handles the creation and setup of the EZLogger configuration.
+        ''' </summary>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Ensures the local user configuration file exists.
+        ''' 2. Prompts the user to select the global configuration file.
+        ''' 3. Loads the local configuration and applies the global configuration file path.
+        ''' 4. Prompts the user to select essential folders (EZLogger_Databases, Forensic Reports Library, and EDO - Forensic Office).
+        ''' 5. Updates the configuration with the selected paths and derived file paths.
+        ''' 6. Saves the updated configuration back to the local config file.
+        ''' </remarks>
+        ''' <exception cref="System.IO.FileNotFoundException">Thrown when the local or global configuration file cannot be found or created.</exception>
+        ''' <exception cref="System.IO.IOException">Thrown when there's an error reading from or writing to the configuration files.</exception>
         Public Sub HandleCreateConfigClick()
             ' Step 1: Ensure local_user_config.json exists
             Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
@@ -285,7 +433,6 @@ Namespace Handlers
             MsgBox("You clicked Save Config")
         End Sub
 
-
         Public Sub DeleteAlertButtonClick()
             MsgBox("You clicked Delete Alert button")
         End Sub
@@ -308,3 +455,17 @@ Namespace Handlers
 
     End Class
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ConfigViewHandler.vb
+'' Description: ....... handles the config view
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

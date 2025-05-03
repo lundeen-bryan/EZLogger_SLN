@@ -1,10 +1,10 @@
-﻿Imports System.Windows.Forms
+﻿' Namespace=EZLogger/Handlers
+' Filename=ShortcutHandler.vb
+' !See Label Footer for notes
+
+Imports System.Windows.Forms
 Imports System
 
-''' <summary>
-''' Handles keyboard shortcuts (like Alt+S) for a specific host form.
-''' Must be used with KeyPreview=True on the host form.
-''' </summary>
 Public Class ShortcutHandler
 
     Private ReadOnly _hostForm As Form
@@ -59,3 +59,17 @@ Public Class ShortcutHandler
     End Sub
 
 End Class
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ShortcutHandler.vb
+'' Description: ....... Handles keyboard shortcuts (like Alt+S) for a specific host form.
+'' Created: ........... 2025-05-02
+'' Updated: ........... 2025-05-02
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... VSTO, WPF
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) Must be used with KeyPreview=True on the host form.
+''===========================================================================================
