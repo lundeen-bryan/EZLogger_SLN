@@ -1,6 +1,4 @@
 ﻿Imports System.Windows.Forms
-Imports System.Windows.Forms.Integration
-Imports EZLogger.Views ' Adjust if your view is in a different namespace
 
 Public Class ConfigHost
 

@@ -1,8 +1,6 @@
-﻿Imports System.Drawing
-Imports System.Reflection
+﻿Imports EZLogger.Helpers
+Imports System.Drawing
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
-Imports EZLogger.Tests
 
 
 'TODO:  Follow these steps to enable the Ribbon (XML) item:

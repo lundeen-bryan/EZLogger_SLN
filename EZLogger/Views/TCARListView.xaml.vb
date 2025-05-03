@@ -1,9 +1,8 @@
-﻿Imports System.Windows
-Imports System.Windows.Controls
-Imports System.Windows.Forms
-Imports EZLogger.Handlers
+﻿Imports EZLogger.Handlers
 Imports EZLogger.Helpers
 Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
+Imports System.Windows.Forms
 
 Public Class TCARListView
     Inherits UserControl

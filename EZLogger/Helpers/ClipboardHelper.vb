@@ -1,6 +1,5 @@
-﻿Imports System.Windows
-Imports Microsoft.Office.Interop.Word
-Imports Application = Microsoft.Office.Interop.Word.Application
+﻿Imports Application = Microsoft.Office.Interop.Word.Application
+Imports System.Windows
 
 Namespace Helpers
 

@@ -2,8 +2,8 @@
 ' Filename=PrcHandler.vb
 ' !See Label Footer for notes
 
-Imports Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
+Imports Microsoft.Office.Interop.Word
 Imports System.IO
 
 Namespace Handlers

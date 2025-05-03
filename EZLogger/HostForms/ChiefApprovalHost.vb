@@ -1,6 +1,5 @@
-﻿Imports System.Windows.Forms
-Imports EZLogger.EZLogger.Views
-Imports Views ' Adjust namespace if needed
+﻿Imports EZLogger.EZLogger.Views
+Imports System.Windows.Forms
 
 Public Class ChiefApprovalHost
 

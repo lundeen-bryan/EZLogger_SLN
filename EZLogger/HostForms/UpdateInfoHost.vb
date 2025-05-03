@@ -1,11 +1,5 @@
-﻿Imports System
+﻿Imports EZLogger.Helpers.UIHelper ' Helps to call the UIHelper module
 Imports System.Windows.Forms
-Imports System.Windows.Forms.Keys
-Imports System.Windows.Input
-Imports System.Windows.Forms.Integration
-Imports EZLogger.Helpers
-Imports EZLogger.Helpers.UIHelper ' Helps to call the UIHelper module
-Imports System.Windows
 
 Public Class UpdateInfoHost
 

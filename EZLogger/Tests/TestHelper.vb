@@ -1,9 +1,7 @@
-﻿Imports System.Text.Json
+﻿Imports EZLogger.Helpers
+Imports System.Text.Json
 Imports MessageBox = System.Windows.MessageBox
-Imports EZLogger.Helpers
 Imports System.IO
-Imports System.Data
-Imports EZLogger.Handlers
 Imports System.Windows
 Imports System.Data.SqlClient
 

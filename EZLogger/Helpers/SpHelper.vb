@@ -1,7 +1,6 @@
-﻿Imports Microsoft.Office.Core
+﻿Imports EZLogger.Helpers
+Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
-Imports System.Runtime.InteropServices
-Imports EZLogger.Helpers
 
 ''' <summary>
 ''' Helper for updating SharePoint (SP) ContentTypeProperties from Word custom document properties.

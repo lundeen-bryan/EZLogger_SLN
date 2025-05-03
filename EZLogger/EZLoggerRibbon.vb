@@ -1,11 +1,10 @@
 ﻿Imports EZLogger.Handlers
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Tools.Ribbon
+Imports System.Threading.Tasks
 Imports System.Windows
 Imports System.Windows.Forms
 Imports MessageBox = System.Windows.MessageBox
-Imports EZLogger.Controls
-Imports System.Threading.Tasks
 Public Class EZLoggerRibbon
 
     ' This event fires when the Ribbon is loaded.

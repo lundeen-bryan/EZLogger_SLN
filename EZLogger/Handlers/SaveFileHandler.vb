@@ -2,10 +2,10 @@
 ' Filename=SaveFileHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
 Imports System.Globalization
 Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 

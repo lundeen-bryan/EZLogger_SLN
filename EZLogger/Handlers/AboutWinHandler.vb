@@ -1,9 +1,9 @@
 ﻿' Namespace=EZLogger/Handlers
 ' Filename=AboutWinHandler.vb
+Imports EZLogger.Models
 Imports System.IO
 Imports System.Text.Json
 Imports System.Windows.Forms
-Imports EZLogger.Models
 
 Namespace Handlers
     Public Class AboutWinHandler

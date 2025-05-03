@@ -1,10 +1,10 @@
-﻿Imports System.Windows
-Imports EZLogger.Helpers
-Imports EZLogger.Handlers
+﻿Imports EZLogger.Helpers
+Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
 Imports System.Windows.Forms
 
 Public Class SendEmailView
-    Inherits System.Windows.Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _handler As New SendEmailHandler()
     Private ReadOnly _hostForm As Form

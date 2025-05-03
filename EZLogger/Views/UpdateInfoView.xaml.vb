@@ -2,10 +2,10 @@
 ' Filename=UpdateInfoView.xaml.vb
 ' !See Label Footer for notes
 
-Imports System.Windows
-Imports System.Windows.Controls
 Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports System.Windows
+Imports System.Windows.Controls
 Imports System.Windows.Forms
 
 Public Class UpdateInfoView

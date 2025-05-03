@@ -1,16 +1,12 @@
-﻿Imports System.Windows
-Imports System.Windows.Controls
-Imports System.IO
-Imports System.Text.Json
+﻿Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
 Imports System.Windows.Forms
-Imports System.Windows.Media.Imaging
 Imports MessageBox = System.Windows.MessageBox
-Imports stdole
-Imports EZLogger.Handlers
 
 Partial Public Class AboutView
-    Inherits Windows.Controls.UserControl
+    Inherits UserControl
 
     Private ReadOnly _hostForm As Form
     Private ReadOnly configFilePath As String = ConfigHelper.GetGlobalConfigPath()

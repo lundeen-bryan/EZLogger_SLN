@@ -2,9 +2,9 @@
 ' Filename=PatientInfoHandler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows.Forms
-Imports EZLogger.EZLogger.Models
 Imports EZLogger.EZLogger.Views
+Imports EZLogger.EZLogger.Models
+Imports System.Windows.Forms
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word

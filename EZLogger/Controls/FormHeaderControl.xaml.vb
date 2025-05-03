@@ -5,13 +5,13 @@ Namespace EZLogger.Controls
     Partial Public Class FormHeaderControl
         Inherits UserControl
 
-        Public Sub New()
-            InitializeComponent()
-        End Sub
-
         ' Define the dependency property
         Public Shared ReadOnly HeaderTextProperty As DependencyProperty =
             DependencyProperty.Register("HeaderText", GetType(String), GetType(FormHeaderControl), New PropertyMetadata("Default Header"))
+
+        Public Sub New()
+            InitializeComponent()
+        End Sub
 
         ' Wrapper property
         Public Property HeaderText As String

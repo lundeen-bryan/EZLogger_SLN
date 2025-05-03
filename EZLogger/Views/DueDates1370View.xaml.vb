@@ -1,8 +1,7 @@
-﻿Imports System.Windows
-Imports EZLogger.Helpers
-Imports EZLogger.Handlers
-Imports System.Windows.Forms
+﻿Imports EZLogger.Handlers
 Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
+Imports System.Windows.Forms
 
 Public Class DueDates1370View
     Inherits UserControl

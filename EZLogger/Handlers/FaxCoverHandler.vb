@@ -2,11 +2,11 @@
 ' Filename=FaxCoverHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
+Imports EZLogger.Models
 Imports System.IO
 Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
-Imports EZLogger.Helpers
-Imports EZLogger.Models
 
 Namespace Handlers
     Public Class FaxCoverHandler

@@ -2,9 +2,9 @@
 ' Filename=TCARListHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
 Imports System.Data.SqlClient
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 Imports Haley.Utils
 Imports Microsoft.Office.Interop.Word
 Imports System.Collections.ObjectModel

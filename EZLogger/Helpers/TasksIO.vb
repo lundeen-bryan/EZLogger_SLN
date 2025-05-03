@@ -1,8 +1,6 @@
-﻿Imports System
+﻿Imports EZLogger.Helpers
 Imports System.IO
 Imports System.Xml.Serialization
-Imports EZLogger.Helpers
-Imports EZLogger.Models
 
 Module TasksIO
 

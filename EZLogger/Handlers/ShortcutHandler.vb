@@ -2,8 +2,8 @@
 ' Filename=ShortcutHandler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows.Forms
 Imports System
+Imports System.Windows.Forms
 
 Public Class ShortcutHandler
 

@@ -1,6 +1,6 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Windows
+Imports System.Windows.Forms
 Imports System.Windows.Forms.Integration
-Imports System.Windows
 
 Public Class CustomMsgBoxHost
     Inherits Form
