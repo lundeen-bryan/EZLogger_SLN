@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Office.Interop.Word
-Imports EZLogger.Helpers
 Imports Microsoft.Office.Core
 
 Namespace Helpers

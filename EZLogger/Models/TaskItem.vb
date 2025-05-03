@@ -6,16 +6,16 @@ Imports System.Xml.Serialization
 Public Class TaskItem
     Implements INotifyPropertyChanged
 
-    ' Backing fields
-    Private _dateAdded As DateTime
-    Private _notes As String
-    Private _isCompleted As Boolean
-
     ''' <summary>
     ''' When the object’s property changes, this event fires.
     ''' </summary>
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
+
+    ' Backing fields
+    Private _dateAdded As DateTime
+    Private _notes As String
+    Private _isCompleted As Boolean
 
     ''' <summary>
     ''' Helper to raise PropertyChanged.

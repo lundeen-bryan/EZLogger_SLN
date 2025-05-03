@@ -1,6 +1,6 @@
-﻿Imports Microsoft.Office.Interop.Excel
+﻿Imports EZLogger.Helpers ' adjust based on your project structure
+Imports Microsoft.Office.Interop.Excel
 Imports System.Runtime.InteropServices
-Imports EZLogger.Helpers ' adjust based on your project structure
 
 Public Module ExcelHelper
 

@@ -2,8 +2,8 @@
 ' Filename=DueDates1370Handler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports System.Windows.Forms
 
 Namespace Handlers
     Public Class DueDates1370Handler

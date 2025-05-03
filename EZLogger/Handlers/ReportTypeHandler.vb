@@ -2,9 +2,9 @@
 ' Filename=ReportTypeHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
 Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 
 Namespace Handlers
     Public Class ReportTypeHandler

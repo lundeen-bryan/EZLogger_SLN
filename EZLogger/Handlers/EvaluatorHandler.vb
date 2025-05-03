@@ -2,9 +2,9 @@
 ' Filename=EvaluatorHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
 Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers

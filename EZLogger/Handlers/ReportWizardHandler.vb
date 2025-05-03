@@ -2,8 +2,8 @@
 ' Filename=ReportWizardHandler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows
 Imports EZLogger.Helpers
+Imports System.Windows
 Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 Imports System.Threading.Tasks.Task

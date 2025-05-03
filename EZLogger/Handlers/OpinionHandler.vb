@@ -2,8 +2,8 @@
 ' Filename=OpinionHandler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows.Forms
 Imports EZLogger.Helpers
+Imports System.Windows.Forms
 
 Namespace Handlers
     Public Class OpinionHandler

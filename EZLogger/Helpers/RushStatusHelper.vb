@@ -1,5 +1,4 @@
-﻿Imports System
-Imports Microsoft.Office.Interop.Word
+﻿Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
 

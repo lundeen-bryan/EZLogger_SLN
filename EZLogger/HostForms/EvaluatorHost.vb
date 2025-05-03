@@ -1,11 +1,9 @@
-﻿Imports System.Windows.Forms.Integration
-Imports EZLogger.Handlers
-Imports EZLogger.Views ' Adjust namespace if needed
+﻿Imports EZLogger.Handlers
 
 Public Class EvaluatorHost
 
-    Private _view As EvaluatorView
     Private _shortcutHelper As ShortcutHandler
+    Private _view As EvaluatorView
 
     Private Sub EvaluatorHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _view = New EvaluatorView(Me)

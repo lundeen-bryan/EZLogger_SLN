@@ -1,7 +1,4 @@
-﻿Imports System.Windows.Forms.Integration
-Imports Microsoft.Office.Interop.Word
-
-Public Class ThisAddIn
+﻿Public Class ThisAddIn
 
     Private myTaskPane As Microsoft.Office.Tools.CustomTaskPane
     Public Property ReportWizardTaskPaneContainer As ReportWizardTaskPaneContainer

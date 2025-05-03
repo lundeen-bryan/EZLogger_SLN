@@ -2,10 +2,10 @@
 ' Filename=ConfigViewHandler.vb
 ' !See Label Footer for notes
 
-Imports System.Windows
-Imports EZLogger.Models
-Imports MessageBox = System.Windows.MessageBox
 Imports EZLogger.Helpers
+Imports EZLogger.Models
+Imports System.Windows
+Imports MessageBox = System.Windows.MessageBox
 Imports System.IO
 Imports System.Text.Json
 

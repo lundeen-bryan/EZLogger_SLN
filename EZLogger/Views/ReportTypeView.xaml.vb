@@ -2,11 +2,11 @@
 ' Filename=ReportTypeView.xaml.vb
 ' !See Label Footer for notes
 
-Imports System.Windows
-Imports EZLogger.Helpers
 Imports EZLogger.Handlers
-Imports System.Windows.Forms
+Imports EZLogger.Helpers
 Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
+Imports System.Windows.Forms
 
 Public Class ReportTypeView
     Inherits UserControl

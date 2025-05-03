@@ -1,8 +1,8 @@
 ﻿Imports System.Windows
 Imports System.Windows.Controls
+Imports UserControl = System.Windows.Controls.UserControl
 Imports System.Windows.Input
 Imports System.Windows.Media
-Imports UserControl = System.Windows.Controls.UserControl
 
 Partial Public Class TaskListView
     Inherits UserControl

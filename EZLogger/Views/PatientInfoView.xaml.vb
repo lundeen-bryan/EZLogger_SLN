@@ -1,6 +1,6 @@
-﻿Imports System.Windows
+﻿Imports EZLogger.Handlers
+Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Handlers
 
 Namespace EZLogger.Views
 

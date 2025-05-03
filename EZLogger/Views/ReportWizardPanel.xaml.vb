@@ -1,7 +1,7 @@
-﻿Imports System.Windows
+﻿Imports EZLogger.Handlers
 Imports EZLogger.Helpers
-Imports EZLogger.Handlers
 Imports UserControl = System.Windows.Controls.UserControl
+Imports System.Windows
 
 Partial Public Class ReportWizardPanel
     Inherits UserControl

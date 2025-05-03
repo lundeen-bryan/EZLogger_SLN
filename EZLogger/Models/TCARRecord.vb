@@ -1,6 +1,6 @@
 ﻿Public Class TCARRecord
-    Public Property Tcar As Integer
     Public Property Casenum As String
+    Public Property Tcar As Integer
     Public Property PatientName As String
     Public Property Subdate As String
     Public Property OpID As Integer

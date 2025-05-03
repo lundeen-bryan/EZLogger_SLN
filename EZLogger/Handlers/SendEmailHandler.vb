@@ -2,9 +2,9 @@
 ' Filename=SendEmailHandler.vb
 ' !See Label Footer for notes
 
+Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Outlook
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 
 Public Class SendEmailHandler
 

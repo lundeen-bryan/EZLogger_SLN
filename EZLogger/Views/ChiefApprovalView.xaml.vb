@@ -1,8 +1,7 @@
-﻿Imports System.Windows
-Imports System.Windows.Controls
-Imports System.Windows.Forms ' ✅ You need this for Form
-Imports EZLogger.Handlers
+﻿Imports EZLogger.Handlers
 Imports EZLogger.Helpers
+Imports System.Windows
+Imports System.Windows.Forms
 
 Namespace EZLogger.Views
 

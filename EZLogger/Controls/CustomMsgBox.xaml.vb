@@ -1,7 +1,5 @@
-﻿Imports System.Windows.Controls
-Imports System.Windows
-Imports EZLogger
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Window
+﻿Imports System.Windows
+Imports System.Windows.Controls
 
 Public Class CustomMsgBoxControl
     Inherits UserControl

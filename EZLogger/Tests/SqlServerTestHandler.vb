@@ -1,5 +1,5 @@
-﻿Imports System.Data.SqlClient
-Imports EZLogger.Helpers
+﻿Imports EZLogger.Helpers
+Imports System.Data.SqlClient
 
 Public Module SqlServerTestHandler
 

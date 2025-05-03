@@ -1,10 +1,10 @@
-﻿Imports System.Data
+﻿Imports EZLogger.Helpers
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Diagnostics
 Imports System.IO
 Imports System.Windows
 Imports System.Windows.Forms
-Imports EZLogger.Helpers
 Imports MessageBox = System.Windows.MessageBox
 
 

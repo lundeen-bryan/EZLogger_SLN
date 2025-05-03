@@ -1,8 +1,7 @@
-﻿Imports System.Windows
-Imports System.Windows.Controls
-Imports System.Windows.Forms
-Imports EZLogger.Helpers
+﻿Imports EZLogger.Helpers
 Imports EZLogger.Handlers
+Imports System.Windows
+Imports System.Windows.Forms
 Imports Microsoft.Office.Interop.Word
 
 Public Class FaxCoverView

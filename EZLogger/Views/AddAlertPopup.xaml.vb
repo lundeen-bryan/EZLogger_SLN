@@ -2,10 +2,10 @@
 
 Public Class AddAlertPopup
 
+    Private ReadOnly _isCounty As Boolean
     Public Property AlertKey As String
     Public Property AlertValue As String
 
-    Private ReadOnly _isCounty As Boolean
 
     Public Sub New(Optional isCounty As Boolean = False)
         InitializeComponent()
