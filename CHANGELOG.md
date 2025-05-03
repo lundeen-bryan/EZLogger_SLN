@@ -17,16 +17,42 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
-## [0.0.1] - 2025-05-02
-
-### Changed
-
-- when filename is created it shows firstname in title case lastname in upper
+## [0.0.1] – 2025-05-02
 
 ### Added
 
-- check config func
-- can send email
+- Implemented email sending functionality with a dedicated UI:
+  - Created `SendEmailHandler` for handling Outlook-based email operations.
+  - Designed `SendEmailView.xaml` and `SendEmailHost.vb` for the email interface.
+  - Added COM references for Microsoft Outlook integration.
+  - Wired Ribbon button to open the new email window.
+- Introduced court number support:
+  - Added `CourtNumber` property to `PatientCls`.
+  - Created `GetCourtNumberByPatientNumber` function in `DatabaseHelper.vb`.
+  - Updated `DocumentPropertyHelper.vb` to write `CourtNumber` to document properties.
+- Added `HandleCloseClick` method in `AboutWinHandler.vb`.
+- Enabled and renamed Config button in `AboutView.xaml`, wired it to open `ConfigHost`.
+
+### Changed
+
+- Enhanced `ReportWizardHandler`:
+  - Added logic for Word application automation and document logging.
+  - Introduced `ShowBtnBMessage` to update document properties with last report access info.
+- Improved name formatting logic in `SaveFileHandler` using title case.
+- Updated `MessageBoxConfig`:
+  - Added `ShowOk` property to control visibility of OK button.
+- Refactored patient-related properties:
+  - Renamed `DischargeStatus` to `BedStatus` in `DatabaseHelper.vb`.
+  - Added `FirstPatientNumber` to `PatientCls`.
+  - Updated `DocumentPropertyHelper.vb` to include `BedStatus`.
+
+### Fixed
+
+- Minor resource and label updates for clarity.
+
+### Documentation
+
+- Updated `CHANGELOG.md` to reflect version 0.0.1 and include filename format info.
 
 ## [0.0.1] - 2025-05-01
 
