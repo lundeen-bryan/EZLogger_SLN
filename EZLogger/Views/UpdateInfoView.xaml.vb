@@ -70,7 +70,6 @@ Public Class UpdateInfoView
     End Sub
 
     Private Sub DoneBtn_Click(sender As Object, e As RoutedEventArgs)
-        'If _hostForm IsNot Nothing Then _hostForm.Close()
         _handler.HandleCloseClick(_hostForm)
     End Sub
 

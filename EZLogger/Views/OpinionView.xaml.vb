@@ -14,7 +14,7 @@ Public Class OpinionView
     Public Sub New(Optional hostForm As Form = Nothing)
         InitializeComponent()
         _hostForm = hostForm
-        _handler = New OpinionHandler(Globals.ThisAddIn.Application)
+        _handler = New OpinionHandler()
         WireUpButtons()
     End Sub
 

@@ -65,14 +65,14 @@ Namespace Handlers
         '''<summary>
         ''' Saves the selected report type to the current active Word Document's custom properties.
         '''</summary>
-        '''<param name="report_type">The selected report type from the combobox</param>
+        '''<param name="reportType">The selected report type from the combobox</param>
         '''<remarks>
         ''' This funciton checks if the report type is non-empty then
         ''' confirms the presense of an active Word Document, and then
         ''' writes the value to a custom property named "Report Type"
         '''</remarks>
-        Public Sub HandleSelectedReportType(report_type As String)
-            If String.IsNullOrWhiteSpace(report_type) Then
+        Public Sub HandleSelectedReportType(reportType As String)
+            If String.IsNullOrWhiteSpace(reportType) Then
                 MsgBoxHelper.Show("Please select a  report type before confirming.")
                 Exit Sub
             End If
@@ -80,7 +80,7 @@ Namespace Handlers
             ' Write the selected report type to the custom property
             Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
             If doc IsNot Nothing Then
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", report_type)
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", reportType)
                 ' MsgBoxHelper.Show("Report type has been saved to the document.")
             Else
                 MsgBoxHelper.Show("No active Word document found.")
@@ -323,8 +323,8 @@ Namespace Handlers
         '''This function is called when the user presses DoneBtn. In that function the
         '''checkbox is checked before calling this function and closing the view window.
         '''</remarks>
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
     End Class

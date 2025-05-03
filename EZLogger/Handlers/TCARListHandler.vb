@@ -10,7 +10,11 @@ Imports Microsoft.Office.Interop.Word
 Imports System.Collections.ObjectModel
 
 Namespace Handlers
-    Public Class TCARListHandler
+    Public Class TcarListHandler
+
+        ''' <summary>
+        ''' Represents the live collection of task items currently loaded in the Task List panel. This collection is UI-bound and updates dynamically
+        ''' </summary>
         Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
 
         ''' <summary>
@@ -66,7 +70,7 @@ Namespace Handlers
         ''' If a row is selected, logs TCAR details to Word document custom properties.
         ''' </summary>
         ''' <param name="grid">The DataGrid displaying TCAR records.</param>
-        Public Sub HandleTCARSelect(grid As System.Windows.Controls.DataGrid)
+        Public Sub HandleTcarSelect(grid As System.Windows.Controls.DataGrid)
 
             Dim selected As TCARRecord = TryCast(grid.SelectedItem, TCARRecord)
 
@@ -109,8 +113,12 @@ Namespace Handlers
             TasksIO.SaveTasks(Tasks.ToList())
         End Sub
 
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        ''' <summary>
+        ''' Closes TCARListView
+        ''' </summary>
+        ''' <remarks>clean modern approach using hostForm?.Close()</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
     End Class

@@ -216,8 +216,8 @@ Namespace Handlers
             Dim host As New SaveFileHost()
             host.Show()
         End Sub
-        Public Sub HandleCloseClick(form As Form)
-            If form IsNot Nothing Then form.Close()
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
         ''' <summary>

@@ -52,7 +52,6 @@ Public Module MsgBoxHelper
         Else
             host.StartPosition = FormStartPosition.CenterScreen
         End If
-        'FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 100, 100)
 
         host.TopMost = True
 

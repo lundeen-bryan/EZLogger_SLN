@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Controls="clr-namespace:EZLogger.EZLogger.Controls"
-             x:Class="TCARListView"
+             x:Class="TcarListView"
              mc:Ignorable="d"
              d:DesignHeight="400"
              d:DesignWidth="600"

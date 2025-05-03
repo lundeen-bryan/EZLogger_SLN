@@ -9,6 +9,14 @@ Namespace Handlers
     Public Class AboutWinHandler
 
         ''' <summary>
+        ''' When clicked this closes the About Window
+        ''' </summary>
+        ''' <remarks>Takes no parameters</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
         ''' Loads and parses the About information from the specified configuration file.
         ''' </summary>
         ''' <param name="configFilePath">The full path to the configuration file containing the About information.</param>
@@ -38,10 +46,6 @@ Namespace Handlers
 
             Return result
         End Function
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
-
     End Class
 End Namespace
 ' Footer:

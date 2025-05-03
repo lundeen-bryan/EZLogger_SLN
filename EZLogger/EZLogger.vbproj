@@ -396,7 +396,7 @@
     <Compile Include="Handlers\SendEmailHandler.vb" />
     <Compile Include="Handlers\ShortcutHandler.vb" />
     <Compile Include="Handlers\TaskListHandler.vb" />
-    <Compile Include="Handlers\TCARListHandler.vb" />
+    <Compile Include="Handlers\TcarListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
     <Compile Include="Helpers\AgeHelper.vb" />
     <Compile Include="Helpers\AlertHelper.vb" />
@@ -523,10 +523,10 @@
     <Compile Include="HostForms\TaskListHost.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HostForms\TCARListHost.Designer.vb">
-      <DependentUpon>TCARListHost.vb</DependentUpon>
+    <Compile Include="HostForms\TcarListHost.Designer.vb">
+      <DependentUpon>TcarListHost.vb</DependentUpon>
     </Compile>
-    <Compile Include="HostForms\TCARListHost.vb">
+    <Compile Include="HostForms\TcarListHost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HostForms\UpdateInfoHost.Designer.vb">
@@ -606,8 +606,8 @@
     <Compile Include="Views\TaskListView.xaml.vb">
       <DependentUpon>TaskListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TCARListView.xaml.vb">
-      <DependentUpon>TCARListView.xaml</DependentUpon>
+    <Compile Include="Views\TcarListView.xaml.vb">
+      <DependentUpon>TcarListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateInfoView.xaml.vb">
       <DependentUpon>UpdateInfoView.xaml</DependentUpon>
@@ -673,8 +673,8 @@
     <EmbeddedResource Include="HostForms\TaskListHost.resx">
       <DependentUpon>TaskListHost.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HostForms\TCARListHost.resx">
-      <DependentUpon>TCARListHost.vb</DependentUpon>
+    <EmbeddedResource Include="HostForms\TcarListHost.resx">
+      <DependentUpon>TcarListHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\UpdateInfoHost.resx">
       <DependentUpon>UpdateInfoHost.vb</DependentUpon>
@@ -781,7 +781,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TCARListView.xaml">
+    <Page Include="Views\TcarListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
