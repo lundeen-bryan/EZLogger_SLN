@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - `FillBookmarksFromDocumentProperties` method in `BookmarkHelper.vb` to copy custom properties from a source document to bookmarks in a target document. Automatically updates and unlinks fields for better PDF output.
 - Error dialog feature with reusable UI and localization support to enhance user communication of critical errors.
+- Added `Summary Report` which pulls EZL_PRC to an Excel file in the users documents folder
 
 ### Changed
 
