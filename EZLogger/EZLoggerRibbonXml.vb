@@ -1,4 +1,5 @@
-﻿Imports EZLogger.Helpers
+﻿Imports EZLogger.Handlers
+Imports EZLogger.Helpers
 Imports System.Drawing
 Imports System.Windows.Forms
 
@@ -137,6 +138,11 @@ Public Class EZLoggerRibbonXml
         Catch ex As Exception
             MsgBoxHelper.Show("PDF export failed: " & ex.Message)
         End Try
+    End Sub
+
+    Public Sub SummaryBtn_Click(control As Office.IRibbonControl)
+        Dim summaryHandler As New SummaryHandler()
+        summaryHandler.RunSummaryWithBusy()
     End Sub
 
 

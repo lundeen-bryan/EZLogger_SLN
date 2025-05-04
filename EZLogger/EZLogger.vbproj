@@ -396,6 +396,7 @@
     <Compile Include="Handlers\SaveFileHandler.vb" />
     <Compile Include="Handlers\SendEmailHandler.vb" />
     <Compile Include="Handlers\ShortcutHandler.vb" />
+    <Compile Include="Handlers\SummaryHandler.vb" />
     <Compile Include="Handlers\TaskListHandler.vb" />
     <Compile Include="Handlers\TcarListHandler.vb" />
     <Compile Include="Handlers\WordFooterReader.vb" />
