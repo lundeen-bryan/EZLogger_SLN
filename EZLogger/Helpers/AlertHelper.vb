@@ -49,8 +49,11 @@ Namespace Helpers
                 End If
 
             Catch ex As Exception
-                LogHelper.LogError("AlertHelper.AddAlertsToTaskList", ex.Message)
-                MsgBoxHelper.Show("An error occurred while adding alerts to the task list.")
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "There was a problem trying to add an alert to the task list. Please see help file."
+
+                ErrorHelper.HandleError("AlertHelper.AddAlertsToTaskList", errNum, errMsg, recommendation)
             End Try
         End Sub
 
