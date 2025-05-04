@@ -232,8 +232,11 @@ Namespace Handlers
                 MessageBox.Show("The report has been processed and logged successfully.", "K Function Complete", MessageBoxButton.OK, MessageBoxImage.Information)
 
             Catch ex As Exception
-                LogHelper.LogError("ReportWizardHandler.ShowBtnKMessage", ex.Message)
-                MessageBox.Show("An error occurred while processing the report.", "Processing Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnKMessage", errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -251,8 +254,11 @@ Namespace Handlers
                 MsgBoxHelper.Show("Patient and county alerts added to the task list.")
 
             Catch ex As Exception
-                LogHelper.LogError("ReportWizardHandler.ShowBtnLMessage", ex.Message)
-                MessageBox.Show("An error occurred while processing alerts.", "Processing Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnLMessage", errNum, errMsg, recommendation)
             End Try
         End Sub
 
