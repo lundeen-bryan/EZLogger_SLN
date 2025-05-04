@@ -64,19 +64,6 @@ Public Class EZLoggerRibbonXml
     End Sub
 
     Public Sub AboutButton_Click(control As Office.IRibbonControl)
-        Try
-            ' Simulate an error (e.g., null reference or bad cast)
-            Dim fakeObject As Object = Nothing
-            Dim willFail As String = fakeObject.ToString() ' This will throw
-
-        Catch ex As Exception
-            Dim errNum As String = ex.HResult.ToString()
-            Dim errMsg As String = "Simulated test failure in AboutBtn_Click"
-            Dim recommendation As String = "This is just a test. No action needed."
-
-            ErrorHelper.HandleError("Ribbon.AboutBtn_Click", errNum, errMsg, recommendation)
-        End Try
-        'Keep
         Dim aboutHost As New AboutHost()
         aboutHost.ShowDialog()
     End Sub

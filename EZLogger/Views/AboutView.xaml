@@ -122,7 +122,7 @@
                     FontFamily="Candara"
                     FontSize="14"
                     IsEnabled="True"
-                    Background="White" />
+                    Background="White" Visibility="Collapsed"/>
             <Button Content="Alerts"
                     x:Name="BtnAlerts"
                     Width="75"
@@ -130,14 +130,14 @@
                     IsEnabled="False"
                     FontFamily="Candara"
                     FontSize="14"
-                    Background="White" />
+                    Background="White" Visibility="Collapsed" />
             <Button Content="Go Back"
                     x:Name="BtnGoBack"
                     Width="75"
                     Margin="5"
                     FontFamily="Candara"
                     FontSize="14"
-                    IsEnabled="False"
+                    IsEnabled="True"
                     Background="White" />
         </StackPanel>
     </Grid>

@@ -246,6 +246,11 @@ Namespace Handlers
                 view.LblUnit.Content = GetProp("Unit")
                 view.LblClassification.Content = GetProp("Classification")
 
+                ' Set the unique document id here in the custom document properties
+                Dim uniqueDocumentId As String = DocumentPropertyHelper.CreateUniqueIdFromProperties()
+                Dim doc As Word.Document = WordAppHelper.GetWordApp().ActiveDocument
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Unique ID", uniqueDocumentId)
+
             Catch ex As Exception
                 MessageBox.Show("Failed to load document properties: " & ex.Message,
                                     "Error", MessageBoxButton.OK, MessageBoxImage.Error)

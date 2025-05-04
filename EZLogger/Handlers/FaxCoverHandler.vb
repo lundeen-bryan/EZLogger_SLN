@@ -146,7 +146,8 @@ Namespace Handlers
             MsgBoxHelper.Show("Cover page generated successfully.")
 
             ' Restore original Pages property
-            DocumentPropertyHelper.WriteCustomProperty(sourceDoc, "Pages", originalReportPages.ToString())
+            Dim pageNumReset = sourceDoc.ComputeStatistics(WdStatistic.wdStatisticPages)
+            DocumentPropertyHelper.WriteCustomProperty(sourceDoc, "Pages", pageNumReset.ToString())
 
         End Sub
 

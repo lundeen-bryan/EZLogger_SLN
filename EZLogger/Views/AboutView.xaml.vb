@@ -65,4 +65,8 @@ Partial Public Class AboutView
     Private Sub BtnGoBack_Click(sender As Object, e As RoutedEventArgs)
         _hostForm.Close()
     End Sub
+
+    Private Sub BtnGoBack_Click_1(sender As Object, e As RoutedEventArgs) Handles BtnGoBack.Click
+        _hostForm?.Close()
+    End Sub
 End Class
