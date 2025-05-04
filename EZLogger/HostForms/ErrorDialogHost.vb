@@ -1,29 +1,49 @@
-﻿Imports System.Windows.Forms.Integration
-Imports Views ' Adjust namespace if needed
+﻿Imports System.Windows.Forms
 
 Public Class ErrorDialogHost
 
-		Private Sub ErrorDialogHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-				Dim view As New ErrorDialogView(Me)
-				ElementHost1.Child = view
+    Private _errorMessage As String
+    Private _errorNumber As String
+    Private _recommendation As String
+    Private _source As String
 
-				' Set form size and title
-				Me.ClientSize = New Drawing.Size(610, 580)
-				Me.Text = ""
+    Public Sub New(errorMessage As String,
+                   errorNumber As String,
+                   recommendation As String,
+                   source As String,
+                   Optional hostForm As Form = Nothing)
 
-				' Optional UI settings
-				Me.MinimizeBox = False
-				Me.MaximizeBox = False
-				Me.ShowIcon = False
-				Me.FormBorderStyle = FormBorderStyle.FixedSingle
+        InitializeComponent()
 
-				' Optional: center the window
-				FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
+        ' Store error details in private fields
+        _errorMessage = errorMessage
+        _errorNumber = errorNumber
+        _recommendation = recommendation
+        _source = source
+    End Sub
 
-				' Optional: manually size and position the ElementHost
-				ElementHost1.Width = Me.ClientSize.Width - 40
-				ElementHost1.Height = Me.ClientSize.Height - 40
-				ElementHost1.Location = New Drawing.Point(20, 20)
-		End Sub
+    Private Sub ErrorDialogHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Create the view and assign it to the ElementHost
+        Dim view As New ErrorDialogView(Me)
+
+        ' TODO: view.SetErrorFields(_errorMessage, _errorNumber, _recommendation, _source)
+
+        ElementHost1.Child = view
+
+        ' Retain original layout and styling logic
+        Me.ClientSize = New Drawing.Size(610, 580)
+        Me.Text = ""
+
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.ShowIcon = False
+        Me.FormBorderStyle = FormBorderStyle.FixedSingle
+
+        FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
+
+        ElementHost1.Width = Me.ClientSize.Width - 40
+        ElementHost1.Height = Me.ClientSize.Height - 40
+        ElementHost1.Location = New Drawing.Point(20, 20)
+    End Sub
 
 End Class

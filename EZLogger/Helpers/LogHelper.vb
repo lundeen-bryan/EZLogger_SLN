@@ -56,26 +56,19 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
-        ''' Writes a timestamped error message to the error log.
+        ''' Writes a timestamped error message to the error log defined in global_config.json.
+        ''' Exits silently if config value is missing.
         ''' </summary>
         ''' <param name="source">The method or class where the error occurred.</param>
         ''' <param name="errorMessage">The error message to write.</param>
         Public Sub LogError(source As String, errorMessage As String)
-            Try
-                Dim logDir As String = "C:\Users\lunde\repos\cs\ezlogger\EZLogger_SLN\temp\Error_Logs"
-                Dim logPath As String = Path.Combine(logDir, "error_log.txt")
+            Dim logDir As String = ConfigHelper.GetGlobalConfigValue("database", "error_folder")
+            If String.IsNullOrWhiteSpace(logDir) Then Exit Sub
 
-                If Not Directory.Exists(logDir) Then
-                    Directory.CreateDirectory(logDir)
-                End If
+            Dim logPath As String = Path.Combine(logDir, "error_log.txt")
+            Dim fullMessage As String = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [ERROR] [{source}] {errorMessage}{Environment.NewLine}"
 
-                Dim fullMessage As String = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [ERROR] [{source}] {errorMessage}{Environment.NewLine}"
-
-                File.AppendAllText(logPath, fullMessage)
-
-            Catch
-                ' Optional: silently fail
-            End Try
+            File.AppendAllText(logPath, fullMessage)
         End Sub
 
     End Module
