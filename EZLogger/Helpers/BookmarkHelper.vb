@@ -12,21 +12,40 @@ Namespace Helpers
         ''' Copies custom properties from one document into bookmarks of another.
         ''' </summary>
         Public Sub FillBookmarksFromDocumentProperties(sourceDoc As Document, targetDoc As Document)
+
             If sourceDoc Is Nothing OrElse targetDoc Is Nothing Then Return
 
             Try
                 Dim props = CType(sourceDoc.CustomDocumentProperties, DocumentProperties)
+
                 For Each prop As DocumentProperty In props
                     Dim name = prop.Name.Replace(" ", "_")
+
                     If targetDoc.Bookmarks.Exists(name) Then
                         Dim bmRange = targetDoc.Bookmarks(name).Range
+
+                        ' Insert the value
                         bmRange.Text = prop.Value.ToString()
+
+                        ' Recreate the bookmark at the updated range
                         targetDoc.Bookmarks.Add(name, bmRange)
+
+                        ' OPTIONAL: update any fields referencing this bookmark
+                        bmRange.Fields.Update()
+
+                        ' Unlink the fields after updating
+                        If bmRange.Fields.Count > 0 Then
+                            For Each fld As Field In bmRange.Fields
+                                fld.Unlink()
+                            Next
+                        End If
                     End If
                 Next
+
             Catch ex As Exception
-                ' Optional logging
+                ' Optional: log error or show message
             End Try
+
         End Sub
 
         ''' <summary>
