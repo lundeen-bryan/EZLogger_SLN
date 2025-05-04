@@ -410,6 +410,7 @@
     <Compile Include="Helpers\DocumentHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyHelper.vb" />
     <Compile Include="Helpers\DocumentPropertyValidator.vb" />
+    <Compile Include="Helpers\ErrorHelper.vb" />
     <Compile Include="Helpers\ExcelHelper.vb" />
     <Compile Include="Helpers\ExportPdfHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
