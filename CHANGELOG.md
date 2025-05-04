@@ -9,13 +9,49 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 
 - Plan new EZL_DUAL table to track dual commitments separately from EZL
 - Add config check code to ensure the user has a user_config.json file before running EZLogger - see legacy fnc_check_config
-- Add function to clear existing document properties before the user can add new properties see legacy fnc_clear_document_properties
 - Add function to check if a file already exists in a directory
 - Update EZL to show a charges column and write function to return charges from ODS
-- Function to write metadata to the sharepoint site when the file is uploaded/saved there
 - Functions to convert document to pdf and xps
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
+
+## [0.0.1] - 2025-05-04
+
+### Added
+
+- Introduced a new error dialog feature to improve error communication:
+  - Added `ErrorDialogHandler.vb`, `ErrorDialogHost.vb`, `ErrorDialogView.xaml`, and related resource and designer files.
+  - Defined WPF UI layout and logic for the error dialog.
+  - Enabled localization via `ErrorDialogHost.resx`.
+
+- Implemented centralized error handling and logging:
+  - Created `ErrorHelper.vb` for reusable error handling logic.
+  - Integrated logging with `LogHelper.vb` using config-defined log paths.
+  - Included error simulation and capture in `EZLoggerRibbonXml.vb`.
+
+- Enhanced error dialog behavior and appearance:
+  - Added `SetErrorFields` method and wired button handlers in `ErrorDialogView.xaml.vb`.
+  - Updated UI with larger font and improved styling in `ErrorDialogView.xaml`.
+  - Ensured consistent behavior in `ErrorDialogHost.vb` when displaying errors.
+  - Log output is now written to `error_log.txt` to demonstrate functionality.
+
+- Added handler wiring for new error dialog buttons:
+  - Implemented `HandleOkClick`, `HandleAbortClick`, and `HandleCopyClick` in `ErrorDialogHandler.vb`.
+
+### Changed
+
+- Standardized file and class naming from `TCAR` to `Tcar` across the project:
+  - Renamed `TCARListHandler.vb` to `TcarListHandler.vb`.
+  - Updated all relevant method and XAML references.
+
+- Improved usability and modularity of various handlers:
+  - Added `HandleCloseClick` in `AboutWinHandler.vb` and refined the same in `ChiefApprovalHandler.vb`.
+  - Implemented `HandleEditEmailClick` in `ConfigViewHandler.vb` for email configuration.
+  - Enhanced due date logic in `DueDatePprHandler.vb` and `DueDates1370Handler.vb`.
+  - Expanded evaluator management methods in `EvaluatorHandler.vb`.
+  - Made usability improvements in `FaxCoverHandler.vb`, `OpinionHandler.vb`, `PatientInfoHandler.vb`, and `SaveFileHandler.vb`.
+
+- Improved closing logic for secondary windows in `UpdateInfoView.xaml.vb`.
 
 ## [0.0.1] – 2025-05-02
 
