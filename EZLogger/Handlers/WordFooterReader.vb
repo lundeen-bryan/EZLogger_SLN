@@ -76,8 +76,11 @@ Public Class WordFooterReader
             searchLoop.Invoke()
 
         Catch ex As Exception
-            LogError("", ex.Message, functionThatCalls)
-            onNotFound.Invoke()
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = CStr(ex.Message)
+            Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+            ErrorHelper.HandleError("WordFooterReader.BeginSearchForPatientNumber", errNum, errMsg, recommendation)
         End Try
     End Sub
 
@@ -99,11 +102,6 @@ Public Class WordFooterReader
             .MatchCase = False
             .MatchAllWordForms = False
         End With
-    End Sub
-
-	' TODO: re-write this as a helper function to log errors
-    Private Sub LogError(foundText As String, errorMessage As String, source As String)
-        MessageBox.Show($"Error in {source}:{vbCrLf}{errorMessage}", "Error")
     End Sub
 
 End Class
