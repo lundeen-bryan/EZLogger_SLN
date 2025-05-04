@@ -231,7 +231,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Email Addresses">
+            <TabItem Header="Email Addresses" Visibility="Collapsed">
                 <Grid Background="White">
                     <GroupBox HorizontalAlignment="Left"
                               Height="75"

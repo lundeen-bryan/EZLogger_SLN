@@ -172,3 +172,4 @@ TcarOffset = 78
 2025-05-04 06:04:29 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
 2025-05-04 06:19:04 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
 2025-05-04 06:19:43 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
+2025-05-04 06:30:19 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click

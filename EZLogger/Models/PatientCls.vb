@@ -39,5 +39,5 @@
     Public Property EarlyNinetyDay As Integer   ' Still valid
 
     Public Property CourtNumber As String
-
+    Public Property Sex As String
 End Class

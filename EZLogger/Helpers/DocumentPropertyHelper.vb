@@ -44,6 +44,7 @@ Namespace Helpers
                 writeProp("Bed Status", patient.BedStatus)
                 writeProp("Court Number", patient.CourtNumber)
                 writeProp("DOB", patient.DOB)
+                writeProp("Sex", patient.Sex)
 
                 ' Age calculated using a separate helper
                 Dim age As String = AgeHelper.CalculateAge(Date.Parse(patient.DOB)).ToString()
@@ -122,28 +123,35 @@ Namespace Helpers
         ''' </summary>
         Public Shared Function CreateUniqueIdFromProperties() As String
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
-
+                ' Helper to retrieve document properties
                 Dim getProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
 
+                ' Extract necessary fields
                 Dim patientNumber = getProp("Patient Number")
-                Dim lname = getProp("Lastname")
-                Dim fname = getProp("Firstname")
                 Dim reportType = getProp("Report Type")
-                Dim county = getProp("County")
-                Dim reportDate = getProp("Report Date")
-                Dim program = getProp("Program")
+                Dim reportDateStr = getProp("Report Date")
 
-                ' Optional: Clean up or normalize values if needed
-                Dim parts As New List(Of String) From {
-            patientNumber, lname, fname, reportType, county, reportDate, program
-        }
+                ' Parse the date safely
+                Dim reportDate As Date
+                If Not Date.TryParse(reportDateStr, reportDate) Then
+                    MsgBoxHelper.Show("Invalid or missing Report Date.")
+                    Return String.Empty
+                End If
 
-                ' Remove empty/null values
-                parts = parts.Where(Function(p) Not String.IsNullOrWhiteSpace(p)).ToList()
+                ' Format components
+                Dim mo As String = reportDate.Month.ToString().PadLeft(2, "0"c)
+                Dim da As String = reportDate.Day.ToString().PadLeft(2, "0"c)
+                Dim currentTime As String = "|" & Date.Now.ToString("HHmmss")
 
-                ' Return a hyphen-delimited ID
-                Return String.Join("-", parts)
+                ' Build unique ID
+                Dim baseId As String
+                If reportType = "PPR" Then
+                    baseId = $"{patientNumber},{reportType.Substring(0, 3)}{mo}{da}"
+                Else
+                    baseId = $"{patientNumber},{reportType.Substring(0, Math.Min(4, reportType.Length))}{mo}{da}"
+                End If
+
+                Return baseId & currentTime
 
             Catch ex As Exception
                 MsgBoxHelper.Show("Error creating unique ID: " & ex.Message)
