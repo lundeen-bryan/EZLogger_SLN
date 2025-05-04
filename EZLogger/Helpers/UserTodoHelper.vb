@@ -40,7 +40,12 @@ Namespace Helpers
 
             ' Optionally alert if still failing after retry
             If Not success Then
-                System.Windows.MessageBox.Show("Failed to save TODO entry to " & filePath, "TODO Log Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error)
+                Dim ex As Exception
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                ErrorHelper.HandleError("UserTodoHelper.AppendTodoEntry", errNum, errMsg, recommendation)
             End If
         End Sub
 

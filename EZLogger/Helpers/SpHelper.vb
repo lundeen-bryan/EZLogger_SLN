@@ -73,7 +73,11 @@ Public Module SpHelper
             'doc.ContentTypeProperties.Commit()
 
         Catch ex As Exception
-            LogHelper.LogError("SpHelper.UpdateMetadata", ex.Message)
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = CStr(ex.Message)
+            Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+            ErrorHelper.HandleError("SpHelper.UpdateMetadata", errNum, errMsg, recommendation)
         End Try
     End Sub
 
