@@ -379,6 +379,7 @@
     <Compile Include="Handlers\ConfigViewHandler.vb" />
     <Compile Include="Handlers\DueDatePprHandler.vb" />
     <Compile Include="Handlers\DueDates1370Handler.vb" />
+    <Compile Include="Handlers\ErrorDialogHandler.vb" />
     <Compile Include="Handlers\EvaluatorHandler.vb" />
     <Compile Include="Handlers\FaxCoverHandler.vb" />
     <Compile Include="Handlers\OpinionHandler.vb" />
@@ -475,6 +476,12 @@
     <Compile Include="HostForms\DueDates1370Host.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HostForms\ErrorDialogHost.Designer.vb">
+      <DependentUpon>ErrorDialogHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HostForms\ErrorDialogHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HostForms\EvaluatorHost.Designer.vb">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
     </Compile>
@@ -569,6 +576,9 @@
     <Compile Include="Views\DueDates1370View.xaml.vb">
       <DependentUpon>DueDates1370View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ErrorDialogView.xaml.vb">
+      <DependentUpon>ErrorDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EvaluatorView.xaml.vb">
       <DependentUpon>EvaluatorView.xaml</DependentUpon>
     </Compile>
@@ -632,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\DueDates1370Host.resx">
       <DependentUpon>DueDates1370Host.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HostForms\ErrorDialogHost.resx">
+      <DependentUpon>ErrorDialogHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HostForms\EvaluatorHost.resx">
       <DependentUpon>EvaluatorHost.vb</DependentUpon>
@@ -738,6 +751,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DueDates1370View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ErrorDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
