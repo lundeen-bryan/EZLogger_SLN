@@ -26,7 +26,7 @@ Public Class ErrorDialogHost
         ' Create the view and assign it to the ElementHost
         Dim view As New ErrorDialogView(Me)
 
-        ' TODO: view.SetErrorFields(_errorMessage, _errorNumber, _recommendation, _source)
+        view.SetErrorFields(_errorMessage, _errorNumber, _recommendation, _source)
 
         ElementHost1.Child = view
 

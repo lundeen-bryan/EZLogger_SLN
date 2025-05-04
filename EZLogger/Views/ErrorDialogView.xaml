@@ -81,9 +81,9 @@
                                  Background="#CCE5FF"
                                  Height="25"
                                  VerticalContentAlignment="Center"
-                                 FontSize="12"
+                                 FontSize="14"
                                  HorizontalAlignment="Left"
-                                 Width="200"/>
+                                 Width="200" FontFamily="Lucida Console" Text="2025"/>
                     </Grid>
                 </GroupBox>
             </Grid>
