@@ -1,0 +1,3 @@
+2025-05-04 14:51:44 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.
+2025-05-04 14:54:56 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.
+2025-05-04 15:01:56 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.

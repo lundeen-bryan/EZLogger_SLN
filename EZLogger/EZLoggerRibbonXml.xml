@@ -59,6 +59,11 @@
                             label="Email Report"
                             size="large"
                             imageMso="ReplyToAttendeesWithMessage" />
+                    <button id="SummaryBtn"
+                            onAction="SummaryBtn_Click"
+                            label="Summary Report"
+                            size="large"
+                            imageMso="ChartShowDataContextualMenu" />
                     <button id="CloseDocBtn"
                             onAction="CloseDocBtn_Click"
                             label="Close Document"

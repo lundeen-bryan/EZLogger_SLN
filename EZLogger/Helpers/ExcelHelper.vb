@@ -1,8 +1,69 @@
-﻿Imports EZLogger.Helpers ' adjust based on your project structure
+﻿Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Excel
+Imports System.Diagnostics
 Imports System.Runtime.InteropServices
+Imports System.Windows
 
 Public Module ExcelHelper
+
+    ''' <summary>
+    ''' Exports a DataTable to a new Excel workbook and saves it as SummaryReport.xlsx in the user's Documents folder.
+    ''' </summary>
+    ''' <param name="dt">The DataTable containing EZL records.</param>
+    Public Sub ExportDataTableToSummaryExcel(dt As System.Data.DataTable)
+        If dt Is Nothing OrElse dt.Rows.Count = 0 Then
+            MsgBoxHelper.Show("No data to export.")
+            Exit Sub
+        End If
+
+        Dim xlApp As New Microsoft.Office.Interop.Excel.Application()
+        Dim xlBook As Workbook = Nothing
+        Dim xlSheet As Worksheet = Nothing
+
+        Try
+            xlApp.Visible = False
+            xlBook = xlApp.Workbooks.Add()
+            xlSheet = CType(xlBook.Sheets(1), Worksheet)
+
+            ' Write headers
+            For col As Integer = 0 To dt.Columns.Count - 1
+                xlSheet.Cells(1, col + 1).Value = dt.Columns(col).ColumnName
+            Next
+
+            ' Write data
+            For row As Integer = 0 To Math.Min(50, dt.Rows.Count - 1) ' TEMPORARY CAP FOR DEBUGGING
+                For col As Integer = 0 To dt.Columns.Count - 1
+                    Dim value As Object = dt.Rows(row)(col)
+                    xlSheet.Cells(row + 2, col + 1).Value = If(value IsNot Nothing, value.ToString(), "")
+                Next
+            Next
+
+            ' Autosize columns
+            xlSheet.Columns.AutoFit()
+
+            ' Save to user's Documents folder using helper
+            Dim savePath As String = IO.Path.Combine(TempFileHelper.GetDocumentsFolder(), "SummaryReport.xlsx")
+            xlBook.SaveAs(savePath)
+
+            MsgBoxHelper.Show("Summary report saved to: " & savePath)
+
+        Catch ex As Exception
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = CStr(ex.Message)
+            Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+            ErrorHelper.HandleError("PrcHandler.SaveProcessedReport", errNum, errMsg, recommendation)
+
+        Finally
+            ' Cleanup
+            If xlBook IsNot Nothing Then xlBook.Close(False)
+            If xlApp IsNot Nothing Then xlApp.Quit()
+
+            If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
+            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBook)
+            If xlApp IsNot Nothing Then Marshal.ReleaseComObject(xlApp)
+        End Try
+    End Sub
 
     ''' <summary>
     ''' Searches for the specified patient number in the HLV Excel file and returns the matching provider name.
@@ -21,7 +82,7 @@ Public Module ExcelHelper
                 Return Nothing
             End If
 
-            xlApp = New Application()
+            xlApp = New Microsoft.Office.Interop.Excel.Application()
             xlBook = xlApp.Workbooks.Open(filePath, ReadOnly:=True)
             xlSheet = CType(xlBook.Sheets("HLV"), Worksheet)
 
