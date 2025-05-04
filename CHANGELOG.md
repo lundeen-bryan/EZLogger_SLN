@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [1.0.0] - 2025-05-04
+
+- Updated version number to 1.0.0
+
 ## [0.0.1] - 2025-05-04
 
 ### Added
@@ -38,8 +42,15 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Added handler wiring for new error dialog buttons:
   - Implemented `HandleOkClick`, `HandleAbortClick`, and `HandleCopyClick` in `ErrorDialogHandler.vb`.
 
+- `FillBookmarksFromDocumentProperties` method in `BookmarkHelper.vb` to copy custom properties from a source document to bookmarks in a target document. Automatically updates and unlinks fields for better PDF output.
+- Error dialog feature with reusable UI and localization support to enhance user communication of critical errors.
+
 ### Changed
 
+- Centralized error handling across modules by replacing legacy logging with `ErrorHelper.HandleError`.
+- Updated `DatabaseHelper`, `SpHelper`, `UserTodoHelper`, and `AlertHelper` to use structured error reporting with user-friendly recommendations.
+- Enhanced `WordFooterReader` and `ReportWizardHandler` methods to provide detailed feedback when exceptions occur, including suggestions to confirm patient number context.
+- Updated `SaveProcessedReport` in `PrcHandler` to improve robustness and logging clarity.
 - Standardized file and class naming from `TCAR` to `Tcar` across the project:
   - Renamed `TCARListHandler.vb` to `TcarListHandler.vb`.
   - Updated all relevant method and XAML references.
@@ -52,6 +63,23 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
   - Made usability improvements in `FaxCoverHandler.vb`, `OpinionHandler.vb`, `PatientInfoHandler.vb`, and `SaveFileHandler.vb`.
 
 - Improved closing logic for secondary windows in `UpdateInfoView.xaml.vb`.
+
+### Fixed
+
+- Addressed COM casting issues between `DocumentClass` and `Document` during Microsoft Office Interop operations.
+- Logged and identified issues related to unsupported `version` keyword in database connection strings.
+- Fixed document export issue by unlinking Word fields after filling bookmarks, ensuring formatting persists in PDF output.
+- Corrected visibility logic in `AboutView.xaml` and `ConfigView.xaml`, hiding development tabs or restoring default state as needed.
+
+### Removed
+
+- Simulated test error from `AboutButton_Click` in `EZLoggerRibbonXml.vb`.
+
+### Miscellaneous
+
+- Added "Sex" property to `PatientCls.vb` and included it in Word document properties.
+- Improved document metadata by restoring the "Pages" property in `FaxCoverHandler.vb`.
+- Managed unique document IDs during file save operations via `SaveFileHandler.vb`.
 
 ## [0.0.1] – 2025-05-02
 
