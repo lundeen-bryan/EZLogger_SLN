@@ -94,8 +94,11 @@ Namespace Handlers
                 doc.Save()
 
             Catch ex As Exception
-                LogHelper.LogError("PrcHandler.SaveProcessedReport", ex.Message)
-                System.Windows.MessageBox.Show("An error occurred while saving the processed report.", "Processing Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                ErrorHelper.HandleError("PrcHandler.SaveProcessedReport", errNum, errMsg, recommendation)
             End Try
         End Sub
 
