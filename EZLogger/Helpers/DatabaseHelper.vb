@@ -191,8 +191,11 @@ Public Module DatabaseHelper
                               $"Parameters:" & vbCrLf &
                               String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
 
-                Debug.Print(debugInfo)
-                LogHelper.LogError("DatabaseHelper.InsertPrcTable", debugInfo)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = debugInfo
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                ErrorHelper.HandleError("DatabaseHelper.InsertPrcTable", errNum, errMsg, recommendation)
 
 #If DEBUG Then
                 MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
