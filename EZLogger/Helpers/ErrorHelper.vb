@@ -1,37 +1,38 @@
-﻿Imports System.Windows.Forms
+﻿Imports EZLogger.Helpers
 Imports EZLogger.HostForms
+Imports System.Windows.Forms
 
 Namespace Helpers
 
     ''' <summary>
-    ''' Centralized error handler for displaying and logging errors.
+    ''' Centralized error handler for logging and displaying error dialogs.
     ''' </summary>
     Public Module ErrorHelper
 
         ''' <summary>
-        ''' Handles an application error by showing a dialog and logging the details.
+        ''' Handles an application error by logging it and showing an error dialog.
         ''' </summary>
-        ''' <param name="source">The module, method, or button name where the error occurred.</param>
-        ''' <param name="errorNumber">A string representing the error number or code.</param>
-        ''' <param name="errorMessage">The main error message to display to the user.</param>
-        ''' <param name="recommendation">A suggested action or message to help the user.</param>
-        ''' <param name="hostForm">Optional: the form to position the error dialog near.</param>
+        ''' <param name="source">The module or method where the error occurred.</param>
+        ''' <param name="errorNumber">A string representation of the error number (e.g. HResult).</param>
+        ''' <param name="errorMessage">The main error message from the exception.</param>
+        ''' <param name="recommendation">A user-facing suggestion or fix.</param>
+        ''' <param name="hostForm">Optional: form to anchor the error dialog near.</param>
         Public Sub HandleError(source As String,
                                errorNumber As String,
                                errorMessage As String,
                                recommendation As String,
                                Optional hostForm As Form = Nothing)
 
-            ' TODO: Send error details to the ErrorDialogView via ErrorDialogHost
-            ' Example: Dim dialogHost As New ErrorDialogHost(...)
-            ' Then set the relevant fields in ErrorDialogView (e.g. DateTimeTxt, ErrorNumberTxt, etc.)
+            ' 1. Format the full message to log
+            Dim user As String = Environment.UserName
+            Dim logMessage As String = $"User: {user}, Err#: {errorNumber}, Source: {source}, Message: {errorMessage}"
 
-            ' TODO: Log the error message to error_log.txt
-            ' Example: LogHelper.LogError(source, composedMessage)
+            ' 2. Log it
+            LogHelper.LogError(source, logMessage)
 
-            ' --- Temporary MsgBox placeholder for dev testing ---
-            MessageBox.Show($"[Error] {source}{vbCrLf}{vbCrLf}{errorMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
+            ' 3. Show the error dialog with details
+            Dim dialogHost As New ErrorDialogHost(errorMessage, errorNumber, recommendation, source, hostForm)
+            dialogHost.Show()
         End Sub
 
     End Module

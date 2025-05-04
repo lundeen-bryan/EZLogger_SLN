@@ -168,3 +168,7 @@ TCAR = 2025-02-12
 TcarOffset = 78
 2025-05-01 13:53:59 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.
 2025-05-02 07:34:41 [ERROR] [SpHelper.UpdateMetadata] This document must contain Content Type properties. Content Type properties are a common requirement for files in a document management system.
+2025-05-04 05:57:58 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
+2025-05-04 06:04:29 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
+2025-05-04 06:19:04 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click
+2025-05-04 06:19:43 [ERROR] [Ribbon.AboutBtn_Click] User: lunde, Err#: -2147467261, Source: Ribbon.AboutBtn_Click, Message: Simulated test failure in AboutBtn_Click

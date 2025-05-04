@@ -29,15 +29,15 @@ Public Class ErrorDialogView
     End Sub
 
     Private Sub OkBtn_Click(sender As Object, e As RoutedEventArgs)
-        ' _handler.HandleOkClick(_hostForm)
+        _handler.HandleOkClick(_hostForm)
     End Sub
 
     Private Sub AbortBtn_Click(sender As Object, e As RoutedEventArgs)
-        ' _handler.HandleAbortClick(_hostForm)
+        _handler.HandleAbortClick(_hostForm)
     End Sub
 
     Private Sub CopyBtn_Click(sender As Object, e As RoutedEventArgs)
-        ' _handler.HandleCopyClick(_hostForm)
+        _handler.HandleCopyClick(_hostForm)
     End Sub
 
     Public Sub SetErrorFields(errorMessage As String,
