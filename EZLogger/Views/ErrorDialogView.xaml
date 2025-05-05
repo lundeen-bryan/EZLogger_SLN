@@ -1,10 +1,11 @@
 ﻿<UserControl x:Class="ErrorDialogView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="570" d:DesignWidth="600"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="570"
+             d:DesignWidth="600"
              Background="White"
              FontFamily="Candara"
              FontSize="18">
@@ -22,59 +23,97 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Border BorderBrush="Gray" BorderThickness="1" Padding="10" Background="White">
+    <Border BorderBrush="Gray"
+            BorderThickness="1"
+            Padding="10"
+            Background="White">
         <Grid Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> <!-- Header -->
-                <RowDefinition Height="Auto"/> <!-- Description -->
-                <RowDefinition Height="Auto"/> <!-- Buttons and DateTime -->
-                <RowDefinition Height="Auto"/> <!-- Error Number -->
-                <RowDefinition Height="Auto"/> <!-- Error Description -->
-                <RowDefinition Height="*"/>    <!-- Recommendations -->
-                <RowDefinition Height="Auto"/> <!-- Footer -->
+                <RowDefinition Height="Auto" />
+                <!-- Header -->
+                <RowDefinition Height="Auto" />
+                <!-- Description -->
+                <RowDefinition Height="Auto" />
+                <!-- Buttons and DateTime -->
+                <RowDefinition Height="Auto" />
+                <!-- Error Number -->
+                <RowDefinition Height="Auto" />
+                <!-- Error Description -->
+                <RowDefinition Height="*" />
+                <!-- Recommendations -->
+                <RowDefinition Height="Auto" />
+                <!-- Footer -->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <!-- Header -->
-            <TextBlock Grid.Row="0" Grid.Column="0"
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
                        Text="THE FOLLOWING ERROR OCCURRED"
                        FontWeight="Bold"
                        FontStyle="Italic"
                        FontSize="16"
-                       Margin="0,0,0,5"/>
-
+                       Margin="0,0,0,5" />
             <!-- Description -->
-            <TextBlock Grid.Row="1" Grid.Column="0"
-                       Text="The error described below occurred while processing a report.&#x0a;An error log has been created for EZ Logger to track.&#x0a;Please read below for recommendations.&#x0a;Hover your mouse over a button to see hint text."
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Text="The error described below occurred while processing a report.&#xA;An error log has been created for EZ Logger to track.&#xA;Please read below for recommendations.&#xA;Hover your mouse over a button to see hint text."
                        TextWrapping="Wrap"
-                       Margin="0,0,0,10"/>
-
+                       Margin="0,0,0,10" />
             <!-- Buttons and DateTime -->
-            <Grid Grid.Row="2" Grid.Column="0" Margin="0,0,0,10">
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/> <!-- Buttons -->
-                    <ColumnDefinition Width="Auto"/> <!-- Descriptions -->
-                    <ColumnDefinition Width="*"/>    <!-- DateTime -->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Buttons -->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Descriptions -->
+                    <ColumnDefinition Width="*" />
+                    <!-- DateTime -->
                 </Grid.ColumnDefinitions>
-
                 <!-- Buttons -->
-                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,0,10,0">
-                    <Button Name="OkBtn" Content="Ok" Width="75" Margin="0,0,0,5" Background="White"/>
-                    <Button Name="AbortBtn" Content="Abort" Width="75" Margin="0,0,0,5" Background="White"/>
-                    <Button Name="CopyBtn" Content="Copy" Width="75" Background="White"/>
+                <StackPanel Grid.Column="0"
+                            Orientation="Vertical"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,10,0">
+                    <Button Name="OkBtn"
+                            Content="Ok"
+                            Width="75"
+                            Margin="0,0,0,5"
+                            Background="White" />
+                    <Button Name="AbortBtn"
+                            Content="Abort"
+                            Width="75"
+                            Margin="0,0,0,5"
+                            Background="White" />
+                    <Button Name="CopyBtn"
+                            Content="Copy"
+                            Width="75"
+                            Background="White" />
                 </StackPanel>
-
                 <!-- Button Descriptions -->
-                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" Margin="0,0,15,0">
-                    <TextBlock Text="Continue running EZLogger" VerticalAlignment="Center" FontSize="18"/>
-                    <TextBlock Text="Exit Word and stop processing" VerticalAlignment="Center" FontSize="18" Margin="0,12,0,5"/>
-                    <TextBlock Text="Copy recommendation text" VerticalAlignment="Center" FontSize="18" Margin="0,6,0,0"/>
+                <StackPanel Grid.Column="1"
+                            Orientation="Vertical"
+                            VerticalAlignment="Top"
+                            Margin="0,0,15,0">
+                    <TextBlock Text="Continue running EZLogger"
+                               VerticalAlignment="Center"
+                               FontSize="18" />
+                    <TextBlock Text="Exit Word and stop processing"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,12,0,5" />
+                    <TextBlock Text="Copy recommendation text"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,6,0,0" />
                 </StackPanel>
-
                 <!-- Date and Time -->
-                <GroupBox Header="Date and Time" Grid.Column="2" VerticalAlignment="Top">
+                <GroupBox Header="Date and Time"
+                          Grid.Column="2"
+                          VerticalAlignment="Top">
                     <Grid Margin="5">
                         <TextBox Name="DateTimeTxt"
                                  IsReadOnly="True"
@@ -83,38 +122,58 @@
                                  VerticalContentAlignment="Center"
                                  FontSize="14"
                                  HorizontalAlignment="Left"
-                                 Width="200" FontFamily="Lucida Console" Text="2025"/>
+                                 Width="200"
+                                 FontFamily="Lucida Console"
+                                 Text="2025" />
                     </Grid>
                 </GroupBox>
             </Grid>
-
             <!-- Error Number -->
-            <GroupBox Header="Error Number" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5">
+            <GroupBox Header="Error Number"
+                      Grid.Row="3"
+                      Grid.Column="0"
+                      Margin="0,0,0,5">
                 <Grid Margin="5">
-                    <TextBox Name="ErrorNumberTxt" IsReadOnly="True" Background="#CCE5FF"/>
+                    <TextBox Name="ErrorNumberTxt"
+                             IsReadOnly="True"
+                             Background="#CCE5FF" />
                 </Grid>
             </GroupBox>
-
             <!-- Error Description -->
-            <GroupBox Header="Error Description" Grid.Row="4" Grid.Column="0" Margin="0,0,0,5">
+            <GroupBox Header="Error Description"
+                      Grid.Row="4"
+                      Grid.Column="0"
+                      Margin="0,0,0,5">
                 <Grid Margin="5">
-                    <TextBox Name="ErrorDescriptionTxt" IsReadOnly="True" Background="#CCE5FF" TextWrapping="Wrap" AcceptsReturn="True" Height="60"/>
+                    <TextBox Name="ErrorDescriptionTxt"
+                             IsReadOnly="True"
+                             Background="#CCE5FF"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             Height="60" />
                 </Grid>
             </GroupBox>
-
             <!-- Recommendations -->
-            <GroupBox Header="Recommendations" Grid.Row="5" Grid.Column="0" Margin="0,0,0,5">
+            <GroupBox Header="Recommendations"
+                      Grid.Row="5"
+                      Grid.Column="0"
+                      Margin="0,0,0,5">
                 <Grid Margin="5">
-                    <TextBox Name="RecommendationTxt" IsReadOnly="True" Background="#CCE5FF" TextWrapping="Wrap" AcceptsReturn="True" Height="100"/>
+                    <TextBox Name="RecommendationTxt"
+                             IsReadOnly="True"
+                             Background="#CCE5FF"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             Height="100" />
                 </Grid>
             </GroupBox>
-
             <!-- Footer -->
-            <TextBlock Grid.Row="6" Grid.Column="0" 
+            <TextBlock Grid.Row="6"
+                       Grid.Column="0"
                        Text="Bryan.Lundeen@dsh.ca.gov"
                        HorizontalAlignment="Right"
                        Foreground="Gray"
-                       FontSize="12"/>
+                       FontSize="12" />
         </Grid>
     </Border>
 </UserControl>
