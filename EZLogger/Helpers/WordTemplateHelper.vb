@@ -14,6 +14,8 @@ Namespace Helpers
         ''' <param name="templatePath">The full path to the template (.dot or .dotx) file.</param>
         ''' <returns>The newly created Word document, or Nothing if creation fails.</returns>
         Public Function CreateDocumentFromTemplate(templatePath As String) As Document
+            Dim functionThatCalls As String = "WordTemplateHelper.CreateDocumentFromTemplate"
+
             If String.IsNullOrEmpty(templatePath) OrElse Not File.Exists(templatePath) Then
                 ' Template path is invalid or missing
                 Return Nothing
@@ -32,8 +34,11 @@ Namespace Helpers
 
                 Return newDoc
             Catch ex As Exception
-                ' TODO
-                ' Optional: log error here 
+                    Dim errNum As String = ex.HResult.ToString()
+                    Dim errMsg As String = CStr(ex.Message)
+                    Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+
+                    ErrorHelper.HandleError(functionThatCalls, errNum, errMsg, recommendation)
                 Return Nothing
             End Try
         End Function
