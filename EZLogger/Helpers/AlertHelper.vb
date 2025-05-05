@@ -10,6 +10,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="doc">The Word document to pull Patient Number and County from.</param>
         Public Sub AddAlertsToTaskList(doc As Document)
+        	Dim functionThatCalls As String = "AlertHelper.AddAlertsToTaskList"
             If doc Is Nothing Then Exit Sub
 
             Try
@@ -53,7 +54,7 @@ Namespace Helpers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "There was a problem trying to add an alert to the task list. Please see help file."
 
-                ErrorHelper.HandleError("AlertHelper.AddAlertsToTaskList", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionThatCalls, errNum, errMsg, recommendation)
             End Try
         End Sub
 
