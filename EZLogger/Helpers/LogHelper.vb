@@ -36,7 +36,7 @@ Namespace Helpers
             Try
                 ' Hardcoded path for development logging
                 ' TODO change this to a central error logging location saved in global_config.json
-                Dim logDir As String = "C:\Users\lunde\repos\cs\ezlogger\EZLogger_SLN\temp\Error_Logs"
+                Dim logDir As String = ConfigHelper.GetGlobalConfigValue("database", "error_folder")
                 Dim logPath As String = Path.Combine(logDir, "error_log.txt")
 
                 ' Ensure directory exists
