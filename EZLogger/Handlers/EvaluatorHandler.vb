@@ -8,10 +8,7 @@ Imports System.Windows
 Imports System.Windows.Forms
 
 Namespace Handlers
-    ''' <summary>
-    ''' Adds a new author to the list of doctors
-    ''' </summary>
-    ''' <remarks>Config manager also adds authors</remarks>
+
     Public Class EvaluatorHandler ' Example: ConfigViewHandler
 
         ''' <summary>
