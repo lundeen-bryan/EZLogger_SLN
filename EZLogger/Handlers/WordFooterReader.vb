@@ -3,7 +3,6 @@
 ' !See Label Footer for notes
 
 Imports EZLogger.Helpers
-Imports MessageBox = System.Windows.Messagebox
 
 Public Class WordFooterReader
 
@@ -21,7 +20,7 @@ Public Class WordFooterReader
         onFound As System.Action(Of String),
         onNotFound As System.Action)
 
-        Dim functionThatCalls As String = "BeginSearchForPatientNumber"
+        Dim functionThatCalls As String = "WordFooterReader.BeginSearchForPatientNumber"
         Dim repeatSearch As Integer = 1
         Const maxRepeatSearch As Integer = 5
 
@@ -80,7 +79,7 @@ Public Class WordFooterReader
             Dim errMsg As String = CStr(ex.Message)
             Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
 
-            ErrorHelper.HandleError("WordFooterReader.BeginSearchForPatientNumber", errNum, errMsg, recommendation)
+            ErrorHelper.HandleError(functionThatCalls, errNum, errMsg, recommendation)
         End Try
     End Sub
 
