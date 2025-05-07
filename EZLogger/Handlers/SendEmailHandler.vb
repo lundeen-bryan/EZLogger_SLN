@@ -51,7 +51,7 @@ Public Class SendEmailHandler
             Dim outlookApp = New Microsoft.Office.Interop.Outlook.Application()
             Dim mailItem As MailItem = CType(outlookApp.CreateItem(OlItemType.olMailItem), MailItem)
 
-            Dim toAddress = ConfigHelper.GetGlobalConfigValue("Dsh_Holdovers", "email")
+            Dim toAddress = ConfigHelper.GetGlobalConfigValue("dsh_holdovers", "email")
 
             'Sender
             Dim rawSender = DocumentPropertyHelper.GetPropertyValue("Processed By")
