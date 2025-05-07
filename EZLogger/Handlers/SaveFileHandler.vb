@@ -22,7 +22,7 @@ Namespace Handlers
         Public Sub LoadRootPaths()
             Try
                 ' Read Move (all_penal_codes) path
-                _moveRootPath = ConfigHelper.GetLocalConfigValue("sp_filepath", "all_penal_codes")
+                _moveRootPath = ConfigHelper.GetGlobalConfigValue("cdo_filepath", "all_penal_codes")
 
                 ' Read Copy (user_forensic_library) path
                 _copyRootPath = ConfigHelper.GetLocalConfigValue("sp_filepath", "user_forensic_library")
