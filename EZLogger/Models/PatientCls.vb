@@ -14,6 +14,8 @@
 
     Public Property PatientName As String
 
+    Public Property Name As String
+
     Public Property LName As String
 
     Public Property FName As String
@@ -39,5 +41,7 @@
     Public Property EarlyNinetyDay As Integer   ' Still valid
 
     Public Property CourtNumber As String
+
     Public Property Sex As String
+
 End Class

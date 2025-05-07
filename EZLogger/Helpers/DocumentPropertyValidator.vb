@@ -13,7 +13,7 @@ Namespace Helpers
                 "Patient Number", "Patient Name", "Unique ID", "Court Number", "Charges",
                 "Evaluator", "Assigned To", "Approved By", "Classification", "County",
                 "Report Date", "Due Date", "Days Since Due", "Next Due", "Commitment",
-                "Admission", "Expiration", "DOB", "Age", "Gender", "Program", "Unit",
+                "Admission", "Expiration", "DOB", "Age", "Sex", "Program", "Unit",
                 "Rush Status", "Processed By", "Report Type", "Pages"
             }
 
