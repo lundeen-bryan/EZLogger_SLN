@@ -86,7 +86,8 @@ Public Module DatabaseHelper
                     County,
                     Language,
                     Psychiatrist,
-                    Evaluator
+                    Evaluator,
+                    Sex
                     -- TODO: Add early_ninety_day later if/when EZL_IST table is migrated
                 FROM EZL
                 WHERE PatientNumber = @patientNumber;
@@ -117,6 +118,7 @@ Public Module DatabaseHelper
                             .Language = reader("Language").ToString(),
                             .Psychiatrist = reader("Psychiatrist").ToString(),
                             .Evaluator = reader("Evaluator").ToString(),
+                            .Sex = reader("Sex").ToString(),
                             .EarlyNinetyDay = 0 ' placeholder; EZL_IST not yet implemented
                         }
                             Return patient
