@@ -14,7 +14,7 @@
                          Foreground="Lime"
                          Background="DarkGray"
                          Margin="0,0,10,0" />
-            <TextBlock Text="Working..."
+            <TextBlock Text="Loading..."
                        Foreground="Lime"
                        FontFamily="Consolas"
                        FontSize="14"
