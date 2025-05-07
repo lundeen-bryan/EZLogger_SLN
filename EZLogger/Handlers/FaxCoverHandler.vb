@@ -47,8 +47,10 @@ Namespace Handlers
 
             ' 2) Special case: "A" = export the report directly
             If letter.ToUpper().Trim() = "A" Then
+                Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
                 Dim folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
                 Dim originalName = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
+                originalName = originalName & $" {county}"
                 ExportPdfHelper.ExportActiveDocumentToPdf(folder, originalName)
                 MsgBoxHelper.Show("PDF exported successfully.")
                 Return
