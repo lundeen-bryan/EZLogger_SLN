@@ -8,15 +8,16 @@ Namespace Helpers
     Public Module WordAppHelper
 
         ''' <summary>
-        ''' Returns the current global instance of the Word Application from the active VSTO Add-in.
+        ''' Safely retrieves the Word Application instance from the current VSTO Add-in.
+        ''' Returns Nothing if Word is not fully initialized.
         ''' </summary>
-        ''' <returns>The Microsoft Word Application object associated with the running Add-in.</returns>
-        ''' <remarks>
-        ''' This function centralizes access to the Word application so that other classes don't need
-        ''' to pass it around via constructors or parameters. Safe to call from anywhere in the project.
-        ''' </remarks>
-        Public Function GetWordApp() As Application
-            Return Globals.ThisAddIn.Application
+        Public Function GetWordApp() As Microsoft.Office.Interop.Word.Application
+            Try
+                Return TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
+            Catch ex As Exception
+                ErrorHelper.HandleError("WordAppHelper.GetWordApp", ex.HResult.ToString(), ex.Message, "Please restart Word and try again.")
+                Return Nothing
+            End Try
         End Function
 
         ''' <summary>

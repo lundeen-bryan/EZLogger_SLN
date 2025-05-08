@@ -86,6 +86,29 @@ Public Class EZLoggerRibbonXml
         DocumentHelper.CloseActiveDocument()
     End Sub
 
+    Public Sub OnUpdateMetadataClick(control As Office.IRibbonControl)
+        Dim functionName As String = "Ribbon.OnUpdateMetadataClick"
+        Try
+            Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
+
+            If doc Is Nothing Then
+                MessageBox.Show("No active Word document found. Please open a document and try again.", "Update Metadata", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            SpHelper.UpdateMetadata(doc)
+
+            MsgBoxHelper.Show("SharePoint metadata updated successfully.")
+
+        Catch ex As Exception
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = CStr(ex.Message)
+            Dim recommendation As String = "Make sure the document is synced with OneDrive and try again."
+
+            ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+        End Try
+    End Sub
+
     Public Sub OpenTaskList_Click(control As Microsoft.Office.Core.IRibbonControl)
         Try
             Dim frm As New TaskListHost()

@@ -174,7 +174,7 @@ Namespace Handlers
                 ' Display the new path in the TextBlock
                 view.NewFileNameTextBlock.Text = destinationPath
 
-                ' Copy folder name (patient name) to clipboard
+                ' Copy folder name (patient name) to clipboard without middle name so it's the property called "Name"
                 Dim patientName = view.LblPatientName.Content?.ToString()
                 If Not String.IsNullOrWhiteSpace(patientName) Then
                     ClipboardHelper.CopyText(patientName)
@@ -264,7 +264,7 @@ Namespace Handlers
                     view.ReportDatePicker.SelectedDate = Nothing
                 End If
 
-                view.LblPatientName.Content = GetProp("Patient Name")
+                view.LblPatientName.Content = GetProp("Name")
                 view.LblProgram.Content = GetProp("Program")
                 view.LblUnit.Content = GetProp("Unit")
                 view.LblClassification.Content = GetProp("Classification")
