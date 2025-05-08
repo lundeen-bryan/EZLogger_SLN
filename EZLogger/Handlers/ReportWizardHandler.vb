@@ -218,7 +218,7 @@ Namespace Handlers
 
         Public Sub ShowBtnKMessage()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Microsoft.Office.Interop.Word.Document = GetActiveWordDocument()
 
                 If doc Is Nothing Then
                     MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)

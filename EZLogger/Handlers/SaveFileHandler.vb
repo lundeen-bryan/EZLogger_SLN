@@ -20,6 +20,7 @@ Namespace Handlers
         ''' Shows warning if critical paths are missing.
         ''' </summary>
         Public Sub LoadRootPaths()
+            Dim functionName As String = "SaveFileHandler.LoadRootPaths"
             Try
                 ' Read Move (all_penal_codes) path
                 _moveRootPath = ConfigHelper.GetGlobalConfigValue("cdo_filepath", "all_penal_codes")
@@ -34,6 +35,12 @@ Namespace Handlers
 
             Catch ex As Exception
                 MsgBoxHelper.Show("Failed to load folder paths: " & ex.Message)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to load folder paths, try saving the document as a .docx filetype."
+
+                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+
             End Try
         End Sub
 
@@ -42,6 +49,7 @@ Namespace Handlers
         ''' and deletes the old file if moving.
         ''' </summary>
         Public Sub HandleSaveAsClick(view As SaveFileView)
+            Dim functionName As String = "SaveFileHandler.HandleSaveAsClick"
             Try
                 ' Validate user selection
                 If Not (view.RadioMove.IsChecked Or view.RadioCopy.IsChecked) Then
@@ -111,7 +119,11 @@ Namespace Handlers
                 End If
 
             Catch ex As Exception
-                MsgBoxHelper.Show("Failed to save file: " & ex.Message)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to save file: " & ex.Message
+
+                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -121,6 +133,7 @@ Namespace Handlers
         ''' Attempts to delete the old file after a successful Move operation.
         ''' </summary>
         Private Sub TryDeleteOldFile(oldFilePath As String)
+            Dim functionName As String = "SaveFileHandler.TryDeleteOldFile"
             Try
                 ' Extra safety: handle legacy .doc files
                 If System.IO.File.Exists(oldFilePath) Then
@@ -133,7 +146,11 @@ Namespace Handlers
                     End If
                 End If
             Catch ex As Exception
-                MsgBoxHelper.Show("The original file could not be deleted. Please delete it manually later.")
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "The original file could not be deleted. Please delete it manually later."
+
+                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -143,6 +160,7 @@ Namespace Handlers
         ''' Builds the destination file path, displays it in the view, and copies folder name to clipboard.
         ''' </summary>
         Public Sub HandleShowPathClick(view As SaveFileView)
+            Dim functionName As String = "SaveFileHandler.HandleShowPathClick"
             Try
                 ' Validate user selection
                 If Not (view.RadioMove.IsChecked Or view.RadioCopy.IsChecked) Then
@@ -163,7 +181,11 @@ Namespace Handlers
                 End If
 
             Catch ex As Exception
-                MsgBoxHelper.Show("Failed to generate file path: " & ex.Message)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to generate file path: " & ex.Message
+
+                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -224,6 +246,7 @@ Namespace Handlers
         ''' Loads Word document properties and populates controls in SaveFileView.
         ''' </summary>
         Public Sub HandleSearchPatientIdClick(view As SaveFileView)
+            Dim functionName As String = "SaveFileHandler.HandleSearchPatientIdClick"
             Try
                 Dim GetProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
 
@@ -252,8 +275,11 @@ Namespace Handlers
                 DocumentPropertyHelper.WriteCustomProperty(doc, "Unique ID", uniqueDocumentId)
 
             Catch ex As Exception
-                MessageBox.Show("Failed to load document properties: " & ex.Message,
-                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to load document properties: " & ex.Message
+
+                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
             End Try
         End Sub
     End Class

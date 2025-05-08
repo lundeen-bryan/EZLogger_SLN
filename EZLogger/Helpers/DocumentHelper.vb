@@ -2,13 +2,22 @@
 Imports System.Windows.Forms
 Imports System.Windows.Media
 Imports System.Windows.Controls
-Imports Microsoft.Office.Interop.Word
+Imports Word = Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
 
 ''' <summary>
-''' Provides helper methods for saving and closing the active Word document without user prompts.
+''' Provides helper methods for interacting with the active Word document.
 ''' </summary>
 Public Module DocumentHelper
+
+    ''' <summary>
+    ''' Returns the active Word document if available; otherwise returns Nothing.
+    ''' </summary>
+    Public Function GetActiveWordDocument() As Word.Document
+        Dim app As Application = TryCast(Globals.ThisAddIn.Application, Application)
+        If app Is Nothing Then Return Nothing
+        Return TryCast(app.ActiveDocument, Word.Document)
+    End Function
 
     ''' <summary>
     ''' Attempts to silently save the active Word document.
@@ -16,16 +25,15 @@ Public Module DocumentHelper
     ''' </summary>
     ''' <param name="maxRetries">Maximum number of save attempts (default is 10).</param>
     Public Sub TrySaveActiveDocument(Optional maxRetries As Integer = 10)
-        Dim app As Application = Globals.ThisAddIn.Application
-        Dim doc As Document = app.ActiveDocument
+        Dim doc As Word.Document = GetActiveWordDocument()
+        If doc Is Nothing Then Exit Sub
 
         Dim attempts As Integer = 0
-
         Do While Not doc.Saved AndAlso attempts < maxRetries
             Try
                 doc.Save()
             Catch ex As Exception
-                ' Optional: Log error or display debug info
+                ' Optional: Log error
             End Try
             attempts += 1
         Loop
@@ -35,21 +43,13 @@ Public Module DocumentHelper
     ''' Closes the active Word document with optional prompt to user.
     ''' Defaults to silent close without prompting to save.
     ''' </summary>
-    ''' <param name="showPrompt">
-    ''' If True, user is asked whether to save changes.
-    ''' If False, the document is closed without any dialog.
-    ''' </param>
+    ''' <param name="showPrompt">If True, user is asked whether to save changes.</param>
     Public Sub CloseActiveDocument(Optional showPrompt As Boolean = False)
-
-        Dim app As Application = Globals.ThisAddIn.Application
-
-        ' Check if there is an active document
-        If app.Documents.Count = 0 Then
+        Dim doc As Word.Document = GetActiveWordDocument()
+        If doc Is Nothing Then
             MsgBoxHelper.Show("There is no active document to close.")
             Exit Sub
         End If
-
-        Dim doc As Document = app.ActiveDocument
 
         Try
             Dim isPreviouslySaved As Boolean = Not String.IsNullOrWhiteSpace(doc.Path)
@@ -58,10 +58,10 @@ Public Module DocumentHelper
                 If isPreviouslySaved Then
                     TrySaveActiveDocument()
                 Else
-                    doc.Close(SaveChanges:=WdSaveOptions.wdDoNotSaveChanges)
+                    doc.Close(SaveChanges:=Word.WdSaveOptions.wdDoNotSaveChanges)
                 End If
             Else
-                doc.Close(SaveChanges:=WdSaveOptions.wdPromptToSaveChanges)
+                doc.Close(SaveChanges:=Word.WdSaveOptions.wdPromptToSaveChanges)
             End If
 
         Catch ex As Exception
@@ -70,7 +70,6 @@ Public Module DocumentHelper
 
         ' ✅ Reset ReportWizardPanel if available
         Try
-            ' Assuming ReportWizardTaskPaneContainer is globally accessible
             Dim hostForm As ReportWizardTaskPaneContainer = Globals.ThisAddIn.ReportWizardTaskPaneContainer
 
             If hostForm IsNot Nothing AndAlso hostForm.ElementHost1 IsNot Nothing Then
@@ -79,16 +78,12 @@ Public Module DocumentHelper
                     ResetAllControls(wizardPanel)
                 End If
             End If
-
         Catch ex As Exception
-            ' Optional: comment out for silent failure
             MsgBox("Could not reset Report Wizard panel: " & ex.Message)
         End Try
-
     End Sub
 
     Public Sub ResetAllControls(container As DependencyObject)
-
         For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(container) - 1
             Dim child As DependencyObject = VisualTreeHelper.GetChild(container, i)
 
@@ -110,13 +105,11 @@ Public Module DocumentHelper
 
                 Case TypeOf child Is DatePicker
                     CType(child, DatePicker).SelectedDate = Nothing
-
             End Select
 
             ' Recurse into child elements
             ResetAllControls(child)
         Next
-
     End Sub
 
     ''' <summary>
@@ -124,13 +117,14 @@ Public Module DocumentHelper
     ''' </summary>
     ''' <param name="destinationPath">Full path where the .docx file should be saved.</param>
     Public Sub SaveActiveDocumentAsDocx(destinationPath As String)
-        Dim app As Application = Globals.ThisAddIn.Application
-        Dim doc As Document = app.ActiveDocument
+        Dim doc As Word.Document = GetActiveWordDocument()
+        If doc Is Nothing Then
+            MsgBoxHelper.Show("No active document found.")
+            Exit Sub
+        End If
 
         Try
-            If doc IsNot Nothing Then
-                doc.SaveAs2(FileName:=destinationPath, FileFormat:=WdSaveFormat.wdFormatXMLDocument)
-            End If
+            doc.SaveAs2(FileName:=destinationPath, FileFormat:=Word.WdSaveFormat.wdFormatXMLDocument)
         Catch ex As Exception
             MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
         End Try
