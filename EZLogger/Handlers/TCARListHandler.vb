@@ -39,20 +39,18 @@ Namespace Handlers
                     conn.Open()
 
                     Dim query As String = "
-                        SELECT casenum, patient_name, subdate, opID
-                        FROM tcar_list
-                        WHERE active = 1
-                        ORDER BY subdate DESC
+                        SELECT [Patient Name], [Patient Number], [TCAR Submission], [Assigned To]
+                        FROM EZL_TcarView
                     "
 
                     Using cmd As New SqlCommand(query, conn)
                         Using reader As SqlDataReader = cmd.ExecuteReader()
                             While reader.Read()
                                 results.Add(New TCARRecord With {
-                                    .Casenum = reader("casenum").ToString(),
-                                    .PatientName = reader("patient_name").ToString(),
-                                    .Subdate = reader("subdate").ToString(),
-                                    .OpID = Convert.ToInt32(reader("opID"))
+                                    .Casenum = reader("Patient Number").ToString(),
+                                    .PatientName = reader("Patient Name").ToString(),
+                                    .Subdate = reader("TCAR Submission").ToString(),
+                                    .AssignedTo = Convert.ToInt32(reader("Assigned To"))
                                 })
                             End While
                         End Using
