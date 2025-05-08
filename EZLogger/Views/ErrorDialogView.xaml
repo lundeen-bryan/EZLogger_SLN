@@ -123,8 +123,7 @@
                                  FontSize="14"
                                  HorizontalAlignment="Left"
                                  Width="200"
-                                 FontFamily="Lucida Console"
-                                 Text="2025" />
+                                 FontFamily="Lucida Console" />
                     </Grid>
                 </GroupBox>
             </Grid>
