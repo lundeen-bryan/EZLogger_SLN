@@ -45,7 +45,7 @@ Namespace Handlers
             DocumentPropertyHelper.WriteCustomProperty(sourceDoc, "Pages", totalPages.ToString())
 
 
-            ' 2) Special case: "A" = export the report directly
+            ' 2) Special case: "A" = export the report directly & name with county
             If letter.ToUpper().Trim() = "A" Then
                 Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
                 Dim folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
@@ -164,33 +164,44 @@ Namespace Handlers
         ''' parses dates, and sets up necessary paths. It's used to prepare all the required data for generating a fax cover sheet.
         ''' </remarks>
         Private Function PopulateFaxCoverInfo() As FaxCoverInfo
+            Dim functionName As String = "FaxCoverHandler.PopulateFaxCoverInfo"
             Dim info As New FaxCoverInfo()
-            With info
-                .LastName = DocumentPropertyHelper.GetPropertyValue("Lastname")
-                .FirstName = DocumentPropertyHelper.GetPropertyValue("Firstname")
-                .PatientInitials = If(.FirstName.Length > 0, .FirstName(0), "") & If(.LastName.Length > 0, .LastName(0), "")
-                .ReportType = DocumentPropertyHelper.GetPropertyValue("Report Type")
-                .Pages = DocumentPropertyHelper.GetPropertyValue("Pages")
-                .UniqueId = DocumentPropertyHelper.GetPropertyValue("Unique ID")
-                .Evaluator = DocumentPropertyHelper.GetPropertyValue("Evaluator")
-                .ProcessedBy = DocumentPropertyHelper.GetPropertyValue("Processed By")
-                .ReportDate = DocumentPropertyHelper.GetPropertyValue("Report Date")
-                .County = DocumentPropertyHelper.GetPropertyValue("County")
-                .ApprovedBy = DocumentPropertyHelper.GetPropertyValue("Approved By")
 
-                ' Parse date into parts
-                Dim dt As DateTime
-                If DateTime.TryParse(.ReportDate, dt) Then
-                    .Month = dt.ToString("MM")
-                    .Day = dt.ToString("dd")
-                    .Year = dt.Year.ToString()
-                End If
+            Try
+                With info
+                    .LastName = DocumentPropertyHelper.GetPropertyValue("Lastname")
+                    .FirstName = DocumentPropertyHelper.GetPropertyValue("Firstname")
+                    .PatientInitials = If(.FirstName.Length > 0, .FirstName(0), "") & If(.LastName.Length > 0, .LastName(0), "")
+                    .ReportType = DocumentPropertyHelper.GetPropertyValue("Report Type")
+                    .Pages = DocumentPropertyHelper.GetPropertyValue("Pages")
+                    .UniqueId = DocumentPropertyHelper.GetPropertyValue("Unique ID")
+                    .Evaluator = DocumentPropertyHelper.GetPropertyValue("Evaluator")
+                    .ProcessedBy = DocumentPropertyHelper.GetPropertyValue("Processed By")
+                    .ReportDate = DocumentPropertyHelper.GetPropertyValue("Report Date")
+                    .County = DocumentPropertyHelper.GetPropertyValue("County")
+                    .ApprovedBy = DocumentPropertyHelper.GetPropertyValue("Approved By")
 
-                ' Paths
-                .TempFolder = TempFileHelper.GetTempFolder()
-                .TemplatesPath = Path.Combine(ConfigHelper.GetLocalConfigValue("sp_filepath", "databases"), "Templates")
-                '^-- Combine path segments safely using Path.Combine to ensure correct path formatting
-            End With
+                    ' Parse date into parts
+                    Dim dt As DateTime
+                    If DateTime.TryParse(.ReportDate, dt) Then
+                        .Month = dt.ToString("MM")
+                        .Day = dt.ToString("dd")
+                        .Year = dt.Year.ToString()
+                    End If
+
+                    ' Paths
+                    .TempFolder = TempFileHelper.GetTempFolder()
+                    .TemplatesPath = Path.Combine(ConfigHelper.GetLocalConfigValue("sp_filepath", "databases"), "Templates")
+                End With
+
+            Catch ex As Exception
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Error while populating FaxCoverInfo. Complete previous steps before printing cover pages."
+
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            End Try
+
             Return info
         End Function
 
