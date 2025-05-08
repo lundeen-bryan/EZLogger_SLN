@@ -229,7 +229,7 @@ Namespace Handlers
                 PrcHandler.SaveProcessedReport(doc)
 
                 ' Show success message
-                MessageBox.Show("The report has been processed and logged successfully.", "K Function Complete", MessageBoxButton.OK, MessageBoxImage.Information)
+                MsgBoxHelper.Show("The report has been processed and logged successfully.")
 
             Catch ex As Exception
                 Dim errNum As String = ex.HResult.ToString()

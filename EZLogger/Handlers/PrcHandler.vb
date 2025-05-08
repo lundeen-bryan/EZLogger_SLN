@@ -20,14 +20,11 @@ Namespace Handlers
         ''' Processes a completed report: updates SharePoint, SQL, and local TODO log.
         ''' </summary>
         ''' <param name="doc">The Word document containing report metadata.</param>
-        Public Sub SaveProcessedReport(doc As Document)
+        Public Sub SaveProcessedReport(doc As Microsoft.Office.Interop.Word.Document)
             If doc Is Nothing Then Exit Sub
 
             Try
-                ' Step 1: Update SharePoint metadata
-                SpHelper.UpdateMetadata(doc)
-
-                ' Step 2: Prepare data for SQL insertion
+                ' Step 1: Prepare data for SQL insertion
                 Dim prcData As New Dictionary(Of String, Object) From {
                     {"PatientNumber", GetDocProp(doc, "Patient Number")},
                     {"FirstPatientNumber", GetDocProp(doc, "First Patient Number")},
@@ -70,7 +67,7 @@ Namespace Handlers
 
                 DatabaseHelper.InsertPrcTable(prcData)
 
-                ' Step 3: Append to _LogTheseFiles.txt
+                ' Step 2: Append to _LogTheseFiles.txt
                 Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
                                           $"{GetDocProp(doc, "Report Type")}{vbTab}" &
                                           $"{SafeFormatDateDisplay(GetDocProp(doc, "Report Date"))}{vbTab}" &
@@ -80,7 +77,7 @@ Namespace Handlers
 
                 UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
 
-                ' Step 4: Add to TaskList (Tasks.xml) if not already present
+                ' Step 3: Add to TaskList (Tasks.xml) if not already present
                 Dim fileName As String = Path.GetFileName(doc.FullName)
                 Dim taskHandler As New TaskListHandler()
 
@@ -90,6 +87,8 @@ Namespace Handlers
                     taskHandler.AddTaskFromReport(fileName)
                 End If
 
+                ' Step 4: Update SharePoint metadata
+                SpHelper.UpdateMetadata(doc)
 
                 ' Save document to finalize SharePoint changes
                 doc.Save()

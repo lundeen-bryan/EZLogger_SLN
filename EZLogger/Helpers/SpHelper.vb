@@ -1,4 +1,7 @@
-﻿Imports EZLogger.Helpers
+﻿Imports System.Windows.Forms
+Imports EZLogger.Helpers
+Imports Haley.Abstractions
+Imports Haley.Models
 Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
 
@@ -11,10 +14,12 @@ Public Module SpHelper
     ''' Updates SharePoint metadata fields based on matching custom document properties.
     ''' </summary>
     ''' <param name="doc">The Word document to update.</param>
-    Public Sub UpdateMetadata(ByVal doc As Document)
-        If doc Is Nothing Then Exit Sub
-
+    Public Sub UpdateMetadata(ByVal doc As Microsoft.Office.Interop.Word.Document)
         Try
+            If doc Is Nothing Then
+                Throw New Exception("Word Document is not available on OneDrive yet. Please wait for OneDrive to sync the file.")
+            End If
+
             ' Map custom property names to SharePoint field names
             Dim customToSharePointMap As New Dictionary(Of String, String) From {
                 {"Court Number", "Court Number"},
@@ -68,14 +73,10 @@ Public Module SpHelper
                 End If
             Next
 
-            ' Push the updates to SharePoint server
-            ' TODO eligible for removal doesn't work in VSTO
-            'doc.ContentTypeProperties.Commit()
-
         Catch ex As Exception
             Dim errNum As String = ex.HResult.ToString()
             Dim errMsg As String = CStr(ex.Message)
-            Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+            Dim recommendation As String = "Please ensure the file has synced with OneDrive and try again."
 
             ErrorHelper.HandleError("SpHelper.UpdateMetadata", errNum, errMsg, recommendation)
         End Try

@@ -74,6 +74,11 @@
                             label="Open Task List"
                             size="large"
                             imageMso="NewTask" />
+					<button id="UpdateMetadataBtn"
+							label="Update SharePoint"
+							onAction="OnUpdateMetadataClick"
+							imageMso="SharepointShortcutMenu"
+							size="large" />
                 </group>
                 <group id="TestGroup"
                        label="Tests">

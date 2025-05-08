@@ -4,6 +4,7 @@ Imports System.Windows.Media
 Imports System.Windows.Controls
 Imports Word = Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
+Imports EZLogger.Helpers
 
 ''' <summary>
 ''' Provides helper methods for interacting with the active Word document.
@@ -11,12 +12,26 @@ Imports Application = Microsoft.Office.Interop.Word.Application
 Public Module DocumentHelper
 
     ''' <summary>
-    ''' Returns the active Word document if available; otherwise returns Nothing.
+    ''' Safely returns the active Word document if available; otherwise returns Nothing.
+    ''' Uses TryCast to avoid casting errors and logs any unexpected failures.
     ''' </summary>
-    Public Function GetActiveWordDocument() As Word.Document
-        Dim app As Application = TryCast(Globals.ThisAddIn.Application, Application)
-        If app Is Nothing Then Return Nothing
-        Return TryCast(app.ActiveDocument, Word.Document)
+    Public Function GetActiveWordDocument() As Microsoft.Office.Interop.Word.Document
+        Const functionName As String = "WordAppHelper.GetActiveWordDocument"
+
+        Try
+            Dim app As Application = TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
+            If app Is Nothing Then Return Nothing
+
+            Return TryCast(app.ActiveDocument, Microsoft.Office.Interop.Word.Document)
+
+        Catch ex As Exception
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = ex.Message
+            Dim recommendation As String = "Please close and reopen the Word document, then try again."
+
+            ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            Return Nothing
+        End Try
     End Function
 
     ''' <summary>
