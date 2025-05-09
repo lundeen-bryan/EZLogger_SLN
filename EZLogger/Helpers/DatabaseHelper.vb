@@ -5,6 +5,7 @@ Imports System.Diagnostics
 Imports System.IO
 Imports System.Windows
 Imports System.Windows.Forms
+Imports System.Threading
 Imports MessageBox = System.Windows.MessageBox
 
 
@@ -164,67 +165,75 @@ Public Module DatabaseHelper
     End Function
 
     ''' <summary>
-    ''' Inserts a new record into the EZL_PRC table.
+    ''' Inserts a new record into the EZL_PRC table and updates the "PrcInserted" property on the given Word document.
     ''' </summary>
     ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
-    Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object))
-        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
+    ''' <param name="doc">The active Word document to update with the PrcInserted property.</param>
+    Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object), doc As Document)
 
-        Dim dbPath As String = PathHelper.GetDatabasePath()
+        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
+        If doc Is Nothing Then Exit Sub
+
+        ' Step 1: Check if already inserted
+        Dim existingProp As String = DocumentPropertyHelper.GetPropertyValue("PrcInserted")
+
+        If Not String.IsNullOrEmpty(existingProp) AndAlso existingProp.Trim().ToLower() = "true" Then
+            MessageBox.Show("This report has already been logged in the PRC table.", "Already Inserted", MessageBoxButton.OK, MessageBoxImage.Warning)
+            Exit Sub
+        End If
+
+        ' Step 2: Get connection string
         Dim connectionString As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
         If String.IsNullOrWhiteSpace(connectionString) Then
             MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
             Exit Sub
         End If
-        Dim insertSuccess As Boolean = False
 
+        ' Step 3: Build SQL insert
+        Dim insertSuccess As Boolean = False
         Dim columns As String = String.Join(",", prcData.Keys)
         Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
         Dim sql As String = $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
 
-        ' Attempt insert, retry once if needed
+        ' Step 4: Try insert with one retry
         For attempt As Integer = 1 To 2
             Try
                 Using conn As New SqlConnection(connectionString)
                     conn.Open()
-
                     Using cmd As New SqlCommand(sql, conn)
-                        ' Add parameters
                         For Each kvp In prcData
                             cmd.Parameters.AddWithValue("@" & kvp.Key, If(kvp.Value IsNot Nothing, kvp.Value, DBNull.Value))
                         Next
-
                         cmd.ExecuteNonQuery()
                     End Using
-
                     insertSuccess = True
-                    Exit For ' Exit loop if success
+                    Exit For
                 End Using
 
             Catch ex As Exception
                 Dim debugInfo As String = $"Attempt {attempt} failed: {ex.Message}" & vbCrLf &
-                              $"SQL: {sql}" & vbCrLf &
-                              $"Parameters:" & vbCrLf &
-                              String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
+                                          $"SQL: {sql}" & vbCrLf &
+                                          $"Parameters:" & vbCrLf &
+                                          String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
 
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = debugInfo
-                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
-
-                ErrorHelper.HandleError("DatabaseHelper.InsertPrcTable", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError("DatabaseHelper.InsertPrcTable", ex.HResult.ToString(), debugInfo,
+                                        "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo.")
 
 #If DEBUG Then
                 MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
 #End If
-
-                System.Threading.Thread.Sleep(100) ' Small delay before retry
+                Thread.Sleep(100)
             End Try
         Next
 
-        ' If insert still failed, show popup
-        If Not insertSuccess Then
+        ' Step 5: After successful insert, write doc property and notify user
+        If insertSuccess Then
+            DocumentPropertyHelper.WriteCustomProperty(doc, "PrcInserted", "true")
+            MessageBox.Show("Report successfully logged to the PRC table.", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
+        Else
             MessageBox.Show("Failed to save processed report data to EZL_PRC table after retrying.", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End If
+
     End Sub
 
     ''' <summary>

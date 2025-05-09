@@ -65,7 +65,7 @@ Namespace Handlers
                     {"TcarOffset", GetDocProp(doc, "Days Since TCAR")}
                 }
 
-                DatabaseHelper.InsertPrcTable(prcData)
+                DatabaseHelper.InsertPrcTable(prcData, doc)
 
                 ' Step 2: Append to _LogTheseFiles.txt
                 Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
