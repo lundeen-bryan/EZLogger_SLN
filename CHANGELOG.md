@@ -15,6 +15,41 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [1.0.0.2] - 2025-05-08
+
+### Added
+
+- `FormatDate` function in `DatabaseHelper` to standardize SQL date formatting (`MM/dd/yyyy`).
+- SharePoint metadata update button in Ribbon (`EZLoggerRibbonXml`) and supporting logic in `SpHelper.vb` and `PrcHandler.vb`.
+- Conditional PDF export functionality for reports with letter "A".
+
+### Changed
+
+- Refactored `CloseActiveDocument` to use `FileClose` command for improved OneDrive/SharePoint compatibility.
+- Enhanced error handling across multiple modules including `FaxCoverHandler.vb`, `ReportWizardHandler.vb`, and `DocumentHelper.vb`.
+- Standardized document handling by using `Microsoft.Office.Interop.Word.Document` and central `GetActiveWordDocument()` method.
+- Updated `TCARListHandler.vb` to select from `EZL_TcarView`; changed data structure to reflect new fields (e.g., `AssignedTo`).
+- Modified Notes column in DataGrid to use a `DataTemplate` with better text wrapping and editing.
+- Updated application version from `1.0.0.1` to `1.0.0.2`.
+
+### Fixed
+
+- Corrected config key case for "dsh\_holdovers" email retrieval.
+
+### Deprecated
+
+- Removed obsolete `OpinionDescription` field from `TCARRecord`.
+
+### Removed
+
+- Cleaned unused UI attributes from `ErrorDialogView.xaml` for improved layout.
+
+### Miscellaneous
+
+- Renamed `Gender` to `Sex` and added new `Name` property in `PatientCls.vb`.
+- Changed `_moveRootPath` assignment to use global config (`cdo_filepath`) instead of local (`all_penal_codes`).
+- Updated XML comments and code documentation across several files for clarity.
+
 ## [1.0.0] - 2025-05-04
 
 - Updated version number to 1.0.0
