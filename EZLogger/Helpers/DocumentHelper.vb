@@ -55,8 +55,8 @@ Public Module DocumentHelper
     End Sub
 
     ''' <summary>
-    ''' Closes the active Word document with optional prompt to user.
-    ''' Defaults to silent close without prompting to save.
+    ''' Closes the active Word document using FileClose for better compatibility with OneDrive/SharePoint.
+    ''' Attempts to save first if the document has previously been saved.
     ''' </summary>
     ''' <param name="showPrompt">If True, user is asked whether to save changes.</param>
     Public Sub CloseActiveDocument(Optional showPrompt As Boolean = False)
@@ -66,27 +66,36 @@ Public Module DocumentHelper
             Exit Sub
         End If
 
+        Dim app As Word.Application = GetWordApp()
+        Dim oldAlerts = app.DisplayAlerts
+        app.DisplayAlerts = If(showPrompt, Word.WdAlertLevel.wdAlertsAll, Word.WdAlertLevel.wdAlertsNone)
+
         Try
+            ' Determine if document was previously saved
             Dim isPreviouslySaved As Boolean = Not String.IsNullOrWhiteSpace(doc.Path)
 
-            If Not showPrompt Then
-                If isPreviouslySaved Then
-                    TrySaveActiveDocument()
-                Else
-                    doc.Close(SaveChanges:=Word.WdSaveOptions.wdDoNotSaveChanges)
-                End If
-            Else
-                doc.Close(SaveChanges:=Word.WdSaveOptions.wdPromptToSaveChanges)
+            ' If previously saved and not read-only, try saving it
+            If isPreviouslySaved AndAlso Not doc.ReadOnly Then
+                TrySaveActiveDocument()
             End If
 
+            ' Use FileClose command to close (handles sync/lock issues more reliably)
+            app.CommandBars.ExecuteMso("FileClose")
+
         Catch ex As Exception
-            MsgBoxHelper.Show("The document could not be closed: " & ex.Message)
+            ' Fallback: try direct close only if FileClose fails
+            Try
+                doc.Close(SaveChanges:=If(showPrompt, Word.WdSaveOptions.wdPromptToSaveChanges, Word.WdSaveOptions.wdDoNotSaveChanges))
+            Catch innerEx As Exception
+                MsgBoxHelper.Show("The document could not be closed: " & innerEx.Message)
+            End Try
+        Finally
+            app.DisplayAlerts = oldAlerts
         End Try
 
-        ' ✅ Reset ReportWizardPanel if available
+        ' Reset ReportWizardPanel if available
         Try
             Dim hostForm As ReportWizardTaskPaneContainer = Globals.ThisAddIn.ReportWizardTaskPaneContainer
-
             If hostForm IsNot Nothing AndAlso hostForm.ElementHost1 IsNot Nothing Then
                 Dim wizardPanel = TryCast(hostForm.ElementHost1.Child, ReportWizardPanel)
                 If wizardPanel IsNot Nothing Then
