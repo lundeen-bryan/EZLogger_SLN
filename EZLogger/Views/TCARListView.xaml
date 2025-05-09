@@ -60,8 +60,8 @@
                 <DataGridTextColumn Header="Submitted Date"
                                     Binding="{Binding Subdate}"
                                     Width="*" />
-                <DataGridTextColumn Header="Opinion"
-                                    Binding="{Binding OpinionDescription}"
+                <DataGridTextColumn Header="Assigned To"
+                                    Binding="{Binding AssignedTo}"
                                     Width="*" />
             </DataGrid.Columns>
         </DataGrid>

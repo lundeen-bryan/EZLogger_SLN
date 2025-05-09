@@ -13,6 +13,26 @@ Namespace Handlers
     Public Class TcarListHandler
 
         ''' <summary>
+        ''' Safely converts a value from a SqlDataReader column to an Integer.
+        ''' Returns 0 if the column is NULL, empty, or not a valid number.
+        ''' </summary>
+        ''' <param name="reader">The active SqlDataReader instance.</param>
+        ''' <param name="columnName">The name of the column to read.</param>
+        ''' <returns>An Integer parsed from the column value, or 0 on failure.</returns>
+        ''' <remarks>
+        ''' Useful when reading integer fields that may be NULL or contain non-numeric data.
+        ''' </remarks>
+        Private Function SafeInt(reader As SqlDataReader, columnName As String) As Integer
+            If reader.IsDBNull(reader.GetOrdinal(columnName)) Then Return 0
+            Dim value As Object = reader(columnName)
+            If Integer.TryParse(value.ToString(), Nothing) Then
+                Return Convert.ToInt32(value)
+            Else
+                Return 0
+            End If
+        End Function
+
+        ''' <summary>
         ''' Represents the live collection of task items currently loaded in the Task List panel. This collection is UI-bound and updates dynamically
         ''' </summary>
         Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
@@ -27,6 +47,7 @@ Namespace Handlers
         ''' If an error occurs during database access, an error message is displayed to the user.
         ''' </remarks>
         Public Function LoadAllActive() As List(Of TCARRecord)
+            Dim functionName As String = "TcarListHandler.LoadAllActive"
             Dim results As New List(Of TCARRecord)
             Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
             If String.IsNullOrWhiteSpace(connStr) Then
@@ -39,9 +60,13 @@ Namespace Handlers
                     conn.Open()
 
                     Dim query As String = "
-                        SELECT [Patient Name], [Patient Number], [TCAR Submission], [Assigned To]
+                        SELECT 
+                             [Patient Name], 
+                             [Patient Number], 
+                             [TCAR Submission], 
+                             [Assigned To]
                         FROM EZL_TcarView
-                    "
+                        "
 
                     Using cmd As New SqlCommand(query, conn)
                         Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -50,14 +75,18 @@ Namespace Handlers
                                     .Casenum = reader("Patient Number").ToString(),
                                     .PatientName = reader("Patient Name").ToString(),
                                     .Subdate = reader("TCAR Submission").ToString(),
-                                    .AssignedTo = Convert.ToInt32(reader("Assigned To"))
+                                    .AssignedTo = SafeInt(reader, "Assigned To")
                                 })
                             End While
                         End Using
                     End Using
                 End Using
             Catch ex As Exception
-                MsgBoxHelper.Show("Error loading TCAR records: " & ex.Message)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Error loading TCAR records: " & ex.Message
+
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
 
             Return results
