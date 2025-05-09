@@ -66,6 +66,8 @@ Namespace Handlers
                              [TCAR Submission], 
                              [Assigned To]
                         FROM EZL_TcarView
+                        WHERE 1=1
+                        ORDER BY [Patient Name] ASC
                         "
 
                     Using cmd As New SqlCommand(query, conn)
@@ -75,7 +77,7 @@ Namespace Handlers
                                     .Casenum = reader("Patient Number").ToString(),
                                     .PatientName = reader("Patient Name").ToString(),
                                     .Subdate = reader("TCAR Submission").ToString(),
-                                    .AssignedTo = SafeInt(reader, "Assigned To")
+                                    .AssignedTo = reader("Assigned To").ToString()
                                 })
                             End While
                         End Using
