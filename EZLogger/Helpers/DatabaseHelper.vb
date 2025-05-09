@@ -11,6 +11,20 @@ Imports MessageBox = System.Windows.MessageBox
 Public Module DatabaseHelper
 
     ''' <summary>
+    ''' Converts a SQL value to a short date string (MM/dd/yyyy) if it's a valid date.
+    ''' Returns an empty string if the value is DBNull or not a date.
+    ''' </summary>
+    Private Function FormatDate(value As Object) As String
+        If value IsNot DBNull.Value Then
+            Dim dt As DateTime
+            If DateTime.TryParse(value.ToString(), dt) Then
+                Return dt.ToString("MM/dd/yyyy")
+            End If
+        End If
+        Return ""
+    End Function
+
+    ''' <summary>
     ''' Retrieves the CourtNumber for a given patient using the uspEZL_CTN stored procedure.
     ''' </summary>
     ''' <param name="patientNumber">The patient number to search for.</param>
@@ -102,10 +116,10 @@ Public Module DatabaseHelper
                             Dim patient As New PatientCls With {
                             .PatientNumber = reader("PatientNumber").ToString(),
                             .FirstPatientNumber = reader("FirstPatientNumber").ToString(),
-                            .CommitmentDate = reader("CommitmentDate").ToString(),
-                            .AdmissionDate = reader("AdmissionDate").ToString(),
-                            .Expiration = reader("Expiration").ToString(),
-                            .DOB = reader("Dob").ToString(),
+                            .CommitmentDate = FormatDate(reader("CommitmentDate")),
+                            .AdmissionDate = FormatDate(reader("AdmissionDate")),
+                            .Expiration = FormatDate(reader("Expiration")),
+                            .DOB = FormatDate(reader("Dob")),
                             .PatientName = reader("PatientName").ToString(),
                             .LName = reader("Lname").ToString(),
                             .FName = reader("Fname").ToString(),
