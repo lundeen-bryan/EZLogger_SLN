@@ -15,6 +15,8 @@ Public Module SpHelper
     ''' </summary>
     ''' <param name="doc">The Word document to update.</param>
     Public Sub UpdateMetadata(ByVal doc As Microsoft.Office.Interop.Word.Document)
+        Dim app As Microsoft.Office.Interop.Word.Application = WordAppHelper.GetWordApp()
+
         Try
             If doc Is Nothing Then
                 Throw New Exception("Word Document is not available on OneDrive yet. Please wait for OneDrive to sync the file.")
@@ -72,6 +74,8 @@ Public Module SpHelper
                     Next
                 End If
             Next
+
+            app.CommandBars.ExecuteMso("DocumentInformationShowHide")
 
         Catch ex As Exception
             Dim errNum As String = ex.HResult.ToString()
