@@ -138,6 +138,16 @@ Namespace Handlers
             End Try
         End Function
 
+        ''' <summary>
+        ''' Returns True if the 'PrcInserted' custom document property equals "true" (case-insensitive).
+        ''' </summary>
+        ''' <param name="doc">The Word document to check.</param>
+        ''' <returns>True if marked as inserted; otherwise, False.</returns>
+        Public Function ConfirmReportInPrc(doc As Word.Document) As Boolean
+            Dim value As String = DocumentPropertyHelper.GetPropertyValue(doc, "PrcInserted", caseInsensitive:=True)
+            Return value.Trim().ToLower() = "true"
+        End Function
+
 
         ''' <summary>
         ''' Coordinates the process of saving a completed report: appends to ToDo list, updates task list, and logs to PRC.
@@ -171,10 +181,18 @@ Namespace Handlers
                 ' Step 5: Build PRC data
                 Dim prcData As Dictionary(Of String, Object) = BuildPrcData(doc)
 
-                ' Step 6: Insert into SQL last
-                If Not InsertProcessedReport(doc, prcData) Then
+                ' Step 6: Insert into SQL last if this report wasn't alreadyh logged
+                If ConfirmReportInPrc(doc) Then
+                    MsgBoxHelper.Show("This report has already been saved in the Processed Report Container (EZL_PRC).")
+                    Exit Sub
+                End If
+
+                Dim successfulInsert As Boolean = InsertProcessedReport(doc, prcData)
+                If Not successfulInsert Then
                     MessageBox.Show("There was an error logging the report to the PRC table. Please try again or contact support.",
                             "Insert Failed", MessageBoxButton.OK, MessageBoxImage.Error)
+                Else
+                    DocumentPropertyHelper.MarkReportAsInserted(doc)
                 End If
 
             Catch ex As Exception

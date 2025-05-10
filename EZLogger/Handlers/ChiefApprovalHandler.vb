@@ -26,8 +26,10 @@ Namespace Handlers
             End If
 
             ' Write the selected approver into the document property
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Approved By", selectedName)
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+            Dim vstodoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
+
+            DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Approved By", selectedName)
 
             ' Optional: Confirm to the user
             MsgBoxHelper.Show($"'{selectedName}' has been set as the Approver.")
@@ -36,7 +38,7 @@ Namespace Handlers
         ''' <summary>
         ''' Handles the closing of a specified form.
         ''' </summary>
-        ''' <param name="form">The Form object to be closed. If null, no action is taken.</param>
+        ''' <param name="hostForm">The Form object to be closed. If null, no action is taken.</param>
         ''' <remarks>
         ''' This method checks if the provided form is not null before attempting to close it.
         ''' It's typically used to safely close a form when a close action is triggered.
