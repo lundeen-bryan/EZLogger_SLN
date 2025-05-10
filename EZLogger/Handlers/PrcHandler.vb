@@ -91,6 +91,7 @@ Namespace Handlers
                 '' Step 4: Update SharePoint metadata
                 'SpHelper.UpdateMetadata(doc)
 
+
                 ' Save document to finalize SharePoint changes
                 doc.Save()
 
