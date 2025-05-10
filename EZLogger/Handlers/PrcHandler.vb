@@ -87,8 +87,10 @@ Namespace Handlers
                     taskHandler.AddTaskFromReport(fileName)
                 End If
 
-                ' Step 4: Update SharePoint metadata
-                SpHelper.UpdateMetadata(doc)
+                ''TODO: Investigate why SharePoint doesn't sync more quickly,
+                ''we need to wait until synced before we can update the medata
+                '' Step 4: Update SharePoint metadata
+                'SpHelper.UpdateMetadata(doc)
 
                 ' Save document to finalize SharePoint changes
                 doc.Save()
