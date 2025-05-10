@@ -87,8 +87,9 @@ Namespace Handlers
                     taskHandler.AddTaskFromReport(fileName)
                 End If
 
-                ' Step 4: Update SharePoint metadata
-                SpHelper.UpdateMetadata(doc)
+                '' TODO: Add Updating SharePoint metadate logic back after fixing sync problem
+                '' Step 4: Update SharePoint metadata
+                'SpHelper.UpdateMetadata(doc)
 
                 ' Save document to finalize SharePoint changes
                 doc.Save()
