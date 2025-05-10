@@ -14,7 +14,7 @@ Namespace Helpers
         ''' <param name="letter">The cover letter code selected (A, B, C, etc.).</param>
         ''' <param name="saveToTemp">If True, save to the Temp folder; otherwise save to Documents.</param>
         ''' <returns>The full file path where the document should be saved.</returns>
-        Public Function GetSavePath(doc As Object, letter As String, saveToTemp As Boolean) As String
+        Public Function GetSavePath(doc As Microsoft.Office.Interop.Word.Document, letter As String, saveToTemp As Boolean) As String
             Dim baseFolder As String
 
             If saveToTemp Then
@@ -23,8 +23,8 @@ Namespace Helpers
                 baseFolder = GetDocumentsFolder()
             End If
 
-            Dim lastName As String = DocumentPropertyHelper.GetPropertyValue("Lastname")
-            Dim firstName As String = DocumentPropertyHelper.GetPropertyValue("Firstname")
+            Dim lastName As String = DocumentPropertyHelper.GetPropertyValue(doc, "Lastname")
+            Dim firstName As String = DocumentPropertyHelper.GetPropertyValue(doc, "Firstname")
             Dim timeStamp As String = Now.ToString("HHmm")
 
             ' Get a readable cover type name based on letter

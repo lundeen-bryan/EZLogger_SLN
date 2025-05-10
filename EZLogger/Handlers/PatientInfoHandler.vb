@@ -35,7 +35,7 @@ Namespace Handlers
                     Return
                 End If
 
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
 
                 ' Use helper to write or update the property
                 DocumentPropertyHelper.WriteCustomProperty(doc, propName, propValue)
@@ -67,7 +67,7 @@ Namespace Handlers
                 Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
 
                 ' Pull from the current Word document
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim patientName As String = ""
                 Dim patientNumber As String = ""
 
@@ -119,7 +119,7 @@ Namespace Handlers
         ''' </remarks>
         Public Sub LoadCustomDocProperties(view As PatientInfoView)
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim properties As New List(Of DocPropertyEntry)
 
                 ' Fields that should be displayed in MM/dd/yyyy format
@@ -255,7 +255,7 @@ Namespace Handlers
 
         Public Sub HandleFirstPageClick()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+            	Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
                 sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
             Catch ex As Exception
@@ -265,7 +265,7 @@ Namespace Handlers
 
         Public Sub HandleLastPageClick()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
                 Dim totalPages As Integer = doc.ComputeStatistics(WdStatistic.wdStatisticPages)
                 sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:=totalPages.ToString())

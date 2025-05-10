@@ -129,15 +129,16 @@ Public Class EZLoggerRibbon
     Private Sub SavePropsButton_Click(sender As Object, e As RibbonControlEventArgs)
         'Remove
         Try
+            Dim doc = DocumentHelper.GetActiveWordDocument()
             ' Pull values from the document's custom properties
-            Dim patientName As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
-            Dim reportType As String = DocumentPropertyHelper.GetPropertyValue("Report Type")
-            Dim reportDate As String = DocumentPropertyHelper.GetPropertyValue("Report Date")
-            Dim program As String = DocumentPropertyHelper.GetPropertyValue("Program")
-            Dim unit As String = DocumentPropertyHelper.GetPropertyValue("Unit")
-            Dim evaluator As String = DocumentPropertyHelper.GetPropertyValue("Evaluator")
-            Dim processedBy As String = DocumentPropertyHelper.GetPropertyValue("Processed By")
-            Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
+            Dim patientName As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Name")
+            Dim reportType As String = DocumentPropertyHelper.GetPropertyValue(doc, "Report Type")
+            Dim reportDate As String = DocumentPropertyHelper.GetPropertyValue(doc, "Report Date")
+            Dim program As String = DocumentPropertyHelper.GetPropertyValue(doc, "Program")
+            Dim unit As String = DocumentPropertyHelper.GetPropertyValue(doc, "Unit")
+            Dim evaluator As String = DocumentPropertyHelper.GetPropertyValue(doc, "Evaluator")
+            Dim processedBy As String = DocumentPropertyHelper.GetPropertyValue(doc, "Processed By")
+            Dim county As String = DocumentPropertyHelper.GetPropertyValue(doc, "County")
 
             ' Save them into built-in properties
             MetadataHelper.SaveBuiltProperties(

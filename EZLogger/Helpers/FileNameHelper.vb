@@ -26,7 +26,7 @@ Public Module FileNameHelper
     Public Function GetFilePart(choice As Integer, Optional filePath As String = Nothing) As String
         ' Fallback to active document if no path provided
         If String.IsNullOrWhiteSpace(filePath) Then
-            Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             filePath = doc.FullName
         End If
 

@@ -92,6 +92,11 @@
                             label="Remove MailMerge"
                             size="large"
                             imageMso="EnvelopesAndLabels" />
+                    <button id="TestLog"
+                            onAction="TestLog_Click"
+                            label="Test Logging"
+                            size="large"
+                            imageMso="FilePrepareMenu" />
                 </group>
             </tab>
         </tabs>

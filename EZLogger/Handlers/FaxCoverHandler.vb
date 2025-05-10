@@ -47,7 +47,7 @@ Namespace Handlers
 
             ' 2) Special case: "A" = export the report directly & name with county
             If letter.ToUpper().Trim() = "A" Then
-                Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
+                Dim county As String = DocumentPropertyHelper.GetPropertyValue(sourceDoc, "County")
                 Dim folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
                 Dim originalName = Path.GetFileNameWithoutExtension(sourceDoc.FullName)
                 originalName = originalName & $" {county}"
@@ -165,21 +165,22 @@ Namespace Handlers
         ''' </remarks>
         Private Function PopulateFaxCoverInfo() As FaxCoverInfo
             Dim functionName As String = "FaxCoverHandler.PopulateFaxCoverInfo"
+            Dim doc = DocumentHelper.GetActiveWordDocument
             Dim info As New FaxCoverInfo()
 
             Try
                 With info
-                    .LastName = DocumentPropertyHelper.GetPropertyValue("Lastname")
-                    .FirstName = DocumentPropertyHelper.GetPropertyValue("Firstname")
+                    .LastName = DocumentPropertyHelper.GetPropertyValue(doc, "Lastname")
+                    .FirstName = DocumentPropertyHelper.GetPropertyValue(doc, "Firstname")
                     .PatientInitials = If(.FirstName.Length > 0, .FirstName(0), "") & If(.LastName.Length > 0, .LastName(0), "")
-                    .ReportType = DocumentPropertyHelper.GetPropertyValue("Report Type")
-                    .Pages = DocumentPropertyHelper.GetPropertyValue("Pages")
-                    .UniqueId = DocumentPropertyHelper.GetPropertyValue("Unique ID")
-                    .Evaluator = DocumentPropertyHelper.GetPropertyValue("Evaluator")
-                    .ProcessedBy = DocumentPropertyHelper.GetPropertyValue("Processed By")
-                    .ReportDate = DocumentPropertyHelper.GetPropertyValue("Report Date")
-                    .County = DocumentPropertyHelper.GetPropertyValue("County")
-                    .ApprovedBy = DocumentPropertyHelper.GetPropertyValue("Approved By")
+                    .ReportType = DocumentPropertyHelper.GetPropertyValue(doc, "Report Type")
+                    .Pages = DocumentPropertyHelper.GetPropertyValue(doc, "Pages")
+                    .UniqueId = DocumentPropertyHelper.GetPropertyValue(doc, "Unique ID")
+                    .Evaluator = DocumentPropertyHelper.GetPropertyValue(doc, "Evaluator")
+                    .ProcessedBy = DocumentPropertyHelper.GetPropertyValue(doc, "Processed By")
+                    .ReportDate = DocumentPropertyHelper.GetPropertyValue(doc, "Report Date")
+                    .County = DocumentPropertyHelper.GetPropertyValue(doc, "County")
+                    .ApprovedBy = DocumentPropertyHelper.GetPropertyValue(doc, "Approved By")
 
                     ' Parse date into parts
                     Dim dt As DateTime

@@ -24,11 +24,7 @@ Namespace Handlers
         ''' </remarks>
         Public Sub HandleAcceptIstDueDate(view As DueDates1370View)
             ' Get active Word document
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            If doc Is Nothing Then
-                MsgBoxHelper.Show("No active Word document found.")
-                Exit Sub
-            End If
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
 
             ' Determine which radio button is selected
             Dim selectedLabel As System.Windows.Controls.Label = Nothing
@@ -105,7 +101,7 @@ Namespace Handlers
         ''' If no active document is found or the "Commitment" property is not available, an empty string is used.
         ''' </remarks>
         Public Sub HandleGoBackClick(hostForm As Form)
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             Dim commitmentRaw As String = ""
 
             If doc IsNot Nothing Then
@@ -143,11 +139,7 @@ Namespace Handlers
         Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
             ' TODO: use handler instead of this code
             ' Get the active Word document
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            If doc Is Nothing Then
-                MsgBoxHelper.Show("No active Word document found.")
-                Exit Sub
-            End If
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
 
             ' Determine which radio button is selected and map to its corresponding label
             Dim selectedLabel As System.Windows.Controls.Label = Nothing

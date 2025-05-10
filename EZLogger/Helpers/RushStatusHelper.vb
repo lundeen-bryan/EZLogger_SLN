@@ -14,7 +14,7 @@ Namespace Helpers
             Dim daysUntilDue As Integer = (dueDate - today).Days
 
             ' Get the active Word document
-            Dim doc As Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Document)
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             If doc Is Nothing Then Exit Sub
 
             ' Write "Days Since Due" (can be negative)

@@ -164,60 +164,39 @@ Public Module DatabaseHelper
         Return $"Data Source={dbPath};Version=3;"
     End Function
 
-    ''' <summary>
-    ''' Inserts a new record into the EZL_PRC table and updates the "PrcInserted" property on the given Word document.
-    ''' </summary>
-    ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
-    ''' <param name="doc">The active Word document to update with the PrcInserted property.</param>
-    Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object), doc As Document)
-
-        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
-        If doc Is Nothing Then Exit Sub
-
-        ' Step 1: Check if already inserted
-        Dim existingProp As String = DocumentPropertyHelper.GetPropertyValue("PrcInserted")
-
-        If Not String.IsNullOrEmpty(existingProp) AndAlso existingProp.Trim().ToLower() = "true" Then
-            MessageBox.Show("This report has already been logged in the PRC table.", "Already Inserted", MessageBoxButton.OK, MessageBoxImage.Warning)
-            Exit Sub
-        End If
-
-        ' Step 2: Get connection string
-        Dim connectionString As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
-        If String.IsNullOrWhiteSpace(connectionString) Then
-            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
-            Exit Sub
-        End If
-
-        ' Step 3: Build SQL insert
-        Dim insertSuccess As Boolean = False
+    Private Function BuildInsertCommand(prcData As Dictionary(Of String, Object)) As String
         Dim columns As String = String.Join(",", prcData.Keys)
         Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
-        Dim sql As String = $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
+        Return $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
+    End Function
 
-        ' Step 4: Try insert with one retry
+    Private Function TryExecuteInsert(connectionString As String, sql As String, prcData As Dictionary(Of String, Object)) As Boolean
         For attempt As Integer = 1 To 2
             Try
                 Using conn As New SqlConnection(connectionString)
                     conn.Open()
                     Using cmd As New SqlCommand(sql, conn)
                         For Each kvp In prcData
-                            cmd.Parameters.AddWithValue("@" & kvp.Key, If(kvp.Value IsNot Nothing, kvp.Value, DBNull.Value))
+                            Dim param As SqlParameter = cmd.Parameters.Add("@" & kvp.Key, GetSqlDbTypeForColumn(kvp.Key))
+                            If kvp.Value Is Nothing OrElse TypeOf kvp.Value Is DBNull Then
+                                param.Value = DBNull.Value
+                            Else
+                                param.Value = kvp.Value
+                            End If
                         Next
                         cmd.ExecuteNonQuery()
                     End Using
-                    insertSuccess = True
-                    Exit For
                 End Using
+                Return True
 
             Catch ex As Exception
                 Dim debugInfo As String = $"Attempt {attempt} failed: {ex.Message}" & vbCrLf &
-                                          $"SQL: {sql}" & vbCrLf &
-                                          $"Parameters:" & vbCrLf &
-                                          String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
+                                      $"SQL: {sql}" & vbCrLf &
+                                      $"Parameters:" & vbCrLf &
+                                      String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
 
-                ErrorHelper.HandleError("DatabaseHelper.InsertPrcTable", ex.HResult.ToString(), debugInfo,
-                                        "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo.")
+                ErrorHelper.HandleError("DatabaseHelper.TryExecuteInsert", ex.HResult.ToString(), debugInfo,
+                                    "SQL insert failed. Confirm patient information is complete and retry.")
 
 #If DEBUG Then
                 MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
@@ -225,16 +204,112 @@ Public Module DatabaseHelper
                 Thread.Sleep(100)
             End Try
         Next
+        Return False
+    End Function
 
-        ' Step 5: After successful insert, write doc property and notify user
-        If insertSuccess Then
+    Private Function GetSqlDbTypeForColumn(columnName As String) As SqlDbType
+        Select Case columnName
+            Case "DueDate", "ReportDate", "Created", "Admission", "Expiration", "Dob", "TCAR"
+                Return SqlDbType.Date
+            Case "DueDateOffset", "TcarOffset", "Pages", "Age"
+                Return SqlDbType.Int
+            Case Else
+                Return SqlDbType.NVarChar
+        End Select
+    End Function
+
+
+    Private Sub MarkDocAsInserted(doc As Document)
+        Try
             DocumentPropertyHelper.WriteCustomProperty(doc, "PrcInserted", "true")
-            MessageBox.Show("Report successfully logged to the PRC table.", "Success", MessageBoxButton.OK, MessageBoxImage.Information)
-        Else
-            MessageBox.Show("Failed to save processed report data to EZL_PRC table after retrying.", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        Catch ex As Exception
+            ErrorHelper.HandleError("DatabaseHelper.MarkDocAsInserted", ex.HResult.ToString(), ex.Message,
+                                "Could not update the document to indicate it was logged.")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Inserts a new record into the EZL_PRC table.
+    ''' </summary>
+    ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
+    Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object))
+        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
+
+        Dim connectionString As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
+        If String.IsNullOrWhiteSpace(connectionString) Then
+            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
+            Exit Sub
         End If
 
+        Dim sql As String = BuildInsertCommand(prcData)
+        Dim insertSuccess As Boolean = TryExecuteInsert(connectionString, sql, prcData)
+
+        If insertSuccess Then
+            MsgBoxHelper.Show("Report successfully logged to the PRC table.")
+        Else
+            MessageBox.Show("Failed to save processed report data to the PRC table after retrying.", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End If
     End Sub
+
+    ''' <summary>
+    ''' Normalizes raw prcData values into correct types (Date, Int, Bit, etc.)
+    ''' </summary>
+    ''' <param name="input">Raw dictionary of property values from document</param>
+    ''' <returns>A cleaned and type-safe dictionary ready for SQL insertion</returns>
+    Public Function NormalizePrcData(input As Dictionary(Of String, Object)) As Dictionary(Of String, Object)
+        Dim normalized As New Dictionary(Of String, Object)()
+
+        For Each kvp In input
+            Dim key As String = kvp.Key
+            Dim rawValue As Object = kvp.Value
+            Dim normalizedValue As Object
+
+            ' Handle null/empty first
+            If rawValue Is Nothing OrElse String.IsNullOrWhiteSpace(rawValue.ToString()) Then
+                normalizedValue = DBNull.Value
+
+            Else
+                Select Case key
+                    Case "DueDate", "ReportDate", "Created", "Admission", "Expiration", "Dob", "Commitment", "TCAR"
+                        ' Try to parse date
+                        Dim dt As DateTime
+                        If DateTime.TryParse(rawValue.ToString(), dt) Then
+                            normalizedValue = dt.Date
+                        Else
+                            normalizedValue = DBNull.Value
+                        End If
+
+                    Case "DueDateOffset", "TcarOffset", "Pages", "Age"
+                        Dim i As Integer
+                        If Integer.TryParse(rawValue.ToString(), i) Then
+                            normalizedValue = i
+                        Else
+                            normalizedValue = DBNull.Value
+                        End If
+
+                    Case "Malingering", "IMO", "MinuteOrder", "JBCT"
+                        ' Accept "Y"/"N" or true/false or blank
+                        Dim str = rawValue.ToString().Trim().ToUpper()
+                        If str = "Y" OrElse str = "YES" OrElse str = "TRUE" Then
+                            normalizedValue = True
+                        ElseIf str = "N" OrElse str = "NO" OrElse str = "FALSE" Then
+                            normalizedValue = False
+                        Else
+                            normalizedValue = DBNull.Value
+                        End If
+
+                    Case Else
+                        ' Treat everything else as string
+                        normalizedValue = rawValue.ToString()
+                End Select
+            End If
+
+            normalized(key) = normalizedValue
+        Next
+
+        Return normalized
+    End Function
+
 
     ''' <summary>
     ''' Formats an 8-digit raw patient number (e.g. "41234567") to display as "123456-7".
