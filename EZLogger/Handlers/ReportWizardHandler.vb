@@ -219,8 +219,8 @@ Namespace Handlers
                 ' Call PrcHandler to process the report
                 PrcHandler.SaveProcessedReport(doc)
 
-                ' Show success message
-                MsgBoxHelper.Show("The report has been processed and logged successfully.")
+                '' Show success message
+                'MsgBoxHelper.Show("The report has been processed and logged successfully.")
 
             Catch ex As Exception
                 Dim errNum As String = ex.HResult.ToString()

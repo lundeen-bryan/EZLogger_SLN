@@ -63,6 +63,24 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
+        ''' Writes the PrcInserted flag to the Word document after successful logging.
+        ''' </summary>
+        Public Shared Sub MarkReportAsInserted(doc As Word.Document)
+            Try
+                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+
+                If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = "PrcInserted") Then
+                    props("PrcInserted").Value = "true"
+                Else
+                    props.Add("PrcInserted", False, Office.MsoDocProperties.msoPropertyTypeString, "true")
+                End If
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to set 'PrcInserted' property: " & ex.Message)
+            End Try
+        End Sub
+
+
+        ''' <summary>
         ''' Safely writes a custom document property without relying on VSTO-hosted interfaces.
         ''' Works with Interop.Word.DocumentClass and avoids E_NOINTERFACE exceptions.
         ''' </summary>

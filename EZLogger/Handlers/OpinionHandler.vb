@@ -41,9 +41,10 @@ Namespace Handlers
                 MsgBox("Please select an opinion before clicking Save.")
             Else
                 ' Write the selected report type to the custom property
-                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+                Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                Dim doc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
                 If doc IsNot Nothing Then
-                    DocumentPropertyHelper.WriteCustomProperty(doc, "Opinion", opinion)
+                    DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Opinion", opinion)
                     MsgBoxHelper.Show("Opinion has been saved to the document.")
                 Else
                     MsgBoxHelper.Show("No active Word document found.")

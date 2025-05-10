@@ -101,12 +101,14 @@ Namespace Handlers
         ''' If no active document is found or the "Commitment" property is not available, an empty string is used.
         ''' </remarks>
         Public Sub HandleGoBackClick(hostForm As Form)
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+            Dim doc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
             Dim commitmentRaw As String = ""
 
             If doc IsNot Nothing Then
                 Try
-                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+                    'commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+                    commitmentRaw = DocumentPropertyHelper.GetPropertyValue(wordDoc, "Commitment")
                 Catch ex As Exception
                     commitmentRaw = ""
                 End Try
@@ -139,7 +141,7 @@ Namespace Handlers
         Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
             ' TODO: use handler instead of this code
             ' Get the active Word document
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+            Dim doc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(Globals.ThisAddIn.Application.ActiveDocument)
 
             ' Determine which radio button is selected and map to its corresponding label
             Dim selectedLabel As System.Windows.Controls.Label = Nothing
@@ -162,9 +164,11 @@ Namespace Handlers
                 Exit Sub
             End If
 
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+
             ' Write Report Cycle to document properties
             If Not String.IsNullOrWhiteSpace(reportCycle) Then
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
+                DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Report Cycle", reportCycle)
             End If
 
             ' Parse current due date from selected label
@@ -189,8 +193,8 @@ Namespace Handlers
             ' If TwentyOneMoLbl is selected, nextDueDate remains the same as currentDueDate
 
             ' Write due dates to document properties
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
+            DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
+            DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
 
             ' (Rush Status helper to be added later)
 
