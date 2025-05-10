@@ -4,7 +4,9 @@
 
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
+Imports System.Diagnostics
 Imports System.IO
+Imports System.Windows
 
 Namespace Handlers
 
@@ -15,17 +17,81 @@ Namespace Handlers
     ''' 3. Appends entry to the user TODO list (_LogTheseFiles.txt) (UserTodoHelper)
     ''' </summary>
     Public Module PrcHandler
+        Private Function IsValidWordDoc(doc As Document) As Boolean
+            Try
+                Dim dummy = doc.Name ' Triggers COM if invalid
+                Return True
+            Catch
+                Return False
+            End Try
+        End Function
+
+        Private Sub AppendToTodoLog(doc As Document)
+            Try
+                Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
+                                  $"{GetDocProp(doc, "Report Type")}{vbTab}" &
+                                  $"{SafeFormatDateDisplay(GetDocProp(doc, "Report Date"))}{vbTab}" &
+                                  $"P{GetDocProp(doc, "Program")}"
+
+                Dim todoFilePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "_LogTheseFiles.txt")
+                UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
+
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.AppendToTodoLog", ex.HResult.ToString(), ex.Message,
+                                "Failed to append report entry to the ToDo list. Please check the file path and permissions.")
+            End Try
+        End Sub
 
         ''' <summary>
-        ''' Processes a completed report: updates SharePoint, SQL, and local TODO log.
+        ''' Inserts the processed report data into the EZL_PRC table and returns whether it succeeded.
         ''' </summary>
-        ''' <param name="doc">The Word document containing report metadata.</param>
-        Public Sub SaveProcessedReport(doc As Microsoft.Office.Interop.Word.Document)
-            If doc Is Nothing Then Exit Sub
-
+        ''' <param name="doc">The Word document associated with the report.</param>
+        ''' <param name="prcData">The key-value pairs to insert into the EZL_PRC table.</param>
+        ''' <returns>True if the insert succeeded; otherwise, False.</returns>
+        Private Function InsertProcessedReport(doc As Document, prcData As Dictionary(Of String, Object)) As Boolean
             Try
-                ' Step 1: Prepare data for SQL insertion
-                Dim prcData As New Dictionary(Of String, Object) From {
+                Dim normalizedData = DatabaseHelper.NormalizePrcData(prcData)
+                DatabaseHelper.InsertPrcTable(normalizedData)
+                Return True
+
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.InsertProcessedReport", ex.HResult.ToString(), ex.Message,
+                                "Failed to log the processed report to the PRC table. Please verify the document is open and has valid data.")
+                Return False
+            End Try
+        End Function
+
+        ''' <summary>
+        ''' Adds the report filename to the Tasks.xml list if it does not already exist.
+        ''' </summary>
+        ''' <param name="doc">The Word document whose filename will be checked and potentially added to the task list.</param>
+        Private Sub AddToTaskListIfMissing(doc As Document)
+            Try
+                Dim fileName As String = Path.GetFileName(doc.FullName)
+                Dim taskHandler As New TaskListHandler()
+
+                Dim alreadyExists As Boolean =
+            taskHandler.Tasks.Any(Function(t) String.Equals(t.Notes, fileName, StringComparison.OrdinalIgnoreCase))
+
+                If Not alreadyExists Then
+                    taskHandler.AddTaskFromReport(fileName)
+                End If
+
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.AddToTaskListIfMissing", ex.HResult.ToString(), ex.Message,
+                                "Failed to add the report to the task list. Please check the task list structure and try again.")
+            End Try
+        End Sub
+
+
+        ''' <summary>
+        ''' Builds the key-value pairs required for inserting a row into the EZL_PRC table.
+        ''' </summary>
+        ''' <param name="doc">The active Word document.</param>
+        ''' <returns>A dictionary containing all relevant PRC fields and values.</returns>
+        Private Function BuildPrcData(doc As Document) As Dictionary(Of String, Object)
+            Try
+                Return New Dictionary(Of String, Object) From {
                     {"PatientNumber", GetDocProp(doc, "Patient Number")},
                     {"FirstPatientNumber", GetDocProp(doc, "First Patient Number")},
                     {"Created", DateTime.UtcNow.ToString("yyyy-MM-dd")},
@@ -65,44 +131,60 @@ Namespace Handlers
                     {"TcarOffset", GetDocProp(doc, "Days Since TCAR")}
                 }
 
-                DatabaseHelper.InsertPrcTable(prcData, doc)
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.BuildPrcData", ex.HResult.ToString(), ex.Message,
+                                "Failed to build PRC data. Please confirm that all required document properties are present.")
+                Return New Dictionary(Of String, Object)
+            End Try
+        End Function
 
-                ' Step 2: Append to _LogTheseFiles.txt
-                Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
-                                          $"{GetDocProp(doc, "Report Type")}{vbTab}" &
-                                          $"{SafeFormatDateDisplay(GetDocProp(doc, "Report Date"))}{vbTab}" &
-                                          $"P{GetDocProp(doc, "Program")}"
 
-                Dim todoFilePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "_LogTheseFiles.txt")
+        ''' <summary>
+        ''' Coordinates the process of saving a completed report: appends to ToDo list, updates task list, and logs to PRC.
+        ''' </summary>
+        ''' <param name="doc">The Word document containing the report data.</param>
+        Public Sub SaveProcessedReport(doc As Document)
+            Const functionName As String = "PrcHandler.SaveProcessedReport"
+            Dim recommendation As String =
+                "One of the required steps failed: logging to ToDo, saving the file, or writing to the database. " &
+                "Please close and reopen the document, confirm all fields are filled in, and try again. " &
+                "If the issue continues, use the copy button in this error dialog to copy the error and show it to the developers."
 
-                UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
+            If doc Is Nothing Then Exit Sub
 
-                ' Step 3: Add to TaskList (Tasks.xml) if not already present
-                Dim fileName As String = Path.GetFileName(doc.FullName)
-                Dim taskHandler As New TaskListHandler()
-
-                Dim alreadyExists As Boolean = taskHandler.Tasks.Any(Function(t) String.Equals(t.Notes, fileName, StringComparison.OrdinalIgnoreCase))
-
-                If Not alreadyExists Then
-                    taskHandler.AddTaskFromReport(fileName)
+            Try
+                ' Step 1: Validate document
+                If Not IsValidWordDoc(doc) Then
+                    MessageBox.Show("The document is no longer available or is invalid.", "Invalid Document", MessageBoxButton.OK, MessageBoxImage.Warning)
+                    Exit Sub
                 End If
 
-                '' TODO: Add Updating SharePoint metadate logic back after fixing sync problem
-                '' Step 4: Update SharePoint metadata
-                'SpHelper.UpdateMetadata(doc)
+                ' Step 2: Append to ToDo log
+                AppendToTodoLog(doc)
 
+                ' Step 3: Add to TaskList if not already present
+                AddToTaskListIfMissing(doc)
 
-                ' Save document to finalize SharePoint changes
+                ' Step 4: Save document (to ensure any updated metadata is persisted)
                 doc.Save()
+
+                ' Step 5: Build PRC data
+                Dim prcData As Dictionary(Of String, Object) = BuildPrcData(doc)
+
+                ' Step 6: Insert into SQL last
+                If Not InsertProcessedReport(doc, prcData) Then
+                    MessageBox.Show("There was an error logging the report to the PRC table. Please try again or contact support.",
+                            "Insert Failed", MessageBoxButton.OK, MessageBoxImage.Error)
+                End If
 
             Catch ex As Exception
                 Dim errNum As String = ex.HResult.ToString()
                 Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
 
-                ErrorHelper.HandleError("PrcHandler.SaveProcessedReport", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
+
 
         ''' <summary>
         ''' Retrieves a document property value safely.

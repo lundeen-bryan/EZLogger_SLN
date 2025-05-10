@@ -19,7 +19,7 @@ Namespace Helpers
         ''' </summary>
         Public Shared Sub WriteDataToDocProperties(patient As PatientCls)
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
 
                 ' Internal helper to safely write or update a custom property
@@ -63,24 +63,42 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
-        ''' Writes a single custom document property to the given Word document.
+        ''' Safely writes a custom document property without relying on VSTO-hosted interfaces.
+        ''' Works with Interop.Word.DocumentClass and avoids E_NOINTERFACE exceptions.
         ''' </summary>
+        ''' <param name="doc">The Word document object (Interop only).</param>
+        ''' <param name="name">The property name to set.</param>
+        ''' <param name="value">The value to assign.</param>
         Public Shared Sub WriteCustomProperty(doc As Document, name As String, value As String)
             Try
-                Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
+                If doc Is Nothing OrElse String.IsNullOrWhiteSpace(name) Then Exit Sub
 
-                'If String.IsNullOrWhiteSpace(value) Then Exit Sub
-                '^--If no value is passed exit sub, commented out to give blank properties
+                ' Late bind to the CustomDocumentProperties collection
+                Dim props As Object = doc.CustomDocumentProperties
 
-                If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = name) Then
-                    props(name).Value = value
-                Else
-                    props.Add(name, False, Office.MsoDocProperties.msoPropertyTypeString, value)
+                Dim found As Boolean = False
+
+                ' Loop over existing properties to see if the name already exists
+                For Each prop As Object In props
+                    Dim propName As String = CStr(prop.Name)
+                    If String.Equals(propName, name, StringComparison.OrdinalIgnoreCase) Then
+                        prop.Value = value
+                        found = True
+                        Exit For
+                    End If
+                Next
+
+                ' If not found, add it
+                If Not found Then
+                    props.Add(name, False, Microsoft.Office.Core.MsoDocProperties.msoPropertyTypeString, value)
                 End If
+
             Catch ex As Exception
-                MessageBox.Show("Error writing custom property: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ErrorHelper.HandleError("DocumentPropertyHelper.WriteCustomProperty", ex.HResult.ToString(), ex.Message,
+                                "Could not write document property. Make sure the file is open and not read-only.")
             End Try
         End Sub
+
 
         ''' <summary>
         ''' Writes built-in document properties such as Title, Author, Subject, etc.
@@ -94,7 +112,7 @@ Namespace Helpers
                                                 processedBy As String,
                                                 county As String)
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim todaysDate As String = DateTime.Now.ToString("yyyy-MM-dd")
 
                 Dim formattedReportDate As String
@@ -124,8 +142,9 @@ Namespace Helpers
         ''' </summary>
         Public Shared Function CreateUniqueIdFromProperties() As String
             Try
+                Dim doc = DocumentHelper.GetActiveWordDocument()
                 ' Helper to retrieve document properties
-                Dim getProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
+                Dim getProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(doc, name)
 
                 ' Extract necessary fields
                 Dim patientNumber = getProp("Patient Number")
@@ -169,7 +188,7 @@ Namespace Helpers
         ''' </summary>
         Public Shared Function PropertyExists(propertyName As String, Optional caseInsensitive As Boolean = False) As Boolean
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 If doc Is Nothing Then Return False
 
                 For Each prop As Office.DocumentProperty In doc.CustomDocumentProperties
@@ -184,23 +203,30 @@ Namespace Helpers
         End Function
 
         ''' <summary>
-        ''' Attempts to read a custom document property value as a string.
+        ''' Retrieves the value of a custom document property from the specified Word document.
+        ''' Returns an empty string if the property does not exist or an error occurs.
         ''' </summary>
-        Public Shared Function GetPropertyValue(propertyName As String, Optional caseInsensitive As Boolean = False) As String
+        ''' <param name="doc">The Word document to retrieve the property from.</param>
+        ''' <param name="propertyName">The name of the custom document property.</param>
+        ''' <param name="caseInsensitive">If true, performs a case-insensitive comparison.</param>
+        ''' <returns>The property value as a string, or an empty string if not found or an error occurs.</returns>
+        Public Shared Function GetPropertyValue(doc As Microsoft.Office.Interop.Word.Document,
+                                        propertyName As String,
+                                        Optional caseInsensitive As Boolean = False) As String
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
-                If doc Is Nothing Then Return Nothing
+                If doc Is Nothing Then Return String.Empty
 
                 For Each prop As Office.DocumentProperty In doc.CustomDocumentProperties
                     If String.Compare(prop.Name, propertyName, caseInsensitive) = 0 Then
                         Return prop.Value.ToString()
                     End If
                 Next
+
             Catch ex As Exception
-                ' Log or swallow errors as needed
+                ' Optionally log or swallow the error
             End Try
 
-            Return Nothing
+            Return String.Empty
         End Function
 
         ''' <summary>
@@ -216,7 +242,7 @@ Namespace Helpers
         ''' </summary>
         Public Shared Sub DeleteCustomProperty(propertyName As String)
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
 
                 If props.Cast(Of Office.DocumentProperty).Any(Function(p) p.Name = propertyName) Then
@@ -233,7 +259,7 @@ Namespace Helpers
         ''' </summary>
         Public Shared Sub DeleteAllCustomProperties()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim props As Office.DocumentProperties = CType(doc.CustomDocumentProperties, Office.DocumentProperties)
 
                 ' Copy property names to avoid modifying the collection while iterating

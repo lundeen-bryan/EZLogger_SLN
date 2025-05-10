@@ -60,10 +60,10 @@ Namespace Handlers
                     conn.Open()
 
                     Dim query As String = "
-                        SELECT 
-                             [Patient Name], 
-                             [Patient Number], 
-                             [TCAR Submission], 
+                        SELECT
+                             [Patient Name],
+                             [Patient Number],
+                             [TCAR Submission],
                              [Assigned To]
                         FROM EZL_TcarView
                         WHERE 1=1
@@ -109,7 +109,7 @@ Namespace Handlers
             End If
 
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
 
                 ' Write TCAR Referral Date
                 DocumentPropertyHelper.WriteCustomProperty(doc, "TCAR Referral Date", selected.Subdate)

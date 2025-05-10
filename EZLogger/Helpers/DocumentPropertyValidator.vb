@@ -18,7 +18,7 @@ Namespace Helpers
             }
 
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim existingProps As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
 
                 For Each prop As DocumentProperty In doc.CustomDocumentProperties

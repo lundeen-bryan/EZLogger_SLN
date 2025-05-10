@@ -53,7 +53,7 @@ Namespace Handlers
                     Return
                 End If
 
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 DocumentPropertyHelper.WriteCustomProperty(doc, "Evaluator", selectedEvaluator)
 
                 MsgBoxHelper.Show($"Evaluator '{selectedEvaluator}' saved successfully.")
@@ -75,7 +75,6 @@ Namespace Handlers
         ''' </exception>
         Public Sub HandleFirstPageClick()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
                 sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
             Catch ex As Exception
@@ -96,7 +95,7 @@ Namespace Handlers
         ''' </exception>
         Public Sub HandleLastPageClick()
             Try
-                Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
                 Dim totalPages As Integer = doc.ComputeStatistics(WdStatistic.wdStatisticPages)
                 sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:=totalPages.ToString())

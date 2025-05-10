@@ -34,7 +34,7 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="hostForm">The form to close.</param>
         Public Sub HandleGoBackClick(hostForm As Form)
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             Dim commitmentRaw As String = ""
 
             If doc IsNot Nothing Then
@@ -58,11 +58,7 @@ Namespace Handlers
         Public Sub HandleSavePprChoiceClick(view As DueDatePprView)
             Try
                 ' Get the active Word document
-                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-                If doc Is Nothing Then
-                    MsgBoxHelper.Show("No active Word document found.")
-                    Exit Sub
-                End If
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
 
                 ' Extract selected dates from the date pickers
                 Dim currentDueDate As Nullable(Of Date) = view.CurrentDueDatePick.SelectedDate

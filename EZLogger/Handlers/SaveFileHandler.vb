@@ -88,7 +88,7 @@ Namespace Handlers
                     Dim savePath As String = saveDialog.FileName
 
                     ' Capture old file path before SaveAs
-                    Dim doc As Document = Globals.ThisAddIn.Application.ActiveDocument
+                    Dim doc = DocumentHelper.GetActiveWordDocument()
                     Dim oldFilePath As String = doc.FullName
 
                     ' NEW: Set built-in document properties before saving
@@ -98,9 +98,9 @@ Namespace Handlers
                         reportDate:=view.ReportDatePicker.SelectedDate?.ToString(),
                         program:=view.LblProgram.Content?.ToString(),
                         unit:=view.LblUnit.Content?.ToString(),
-                        evaluator:=DocumentPropertyHelper.GetPropertyValue("Evaluator"),
-                        processedBy:=DocumentPropertyHelper.GetPropertyValue("Processed By"),
-                        county:=DocumentPropertyHelper.GetPropertyValue("County")
+                        evaluator:=DocumentPropertyHelper.GetPropertyValue(doc, "Evaluator"),
+                        processedBy:=DocumentPropertyHelper.GetPropertyValue(doc, "Processed By"),
+                        county:=DocumentPropertyHelper.GetPropertyValue(doc, "County")
                     )
 
                     ' Save to new location
@@ -203,9 +203,11 @@ Namespace Handlers
                 Return String.Empty
             End If
 
+            Dim doc = DocumentHelper.GetActiveWordDocument()
+
             ' Pull data from view
-            Dim Lname As String = DocumentPropertyHelper.GetPropertyValue("Lastname")
-            Dim Fname As String = DocumentPropertyHelper.GetPropertyValue("Firstname").ToLower()
+            Dim Lname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Lastname")
+            Dim Fname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Firstname").ToLower()
             Dim textInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
             Dim patientName As String = Lname & ", " & textInfo.ToTitleCase(Fname)
             Dim reportType As String = view.ReportTypeCbo.Text
@@ -248,7 +250,8 @@ Namespace Handlers
         Public Sub HandleSearchPatientIdClick(view As SaveFileView)
             Dim functionName As String = "SaveFileHandler.HandleSearchPatientIdClick"
             Try
-                Dim GetProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(name)
+                Dim doc = DocumentHelper.GetActiveWordDocument()
+                Dim GetProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(doc, name)
 
                 view.TxtPatientId.Text = GetProp("Patient Number")
 
@@ -271,7 +274,6 @@ Namespace Handlers
 
                 ' Set the unique document id here in the custom document properties
                 Dim uniqueDocumentId As String = DocumentPropertyHelper.CreateUniqueIdFromProperties()
-                Dim doc As Word.Document = WordAppHelper.GetWordApp().ActiveDocument
                 DocumentPropertyHelper.WriteCustomProperty(doc, "Unique ID", uniqueDocumentId)
 
             Catch ex As Exception

@@ -1,3 +1,418 @@
 2025-05-04 14:51:44 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.
 2025-05-04 14:54:56 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.
 2025-05-04 15:01:56 [ERROR] [SummaryHandler.HandleSummaryClick] User: lunde, Err#: -2147467262, Source: SummaryHandler.HandleSummaryClick, Message: Unable to cast object of type 'System.Data.DataTable' to type 'Microsoft.Office.Interop.Excel.DataTable'.
+2025-05-09 23:18:10 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-09 23:25:58 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-09 23:37:52 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 00:13:55 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 00:24:01 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 00:25:00 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 07:15:44 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 07:17:22 [ERROR] [PrcHandler.SaveProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 07:28:52 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 07:34:20 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 07:39:40 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 07:49:50 [ERROR] [PrcHandler.SaveProcessedReport (InvalidCast)] User: lunde, Err#: -2147467262, Source: PrcHandler.SaveProcessedReport (InvalidCast), Message: Failed to log report due to an invalid Word document object. Runtime type: Microsoft.Office.Interop.Word.DocumentClass
+2025-05-10 08:23:03 [ERROR] [PrcHandler.InsertProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.InsertProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 08:25:07 [ERROR] [PrcHandler.InsertProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.InsertProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 08:49:56 [ERROR] [PrcHandler.InsertProcessedReport] User: lunde, Err#: -2147467262, Source: PrcHandler.InsertProcessedReport, Message: Unable to cast COM object of type 'Microsoft.Office.Interop.Word.DocumentClass' to interface type 'Microsoft.Office.Tools.Word.Document'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BF1B29C2-9873-41B7-9B45-F22C50432BB1}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+2025-05-10 09:38:15 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 1 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:38:31 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 2 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:49:50 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 1 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:50:01 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 2 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:52:10 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 1 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:52:16 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 2 failed: Conversion failed when converting date and/or time from character string.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = PC1026
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:57:03 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 1 failed: Conversion failed when converting the nvarchar value 'Test Order' to data type bit.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = 
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 09:57:17 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146232060, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 2 failed: Conversion failed when converting the nvarchar value 'Test Order' to data type bit.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = TEST1234
+FirstPatientNumber = TESTFIRST
+Created = 2025-05-10
+Filename = Document1
+PatientName = Unit Test, Case
+Name = Unit Test
+DueDate = 
+RushStatus = ON TIME
+ReportDate = 
+ReportType = Test
+ReportCycle = N/A
+County = TestCounty
+Classification = PC1026
+Evaluator = Test Evaluator
+ApprovedBy = Test Supervisor
+ProcessedBy = Test User
+Program = U
+Unit = Alpha
+DueDateOffset = 0
+Commitment = 
+Admission = 
+Expiration = 
+CourtNumber = 000-TEST
+Charges = Test Charges
+Sex = X
+Dob = 
+Age = 999
+Language = English
+Pages = 1
+Psychiatrist = Dr. Test
+UID = UID-1234
+MinuteOrder = Test Order
+Malingering = N
+IMO = N
+JBCT = N
+TCAR = 
+TcarOffset = 0
+2025-05-10 10:02:17 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146233033, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 1 failed: Failed to convert parameter value from a String to a Int32.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = 219346-2
+FirstPatientNumber = 219346-2
+Created = 2025-05-10
+Filename = ANDERSON, Maria 1370(b)(1) 2025-05-08.docx
+PatientName = ANDERSON, MARIA JESSICA
+Name = ANDERSON, MARIA
+DueDate = 2024-08-29
+RushStatus = PAST DUE
+ReportDate = 2025-05-08
+ReportType = 1370(b)(1)
+ReportCycle = 9-month
+County = FRESNO
+Classification = PC1370
+Evaluator = Alina Mercer, Ph.D.
+ApprovedBy = Powers
+ProcessedBy = Bryan Lundeen
+Program = 4
+Unit = T7
+DueDateOffset = -254
+Commitment = 12/01/2023
+Admission = 12/14/2023
+Expiration = 12/13/2027
+CourtNumber = CRTXE5AEL
+Charges = 
+Sex = M
+Dob = 1982-07-24
+Age = 42
+Language = 
+Pages = 
+Psychiatrist = 
+UID = 219346-2,13700508|072422
+MinuteOrder = 
+Malingering = 
+IMO = 
+JBCT = 
+TCAR = 
+TcarOffset = 
+2025-05-10 10:02:40 [ERROR] [DatabaseHelper.TryExecuteInsert] User: lunde, Err#: -2146233033, Source: DatabaseHelper.TryExecuteInsert, Message: Attempt 2 failed: Failed to convert parameter value from a String to a Int32.
+SQL: INSERT INTO EZL_PRC (PatientNumber,FirstPatientNumber,Created,Filename,PatientName,Name,DueDate,RushStatus,ReportDate,ReportType,ReportCycle,County,Classification,Evaluator,ApprovedBy,ProcessedBy,Program,Unit,DueDateOffset,Commitment,Admission,Expiration,CourtNumber,Charges,Sex,Dob,Age,Language,Pages,Psychiatrist,UID,MinuteOrder,Malingering,IMO,JBCT,TCAR,TcarOffset) VALUES (@PatientNumber,@FirstPatientNumber,@Created,@Filename,@PatientName,@Name,@DueDate,@RushStatus,@ReportDate,@ReportType,@ReportCycle,@County,@Classification,@Evaluator,@ApprovedBy,@ProcessedBy,@Program,@Unit,@DueDateOffset,@Commitment,@Admission,@Expiration,@CourtNumber,@Charges,@Sex,@Dob,@Age,@Language,@Pages,@Psychiatrist,@UID,@MinuteOrder,@Malingering,@IMO,@JBCT,@TCAR,@TcarOffset);
+Parameters:
+PatientNumber = 219346-2
+FirstPatientNumber = 219346-2
+Created = 2025-05-10
+Filename = ANDERSON, Maria 1370(b)(1) 2025-05-08.docx
+PatientName = ANDERSON, MARIA JESSICA
+Name = ANDERSON, MARIA
+DueDate = 2024-08-29
+RushStatus = PAST DUE
+ReportDate = 2025-05-08
+ReportType = 1370(b)(1)
+ReportCycle = 9-month
+County = FRESNO
+Classification = PC1370
+Evaluator = Alina Mercer, Ph.D.
+ApprovedBy = Powers
+ProcessedBy = Bryan Lundeen
+Program = 4
+Unit = T7
+DueDateOffset = -254
+Commitment = 12/01/2023
+Admission = 12/14/2023
+Expiration = 12/13/2027
+CourtNumber = CRTXE5AEL
+Charges = 
+Sex = M
+Dob = 1982-07-24
+Age = 42
+Language = 
+Pages = 
+Psychiatrist = 
+UID = 219346-2,13700508|072422
+MinuteOrder = 
+Malingering = 
+IMO = 
+JBCT = 
+TCAR = 
+TcarOffset = 

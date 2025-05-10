@@ -26,7 +26,7 @@ Namespace Handlers
             End If
 
             ' Write the selected approver into the document property
-            Dim doc As Microsoft.Office.Interop.Word.Document = Globals.ThisAddIn.Application.ActiveDocument
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             DocumentPropertyHelper.WriteCustomProperty(doc, "Approved By", selectedName)
 
             ' Optional: Confirm to the user

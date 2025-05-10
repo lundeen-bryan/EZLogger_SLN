@@ -109,6 +109,10 @@ Public Class EZLoggerRibbonXml
         End Try
     End Sub
 
+    Public Sub TestLog_Click(ByRef control As Microsoft.Office.Core.IRibbonControl)
+        ManualLogTest.RunInsertPrcTableTest()
+    End Sub
+
     Public Sub OpenTaskList_Click(control As Microsoft.Office.Core.IRibbonControl)
         Try
             Dim frm As New TaskListHost()
@@ -126,13 +130,15 @@ Public Class EZLoggerRibbonXml
     'RemoveMailMerge_Click
     Public Sub RemoveMailMerge_Click(control As Microsoft.Office.Core.IRibbonControl)
         ' Part of the test group
-        MailMergeHelper.CleanMailMergeDocument(Globals.ThisAddIn.Application.ActiveDocument)
+        Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+        MailMergeHelper.CleanMailMergeDocument(doc)
     End Sub
 
     Public Sub ExportPdfButton_Click(control As Microsoft.Office.Core.IRibbonControl)
         Try
+            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
             ' Get base file name (without extension) first
-            Dim baseFileName As String = IO.Path.GetFileNameWithoutExtension(Globals.ThisAddIn.Application.ActiveDocument.Name)
+            Dim baseFileName As String = IO.Path.GetFileNameWithoutExtension(doc.Name)
 
             ' Prompt user with SaveFileDialog
             Using dialog As New SaveFileDialog()

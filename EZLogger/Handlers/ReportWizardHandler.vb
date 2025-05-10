@@ -42,7 +42,8 @@ Namespace Handlers
         ''' This method retrieves the patient name from the document properties and updates the corresponding label in the panel.
         ''' </remarks>
         Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
-            Dim name As String = DocumentPropertyHelper.GetPropertyValue("Patient Name")
+            Dim doc = DocumentHelper.GetActiveWordDocument()
+            Dim name As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Name")
             panel.LabelPatientName.Content = name
         End Sub
 
@@ -56,8 +57,9 @@ Namespace Handlers
         Public Sub ShowBtnBMessage(patientNumber As String, panel As ReportWizardPanel)
 
             Dim wordApp As Application = WordAppHelper.GetWordApp()
+            Dim doc = wordApp.ActiveDocument
 
-            Dim History As String = DocumentPropertyHelper.GetPropertyValue("Logged")
+            Dim History As String = DocumentPropertyHelper.GetPropertyValue(doc, "Logged")
             If History <> "" Then
                 If DateDiff("d", History, Date.Today()) > 2 Then
                     MsgBoxHelper.Show("The last time this report was opened and logged was " & History & " so you might not need to process this report again.")
@@ -105,7 +107,7 @@ Namespace Handlers
                                               If result = CustomMsgBoxResult.Yes Then
                                                   ' Write patient data and sender to document properties
                                                   DocumentPropertyHelper.WriteDataToDocProperties(patient)
-                                                  SenderHelper.WriteProcessedBy(Globals.ThisAddIn.Application.ActiveDocument)
+                                                  SenderHelper.WriteProcessedBy(DocumentHelper.GetActiveWordDocument())
                                                   DocumentPropertyHelper.WriteCustomProperty(wordApp?.ActiveDocument, "Logged", Date.Today())
 
                                                   ' Refresh UI
@@ -132,20 +134,9 @@ Namespace Handlers
         ''' date from the current Word document.
         ''' </summary>
         Public Sub ShowBtnCMessage()
+            Dim doc = DocumentHelper.GetActiveWordDocument()
             ' Retrieve commitment date from Word document
-            Dim commitmentDate As String = DocumentPropertyHelper.GetPropertyValue("Commitment")
-
-            ' ' Launch the report type selection dialog
-            ' Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
-            ' Dim commitmentRaw As String = ""
-
-            ' If doc IsNot Nothing Then
-            '     Try
-            '         commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
-            '     Catch ex As Exception
-            '         commitmentRaw = ""
-            '     End Try
-            ' End If
+            Dim commitmentDate As String = DocumentPropertyHelper.GetPropertyValue(doc, "Commitment")
 
             Dim reportTypeHandler As New ReportTypeHandler()
             reportTypeHandler.LaunchReportTypeView(commitmentDate)
@@ -184,7 +175,7 @@ Namespace Handlers
             End Try
 
             If Not String.IsNullOrWhiteSpace(provider) Then
-                DocumentPropertyHelper.WriteCustomProperty(Globals.ThisAddIn.Application.ActiveDocument, "CONREP", provider)
+                DocumentPropertyHelper.WriteCustomProperty(DocumentHelper.GetActiveWordDocument(), "CONREP", provider)
                 MsgBoxHelper.Show($"Provider found and saved to CONREP: {provider}")
             Else
                 MsgBoxHelper.Show($"No provider found for patient number: {patientNumber}")
@@ -218,7 +209,7 @@ Namespace Handlers
 
         Public Sub ShowBtnKMessage()
             Try
-                Dim doc As Microsoft.Office.Interop.Word.Document = GetActiveWordDocument()
+                Dim doc = DocumentHelper.GetActiveWordDocument()
 
                 If doc Is Nothing Then
                     MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
@@ -242,7 +233,7 @@ Namespace Handlers
 
         Public Sub ShowBtnLMessage()
             Try
-                Dim doc As Microsoft.Office.Interop.Word.Document = Globals.ThisAddIn.Application.ActiveDocument
+                Dim doc As Microsoft.Office.Interop.Word.Document = DocumentHelper.GetActiveWordDocument()
 
                 If doc Is Nothing Then
                     MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)

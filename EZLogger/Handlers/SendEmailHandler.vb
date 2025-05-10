@@ -53,8 +53,9 @@ Public Class SendEmailHandler
 
             Dim toAddress = ConfigHelper.GetGlobalConfigValue("dsh_holdovers", "email")
 
+            Dim doc = DocumentHelper.GetActiveWordDocument()
             'Sender
-            Dim rawSender = DocumentPropertyHelper.GetPropertyValue("Processed By")
+            Dim rawSender = DocumentPropertyHelper.GetPropertyValue(doc, "Processed By")
             Dim cleanSender = CleanString(rawSender)
 
             'Subject line

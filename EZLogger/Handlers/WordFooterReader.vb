@@ -25,7 +25,7 @@ Public Class WordFooterReader
         Const maxRepeatSearch As Integer = 5
 
         Try
-            Dim doc As Word.Document = Globals.ThisAddIn.Application.ActiveDocument
+            Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
             Dim footerRange As Word.Range = doc.Sections(1).Footers(Word.WdHeaderFooterIndex.wdHeaderFooterPrimary).Range
 
             ResetFindParameters(footerRange)

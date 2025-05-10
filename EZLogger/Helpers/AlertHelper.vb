@@ -15,8 +15,8 @@ Namespace Helpers
 
             Try
                 ' Step 1: Get patient number and county from document
-                Dim patientNumber As String = DocumentPropertyHelper.GetPropertyValue("Patient Number")
-                Dim county As String = DocumentPropertyHelper.GetPropertyValue("County")
+                Dim patientNumber As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Number")
+                Dim county As String = DocumentPropertyHelper.GetPropertyValue(doc, "County")
 
                 ' Step 2: Load global config path
                 Dim globalConfigPath As String = ConfigHelper.GetGlobalConfigPath()

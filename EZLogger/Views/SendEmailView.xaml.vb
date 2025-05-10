@@ -22,8 +22,9 @@ Public Class SendEmailView
     End Sub
     Private Sub SendEmailView_Loaded(sender As Object, e As RoutedEventArgs)
         Try
-            TextBoxLastname.Text = DocumentPropertyHelper.GetPropertyValue("LastName", caseInsensitive:=True)
-            TextBoxFirstname.Text = DocumentPropertyHelper.GetPropertyValue("FirstName", caseInsensitive:=True)
+            Dim doc = DocumentHelper.GetActiveWordDocument()
+            TextBoxLastname.Text = DocumentPropertyHelper.GetPropertyValue(doc, "LastName", caseInsensitive:=True)
+            TextBoxFirstname.Text = DocumentPropertyHelper.GetPropertyValue(doc, "FirstName", caseInsensitive:=True)
         Catch ex As Exception
             MsgBoxHelper.Show("Error loading patient name from document properties: " & ex.Message)
         End Try

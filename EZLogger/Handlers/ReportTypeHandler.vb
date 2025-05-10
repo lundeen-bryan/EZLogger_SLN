@@ -38,9 +38,11 @@ Namespace Handlers
                 view.CommitmentDateLbl.Content = "(Missing)"
             End If
 
+
+    DocumentHelper.GetActiveWordDocument()
             ' === Show Report Type if present ===
             Try
-                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
                 If doc IsNot Nothing Then
                     Dim reportTypeValue As String = doc.CustomDocumentProperties("Report Type").Value.ToString()
                     If Not String.IsNullOrWhiteSpace(reportTypeValue) Then
@@ -78,7 +80,7 @@ Namespace Handlers
             End If
 
             ' Write the selected report type to the custom property
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
             If doc IsNot Nothing Then
                 DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", reportType)
                 ' MsgBoxHelper.Show("Report type has been saved to the document.")
@@ -138,7 +140,7 @@ Namespace Handlers
             host.ElementHost1.Child = view
 
             ' Set CommitmentDateLbl using custom doc property
-            Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+            Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
             If doc IsNot Nothing Then
                 Try
                     Dim commitmentRaw As String = doc.CustomDocumentProperties("Commitment").Value.ToString()
@@ -205,7 +207,7 @@ Namespace Handlers
 
             ' Save the selected report date to Word doc properties
             If Not String.IsNullOrWhiteSpace(reportDate) Then
-                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
                 If doc IsNot Nothing Then
                     DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
                 End If
@@ -247,7 +249,7 @@ Namespace Handlers
 
             ' Optional: read commitment date from Word and prefill the textbox
             Try
-                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
                 If doc IsNot Nothing Then
                     Dim commitmentRaw As Object = doc.CustomDocumentProperties("Commitment").Value
                     Dim parsedDate As Date
@@ -276,7 +278,7 @@ Namespace Handlers
             host.ElementHost1.Location = New Drawing.Point(20, 20)
 
             Try
-                Dim doc As Word.Document = TryCast(Globals.ThisAddIn.Application.ActiveDocument, Word.Document)
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
                 If doc IsNot Nothing Then
                     ' Prefill CommitmentDateTxt and FirstDueDateTxt
                     Dim commitmentRaw As Object = doc.CustomDocumentProperties("Commitment").Value
