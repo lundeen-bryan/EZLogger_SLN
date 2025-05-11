@@ -27,7 +27,7 @@ Namespace Handlers
 
             ' Write the selected approver into the document property
             Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
-            Dim vstodoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
 
             DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Approved By", selectedName)
 
