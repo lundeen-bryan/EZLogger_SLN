@@ -136,9 +136,10 @@ Public Class EZLoggerRibbonXml
 
     Public Sub ExportPdfButton_Click(control As Microsoft.Office.Core.IRibbonControl)
         Try
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
             ' Get base file name (without extension) first
-            Dim baseFileName As String = IO.Path.GetFileNameWithoutExtension(doc.Name)
+            Dim baseFileName As String = FileNameHelper.GetFilePart(1)
 
             ' Prompt user with SaveFileDialog
             Using dialog As New SaveFileDialog()
