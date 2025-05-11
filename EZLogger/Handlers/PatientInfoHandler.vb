@@ -151,6 +151,10 @@ Namespace Handlers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Reloads the Patient Info data table to display to user
+        ''' </summary>
+        ''' <remarks></remarks>
         Public Sub HandleRefreshClick(view As PatientInfoView)
             LoadCustomDocProperties(view)
         End Sub
@@ -253,6 +257,10 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Takes user to first page of document
+        ''' </summary>
+        ''' <remarks></remarks>
         Public Sub HandleFirstPageClick()
             Try
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
@@ -262,6 +270,10 @@ Namespace Handlers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Takes user to last page of document
+        ''' </summary>
+        ''' <remarks>need to pass in Word.Document to capture the page numbers</remarks>
         Public Sub HandleLastPageClick()
             Try
                 Dim doc As Document = DocumentHelper.GetActiveWordDocument()
