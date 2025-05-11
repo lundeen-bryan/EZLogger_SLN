@@ -1,17 +1,10 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Linq
+Imports System.Windows.Forms
 Imports System.Windows.Forms.Integration
-Imports System.Linq
 
 Namespace Handlers
 
     Public Class ErrorDialogHandler
-
-        ''' <summary>
-        ''' Handles OK button click. Closes the error dialog.
-        ''' </summary>
-        Friend Sub HandleOkClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
 
         ''' <summary>
         ''' Handles Abort button click. Exits the application.
@@ -58,6 +51,13 @@ Namespace Handlers
 
             Clipboard.SetText(clipboardText)
             MessageBox.Show("Error details copied to clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Sub
+
+        ''' <summary>
+        ''' Handles OK button click. Closes the error dialog.
+        ''' </summary>
+        Friend Sub HandleOkClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
     End Class
