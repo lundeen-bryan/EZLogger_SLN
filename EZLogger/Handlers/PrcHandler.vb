@@ -17,6 +17,12 @@ Namespace Handlers
     ''' 3. Appends entry to the user TODO list (_LogTheseFiles.txt) (UserTodoHelper)
     ''' </summary>
     Public Module PrcHandler
+
+        ''' <summary>
+        ''' Used to confirm there is a valid Word.Document
+        ''' </summary>
+        ''' <returns>True if found</returns>
+        ''' <remarks>If it is a vsto document then it will return false</remarks>
         Private Function IsValidWordDoc(doc As Document) As Boolean
             Try
                 Dim dummy = doc.Name ' Triggers COM if invalid
