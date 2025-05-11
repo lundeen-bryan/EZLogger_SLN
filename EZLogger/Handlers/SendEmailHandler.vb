@@ -9,6 +9,26 @@ Imports System.Windows.Forms
 Public Class SendEmailHandler
 
     ''' <summary>
+    ''' Cleans a string by removing tabs, carriage returns, extra spaces, and quotes.
+    ''' </summary>
+    Public Function CleanString(input As String) As String
+        Dim result As String = input
+
+        result = result.Replace(vbTab, " ")
+        result = result.Replace(vbCr, " ")
+        result = result.Replace(vbCrLf, " ")
+
+        Do While result.Contains("  ")
+            result = result.Replace("  ", " ")
+        Loop
+
+        result = result.Replace("""", "")
+        result = result.Replace("'", "")
+
+        Return result.Trim()
+    End Function
+
+    ''' <summary>
     ''' Handles the "Select File" button click.
     ''' </summary>
     Public Function HandleSelectFileClick(ownerForm As Form) As String
@@ -89,28 +109,7 @@ Public Class SendEmailHandler
         Return ti.ToTitleCase(input.ToLower())
     End Function
 
-    ''' <summary>
-    ''' Cleans a string by removing tabs, carriage returns, extra spaces, and quotes.
-    ''' </summary>
-    Public Function CleanString(input As String) As String
-        Dim result As String = input
-
-        result = result.Replace(vbTab, " ")
-        result = result.Replace(vbCr, " ")
-        result = result.Replace(vbCrLf, " ")
-
-        Do While result.Contains("  ")
-            result = result.Replace("  ", " ")
-        Loop
-
-        result = result.Replace("""", "")
-        result = result.Replace("'", "")
-
-        Return result.Trim()
-    End Function
-
 End Class
-
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... SendEmailHandler.vb
