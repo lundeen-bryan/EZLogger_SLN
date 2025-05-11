@@ -20,7 +20,6 @@ Public Class ConfigView
         ' Wire up buttons
         AddHandler BtnCreateConfig.Click, AddressOf BtnCreateConfig_Click
         AddHandler BtnSaveDoctorsList.Click, AddressOf BtnSaveDoctorsList_Click
-        AddHandler BtnSaveConfig.Click, AddressOf BtnSaveConfig_Click
         AddHandler AddAlertButton.Click, AddressOf AddAlertButton_Click
         AddHandler DeleteAlertBtn.Click, AddressOf DeleteAlertBtn_Click
         AddHandler AddCountyAlertButton.Click, AddressOf AddCountyAlertButton_Click
@@ -52,10 +51,6 @@ Public Class ConfigView
 
     Private Sub BtnCreateConfig_Click(sender As Object, e As RoutedEventArgs)
         _handler.HandleCreateConfigClick()
-    End Sub
-
-    Private Sub BtnSaveConfig_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleSaveConfigClick()
     End Sub
 
     Private Sub DeleteAlertBtn_Click(sender As Object, e As RoutedEventArgs)
