@@ -7,7 +7,7 @@ Imports MessageBox = System.Windows.MessageBox
 
 Namespace Helpers
 
-Public Module ListHelper
+    Public Module ListHelper
 
         ''' <summary>
         ''' Retrieves a list of strings from the global_config.json file using the specified section and key.
@@ -54,90 +54,100 @@ Public Module ListHelper
             Return resultList
         End Function
 
-    ''' <summary>
-    ''' Loads a list of doctor names from the text file defined in local_user_config.json.
-    ''' The list is sorted alphabetically before being returned.
-    ''' </summary>
-    ''' <returns>A sorted List(Of String) containing one doctor name per line.</returns>
-Public Function GetDoctorList() As List(Of String)
-    'TODO:list
-    Dim configPath As String = GetLocalConfigPath()
+        ''' <summary>
+        ''' Loads a list of doctor names from the text file defined in local_user_config.json.
+        ''' The list is sorted alphabetically before being returned.
+        ''' </summary>
+        ''' <returns>A sorted List(Of String) containing one doctor name per line.</returns>
+        Public Function GetDoctorList() As List(Of String)
+            'TODO:list
+            Dim configPath As String = GetLocalConfigPath()
+            Dim doctorList As New List(Of String)
 
-    Dim doctorList As New List(Of String)
+            Try
+                ' Path To the local user config file (Set earlier in this module)
+                If Not File.Exists(configPath) Then
+                    MessageBox.Show("Local config file Not found.")
+                    Return doctorList
+                End If
 
-    Try
-    ' Path To the local user config file (Set earlier in this module)
-    If Not File.Exists(configPath) Then
-    MessageBox.Show("Local config file Not found.")
-    Return doctorList
-    End If
+                ' Read the contents of the local_user_config.json file
+                Dim jsonText As String = File.ReadAllText(configPath)
 
-    ' Read the contents of the local_user_config.json file
-    Dim jsonText As String = File.ReadAllText(configPath)
+                ' Parse the JSON into a usable structure
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = jsonDoc.RootElement
 
-    ' Parse the JSON into a usable structure
-    Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-    Dim root = jsonDoc.RootElement
+                    ' Navigate To the sp_filepath section
+                    Dim spFilepath As JsonElement
+                    If root.TryGetProperty("sp_filepath", spFilepath) Then
 
-    ' Navigate To the sp_filepath section
-    Dim spFilepath As JsonElement
-    If root.TryGetProperty("sp_filepath", spFilepath) Then
+                        ' Try To Get the doctors_list path from the config
+                        Dim doctorsPathElement As JsonElement
+                        If spFilepath.TryGetProperty("doctors_list", doctorsPathElement) Then
+                            Dim doctorsPath As String = doctorsPathElement.GetString()
 
-    ' Try To Get the doctors_list path from the config
-    Dim doctorsPathElement As JsonElement
-    If spFilepath.TryGetProperty("doctors_list", doctorsPathElement) Then
-    Dim doctorsPath As String = doctorsPathElement.GetString()
+                            ' If the file exists, read all lines into the list
+                            If File.Exists(doctorsPath) Then
+                                doctorList.AddRange(File.ReadAllLines(doctorsPath))
 
-    ' If the file exists, read all lines into the list
-    If File.Exists(doctorsPath) Then
-    doctorList.AddRange(File.ReadAllLines(doctorsPath))
+                                ' ✅ Sort the list alphabetically (A To Z)
+                                doctorList.Sort()
+                            Else
+                                MessageBox.Show("Doctors list file Not found at: " & doctorsPath)
+                            End If
+                        End If
+                    End If
+                End Using
 
-    ' ✅ Sort the list alphabetically (A To Z)
-    doctorList.Sort()
-    Else
-    MessageBox.Show("Doctors list file Not found at: " & doctorsPath)
-    End If
-    End If
-    End If
-    End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading doctors list: " & ex.Message)
+            End Try
 
-    Catch ex As Exception
-    MessageBox.Show("Error loading doctors list: " & ex.Message)
-    End Try
+            ' Return the sorted list (Or empty list If something failed)
+            Return doctorList
+        End Function
 
-    ' Return the sorted list (Or empty list If something failed)
-    Return doctorList
-    End Function
+        ''' <summary>
+        ''' Retrieves the file path of the doctors list from the local_user_config.json file.
+        ''' </summary>
+        ''' <returns>
+        ''' A string representing the file path of the doctors list. 
+        ''' Returns an empty string if the file path cannot be retrieved or an error occurs.
+        ''' </returns>
+        ''' <exception cref="FileNotFoundException">
+        ''' Thrown if the local_user_config.json file is not found.
+        ''' </exception>
+        ''' <exception cref="JsonException">
+        ''' Thrown if there is an error parsing the JSON file.
+        ''' </exception>
+        Public Function GetDoctorListFilePath() As String
+            'TODO:path
+            Dim configPath As String = GetLocalConfigPath()
 
+            Try
+                If Not File.Exists(configPath) Then
+                    MessageBox.Show("Local config file Not found.")
+                    Return String.Empty
+                End If
 
-Public Function GetDoctorListFilePath() As String
-    'TODO:path
-    Dim configPath As String = GetLocalConfigPath()
+                Dim jsonText As String = File.ReadAllText(configPath)
+                Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                    Dim root = jsonDoc.RootElement
+                    Dim spFilepath As JsonElement
+                    If root.TryGetProperty("sp_filepath", spFilepath) Then
+                        Dim pathElement As JsonElement
+                        If spFilepath.TryGetProperty("doctors_list", pathElement) Then
+                            Return pathElement.GetString()
+                        End If
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error reading doctor list path: " & ex.Message)
+            End Try
 
-    Try
-    If Not File.Exists(configPath) Then
-    MessageBox.Show("Local config file Not found.")
-    Return String.Empty
-    End If
+            Return String.Empty
+        End Function
 
-    Dim jsonText As String = File.ReadAllText(configPath)
-    Using jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-    Dim root = jsonDoc.RootElement
-    Dim spFilepath As JsonElement
-    If root.TryGetProperty("sp_filepath", spFilepath) Then
-    Dim pathElement As JsonElement
-    If spFilepath.TryGetProperty("doctors_list", pathElement) Then
-    Return pathElement.GetString()
-    End If
-    End If
-    End Using
-    Catch ex As Exception
-    MessageBox.Show("Error reading doctor list path: " & ex.Message)
-    End Try
-
-    Return String.Empty
-    End Function
-
-
-End Module
+    End Module
 End Namespace
