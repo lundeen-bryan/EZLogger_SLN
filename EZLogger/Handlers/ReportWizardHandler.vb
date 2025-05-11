@@ -143,6 +143,10 @@ Namespace Handlers
 
         End Sub
 
+        ''' <summary>
+        ''' Trigger to open the TCAR list
+        ''' </summary>
+        ''' <remarks></remarks>
         Public Sub ShowBtnDMessage()
             Dim tcarForm As New TCARListHost()
             tcarForm.Show()
