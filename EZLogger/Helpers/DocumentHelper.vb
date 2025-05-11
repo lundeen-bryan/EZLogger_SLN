@@ -1,58 +1,15 @@
-﻿Imports System.Windows
-Imports System.Windows.Forms
-Imports System.Windows.Media
-Imports System.Windows.Controls
+﻿Imports EZLogger.Helpers
 Imports Word = Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
-Imports EZLogger.Helpers
+Imports System.Windows
+Imports System.Windows.Controls
+Imports System.Windows.Forms
+Imports System.Windows.Media
 
 ''' <summary>
 ''' Provides helper methods for interacting with the active Word document.
 ''' </summary>
 Public Module DocumentHelper
-
-    ''' <summary>
-    ''' Safely returns the active Word document if available; otherwise returns Nothing.
-    ''' Uses TryCast to avoid casting errors and logs any unexpected failures.
-    ''' </summary>
-    Public Function GetActiveWordDocument() As Microsoft.Office.Interop.Word.Document
-        Const functionName As String = "WordAppHelper.GetActiveWordDocument"
-
-        Try
-            Dim app As Application = TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
-            If app Is Nothing Then Return Nothing
-
-            Return TryCast(app.ActiveDocument, Microsoft.Office.Interop.Word.Document)
-
-        Catch ex As Exception
-            Dim errNum As String = ex.HResult.ToString()
-            Dim errMsg As String = ex.Message
-            Dim recommendation As String = "Please close and reopen the Word document, then try again."
-
-            ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
-            Return Nothing
-        End Try
-    End Function
-
-    ''' <summary>
-    ''' Attempts to silently save the active Word document.
-    ''' Will retry up to a defined number of times if save fails.
-    ''' </summary>
-    ''' <param name="maxRetries">Maximum number of save attempts (default is 10).</param>
-    Public Sub TrySaveActiveDocument(Optional maxRetries As Integer = 10)
-        Dim doc As Word.Document = GetActiveWordDocument()
-        If doc Is Nothing Then Exit Sub
-
-        Dim attempts As Integer = 0
-        Do While Not doc.Saved AndAlso attempts < maxRetries
-            Try
-                doc.Save()
-            Catch ex As Exception
-                ' Optional: Log error
-            End Try
-            attempts += 1
-        Loop
-    End Sub
 
     ''' <summary>
     ''' Closes the active Word document using FileClose for better compatibility with OneDrive/SharePoint.
@@ -108,6 +65,29 @@ Public Module DocumentHelper
     End Sub
 
     ''' <summary>
+    ''' Safely returns the active Word document if available; otherwise returns Nothing.
+    ''' Uses TryCast to avoid casting errors and logs any unexpected failures.
+    ''' </summary>
+    Public Function GetActiveWordDocument() As Microsoft.Office.Interop.Word.Document
+        Const functionName As String = "WordAppHelper.GetActiveWordDocument"
+
+        Try
+            Dim app As Application = TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
+            If app Is Nothing Then Return Nothing
+
+            Return TryCast(app.ActiveDocument, Microsoft.Office.Interop.Word.Document)
+
+        Catch ex As Exception
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = ex.Message
+            Dim recommendation As String = "Please close and reopen the Word document, then try again."
+
+            ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            Return Nothing
+        End Try
+    End Function
+
+    ''' <summary>
     ''' Recursively resets all controls within a given container to their default state.
     ''' </summary>
     ''' <param name="container">The parent container whose child controls will be reset.</param>
@@ -156,6 +136,26 @@ Public Module DocumentHelper
         Catch ex As Exception
             MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
         End Try
+    End Sub
+
+    ''' <summary>
+    ''' Attempts to silently save the active Word document.
+    ''' Will retry up to a defined number of times if save fails.
+    ''' </summary>
+    ''' <param name="maxRetries">Maximum number of save attempts (default is 10).</param>
+    Public Sub TrySaveActiveDocument(Optional maxRetries As Integer = 10)
+        Dim doc As Word.Document = GetActiveWordDocument()
+        If doc Is Nothing Then Exit Sub
+
+        Dim attempts As Integer = 0
+        Do While Not doc.Saved AndAlso attempts < maxRetries
+            Try
+                doc.Save()
+            Catch ex As Exception
+                ' Optional: Log error
+            End Try
+            attempts += 1
+        Loop
     End Sub
 
 End Module
