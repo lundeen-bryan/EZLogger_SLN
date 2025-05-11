@@ -13,26 +13,6 @@ Namespace Handlers
     Public Class TcarListHandler
 
         ''' <summary>
-        ''' Safely converts a value from a SqlDataReader column to an Integer.
-        ''' Returns 0 if the column is NULL, empty, or not a valid number.
-        ''' </summary>
-        ''' <param name="reader">The active SqlDataReader instance.</param>
-        ''' <param name="columnName">The name of the column to read.</param>
-        ''' <returns>An Integer parsed from the column value, or 0 on failure.</returns>
-        ''' <remarks>
-        ''' Useful when reading integer fields that may be NULL or contain non-numeric data.
-        ''' </remarks>
-        Private Function SafeInt(reader As SqlDataReader, columnName As String) As Integer
-            If reader.IsDBNull(reader.GetOrdinal(columnName)) Then Return 0
-            Dim value As Object = reader(columnName)
-            If Integer.TryParse(value.ToString(), Nothing) Then
-                Return Convert.ToInt32(value)
-            Else
-                Return 0
-            End If
-        End Function
-
-        ''' <summary>
         ''' Represents the live collection of task items currently loaded in the Task List panel. This collection is UI-bound and updates dynamically
         ''' </summary>
         Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
