@@ -13,56 +13,55 @@ Public Module ExcelHelper
     Public Sub ExportDataTableToSummaryExcel(dt As System.Data.DataTable)
         If dt Is Nothing OrElse dt.Rows.Count = 0 Then
             MsgBoxHelper.Show("No data to export.")
-            Exit Sub
-        End If
+        Else
+            Dim xlApp As New Microsoft.Office.Interop.Excel.Application()
+            Dim xlBook As Workbook = Nothing
+            Dim xlSheet As Worksheet = Nothing
 
-        Dim xlApp As New Microsoft.Office.Interop.Excel.Application()
-        Dim xlBook As Workbook = Nothing
-        Dim xlSheet As Worksheet = Nothing
+            Try
+                xlApp.Visible = False
+                xlBook = xlApp.Workbooks.Add()
+                xlSheet = CType(xlBook.Sheets(1), Worksheet)
 
-        Try
-            xlApp.Visible = False
-            xlBook = xlApp.Workbooks.Add()
-            xlSheet = CType(xlBook.Sheets(1), Worksheet)
-
-            ' Write headers
-            For col As Integer = 0 To dt.Columns.Count - 1
-                xlSheet.Cells(1, col + 1).Value = dt.Columns(col).ColumnName
-            Next
-
-            ' Write data
-            For row As Integer = 0 To Math.Min(50, dt.Rows.Count - 1) ' TEMPORARY CAP FOR DEBUGGING
+                ' Write headers
                 For col As Integer = 0 To dt.Columns.Count - 1
-                    Dim value As Object = dt.Rows(row)(col)
-                    xlSheet.Cells(row + 2, col + 1).Value = If(value IsNot Nothing, value.ToString(), "")
+                    xlSheet.Cells(1, col + 1).Value = dt.Columns(col).ColumnName
                 Next
-            Next
 
-            ' Autosize columns
-            xlSheet.Columns.AutoFit()
+                ' Write data
+                For row As Integer = 0 To Math.Min(50, dt.Rows.Count - 1) ' TEMPORARY CAP FOR DEBUGGING
+                    For col As Integer = 0 To dt.Columns.Count - 1
+                        Dim value As Object = dt.Rows(row)(col)
+                        xlSheet.Cells(row + 2, col + 1).Value = If(value IsNot Nothing, value.ToString(), "")
+                    Next
+                Next
 
-            ' Save to user's Documents folder using helper
-            Dim savePath As String = IO.Path.Combine(TempFileHelper.GetDocumentsFolder(), "SummaryReport.xlsx")
-            xlBook.SaveAs(savePath)
+                ' Autosize columns
+                xlSheet.Columns.AutoFit()
 
-            MsgBoxHelper.Show("Summary report saved to: " & savePath)
+                ' Save to user's Documents folder using helper
+                Dim savePath As String = IO.Path.Combine(TempFileHelper.GetDocumentsFolder(), "SummaryReport.xlsx")
+                xlBook.SaveAs(savePath)
 
-        Catch ex As Exception
-            Dim errNum As String = ex.HResult.ToString()
-            Dim errMsg As String = CStr(ex.Message)
-            Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
+                MsgBoxHelper.Show("Summary report saved to: " & savePath)
 
-            ErrorHelper.HandleError("PrcHandler.SaveProcessedReport", errNum, errMsg, recommendation)
+            Catch ex As Exception
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
 
-        Finally
-            ' Cleanup
-            If xlBook IsNot Nothing Then xlBook.Close(False)
-            If xlApp IsNot Nothing Then xlApp.Quit()
+                ErrorHelper.HandleError("PrcHandler.SaveProcessedReport", errNum, errMsg, recommendation)
 
-            If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
-            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBook)
-            If xlApp IsNot Nothing Then Marshal.ReleaseComObject(xlApp)
-        End Try
+            Finally
+                ' Cleanup
+                If xlBook IsNot Nothing Then xlBook.Close(False)
+                If xlApp IsNot Nothing Then xlApp.Quit()
+
+                If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
+                If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBook)
+                If xlApp IsNot Nothing Then Marshal.ReleaseComObject(xlApp)
+            End Try
+        End If
     End Sub
 
     ''' <summary>

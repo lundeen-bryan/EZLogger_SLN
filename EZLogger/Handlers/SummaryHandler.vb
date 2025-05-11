@@ -64,11 +64,10 @@ Namespace Handlers
 
                 If records Is Nothing OrElse records.Rows.Count = 0 Then
                     MsgBoxHelper.Show("No records found in the EZL_PRC table.")
-                    Exit Sub
+                Else
+                    ' ⚠️ RUN Excel export on UI thread to avoid InvalidOperationException
+                    ExcelHelper.ExportDataTableToSummaryExcel(records)
                 End If
-
-                ' ⚠️ RUN Excel export on UI thread to avoid InvalidOperationException
-                ExcelHelper.ExportDataTableToSummaryExcel(records)
 
             Catch ex As Exception
                 Dim errNum As String = ex.HResult.ToString()
