@@ -6,6 +6,7 @@ Imports EZLogger.Helpers
 Imports System.Windows.Forms
 
 Namespace Handlers
+
     Public Class OpinionHandler
 
         Private ReadOnly _wordApp As Word.Application = GetWordApp()
@@ -16,14 +17,27 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets,
-        ''' and ensures it stays on top of other windows.
+        ''' Closes the OpinionView when clicked
         ''' </summary>
-        Public Sub OnOpenOpinionFormClick()
-            Dim host As New OpinionHost()
-            host.TopMost = True
-            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
-            host.Show()
+        ''' <remarks>must pass hostform (Me)</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
+        ''' Moves cursor to first page
+        ''' </summary>
+        ''' <remarks>Use with LastPageClick</remarks>
+        Public Sub HandleOpinionFirstPageClick()
+            NavigationHelper.GoToFirstPage(_wordApp)
+        End Sub
+
+        ''' <summary>
+        ''' Moves cursor to last page
+        ''' </summary>
+        ''' <remarks>Use with Handle FirstPageClick</remarks>
+        Public Sub HandleOpinionLastPageClick()
+            NavigationHelper.GoToLastPage(_wordApp)
         End Sub
 
         ''' <summary>
@@ -53,32 +67,19 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Moves cursor to first page
+        ''' Opens the Opinion form, positions it at the top-left corner of all screens with specified offsets,
+        ''' and ensures it stays on top of other windows.
         ''' </summary>
-        ''' <remarks>Use with LastPageClick</remarks>
-        Public Sub HandleOpinionFirstPageClick()
-            NavigationHelper.GoToFirstPage(_wordApp)
-        End Sub
-
-        ''' <summary>
-        ''' Moves cursor to last page
-        ''' </summary>
-        ''' <remarks>Use with Handle FirstPageClick</remarks>
-        Public Sub HandleOpinionLastPageClick()
-            NavigationHelper.GoToLastPage(_wordApp)
-        End Sub
-
-        ''' <summary>
-        ''' Closes the OpinionView when clicked
-        ''' </summary>
-        ''' <remarks>must pass hostform (Me)</remarks>
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
+        Public Sub OnOpenOpinionFormClick()
+            Dim host As New OpinionHost()
+            host.TopMost = True
+            FormPositionHelper.MoveFormToTopLeftOfAllScreens(host, 10, 10)
+            host.Show()
         End Sub
 
     End Class
-End Namespace
 
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... OpinionHandler.vb
