@@ -102,10 +102,10 @@ Namespace Handlers
         ''' </remarks>
         Public Sub HandleGoBackClick(hostForm As Form)
             Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
-            Dim doc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
             Dim commitmentRaw As String = ""
 
-            If doc IsNot Nothing Then
+            If vstoDoc IsNot Nothing Then
                 Try
                     'commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
                     commitmentRaw = DocumentPropertyHelper.GetPropertyValue(wordDoc, "Commitment")
@@ -141,7 +141,8 @@ Namespace Handlers
         Public Sub HandleSave1370ChoiceClick(view As DueDates1370View)
             ' TODO: use handler instead of this code
             ' Get the active Word document
-            Dim doc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(Globals.ThisAddIn.Application.ActiveDocument)
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
 
             ' Determine which radio button is selected and map to its corresponding label
             Dim selectedLabel As System.Windows.Controls.Label = Nothing
@@ -163,8 +164,6 @@ Namespace Handlers
                 MsgBoxHelper.Show("You must select a due date cycle before saving.")
                 Exit Sub
             End If
-
-            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
 
             ' Write Report Cycle to document properties
             If Not String.IsNullOrWhiteSpace(reportCycle) Then
