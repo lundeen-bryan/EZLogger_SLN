@@ -16,7 +16,7 @@ Namespace Handlers
         ''' <summary>
         ''' Handles Abort button click. Exits the application.
         ''' </summary>
-        Friend Sub HandleAbortClick(hostForm As Form)
+        Friend Sub HandleAbortClick()
             Try
                 Dim result = MessageBox.Show(
             "Are you sure you want to exit Word and stop processing?",
