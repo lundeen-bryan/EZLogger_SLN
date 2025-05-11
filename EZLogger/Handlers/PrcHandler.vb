@@ -48,7 +48,7 @@ Namespace Handlers
         ''' <param name="doc">The Word document associated with the report.</param>
         ''' <param name="prcData">The key-value pairs to insert into the EZL_PRC table.</param>
         ''' <returns>True if the insert succeeded; otherwise, False.</returns>
-        Private Function InsertProcessedReport(doc As Document, prcData As Dictionary(Of String, Object)) As Boolean
+        Private Function InsertProcessedReport(prcData As Dictionary(Of String, Object)) As Boolean
             Try
                 Dim normalizedData = DatabaseHelper.NormalizePrcData(prcData)
                 DatabaseHelper.InsertPrcTable(normalizedData)
@@ -187,7 +187,7 @@ Namespace Handlers
                     Exit Sub
                 End If
 
-                Dim successfulInsert As Boolean = InsertProcessedReport(doc, prcData)
+                Dim successfulInsert As Boolean = InsertProcessedReport(prcData)
                 If Not successfulInsert Then
                     MessageBox.Show("There was an error logging the report to the PRC table. Please try again or contact support.",
                             "Insert Failed", MessageBoxButton.OK, MessageBoxImage.Error)
