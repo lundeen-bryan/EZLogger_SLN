@@ -82,6 +82,10 @@ Namespace Handlers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Writes a Summary report in Excel for all records entered in EZL_PRC
+        ''' </summary>
+        ''' <remarks>Runs busy progress control and shows user "Loading..."</remarks>
         Public Sub RunSummaryWithBusy()
             Dim busyForm As New BusyHost()
             busyForm.Show()
