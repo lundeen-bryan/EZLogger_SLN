@@ -429,10 +429,6 @@ Namespace Handlers
                     "EZLogger Setup Complete")
         End Sub
 
-        Public Sub HandleSaveConfigClick()
-            MsgBox("You clicked Save Config")
-        End Sub
-
         Public Sub DeleteAlertButtonClick()
             MsgBox("You clicked Delete Alert button")
         End Sub

@@ -140,13 +140,6 @@
                                    Width="729"
                                    Background="#FFC1E0FF" />
                     </GroupBox>
-                    <Button x:Name="BtnSaveConfig"
-                            Content="S_ave This Configuration"
-                            HorizontalAlignment="Left"
-                            Margin="634,512,0,0"
-                            VerticalAlignment="Top"
-                            Background="White"
-                            Padding="6,6,6,6" />
                 </Grid>
             </TabItem>
             <TabItem Header="Patient Alerts">
