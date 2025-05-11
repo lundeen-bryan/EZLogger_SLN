@@ -3,45 +3,65 @@
 ' !See Label Footer for notes
 
 Imports EZLogger.Helpers
+Imports Microsoft.Office.Interop.Word
 Imports System.Globalization
 Imports System.Windows
 Imports System.Windows.Forms
-Imports Microsoft.Office.Interop.Word
 Imports MessageBox = System.Windows.MessageBox
 
 Namespace Handlers
+
     Public Class SaveFileHandler
 
-        Private _moveRootPath As String
         Private _copyRootPath As String
+        Private _moveRootPath As String
 
         ''' <summary>
-        ''' Loads Move and Copy root folder paths from local_user_config.json.
-        ''' Shows warning if critical paths are missing.
+        ''' Builds the full destination file path based on patient name, report type, and report date.
         ''' </summary>
-        Public Sub LoadRootPaths()
-            Dim functionName As String = "SaveFileHandler.LoadRootPaths"
-            Try
-                ' Read Move (all_penal_codes) path
-                _moveRootPath = ConfigHelper.GetGlobalConfigValue("cdo_filepath", "all_penal_codes")
+        Private Function BuildDestinationPath(view As SaveFileView) As String
+            ' Base path depending on Move/Copy choice
+            Dim basePath As String
+            If view.RadioMove.IsChecked Then
+                basePath = _moveRootPath
+            ElseIf view.RadioCopy.IsChecked Then
+                basePath = _copyRootPath
+            Else
+                Return String.Empty
+            End If
 
-                ' Read Copy (user_forensic_library) path
-                _copyRootPath = ConfigHelper.GetLocalConfigValue("sp_filepath", "user_forensic_library")
+            Dim doc = DocumentHelper.GetActiveWordDocument()
 
-                ' Validate both paths
-                If String.IsNullOrWhiteSpace(_moveRootPath) OrElse String.IsNullOrWhiteSpace(_copyRootPath) Then
-                    MsgBoxHelper.Show("Your file move/copy paths are missing. Please recreate your local config file to proceed.")
-                End If
+            ' Pull data from view
+            Dim Lname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Lastname")
+            Dim Fname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Firstname").ToLower()
+            Dim textInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
+            Dim patientName As String = Lname & ", " & textInfo.ToTitleCase(Fname)
+            Dim reportType As String = view.ReportTypeCbo.Text
+            Dim reportDate As Date? = view.ReportDatePicker.SelectedDate
 
-            Catch ex As Exception
-                MsgBoxHelper.Show("Failed to load folder paths: " & ex.Message)
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "Failed to load folder paths, try saving the document as a .docx filetype."
+            ' Validate minimal fields
+            If String.IsNullOrWhiteSpace(patientName) OrElse String.IsNullOrWhiteSpace(reportType) OrElse Not reportDate.HasValue Then
+                Return String.Empty
+            End If
 
-                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            ' Build folder based on first letter of patient name
+            Dim firstLetter As String = If(String.IsNullOrEmpty(patientName), "", patientName.Substring(0, 1).ToUpper())
 
-            End Try
+            ' Format date as yyyy-MM-dd
+            Dim formattedDate As String = reportDate.Value.ToString("yyyy-MM-dd")
+
+            ' Combine filename
+            Dim filename As String = $"{patientName} {reportType} {formattedDate}.docx"
+
+            ' Build full path
+            Dim fullPath As String = System.IO.Path.Combine(basePath, firstLetter, filename)
+
+            Return fullPath
+        End Function
+
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
         End Sub
 
         ''' <summary>
@@ -127,123 +147,6 @@ Namespace Handlers
             End Try
         End Sub
 
-
-
-        ''' <summary>
-        ''' Attempts to delete the old file after a successful Move operation.
-        ''' </summary>
-        Private Sub TryDeleteOldFile(oldFilePath As String)
-            Dim functionName As String = "SaveFileHandler.TryDeleteOldFile"
-            Try
-                ' Extra safety: handle legacy .doc files
-                If System.IO.File.Exists(oldFilePath) Then
-                    System.IO.File.Delete(oldFilePath)
-                Else
-                    ' If old file was .doc and SaveAs created .docx, try deleting the .doc version
-                    Dim possibleDocPath As String = System.IO.Path.ChangeExtension(oldFilePath, ".doc")
-                    If System.IO.File.Exists(possibleDocPath) Then
-                        System.IO.File.Delete(possibleDocPath)
-                    End If
-                End If
-            Catch ex As Exception
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "The original file could not be deleted. Please delete it manually later."
-
-                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
-            End Try
-        End Sub
-
-
-        ''' <summary>
-        ''' Handles the ShowPath button click.
-        ''' Builds the destination file path, displays it in the view, and copies folder name to clipboard.
-        ''' </summary>
-        Public Sub HandleShowPathClick(view As SaveFileView)
-            Dim functionName As String = "SaveFileHandler.HandleShowPathClick"
-            Try
-                ' Validate user selection
-                If Not (view.RadioMove.IsChecked Or view.RadioCopy.IsChecked) Then
-                    MsgBoxHelper.Show("Please select Move or Copy before generating the file path.")
-                    Exit Sub
-                End If
-
-                ' Build the destination path
-                Dim destinationPath As String = BuildDestinationPath(view)
-
-                ' Display the new path in the TextBlock
-                view.NewFileNameTextBlock.Text = destinationPath
-
-                ' Copy folder name (patient name) to clipboard without middle name so it's the property called "Name"
-                Dim patientName = view.LblPatientName.Content?.ToString()
-                If Not String.IsNullOrWhiteSpace(patientName) Then
-                    ClipboardHelper.CopyText(patientName)
-                End If
-
-            Catch ex As Exception
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "Failed to generate file path: " & ex.Message
-
-                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Builds the full destination file path based on patient name, report type, and report date.
-        ''' </summary>
-        Private Function BuildDestinationPath(view As SaveFileView) As String
-            ' Base path depending on Move/Copy choice
-            Dim basePath As String
-            If view.RadioMove.IsChecked Then
-                basePath = _moveRootPath
-            ElseIf view.RadioCopy.IsChecked Then
-                basePath = _copyRootPath
-            Else
-                Return String.Empty
-            End If
-
-            Dim doc = DocumentHelper.GetActiveWordDocument()
-
-            ' Pull data from view
-            Dim Lname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Lastname")
-            Dim Fname As String = DocumentPropertyHelper.GetPropertyValue(doc, "Firstname").ToLower()
-            Dim textInfo As TextInfo = CultureInfo.CurrentCulture.TextInfo
-            Dim patientName As String = Lname & ", " & textInfo.ToTitleCase(Fname)
-            Dim reportType As String = view.ReportTypeCbo.Text
-            Dim reportDate As Date? = view.ReportDatePicker.SelectedDate
-
-            ' Validate minimal fields
-            If String.IsNullOrWhiteSpace(patientName) OrElse String.IsNullOrWhiteSpace(reportType) OrElse Not reportDate.HasValue Then
-                Return String.Empty
-            End If
-
-            ' Build folder based on first letter of patient name
-            Dim firstLetter As String = If(String.IsNullOrEmpty(patientName), "", patientName.Substring(0, 1).ToUpper())
-
-            ' Format date as yyyy-MM-dd
-            Dim formattedDate As String = reportDate.Value.ToString("yyyy-MM-dd")
-
-            ' Combine filename
-            Dim filename As String = $"{patientName} {reportType} {formattedDate}.docx"
-
-            ' Build full path
-            Dim fullPath As String = System.IO.Path.Combine(basePath, firstLetter, filename)
-
-            Return fullPath
-        End Function
-
-        ''' <summary>
-        ''' Displays a message box as a placeholder for save file logic.
-        ''' </summary>
-        Public Sub ShowSaveMessage()
-            Dim host As New SaveFileHost()
-            host.Show()
-        End Sub
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
-
         ''' <summary>
         ''' Loads Word document properties and populates controls in SaveFileView.
         ''' </summary>
@@ -284,9 +187,106 @@ Namespace Handlers
                 ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
-    End Class
-End Namespace
 
+        ''' <summary>
+        ''' Handles the ShowPath button click.
+        ''' Builds the destination file path, displays it in the view, and copies folder name to clipboard.
+        ''' </summary>
+        Public Sub HandleShowPathClick(view As SaveFileView)
+            Dim functionName As String = "SaveFileHandler.HandleShowPathClick"
+            Try
+                ' Validate user selection
+                If Not (view.RadioMove.IsChecked Or view.RadioCopy.IsChecked) Then
+                    MsgBoxHelper.Show("Please select Move or Copy before generating the file path.")
+                    Exit Sub
+                End If
+
+                ' Build the destination path
+                Dim destinationPath As String = BuildDestinationPath(view)
+
+                ' Display the new path in the TextBlock
+                view.NewFileNameTextBlock.Text = destinationPath
+
+                ' Copy folder name (patient name) to clipboard without middle name so it's the property called "Name"
+                Dim patientName = view.LblPatientName.Content?.ToString()
+                If Not String.IsNullOrWhiteSpace(patientName) Then
+                    ClipboardHelper.CopyText(patientName)
+                End If
+
+            Catch ex As Exception
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to generate file path: " & ex.Message
+
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Loads Move and Copy root folder paths from local_user_config.json.
+        ''' Shows warning if critical paths are missing.
+        ''' </summary>
+        Public Sub LoadRootPaths()
+            Dim functionName As String = "SaveFileHandler.LoadRootPaths"
+            Try
+                ' Read Move (all_penal_codes) path
+                _moveRootPath = ConfigHelper.GetGlobalConfigValue("cdo_filepath", "all_penal_codes")
+
+                ' Read Copy (user_forensic_library) path
+                _copyRootPath = ConfigHelper.GetLocalConfigValue("sp_filepath", "user_forensic_library")
+
+                ' Validate both paths
+                If String.IsNullOrWhiteSpace(_moveRootPath) OrElse String.IsNullOrWhiteSpace(_copyRootPath) Then
+                    MsgBoxHelper.Show("Your file move/copy paths are missing. Please recreate your local config file to proceed.")
+                End If
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to load folder paths: " & ex.Message)
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "Failed to load folder paths, try saving the document as a .docx filetype."
+
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Displays a message box as a placeholder for save file logic.
+        ''' </summary>
+        Public Sub ShowSaveMessage()
+            Dim host As New SaveFileHost()
+            host.Show()
+        End Sub
+
+        ''' <summary>
+        ''' Attempts to delete the old file after a successful Move operation.
+        ''' </summary>
+        Private Sub TryDeleteOldFile(oldFilePath As String)
+            Dim functionName As String = "SaveFileHandler.TryDeleteOldFile"
+            Try
+                ' Extra safety: handle legacy .doc files
+                If System.IO.File.Exists(oldFilePath) Then
+                    System.IO.File.Delete(oldFilePath)
+                Else
+                    ' If old file was .doc and SaveAs created .docx, try deleting the .doc version
+                    Dim possibleDocPath As String = System.IO.Path.ChangeExtension(oldFilePath, ".doc")
+                    If System.IO.File.Exists(possibleDocPath) Then
+                        System.IO.File.Delete(possibleDocPath)
+                    End If
+                End If
+            Catch ex As Exception
+                Dim errNum As String = ex.HResult.ToString()
+                Dim errMsg As String = CStr(ex.Message)
+                Dim recommendation As String = "The original file could not be deleted. Please delete it manually later."
+
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+            End Try
+        End Sub
+
+    End Class
+
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... SaveFileHandler.vb
