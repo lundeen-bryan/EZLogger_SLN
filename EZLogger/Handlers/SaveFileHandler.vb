@@ -251,26 +251,26 @@ Namespace Handlers
             Dim functionName As String = "SaveFileHandler.HandleSearchPatientIdClick"
             Try
                 Dim doc = DocumentHelper.GetActiveWordDocument()
-                Dim GetProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(doc, name)
+                Dim getProp = Function(name As String) DocumentPropertyHelper.GetPropertyValue(doc, name)
 
-                view.TxtPatientId.Text = GetProp("Patient Number")
+                view.TxtPatientId.Text = getProp("Patient Number")
 
-                Dim reportType As String = GetProp("Report Type")
+                Dim reportType As String = getProp("Report Type")
                 If view.ReportTypeCbo.Items.Contains(reportType) Then
                     view.ReportTypeCbo.SelectedItem = reportType
                 End If
 
-                Dim dateStr = GetProp("Report Date")
+                Dim dateStr = getProp("Report Date")
                 If Date.TryParse(dateStr, Nothing) Then
                     view.ReportDatePicker.SelectedDate = Date.Parse(dateStr)
                 Else
                     view.ReportDatePicker.SelectedDate = Nothing
                 End If
 
-                view.LblPatientName.Content = GetProp("Name")
-                view.LblProgram.Content = GetProp("Program")
-                view.LblUnit.Content = GetProp("Unit")
-                view.LblClassification.Content = GetProp("Classification")
+                view.LblPatientName.Content = getProp("Name")
+                view.LblProgram.Content = getProp("Program")
+                view.LblUnit.Content = getProp("Unit")
+                view.LblClassification.Content = getProp("Classification")
 
                 ' Set the unique document id here in the custom document properties
                 Dim uniqueDocumentId As String = DocumentPropertyHelper.CreateUniqueIdFromProperties()
