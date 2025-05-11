@@ -3,14 +3,28 @@
 ' !See Label Footer for notes
 
 Imports EZLogger.Helpers
-Imports System.Windows
 Imports Microsoft.Office.Interop.Word
-Imports MessageBox = System.Windows.MessageBox
-Imports System.Threading.Tasks.Task
 Imports Application = Microsoft.Office.Interop.Word.Application
+Imports System.Threading.Tasks.Task
+Imports System.Windows
+Imports MessageBox = System.Windows.MessageBox
 
 Namespace Handlers
+
     Public Class ReportWizardHandler
+
+        ''' <summary>
+        ''' Refreshes the patient name label in the Report Wizard panel.
+        ''' </summary>
+        ''' <param name="panel">The ReportWizardPanel instance containing the label to be updated.</param>
+        ''' <remarks>
+        ''' This method retrieves the patient name from the document properties and updates the corresponding label in the panel.
+        ''' </remarks>
+        Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
+            Dim doc = DocumentHelper.GetActiveWordDocument()
+            Dim name As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Name")
+            panel.LabelPatientName.Content = name
+        End Sub
 
         ''' <summary>
         ''' Called by Btn_A. Searches the Word document footer for a patient number
@@ -32,19 +46,6 @@ Namespace Handlers
                             End Sub
             )
 
-        End Sub
-
-        ''' <summary>
-        ''' Refreshes the patient name label in the Report Wizard panel.
-        ''' </summary>
-        ''' <param name="panel">The ReportWizardPanel instance containing the label to be updated.</param>
-        ''' <remarks>
-        ''' This method retrieves the patient name from the document properties and updates the corresponding label in the panel.
-        ''' </remarks>
-        Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
-            Dim doc = DocumentHelper.GetActiveWordDocument()
-            Dim name As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Name")
-            panel.LabelPatientName.Content = name
         End Sub
 
         ''' <summary>
@@ -263,8 +264,8 @@ Namespace Handlers
         End Sub
 
     End Class
-End Namespace
 
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... ReportWizardHandler.vb
