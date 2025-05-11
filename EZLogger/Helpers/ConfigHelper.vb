@@ -85,6 +85,11 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Returns the County Alert from the global_config.json
+        ''' </summary>
+        ''' <returns>String </returns>
+        ''' <remarks></remarks>
         Public Function GetCountyAlerts(globalConfigPath As String) As Dictionary(Of String, String)
             Dim countyAlertsDict As New Dictionary(Of String, String)
 
@@ -106,6 +111,11 @@ Namespace Helpers
             Return countyAlertsDict
         End Function
 
+        ''' <summary>
+        ''' Returns the alert from global_config.json for patient number
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Function GetPatientAlerts(globalConfigPath As String) As Dictionary(Of String, String)
             Dim alertsDict As New Dictionary(Of String, String)
 
