@@ -186,6 +186,9 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Opens opinion view
+        ''' </summary>
         Public Sub ShowBtnFMessage()
             Dim opHandler As New OpinionHandler()
             opHandler.OnOpenOpinionFormClick()
