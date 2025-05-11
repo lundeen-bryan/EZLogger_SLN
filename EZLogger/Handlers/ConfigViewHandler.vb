@@ -5,54 +5,13 @@
 Imports EZLogger.Helpers
 Imports EZLogger.Models
 Imports System.IO
+Imports System.Text.Json
 Imports System.Windows
 Imports MessageBox = System.Windows.MessageBox
-Imports System.Text.Json
 
 Namespace Handlers
+
     Public Class ConfigViewHandler
-
-        ''' <summary>
-        ''' Handles the click event for adding a new county alert.
-        ''' This method opens a popup for user input, and if confirmed, adds or updates the county alert in the global configuration file.
-        ''' </summary>
-        ''' <remarks>
-        ''' The method performs the following steps:
-        ''' 1. Opens an AddAlertPopup dialog to get user input.
-        ''' 2. If the user confirms, retrieves the alert key and value from the popup.
-        ''' 3. Loads the global configuration file.
-        ''' 4. Deserializes the JSON content of the file.
-        ''' 5. Adds or updates the county alert in the configuration.
-        ''' 6. Serializes and saves the updated configuration back to the file.
-        ''' </remarks>
-        Public Sub AddCountyAlertButtonClick()
-            Dim popup As New AddAlertPopup(True)
-            Dim result = popup.ShowDialog()
-
-            If result = True Then
-                Dim key = popup.AlertKey
-                Dim value = popup.AlertValue
-
-                Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
-                If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
-
-                Dim jsonText As String = File.ReadAllText(globalPath)
-                Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
-
-                Dim countyDict As Dictionary(Of String, String)
-                If rootDict.ContainsKey("county_alerts") Then
-                    countyDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(rootDict("county_alerts").ToString())
-                Else
-                    countyDict = New Dictionary(Of String, String)()
-                End If
-
-                countyDict(key) = value
-                rootDict("county_alerts") = countyDict
-
-                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
-                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
-            End If
-        End Sub
 
         ''' <summary>
         ''' Handles the click event for adding a new alert.
@@ -100,40 +59,53 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Deletes a patient alert from the global configuration file based on the provided patient number.
+        ''' Handles the click event for adding a new county alert.
+        ''' This method opens a popup for user input, and if confirmed, adds or updates the county alert in the global configuration file.
         ''' </summary>
-        ''' <param name="patientNumber">The unique identifier of the patient whose alert should be deleted.</param>
         ''' <remarks>
-        ''' This method performs the following steps:
-        ''' 1. Retrieves the global configuration file path.
-        ''' 2. Reads and parses the JSON content of the file.
-        ''' 3. Checks if the "Alerts" section exists in the configuration.
-        ''' 4. If the patient number exists in the alerts, it removes the corresponding alert.
-        ''' 5. Updates the configuration file with the modified alerts.
-        ''' If the global configuration file doesn't exist or the "Alerts" section is not present, the method will exit without making any changes.
+        ''' The method performs the following steps:
+        ''' 1. Opens an AddAlertPopup dialog to get user input.
+        ''' 2. If the user confirms, retrieves the alert key and value from the popup.
+        ''' 3. Loads the global configuration file.
+        ''' 4. Deserializes the JSON content of the file.
+        ''' 5. Adds or updates the county alert in the configuration.
+        ''' 6. Serializes and saves the updated configuration back to the file.
         ''' </remarks>
-        Public Sub DeletePatientAlertByKey(patientNumber As String)
-            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
-            If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+        Public Sub AddCountyAlertButtonClick()
+            Dim popup As New AddAlertPopup(True)
+            Dim result = popup.ShowDialog()
 
-            Dim jsonText As String = File.ReadAllText(globalPath)
-            Dim doc = JsonDocument.Parse(jsonText)
+            If result = True Then
+                Dim key = popup.AlertKey
+                Dim value = popup.AlertValue
 
-            Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+                Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+                If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
 
-            If rootDict.ContainsKey("Alerts") Then
-                Dim alertDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(
-            doc.RootElement.GetProperty("Alerts").ToString())
+                Dim jsonText As String = File.ReadAllText(globalPath)
+                Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
 
-                If alertDict.ContainsKey(patientNumber) Then
-                    alertDict.Remove(patientNumber)
+                Dim countyDict As Dictionary(Of String, String)
+                If rootDict.ContainsKey("county_alerts") Then
+                    countyDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(rootDict("county_alerts").ToString())
+                Else
+                    countyDict = New Dictionary(Of String, String)()
                 End If
 
-                rootDict("Alerts") = alertDict
+                countyDict(key) = value
+                rootDict("county_alerts") = countyDict
 
                 Dim options As New JsonSerializerOptions With {.WriteIndented = True}
                 File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
             End If
+        End Sub
+
+        Public Sub DeleteAlertButtonClick()
+            MsgBox("You clicked Delete Alert button")
+        End Sub
+
+        Public Sub DeleteCountyAlertButtonClick()
+            MsgBox("You clicked Delete County Alert button")
         End Sub
 
         ''' <summary>
@@ -174,48 +146,134 @@ Namespace Handlers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Deletes a patient alert from the global configuration file based on the provided patient number.
+        ''' </summary>
+        ''' <param name="patientNumber">The unique identifier of the patient whose alert should be deleted.</param>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Retrieves the global configuration file path.
+        ''' 2. Reads and parses the JSON content of the file.
+        ''' 3. Checks if the "Alerts" section exists in the configuration.
+        ''' 4. If the patient number exists in the alerts, it removes the corresponding alert.
+        ''' 5. Updates the configuration file with the modified alerts.
+        ''' If the global configuration file doesn't exist or the "Alerts" section is not present, the method will exit without making any changes.
+        ''' </remarks>
+        Public Sub DeletePatientAlertByKey(patientNumber As String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            If String.IsNullOrEmpty(globalPath) OrElse Not File.Exists(globalPath) Then Exit Sub
+
+            Dim jsonText As String = File.ReadAllText(globalPath)
+            Dim doc = JsonDocument.Parse(jsonText)
+
+            Dim rootDict = JsonSerializer.Deserialize(Of Dictionary(Of String, Object))(jsonText)
+
+            If rootDict.ContainsKey("Alerts") Then
+                Dim alertDict = JsonSerializer.Deserialize(Of Dictionary(Of String, String))(
+            doc.RootElement.GetProperty("Alerts").ToString())
+
+                If alertDict.ContainsKey(patientNumber) Then
+                    alertDict.Remove(patientNumber)
+                End If
+
+                rootDict("Alerts") = alertDict
+
+                Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+                File.WriteAllText(globalPath, JsonSerializer.Serialize(rootDict, options))
+            End If
+        End Sub
 
         ''' <summary>
-        ''' Loads patient alerts from the global configuration file and formats them as a list of strings.
+        ''' Handles the creation and setup of the EZLogger configuration.
         ''' </summary>
-        ''' <returns>
-        ''' A List(Of String) containing formatted patient alerts. Each string in the list represents
-        ''' an alert in the format "PatientNumber = AlertMessage".
-        ''' </returns>
         ''' <remarks>
-        ''' This function performs the following steps:
-        ''' 1. Retrieves the path to the global configuration file.
-        ''' 2. Calls ConfigHelper.GetPatientAlerts to obtain the patient alerts from the configuration.
-        ''' 3. Formats each alert as a string with the patient number as the key and the alert message as the value.
-        ''' 4. Returns the formatted alerts as a List(Of String).
+        ''' This method performs the following steps:
+        ''' 1. Ensures the local user configuration file exists.
+        ''' 2. Prompts the user to select the global configuration file.
+        ''' 3. Loads the local configuration and applies the global configuration file path.
+        ''' 4. Prompts the user to select essential folders (EZLogger_Databases, Forensic Reports Library, and EDO - Forensic Office).
+        ''' 5. Updates the configuration with the selected paths and derived file paths.
+        ''' 6. Saves the updated configuration back to the local config file.
         ''' </remarks>
-        Public Function LoadPatientAlerts() As List(Of String)
-            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
-            Dim alerts = ConfigHelper.GetPatientAlerts(globalPath)
+        ''' <exception cref="System.IO.FileNotFoundException">Thrown when the local or global configuration file cannot be found or created.</exception>
+        ''' <exception cref="System.IO.IOException">Thrown when there's an error reading from or writing to the configuration files.</exception>
+        Public Sub HandleCreateConfigClick()
+            ' Step 1: Ensure local_user_config.json exists
+            Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
+            If String.IsNullOrEmpty(localConfigPath) Then
+                MessageBox.Show("Failed to create or locate local config file.", "Setup Failed")
+                Return
+            End If
 
-            Return alerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
-        End Function
+            ' Step 2: Prompt the user to select global_config.json
+            Dim globalConfigPath As String = ConfigHelper.PromptForGlobalConfigFile()
+            If String.IsNullOrEmpty(globalConfigPath) Then
+                MessageBox.Show("Global config selection was cancelled or invalid.", "Setup Incomplete")
+                Return
+            End If
+
+            ' Step 3: Load config and apply global_config_file
+            Dim configText As String = File.ReadAllText(localConfigPath)
+            Dim config = JsonSerializer.Deserialize(Of Models.LocalUserConfig)(configText)
+            config.sp_filepath.global_config_file = globalConfigPath
+
+            ' Step 4: Prompt for supporting folders
+            Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
+            Dim libPath As String = ConfigHelper.PromptForFolder("Select the Forensic Reports Library folder")
+            Dim edoPath As String = ConfigHelper.PromptForFolder("Select the EDO - Forensic Office folder")
+
+            If String.IsNullOrEmpty(dbPath) OrElse String.IsNullOrEmpty(libPath) OrElse String.IsNullOrEmpty(edoPath) Then
+                MessageBox.Show("All folder paths are required to complete setup.", "Missing Info", MessageBoxButton.OK, MessageBoxImage.Warning)
+                Return
+            End If
+
+            ' Step 5: Fill in other sp_filepath and edo_filepath values
+            config.sp_filepath.databases = dbPath
+            config.sp_filepath.user_forensic_database = dbPath
+            config.sp_filepath.user_forensic_library = libPath
+            config.sp_filepath.court_contact = Path.Combine(dbPath, "Court_Contact_Database.xlsx")
+            config.sp_filepath.da_contact_database = Path.Combine(dbPath, "Da_Contact_Database.xlsx")
+            config.sp_filepath.doctors_list = Path.Combine(dbPath, "Doctors.txt")
+            config.sp_filepath.hlv_data = Path.Combine(dbPath, "HLV_Report_Database.xlsm")
+            'config.sp_filepath.hlv_due = Path.Combine(dbPath, "HLV Due for Visit.txt")
+            'config.sp_filepath.ods_filepath = Path.Combine(dbPath, "ODS.xlsm")
+            'config.sp_filepath.properties_list = Path.Combine(dbPath, "document_properties.txt")
+            config.sp_filepath.templates = Path.Combine(dbPath, "Templates")
+
+            config.edo_filepath.forensic_office = edoPath
+            config.edo_filepath.processed_reports = "\Programming\EZ Logger\ProcessedReports"
+            config.edo_filepath.tcars_folder = "\1370 FS Report Tracking"
+
+            ' Step 6: Write back to config
+            Dim options As New JsonSerializerOptions With {.WriteIndented = True}
+            File.WriteAllText(localConfigPath, JsonSerializer.Serialize(config, options))
+
+            MessageBox.Show("Configuration setup complete!" & Environment.NewLine &
+                    "Local config stored at:" & Environment.NewLine & localConfigPath,
+                    "EZLogger Setup Complete")
+        End Sub
 
         ''' <summary>
-        ''' Loads county alerts from the global configuration file and formats them as a list of strings.
+        ''' Handles the click event for editing email settings based on selected radio buttons.
         ''' </summary>
-        ''' <returns>
-        ''' A List(Of String) containing formatted county alerts. Each string in the list represents
-        ''' an alert in the format "CountyName = AlertMessage".
-        ''' </returns>
+        ''' <param name="r1">RadioButton representing the "Secretaries" option.</param>
+        ''' <param name="r2">RadioButton representing the "Friday" option.</param>
+        ''' <param name="r3">RadioButton representing the "Competent" option.</param>
         ''' <remarks>
-        ''' This function performs the following steps:
-        ''' 1. Retrieves the path to the global configuration file.
-        ''' 2. Calls ConfigHelper.GetCountyAlerts to obtain the county alerts from the configuration.
-        ''' 3. Formats each alert as a string with the county name as the key and the alert message as the value.
-        ''' 4. Returns the formatted alerts as a List(Of String).
+        ''' This method checks which radio button is selected and displays a message box accordingly.
+        ''' If no radio button is selected, it shows a message indicating that no option is selected.
         ''' </remarks>
-        Public Function LoadCountyAlerts() As List(Of String)
-            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
-            Dim countyAlerts = ConfigHelper.GetCountyAlerts(globalPath)
-
-            Return countyAlerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
-        End Function
+        Public Sub HandleEditEmailClick(r1 As System.Windows.Controls.RadioButton, r2 As System.Windows.Controls.RadioButton, r3 As System.Windows.Controls.RadioButton)
+            If r1.IsChecked = True Then
+                MsgBox("Secretaries radio is selected")
+            ElseIf r2.IsChecked = True Then
+                MsgBox("Friday radio is selected")
+            ElseIf r3.IsChecked = True Then
+                MsgBox("Competent radio is selected")
+            Else
+                MsgBox("No option is selected")
+            End If
+        End Sub
 
         ''' <summary>
         ''' Handles the setup of folder paths for the EZLogger application.
@@ -295,22 +353,6 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Saves the provided list of doctors to a file.
-        ''' </summary>
-        ''' <param name="doctorsText">A string containing the list of doctors, typically with each doctor's name on a separate line.</param>
-        ''' <remarks>
-        ''' This method performs the following steps:
-        ''' 1. Retrieves the file path for the doctors list using ListHelper.GetDoctorListFilePath().
-        ''' 2. Writes the provided doctorsText to the file, overwriting any existing content.
-        ''' 3. Displays a message box to confirm that the doctor list has been saved.
-        ''' </remarks>
-        Public Sub SaveDoctorsList(doctorsText As String)
-            Dim filePath As String = ListHelper.GetDoctorListFilePath()
-            File.WriteAllText(filePath, doctorsText)
-            MessageBox.Show("Doctor list saved.")
-        End Sub
-
-        ''' <summary>
         ''' Handles the loading of the configuration view, populating various configuration paths and settings.
         ''' </summary>
         ''' <returns>
@@ -360,108 +402,66 @@ Namespace Handlers
         End Function
 
         ''' <summary>
-        ''' Handles the creation and setup of the EZLogger configuration.
+        ''' Loads county alerts from the global configuration file and formats them as a list of strings.
         ''' </summary>
+        ''' <returns>
+        ''' A List(Of String) containing formatted county alerts. Each string in the list represents
+        ''' an alert in the format "CountyName = AlertMessage".
+        ''' </returns>
         ''' <remarks>
-        ''' This method performs the following steps:
-        ''' 1. Ensures the local user configuration file exists.
-        ''' 2. Prompts the user to select the global configuration file.
-        ''' 3. Loads the local configuration and applies the global configuration file path.
-        ''' 4. Prompts the user to select essential folders (EZLogger_Databases, Forensic Reports Library, and EDO - Forensic Office).
-        ''' 5. Updates the configuration with the selected paths and derived file paths.
-        ''' 6. Saves the updated configuration back to the local config file.
+        ''' This function performs the following steps:
+        ''' 1. Retrieves the path to the global configuration file.
+        ''' 2. Calls ConfigHelper.GetCountyAlerts to obtain the county alerts from the configuration.
+        ''' 3. Formats each alert as a string with the county name as the key and the alert message as the value.
+        ''' 4. Returns the formatted alerts as a List(Of String).
         ''' </remarks>
-        ''' <exception cref="System.IO.FileNotFoundException">Thrown when the local or global configuration file cannot be found or created.</exception>
-        ''' <exception cref="System.IO.IOException">Thrown when there's an error reading from or writing to the configuration files.</exception>
-        Public Sub HandleCreateConfigClick()
-            ' Step 1: Ensure local_user_config.json exists
-            Dim localConfigPath As String = ConfigHelper.EnsureLocalUserConfigFileExists()
-            If String.IsNullOrEmpty(localConfigPath) Then
-                MessageBox.Show("Failed to create or locate local config file.", "Setup Failed")
-                Return
-            End If
+        Public Function LoadCountyAlerts() As List(Of String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            Dim countyAlerts = ConfigHelper.GetCountyAlerts(globalPath)
 
-            ' Step 2: Prompt the user to select global_config.json
-            Dim globalConfigPath As String = ConfigHelper.PromptForGlobalConfigFile()
-            If String.IsNullOrEmpty(globalConfigPath) Then
-                MessageBox.Show("Global config selection was cancelled or invalid.", "Setup Incomplete")
-                Return
-            End If
-
-            ' Step 3: Load config and apply global_config_file
-            Dim configText As String = File.ReadAllText(localConfigPath)
-            Dim config = JsonSerializer.Deserialize(Of Models.LocalUserConfig)(configText)
-            config.sp_filepath.global_config_file = globalConfigPath
-
-            ' Step 4: Prompt for supporting folders
-            Dim dbPath As String = ConfigHelper.PromptForFolder("Select the EZLogger_Databases folder")
-            Dim libPath As String = ConfigHelper.PromptForFolder("Select the Forensic Reports Library folder")
-            Dim edoPath As String = ConfigHelper.PromptForFolder("Select the EDO - Forensic Office folder")
-
-            If String.IsNullOrEmpty(dbPath) OrElse String.IsNullOrEmpty(libPath) OrElse String.IsNullOrEmpty(edoPath) Then
-                MessageBox.Show("All folder paths are required to complete setup.", "Missing Info", MessageBoxButton.OK, MessageBoxImage.Warning)
-                Return
-            End If
-
-            ' Step 5: Fill in other sp_filepath and edo_filepath values
-            config.sp_filepath.databases = dbPath
-            config.sp_filepath.user_forensic_database = dbPath
-            config.sp_filepath.user_forensic_library = libPath
-            config.sp_filepath.court_contact = Path.Combine(dbPath, "Court_Contact_Database.xlsx")
-            config.sp_filepath.da_contact_database = Path.Combine(dbPath, "Da_Contact_Database.xlsx")
-            config.sp_filepath.doctors_list = Path.Combine(dbPath, "Doctors.txt")
-            config.sp_filepath.hlv_data = Path.Combine(dbPath, "HLV_Report_Database.xlsm")
-            'config.sp_filepath.hlv_due = Path.Combine(dbPath, "HLV Due for Visit.txt")
-            'config.sp_filepath.ods_filepath = Path.Combine(dbPath, "ODS.xlsm")
-            'config.sp_filepath.properties_list = Path.Combine(dbPath, "document_properties.txt")
-            config.sp_filepath.templates = Path.Combine(dbPath, "Templates")
-
-            config.edo_filepath.forensic_office = edoPath
-            config.edo_filepath.processed_reports = "\Programming\EZ Logger\ProcessedReports"
-            config.edo_filepath.tcars_folder = "\1370 FS Report Tracking"
-
-            ' Step 6: Write back to config
-            Dim options As New JsonSerializerOptions With {.WriteIndented = True}
-            File.WriteAllText(localConfigPath, JsonSerializer.Serialize(config, options))
-
-            MessageBox.Show("Configuration setup complete!" & Environment.NewLine &
-                    "Local config stored at:" & Environment.NewLine & localConfigPath,
-                    "EZLogger Setup Complete")
-        End Sub
-
-        Public Sub DeleteAlertButtonClick()
-            MsgBox("You clicked Delete Alert button")
-        End Sub
-
-        Public Sub DeleteCountyAlertButtonClick()
-            MsgBox("You clicked Delete County Alert button")
-        End Sub
+            Return countyAlerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
+        End Function
 
         ''' <summary>
-        ''' Handles the click event for editing email settings based on selected radio buttons.
+        ''' Loads patient alerts from the global configuration file and formats them as a list of strings.
         ''' </summary>
-        ''' <param name="r1">RadioButton representing the "Secretaries" option.</param>
-        ''' <param name="r2">RadioButton representing the "Friday" option.</param>
-        ''' <param name="r3">RadioButton representing the "Competent" option.</param>
+        ''' <returns>
+        ''' A List(Of String) containing formatted patient alerts. Each string in the list represents
+        ''' an alert in the format "PatientNumber = AlertMessage".
+        ''' </returns>
         ''' <remarks>
-        ''' This method checks which radio button is selected and displays a message box accordingly.
-        ''' If no radio button is selected, it shows a message indicating that no option is selected.
+        ''' This function performs the following steps:
+        ''' 1. Retrieves the path to the global configuration file.
+        ''' 2. Calls ConfigHelper.GetPatientAlerts to obtain the patient alerts from the configuration.
+        ''' 3. Formats each alert as a string with the patient number as the key and the alert message as the value.
+        ''' 4. Returns the formatted alerts as a List(Of String).
         ''' </remarks>
-        Public Sub HandleEditEmailClick(r1 As System.Windows.Controls.RadioButton, r2 As System.Windows.Controls.RadioButton, r3 As System.Windows.Controls.RadioButton)
-            If r1.IsChecked = True Then
-                MsgBox("Secretaries radio is selected")
-            ElseIf r2.IsChecked = True Then
-                MsgBox("Friday radio is selected")
-            ElseIf r3.IsChecked = True Then
-                MsgBox("Competent radio is selected")
-            Else
-                MsgBox("No option is selected")
-            End If
+        Public Function LoadPatientAlerts() As List(Of String)
+            Dim globalPath As String = ConfigHelper.GetGlobalConfigPath()
+            Dim alerts = ConfigHelper.GetPatientAlerts(globalPath)
+
+            Return alerts.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}").ToList()
+        End Function
+
+        ''' <summary>
+        ''' Saves the provided list of doctors to a file.
+        ''' </summary>
+        ''' <param name="doctorsText">A string containing the list of doctors, typically with each doctor's name on a separate line.</param>
+        ''' <remarks>
+        ''' This method performs the following steps:
+        ''' 1. Retrieves the file path for the doctors list using ListHelper.GetDoctorListFilePath().
+        ''' 2. Writes the provided doctorsText to the file, overwriting any existing content.
+        ''' 3. Displays a message box to confirm that the doctor list has been saved.
+        ''' </remarks>
+        Public Sub SaveDoctorsList(doctorsText As String)
+            Dim filePath As String = ListHelper.GetDoctorListFilePath()
+            File.WriteAllText(filePath, doctorsText)
+            MessageBox.Show("Doctor list saved.")
         End Sub
 
     End Class
-End Namespace
 
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... ConfigViewHandler.vb
