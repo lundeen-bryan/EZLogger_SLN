@@ -7,62 +7,32 @@ Imports System.Windows
 Imports System.Windows.Forms
 
 Namespace Handlers
+
     Public Class ReportTypeHandler
 
-        ''' <summary>
-        ''' Handles the confirmation of the report type selection.
-        ''' </summary>
-        ''' <param name="commitmentDate">The commitment date as a string, which is used to populate the view.</param>
-        ''' <returns>The selected report type as a string, or null if no selection is made.</returns>
-        ''' <remarks>
-        ''' This function initializes a modal form to display report type options, sets the commitment date label,
-        ''' and returns the selected report type from the ComboBox. If the commitment date is invalid or missing,
-        ''' appropriate labels are updated to reflect this.
-        ''' </remarks>
-        Public Function LaunchReportTypeView(commitmentDate As String) As String
-            Dim host As New ReportTypeHost()
-
-            ' Create the view manually so we can control wiring
-            Dim view As New ReportTypeView(host)
-            host.ElementHost1.Child = view
-
-            ' Set the commitment date label
-            If Not String.IsNullOrWhiteSpace(commitmentDate) Then
-                Dim parsedDate As Date
-                If Date.TryParse(commitmentDate, parsedDate) Then
-                    view.CommitmentDateLbl.Content = parsedDate.ToString("MM/dd/yyyy")
-                Else
-                    view.CommitmentDateLbl.Content = commitmentDate
-                End If
-            Else
-                view.CommitmentDateLbl.Content = "(Missing)"
-            End If
-
-
-    DocumentHelper.GetActiveWordDocument()
-            ' === Show Report Type if present ===
-            Try
-                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
-                If doc IsNot Nothing Then
-                    Dim reportTypeValue As String = doc.CustomDocumentProperties("Report Type").Value.ToString()
-                    If Not String.IsNullOrWhiteSpace(reportTypeValue) Then
-                        view.ReportTypeCbo.SelectedItem = reportTypeValue
-                    End If
-                End If
-            Catch ex As Exception
-                ' Do nothing if missing
-            End Try
-
-            ' ✅ Populate the ComboBox
-            Dim reportTypes As List(Of String) = GetReportTypes()
-            view.ReportTypeCbo.ItemsSource = reportTypes
-
-            ' Show form
-            host.Show()
-
-            ' Return selected value (if any)
-            Return view.ReportTypeCbo.SelectedItem?.ToString()
+        '''<summary>
+        '''Retreieves a list of available report types from the global_config.json file
+        '''</summary>
+        '''<returns> A list of report type strings for use in Comboboxes or other UI elements</returns>
+        '''<remarks>
+        '''This function loads report types from the report_type key
+        '''inside the listbox section of the global_config.json file
+        '''</remarks>
+        Public Function GetReportTypes() As List(Of String)
+            Return ListHelper.GetListFromGlobalConfig("listbox", "report_type")
         End Function
+
+        '''<summary>
+        '''Closes the ReportTypeView form when the Done button is clicked in ReportTypeView
+        '''</summary>
+        '''<param name="form">The instance of the form to be closed (ReportTypeView)</param>
+        '''<remarks>
+        '''This function is called when the user presses DoneBtn. In that function the
+        '''checkbox is checked before calling this function and closing the view window.
+        '''</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
 
         '''<summary>
         ''' Saves the selected report type to the current active Word Document's custom properties.
@@ -88,18 +58,6 @@ Namespace Handlers
                 MsgBoxHelper.Show("No active Word document found.")
             End If
         End Sub
-
-        '''<summary>
-        '''Retreieves a list of available report types from the global_config.json file
-        '''</summary>
-        '''<returns> A list of report type strings for use in Comboboxes or other UI elements</returns>
-        '''<remarks>
-        '''This function loads report types from the report_type key
-        '''inside the listbox section of the global_config.json file
-        '''</remarks>
-        Public Function GetReportTypes() As List(Of String)
-            Return ListHelper.GetListFromGlobalConfig("listbox", "report_type")
-        End Function
 
         ''' <summary>
         ''' Checks if the active Word document has early_ninety_day = 1
@@ -190,47 +148,6 @@ Namespace Handlers
             host.Show()
         End Sub
 
-        ''' <summary>
-        ''' Handles the click event for the "Report Type Selected" button.
-        ''' </summary>
-        ''' <param name="hostForm">The parent form that hosts the button, which will be closed after the action is performed.</param>
-        ''' <remarks>
-        ''' This method launches the DueDates1370View and closes the provided host form.
-        ''' </remarks>
-        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, reportDate As String, hostForm As Form)
-            If String.IsNullOrWhiteSpace(selectedReportType) Then
-                MsgBoxHelper.Show("Please select a report type before continuing.")
-                Exit Sub
-            End If
-
-            HandleSelectedReportType(selectedReportType)
-
-            ' Save the selected report date to Word doc properties
-            If Not String.IsNullOrWhiteSpace(reportDate) Then
-                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
-                If doc IsNot Nothing Then
-                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
-                End If
-            End If
-
-            ' === Continue with due date logic ===
-            Dim typesNeedingDueDates As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
-                "1370(b)(1)",
-                "1372(a)(1)",
-                "1372(e)",
-                "UNLIKELY 1370(b)(1)",
-                "UNLIKELY 1370(c)(1)"
-            }
-
-            If typesNeedingDueDates.Contains(selectedReportType.Trim()) Then
-                LaunchDueDates1370View()
-            Else
-                LaunchDueDatesPprView()
-            End If
-
-            hostForm?.Close()
-        End Sub
-
         '''<summary>
         '''Launch the DueDatesPprView window and populates it with
         '''relevant data from the active Word document</summary>
@@ -317,21 +234,105 @@ Namespace Handlers
             host.Show()
         End Sub
 
-        '''<summary>
-        '''Closes the ReportTypeView form when the Done button is clicked in ReportTypeView
-        '''</summary>
-        '''<param name="form">The instance of the form to be closed (ReportTypeView)</param>
-        '''<remarks>
-        '''This function is called when the user presses DoneBtn. In that function the
-        '''checkbox is checked before calling this function and closing the view window.
-        '''</remarks>
-        Public Sub HandleCloseClick(hostForm As Form)
+        ''' <summary>
+        ''' Handles the confirmation of the report type selection.
+        ''' </summary>
+        ''' <param name="commitmentDate">The commitment date as a string, which is used to populate the view.</param>
+        ''' <returns>The selected report type as a string, or null if no selection is made.</returns>
+        ''' <remarks>
+        ''' This function initializes a modal form to display report type options, sets the commitment date label,
+        ''' and returns the selected report type from the ComboBox. If the commitment date is invalid or missing,
+        ''' appropriate labels are updated to reflect this.
+        ''' </remarks>
+        Public Function LaunchReportTypeView(commitmentDate As String) As String
+            Dim host As New ReportTypeHost()
+
+            ' Create the view manually so we can control wiring
+            Dim view As New ReportTypeView(host)
+            host.ElementHost1.Child = view
+
+            ' Set the commitment date label
+            If Not String.IsNullOrWhiteSpace(commitmentDate) Then
+                Dim parsedDate As Date
+                If Date.TryParse(commitmentDate, parsedDate) Then
+                    view.CommitmentDateLbl.Content = parsedDate.ToString("MM/dd/yyyy")
+                Else
+                    view.CommitmentDateLbl.Content = commitmentDate
+                End If
+            Else
+                view.CommitmentDateLbl.Content = "(Missing)"
+            End If
+
+
+            DocumentHelper.GetActiveWordDocument()
+            ' === Show Report Type if present ===
+            Try
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                If doc IsNot Nothing Then
+                    Dim reportTypeValue As String = doc.CustomDocumentProperties("Report Type").Value.ToString()
+                    If Not String.IsNullOrWhiteSpace(reportTypeValue) Then
+                        view.ReportTypeCbo.SelectedItem = reportTypeValue
+                    End If
+                End If
+            Catch ex As Exception
+                ' Do nothing if missing
+            End Try
+
+            ' ✅ Populate the ComboBox
+            Dim reportTypes As List(Of String) = GetReportTypes()
+            view.ReportTypeCbo.ItemsSource = reportTypes
+
+            ' Show form
+            host.Show()
+
+            ' Return selected value (if any)
+            Return view.ReportTypeCbo.SelectedItem?.ToString()
+        End Function
+
+        ''' <summary>
+        ''' Handles the click event for the "Report Type Selected" button.
+        ''' </summary>
+        ''' <param name="hostForm">The parent form that hosts the button, which will be closed after the action is performed.</param>
+        ''' <remarks>
+        ''' This method launches the DueDates1370View and closes the provided host form.
+        ''' </remarks>
+        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, reportDate As String, hostForm As Form)
+            If String.IsNullOrWhiteSpace(selectedReportType) Then
+                MsgBoxHelper.Show("Please select a report type before continuing.")
+                Exit Sub
+            End If
+
+            HandleSelectedReportType(selectedReportType)
+
+            ' Save the selected report date to Word doc properties
+            If Not String.IsNullOrWhiteSpace(reportDate) Then
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                If doc IsNot Nothing Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
+                End If
+            End If
+
+            ' === Continue with due date logic ===
+            Dim typesNeedingDueDates As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
+                "1370(b)(1)",
+                "1372(a)(1)",
+                "1372(e)",
+                "UNLIKELY 1370(b)(1)",
+                "UNLIKELY 1370(c)(1)"
+            }
+
+            If typesNeedingDueDates.Contains(selectedReportType.Trim()) Then
+                LaunchDueDates1370View()
+            Else
+                LaunchDueDatesPprView()
+            End If
+
             hostForm?.Close()
         End Sub
 
     End Class
-End Namespace
 
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... ReportTypeHandler.vb
