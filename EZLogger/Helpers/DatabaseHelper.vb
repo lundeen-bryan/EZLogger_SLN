@@ -217,7 +217,13 @@ Public Module DatabaseHelper
     ''' </summary>
     ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
     Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object))
-        If prcData Is Nothing OrElse prcData.Count = 0 Then Exit Sub
+        If prcData Is Nothing Then
+            Throw New ArgumentNullException(NameOf(prcData), "The prcData parameter cannot be null.")
+        End If
+
+        If prcData.Count = 0 Then
+            Throw New ArgumentException("The prcData parameter cannot be an empty dictionary.", NameOf(prcData))
+        End If
 
         Dim connectionString As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
         If String.IsNullOrWhiteSpace(connectionString) Then
