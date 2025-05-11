@@ -20,24 +20,17 @@ Public Class ShortcutHandler
     End Sub
 
     ''' <summary>
-    ''' Registers a keyboard shortcut with an associated action.
-    ''' </summary>
-    Public Sub RegisterShortcut(key As Keys, modifier As Keys, action As Action)
-        _shortcuts((key, modifier)) = action
-    End Sub
-
-    ''' <summary>
-    ''' Unregisters a previously registered shortcut.
-    ''' </summary>
-    Public Sub UnregisterShortcut(key As Keys, modifier As Keys)
-        _shortcuts.Remove((key, modifier))
-    End Sub
-
-    ''' <summary>
     ''' Clears all registered shortcuts for this form.
     ''' </summary>
     Public Sub ClearShortcuts()
         _shortcuts.Clear()
+    End Sub
+
+    ''' <summary>
+    ''' Call this if the form is closing and you want to remove the handler.
+    ''' </summary>
+    Public Sub Dispose()
+        RemoveHandler _hostForm.KeyDown, AddressOf OnKeyDown
     End Sub
 
     ''' <summary>
@@ -52,14 +45,20 @@ Public Class ShortcutHandler
     End Sub
 
     ''' <summary>
-    ''' Call this if the form is closing and you want to remove the handler.
+    ''' Registers a keyboard shortcut with an associated action.
     ''' </summary>
-    Public Sub Dispose()
-        RemoveHandler _hostForm.KeyDown, AddressOf OnKeyDown
+    Public Sub RegisterShortcut(key As Keys, modifier As Keys, action As Action)
+        _shortcuts((key, modifier)) = action
+    End Sub
+
+    ''' <summary>
+    ''' Unregisters a previously registered shortcut.
+    ''' </summary>
+    Public Sub UnregisterShortcut(key As Keys, modifier As Keys)
+        _shortcuts.Remove((key, modifier))
     End Sub
 
 End Class
-
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... ShortcutHandler.vb
