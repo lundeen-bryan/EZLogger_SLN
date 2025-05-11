@@ -58,6 +58,9 @@ Namespace Helpers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Searches for a County alert and displayes to user
+        ''' </summary>
         Public Sub ShowCountyAlertIfExists(county As String)
             If String.IsNullOrWhiteSpace(county) Then Exit Sub
 
@@ -72,6 +75,10 @@ Namespace Helpers
             End If
         End Sub
 
+        ''' <summary>
+        ''' Shows an alert for the current patient to user
+        ''' </summary>
+        ''' <remarks>Based on the patient number in the global_config.json</remarks>
         Public Sub ShowPatientAlertIfExists(patientNumber As String)
             If String.IsNullOrWhiteSpace(patientNumber) Then Exit Sub
 
