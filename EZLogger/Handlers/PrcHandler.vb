@@ -32,6 +32,10 @@ Namespace Handlers
             End Try
         End Function
 
+        ''' <summary>
+        ''' Adds a task to the task list
+        ''' </summary>
+        ''' <remarks>Usually adds the open word document as a task</remarks>
         Private Sub AppendToTodoLog(doc As Document)
             Try
                 Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
