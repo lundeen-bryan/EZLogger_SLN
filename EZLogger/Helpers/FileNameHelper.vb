@@ -1,5 +1,5 @@
-﻿Imports System.IO
-Imports Microsoft.Office.Interop.Word
+﻿Imports Microsoft.Office.Interop.Word
+Imports System.IO
 
 ''' <summary>
 ''' Provides methods for extracting parts of a file name from a full file path or the active Word document.
