@@ -4,31 +4,13 @@
 
 Imports EZLogger.Helpers
 Imports EZLogger.Models
+Imports Microsoft.Office.Interop.Word
 Imports System.IO
 Imports System.Windows.Forms
-Imports Microsoft.Office.Interop.Word
 
 Namespace Handlers
+
     Public Class FaxCoverHandler
-
-        ''' <summary>
-        ''' Displays the Fax Cover form in a new window.
-        ''' </summary>
-        ''' <remarks>
-        ''' This method creates a new instance of the FaxCoverHost form and shows it to the user.
-        ''' The form is displayed modally, meaning it will block interaction with other windows until it is closed.
-        ''' </remarks>
-        Public Sub ShowFaxCoverMessage()
-            Dim host As New FaxCoverHost()
-            host.Show()
-        End Sub
-
-        ''' <summary>
-        ''' Closes the host WinForm associated with the fax cover view.
-        ''' </summary>
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
 
         ''' <summary>
         ''' Creates a fax cover or exports to PDF depending on the user's choice.
@@ -154,6 +136,13 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
+        ''' Closes the host WinForm associated with the fax cover view.
+        ''' </summary>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
         ''' Populates and returns a FaxCoverInfo object with information retrieved from document properties and configuration settings.
         ''' </summary>
         ''' <returns>
@@ -206,9 +195,21 @@ Namespace Handlers
             Return info
         End Function
 
-    End Class
-End Namespace
+        ''' <summary>
+        ''' Displays the Fax Cover form in a new window.
+        ''' </summary>
+        ''' <remarks>
+        ''' This method creates a new instance of the FaxCoverHost form and shows it to the user.
+        ''' The form is displayed modally, meaning it will block interaction with other windows until it is closed.
+        ''' </remarks>
+        Public Sub ShowFaxCoverMessage()
+            Dim host As New FaxCoverHost()
+            host.Show()
+        End Sub
 
+    End Class
+
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... FaxCoverHandler.vb
