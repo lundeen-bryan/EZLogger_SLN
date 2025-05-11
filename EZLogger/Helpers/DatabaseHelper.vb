@@ -233,6 +233,14 @@ Public Module DatabaseHelper
         Return False
     End Function
 
+    ''' <summary>
+    ''' Determines the appropriate SQL data type (SqlDbType) for a given column name.
+    ''' </summary>
+    ''' <param name="columnName">The name of the column for which the SQL data type is required.</param>
+    ''' <returns>
+    ''' A SqlDbType value corresponding to the column name. Defaults to SqlDbType.NVarChar
+    ''' if the column name does not match any predefined cases.
+    ''' </returns>
     Private Function GetSqlDbTypeForColumn(columnName As String) As SqlDbType
         Select Case columnName
             Case "DueDate", "ReportDate", "Created", "Admission", "Expiration", "Dob", "TCAR"
