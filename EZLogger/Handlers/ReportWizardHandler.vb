@@ -241,13 +241,15 @@ Namespace Handlers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Adds alerts to the task list
+        ''' </summary>
         Public Sub ShowBtnLMessage()
             Try
                 Dim doc As Microsoft.Office.Interop.Word.Document = DocumentHelper.GetActiveWordDocument()
 
                 If doc Is Nothing Then
-                    MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
-                    Exit Sub
+                    Throw New ApplicationException("No active document found.")
                 End If
 
                 AlertHelper.AddAlertsToTaskList(doc)
@@ -255,11 +257,8 @@ Namespace Handlers
                 MsgBoxHelper.Show("Patient and county alerts added to the task list.")
 
             Catch ex As Exception
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
-
-                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnLMessage", errNum, errMsg, recommendation)
+                Dim recommendation As String = "No active document found."
+                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnLMessage", ex.HResult.ToString(), CStr(ex.Message), recommendation)
             End Try
         End Sub
 
