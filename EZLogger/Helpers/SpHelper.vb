@@ -1,9 +1,9 @@
-﻿Imports System.Windows.Forms
-Imports EZLogger.Helpers
+﻿Imports EZLogger.Helpers
 Imports Haley.Abstractions
 Imports Haley.Models
 Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
+Imports System.Windows.Forms
 
 ''' <summary>
 ''' Helper for updating SharePoint (SP) ContentTypeProperties from Word custom document properties.

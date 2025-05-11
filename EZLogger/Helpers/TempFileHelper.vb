@@ -8,6 +8,44 @@ Namespace Helpers
     Public Module TempFileHelper
 
         ''' <summary>
+        ''' Returns a human-readable name for the cover type based on the letter selected.
+        ''' (Simple placeholder; can be expanded later if needed.)
+        ''' </summary>
+        Public Function GetCoverTypeName(letter As String) As String
+            Select Case letter.ToUpper()
+                Case "A" : Return "Standard Fax Cover"
+                Case "B" : Return "Court Fax Cover"
+                Case "C" : Return "Sheriff Fax Cover"
+                Case "D" : Return "CONREP Fax Cover"
+                Case "E" : Return "DA Fax Cover"
+                Case "F" : Return "PPR Cover"
+                Case "G" : Return "WIC Fax Cover"
+                Case "H" : Return "Non-Extension Cover"
+                Case "I" : Return "Extension Cover"
+                Case "J" : Return "Renewal Cover"
+                Case "K" : Return "1370 90-Day Cover"
+                Case "L" : Return "1372(e) CERT"
+                Case "M" : Return "1372 CERT"
+                Case "N" : Return "Sheriff Unlikely Cover"
+                Case "O" : Return "Court Unlikely Cover"
+                Case "P" : Return "Sheriff Unlikely c1 Cover"
+                Case "Q" : Return "Court Unlikely b1 Cover"
+                Case "R" : Return "TCAR Updated"
+                Case "S" : Return "Court Email"
+                Case "T" : Return "Sheriff Email"
+                Case Else
+                    Return "UnknownCover"
+            End Select
+        End Function
+
+        ''' <summary>
+        ''' Gets the user's Documents folder path.
+        ''' </summary>
+        Public Function GetDocumentsFolder() As String
+            Return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+        End Function
+
+        ''' <summary>
         ''' Gets the save path for the Word file, based on whether saving to temp or documents.
         ''' </summary>
         ''' <param name="doc">The Word document (optional, used for metadata if needed later).</param>
@@ -44,44 +82,6 @@ Namespace Helpers
         ''' </summary>
         Public Function GetTempFolder() As String
             Return Path.GetTempPath()
-        End Function
-
-        ''' <summary>
-        ''' Gets the user's Documents folder path.
-        ''' </summary>
-        Public Function GetDocumentsFolder() As String
-            Return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-        End Function
-
-        ''' <summary>
-        ''' Returns a human-readable name for the cover type based on the letter selected.
-        ''' (Simple placeholder; can be expanded later if needed.)
-        ''' </summary>
-        Public Function GetCoverTypeName(letter As String) As String
-            Select Case letter.ToUpper()
-                Case "A" : Return "Standard Fax Cover"
-                Case "B" : Return "Court Fax Cover"
-                Case "C" : Return "Sheriff Fax Cover"
-                Case "D" : Return "CONREP Fax Cover"
-                Case "E" : Return "DA Fax Cover"
-                Case "F" : Return "PPR Cover"
-                Case "G" : Return "WIC Fax Cover"
-                Case "H" : Return "Non-Extension Cover"
-                Case "I" : Return "Extension Cover"
-                Case "J" : Return "Renewal Cover"
-                Case "K" : Return "1370 90-Day Cover"
-                Case "L" : Return "1372(e) CERT"
-                Case "M" : Return "1372 CERT"
-                Case "N" : Return "Sheriff Unlikely Cover"
-                Case "O" : Return "Court Unlikely Cover"
-                Case "P" : Return "Sheriff Unlikely c1 Cover"
-                Case "Q" : Return "Court Unlikely b1 Cover"
-                Case "R" : Return "TCAR Updated"
-                Case "S" : Return "Court Email"
-                Case "T" : Return "Sheriff Email"
-                Case Else
-                    Return "UnknownCover"
-            End Select
         End Function
 
         ''' <summary>

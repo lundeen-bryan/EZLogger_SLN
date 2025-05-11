@@ -8,6 +8,14 @@ Namespace Helpers
     Public Module SenderHelper
 
         ''' <summary>
+        ''' Optional basic cleanup to match VBA behavior.
+        ''' </summary>
+        Private Function CleanSenderName(name As String) As String
+            ' Remove periods or extra whitespace if needed
+            Return name.Replace(".", " ").Trim()
+        End Function
+
+        ''' <summary>
         ''' Gets the first name of the user from Application.UserName, cleaned for use in document properties.
         ''' </summary>
         ''' <returns>First name of the sender.</returns>
@@ -33,14 +41,6 @@ Namespace Helpers
 
             ' Optionally clean punctuation or unwanted characters
             Return CleanSenderName(rawUsername)
-        End Function
-
-        ''' <summary>
-        ''' Optional basic cleanup to match VBA behavior.
-        ''' </summary>
-        Private Function CleanSenderName(name As String) As String
-            ' Remove periods or extra whitespace if needed
-            Return name.Replace(".", " ").Trim()
         End Function
 
         ''' <summary>

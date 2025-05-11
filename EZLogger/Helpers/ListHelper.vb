@@ -10,51 +10,6 @@ Namespace Helpers
     Public Module ListHelper
 
         ''' <summary>
-        ''' Retrieves a list of strings from the global_config.json file using the specified section and key.
-        ''' Example: section = "listbox", key = "report_type"
-        ''' </summary>
-        ''' <param name="section">Top-level section in the config (e.g., "listbox").</param>
-        ''' <param name="key">Key within the section (e.g., "report_type").</param>
-        ''' <returns>A list of strings from the specified location in the config.</returns>
-        ''' <exception cref="FileNotFoundException">Thrown when the config file is missing.</exception>
-        ''' <exception cref="KeyNotFoundException">Thrown if the section or key is missing.</exception>
-        Public Function GetListFromGlobalConfig(section As String, key As String) As List(Of String)
-            ' TODO:list
-            Dim resultList As New List(Of String)
-
-            Try
-                Dim globalPath As String = GetGlobalConfigPath()
-
-                If String.IsNullOrWhiteSpace(globalPath) OrElse Not File.Exists(globalPath) Then
-                    Throw New FileNotFoundException("Global config file not found at: " & globalPath)
-                End If
-
-                Dim jsonText As String = File.ReadAllText(globalPath)
-                Dim jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
-                Dim root As JsonElement = jsonDoc.RootElement
-
-                Dim sectionElement As JsonElement
-                If Not root.TryGetProperty(section, sectionElement) Then
-                    Throw New KeyNotFoundException($"Missing section '{section}' in config.")
-                End If
-
-                Dim keyElement As JsonElement
-                If Not sectionElement.TryGetProperty(key, keyElement) Then
-                    Throw New KeyNotFoundException($"Missing key '{key}' in section '{section}'.")
-                End If
-
-                For Each item In keyElement.EnumerateArray()
-                    resultList.Add(item.GetString())
-                Next
-
-            Catch ex As Exception
-                Throw New ApplicationException($"Error loading list from section '{section}', key '{key}'.", ex)
-            End Try
-
-            Return resultList
-        End Function
-
-        ''' <summary>
         ''' Loads a list of doctor names from the text file defined in local_user_config.json.
         ''' The list is sorted alphabetically before being returned.
         ''' </summary>
@@ -149,5 +104,51 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Retrieves a list of strings from the global_config.json file using the specified section and key.
+        ''' Example: section = "listbox", key = "report_type"
+        ''' </summary>
+        ''' <param name="section">Top-level section in the config (e.g., "listbox").</param>
+        ''' <param name="key">Key within the section (e.g., "report_type").</param>
+        ''' <returns>A list of strings from the specified location in the config.</returns>
+        ''' <exception cref="FileNotFoundException">Thrown when the config file is missing.</exception>
+        ''' <exception cref="KeyNotFoundException">Thrown if the section or key is missing.</exception>
+        Public Function GetListFromGlobalConfig(section As String, key As String) As List(Of String)
+            ' TODO:list
+            Dim resultList As New List(Of String)
+
+            Try
+                Dim globalPath As String = GetGlobalConfigPath()
+
+                If String.IsNullOrWhiteSpace(globalPath) OrElse Not File.Exists(globalPath) Then
+                    Throw New FileNotFoundException("Global config file not found at: " & globalPath)
+                End If
+
+                Dim jsonText As String = File.ReadAllText(globalPath)
+                Dim jsonDoc As JsonDocument = JsonDocument.Parse(jsonText)
+                Dim root As JsonElement = jsonDoc.RootElement
+
+                Dim sectionElement As JsonElement
+                If Not root.TryGetProperty(section, sectionElement) Then
+                    Throw New KeyNotFoundException($"Missing section '{section}' in config.")
+                End If
+
+                Dim keyElement As JsonElement
+                If Not sectionElement.TryGetProperty(key, keyElement) Then
+                    Throw New KeyNotFoundException($"Missing key '{key}' in section '{section}'.")
+                End If
+
+                For Each item In keyElement.EnumerateArray()
+                    resultList.Add(item.GetString())
+                Next
+
+            Catch ex As Exception
+                Throw New ApplicationException($"Error loading list from section '{section}', key '{key}'.", ex)
+            End Try
+
+            Return resultList
+        End Function
+
     End Module
+
 End Namespace
