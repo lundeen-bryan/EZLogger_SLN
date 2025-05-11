@@ -8,8 +8,6 @@ Imports System.ComponentModel
 
 Public Class TaskListHandler
 
-    Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
-
     Public Sub New()
         ' Load existing tasks
         Dim list = TasksIO.LoadTasks()
@@ -23,6 +21,8 @@ Public Class TaskListHandler
             AddHandler ti.PropertyChanged, AddressOf OnItemChanged
         Next
     End Sub
+
+    Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
 
     ''' <summary>
     ''' Adds a new task to the task list based on the report filename.
@@ -68,6 +68,13 @@ Public Class TaskListHandler
     End Sub
 
     ''' <summary>
+    ''' Calls SaveAll so items can be changed on the fly
+    ''' </summary>
+    Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
+        SaveAll()
+    End Sub
+
+    ''' <summary>
     ''' Remove all tasks marked completed.
     ''' </summary>
     Public Sub RemoveCompletedTasks()
@@ -80,13 +87,6 @@ Public Class TaskListHandler
     End Sub
 
     ''' <summary>
-    ''' Calls SaveAll so items can be changed on the fly
-    ''' </summary>
-    Private Sub OnItemChanged(sender As Object, e As PropertyChangedEventArgs)
-        SaveAll()
-    End Sub
-
-    ''' <summary>
     ''' Saves given task to Tasks.xml
     ''' </summary>
     ''' <remarks>See Config manager for location of local config and tasks.xml</remarks>
@@ -95,7 +95,6 @@ Public Class TaskListHandler
     End Sub
 
 End Class
-
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... TaskListHandler.vb
