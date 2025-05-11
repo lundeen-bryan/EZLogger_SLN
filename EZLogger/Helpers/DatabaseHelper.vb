@@ -218,16 +218,6 @@ Public Module DatabaseHelper
         End Select
     End Function
 
-
-    Private Sub MarkDocAsInserted(doc As Document)
-        Try
-            DocumentPropertyHelper.WriteCustomProperty(doc, "PrcInserted", "true")
-        Catch ex As Exception
-            ErrorHelper.HandleError("DatabaseHelper.MarkDocAsInserted", ex.HResult.ToString(), ex.Message,
-                                "Could not update the document to indicate it was logged.")
-        End Try
-    End Sub
-
     ''' <summary>
     ''' Inserts a new record into the EZL_PRC table.
     ''' </summary>
