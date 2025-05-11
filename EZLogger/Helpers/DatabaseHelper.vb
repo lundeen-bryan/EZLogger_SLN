@@ -164,12 +164,38 @@ Public Module DatabaseHelper
         Return $"Data Source={dbPath};Version=3;"
     End Function
 
+    ''' <summary>
+    ''' Builds an SQL INSERT command string for the EZL_PRC table using the provided data.
+    ''' </summary>
+    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values.</param>
+    ''' <returns>
+    ''' A string representing the SQL INSERT command with placeholders for parameterized values.
+    ''' Example: "INSERT INTO EZL_PRC (Column1, Column2) VALUES (@Column1, @Column2);"
+    ''' </returns>
+    ''' <remarks>
+    ''' This function dynamically generates the SQL command based on the keys in the provided dictionary.
+    ''' Ensure that the keys in the dictionary match the column names in the EZL_PRC table.
+    ''' </remarks>
     Private Function BuildInsertCommand(prcData As Dictionary(Of String, Object)) As String
         Dim columns As String = String.Join(",", prcData.Keys)
         Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
         Return $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
     End Function
 
+    ''' <summary>
+    ''' Attempts to execute an SQL INSERT command with the provided connection string, SQL query, and data.
+    ''' Retries the operation up to two times in case of failure.
+    ''' </summary>
+    ''' <param name="connectionString">The connection string to the SQL Server database.</param>
+    ''' <param name="sql">The SQL INSERT command to execute.</param>
+    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values to insert.</param>
+    ''' <returns>
+    ''' True if the SQL INSERT command is successfully executed; otherwise, False.
+    ''' </returns>
+    ''' <remarks>
+    ''' This function handles exceptions during the SQL execution and logs detailed debug information
+    ''' in case of failure. It retries the operation once before returning False.
+    ''' </remarks>
     Private Function TryExecuteInsert(connectionString As String, sql As String, prcData As Dictionary(Of String, Object)) As Boolean
         For attempt As Integer = 1 To 2
             Try
