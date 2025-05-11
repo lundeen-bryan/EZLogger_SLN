@@ -3,13 +3,30 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Diagnostics
 Imports System.IO
+Imports System.Threading
 Imports System.Windows
 Imports System.Windows.Forms
-Imports System.Threading
 Imports MessageBox = System.Windows.MessageBox
 
-
 Public Module DatabaseHelper
+
+    ''' <summary>
+    ''' Builds an SQL INSERT command string for the EZL_PRC table using the provided data.
+    ''' </summary>
+    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values.</param>
+    ''' <returns>
+    ''' A string representing the SQL INSERT command with placeholders for parameterized values.
+    ''' Example: "INSERT INTO EZL_PRC (Column1, Column2) VALUES (@Column1, @Column2);"
+    ''' </returns>
+    ''' <remarks>
+    ''' This function dynamically generates the SQL command based on the keys in the provided dictionary.
+    ''' Ensure that the keys in the dictionary match the column names in the EZL_PRC table.
+    ''' </remarks>
+    Private Function BuildInsertCommand(prcData As Dictionary(Of String, Object)) As String
+        Dim columns As String = String.Join(",", prcData.Keys)
+        Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
+        Return $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
+    End Function
 
     ''' <summary>
     ''' Converts a SQL value to a short date string (MM/dd/yyyy) if it's a valid date.
@@ -23,6 +40,34 @@ Public Module DatabaseHelper
             End If
         End If
         Return ""
+    End Function
+
+    ''' <summary>
+    ''' Formats an 8-digit raw patient number (e.g. "41234567") to display as "123456-7".
+    ''' </summary>
+    Public Function FormatPatientNumber(rawNumber As String) As String
+        If String.IsNullOrWhiteSpace(rawNumber) OrElse rawNumber.Length <> 8 Then
+            Return rawNumber
+        End If
+
+        Dim body As String = rawNumber.Substring(1, 6)
+        Dim checkDigit As String = rawNumber.Substring(7, 1)
+        Return $"{body}-{checkDigit}"
+    End Function
+
+    ''' <summary>
+    ''' Builds and returns a valid SQL connection string based on the configured database path.
+    ''' </summary>
+    ''' <returns>A SQL connection string if the path is valid; otherwise, an empty string.</returns>
+    Public Function GetConnectionString() As String
+        Dim dbPath As String = PathHelper.GetDatabasePath()
+
+        If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
+            MessageBox.Show("SQL database path not found or file does not exist.", "Config Error")
+            Return String.Empty
+        End If
+
+        Return $"Data Source={dbPath};Version=3;"
     End Function
 
     ''' <summary>
@@ -62,7 +107,6 @@ Public Module DatabaseHelper
 
         Return String.Empty
     End Function
-
 
     ''' <summary>
     ''' Retrieves a single patient record matching the given patient number.
@@ -147,90 +191,6 @@ Public Module DatabaseHelper
         End Try
 
         Return Nothing
-    End Function
-
-    ''' <summary>
-    ''' Builds and returns a valid SQL connection string based on the configured database path.
-    ''' </summary>
-    ''' <returns>A SQL connection string if the path is valid; otherwise, an empty string.</returns>
-    Public Function GetConnectionString() As String
-        Dim dbPath As String = PathHelper.GetDatabasePath()
-
-        If String.IsNullOrWhiteSpace(dbPath) OrElse Not File.Exists(dbPath) Then
-            MessageBox.Show("SQL database path not found or file does not exist.", "Config Error")
-            Return String.Empty
-        End If
-
-        Return $"Data Source={dbPath};Version=3;"
-    End Function
-
-    ''' <summary>
-    ''' Builds an SQL INSERT command string for the EZL_PRC table using the provided data.
-    ''' </summary>
-    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values.</param>
-    ''' <returns>
-    ''' A string representing the SQL INSERT command with placeholders for parameterized values.
-    ''' Example: "INSERT INTO EZL_PRC (Column1, Column2) VALUES (@Column1, @Column2);"
-    ''' </returns>
-    ''' <remarks>
-    ''' This function dynamically generates the SQL command based on the keys in the provided dictionary.
-    ''' Ensure that the keys in the dictionary match the column names in the EZL_PRC table.
-    ''' </remarks>
-    Private Function BuildInsertCommand(prcData As Dictionary(Of String, Object)) As String
-        Dim columns As String = String.Join(",", prcData.Keys)
-        Dim parameters As String = String.Join(",", prcData.Keys.Select(Function(k) "@" & k))
-        Return $"INSERT INTO EZL_PRC ({columns}) VALUES ({parameters});"
-    End Function
-
-    ''' <summary>
-    ''' Attempts to execute an SQL INSERT command with the provided connection string, SQL query, and data.
-    ''' Retries the operation up to two times in case of failure.
-    ''' </summary>
-    ''' <param name="connectionString">The connection string to the SQL Server database.</param>
-    ''' <param name="sql">The SQL INSERT command to execute.</param>
-    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values to insert.</param>
-    ''' <returns>
-    ''' True if the SQL INSERT command is successfully executed; otherwise, False.
-    ''' </returns>
-    ''' <remarks>
-    ''' This function handles exceptions during the SQL execution and logs detailed debug information
-    ''' in case of failure. It retries the operation once before returning False.
-    ''' </remarks>
-    Private Function TryExecuteInsert(connectionString As String, sql As String, prcData As Dictionary(Of String, Object)) As Boolean
-        For attempt As Integer = 1 To 2
-            Try
-                Using conn As New SqlConnection(connectionString)
-                    conn.Open()
-                    Using cmd As New SqlCommand(sql, conn)
-                        For Each kvp In prcData
-                            Dim param As SqlParameter = cmd.Parameters.Add("@" & kvp.Key, GetSqlDbTypeForColumn(kvp.Key))
-                            If kvp.Value Is Nothing OrElse TypeOf kvp.Value Is DBNull Then
-                                param.Value = DBNull.Value
-                            Else
-                                param.Value = kvp.Value
-                            End If
-                        Next
-                        cmd.ExecuteNonQuery()
-                    End Using
-                End Using
-                Return True
-
-            Catch ex As Exception
-                Dim debugInfo As String = $"Attempt {attempt} failed: {ex.Message}" & vbCrLf &
-                                      $"SQL: {sql}" & vbCrLf &
-                                      $"Parameters:" & vbCrLf &
-                                      String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
-
-                ErrorHelper.HandleError("DatabaseHelper.TryExecuteInsert", ex.HResult.ToString(), debugInfo,
-                                    "SQL insert failed. Confirm patient information is complete and retry.")
-
-#If DEBUG Then
-                MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
-#End If
-                Thread.Sleep(100)
-            End Try
-        Next
-        Return False
     End Function
 
     ''' <summary>
@@ -334,20 +294,6 @@ Public Module DatabaseHelper
         Return normalized
     End Function
 
-
-    ''' <summary>
-    ''' Formats an 8-digit raw patient number (e.g. "41234567") to display as "123456-7".
-    ''' </summary>
-    Public Function FormatPatientNumber(rawNumber As String) As String
-        If String.IsNullOrWhiteSpace(rawNumber) OrElse rawNumber.Length <> 8 Then
-            Return rawNumber
-        End If
-
-        Dim body As String = rawNumber.Substring(1, 6)
-        Dim checkDigit As String = rawNumber.Substring(7, 1)
-        Return $"{body}-{checkDigit}"
-    End Function
-
     ''' <summary>
     ''' Converts a user-friendly patient number (e.g. "123456-7") back into the raw 8-digit format ("41234567").
     ''' </summary>
@@ -365,6 +311,57 @@ Public Module DatabaseHelper
         End If
 
         Return "4" & sixDigits & lastDigit
+    End Function
+
+    ''' <summary>
+    ''' Attempts to execute an SQL INSERT command with the provided connection string, SQL query, and data.
+    ''' Retries the operation up to two times in case of failure.
+    ''' </summary>
+    ''' <param name="connectionString">The connection string to the SQL Server database.</param>
+    ''' <param name="sql">The SQL INSERT command to execute.</param>
+    ''' <param name="prcData">A dictionary containing column names as keys and their corresponding values to insert.</param>
+    ''' <returns>
+    ''' True if the SQL INSERT command is successfully executed; otherwise, False.
+    ''' </returns>
+    ''' <remarks>
+    ''' This function handles exceptions during the SQL execution and logs detailed debug information
+    ''' in case of failure. It retries the operation once before returning False.
+    ''' </remarks>
+    Private Function TryExecuteInsert(connectionString As String, sql As String, prcData As Dictionary(Of String, Object)) As Boolean
+        For attempt As Integer = 1 To 2
+            Try
+                Using conn As New SqlConnection(connectionString)
+                    conn.Open()
+                    Using cmd As New SqlCommand(sql, conn)
+                        For Each kvp In prcData
+                            Dim param As SqlParameter = cmd.Parameters.Add("@" & kvp.Key, GetSqlDbTypeForColumn(kvp.Key))
+                            If kvp.Value Is Nothing OrElse TypeOf kvp.Value Is DBNull Then
+                                param.Value = DBNull.Value
+                            Else
+                                param.Value = kvp.Value
+                            End If
+                        Next
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+                Return True
+
+            Catch ex As Exception
+                Dim debugInfo As String = $"Attempt {attempt} failed: {ex.Message}" & vbCrLf &
+                                      $"SQL: {sql}" & vbCrLf &
+                                      $"Parameters:" & vbCrLf &
+                                      String.Join(vbCrLf, prcData.Select(Function(kvp) $"{kvp.Key} = {kvp.Value}"))
+
+                ErrorHelper.HandleError("DatabaseHelper.TryExecuteInsert", ex.HResult.ToString(), debugInfo,
+                                    "SQL insert failed. Confirm patient information is complete and retry.")
+
+#If DEBUG Then
+                MessageBox.Show(debugInfo, "SQL Insert Debug", MessageBoxButton.OK, MessageBoxImage.Warning)
+#End If
+                Thread.Sleep(100)
+            End Try
+        Next
+        Return False
     End Function
 
 End Module
