@@ -27,7 +27,6 @@ Namespace Helpers
 
                 ' Explicitly refer to Word Application
                 Dim app As Microsoft.Office.Interop.Word.Application = Globals.ThisAddIn.Application
-                Dim doc As Document = app.ActiveDocument
                 Dim sel As Selection = app.Selection
 
                 ' If selection is inside a table, delete it (up to 2 times)
