@@ -65,26 +65,38 @@ Partial Public Class ReportWizardPanel
         TimerHelper.DisableTemporarily(Btn_D, 2000) ' Disable for 2 seconds
     End Sub
 
-	''' <summary>
-    ''' Check the date of the last HLV
+    ''' <summary>
+    ''' Handles the click event for Button E (get HLV provider). Validates the patient number, performs an action, and marks the step as done.
     ''' </summary>
+    ''' <param name="sender">The source of the event.</param>
+    ''' <param name="e">The event data.</param>
+    ''' <remarks>
+    ''' If the patient number is missing or invalid, an exception is thrown and an error message is displayed to the user.
+    ''' </remarks>
     Private Sub Btn_E_Click(sender As Object, e As RoutedEventArgs)
         TaskPaneHelper.SetTaskPane(Me)
 
         Dim patientNumber As String = TextBoxPatientNumber.Text?.Trim()
 
-        If String.IsNullOrWhiteSpace(patientNumber) Then
-            MsgBoxHelper.Show("No patient number found. Please return to Step A to complete this information.")
-            Exit Sub
-        End If
+        Try
+            If String.IsNullOrWhiteSpace(patientNumber) Then
+                Throw New Exception("No patient number found. Please return to Step A to complete this information.")
+            End If
 
-        _handler.ShowBtnEMessage(patientNumber)
+            ' Continue with the rest of the code knowing patientNumber is valid
+            _handler.ShowBtnEMessage(patientNumber)
+            TimerHelper.DisableTemporarily(Btn_E, 2000)
+            Me?.MarkCheckboxAsDone("Btn_E")
 
-        TimerHelper.DisableTemporarily(Btn_E, 2000)
-        Me?.MarkCheckboxAsDone("Btn_E")
+        Catch ex As Exception
+            ' Display error message to the user
+            MsgBoxHelper.Show(ex.Message)
+            ' Optionally log the exception or perform additional error handling
+
+        End Try
     End Sub
 
-	''' <summary>
+    ''' <summary>
     ''' Confirm report opinion
     ''' </summary>
     Private Sub Btn_F_Click(sender As Object, e As RoutedEventArgs)
