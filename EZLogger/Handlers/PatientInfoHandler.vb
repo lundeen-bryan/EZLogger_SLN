@@ -2,50 +2,16 @@
 ' Filename=PatientInfoHandler.vb
 ' !See Label Footer for notes
 
-Imports EZLogger.EZLogger.Views
 Imports EZLogger.EZLogger.Models
-Imports System.Windows.Forms
+Imports EZLogger.EZLogger.Views
 Imports EZLogger.Helpers
 Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
+Imports System.Windows.Forms
 
 Namespace Handlers
 
     Public Class PatientInfoHandler
-
-        ''' <summary>
-        ''' Handles the click event for saving a custom document property.
-        ''' This method retrieves the property name and value from the view,
-        ''' performs basic validation, and then saves or updates the property
-        ''' in the active document.
-        ''' </summary>
-        ''' <param name="view">The UpdateInfoView instance containing the UI elements.</param>
-        ''' <remarks>
-        ''' This method uses the DocumentPropertyHelper to write the custom property
-        ''' and displays success or error messages using MsgBoxHelper.
-        ''' </remarks>
-        Public Sub HandleSavePropertyClick(view As UpdateInfoView)
-            Try
-                Dim propName As String = view.TxbxPropertyName.Text.Trim()
-                Dim propValue As String = view.TxtbxPropertyValue.Text.Trim()
-
-                ' Basic validation
-                If String.IsNullOrWhiteSpace(propName) Then
-                    MsgBoxHelper.Show("Please enter a property name.")
-                    Return
-                End If
-
-                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
-
-                ' Use helper to write or update the property
-                DocumentPropertyHelper.WriteCustomProperty(doc, propName, propValue)
-
-                MsgBoxHelper.Show($"Property '{propName}' was saved successfully.")
-
-            Catch ex As Exception
-                MsgBoxHelper.Show("Failed to save the property: " & ex.Message)
-            End Try
-        End Sub
 
         ''' <summary>
         ''' Handles the click event for adding or editing patient information.
@@ -106,6 +72,182 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
+        ''' Closes the PatientInfoView
+        ''' </summary>
+        ''' <remarks>Safer closing approach</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for copying the selected property value to the clipboard.
+        ''' </summary>
+        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
+        ''' <remarks>
+        ''' This method performs the following actions:
+        ''' 1. Retrieves the selected entry from the data grid.
+        ''' 2. If an entry is selected and has a non-empty value, copies the value to the clipboard.
+        ''' 3. Displays a message indicating the copied value or that no value was selected.
+        ''' </remarks>
+        Public Sub HandleCopyClick(view As PatientInfoView)
+            Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
+
+            If selectedEntry IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(selectedEntry.Value) Then
+                Clipboard.SetText(selectedEntry.Value)
+                MsgBoxHelper.Show("Copied: " & selectedEntry.Value)
+            Else
+                MsgBoxHelper.Show("No value selected to copy.")
+            End If
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for deleting all custom document properties.
+        ''' </summary>
+        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
+        ''' <remarks>
+        ''' This method performs the following actions:
+        ''' 1. Displays a confirmation dialog to the user.
+        ''' 2. If confirmed, deletes all custom document properties using DocumentPropertyHelper.
+        ''' 3. Refreshes the list of custom properties in the view.
+        ''' 4. Displays an error message if deletion fails.
+        ''' </remarks>
+        Public Sub HandleDeleteAllClick(view As PatientInfoView)
+            Try
+                Dim confirm = MessageBox.Show("Are you sure you want to delete all custom document properties?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                If confirm = DialogResult.Yes Then
+                    DocumentPropertyHelper.DeleteAllCustomProperties()
+                    LoadCustomDocProperties(view) ' Refresh list
+                End If
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to delete all properties: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for deleting a selected custom document property.
+        ''' </summary>
+        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
+        ''' <remarks>
+        ''' This method performs the following actions:
+        ''' 1. Retrieves the selected entry from the data grid.
+        ''' 2. If no entry is selected, displays a message to the user.
+        ''' 3. Deletes the selected custom property using DocumentPropertyHelper.
+        ''' 4. Refreshes the list of custom properties in the view.
+        ''' 5. Displays an error message if deletion fails.
+        ''' </remarks>
+        Public Sub HandleDeleteClick(view As PatientInfoView)
+            Try
+                Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
+                If selectedEntry Is Nothing Then
+                    MsgBoxHelper.Show("Please select a property to delete.")
+                    Return
+                End If
+
+                DocumentPropertyHelper.DeleteCustomProperty(selectedEntry.PropertyName)
+                LoadCustomDocProperties(view) ' Refresh list
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to delete selected property: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Takes user to first page of document
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public Sub HandleFirstPageClick()
+            Try
+                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
+                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
+            Catch ex As Exception
+                MsgBoxHelper.Show("Could not go to first page: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Takes user to last page of document
+        ''' </summary>
+        ''' <remarks>need to pass in Word.Document to capture the page numbers</remarks>
+        Public Sub HandleLastPageClick()
+            Try
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
+                Dim totalPages As Integer = doc.ComputeStatistics(WdStatistic.wdStatisticPages)
+                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:=totalPages.ToString())
+            Catch ex As Exception
+                MsgBoxHelper.Show("Could not go to last page: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Reloads the Patient Info data table to display to user
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public Sub HandleRefreshClick(view As PatientInfoView)
+            LoadCustomDocProperties(view)
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for saving a custom document property.
+        ''' This method retrieves the property name and value from the view,
+        ''' performs basic validation, and then saves or updates the property
+        ''' in the active document.
+        ''' </summary>
+        ''' <param name="view">The UpdateInfoView instance containing the UI elements.</param>
+        ''' <remarks>
+        ''' This method uses the DocumentPropertyHelper to write the custom property
+        ''' and displays success or error messages using MsgBoxHelper.
+        ''' </remarks>
+        Public Sub HandleSavePropertyClick(view As UpdateInfoView)
+            Try
+                Dim propName As String = view.TxbxPropertyName.Text.Trim()
+                Dim propValue As String = view.TxtbxPropertyValue.Text.Trim()
+
+                ' Basic validation
+                If String.IsNullOrWhiteSpace(propName) Then
+                    MsgBoxHelper.Show("Please enter a property name.")
+                    Return
+                End If
+
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+
+                ' Use helper to write or update the property
+                DocumentPropertyHelper.WriteCustomProperty(doc, propName, propValue)
+
+                MsgBoxHelper.Show($"Property '{propName}' was saved successfully.")
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Failed to save the property: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for validating custom document properties.
+        ''' </summary>
+        ''' <param name="view">The PatientInfoView instance containing the UI elements.</param>
+        ''' <remarks>
+        ''' This method performs the following actions:
+        ''' 1. Validates required custom properties using DocumentPropertyValidator.
+        ''' 2. Refreshes the list of custom properties in the view.
+        ''' 3. Displays a success message if validation is successful.
+        ''' 4. Displays an error message if an exception occurs during validation.
+        ''' </remarks>
+        Public Sub HandleValidateClick(view As PatientInfoView)
+            Try
+                ' Step 1: Validate custom properties
+                DocumentPropertyValidator.ValidateRequiredCustomProperties()
+
+                ' Step 2: Optionally refresh the listbox after adding missing properties
+                LoadCustomDocProperties(view)
+
+                MessageBox.Show("Custom properties validated successfully.")
+
+            Catch ex As Exception
+                MessageBox.Show("Error during validation: " & ex.Message)
+            End Try
+        End Sub
+
+        ''' <summary>
         ''' Loads custom document properties from the active document and displays them in the PatientInfoView.
         ''' </summary>
         ''' <param name="view">The PatientInfoView instance where the properties will be displayed.</param>
@@ -151,152 +293,9 @@ Namespace Handlers
             End Try
         End Sub
 
-        ''' <summary>
-        ''' Reloads the Patient Info data table to display to user
-        ''' </summary>
-        ''' <remarks></remarks>
-        Public Sub HandleRefreshClick(view As PatientInfoView)
-            LoadCustomDocProperties(view)
-        End Sub
-
-        ''' <summary>
-        ''' Handles the click event for validating custom document properties.
-        ''' </summary>
-        ''' <param name="view">The PatientInfoView instance containing the UI elements.</param>
-        ''' <remarks>
-        ''' This method performs the following actions:
-        ''' 1. Validates required custom properties using DocumentPropertyValidator.
-        ''' 2. Refreshes the list of custom properties in the view.
-        ''' 3. Displays a success message if validation is successful.
-        ''' 4. Displays an error message if an exception occurs during validation.
-        ''' </remarks>
-        Public Sub HandleValidateClick(view As PatientInfoView)
-            Try
-                ' Step 1: Validate custom properties
-                DocumentPropertyValidator.ValidateRequiredCustomProperties()
-
-                ' Step 2: Optionally refresh the listbox after adding missing properties
-                LoadCustomDocProperties(view)
-
-                MessageBox.Show("Custom properties validated successfully.")
-
-            Catch ex As Exception
-                MessageBox.Show("Error during validation: " & ex.Message)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Handles the click event for deleting a selected custom document property.
-        ''' </summary>
-        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
-        ''' <remarks>
-        ''' This method performs the following actions:
-        ''' 1. Retrieves the selected entry from the data grid.
-        ''' 2. If no entry is selected, displays a message to the user.
-        ''' 3. Deletes the selected custom property using DocumentPropertyHelper.
-        ''' 4. Refreshes the list of custom properties in the view.
-        ''' 5. Displays an error message if deletion fails.
-        ''' </remarks>
-        Public Sub HandleDeleteClick(view As PatientInfoView)
-            Try
-                Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
-                If selectedEntry Is Nothing Then
-                    MsgBoxHelper.Show("Please select a property to delete.")
-                    Return
-                End If
-
-                DocumentPropertyHelper.DeleteCustomProperty(selectedEntry.PropertyName)
-                LoadCustomDocProperties(view) ' Refresh list
-
-            Catch ex As Exception
-                MsgBoxHelper.Show("Failed to delete selected property: " & ex.Message)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Handles the click event for deleting all custom document properties.
-        ''' </summary>
-        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
-        ''' <remarks>
-        ''' This method performs the following actions:
-        ''' 1. Displays a confirmation dialog to the user.
-        ''' 2. If confirmed, deletes all custom document properties using DocumentPropertyHelper.
-        ''' 3. Refreshes the list of custom properties in the view.
-        ''' 4. Displays an error message if deletion fails.
-        ''' </remarks>
-        Public Sub HandleDeleteAllClick(view As PatientInfoView)
-            Try
-                Dim confirm = MessageBox.Show("Are you sure you want to delete all custom document properties?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                If confirm = DialogResult.Yes Then
-                    DocumentPropertyHelper.DeleteAllCustomProperties()
-                    LoadCustomDocProperties(view) ' Refresh list
-                End If
-            Catch ex As Exception
-                MsgBoxHelper.Show("Failed to delete all properties: " & ex.Message)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Handles the click event for copying the selected property value to the clipboard.
-        ''' </summary>
-        ''' <param name="view">The PatientInfoView instance containing the UI elements and data grid.</param>
-        ''' <remarks>
-        ''' This method performs the following actions:
-        ''' 1. Retrieves the selected entry from the data grid.
-        ''' 2. If an entry is selected and has a non-empty value, copies the value to the clipboard.
-        ''' 3. Displays a message indicating the copied value or that no value was selected.
-        ''' </remarks>
-        Public Sub HandleCopyClick(view As PatientInfoView)
-            Dim selectedEntry = TryCast(view.DataGridPtInfo.SelectedItem, DocPropertyEntry)
-
-            If selectedEntry IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(selectedEntry.Value) Then
-                Clipboard.SetText(selectedEntry.Value)
-                MsgBoxHelper.Show("Copied: " & selectedEntry.Value)
-            Else
-                MsgBoxHelper.Show("No value selected to copy.")
-            End If
-        End Sub
-
-        ''' <summary>
-        ''' Takes user to first page of document
-        ''' </summary>
-        ''' <remarks></remarks>
-        Public Sub HandleFirstPageClick()
-            Try
-                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
-                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
-            Catch ex As Exception
-                MsgBoxHelper.Show("Could not go to first page: " & ex.Message)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Takes user to last page of document
-        ''' </summary>
-        ''' <remarks>need to pass in Word.Document to capture the page numbers</remarks>
-        Public Sub HandleLastPageClick()
-            Try
-                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
-                Dim sel As Selection = Globals.ThisAddIn.Application.Selection
-                Dim totalPages As Integer = doc.ComputeStatistics(WdStatistic.wdStatisticPages)
-                sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:=totalPages.ToString())
-            Catch ex As Exception
-                MsgBoxHelper.Show("Could not go to last page: " & ex.Message)
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Closes the PatientInfoView
-        ''' </summary>
-        ''' <remarks>Safer closing approach</remarks>
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
-
     End Class
 
 End Namespace
-
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... PatientInfoHandler.vb
