@@ -194,11 +194,17 @@ Namespace Handlers
             opHandler.OnOpenOpinionFormClick()
         End Sub
 
+        ''' <summary>
+        ''' Shows the EvaluatorView
+        ''' </summary>
         Public Sub ShowBtnGMessage()
             Dim auHandler As New EvaluatorHandler()
             auHandler.OnOpenEvaluatorViewClick()
         End Sub
 
+        ''' <summary>
+        ''' Shows the Chief Approval View
+        ''' </summary>
         Public Sub ShowBtnHMessage()
             Dim chHandler As New ChiefApprovalHandler()
             chHandler.OnOpenChiefHostClick()
