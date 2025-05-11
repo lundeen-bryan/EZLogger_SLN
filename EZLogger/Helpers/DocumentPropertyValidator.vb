@@ -1,7 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
-Imports Microsoft.Office.Core
+﻿Imports Microsoft.Office.Core
+Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
+
     Public Module DocumentPropertyValidator
 
         ''' <summary>
@@ -37,4 +38,5 @@ Namespace Helpers
         End Sub
 
     End Module
+
 End Namespace
