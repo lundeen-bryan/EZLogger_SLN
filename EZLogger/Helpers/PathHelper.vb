@@ -102,26 +102,5 @@ Namespace Helpers
             Return docsPath
         End Function
 
-        ''' <summary>
-        ''' Loads the OneDrive subpath from the JSON config file.
-        ''' </summary>
-        ''' <returns>Subpath defined under "paths.oneDriveDocumentsSubPath".</returns>
-        Private Function LoadOneDriveSubPathFromConfig() As String
-            'TODO:path
-            Dim configPath As String = ConfigHelper.GetGlobalConfigPath()
-
-            If Not File.Exists(configPath) Then
-                Throw New FileNotFoundException("Configuration file Not found: " & configPath)
-            End If
-
-            Dim json = File.ReadAllText(configPath)
-            Dim doc = JsonDocument.Parse(json)
-
-            Return doc.RootElement _
-                .GetProperty("paths") _
-                .GetProperty("oneDriveDocumentsSubPath") _
-                .GetString()
-        End Function
-
     End Module
 End Namespace
