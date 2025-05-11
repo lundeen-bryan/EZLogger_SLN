@@ -33,19 +33,6 @@ Namespace Helpers
         End Function
 
         ''' <summary>
-        ''' Displays a message in the Word status bar.
-        ''' </summary>
-        ''' <param name="message">The message to show in the status bar.</param>
-        Public Sub ShowStatusBarMessage(message As String)
-            Try
-                Dim wordApp As Application = Globals.ThisAddIn.Application
-                wordApp.StatusBar = message
-            Catch ex As Exception
-                ' Optional: Handle or log error if Word is not available
-            End Try
-        End Sub
-
-        ''' <summary>
         ''' Retrieves plain text currently stored on the clipboard.
         ''' </summary>
         ''' <returns>The clipboard text if available, otherwise an empty string.</returns>
@@ -60,6 +47,19 @@ Namespace Helpers
 
             Return String.Empty
         End Function
+
+        ''' <summary>
+        ''' Displays a message in the Word status bar.
+        ''' </summary>
+        ''' <param name="message">The message to show in the status bar.</param>
+        Public Sub ShowStatusBarMessage(message As String)
+            Try
+                Dim wordApp As Application = Globals.ThisAddIn.Application
+                wordApp.StatusBar = message
+            Catch ex As Exception
+                ' Optional: Handle or log error if Word is not available
+            End Try
+        End Sub
 
     End Module
 
