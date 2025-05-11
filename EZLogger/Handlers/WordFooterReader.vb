@@ -22,7 +22,7 @@ Public Class WordFooterReader
 
         Dim functionName As String = "WordFooterReader.BeginSearchForPatientNumber"
         Dim repeatSearch As Integer = 1
-        Const maxRepeatSearch As Integer = 5
+        Const MAXREPEATSEARCH As Integer = 5
 
         Try
             Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
@@ -33,7 +33,7 @@ Public Class WordFooterReader
             Dim searchLoop As System.Action = Nothing
 
             searchLoop = Sub()
-                             If repeatSearch > maxRepeatSearch Then
+                             If repeatSearch > MAXREPEATSEARCH Then
                                  doc.Range(0, 0).Select()
                                  onNotFound.Invoke()
                                  Return
