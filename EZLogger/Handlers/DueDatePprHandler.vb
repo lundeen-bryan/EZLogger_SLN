@@ -34,12 +34,14 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="hostForm">The form to close.</param>
         Public Sub HandleGoBackClick(hostForm As Form)
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+            Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
+
             Dim commitmentRaw As String = ""
 
-            If doc IsNot Nothing Then
+            If wordDoc IsNot Nothing Then
                 Try
-                    commitmentRaw = doc.CustomDocumentProperties("Commitment").Value.ToString()
+                    commitmentRaw = wordDoc.CustomDocumentProperties("Commitment").Value.ToString()
                 Catch ex As Exception
                     commitmentRaw = ""
                 End Try
@@ -58,7 +60,8 @@ Namespace Handlers
         Public Sub HandleSavePprChoiceClick(view As DueDatePprView)
             Try
                 ' Get the active Word document
-                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+                Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
 
                 ' Extract selected dates from the date pickers
                 Dim currentDueDate As Nullable(Of Date) = view.CurrentDueDatePick.SelectedDate
@@ -66,11 +69,11 @@ Namespace Handlers
 
                 ' Validate and write each date if present
                 If currentDueDate.HasValue Then
-                    DocumentPropertyHelper.WriteCustomProperty(doc, "Current Due Date", currentDueDate.Value.ToString("MM/dd/yyyy"))
+                    DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Current Due Date", currentDueDate.Value.ToString("MM/dd/yyyy"))
                 End If
 
                 If nextDueDate.HasValue Then
-                    DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due Date", nextDueDate.Value.ToString("MM/dd/yyyy"))
+                    DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Next Due Date", nextDueDate.Value.ToString("MM/dd/yyyy"))
                 End If
 
                 MsgBoxHelper.Show("PPR due dates saved to document properties.")
