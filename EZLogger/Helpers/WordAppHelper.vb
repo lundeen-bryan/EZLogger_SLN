@@ -8,19 +8,6 @@ Namespace Helpers
     Public Module WordAppHelper
 
         ''' <summary>
-        ''' Safely retrieves the Word Application instance from the current VSTO Add-in.
-        ''' Returns Nothing if Word is not fully initialized.
-        ''' </summary>
-        Public Function GetWordApp() As Microsoft.Office.Interop.Word.Application
-            Try
-                Return TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
-            Catch ex As Exception
-                ErrorHelper.HandleError("WordAppHelper.GetWordApp", ex.HResult.ToString(), ex.Message, "Please restart Word and try again.")
-                Return Nothing
-            End Try
-        End Function
-
-        ''' <summary>
         ''' Returns the total number of pages in the active Word document.
         ''' </summary>
         Public Function GetActiveDocumentPageCount() As Integer
@@ -36,6 +23,19 @@ Namespace Helpers
             End Try
 
             Return 0
+        End Function
+
+        ''' <summary>
+        ''' Safely retrieves the Word Application instance from the current VSTO Add-in.
+        ''' Returns Nothing if Word is not fully initialized.
+        ''' </summary>
+        Public Function GetWordApp() As Microsoft.Office.Interop.Word.Application
+            Try
+                Return TryCast(Globals.ThisAddIn.Application, Microsoft.Office.Interop.Word.Application)
+            Catch ex As Exception
+                ErrorHelper.HandleError("WordAppHelper.GetWordApp", ex.HResult.ToString(), ex.Message, "Please restart Word and try again.")
+                Return Nothing
+            End Try
         End Function
 
     End Module

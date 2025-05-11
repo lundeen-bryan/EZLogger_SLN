@@ -8,31 +8,6 @@ Imports System.Windows.Forms
 Public Module MsgBoxHelper
 
     ''' <summary>
-    ''' Shows a simple message box with an OK button.
-    ''' </summary>
-    ''' <param name="message">The message to display.</param>
-    Public Sub Show(message As String)
-        Dim config As New MessageBoxConfig With {
-            .Message = message,
-            .ShowOk = True
-        }
-        Show(config, Nothing, Nothing)
-    End Sub
-
-    ''' <summary>
-    ''' Shows a message box and handles the result with a callback.
-    ''' </summary>
-    ''' <param name="message">The message to display.</param>
-    ''' <param name="onResult">Callback that receives the user's button choice.</param>
-    Public Sub Show(message As String, onResult As Action(Of CustomMsgBoxResult))
-        Dim config As New MessageBoxConfig With {
-            .Message = message,
-            .ShowOk = True
-        }
-        Show(config, onResult, Nothing)
-    End Sub
-
-    ''' <summary>
     ''' Shows a fully customized message box. Modeless by default.
     ''' </summary>
     ''' <param name="config">Message box configuration (buttons, text).</param>
@@ -66,6 +41,31 @@ Public Module MsgBoxHelper
 
         ' Modeless by default
         host.Show()
+    End Sub
+
+    ''' <summary>
+    ''' Shows a simple message box with an OK button.
+    ''' </summary>
+    ''' <param name="message">The message to display.</param>
+    Public Sub Show(message As String)
+        Dim config As New MessageBoxConfig With {
+            .Message = message,
+            .ShowOk = True
+        }
+        Show(config, Nothing, Nothing)
+    End Sub
+
+    ''' <summary>
+    ''' Shows a message box and handles the result with a callback.
+    ''' </summary>
+    ''' <param name="message">The message to display.</param>
+    ''' <param name="onResult">Callback that receives the user's button choice.</param>
+    Public Sub Show(message As String, onResult As Action(Of CustomMsgBoxResult))
+        Dim config As New MessageBoxConfig With {
+            .Message = message,
+            .ShowOk = True
+        }
+        Show(config, onResult, Nothing)
     End Sub
 
 End Module

@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Word
-Imports System.Windows.Forms
 Imports System.IO
+Imports System.Windows.Forms
 
 Namespace Helpers
 
@@ -8,6 +8,42 @@ Namespace Helpers
     ''' Provides helper methods for connecting Word documents to external Excel data sources for mail merge operations.
     ''' </summary>
     Public Module MailMergeHelper
+
+        ''' <summary>
+        ''' Cleans up a mail merge document by unlinking all fields, converting it to a non-mail merge type, 
+        ''' detaching the template, reattaching the Normal.dotm template, and closing any lingering data source.
+        ''' </summary>
+        ''' <param name="doc">The Word document to clean.</param>
+        ''' <remarks>
+        ''' This method ensures that the document is no longer associated with any mail merge data source 
+        ''' and is reset to a standard Word document format.
+        ''' </remarks>
+        Public Sub CleanMailMergeDocument(doc As Word.Document)
+            Try
+                ' 1. Unlink all fields in the document
+                For Each fld As Word.Field In doc.Fields
+                    fld.Unlink()
+                Next
+
+                ' 2. Convert the document to a non-mail merge type
+                If doc.MailMerge.MainDocumentType <> Word.WdMailMergeMainDocType.wdNotAMergeDocument Then
+                    doc.MailMerge.MainDocumentType = Word.WdMailMergeMainDocType.wdNotAMergeDocument
+                End If
+
+                ' 3. Detach the template and reattach Normal.dotm
+                doc.AttachedTemplate = Globals.ThisAddIn.Application.NormalTemplate.FullName
+
+                ' 4. Optionally, try to close any lingering data source
+                Try
+                    doc.MailMerge.DataSource.Close()
+                Catch
+                    ' Ignore errors if there's no active data source
+                End Try
+
+            Catch ex As Exception
+                MessageBox.Show("Error cleaning document: " & ex.Message)
+            End Try
+        End Sub
 
         ''' <summary>
         ''' Opens an Excel file as the mail-merge data source, pointing at the specified worksheet.
@@ -38,24 +74,6 @@ Namespace Helpers
                 End With
             Catch ex As Exception
                 ' Optional: log the exception
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Unlinks all fields in the document after mail merge completes.
-        ''' </summary>
-        ''' <param name="doc">The Word document whose merge fields should be unlinked.</param>
-        Public Sub UnlinkAllFields(doc As Document)
-            If doc Is Nothing Then Exit Sub
-
-            Try
-                For Each storyRange As Range In doc.StoryRanges
-                    storyRange.Fields.Update()
-                    storyRange.Fields.Unlink()
-                Next
-                doc.MailMerge.MainDocumentType = WdMailMergeMainDocType.wdNotAMergeDocument
-            Catch ex As Exception
-                ' Optional: log or handle error
             End Try
         End Sub
 
@@ -122,38 +140,20 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
-        ''' Cleans up a mail merge document by unlinking all fields, converting it to a non-mail merge type, 
-        ''' detaching the template, reattaching the Normal.dotm template, and closing any lingering data source.
+        ''' Unlinks all fields in the document after mail merge completes.
         ''' </summary>
-        ''' <param name="doc">The Word document to clean.</param>
-        ''' <remarks>
-        ''' This method ensures that the document is no longer associated with any mail merge data source 
-        ''' and is reset to a standard Word document format.
-        ''' </remarks>
-        Public Sub CleanMailMergeDocument(doc As Word.Document)
+        ''' <param name="doc">The Word document whose merge fields should be unlinked.</param>
+        Public Sub UnlinkAllFields(doc As Document)
+            If doc Is Nothing Then Exit Sub
+
             Try
-                ' 1. Unlink all fields in the document
-                For Each fld As Word.Field In doc.Fields
-                    fld.Unlink()
+                For Each storyRange As Range In doc.StoryRanges
+                    storyRange.Fields.Update()
+                    storyRange.Fields.Unlink()
                 Next
-
-                ' 2. Convert the document to a non-mail merge type
-                If doc.MailMerge.MainDocumentType <> Word.WdMailMergeMainDocType.wdNotAMergeDocument Then
-                    doc.MailMerge.MainDocumentType = Word.WdMailMergeMainDocType.wdNotAMergeDocument
-                End If
-
-                ' 3. Detach the template and reattach Normal.dotm
-                doc.AttachedTemplate = Globals.ThisAddIn.Application.NormalTemplate.FullName
-
-                ' 4. Optionally, try to close any lingering data source
-                Try
-                    doc.MailMerge.DataSource.Close()
-                Catch
-                    ' Ignore errors if there's no active data source
-                End Try
-
+                doc.MailMerge.MainDocumentType = WdMailMergeMainDocType.wdNotAMergeDocument
             Catch ex As Exception
-                MessageBox.Show("Error cleaning document: " & ex.Message)
+                ' Optional: log or handle error
             End Try
         End Sub
 
