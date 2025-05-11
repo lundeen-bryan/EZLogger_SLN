@@ -198,15 +198,18 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="doc">The Word document containing the report data.</param>
         Public Sub SaveProcessedReport(doc As Document)
-            Const FUNCTIONNAME As String = "PrcHandler.SaveProcessedReport"
+            Dim functionName As String = "PrcHandler.SaveProcessedReport"
             Dim recommendation As String =
                 "One of the required steps failed: logging to ToDo, saving the file, or writing to the database. " &
                 "Please close and reopen the document, confirm all fields are filled in, and try again. " &
                 "If the issue continues, use the copy button in this error dialog to copy the error and show it to the developers."
 
-            If doc Is Nothing Then Exit Sub
-
             Try
+                If doc Is Nothing Then
+                    Throw New ArgumentNullException("doc", "Please make sure there is a document open with all the previous steps completed.")
+                End If
+
+
                 ' Step 1: Validate document
                 If Not IsValidWordDoc(doc) Then
                     MessageBox.Show("The document is no longer available or is invalid.", "Invalid Document", MessageBoxButton.OK, MessageBoxImage.Warning)
@@ -227,8 +230,7 @@ Namespace Handlers
 
                 ' Step 6: Insert into SQL last if this report wasn't alreadyh logged
                 If ConfirmReportInPrc(doc) Then
-                    MsgBoxHelper.Show("This report has already been saved in the Processed Report Container (EZL_PRC).")
-                    Exit Sub
+                    Throw New Exception("This report has already been saved in the Processed Report Container (EZL_PRC).")
                 End If
 
                 Dim successfulInsert As Boolean = InsertProcessedReport(prcData)
@@ -243,7 +245,7 @@ Namespace Handlers
                 Dim errNum As String = ex.HResult.ToString()
                 Dim errMsg As String = CStr(ex.Message)
 
-                ErrorHelper.HandleError(FUNCTIONNAME, errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
 
