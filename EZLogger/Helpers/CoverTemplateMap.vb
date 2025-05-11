@@ -39,6 +39,14 @@ Namespace Helpers
             {"T", New CoverTemplateInfo With {.FileName = "T. Sheriff Email.dot", .NeedsMailMerge = False, .MailMergeSheet = String.Empty}}
         }
 
+        ''' <summary>
+        ''' Retrieves the template information for a given cover letter code.
+        ''' </summary>
+        ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
+        ''' <returns>
+        ''' A <see cref="CoverTemplateInfo"/> object containing the template details 
+        ''' if the code exists in the map; otherwise, <c>Nothing</c>.
+        ''' </returns>
         Public Function GetTemplateInfo(letter As String) As CoverTemplateInfo
             If String.IsNullOrEmpty(letter) Then Return Nothing
             Dim info As CoverTemplateInfo = Nothing
@@ -46,11 +54,27 @@ Namespace Helpers
             Return info
         End Function
 
+        ''' <summary>
+        ''' Retrieves the file name of the template associated with the specified cover letter code.
+        ''' </summary>
+        ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
+        ''' <returns>
+        ''' A <see cref="String"/> representing the file name of the template if the code exists; 
+        ''' otherwise, an empty string.
+        ''' </returns>
         Public Function GetTemplateFileName(letter As String) As String
             Dim info = GetTemplateInfo(letter)
             Return If(info IsNot Nothing, info.FileName, String.Empty)
         End Function
 
+        ''' <summary>
+        ''' Retrieves the mail merge data source key for a given cover letter code.
+        ''' </summary>
+        ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
+        ''' <returns>
+        ''' A <see cref="String"/> representing the mail merge data source key if the code exists 
+        ''' and mail merge is required; otherwise, an empty string.
+        ''' </returns>
         Public Function GetMailMergeDataSource(letter As String) As String
             Dim info = GetTemplateInfo(letter)
             If info IsNot Nothing AndAlso info.NeedsMailMerge Then
@@ -59,6 +83,14 @@ Namespace Helpers
             Return String.Empty
         End Function
 
+        ''' <summary>
+        ''' Retrieves the worksheet name for mail merge associated with the specified cover letter code.
+        ''' </summary>
+        ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
+        ''' <returns>
+        ''' A <see cref="String"/> representing the worksheet name for mail merge if the code exists 
+        ''' and mail merge is required; otherwise, an empty string.
+        ''' </returns>
         Public Function GetMailMergeSheet(letter As String) As String
             Dim info = GetTemplateInfo(letter)
             If info IsNot Nothing AndAlso info.NeedsMailMerge Then
