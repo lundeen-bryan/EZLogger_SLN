@@ -255,7 +255,6 @@ Namespace Handlers
 
         Public Sub HandleFirstPageClick()
             Try
-            	Dim doc As Document = DocumentHelper.GetActiveWordDocument()
                 Dim sel As Selection = Globals.ThisAddIn.Application.Selection
                 sel.GoTo(What:=WdGoToItem.wdGoToPage, Name:="1")
             Catch ex As Exception
