@@ -39,7 +39,7 @@ Namespace Handlers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "Failed to load folder paths, try saving the document as a .docx filetype."
 
-                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
 
             End Try
         End Sub
@@ -123,7 +123,7 @@ Namespace Handlers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "Failed to save file: " & ex.Message
 
-                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -150,7 +150,7 @@ Namespace Handlers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "The original file could not be deleted. Please delete it manually later."
 
-                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -185,7 +185,7 @@ Namespace Handlers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "Failed to generate file path: " & ex.Message
 
-                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
 
@@ -281,7 +281,7 @@ Namespace Handlers
                 Dim errMsg As String = CStr(ex.Message)
                 Dim recommendation As String = "Failed to load document properties: " & ex.Message
 
-                ErrorHelper.HandleError("functionName", errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
             End Try
         End Sub
     End Class
