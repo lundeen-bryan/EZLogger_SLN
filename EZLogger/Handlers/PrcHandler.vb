@@ -19,59 +19,6 @@ Namespace Handlers
     Public Module PrcHandler
 
         ''' <summary>
-        ''' Used to confirm there is a valid Word.Document
-        ''' </summary>
-        ''' <returns>True if found</returns>
-        ''' <remarks>If it is a vsto document then it will return false</remarks>
-        Private Function IsValidWordDoc(doc As Document) As Boolean
-            Try
-                Dim dummy = doc.Name ' Triggers COM if invalid
-                Return True
-            Catch
-                Return False
-            End Try
-        End Function
-
-        ''' <summary>
-        ''' Adds a task to the task list
-        ''' </summary>
-        ''' <remarks>Usually adds the open word document as a task</remarks>
-        Private Sub AppendToTodoLog(doc As Document)
-            Try
-                Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
-                                  $"{GetDocProp(doc, "Report Type")}{vbTab}" &
-                                  $"{SafeFormatDateDisplay(GetDocProp(doc, "Report Date"))}{vbTab}" &
-                                  $"P{GetDocProp(doc, "Program")}"
-
-                Dim todoFilePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "_LogTheseFiles.txt")
-                UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
-
-            Catch ex As Exception
-                ErrorHelper.HandleError("PrcHandler.AppendToTodoLog", ex.HResult.ToString(), ex.Message,
-                                "Failed to append report entry to the ToDo list. Please check the file path and permissions.")
-            End Try
-        End Sub
-
-        ''' <summary>
-        ''' Inserts the processed report data into the EZL_PRC table and returns whether it succeeded.
-        ''' </summary>
-        ''' <param name="doc">The Word document associated with the report.</param>
-        ''' <param name="prcData">The key-value pairs to insert into the EZL_PRC table.</param>
-        ''' <returns>True if the insert succeeded; otherwise, False.</returns>
-        Private Function InsertProcessedReport(prcData As Dictionary(Of String, Object)) As Boolean
-            Try
-                Dim normalizedData = DatabaseHelper.NormalizePrcData(prcData)
-                DatabaseHelper.InsertPrcTable(normalizedData)
-                Return True
-
-            Catch ex As Exception
-                ErrorHelper.HandleError("PrcHandler.InsertProcessedReport", ex.HResult.ToString(), ex.Message,
-                                "Failed to log the processed report to the PRC table. Please verify the document is open and has valid data.")
-                Return False
-            End Try
-        End Function
-
-        ''' <summary>
         ''' Adds the report filename to the Tasks.xml list if it does not already exist.
         ''' </summary>
         ''' <param name="doc">The Word document whose filename will be checked and potentially added to the task list.</param>
@@ -93,6 +40,25 @@ Namespace Handlers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Adds a task to the task list
+        ''' </summary>
+        ''' <remarks>Usually adds the open word document as a task</remarks>
+        Private Sub AppendToTodoLog(doc As Document)
+            Try
+                Dim todoEntry As String = $"{GetDocProp(doc, "Patient Name")}{vbTab}" &
+                                  $"{GetDocProp(doc, "Report Type")}{vbTab}" &
+                                  $"{SafeFormatDateDisplay(GetDocProp(doc, "Report Date"))}{vbTab}" &
+                                  $"P{GetDocProp(doc, "Program")}"
+
+                Dim todoFilePath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "_LogTheseFiles.txt")
+                UserTodoHelper.AppendTodoEntry(todoFilePath, todoEntry)
+
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.AppendToTodoLog", ex.HResult.ToString(), ex.Message,
+                                "Failed to append report entry to the ToDo list. Please check the file path and permissions.")
+            End Try
+        End Sub
 
         ''' <summary>
         ''' Builds the key-value pairs required for inserting a row into the EZL_PRC table.
@@ -158,6 +124,74 @@ Namespace Handlers
             Return value.Trim().ToLower() = "true"
         End Function
 
+        ''' <summary>
+        ''' Retrieves a document property value safely.
+        ''' Returns empty string if property does not exist or error occurs.
+        ''' </summary>
+        Private Function GetDocProp(doc As Document, propName As String) As String
+            Try
+                Return doc.CustomDocumentProperties(propName).Value.ToString()
+            Catch
+                Return String.Empty
+            End Try
+        End Function
+
+        ''' <summary>
+        ''' Inserts the processed report data into the EZL_PRC table and returns whether it succeeded.
+        ''' </summary>
+        ''' <param name="doc">The Word document associated with the report.</param>
+        ''' <param name="prcData">The key-value pairs to insert into the EZL_PRC table.</param>
+        ''' <returns>True if the insert succeeded; otherwise, False.</returns>
+        Private Function InsertProcessedReport(prcData As Dictionary(Of String, Object)) As Boolean
+            Try
+                Dim normalizedData = DatabaseHelper.NormalizePrcData(prcData)
+                DatabaseHelper.InsertPrcTable(normalizedData)
+                Return True
+
+            Catch ex As Exception
+                ErrorHelper.HandleError("PrcHandler.InsertProcessedReport", ex.HResult.ToString(), ex.Message,
+                                "Failed to log the processed report to the PRC table. Please verify the document is open and has valid data.")
+                Return False
+            End Try
+        End Function
+
+        ''' <summary>
+        ''' Used to confirm there is a valid Word.Document
+        ''' </summary>
+        ''' <returns>True if found</returns>
+        ''' <remarks>If it is a vsto document then it will return false</remarks>
+        Private Function IsValidWordDoc(doc As Document) As Boolean
+            Try
+                Dim dummy = doc.Name ' Triggers COM if invalid
+                Return True
+            Catch
+                Return False
+            End Try
+        End Function
+
+        ''' <summary>
+        ''' Formats a date string to ISO (yyyy-MM-dd) or returns empty if invalid.
+        ''' </summary>
+        Private Function SafeFormatDate(dateString As String) As Object
+            Dim dt As DateTime
+            If DateTime.TryParse(dateString, dt) Then
+                Return dt.ToString("yyyy-MM-dd")
+            Else
+                Return DBNull.Value
+            End If
+        End Function
+
+        ''' <summary>
+        ''' Formats a date string to human-readable (MM/dd/yyyy) or returns empty if invalid.
+        ''' </summary>
+        Private Function SafeFormatDateDisplay(dateString As String) As String
+            Dim dt As DateTime
+            If DateTime.TryParse(dateString, dt) Then
+                Return dt.ToString("MM/dd/yyyy")
+            Else
+                Return String.Empty
+            End If
+        End Function
 
         ''' <summary>
         ''' Coordinates the process of saving a completed report: appends to ToDo list, updates task list, and logs to PRC.
@@ -213,47 +247,9 @@ Namespace Handlers
             End Try
         End Sub
 
-
-        ''' <summary>
-        ''' Retrieves a document property value safely.
-        ''' Returns empty string if property does not exist or error occurs.
-        ''' </summary>
-        Private Function GetDocProp(doc As Document, propName As String) As String
-            Try
-                Return doc.CustomDocumentProperties(propName).Value.ToString()
-            Catch
-                Return String.Empty
-            End Try
-        End Function
-
-        ''' <summary>
-        ''' Formats a date string to ISO (yyyy-MM-dd) or returns empty if invalid.
-        ''' </summary>
-        Private Function SafeFormatDate(dateString As String) As Object
-            Dim dt As DateTime
-            If DateTime.TryParse(dateString, dt) Then
-                Return dt.ToString("yyyy-MM-dd")
-            Else
-                Return DBNull.Value
-            End If
-        End Function
-
-        ''' <summary>
-        ''' Formats a date string to human-readable (MM/dd/yyyy) or returns empty if invalid.
-        ''' </summary>
-        Private Function SafeFormatDateDisplay(dateString As String) As String
-            Dim dt As DateTime
-            If DateTime.TryParse(dateString, dt) Then
-                Return dt.ToString("MM/dd/yyyy")
-            Else
-                Return String.Empty
-            End If
-        End Function
-
     End Module
 
 End Namespace
-
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... PrcHandler.vb
