@@ -164,7 +164,7 @@ Namespace Handlers
         ''' </summary>
         ''' <param name="doc">The Word document containing the report data.</param>
         Public Sub SaveProcessedReport(doc As Document)
-            Const functionName As String = "PrcHandler.SaveProcessedReport"
+            Const FUNCTIONNAME As String = "PrcHandler.SaveProcessedReport"
             Dim recommendation As String =
                 "One of the required steps failed: logging to ToDo, saving the file, or writing to the database. " &
                 "Please close and reopen the document, confirm all fields are filled in, and try again. " &
@@ -209,7 +209,7 @@ Namespace Handlers
                 Dim errNum As String = ex.HResult.ToString()
                 Dim errMsg As String = CStr(ex.Message)
 
-                ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+                ErrorHelper.HandleError(FUNCTIONNAME, errNum, errMsg, recommendation)
             End Try
         End Sub
 
