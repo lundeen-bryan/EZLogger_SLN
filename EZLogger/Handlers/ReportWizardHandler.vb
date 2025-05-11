@@ -220,27 +220,24 @@ Namespace Handlers
             fxHandler.ShowFaxCoverMessage()
         End Sub
 
+        ''' <summary>
+        ''' Saves the data from the document to EZL_PRC table in SQL
+        ''' </summary>
+        ''' <remarks>Checks if the word document is open</remarks>
         Public Sub ShowBtnKMessage()
             Try
                 Dim doc = DocumentHelper.GetActiveWordDocument()
 
                 If doc Is Nothing Then
-                    MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
-                    Exit Sub
+                    Throw New ApplicationException("No active document found.")
                 End If
 
                 ' Call PrcHandler to process the report
                 PrcHandler.SaveProcessedReport(doc)
 
-                '' Show success message
-                'MsgBoxHelper.Show("The report has been processed and logged successfully.")
-
             Catch ex As Exception
-                Dim errNum As String = ex.HResult.ToString()
-                Dim errMsg As String = CStr(ex.Message)
-                Dim recommendation As String = "Please confirm the patient number from the report to make sure it matches a patient in ForensicInfo."
-
-                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnKMessage", errNum, errMsg, recommendation)
+                Dim recommendation As String = "The document could not be logged. Ensure that all the patient information is accurate and try again."
+                ErrorHelper.HandleError("ReportWizardHandler.ShowBtnKMessage", ex.HResult.ToString(), CStr(ex.Message), recommendation)
             End Try
         End Sub
 
