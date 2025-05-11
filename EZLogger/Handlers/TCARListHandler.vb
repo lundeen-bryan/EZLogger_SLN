@@ -3,19 +3,65 @@
 ' !See Label Footer for notes
 
 Imports EZLogger.Helpers
-Imports System.Data.SqlClient
-Imports System.Windows.Forms
 Imports Haley.Utils
 Imports Microsoft.Office.Interop.Word
 Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
+Imports System.Windows.Forms
 
 Namespace Handlers
+
     Public Class TcarListHandler
 
         ''' <summary>
         ''' Represents the live collection of task items currently loaded in the Task List panel. This collection is UI-bound and updates dynamically
         ''' </summary>
         Public ReadOnly Property Tasks As ObservableCollection(Of TaskItem)
+
+        ''' <summary>
+        ''' Closes TCARListView
+        ''' </summary>
+        ''' <remarks>clean modern approach using hostForm?.Close()</remarks>
+        Public Sub HandleCloseClick(hostForm As Form)
+            hostForm?.Close()
+        End Sub
+
+        ''' <summary>
+        ''' Called when the user presses the Select button in TCARListView.
+        ''' If a row is selected, logs TCAR details to Word document custom properties.
+        ''' </summary>
+        ''' <param name="grid">The DataGrid displaying TCAR records.</param>
+        Public Sub HandleTcarSelect(grid As System.Windows.Controls.DataGrid)
+
+            Dim selected As TCARRecord = TryCast(grid.SelectedItem, TCARRecord)
+
+            If selected Is Nothing Then
+                MsgBoxHelper.Show("Please select a patient from the list if they were found. Otherwise, press the close button.")
+                Return
+            End If
+
+            Try
+                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+
+                ' Write TCAR Referral Date
+                DocumentPropertyHelper.WriteCustomProperty(doc, "TCAR Referral Date", selected.Subdate)
+
+                ' Write Days Since TCAR
+                Dim daysSince As Integer = (DateTime.Now - DateTime.Parse(selected.Subdate)).Days
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since TCAR", daysSince.ToString())
+
+                ' ✅ Add task to TaskList
+                Dim message As String = $"{selected.PatientName.ToUpper()} found on TCAR List"
+                Dim taskHandler As New TaskListHandler()
+                taskHandler.AddTaskFromReport(message)
+
+                MsgBoxHelper.Show("TCAR referral details recorded successfully.")
+
+            Catch ex As Exception
+                MsgBoxHelper.Show("Unable to access the active Word document. " & ex.Message)
+            End Try
+
+        End Sub
 
         ''' <summary>
         ''' Retrieves all active TCAR records from the database.
@@ -75,43 +121,6 @@ Namespace Handlers
         End Function
 
         ''' <summary>
-        ''' Called when the user presses the Select button in TCARListView.
-        ''' If a row is selected, logs TCAR details to Word document custom properties.
-        ''' </summary>
-        ''' <param name="grid">The DataGrid displaying TCAR records.</param>
-        Public Sub HandleTcarSelect(grid As System.Windows.Controls.DataGrid)
-
-            Dim selected As TCARRecord = TryCast(grid.SelectedItem, TCARRecord)
-
-            If selected Is Nothing Then
-                MsgBoxHelper.Show("Please select a patient from the list if they were found. Otherwise, press the close button.")
-                Return
-            End If
-
-            Try
-                Dim doc As Document = DocumentHelper.GetActiveWordDocument()
-
-                ' Write TCAR Referral Date
-                DocumentPropertyHelper.WriteCustomProperty(doc, "TCAR Referral Date", selected.Subdate)
-
-                ' Write Days Since TCAR
-                Dim daysSince As Integer = (DateTime.Now - DateTime.Parse(selected.Subdate)).Days
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Days Since TCAR", daysSince.ToString())
-
-                ' ✅ Add task to TaskList
-                Dim message As String = $"{selected.PatientName.ToUpper()} found on TCAR List"
-                Dim taskHandler As New TaskListHandler()
-                taskHandler.AddTaskFromReport(message)
-
-                MsgBoxHelper.Show("TCAR referral details recorded successfully.")
-
-            Catch ex As Exception
-                MsgBoxHelper.Show("Unable to access the active Word document. " & ex.Message)
-            End Try
-
-        End Sub
-
-        ''' <summary>
         ''' Saves the current list of tasks to a task list
         ''' </summary>
         ''' <remarks>
@@ -122,17 +131,9 @@ Namespace Handlers
             TasksIO.SaveTasks(Tasks.ToList())
         End Sub
 
-        ''' <summary>
-        ''' Closes TCARListView
-        ''' </summary>
-        ''' <remarks>clean modern approach using hostForm?.Close()</remarks>
-        Public Sub HandleCloseClick(hostForm As Form)
-            hostForm?.Close()
-        End Sub
-
     End Class
-End Namespace
 
+End Namespace
 ' Footer:
 ''===========================================================================================
 '' Filename: .......... TCARListHandler.vb
