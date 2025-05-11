@@ -33,7 +33,7 @@ Public Class ErrorDialogView
     End Sub
 
     Private Sub AbortBtn_Click(sender As Object, e As RoutedEventArgs)
-        _handler.HandleAbortClick(_hostForm)
+        _handler.HandleAbortClick()
     End Sub
 
     Private Sub CopyBtn_Click(sender As Object, e As RoutedEventArgs)
