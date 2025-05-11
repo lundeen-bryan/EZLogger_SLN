@@ -107,6 +107,10 @@ Public Module DocumentHelper
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Recursively resets all controls within a given container to their default state.
+    ''' </summary>
+    ''' <param name="container">The parent container whose child controls will be reset.</param>
     Public Sub ResetAllControls(container As DependencyObject)
         For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(container) - 1
             Dim child As DependencyObject = VisualTreeHelper.GetChild(container, i)
