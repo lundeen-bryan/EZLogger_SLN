@@ -121,6 +121,15 @@ Namespace Helpers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Cleans up a mail merge document by unlinking all fields, converting it to a non-mail merge type, 
+        ''' detaching the template, reattaching the Normal.dotm template, and closing any lingering data source.
+        ''' </summary>
+        ''' <param name="doc">The Word document to clean.</param>
+        ''' <remarks>
+        ''' This method ensures that the document is no longer associated with any mail merge data source 
+        ''' and is reset to a standard Word document format.
+        ''' </remarks>
         Public Sub CleanMailMergeDocument(doc As Word.Document)
             Try
                 ' 1. Unlink all fields in the document
@@ -151,4 +160,3 @@ Namespace Helpers
     End Module
 
 End Namespace
-' TODO: orphaned
