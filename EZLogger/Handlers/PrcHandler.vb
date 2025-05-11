@@ -212,33 +212,34 @@ Namespace Handlers
 
                 ' Step 1: Validate document
                 If Not IsValidWordDoc(doc) Then
-                    MessageBox.Show("The document is no longer available or is invalid.", "Invalid Document", MessageBoxButton.OK, MessageBoxImage.Warning)
-                    Exit Sub
-                End If
-
-                ' Step 2: Append to ToDo log
-                AppendToTodoLog(doc)
-
-                ' Step 3: Add to TaskList if not already present
-                AddToTaskListIfMissing(doc)
-
-                ' Step 4: Save document (to ensure any updated metadata is persisted)
-                doc.Save()
-
-                ' Step 5: Build PRC data
-                Dim prcData As Dictionary(Of String, Object) = BuildPrcData(doc)
-
-                ' Step 6: Insert into SQL last if this report wasn't alreadyh logged
-                If ConfirmReportInPrc(doc) Then
-                    Throw New Exception("This report has already been saved in the Processed Report Container (EZL_PRC).")
-                End If
-
-                Dim successfulInsert As Boolean = InsertProcessedReport(prcData)
-                If Not successfulInsert Then
-                    MessageBox.Show("There was an error logging the report to the PRC table. Please try again or contact support.",
-                            "Insert Failed", MessageBoxButton.OK, MessageBoxImage.Error)
+                    Throw New Exception("The document is no longer available or is invalid.")
+                    recommendation = "Please close and reopen the document, confirm all fields are filled in, and try again."
                 Else
-                    DocumentPropertyHelper.MarkReportAsInserted(doc)
+                    ' Step 2: Append to ToDo log
+                    AppendToTodoLog(doc)
+
+                    ' Step 3: Add to TaskList if not already present
+                    AddToTaskListIfMissing(doc)
+
+                    ' Step 4: Save document (to ensure any updated metadata is persisted)
+                    doc.Save()
+
+                    ' Step 5: Build PRC data
+                    Dim prcData As Dictionary(Of String, Object) = BuildPrcData(doc)
+
+                    ' Step 6: Insert into SQL last if this report wasn't alreadyh logged
+                    If ConfirmReportInPrc(doc) Then
+                        MsgBoxHelper.Show("This report has already been saved in the Processed Report Container (EZL_PRC).")
+                    Else
+                        'Step 7: Insert into SQL
+                        Dim successfulInsert As Boolean = InsertProcessedReport(prcData)
+                        If Not successfulInsert Then
+                            Throw New Exception("There was an error logging the repor the the Processed Review Container (EZL_PRC) table in SQL Server. Please try again or contact the developer.")
+                        Else
+                            DocumentPropertyHelper.MarkReportAsInserted(doc)
+                        End If
+
+                    End If
                 End If
 
             Catch ex As Exception
