@@ -1,4 +1,9 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=AlertHelper.vb
+' !See Label ProcedureFooter for notes
+Option Explicit
+
+Imports EZLogger.Helpers
 Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
@@ -96,3 +101,16 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... AlertHelper.vb
+'' Description: ....... Gets alerts from global_config.json
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================
