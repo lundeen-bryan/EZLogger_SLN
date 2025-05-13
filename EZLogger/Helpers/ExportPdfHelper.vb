@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
+﻿' Namespace=EZLogger/Helpers
+' Filename=ExportPdfHelper.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Word
 Imports System.IO
 
 Namespace Helpers
@@ -60,3 +64,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ExportPdfHelper.vb
+'' Description: ....... Prints or converts a word document to a pdf
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

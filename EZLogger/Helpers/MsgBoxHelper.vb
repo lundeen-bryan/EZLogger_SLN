@@ -1,4 +1,8 @@
-﻿Imports System.Drawing
+﻿' Namespace=EZLogger/Helpers
+' Filename=MsgBoxHelper.vb
+' !See Label Footer for notes
+
+Imports System.Drawing
 Imports System.Windows.Forms
 
 ''' <summary>
@@ -69,3 +73,17 @@ Public Module MsgBoxHelper
     End Sub
 
 End Module
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... MsgBoxHelper.vb
+'' Description: ....... Works with Custom MsgBox control to show msg to user
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

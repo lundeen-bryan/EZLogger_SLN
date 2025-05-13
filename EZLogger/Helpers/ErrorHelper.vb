@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=ErrorHelper.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Helpers
 Imports EZLogger.HostForms
 Imports System.Windows.Forms
 
@@ -38,3 +42,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ErrorHelper.vb
+'' Description: ....... helps log errors and initialize the error view for the user
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

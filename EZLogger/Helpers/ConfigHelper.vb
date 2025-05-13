@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Models
+﻿' Namespace=EZLogger/Helpers
+' Filename=ConfigHelper.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Models
 Imports System.IO
 Imports System.Text.Json
 Imports System.Windows
@@ -321,3 +325,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ConfigHelper.vb
+'' Description: ....... Helps setup the configuration files
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

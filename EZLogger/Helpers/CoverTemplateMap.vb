@@ -1,4 +1,8 @@
-﻿Imports System.Collections.Generic
+﻿' Namespace=EZLogger/Helpers
+' Filename=CoverTemplateMap.vb
+' !See Label Footer for notes
+
+Imports System.Collections.Generic
 
 Namespace Helpers
 
@@ -49,7 +53,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
         ''' <returns>
-        ''' A <see cref="String"/> representing the mail merge data source key if the code exists 
+        ''' A <see cref="String"/> representing the mail merge data source key if the code exists
         ''' and mail merge is required; otherwise, an empty string.
         ''' </returns>
         Public Function GetMailMergeDataSource(letter As String) As String
@@ -65,7 +69,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
         ''' <returns>
-        ''' A <see cref="String"/> representing the worksheet name for mail merge if the code exists 
+        ''' A <see cref="String"/> representing the worksheet name for mail merge if the code exists
         ''' and mail merge is required; otherwise, an empty string.
         ''' </returns>
         Public Function GetMailMergeSheet(letter As String) As String
@@ -81,7 +85,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
         ''' <returns>
-        ''' A <see cref="String"/> representing the file name of the template if the code exists; 
+        ''' A <see cref="String"/> representing the file name of the template if the code exists;
         ''' otherwise, an empty string.
         ''' </returns>
         Public Function GetTemplateFileName(letter As String) As String
@@ -94,7 +98,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="letter">The cover letter code (e.g., "B", "C", etc.).</param>
         ''' <returns>
-        ''' A <see cref="CoverTemplateInfo"/> object containing the template details 
+        ''' A <see cref="CoverTemplateInfo"/> object containing the template details
         ''' if the code exists in the map; otherwise, <c>Nothing</c>.
         ''' </returns>
         Public Function GetTemplateInfo(letter As String) As CoverTemplateInfo
@@ -107,3 +111,21 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... CoverTemplateMap.vb
+'' Description: ....... Provides a map of all templates from B-T with corresponding details
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) The CoverTemplateMap module provides a centralized mapping between
+' cover letter codes (B-T) and their corresponding template details,
+' including file names, mail merge requirements, and data source
+' information, allowing easy retrieval of template-specific information
+' throughout the application.
+''===========================================================================================

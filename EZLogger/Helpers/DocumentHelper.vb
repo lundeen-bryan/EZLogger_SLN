@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=DocumentHelper.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Helpers
 Imports Word = Microsoft.Office.Interop.Word
 Imports Application = Microsoft.Office.Interop.Word.Application
 Imports System.Windows
@@ -97,7 +101,7 @@ Public Module DocumentHelper
     ''' <remarks>
     ''' Call this once before accessing document properties or bookmarks
     ''' to avoid casting errors like HRESULT 0x80004002 (E_NOINTERFACE).
-    ''' No need to call this more than once in a call stack.  
+    ''' No need to call this more than once in a call stack.
     ''' This is a workaround for a known issue with VSTO and COM interop.
     ''' </remarks>
     Public Sub InitializeVsto(wordDoc As Microsoft.Office.Interop.Word.Document)
@@ -187,3 +191,17 @@ Public Module DocumentHelper
     End Sub
 
 End Module
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DocumentHelper.vb
+'' Description: ....... Helps with document specific tasks
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================
