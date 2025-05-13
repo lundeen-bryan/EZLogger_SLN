@@ -87,6 +87,32 @@ Public Module DocumentHelper
         End Try
     End Function
 
+
+    ''' <summary>
+    ''' Initializes the VSTO runtime for the given Word document.
+    ''' Ensures that the document is properly wrapped by VSTO so that
+    ''' document properties, bookmarks, and other COM-based features can be accessed safely.
+    ''' </summary>
+    ''' <param name="wordDoc">The Microsoft.Office.Interop.Word.Document to initialize.</param>
+    ''' <remarks>
+    ''' Call this once before accessing document properties or bookmarks
+    ''' to avoid casting errors like HRESULT 0x80004002 (E_NOINTERFACE).
+    ''' </remarks>
+    Public Sub InitializeVsto(wordDoc As Microsoft.Office.Interop.Word.Document)
+        Dim functionName As String = "DocumentHelper.InitializeVsto"
+        Try
+            ' Triggers VSTO wrapping to avoid COM interface casting errors
+            Dim vstoDoc As Microsoft.Office.Tools.Word.Document = Globals.Factory.GetVstoObject(wordDoc)
+        Catch ex As Exception
+            Dim errNum As String = ex.HResult.ToString()
+            Dim errMsg As String = CStr(ex.Message)
+            Dim recommendation As String = "Failed to initialize the VSTO Object. Error logged for developer: " & ex.Message
+
+            ErrorHelper.HandleError(functionName, errNum, errMsg, recommendation)
+        End Try
+    End Sub
+
+
     ''' <summary>
     ''' Recursively resets all controls within a given container to their default state.
     ''' </summary>
