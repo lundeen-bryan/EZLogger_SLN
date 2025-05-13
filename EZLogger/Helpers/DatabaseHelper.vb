@@ -217,6 +217,9 @@ Public Module DatabaseHelper
     ''' </summary>
     ''' <param name="prcData">A dictionary of column-value pairs to insert.</param>
     Public Sub InsertPrcTable(prcData As Dictionary(Of String, Object))
+        Dim wordDoc As Word.Document = GetActiveWordDocument()
+        InitializeVsto(wordDoc)
+
         If prcData Is Nothing Then
             Throw New ArgumentNullException(NameOf(prcData), "The prcData parameter cannot be null.")
         End If
