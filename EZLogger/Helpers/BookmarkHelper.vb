@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Core
+﻿' Namespace=EZLogger/Helpers
+' Filename=BookmarkHelper.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
@@ -73,3 +77,18 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... BookmarkHelper.vb
+'' Description: ....... Helps get and set bookmarks, requires InitializeVsto function
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) Need to use a vsto wrapper so use the function called InitializeVSTO at some point
+' in the call stack
+''===========================================================================================
