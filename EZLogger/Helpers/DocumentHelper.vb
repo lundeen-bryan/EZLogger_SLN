@@ -97,6 +97,8 @@ Public Module DocumentHelper
     ''' <remarks>
     ''' Call this once before accessing document properties or bookmarks
     ''' to avoid casting errors like HRESULT 0x80004002 (E_NOINTERFACE).
+    ''' No need to call this more than once in a call stack.  
+    ''' This is a workaround for a known issue with VSTO and COM interop.
     ''' </remarks>
     Public Sub InitializeVsto(wordDoc As Microsoft.Office.Interop.Word.Document)
         Dim functionName As String = "DocumentHelper.InitializeVsto"
