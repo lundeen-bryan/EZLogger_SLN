@@ -1,4 +1,8 @@
-﻿Imports Application = Microsoft.Office.Interop.Word.Application
+﻿' Namespace=EZLogger/Helpers
+' Filename=ClipboardHelper.vb
+' !See Label Footer for notes
+
+Imports Application = Microsoft.Office.Interop.Word.Application
 Imports System.Windows
 
 Namespace Helpers
@@ -64,3 +68,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ClipboardHelper.vb
+'' Description: ....... Used to copy and paste data
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================
