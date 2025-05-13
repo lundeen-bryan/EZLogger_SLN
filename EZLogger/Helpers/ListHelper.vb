@@ -1,3 +1,7 @@
+' Namespace=EZLogger/Helpers
+' Filename=ListHelper.vb
+' !See Label Footer for notes
+
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.Text.Json
@@ -67,7 +71,7 @@ Namespace Helpers
         ''' Retrieves the file path of the doctors list from the local_user_config.json file.
         ''' </summary>
         ''' <returns>
-        ''' A string representing the file path of the doctors list. 
+        ''' A string representing the file path of the doctors list.
         ''' Returns an empty string if the file path cannot be retrieved or an error occurs.
         ''' </returns>
         ''' <exception cref="FileNotFoundException">
@@ -152,3 +156,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ListHelper.vb
+'' Description: ....... Sets lists from config file for use in compboboxes in Views
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

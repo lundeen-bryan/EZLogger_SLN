@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
+﻿' Namespace=EZLogger/Helpers
+' Filename=MailMergeHelper.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Word
 Imports System.IO
 Imports System.Windows.Forms
 
@@ -10,12 +14,12 @@ Namespace Helpers
     Public Module MailMergeHelper
 
         ''' <summary>
-        ''' Cleans up a mail merge document by unlinking all fields, converting it to a non-mail merge type, 
+        ''' Cleans up a mail merge document by unlinking all fields, converting it to a non-mail merge type,
         ''' detaching the template, reattaching the Normal.dotm template, and closing any lingering data source.
         ''' </summary>
         ''' <param name="doc">The Word document to clean.</param>
         ''' <remarks>
-        ''' This method ensures that the document is no longer associated with any mail merge data source 
+        ''' This method ensures that the document is no longer associated with any mail merge data source
         ''' and is reset to a standard Word document format.
         ''' </remarks>
         Public Sub CleanMailMergeDocument(doc As Word.Document)
@@ -160,3 +164,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... MailMergeHelper.vb
+'' Description: ....... Used for MailMerge in VSTO wrapper, note may need InitializeVsto function
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

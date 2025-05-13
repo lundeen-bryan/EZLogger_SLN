@@ -1,4 +1,8 @@
-﻿Imports System.Drawing
+﻿' Namespace=EZLogger/Helpers
+' Filename=FormPositionHelper.vb
+' !See Label Footer for notes
+
+Imports System.Drawing
 Imports System.Windows.Forms
 
 ''' <summary>
@@ -40,3 +44,17 @@ Public Module FormPositionHelper
     End Sub
 
 End Module
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... FormPositionHelper.vb
+'' Description: ....... Positions the form in the top left of all screens/monitors
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) notes_here
+''===========================================================================================

@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=DatabaseHelper.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Helpers
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Diagnostics
@@ -374,3 +378,27 @@ Public Module DatabaseHelper
     End Function
 
 End Module
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DatabaseHelper.vb
+'' Description: ....... Provides help for all aspects of SQL queries
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) BuildInsertCommand ... Generates an SQL INSERT command string for the EZL_PRC table based on provided data.
+' (2) FormatDate ... Converts a SQL value to a short date string (MM/dd/yyyy) if it's a valid date.
+' (3) FormatPatientNumber ... Formats an 8-digit raw patient number to display as "123456-7".
+' (4) GetConnectionString ... Builds and returns a valid SQL connection string based on the configured database path.
+' (5) GetCourtNumberByPatientNumber ... Retrieves the CourtNumber for a given patient using a stored procedure.
+' (6) GetPatientByNumber ... Retrieves a single patient record matching the given patient number.
+' (7) GetSqlDbTypeForColumn ... Determines the appropriate SQL data type (SqlDbType) for a given column name.
+' (8) InsertPrcTable ... Inserts a new record into the EZL_PRC table.
+' (9) NormalizePrcData ... Normalizes raw prcData values into correct types (Date, Int, Bit, etc.) for SQL insertion.
+' (10) ReverseFormatPatientNumber ... Converts a user-friendly patient number back into the raw 8-digit format.
+' (11) TryExecuteInsert ... Attempts to execute an SQL INSERT command with retries in case of failure.
+''===========================================================================================

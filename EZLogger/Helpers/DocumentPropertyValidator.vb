@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Core
+﻿' Namespace=EZLogger/Helpers
+' Filename=DocumentPropertyValidator.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Core
 Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
@@ -40,3 +44,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DocumentPropertyValidator.vb
+'' Description: ....... "validates" or copies the names from list as custom doc property names
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) May need to use InitializeVsto
+''===========================================================================================

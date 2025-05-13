@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
+﻿' Namespace=EZLogger/Helpers
+' Filename=DocumentPropertyHelper.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Word
 Imports System.IdentityModel.Protocols.WSTrust
 Imports System.Windows.Forms
 Imports MessageBox = System.Windows.MessageBox
@@ -293,3 +297,17 @@ Namespace Helpers
     End Class
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... DocumentPropertyHelper.vb
+'' Description: ....... Gets/Sets values to the document as a custom doc property - see notes
+'' Created: ........... 2025-05-12
+'' Updated: ........... 2025-05-12
+'' Installs to: ....... EZLogger/Helpers
+'' Compatibility: ..... VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) Must use InitializeVsto at some point in the call stack to avoid errors
+''===========================================================================================
