@@ -1,3 +1,7 @@
+' Namespace=EZLogger/Helpers
+' Filename=PathHelper.vb
+' !See Label Footer for notes
+
 Imports System.IO
 Imports System.Text.Json
 Imports System.Windows
@@ -105,3 +109,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... PathHelper.vb
+'' Description: ....... Helps getting paths to user files
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-05-14
+'' Updated: ........... 2025-05-14
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================

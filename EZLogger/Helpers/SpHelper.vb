@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Helpers
+' Filename=SpHelper.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Helpers
 Imports Haley.Abstractions
 Imports Haley.Models
 Imports Microsoft.Office.Core
@@ -87,3 +91,17 @@ Public Module SpHelper
     End Sub
 
 End Module
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... SpHelper.vb
+'' Description: ....... Helps transfer data from Word doc to SharePoint properties in doc library
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-05-14
+'' Updated: ........... 2025-05-14
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================
