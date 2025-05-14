@@ -1,4 +1,8 @@
-﻿Imports Microsoft.Office.Interop.Word
+﻿' Namespace=EZLogger/Helpers
+' Filename=WordAppHelper.vb
+' !See Label Footer for notes
+
+Imports Microsoft.Office.Interop.Word
 
 Namespace Helpers
 
@@ -41,3 +45,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... WordAppHelper.vb
+'' Description: ....... Helps get the Word Application instance object
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-05-14
+'' Updated: ........... 2025-05-14
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================

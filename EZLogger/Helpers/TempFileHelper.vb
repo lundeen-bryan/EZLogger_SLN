@@ -1,4 +1,8 @@
-﻿Imports System.IO
+﻿' Namespace=EZLogger/Helpers
+' Filename=TempFileHelper.vb
+' !See Label Footer for notes
+
+Imports System.IO
 
 Namespace Helpers
 
@@ -98,3 +102,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... TempFileHelper.vb
+'' Description: ....... Helps get file paths for temp documents when creating cover letters
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-05-14
+'' Updated: ........... 2025-05-14
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================

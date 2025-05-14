@@ -1,4 +1,8 @@
-﻿Imports System.Windows.Controls
+﻿' Namespace=EZLogger/Helpers
+' Filename=TimerHelper.vb
+' !See Label Footer for notes
+
+Imports System.Windows.Controls
 Imports System.Windows.Forms
 Imports Dispatcher = System.Windows.Threading.Dispatcher
 
@@ -44,3 +48,17 @@ Namespace Helpers
     End Module
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Procedure: ......... TimerHelper.vb
+'' Description: ....... Helps create a timout for buttons pressed and other uses for timer
+'' Version: ........... 1.0.0 - major.minor.patch
+'' Created: ........... 2025-05-14
+'' Updated: ........... 2025-05-14
+'' Installs to: ....... EZLogger/Helpers
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ n/a ©2025. All rights reserved.
+'' Notes: ............. _
+ '(1) notes_here
+''===========================================================================================
