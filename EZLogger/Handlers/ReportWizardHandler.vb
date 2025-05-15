@@ -38,7 +38,7 @@ Namespace Handlers
 
             reader.BeginSearchForPatientNumber(
                 onFound:=Sub(patientNumber)
-                             panel.TextBoxPatientNumber.Text = patientNumber
+                             panel.PatientNumberTxt.Text = patientNumber
                              panel.Btn_A_Checkbox.IsChecked = True
                          End Sub,
                 onNotFound:=Sub()

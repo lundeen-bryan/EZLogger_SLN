@@ -43,11 +43,11 @@ Partial Public Class ReportWizardPanel
     ''' Pull data from database and save as doc properties
     ''' </summary>
     Private Sub Btn_B_Click(sender As Object, e As RoutedEventArgs)
-        _handler.ShowBtnBMessage(TextBoxPatientNumber.Text, Me)
+        _handler.ShowBtnBMessage(PatientNumberTxt.Text, Me)
         TimerHelper.DisableTemporarily(Btn_B, 2000) ' Disable for 2 seconds
     End Sub
 
-	''' <summary>
+    ''' <summary>
     ''' Select report type and due dates
     ''' </summary>
     Private Sub Btn_C_Click(sender As Object, e As RoutedEventArgs)
@@ -56,7 +56,7 @@ Partial Public Class ReportWizardPanel
         TimerHelper.DisableTemporarily(Btn_C, 2000) ' Disable for 2 seconds
     End Sub
 
-	''' <summary>
+    ''' <summary>
     ''' Checks the TCAR log
     ''' </summary>
     Private Sub Btn_D_Click(sender As Object, e As RoutedEventArgs)
@@ -76,7 +76,7 @@ Partial Public Class ReportWizardPanel
     Private Sub Btn_E_Click(sender As Object, e As RoutedEventArgs)
         TaskPaneHelper.SetTaskPane(Me)
 
-        Dim patientNumber As String = TextBoxPatientNumber.Text?.Trim()
+        Dim patientNumber As String = PatientNumberTxt.Text?.Trim()
 
         Try
             If String.IsNullOrWhiteSpace(patientNumber) Then
