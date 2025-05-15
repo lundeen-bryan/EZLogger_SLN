@@ -23,7 +23,7 @@ Namespace Handlers
         Public Sub RefreshPatientNameLabel(panel As ReportWizardPanel)
             Dim doc = DocumentHelper.GetActiveWordDocument()
             Dim name As String = DocumentPropertyHelper.GetPropertyValue(doc, "Patient Name")
-            panel.LabelPatientName.Content = name
+            panel.PatientNameLbl.Content = name
         End Sub
 
         ''' <summary>
