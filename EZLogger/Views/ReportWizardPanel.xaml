@@ -54,7 +54,7 @@
                       Header="Patient Name"
                       Width="382"
                       HorizontalAlignment="Left">
-                <Label x:Name="LabelPatientName"
+                <Label x:Name="PatientNameLbl"
                        Content=""
                        HorizontalAlignment="Left"
                        Margin="12,6,0,0"
