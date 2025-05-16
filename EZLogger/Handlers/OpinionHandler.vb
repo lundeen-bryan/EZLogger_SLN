@@ -91,5 +91,15 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - HandleCloseClick(hostForm As Form): Closes the OpinionView form if
+'   it is not null.
+' - HandleOpinionFirstPageClick(): Moves the Word cursor to the first
+'   page using NavigationHelper.
+' - HandleOpinionLastPageClick(): Moves the Word cursor to the last page
+'   using NavigationHelper.
+' - HandleOpinionOkClick(opinion As String): Saves the selected opinion
+'   to the Word document’s custom properties.
+' - OnOpenOpinionFormClick(): Opens the OpinionHost form, positions it
+'   at the top-left corner, and sets it to stay on top.
 ''===========================================================================================

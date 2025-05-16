@@ -106,5 +106,19 @@ End Class
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - New(): Constructor that loads task data from `Tasks.xml`, hooks up
+'   event handlers for collection and item changes.
+' - Tasks: ObservableCollection of TaskItem representing the current
+'   task list.
+' - AddTaskFromReport(fileName): Adds a new task using the specified
+'   filename and saves to `Tasks.xml`.
+' - OnCollectionChanged(): Handles new items being added to the
+'   collection by hooking `PropertyChanged` and calling `SaveAll`.
+' - OnItemChanged(): Saves the task list whenever a property on a
+'   TaskItem changes.
+' - RemoveCompletedTasks(): Deletes all completed tasks from the list
+'   and saves the updated list.
+' - SaveAll(): Persists the current task list to `Tasks.xml` using
+'   `TasksIO.SaveTasks()`.
 ''===========================================================================================

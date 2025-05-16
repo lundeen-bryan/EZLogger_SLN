@@ -344,5 +344,24 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - GetReportTypes(): Retrieves a list of report types from the global
+'   configuration file for use in ComboBoxes.
+' - HandleCloseClick(hostForm As Form): Closes the ReportTypeView form
+'   if it is not null.
+' - HandleSelectedReportType(reportType As String): Saves the selected
+'   report type to the Word document's custom properties.
+' - HasEarlyNinetyDayFlag(): Returns True if the document property
+'   "Early90Day" is set to 1, otherwise False.
+' - LaunchDueDates1370View(): Opens and populates the DueDates1370View
+'   form using data from the active document.
+' - LaunchDueDatesPprView(): Opens and populates the DueDatesPprView
+'   form using data from the active document.
+' - LaunchReportTypeView(commitmentDate As String): Displays the
+'   ReportTypeView form, sets the commitment date, and returns the
+'   selected report type.
+' - ReportTypeSelectedBtnClick(selectedReportType As String, reportDate
+'   As String, hostForm As Form): Saves the selected report type and
+'   date, then opens the appropriate due dates form and closes the host
+'   form.
 ''===========================================================================================

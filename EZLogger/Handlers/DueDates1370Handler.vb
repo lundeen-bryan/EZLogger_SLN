@@ -294,5 +294,16 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - HandleAcceptIstDueDate(view As DueDates1370View): Saves the selected
+'   report cycle and calculates the next due date based on the first due
+'   date.
+' - HandleGoBackClick(hostForm As Form): Closes the current form and
+'   reopens the ReportTypeView using the Commitment document property.
+' - HandleSave1370ChoiceClick(view As DueDates1370View): Saves the
+'   selected 1370 report cycle and due dates, updates rush status, and
+'   returns to the previous screen.
+' - PopulateDueDates(view As DueDates1370View): Populates 1370 due date
+'   labels based on the Classification and Commitment date in the active
+'   Word document.
 ''===========================================================================================

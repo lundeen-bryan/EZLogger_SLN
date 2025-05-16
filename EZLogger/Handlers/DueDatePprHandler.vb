@@ -136,5 +136,15 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index:
+' - HandleAcceptDatesClick(view As DueDatePprView): Calculates and
+'   displays the number of days between today and the selected due date.
+' - HandleGoBackClick(hostForm As Form): Closes the current form and
+'   reopens the ReportTypeView based on the Commitment property.
+' - HandleSavePprChoiceClick(view As DueDatePprView): Saves the current
+'   and next due dates to the Word document's custom properties.
+' - HandleSwitchDatesClick(view As DueDatePprView): Swaps the values of
+'   the current and next due date pickers.
+' - HandleYearDownClick(view As DueDatePprView): Subtracts one year from
+'   the selected current due date and updates the picker.
 ''===========================================================================================

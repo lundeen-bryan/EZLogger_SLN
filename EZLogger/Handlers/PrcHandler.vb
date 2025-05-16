@@ -264,5 +264,27 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - AddToTaskListIfMissing(doc As Document): Adds the document filename
+'   to the Tasks.xml list if it is not already present.
+' - AppendToTodoLog(doc As Document): Appends a formatted entry for the
+'   report to the _LogTheseFiles.txt ToDo list.
+' - BuildPrcData(doc As Document): Constructs a dictionary of key-value
+'   pairs from document properties for database insertion.
+' - ConfirmReportInPrc(doc As Document): Returns True if the document's
+'   PrcInserted property is set to "true".
+' - GetDocProp(doc As Document, propName As String): Safely retrieves a
+'   custom property value from the document.
+' - InsertProcessedReport(prcData As Dictionary(Of String, Object)):
+'   Inserts the provided PRC data into the EZL_PRC table and returns
+'   whether it succeeded.
+' - IsValidWordDoc(doc As Document): Checks if the provided document is
+'   a valid Word document.
+' - SafeFormatDate(dateString As String): Converts a date string to ISO
+'   format (yyyy-MM-dd) or returns DBNull if invalid.
+' - SafeFormatDateDisplay(dateString As String): Converts a date string
+'   to MM/dd/yyyy format or returns an empty string if invalid.
+' - SaveProcessedReport(doc As Document): Orchestrates the logging
+'   process for a completed report, including validation, saving, and
+'   database insert.
 ''===========================================================================================

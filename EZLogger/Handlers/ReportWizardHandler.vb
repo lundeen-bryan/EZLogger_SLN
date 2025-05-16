@@ -277,5 +277,18 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Public Method Index:
+'     - RefreshPatientNameLabel(panel): Updates patient name label from doc properties.
+'     - ShowBtnAMessage(panel): Searches Word footer for patient number.
+'     - ShowBtnBMessage(patientNumber, panel): Looks up patient data, writes to doc, confirms match.
+'     - ShowBtnCMessage(): Launches ReportTypeView using commitment date.
+'     - ShowBtnDMessage(): Opens TCARListHost form.
+'     - ShowBtnEMessage(patientNumber): Asynchronously looks up CONREP provider from Excel.
+'     - ShowBtnFMessage(): Opens OpinionView.
+'     - ShowBtnGMessage(): Opens EvaluatorView.
+'     - ShowBtnHMessage(): Opens ChiefApprovalView.
+'     - ShowBtnIMessage(): Opens SaveFileHandler logic.
+'     - ShowBtnJMessage(): Opens FaxCoverHandler logic.
+'     - ShowBtnKMessage(): Saves current report to EZL_PRC (main logging step).
+'     - ShowBtnLMessage(): Adds configured alerts to the task list.
 ''===========================================================================================
