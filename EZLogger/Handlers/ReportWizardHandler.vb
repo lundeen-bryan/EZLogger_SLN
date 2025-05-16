@@ -62,7 +62,7 @@ Namespace Handlers
 
             Dim History As String = DocumentPropertyHelper.GetPropertyValue(doc, "Logged")
             If History <> "" Then
-                If DateDiff("d", History, Date.Today()) > 2 Then
+                If DateDiff("d", History, Date.Today()) < 7 Then
                     MsgBoxHelper.Show("The last time this report was opened and logged was " & History & " so you might not need to process this report again.")
                 End If
             End If
