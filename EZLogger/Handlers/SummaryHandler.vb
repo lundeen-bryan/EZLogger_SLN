@@ -1,4 +1,8 @@
-﻿Imports EZLogger.Helpers
+﻿' Namespace=EZLogger/Handlers
+' Filename=SummaryHandler.vb
+' !See Label Footer for notes
+
+Imports EZLogger.Helpers
 Imports System.Data
 Imports System.Data.SqlClient
 
@@ -123,3 +127,24 @@ Namespace Handlers
 
     End Class
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... SummaryHandler.vb
+'' Description: ....... Handles writing a summary
+'' Created: ........... 2025-05-16
+'' Updated: ........... 2025-05-16
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... WPF, VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) Method Index _
+' - GetAllPrcRecords(): Retrieves all rows from the EZL_PRC SQL Server
+'   table where the Created date is within the last 7 days.
+' - HandleSummaryClick(): Asynchronously fetches EZL_PRC records and
+'   exports them to SummaryReport.xlsx while showing a busy indicator.
+' - RunSummaryWithBusy(): Runs the summary export using a background
+'   thread with a busy indicator and syncs Excel export to the UI
+'   thread.
+''===========================================================================================

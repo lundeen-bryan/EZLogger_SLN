@@ -116,5 +116,12 @@ End Class
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - BeginSearchForPatientNumber(onFound, onNotFound): Searches the
+'   primary footer of the first section for a patient number using
+'   regex. Prompts the user to confirm; if confirmed, copies to
+'   clipboard and invokes `onFound`. Retries up to 5 times before
+'   calling `onNotFound`.
+' - ResetFindParameters(rng): Clears formatting and resets standard find
+'   options (case/match/format) for the given Word range.
 ''===========================================================================================

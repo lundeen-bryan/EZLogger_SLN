@@ -112,5 +112,13 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ n/a ©2025. All rights reserved.
 '' Notes: ............. _
- '(1) notes_here
+ '(1) Method Index _
+' - AddAlertsToTaskList(doc As Document): Adds relevant patient or
+'   county alerts to the task list (Tasks.xml) if present in
+'   global_config.json.
+' - ShowCountyAlertIfExists(county As String): Displays a message box
+'   alert if the specified county has an alert in global_config.json.
+' - ShowPatientAlertIfExists(patientNumber As String): Displays a
+'   message box alert if the specified patient number has an alert in
+'   global_config.json.
 ''===========================================================================================

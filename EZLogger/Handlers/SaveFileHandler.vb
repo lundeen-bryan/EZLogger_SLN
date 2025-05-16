@@ -298,5 +298,23 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - BuildDestinationPath(view As SaveFileView): Constructs the full
+'   destination file path using patient name, report type, and report
+'   date.
+' - HandleCloseClick(hostForm As Form): Closes the SaveFileView form if
+'   it is not null.
+' - HandleSaveAsClick(view As SaveFileView): Opens a Save As dialog to
+'   move or copy the report file, saving updated metadata and optionally
+'   deleting the original.
+' - HandleSearchPatientIdClick(view As SaveFileView): Loads document
+'   properties into SaveFileView controls and generates a unique
+'   document ID.
+' - HandleShowPathClick(view As SaveFileView): Builds and displays the
+'   destination path, and copies the patient name to the clipboard.
+' - LoadRootPaths(): Loads Move and Copy root paths from the
+'   configuration file and shows a warning if either is missing.
+' - ShowSaveMessage(): Opens and displays the SaveFileHost form.
+' - TryDeleteOldFile(oldFilePath As String): Attempts to delete the
+'   original file after a successful move operation.
 ''===========================================================================================

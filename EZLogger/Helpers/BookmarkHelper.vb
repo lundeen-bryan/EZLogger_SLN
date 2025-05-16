@@ -89,6 +89,13 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) Need to use a vsto wrapper so use the function called InitializeVSTO at some point
+' (1) Method Index _
+' - FillBookmarksFromDocumentProperties(sourceDoc As Document, targetDoc
+'   As Document): Copies custom properties from one Word document and
+'   inserts them into matching bookmarks in another document.
+' - InsertTextIntoBookmark(doc As Document, bookmarkName As String,
+'   value As String): Inserts a given value into a specified bookmark in
+'   the Word document, recreating the bookmark after insertion.
+' (2) Need to use a vsto wrapper so use the function called InitializeVSTO at some point
 ' in the call stack
 ''===========================================================================================

@@ -93,5 +93,14 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Public Method indes:
+' - HandleApprovalClick(selectedName As String): Sets the selected
+'   approver's name in the document properties and shows a confirmation
+'   message.
+' - HandleCloseClick(hostForm As Form): Closes the specified form if it
+'   is not null.
+' - HandleSignatureClick(selectedName As String): Inserts the selected
+'   approver's signature using the SignatureHelper.
+' - OnOpenChiefHostClick(): Opens the ChiefApprovalHost form to begin
+'   the approval process.
 ''===========================================================================================

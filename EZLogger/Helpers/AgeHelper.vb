@@ -56,5 +56,10 @@ End Namespace
 '' Called by: ......... DocumentPropertyHelper.WriteDataToDocProperties
 '' Calls to: .......... n/a
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - CalculateAge(birthDate As Date, Optional asOfDate As Date? =
+'   Nothing): Calculates and returns the age in full years as of the
+'   given date (or today by default). Adjusts based on whether the
+'   birthday has occurred yet this year. Mirrors VBA behavior from
+'   `return_age_int_fnc`.
 ''===========================================================================================

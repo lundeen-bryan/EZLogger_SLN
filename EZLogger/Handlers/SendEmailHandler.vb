@@ -121,5 +121,15 @@ End Class
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - CleanString(input As String): Removes tabs, carriage returns,
+'   quotes, and extra spaces from a string.
+' - HandleSelectFileClick(ownerForm As Form): Opens a file dialog for
+'   selecting a PDF file and returns the selected file path.
+' - HandleSendClick(filename As String, lastname As String, firstname As
+'   String, reportType As String, Optional hostForm As Form): Builds and
+'   displays an Outlook email with the selected report attached and
+'   prefilled subject and body.
+' - ToTitleCase(input As String): Converts a string to title case using
+'   current culture settings.
 ''===========================================================================================

@@ -473,5 +473,37 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Methods Index:
+' - AddAlertButtonClick(): Adds or updates a patient alert in the global
+'   configuration file using user input from a popup.
+' - AddCountyAlertButtonClick(): Adds or updates a county alert in the
+'   global configuration file using user input from a popup.
+' - DeleteAlertButtonClick(): Displays a message indicating the Delete
+'   Alert button was clicked.
+' - DeleteCountyAlertButtonClick(): Displays a message indicating the
+'   Delete County Alert button was clicked.
+' - DeleteCountyAlertByKey(countyName As String): Removes a county alert
+'   from the global configuration file based on the provided county
+'   name.
+' - DeletePatientAlertByKey(patientNumber As String): Removes a patient
+'   alert from the global configuration file based on the provided
+'   patient number.
+' - HandleCreateConfigClick(): Guides the user through creating and
+'   saving the initial EZLogger configuration, including selecting
+'   required folders.
+' - HandleEditEmailClick(r1 As RadioButton, r2 As RadioButton, r3 As
+'   RadioButton): Displays a message based on which email option radio
+'   button is selected.
+' - HandleSetupFolderPathsClick(): Prompts the user to select key
+'   folders and updates the local config file with the new paths.
+' - HandleTestFolderPickerClick(): Prompts the user to select a folder
+'   and displays the selected path or a message if none is selected.
+' - HandleViewLoaded(): Loads the configuration view and returns a
+'   structured result with paths and doctor list information.
+' - LoadCountyAlerts(): Loads and formats county alerts from the global
+'   configuration file into a list of strings.
+' - LoadPatientAlerts(): Loads and formats patient alerts from the
+'   global configuration file into a list of strings.
+' - SaveDoctorsList(doctorsText As String): Saves the provided text as
+'   the doctor list to the appropriate file path.
 ''===========================================================================================

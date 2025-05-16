@@ -1,4 +1,8 @@
-﻿Imports System.Linq
+﻿' Namespace=EZLogger/Handlers
+' Filename=ErrorDialogHandler.vb
+' !See Label Footer for notes
+
+Imports System.Linq
 Imports System.Windows.Forms
 Imports System.Windows.Forms.Integration
 
@@ -63,3 +67,22 @@ Namespace Handlers
     End Class
 
 End Namespace
+
+' Footer:
+''===========================================================================================
+'' Filename: .......... ErrorDialogHandler.vb
+'' Description: ....... Handles errors
+'' Created: ........... 2025-05-16
+'' Updated: ........... 2025-05-16
+'' Installs to: ....... EZLogger/Handlers
+'' Compatibility: ..... WPF, VSTO
+'' Contact Author: .... lundeen-bryan
+'' Copyright:  ........ ©2025. All rights reserved.
+'' Notes: ............. _
+' (1) Method Index _
+' - HandleAbortClick(): Prompts the user to confirm and exits Microsoft
+'   Word if confirmed.
+' - HandleCopyClick(hostForm As Form): Copies error details from the
+'   error dialog view to the clipboard.
+' - HandleOkClick(hostForm As Form): Closes the error dialog form.
+''===========================================================================================

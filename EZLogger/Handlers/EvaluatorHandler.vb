@@ -165,5 +165,20 @@ End Namespace
 '' Contact Author: .... author
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - HandleAddAuthorClick(): Displays a message box indicating the Add
+'   Author button was clicked.
+' - HandleCloseClick(hostForm As Form): Closes the specified form if it
+'   is not null.
+' - HandleDoneSelectingClick(view As EvaluatorView): Saves the selected
+'   evaluator to a Word document property and shows a success message.
+' - HandleFirstPageClick(): Navigates to the first page of the active
+'   Word document.
+' - HandleLastPageClick(): Navigates to the last page of the active Word
+'   document.
+' - OnOpenEvaluatorViewClick(): Opens the EvaluatorHost form to display
+'   the EvaluatorView.
+' - RegisterKeyboardShortcuts(shortcutHelper As ShortcutHandler, view As
+'   EvaluatorView): Registers Control+F, L, S, and D as keyboard
+'   shortcuts for navigating and saving in EvaluatorView.
 ''===========================================================================================

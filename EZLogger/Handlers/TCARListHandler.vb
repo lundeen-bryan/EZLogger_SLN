@@ -145,5 +145,15 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - Tasks: ObservableCollection(Of TaskItem) — represents live
+'   TCAR-related tasks for the view.
+' - HandleCloseClick(hostForm): Closes the host form safely using
+'   null-conditional access.
+' - HandleTcarSelect(grid): Reads selected TCAR row and writes its
+'   Subdate and Days Since TCAR to Word doc properties; adds a task with
+'   the patient name.
+' - LoadAllActive(): Loads active TCAR records from `EZL_TcarView` SQL
+'   view, ordered by patient name. Returns List(Of TCARRecord).
+' - Save(): Saves the current list of tasks to Tasks.xml using TasksIO.
 ''===========================================================================================

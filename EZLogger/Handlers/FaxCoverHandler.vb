@@ -221,5 +221,16 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - CreateFaxCover(letter As String, saveToTemp As Boolean, convertToPdf
+'   As Boolean, totalPages As Integer, originalReportPages As Integer):
+'   Generates a fax cover sheet using a template and document
+'   properties, and optionally exports it to PDF.
+' - HandleCloseClick(hostForm As Form): Closes the fax cover form if it
+'   is not null.
+' - PopulateFaxCoverInfo(): Retrieves and returns document and config
+'   values to populate a FaxCoverInfo object for use in cover
+'   generation.
+' - ShowFaxCoverMessage(): Opens and displays the FaxCoverHost form to
+'   the user.
 ''===========================================================================================

@@ -70,5 +70,19 @@ End Class
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) Must be used with KeyPreview=True on the host form.
+' (1) Method Index _
+' - New(hostForm As Form): Initializes the ShortcutHandler and hooks
+'   into the KeyDown event of the specified form.
+' - ClearShortcuts(): Removes all registered keyboard shortcuts from the
+'   handler.
+' - Dispose(): Unhooks the KeyDown event handler from the host form to
+'   clean up resources.
+' - OnKeyDown(sender As Object, e As KeyEventArgs): Internal method that
+'   detects and triggers registered shortcuts when keys are pressed.
+' - RegisterShortcut(key As Keys, modifier As Keys, action As Action):
+'   Registers a new keyboard shortcut and binds it to a specified
+'   action.
+' - UnregisterShortcut(key As Keys, modifier As Keys): Removes a
+'   previously registered keyboard shortcut from the handler.
+' (2) Must be used with KeyPreview=True on the host form.
 ''===========================================================================================

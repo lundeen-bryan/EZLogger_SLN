@@ -307,5 +307,28 @@ End Namespace
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
-' (1) notes_here
+' (1) Method Index _
+' - HandleAddEditClick(view As PatientInfoView): Opens the UpdateInfo
+'   form to edit or add a document property using the selected data grid
+'   entry.
+' - HandleCloseClick(hostForm As Form): Closes the PatientInfoView form
+'   if it is not null.
+' - HandleCopyClick(view As PatientInfoView): Copies the selected
+'   document property value from the data grid to the clipboard.
+' - HandleDeleteAllClick(view As PatientInfoView): Deletes all custom
+'   document properties after user confirmation.
+' - HandleDeleteClick(view As PatientInfoView): Deletes the selected
+'   custom document property from the Word document.
+' - HandleFirstPageClick(): Navigates the Word document to the first
+'   page.
+' - HandleLastPageClick(): Navigates the Word document to the last page.
+' - HandleRefreshClick(view As PatientInfoView): Reloads and displays
+'   the current document’s custom properties in the data grid.
+' - HandleSavePropertyClick(view As UpdateInfoView): Saves or updates a
+'   custom property using values from the UpdateInfo form.
+' - HandleValidateClick(view As PatientInfoView): Validates required
+'   custom properties and refreshes the data grid.
+' - LoadCustomDocProperties(view As PatientInfoView): Loads and displays
+'   custom properties from the active Word document in the
+'   PatientInfoView.
 ''===========================================================================================
