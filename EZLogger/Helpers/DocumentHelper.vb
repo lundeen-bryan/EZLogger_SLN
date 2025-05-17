@@ -71,24 +71,6 @@ Public Module DocumentHelper
     End Sub
 
     ''' <summary>
-    ''' Recursively searches the visual tree to locate the first ScrollViewer inside a container.
-    ''' </summary>
-    ''' <param name="dep">The starting DependencyObject to search.</param>
-    ''' <returns>The ScrollViewer if found, otherwise Nothing.</returns>
-    Private Function FindScrollViewer(dep As DependencyObject) As ScrollViewer
-        If dep Is Nothing Then Return Nothing
-        If TypeOf dep Is ScrollViewer Then Return CType(dep, ScrollViewer)
-
-        For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(dep) - 1
-            Dim child = VisualTreeHelper.GetChild(dep, i)
-            Dim result = FindScrollViewer(child)
-            If result IsNot Nothing Then Return result
-        Next
-
-        Return Nothing
-    End Function
-
-    ''' <summary>
     ''' Safely returns the active Word document if available; otherwise returns Nothing.
     ''' Uses TryCast to avoid casting errors and logs any unexpected failures.
     ''' </summary>
@@ -188,17 +170,6 @@ Public Module DocumentHelper
         Catch ex As Exception
             MsgBoxHelper.Show("Error saving document as Word file: " & ex.Message)
         End Try
-    End Sub
-
-    ''' <summary>
-    ''' Attempts to scroll the first ScrollViewer found inside the given container to the top.
-    ''' </summary>
-    ''' <param name="container">The WPF control to search inside (typically a UserControl).</param>
-    Private Sub ScrollToTopOfView(container As DependencyObject)
-        Dim scrollViewer = FindScrollViewer(container)
-        If scrollViewer IsNot Nothing Then
-            scrollViewer.ScrollToTop()
-        End If
     End Sub
 
     ''' <summary>
