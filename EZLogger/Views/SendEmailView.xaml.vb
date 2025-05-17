@@ -40,6 +40,7 @@ Public Class SendEmailView
         Dim Filename As String = TextBoxFilename.Text
         Dim ReportType As String = GetSelectedReportType()
         _handler.HandleSendClick(filename:=Filename, lastname:=Lname, firstname:=Fname, reportType:=ReportType, hostForm:=_hostForm)
+        _hostForm.Close()
     End Sub
     Private Function GetSelectedReportType() As String
         If Radio1370b.IsChecked Then Return Radio1370b.Tag.ToString()
