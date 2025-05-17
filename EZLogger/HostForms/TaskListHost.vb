@@ -15,6 +15,7 @@ Public Class TaskListHost
         Me.MaximizeBox = False
         Me.ShowIcon = False
         Me.FormBorderStyle = FormBorderStyle.Sizable
+        Me.Padding = New Padding(0, 0, 0, 0) 'leave lower right space for corner
 
         ' Place form in top left of all windows
         FormPositionHelper.MoveFormToTopLeftOfAllScreens(Me, 10, 10)
