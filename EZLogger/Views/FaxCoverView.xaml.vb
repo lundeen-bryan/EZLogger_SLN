@@ -70,6 +70,7 @@ Public Class FaxCoverView
         Else
             MsgBoxHelper.Show("Invalid page number entries. Please check the form.")
         End If
+        TimerHelper.DisableTemporarily(ConvertPdfBtn, 2000) ' Disable for 2 seconds
     End Sub
 
     ''' <summary>
