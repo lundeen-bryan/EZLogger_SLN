@@ -5,78 +5,77 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EZLogger"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White" FontFamily="Candara" FontSize="18">
+             d:DesignHeight="450" d:DesignWidth="800" 
+             Background="White" FontFamily="Candara" FontSize="18">
+
+    <!-- Outer grid for layout + overlay -->
     <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- Button row -->
-            <RowDefinition Height="*"/>
-            <!-- Task list row -->
-        </Grid.RowDefinitions>
+        <!-- Main layout -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Top Row: Remove Completed Button and Label -->
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0">
-            <Button x:Name="RemoveCompletedBtn"
-              Content="_R"
-              Width="30" Height="30"
-              ToolTip="Remove Completed Tasks (Alt+R)"
-              Margin="0,0,5,0" Background="White">
-                <Button.Effect>
-                    <DropShadowEffect/>
-                </Button.Effect>
-            </Button>
-            <Label Content="Remove Completed Tasks"
-             VerticalAlignment="Center"/>
-        </StackPanel>
+            <!-- Top Row: Buttons -->
+            <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0">
+                <Button x:Name="RemoveCompletedBtn"
+                        Content="_R"
+                        Width="30" Height="30"
+                        ToolTip="Remove Completed Tasks (Alt+R)"
+                        Margin="0,0,5,0" Background="White">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
+                </Button>
+                <Label Content="Remove Completed Tasks"
+                       VerticalAlignment="Center"/>
+            </StackPanel>
 
-        <!-- Main Row: Task List DataGrid -->
-        <DataGrid x:Name="TasksDataGrid"
-              Grid.Row="1"
-              ItemsSource="{Binding Tasks}"
-              AutoGenerateColumns="False"
-              CanUserAddRows="True"
-              CanUserDeleteRows="True"
-              AlternatingRowBackground="LightGray"
-              HeadersVisibility="Column"
-              IsReadOnly="False"
-              SelectionMode="Single"
-              Margin="5"
-              AllowDrop="True"
-              ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <!-- Bottom Row: Task List -->
+            <DataGrid x:Name="TasksDataGrid"
+                      Grid.Row="1"
+                      ItemsSource="{Binding Tasks}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="True"
+                      CanUserDeleteRows="True"
+                      AlternatingRowBackground="LightGray"
+                      HeadersVisibility="Column"
+                      IsReadOnly="False"
+                      SelectionMode="Single"
+                      Margin="5"
+                      AllowDrop="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Done"
-                                Binding="{Binding IsCompleted}"
-                                SortMemberPath="IsCompleted"/>
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="Done" Binding="{Binding IsCompleted}" SortMemberPath="IsCompleted"/>
+                    <DataGridTextColumn Header="Date Added" Binding="{Binding DateAdded, StringFormat=d}" IsReadOnly="True" SortMemberPath="DateAdded"/>
+                    <DataGridTemplateColumn Header="Notes" SortMemberPath="Notes" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Notes}" TextWrapping="Wrap" MaxWidth="600" TextTrimming="CharacterEllipsis"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxLength="500"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 
-                <DataGridTextColumn Header="Date Added"
-                            Binding="{Binding DateAdded, StringFormat=d}"
-                            IsReadOnly="True"
-                            SortMemberPath="DateAdded"/>
-
-                <DataGridTemplateColumn Header="Notes" SortMemberPath="Notes" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Notes}" 
-                       TextWrapping="Wrap" 
-                       MaxWidth="600"
-                       TextTrimming="CharacterEllipsis" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                     TextWrapping="Wrap" 
-                     AcceptsReturn="True" 
-                     VerticalScrollBarVisibility="Auto"
-                     MaxLength="500"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-
-        </DataGrid>
-
+        <!-- Overlay ResizeGrip -->
+        <ResizeGrip HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,5,5"
+                    Width="25" Height="25"
+                    IsTabStop="False"
+                    Opacity="1"
+                    Cursor="SizeNWSE"
+                    Background="Transparent" />
     </Grid>
 </UserControl>
