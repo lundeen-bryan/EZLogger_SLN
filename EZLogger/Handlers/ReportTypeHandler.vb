@@ -35,6 +35,28 @@ Namespace Handlers
         End Sub
 
         '''<summary>
+        ''' Saves the selected report date to the current active Word Document's custom properties.
+        '''</summary>
+        '''<param name="reportDate">The selected report type from the combobox</param>
+        '''<remarks>
+        ''' This funciton checks if the report date is non-empty then
+        ''' confirms the presense of an active Word Document, and then
+        ''' writes the value to a custom property named "Report Date"
+        '''</remarks>
+        Public Sub HandleSelectedReportDate(reportDate As String)
+            If String.IsNullOrWhiteSpace(reportDate) Then
+                MsgBoxHelper.Show("Please select a report date before confirming.")
+            Else
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                If doc IsNot Nothing Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
+                Else
+                    MsgBoxHelper.Show("No active Word document found.")
+                End If
+            End If
+        End Sub
+
+        '''<summary>
         ''' Saves the selected report type to the current active Word Document's custom properties.
         '''</summary>
         '''<param name="reportType">The selected report type from the combobox</param>
@@ -46,16 +68,14 @@ Namespace Handlers
         Public Sub HandleSelectedReportType(reportType As String)
             If String.IsNullOrWhiteSpace(reportType) Then
                 MsgBoxHelper.Show("Please select a  report type before confirming.")
-                Exit Sub
-            End If
-
-            ' Write the selected report type to the custom property
-            Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
-            If doc IsNot Nothing Then
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", reportType)
-                ' MsgBoxHelper.Show("Report type has been saved to the document.")
             Else
-                MsgBoxHelper.Show("No active Word document found.")
+                ' Write the selected report type to the custom property
+                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
+                If doc IsNot Nothing Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Type", reportType)
+                Else
+                    MsgBoxHelper.Show("No active Word document found.")
+                End If
             End If
         End Sub
 
@@ -303,14 +323,11 @@ Namespace Handlers
             End If
 
             HandleSelectedReportType(selectedReportType)
+            '^--Saves the selected report type to Word doc properties
 
-            ' Save the selected report date to Word doc properties
-            If Not String.IsNullOrWhiteSpace(reportDate) Then
-                Dim doc As Word.Document = DocumentHelper.GetActiveWordDocument()
-                If doc IsNot Nothing Then
-                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Date", reportDate)
-                End If
-            End If
+            HandleSelectedReportDate(reportDate)
+            '^--Saves the selected report date to Word doc properties
+
 
             ' === Continue with due date logic ===
             Dim typesNeedingDueDates As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
@@ -349,6 +366,8 @@ End Namespace
 '   configuration file for use in ComboBoxes.
 ' - HandleCloseClick(hostForm As Form): Closes the ReportTypeView form
 '   if it is not null.
+' - HandleSelectedReportDate(reportDate As String): Saves the selected
+'   report type to the Word document's custom properties.
 ' - HandleSelectedReportType(reportType As String): Saves the selected
 '   report type to the Word document's custom properties.
 ' - HasEarlyNinetyDayFlag(): Returns True if the document property
