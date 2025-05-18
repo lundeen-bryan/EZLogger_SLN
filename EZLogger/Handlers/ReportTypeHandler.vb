@@ -310,41 +310,96 @@ Namespace Handlers
         End Function
 
         ''' <summary>
-        ''' Handles the click event for the "Report Type Selected" button.
+        ''' Handles the process of setting extension or renewal due dates for the given Word document and report type.
         ''' </summary>
-        ''' <param name="hostForm">The parent form that hosts the button, which will be closed after the action is performed.</param>
+        ''' <param name="doc">The active Word document to update.</param>
+        ''' <param name="reportType">The selected report type, used to determine the due date calculation logic.</param>
         ''' <remarks>
-        ''' This method launches the DueDates1370View and closes the provided host form.
+        ''' Prompts the user to confirm or enter an extension due date, validates the input, and writes the
+        ''' "CurrentDueDate" and "NextDueDate" custom properties to the document. The next due date is set to
+        ''' one year after the entered date, or two years if the report type is "1026.5(B)(1)".
+        ''' Displays error messages if the expiration date is missing/invalid or if the user input is not a valid date.
         ''' </remarks>
-        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, reportDate As String, hostForm As Form)
-            If String.IsNullOrWhiteSpace(selectedReportType) Then
-                MsgBoxHelper.Show("Please select a report type before continuing.")
+        Private Sub HandleExtensionDueDate(doc As Word.Document, reportType As String)
+            Dim expirationDateStr As String = DocumentPropertyHelper.GetPropertyValue(doc, "Expiration")
+            Dim expirationDate As Date
+
+            If Not Date.TryParse(expirationDateStr, expirationDate) Then
+                MsgBox("Missing or invalid expiration date in document properties.", MsgBoxStyle.Critical)
                 Exit Sub
             End If
 
-            HandleSelectedReportType(selectedReportType)
-            '^--Saves the selected report type to Word doc properties
+            Dim defaultDueDate As Date = expirationDate.AddMonths(-6)
+            If defaultDueDate < Now Then defaultDueDate = defaultDueDate.AddYears(2)
 
-            HandleSelectedReportDate(reportDate)
-            '^--Saves the selected report date to Word doc properties
+            Dim input = InputBox("Please enter/confirm the Extension Due Date:", "Extension/Renewal Due Date", defaultDueDate.ToShortDateString())
+            Dim userDueDate As Date
 
-
-            ' === Continue with due date logic ===
-            Dim typesNeedingDueDates As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase) From {
-                "1370(b)(1)",
-                "1372(a)(1)",
-                "1372(e)",
-                "UNLIKELY 1370(b)(1)",
-                "UNLIKELY 1370(c)(1)"
-            }
-
-            If typesNeedingDueDates.Contains(selectedReportType.Trim()) Then
-                LaunchDueDates1370View()
-            Else
-                LaunchDueDatesPprView()
+            If Not Date.TryParse(input, userDueDate) Then
+                MsgBox("Invalid date format. Please enter a valid date.", MsgBoxStyle.Critical)
+                Exit Sub
             End If
 
-            hostForm?.Close()
+            Dim nextDueDate As Date = If(
+                reportType.Equals("1026.5(B)(1)", StringComparison.OrdinalIgnoreCase),
+                userDueDate.AddYears(2),
+                userDueDate.AddYears(1)
+            )
+
+            DocumentPropertyHelper.WriteCustomProperty(doc, "CurrentDueDate", userDueDate.ToShortDateString())
+            DocumentPropertyHelper.WriteCustomProperty(doc, "NextDueDate", nextDueDate.ToShortDateString())
+
+            MsgBox("Due dates saved successfully.")
+        End Sub
+
+        ''' <summary>
+        ''' Handles the click event for the "Report Type Selected" button.
+        ''' </summary>
+        ''' <param name="hostForm">The parent form that hosts the button, which will be closed after the action is performed.</param>
+        Public Sub ReportTypeSelectedBtnClick(selectedReportType As String, reportDate As String, hostForm As Form)
+            '^--If the report type or date are null or white space then we need to get that before proceeding
+
+            If String.IsNullOrWhiteSpace(selectedReportType) Then
+                MsgBoxHelper.Show("Please select a report type before continuing.")
+            ElseIf String.IsNullOrWhiteSpace(reportDate) Then
+                MsgBoxHelper.Show("Please select a report date, or the initial date of this report, before continuing.")
+            Else
+                HandleSelectedReportType(selectedReportType)
+                '^--Save the report type in custom doc properties
+                HandleSelectedReportDate(reportDate)
+                '^--Save the report date in custom doc properties
+
+                Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+
+                Select Case selectedReportType.Trim().ToUpperInvariant()
+
+                    Case "PPR", "MDSO", "COT", "1026.2(L)", "1026.2(B)", "1026(C)", "IMD"
+                        If selectedReportType.Equals("1026(C)", StringComparison.OrdinalIgnoreCase) Then
+                            MsgBoxHelper.Show(
+                                "A 1026(c) is handled the same way as a COT is handled." & vbCrLf & vbCrLf &
+                                "Select the due date as tomorrow followed by 1-year from now as the next due. "
+                            )
+                        End If
+
+                        If selectedReportType.Equals("COT", StringComparison.OrdinalIgnoreCase) Then
+                            Dim cotOpinion As String = InputBox("What is the COT opinion?", "COT Opinion", "not COT")
+                            ' TODO: Store cotOpinion if needed
+                        End If
+
+                        LaunchDueDatesPprView()
+
+                    Case "1370(B)(1)", "1372(A)(1)", "1372(E)", "UNLIKELY 1370(B)(1)", "UNLIKELY 1370(C)(1)"
+                        LaunchDueDates1370View()
+
+                    Case "1026.5(B)(1)", "2972"
+                        HandleExtensionDueDate(wordDoc, selectedReportType)
+
+                    Case Else
+                        MsgBoxHelper.Show("The selected report type does not have a defined due date process. Please check configuration.")
+                End Select
+
+            End If
+
         End Sub
 
     End Class
