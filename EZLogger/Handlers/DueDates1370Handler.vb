@@ -9,27 +9,27 @@ Namespace Handlers
     Public Class DueDates1370Handler
 
         ''' <summary>
-        ''' Handles the acceptance of the first due date for a 1370 report.
+        ''' Processes the user's selection of the first due date for a 1370 report.
         ''' </summary>
-        ''' <param name="view">The DueDates1370View instance containing the UI elements and user selections.</param>
+        ''' <param name="view">The <see cref="DueDates1370View"/> containing UI elements and selections.</param>
         ''' <remarks>
-        ''' This function performs the following actions:
-        ''' 1. Retrieves the active Word document.
-        ''' 2. Determines the selected due date cycle from radio buttons.
-        ''' 3. Sets the Report Cycle property in the document.
-        ''' 4. Parses and validates the current due date.
-        ''' 5. Calculates the next due date based on the selected cycle.
-        ''' 6. Writes current and next due dates to document properties.
+        ''' Performs the following steps:
+        ''' 1. Retrieves the active <c>Microsoft.Office.Interop.Word.Document</c>.
+        ''' 2. Identifies the selected due date cycle based on the selected radio button.
+        ''' 3. Writes the selected report cycle to a custom document property.
+        ''' 4. Parses and validates the selected due date.
+        ''' 5. Calculates the next due date based on predefined intervals.
+        ''' 6. Writes both current and next due dates to document properties.
         ''' 7. Displays a confirmation message to the user.
         ''' </remarks>
         Public Sub HandleAcceptIstDueDate(view As DueDates1370View)
-            ' Get active Word document
-            Dim doc As Document = DocumentHelper.GetActiveWordDocument()
+            Dim success As Boolean = True
+            Dim doc As Microsoft.Office.Interop.Word.Document = DocumentHelper.GetActiveWordDocument()
 
-            ' Determine which radio button is selected
             Dim selectedLabel As System.Windows.Controls.Label = Nothing
             Dim reportCycle As String = Nothing
 
+            ' === Step 1: Determine selected report cycle ===
             If view.NinetyDayRdo.IsChecked Then
                 selectedLabel = view.NinetyDayLbl
                 reportCycle = view.NinetyDayRdo.Tag?.ToString()
@@ -44,49 +44,50 @@ Namespace Handlers
                 reportCycle = view.TwentyOneMoRdo.Tag?.ToString()
             Else
                 MsgBoxHelper.Show("You must select a due date cycle before continuing.")
-                Exit Sub
+                success = False
             End If
 
-            ' Set Report Cycle property
-            If Not String.IsNullOrWhiteSpace(reportCycle) Then
-                DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
-            End If
-
-            ' Parse selected label content as current due date
+            ' === Step 2: Parse selected label into a valid date ===
             Dim currentDueDate As Date
-            If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
-                MsgBoxHelper.Show("The selected due date is invalid or missing.")
-                Exit Sub
+            If success Then
+                If Not Date.TryParse(selectedLabel.Content?.ToString(), currentDueDate) Then
+                    MsgBoxHelper.Show("The selected due date is invalid or missing.")
+                    success = False
+                End If
             End If
 
-            ' Determine next label date (if available)
-            Dim nextLabelDate As Date = currentDueDate.AddMonths(6) ' fallback default
+            ' === Step 3: Determine next label date (optional) ===
+            Dim nextDueDate As Date = currentDueDate.AddMonths(6)
+            If success Then
+                Dim nextLabelText As String = Nothing
+                If selectedLabel Is view.NinetyDayLbl Then
+                    nextLabelText = view.NineMoLbl.Content?.ToString()
+                ElseIf selectedLabel Is view.NineMoLbl Then
+                    nextLabelText = view.FifteenMoLbl.Content?.ToString()
+                ElseIf selectedLabel Is view.FifteenMoLbl Then
+                    nextLabelText = view.TwentyOneMoLbl.Content?.ToString()
+                End If
 
-            Dim nextLabelText As String = Nothing
-            If selectedLabel Is view.NinetyDayLbl Then
-                nextLabelText = view.NineMoLbl.Content?.ToString()
-            ElseIf selectedLabel Is view.NineMoLbl Then
-                nextLabelText = view.FifteenMoLbl.Content?.ToString()
-            ElseIf selectedLabel Is view.FifteenMoLbl Then
-                nextLabelText = view.TwentyOneMoLbl.Content?.ToString()
-            End If
-
-            If Not String.IsNullOrWhiteSpace(nextLabelText) Then
-                Dim parsedNextLabel As Date
-                If Date.TryParse(nextLabelText, parsedNextLabel) Then
-                    ' Choose whichever is earlier: nextLabel OR +6 months
-                    If parsedNextLabel < nextLabelDate Then
-                        nextLabelDate = parsedNextLabel
+                If Not String.IsNullOrWhiteSpace(nextLabelText) Then
+                    Dim parsedNextLabel As Date
+                    If Date.TryParse(nextLabelText, parsedNextLabel) Then
+                        If parsedNextLabel < nextDueDate Then
+                            nextDueDate = parsedNextLabel
+                        End If
                     End If
                 End If
             End If
 
-            ' Write all document properties
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
-            DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextLabelDate.ToString("MM/dd/yyyy"))
+            ' === Step 4: Write document properties and notify user ===
+            If success Then
+                If Not String.IsNullOrWhiteSpace(reportCycle) Then
+                    DocumentPropertyHelper.WriteCustomProperty(doc, "Report Cycle", reportCycle)
+                End If
 
-
-            MsgBoxHelper.Show("Report cycle and due dates have been saved.")
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Due Date", currentDueDate.ToString("MM/dd/yyyy"))
+                DocumentPropertyHelper.WriteCustomProperty(doc, "Next Due", nextDueDate.ToString("MM/dd/yyyy"))
+                MsgBoxHelper.Show("Report cycle and due dates have been saved.")
+            End If
         End Sub
 
         ''' <summary>
