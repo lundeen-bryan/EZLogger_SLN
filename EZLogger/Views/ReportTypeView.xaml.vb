@@ -37,6 +37,7 @@ Public Class ReportTypeView
         Dim selectedReportDate As String = GetSelectedReportDate()
         '^--Get the selected date from the date picker
         _handler.ReportTypeSelectedBtnClick(selectedReportType, selectedReportDate, _hostForm)
+        _hostForm?.Close()
     End Sub
 
     Public Function GetSelectedReportDate() As String
