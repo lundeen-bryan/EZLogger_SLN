@@ -93,12 +93,12 @@ Public Class SendEmailHandler
                 .Display()
             End With
 
-            ' Close the SendEmailView after the email is generated
-            hostForm?.Close()
-
         Catch ex As SystemException
             MessageBox.Show("Error preparing email: " & ex.Message)
         End Try
+
+        ' Close the SendEmailView after 
+        hostForm?.Close()
     End Sub
 
     ''' <summary>
