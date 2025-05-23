@@ -63,7 +63,7 @@ Namespace Handlers
                         Dim sheet = CoverTemplateMap.GetMailMergeSheet(letter)
 
                         ' 6a) Connect to Excel
-                        MailMergeHelper.ConnectToExcelDataSource(coverDoc, dataPath, sheet)
+                        MailMergeHelper.ConnectToExcelDataSource(coverDoc, dataPath, sheet, info.County)
 
                         ' 6b) Select correct record by county
                         MailMergeHelper.SelectRecordByCounty(coverDoc, info.County)
