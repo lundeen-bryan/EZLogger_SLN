@@ -51,30 +51,18 @@ Namespace Helpers
 
         ''' <summary>
         ''' Opens an Excel file as the mail-merge data source, pointing at the specified worksheet.
-        ''' Optionally filters the results by a County name using a SQL WHERE clause.
         ''' </summary>
         ''' <param name="doc">The Word document to connect.</param>
         ''' <param name="excelPath">Full path to the Excel file.</param>
         ''' <param name="sheetName">Name of the worksheet to use (without $).</param>
-        ''' <param name="countyFilter">Optional county name to filter for. If blank, all records are returned.</param>
-        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, sheetName As String, Optional countyFilter As String = "")
+        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, sheetName As String)
             If doc Is Nothing OrElse String.IsNullOrEmpty(excelPath) OrElse Not File.Exists(excelPath) Then Exit Sub
 
             Dim tableRef = $"[{sheetName}$]"
-            Dim sql As String
-
-            ' Build SQL query with optional WHERE clause
-            If String.IsNullOrWhiteSpace(countyFilter) Then
-                sql = $"SELECT * FROM {tableRef}"
-            Else
-                Dim safeCounty = countyFilter.Replace("'", "''") ' Escape single quotes
-                sql = $"SELECT * FROM {tableRef} WHERE [County] = '{safeCounty}'"
-            End If
 
             Try
                 With doc.MailMerge
                     .MainDocumentType = WdMailMergeMainDocType.wdFormLetters
-
                     .OpenDataSource(
                         Name:=excelPath,
                         ConfirmConversions:=False,
@@ -85,12 +73,11 @@ Namespace Helpers
                         Format:=WdOpenFormat.wdOpenFormatAuto,
                         Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" &
                                    "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""",
-                        SQLStatement:=sql
+                        SQLStatement:="SELECT * FROM " & tableRef
                     )
                 End With
-
             Catch ex As Exception
-                ' Optional: log error
+                ' Optional: log the exception
             End Try
         End Sub
 
