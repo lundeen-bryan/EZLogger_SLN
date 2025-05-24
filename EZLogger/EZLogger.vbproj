@@ -38,7 +38,7 @@
     <PublishUrl>C:\Users\lunde\repos\cs\ezlogger\</PublishUrl>
     <InstallUrl>\\Users\lunde\repos\cs\ezlogger\ClickOnceTest\</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.11</ApplicationVersion>
+    <ApplicationVersion>1.0.0.13</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -410,12 +410,6 @@
     <Compile Include="Handlers\PrcHandler.vb" />
     <Compile Include="Handlers\ReportTypeHandler.vb" />
     <Compile Include="Handlers\ReportWizardHandler.vb" />
-    <Compile Include="EZLoggerRibbon.Designer.vb">
-      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
-    </Compile>
-    <Compile Include="EZLoggerRibbon.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Handlers\SaveFileHandler.vb" />
     <Compile Include="Handlers\SendEmailHandler.vb" />
     <Compile Include="Handlers\ShortcutHandler.vb" />
@@ -577,6 +571,11 @@
     <Compile Include="Models\TaskCollection.vb" />
     <Compile Include="Models\TaskItem.vb" />
     <Compile Include="Models\TCARRecord.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReportWizardHost.vb" />
     <Compile Include="Ribbon.vb">
       <XmlRibbon>true</XmlRibbon>
@@ -691,7 +690,6 @@
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="EZLogger_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.vb</DependentUpon>
@@ -700,9 +698,6 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <EmbeddedResource Include="EZLoggerRibbon.resx">
-      <DependentUpon>EZLoggerRibbon.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HostForms\SaveFileHost.resx">
       <DependentUpon>SaveFileHost.vb</DependentUpon>
     </EmbeddedResource>
@@ -720,15 +715,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
@@ -837,40 +827,7 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Wizard1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Wizard2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\database.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\floppy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pdf.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pdf1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\keyboard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\about.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sharepoint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\typo.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -924,8 +881,6 @@
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Notes.txt" />
     <EmbeddedResource Include="Ribbon.xml" />
-    <Resource Include="Resources\trash_icon.png" />
-    <Resource Include="Resources\mouse_icon.png" />
     <Resource Include="Resources\logo.png" />
     <Resource Include="Resources\EZLoggerLogo128.png" />
     <Resource Include="Resources\EZLoggerLogo32.png" />
@@ -933,8 +888,6 @@
     <Resource Include="Resources\EZLoggerIcon.png" />
     <Resource Include="Resources\EZLoggerLogo.png" />
     <None Include="Resources\Image1.bmp" />
-    <None Include="Resources\folder.png" />
-    <None Include="Resources\email.png" />
     <Resource Include="Resources\Letter_A.png" />
     <Resource Include="Resources\Letter_B.png" />
     <Resource Include="Resources\number_1.png" />

@@ -203,7 +203,7 @@ Public Class EZLoggerRibbonXml
 
     Public Function GetTypoButtonImage(control As Office.IRibbonControl) As stdole.IPictureDisp
         ' Load the typo.png from project Resources
-        Dim bmp As Bitmap = My.Resources.typo
+        Dim bmp As Bitmap = My.Resources.logo
 
         ' Convert it to IPictureDisp
         Return ConvertImageToPictureDisp(bmp)
