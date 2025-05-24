@@ -98,7 +98,7 @@ Public Class SendEmailHandler
         End Try
 
         ' Close the SendEmailView after 
-        hostForm?.Close()
+        'hostForm?.Close()
     End Sub
 
     ''' <summary>

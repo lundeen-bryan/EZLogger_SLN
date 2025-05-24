@@ -3,7 +3,7 @@
 Public Class SendEmailHost
 
     Private Sub SendEmailHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim view As New SendEmailView()
+        Dim view As New SendEmailView(Me)
         ElementHost1.Child = view
 
         ' Set form size and title
