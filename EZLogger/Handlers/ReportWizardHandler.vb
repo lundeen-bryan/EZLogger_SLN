@@ -34,9 +34,12 @@ Namespace Handlers
         ''' <param name="panel">The ReportWizardPanel that owns the controls.</param>
         Public Sub ShowBtnAMessage(panel As ReportWizardPanel)
 
-            Dim reader As New WordFooterReader()
+            If Not ConfirmDocxFormatOrConvert() Then
+                Return
+            Else
+                Dim reader As New WordFooterReader()
 
-            reader.BeginSearchForPatientNumber(
+                reader.BeginSearchForPatientNumber(
                 onFound:=Sub(patientNumber)
                              panel.PatientNumberTxt.Text = patientNumber
                              panel.Btn_A_Checkbox.IsChecked = True
@@ -45,6 +48,7 @@ Namespace Handlers
                                 MsgBoxHelper.Show("No patient number found in the document footer.")
                             End Sub
             )
+            End If
 
         End Sub
 

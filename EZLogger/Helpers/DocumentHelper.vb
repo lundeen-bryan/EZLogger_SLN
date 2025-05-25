@@ -71,6 +71,50 @@ Public Module DocumentHelper
     End Sub
 
     ''' <summary>
+    ''' Ensures the active document is in .docx format. Prompts to convert if it's a legacy .doc.
+    ''' Returns True if the document is ready (.docx), False if the caller should exit.
+    ''' </summary>
+    Public Function ConfirmDocxFormatOrConvert() As Boolean
+        Dim wordDoc As Word.Document = DocumentHelper.GetActiveWordDocument()
+        If wordDoc Is Nothing Then
+            System.Windows.MessageBox.Show("No active document found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            Return False
+        End If
+
+        If wordDoc.SaveFormat <> Word.WdSaveFormat.wdFormatDocument Then
+            Return True ' Already .docx
+        End If
+
+        Dim result = System.Windows.MessageBox.Show(
+                "This document is in the older .doc format. Some features may not work correctly." & vbCrLf & vbCrLf &
+                "Would you like to convert it to the newer .docx format now?",
+                "Convert to .docx",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            )
+
+        If result = MessageBoxResult.Yes Then
+            Try
+                Dim newPath = System.IO.Path.ChangeExtension(wordDoc.FullName, ".docx")
+                wordDoc.SaveAs2(FileName:=newPath, FileFormat:=Word.WdSaveFormat.wdFormatXMLDocument)
+                wordDoc.Close(SaveChanges:=False)
+
+                Dim reopenedDoc = WordAppHelper.GetWordApp().Documents.Open(newPath)
+                Dim vstoDoc = Globals.Factory.GetVstoObject(reopenedDoc)
+
+                System.Windows.MessageBox.Show("The document has been converted to .docx. Please try your action again.", "Conversion Complete")
+            Catch ex As Exception
+                System.Windows.MessageBox.Show("An error occurred during conversion: " & ex.Message, "Conversion Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            End Try
+
+            Return False ' Caller should exit and retry
+        Else
+            System.Windows.MessageBox.Show("Some features may not function correctly until the file is converted to .docx.", "Compatibility Warning")
+            Return False
+        End If
+    End Function
+
+    ''' <summary>
     ''' Safely returns the active Word document if available; otherwise returns Nothing.
     ''' Uses TryCast to avoid casting errors and logs any unexpected failures.
     ''' </summary>
