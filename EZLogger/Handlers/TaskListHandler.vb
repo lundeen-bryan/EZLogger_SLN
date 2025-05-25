@@ -49,6 +49,23 @@ Public Class TaskListHandler
     End Sub
 
     ''' <summary>
+    ''' Removes all tasks from the task list, regardless of completion.
+    ''' </summary>
+    Public Sub DeleteAllTasks()
+        If Tasks.Count = 0 Then Return
+
+        Dim result = System.Windows.MessageBox.Show(
+            "Are you sure you want to delete all tasks?" _
+            , "Confirm Delete All" _
+            , System.Windows.MessageBoxButton.YesNo _
+            , System.Windows.MessageBoxImage.Warning)
+        If result = System.Windows.MessageBoxResult.Yes Then
+            Tasks.Clear()
+            SaveAll()
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Handles changes in the Tasks collection, specifically when new items are added.
     ''' </summary>
     ''' <param name="sender">The source of the collection changed event.</param>
@@ -121,4 +138,5 @@ End Class
 '   and saves the updated list.
 ' - SaveAll(): Persists the current task list to `Tasks.xml` using
 '   `TasksIO.SaveTasks()`.
+' - DeleteAllTasks(): Prompts for confirmation and clears all tasks from the list.
 ''===========================================================================================

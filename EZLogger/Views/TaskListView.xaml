@@ -21,16 +21,30 @@
             <!-- Top Row: Buttons -->
             <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0">
                 <Button x:Name="RemoveCompletedBtn"
-                        Content="_R"
-                        Width="30" Height="30"
-                        ToolTip="Remove Completed Tasks (Alt+R)"
-                        Margin="0,0,5,0" Background="White">
+            Content="_R"
+            Width="30" Height="30"
+            ToolTip="Remove Completed Tasks (Alt+R)"
+            Margin="0,0,5,0" Background="White">
                     <Button.Effect>
                         <DropShadowEffect/>
                     </Button.Effect>
                 </Button>
                 <Label Content="Remove Completed Tasks"
-                       VerticalAlignment="Center"/>
+           VerticalAlignment="Center"
+           Margin="0,0,10,0"/>
+
+                <!-- New Delete All Button -->
+                <Button x:Name="DeleteAllBtn"
+            Content="_D"
+            Width="30" Height="30"
+            ToolTip="Delete All Tasks (Alt+D)"
+            Margin="0,0,5,0" Background="White">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
+                </Button>
+                <Label Content="Delete All Tasks"
+           VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Bottom Row: Task List -->

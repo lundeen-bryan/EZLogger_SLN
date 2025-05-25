@@ -19,6 +19,11 @@ Partial Public Class TaskListView
         AddHandler TasksDataGrid.PreviewMouseLeftButtonDown, AddressOf OnPreviewMouseLeftButtonDown
         AddHandler TasksDataGrid.MouseMove, AddressOf OnMouseMove
         AddHandler TasksDataGrid.Drop, AddressOf OnDrop
+        AddHandler DeleteAllBtn.Click, AddressOf OnDeleteAll
+    End Sub
+
+    Private Sub OnDeleteAll(sender As Object, e As RoutedEventArgs)
+        _handler.DeleteAllTasks()
     End Sub
 
     Private Sub OnRemoveCompleted(sender As Object, e As System.Windows.RoutedEventArgs)
