@@ -68,13 +68,25 @@
                     <DataGridTemplateColumn Header="Notes" SortMemberPath="Notes" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Notes}" TextWrapping="Wrap" MaxWidth="600" TextTrimming="CharacterEllipsis"/>
+                                <Grid>
+                                    <TextBlock Text="{Binding Notes}" 
+                           TextWrapping="Wrap" 
+                           TextTrimming="CharacterEllipsis"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           TextAlignment="Left"/>
+                                </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
                                 <TextBox Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxLength="500"/>
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True" 
+                     VerticalScrollBarVisibility="Auto" 
+                     MaxLength="500"
+                     HorizontalAlignment="Stretch"
+                     TextAlignment="Left"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
