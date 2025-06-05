@@ -55,27 +55,33 @@ Namespace Helpers
         ''' <param name="doc">The Word document to connect.</param>
         ''' <param name="excelPath">Full path to the Excel file.</param>
         ''' <param name="sheetName">Name of the worksheet to use (without $).</param>
-        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, sheetName As String)
+        Public Sub ConnectToExcelDataSource(doc As Document, excelPath As String, sheetName As String, Optional countyName As String = Nothing)
             If doc Is Nothing OrElse String.IsNullOrEmpty(excelPath) OrElse Not File.Exists(excelPath) Then Exit Sub
 
             Dim tableRef = $"[{sheetName}$]"
 
             Try
+                Dim sql = "SELECT * FROM " & tableRef
+                If Not String.IsNullOrEmpty(countyName) Then
+                    sql &= " WHERE [County] = '" & countyName.Replace("'", "''") & "'"
+                End If
+
                 With doc.MailMerge
                     .MainDocumentType = WdMailMergeMainDocType.wdFormLetters
                     .OpenDataSource(
-                        Name:=excelPath,
-                        ConfirmConversions:=False,
-                        ReadOnly:=True,
-                        LinkToSource:=True,
-                        AddToRecentFiles:=False,
-                        Revert:=False,
-                        Format:=WdOpenFormat.wdOpenFormatAuto,
-                        Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" &
-                                   "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""",
-                        SQLStatement:="SELECT * FROM " & tableRef
-                    )
+                Name:=excelPath,
+                ConfirmConversions:=False,
+                ReadOnly:=True,
+                LinkToSource:=True,
+                AddToRecentFiles:=False,
+                Revert:=False,
+                Format:=WdOpenFormat.wdOpenFormatAuto,
+                Connection:="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelPath & ";" &
+                           "Extended Properties=""Excel 12.0;HDR=YES;IMEX=1;""",
+                SQLStatement:=sql
+            )
                 End With
+
             Catch ex As Exception
                 ' Optional: log the exception
             End Try
