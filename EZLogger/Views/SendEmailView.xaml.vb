@@ -39,7 +39,6 @@ Public Class SendEmailView
         Dim Fname As String = Me.TextBoxFirstname.Text
         Dim Filename As String = TextBoxFilename.Text
         Dim ReportType As String = GetSelectedReportType()
-        MsgBox("Host form is: " & If(_hostForm?.Name, "Nothing"))
         _handler.HandleSendClick(filename:=Filename, lastname:=Lname, firstname:=Fname, reportType:=ReportType, hostForm:=_hostForm)
         _hostForm.Close()
     End Sub
