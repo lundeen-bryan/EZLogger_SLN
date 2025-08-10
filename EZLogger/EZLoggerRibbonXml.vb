@@ -27,6 +27,9 @@ Public Class EZLoggerRibbonXml
 
     Private ribbon As Office.IRibbonUI
 
+    ' Hidden by default; toggled when user clicks the "Show Tests" button
+    Private showTests As Boolean = False
+
     Public Sub New()
     End Sub
 
@@ -225,6 +228,22 @@ Public Class EZLoggerRibbonXml
         End Function
     End Class
 
+    ' Controls visibility of the Tests group
+    Public Function GetTestGroupVisible(control As Office.IRibbonControl) As Boolean
+        Return showTests
+    End Function
+
+    ' Show the "Show Tests" button only when the Tests group is hidden
+    Public Function GetShowTestsBtnVisible(control As Office.IRibbonControl) As Boolean
+        Return Not showTests
+    End Function
+
+    ' When user clicks "Show Tests", flip the flag and refresh those controls
+    Public Sub ShowTestsBtn_Click(control As Office.IRibbonControl)
+        showTests = True
+        ribbon?.InvalidateControl("TestGroup")
+        ribbon?.InvalidateControl("ShowTestsBtn")
+    End Sub
 
 #End Region
 

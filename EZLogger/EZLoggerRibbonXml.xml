@@ -20,6 +20,11 @@
                             onAction="AboutButton_Click"
                             label="About"
                             imageMso="RefreshStatus" />
+					<button id="ShowTestsBtn"
+							label="Show Testing Group"
+							onAction="ShowTestsBtn_Click"
+							getVisible="GetShowTestsBtnVisible"
+							imageMso="GroupBoxInsert"/>
                 </group>
                 <group id="WizardGroup"
                        label="Wizards">
@@ -81,7 +86,8 @@
 							size="large" />
                 </group>
                 <group id="TestGroup"
-                       label="Tests">
+                       label="Tests"
+					   getVisible="GetTestGroupVisible">
                     <button id="RandomPt"
                             onAction="RandomPatientNumberButton_Click"
                             label="Random Patient"
