@@ -157,7 +157,7 @@ Partial Public Class ReportWizardPanel
     Private Sub Btn_L_Click(sender As Object, e As RoutedEventArgs)
         TaskPaneHelper.SetTaskPane(Me)
         _handler.ShowBtnLMessage()
-        TimerHelper.DisableTemporarily(Btn_F, 2000) ' Disable for 2 seconds
+        TimerHelper.DisableTemporarily(Btn_L, 2000) ' Disable for 2 seconds
         Me?.MarkCheckboxAsDone("Btn_L")
     End Sub
 
