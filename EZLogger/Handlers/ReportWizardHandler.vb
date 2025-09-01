@@ -90,14 +90,18 @@ Namespace Handlers
                     patient.CourtNumber = courtNumber
                 End If
 
+                ' Age calculated using a separate helper
+                Dim age As String = AgeHelper.CalculateAge(Date.Parse(patient.DOB)).ToString()
+
                 ' Construct confirmation message
                 Dim message As String =
-            $"Full Name: {patient.PatientName}" & Environment.NewLine &
             $"Classification: {patient.Classification}" & Environment.NewLine &
-            $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
             $"County: {patient.County}" & Environment.NewLine &
-            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine &
-            If(Not String.IsNullOrEmpty(patient.CourtNumber), $"Court Number: {patient.CourtNumber}" & Environment.NewLine & Environment.NewLine, "") &
+            $"Full Name: {patient.PatientName}" & Environment.NewLine &
+            If(Not String.IsNullOrEmpty(patient.CourtNumber), $"Court Number: {patient.CourtNumber}" & Environment.NewLine, "") &
+            $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
+            $"Age: {age}" & Environment.NewLine &
+            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
             "Does this information match the report?"
 
                 ' Show custom confirmation box with Yes/No
