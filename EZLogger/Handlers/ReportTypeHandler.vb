@@ -192,7 +192,7 @@ Namespace Handlers
                     Dim parsedDate As Date
                     If Date.TryParse(commitmentRaw.ToString(), parsedDate) Then
                         view.CommitmentDateTxt.Text = parsedDate.ToString("MM/dd/yyyy")
-                        view.FirstDueDateTxt.Text = parsedDate.AddMonths(6).ToString("MM/dd/yyyy")
+                        view.FirstDueDateTxt.Text = parsedDate.AddMonths(12).ToString("MM/dd/yyyy")
                     End If
                 End If
             Catch ex As Exception
@@ -222,14 +222,14 @@ Namespace Handlers
                     Dim commitmentDate As Date
                     If Date.TryParse(commitmentRaw.ToString(), commitmentDate) Then
                         view.CommitmentDateTxt.Text = commitmentDate.ToString("MM/dd/yyyy")
-                        view.FirstDueDateTxt.Text = commitmentDate.AddMonths(6).ToString("MM/dd/yyyy")
+                        view.FirstDueDateTxt.Text = commitmentDate.AddMonths(12).ToString("MM/dd/yyyy")
 
                         ' === MOVE THESE HERE ===
                         ' Set CurrentDueDatePick and NextDueDatePick
                         Try
                             Dim currentYearDate As New Date(Date.Today.Year, commitmentDate.Month, commitmentDate.Day)
                             view.CurrentDueDatePick.SelectedDate = currentYearDate
-                            view.NextDueDatePick.SelectedDate = currentYearDate.AddMonths(6)
+                            view.NextDueDatePick.SelectedDate = currentYearDate.AddMonths(12)
                         Catch ex As Exception
                             view.CurrentDueDatePick.SelectedDate = Nothing
                             view.NextDueDatePick.SelectedDate = Nothing

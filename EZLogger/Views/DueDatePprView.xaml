@@ -63,7 +63,7 @@
                          Width="150" />
             </StackPanel>
             <TextBlock Grid.Column="1"
-                       Text="+ 6 months ="
+                       Text="+ 12 months ="
                        VerticalAlignment="Center"
                        Margin="10,30,10,10"
                        FontSize="16"
