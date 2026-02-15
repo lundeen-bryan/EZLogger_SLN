@@ -130,6 +130,7 @@ Public Module DatabaseHelper
             Using conn As New SqlConnection(connStr)
                 conn.Open()
 
+				' TODO: Add code to return if pt had early 90-Day using EZL_IST tbl
                 Dim query As String = "
                 SELECT
                     PatientNumber,
@@ -151,7 +152,6 @@ Public Module DatabaseHelper
                     Psychiatrist,
                     Evaluator,
                     Sex
-                    -- TODO: Add early_ninety_day later if/when EZL_IST table is migrated
                 FROM EZL
                 WHERE PatientNumber = @patientNumber;
             "
