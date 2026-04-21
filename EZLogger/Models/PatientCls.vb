@@ -40,6 +40,8 @@
 
     Public Property EarlyNinetyDay As Integer   ' Still valid
 
+    Public Property Completion90 As Date?  ' Date that 90-day was completed if early
+
     Public Property CourtNumber As String
 
     Public Property Sex As String

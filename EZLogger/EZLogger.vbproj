@@ -457,6 +457,7 @@
     <Compile Include="Helpers\ExportPdfHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
+    <Compile Include="Helpers\GetEarly90DayHelper.vb" />
     <Compile Include="Helpers\ListHelper.vb" />
     <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MailMergeHelper.vb" />
