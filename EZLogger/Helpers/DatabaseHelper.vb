@@ -114,6 +114,7 @@ Public Module DatabaseHelper
 
     ''' <summary>
     ''' Uses uspListEarly90DayReports to return completion of early 90-Day Reports
+    ''' Note this uses a DataTable approach whereas most of this project uses a DTO.
     ''' </summary>
     Public Function GetEarly90DayInfo(patientNumber As String) As PatientCls
         Dim patient As New PatientCls()
@@ -132,7 +133,7 @@ Public Module DatabaseHelper
             Using conn As New SqlConnection(connStr)
                 conn.Open()
 
-                Using cmd As New SqlCommand("uspListEarly90DayReports", conn)
+                Using cmd As New SqlCommand("uspGetEarly90DayInfo", conn)
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.Parameters.AddWithValue("@ptnum", patientNumber)
 
@@ -183,33 +184,7 @@ Public Module DatabaseHelper
             Using conn As New SqlConnection(connStr)
                 conn.Open()
 
-                Dim query As String = "
-                SELECT
-                    PatientNumber,
-                    FirstPatientNumber,
-                    CommitmentDate,
-                    AdmissionDate,
-                    Expiration,
-                    Dob,
-                    PatientName,
-                    Lname,
-                    Fname,
-                    Mname,
-                    BedStatus,  -- renamed from location
-                    Program,
-                    Unit,
-                    Classification,
-                    County,
-                    Language,
-                    Psychiatrist,
-                    Evaluator,
-                    Sex
-                    -- TODO: Add early_ninety_day later if/when EZL_IST table is migrated
-                FROM EZL
-                WHERE PatientNumber = @patientNumber;
-            "
-
-                Using cmd As New SqlCommand(query, conn)
+                Using cmd As New SqlCommand("uspGetPatientByNumber", conn)
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
                     Using reader As SqlDataReader = cmd.ExecuteReader()
