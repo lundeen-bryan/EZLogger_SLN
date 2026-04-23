@@ -250,13 +250,11 @@ Namespace Handlers
             Dim parsedDate As Date
 
             Dim early90str As String = doc.CustomDocumentProperties("Early90Day").Value.ToString
-            Dim early90datestr As String = doc.CustomDocumentProperties("Early90Date").Value.ToString
 
             If Not Date.TryParse(commitmentDateText, parsedDate) Then
                 Exit Sub ' If no valid date, just stop
             End If
 
-            Dim parsedEarlyDate As Date
             Dim early90DayValue As Integer = 0
             Dim baseDate As Date = parsedDate
             Dim ninetyDayDate As Date
@@ -264,8 +262,9 @@ Namespace Handlers
             If classification = "PC1370" Then
                 ' Fill extended date labels
                 If Integer.TryParse(early90str, early90DayValue) Then
-                    If early90DayValue = 1 AndAlso Date.TryParse(early90datestr, parsedEarlyDate) Then
-                        ninetyDayDate = parsedEarlyDate
+                    If early90DayValue = 1 Then
+                        Dim early90datestr As String = doc.CustomDocumentProperties("Early90Date").Value.ToString
+                        Date.TryParse(early90datestr, ninetyDayDate)
                     Else
                         ninetyDayDate = baseDate.AddDays(90)
                     End If

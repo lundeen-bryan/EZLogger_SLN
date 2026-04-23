@@ -35,10 +35,10 @@
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\lunde\repos\cs\ezlogger\</PublishUrl>
+    <PublishUrl>C:\Users\blundeen\OneDrive - Department of State Hospitals\Attachments\EZLogger-Install\</PublishUrl>
     <InstallUrl>\\Users\lunde\repos\cs\ezlogger\ClickOnceTest\</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.19</ApplicationVersion>
+    <ApplicationVersion>1.0.0.20</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
