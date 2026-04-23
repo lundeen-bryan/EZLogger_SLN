@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning][Semantic Versioning].
 - Function that writes to excel
 - Buttons to add to ribbon: 100% zoom, zoom One Page, Advanced Document Properties, Sharepoint Properties, Accept all changes and stop tracking, Print preview, Open MS Excel, paste plain format
 
+## [1.0.0.20] - 2026-04-23
+
+### Added
+
+- new ability to check if a 90-Day 1370 report was early and if so, adjust subsequent due dates.
+
 ## [1.0.0.2] - 2025-05-08
 
 ### Added
