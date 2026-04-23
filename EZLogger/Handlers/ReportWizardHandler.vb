@@ -84,56 +84,60 @@ Namespace Handlers
 
             If patient IsNot Nothing Then
 
-                ' Retrieve court number via stored procedure and assign to patient object
-                Dim courtNumber As String = DatabaseHelper.GetCourtNumberByPatientNumber(patientNumber)
-                If Not String.IsNullOrWhiteSpace(courtNumber) Then
-                    patient.CourtNumber = courtNumber
+                If patient.Classification = "PC1370" Then
+                    PopulateEarly90DayInfo(patient)
                 End If
 
-                ' Age calculated using a separate helper
-                Dim age As String = AgeHelper.CalculateAge(Date.Parse(patient.DOB)).ToString()
+                ' Retrieve court number via stored procedure and assign to patient object
+                Dim courtNumber As String = DatabaseHelper.GetCourtNumberByPatientNumber(patientNumber)
+                    If Not String.IsNullOrWhiteSpace(courtNumber) Then
+                        patient.CourtNumber = courtNumber
+                    End If
 
-                ' Construct confirmation message
-                Dim message As String =
-            $"Classification: {patient.Classification}" & Environment.NewLine &
-            $"County: {patient.County}" & Environment.NewLine &
-            $"Full Name: {patient.PatientName}" & Environment.NewLine &
-            If(Not String.IsNullOrEmpty(patient.CourtNumber), $"Court Number: {patient.CourtNumber}" & Environment.NewLine, "") &
-            $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
-            $"Age: {age}" & Environment.NewLine &
-            $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
-            "Does this information match the report?"
+                    ' Age calculated using a separate helper
+                    Dim age As String = AgeHelper.CalculateAge(Date.Parse(patient.DOB)).ToString()
 
-                ' Show custom confirmation box with Yes/No
-                Dim config As New MessageBoxConfig With {
-                    .Message = message,
-                    .ShowYes = True,
-                    .ShowNo = True,
-                    .ShowOk = False
-                }
+                    ' Construct confirmation message
+                    Dim message As String =
+                $"Classification: {patient.Classification}" & Environment.NewLine &
+                $"County: {patient.County}" & Environment.NewLine &
+                $"Full Name: {patient.PatientName}" & Environment.NewLine &
+                If(Not String.IsNullOrEmpty(patient.CourtNumber), $"Court Number: {patient.CourtNumber}" & Environment.NewLine, "") &
+                $"Expiration: {DateTime.Parse(patient.Expiration).ToString("MM/dd/yyyy")}" & Environment.NewLine &
+                $"Age: {age}" & Environment.NewLine &
+                $"DOB: {DateTime.Parse(patient.DOB).ToString("MM/dd/yyyy")}" & Environment.NewLine & Environment.NewLine &
+                "Does this information match the report?"
 
-                MsgBoxHelper.Show(config, Sub(result)
-                                              If result = CustomMsgBoxResult.Yes Then
-                                                  ' Write patient data and sender to document properties
-                                                  DocumentPropertyHelper.WriteDataToDocProperties(patient)
-                                                  SenderHelper.WriteProcessedBy(DocumentHelper.GetActiveWordDocument())
-                                                  DocumentPropertyHelper.WriteCustomProperty(wordApp?.ActiveDocument, "Logged", Date.Today())
+                    ' Show custom confirmation box with Yes/No
+                    Dim config As New MessageBoxConfig With {
+                        .Message = message,
+                        .ShowYes = True,
+                        .ShowNo = True,
+                        .ShowOk = False
+                    }
 
-                                                  ' Refresh UI
-                                                  RefreshPatientNameLabel(panel)
-                                                  panel.Btn_B_Checkbox.IsChecked = True
+                    MsgBoxHelper.Show(config, Sub(result)
+                                                  If result = CustomMsgBoxResult.Yes Then
+                                                      ' Write patient data and sender to document properties
+                                                      DocumentPropertyHelper.WriteDataToDocProperties(patient)
+                                                      SenderHelper.WriteProcessedBy(DocumentHelper.GetActiveWordDocument())
+                                                      DocumentPropertyHelper.WriteCustomProperty(wordApp?.ActiveDocument, "Logged", Date.Today())
 
-                                                  ' Show any configured alerts
-                                                  AlertHelper.ShowCountyAlertIfExists(patient.County)
-                                                  AlertHelper.ShowPatientAlertIfExists(FormatPatientNumber(patient.PatientNumber))
+                                                      ' Refresh UI
+                                                      RefreshPatientNameLabel(panel)
+                                                      panel.Btn_B_Checkbox.IsChecked = True
 
-                                              Else
-                                                  MsgBoxHelper.Show("Please check the patient number and try again.")
-                                              End If
-                                          End Sub)
+                                                      ' Show any configured alerts
+                                                      AlertHelper.ShowCountyAlertIfExists(patient.County)
+                                                      AlertHelper.ShowPatientAlertIfExists(FormatPatientNumber(patient.PatientNumber))
 
-            Else
-                MsgBoxHelper.Show("No patient record found.")
+                                                  Else
+                                                      MsgBoxHelper.Show("Please check the patient number and try again.")
+                                                  End If
+                                              End Sub)
+
+                Else
+                    MsgBoxHelper.Show("No patient record found.")
             End If
 
         End Sub

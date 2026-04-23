@@ -303,11 +303,12 @@ End Namespace
 '' Filename: .......... DocumentPropertyHelper.vb
 '' Description: ....... Gets/Sets values to the document as a custom doc property - see notes
 '' Created: ........... 2025-05-12
-'' Updated: ........... 2025-05-12
+'' Updated: ........... 2026-04-23
 '' Installs to: ....... EZLogger/Helpers
 '' Compatibility: ..... VSTO
 '' Contact Author: .... lundeen-bryan
 '' Copyright:  ........ ©2025. All rights reserved.
 '' Notes: ............. _
 ' (1) Must use InitializeVsto at some point in the call stack to avoid errors
+' (2) Added ability to get early 90-Day properties
 ''===========================================================================================

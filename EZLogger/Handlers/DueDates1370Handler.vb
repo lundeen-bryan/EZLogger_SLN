@@ -2,6 +2,7 @@
 ' Filename=DueDates1370Handler.vb
 ' !See Label Footer for notes
 
+Imports Microsoft.Office.Interop.Word
 Imports EZLogger.Helpers
 Imports System.Windows.Forms
 
@@ -203,7 +204,8 @@ Namespace Handlers
         End Sub
 
         ''' <summary>
-        ''' Populates due dates and related labels in the provided ReportTypeView based on the active Word document.
+        ''' Populates due dates and related labels in the provided ReportTypeView based on values stored in 
+        ''' the active Word document properties.
         ''' </summary>
         ''' <param name="view">The ReportTypeView instance containing the controls to update.</param>
         ''' <remarks>
@@ -247,13 +249,28 @@ Namespace Handlers
             Dim commitmentDateText As String = view.CommitmentDateLbl.Content?.ToString()
             Dim parsedDate As Date
 
+            Dim early90str As String = doc.CustomDocumentProperties("Early90Day").Value.ToString
+            Dim early90datestr As String = doc.CustomDocumentProperties("Early90Date").Value.ToString
+
             If Not Date.TryParse(commitmentDateText, parsedDate) Then
                 Exit Sub ' If no valid date, just stop
             End If
 
+            Dim parsedEarlyDate As Date
+            Dim early90DayValue As Integer = 0
+            Dim baseDate As Date = parsedDate
+            Dim ninetyDayDate As Date
+
             If classification = "PC1370" Then
                 ' Fill extended date labels
-                Dim ninetyDayDate As Date = parsedDate.AddDays(90)
+                If Integer.TryParse(early90str, early90DayValue) Then
+                    If early90DayValue = 1 AndAlso Date.TryParse(early90datestr, parsedEarlyDate) Then
+                        ninetyDayDate = parsedEarlyDate
+                    Else
+                        ninetyDayDate = baseDate.AddDays(90)
+                    End If
+                End If
+
                 view.NinetyDayLbl.Content = ninetyDayDate.ToString("MM/dd/yyyy")
 
                 Dim ninemo As Date = ninetyDayDate.AddMonths(6)
@@ -289,7 +306,7 @@ End Namespace
 '' Filename: .......... DueDates1370Handler.vb
 '' Description: ....... manages the logic for calculating, displaying and saving 1370 report due dates
 '' Created: ........... 2025-05-02
-'' Updated: ........... 2025-05-02
+'' Updated: ........... 2026-04-23
 '' Installs to: ....... EZLogger/Handlers
 '' Compatibility: ..... VSTO, WPF
 '' Contact Author: .... lundeen-bryan
@@ -307,4 +324,7 @@ End Namespace
 ' - PopulateDueDates(view As DueDates1370View): Populates 1370 due date
 '   labels based on the Classification and Commitment date in the active
 '   Word document.
+' (2) Refactored to use Early90 and Early90Date custom document properties
+'   to calculate successive due dates. If 90-Day was early, this affects
+'   subsequent due dates and it will now show that to the user. 
 ''===========================================================================================

@@ -113,60 +113,6 @@ Public Module DatabaseHelper
     End Function
 
     ''' <summary>
-    ''' Uses uspListEarly90DayReports to return completion of early 90-Day Reports
-    ''' Note this uses a DataTable approach whereas most of this project uses a DTO.
-    ''' </summary>
-    Public Function GetEarly90DayInfo(patientNumber As String) As PatientCls
-        Dim patient As New PatientCls()
-        Dim connStr As String = ConfigHelper.GetGlobalConfigValue("database", "connectionString")
-        Dim dtEarly As New DataTable()
-        Dim row As DataRow = Nothing
-
-        If String.IsNullOrWhiteSpace(patientNumber) Then Return patient
-
-        If String.IsNullOrWhiteSpace(connStr) Then
-            MessageBox.Show("SQL Server connection string not found in global_config.json.", "Missing Config", MessageBoxButton.OK, MessageBoxImage.Error)
-            Return patient
-        End If
-
-        Try
-            Using conn As New SqlConnection(connStr)
-                conn.Open()
-
-                Using cmd As New SqlCommand("uspGetEarly90DayInfo", conn)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Parameters.AddWithValue("@ptnum", patientNumber)
-
-                    Using daEarly As New SqlDataAdapter(cmd)
-                        daEarly.Fill(dtEarly)
-
-                        If dtEarly.Rows.Count > 0 Then
-                            row = dtEarly.Rows(0)
-
-                            If Not IsDBNull(row("Early")) Then
-                                patient.EarlyNinetyDay = Convert.ToInt32(row("Early"))
-                                'Early (int)
-                            Else
-                                patient.EarlyNinetyDay = 0
-                            End If
-                            If patient.EarlyNinetyDay = 1 AndAlso Not IsDBNull(row("Completed90")) Then
-                                patient.Completion90 = Convert.ToDateTime(row("Completed90"))
-                                ' Completed90 (date) - only if Early = 1
-                            End If
-                        End If
-                    End Using
-                End Using
-            End Using
-
-        Catch ex As Exception
-            MessageBox.Show("SQL Server error while retrieving Early 90-Day data: " & ex.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error)
-        End Try
-
-        Return patient
-
-    End Function
-
-    ''' <summary>
     ''' Retrieves a single patient record matching the given patient number.
     ''' </summary>
     ''' <param name="patientNumber">The patient number to search for.</param>
@@ -185,6 +131,7 @@ Public Module DatabaseHelper
                 conn.Open()
 
                 Using cmd As New SqlCommand("uspGetPatientByNumber", conn)
+                    cmd.CommandType = CommandType.StoredProcedure
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
                     Using reader As SqlDataReader = cmd.ExecuteReader()
