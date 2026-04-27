@@ -35,8 +35,8 @@
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\blundeen\OneDrive - Department of State Hospitals\Attachments\EZLogger-Install\</PublishUrl>
-    <InstallUrl>\\Users\lunde\repos\cs\ezlogger\ClickOnceTest\</InstallUrl>
+    <PublishUrl>I:\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</PublishUrl>
+    <InstallUrl>\\nshfs1p\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</InstallUrl>
     <TargetCulture>en</TargetCulture>
     <ApplicationVersion>1.0.0.20</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
