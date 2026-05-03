@@ -69,7 +69,7 @@ Namespace Handlers
 
                 ' Validate and write each date if present
                 If currentDueDate.HasValue Then
-                    DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Current Due Date", currentDueDate.Value.ToString("MM/dd/yyyy"))
+                    DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Due Date", currentDueDate.Value.ToString("MM/dd/yyyy"))
                 End If
 
                 If nextDueDate.HasValue Then
