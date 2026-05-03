@@ -130,33 +130,8 @@ Public Module DatabaseHelper
             Using conn As New SqlConnection(connStr)
                 conn.Open()
 
-				' TODO: Add code to return if pt had early 90-Day using EZL_IST tbl
-                Dim query As String = "
-                SELECT
-                    PatientNumber,
-                    FirstPatientNumber,
-                    CommitmentDate,
-                    AdmissionDate,
-                    Expiration,
-                    Dob,
-                    PatientName,
-                    Lname,
-                    Fname,
-                    Mname,
-                    BedStatus,  -- renamed from location
-                    Program,
-                    Unit,
-                    Classification,
-                    County,
-                    Language,
-                    Psychiatrist,
-                    Evaluator,
-                    Sex
-                FROM EZL
-                WHERE PatientNumber = @patientNumber;
-            "
-
-                Using cmd As New SqlCommand(query, conn)
+                Using cmd As New SqlCommand("uspGetPatientByNumber", conn)
+                    cmd.CommandType = CommandType.StoredProcedure
                     cmd.Parameters.AddWithValue("@patientNumber", patientNumber)
 
                     Using reader As SqlDataReader = cmd.ExecuteReader()

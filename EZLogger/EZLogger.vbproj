@@ -35,10 +35,10 @@
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\lunde\repos\cs\ezlogger\</PublishUrl>
-    <InstallUrl>\\Users\lunde\repos\cs\ezlogger\ClickOnceTest\</InstallUrl>
+    <PublishUrl>I:\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</PublishUrl>
+    <InstallUrl>\\nshfs1p\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.19</ApplicationVersion>
+    <ApplicationVersion>1.0.0.20</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -457,6 +457,7 @@
     <Compile Include="Helpers\ExportPdfHelper.vb" />
     <Compile Include="Helpers\FileNameHelper.vb" />
     <Compile Include="Helpers\FormPositionHelper.vb" />
+    <Compile Include="Helpers\GetEarly90DayHelper.vb" />
     <Compile Include="Helpers\ListHelper.vb" />
     <Compile Include="Helpers\LogHelper.vb" />
     <Compile Include="Helpers\MailMergeHelper.vb" />
@@ -714,6 +715,7 @@
       <DependentUpon>ReportWizardTaskPaneContainer.vb</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="EZLogger_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.vb</DependentUpon>
@@ -938,7 +940,7 @@
     <ManifestKeyFile>EZLogger_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7546531452A9A37E5C1DF3396191941418A2E138</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FFB926487BEDA56CAB6AEBE0F4089A71A92088B6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a Visual Basic project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
