@@ -66,6 +66,7 @@ Namespace Handlers
                 ' Extract selected dates from the date pickers
                 Dim currentDueDate As Nullable(Of Date) = view.CurrentDueDatePick.SelectedDate
                 Dim nextDueDate As Nullable(Of Date) = view.NextDueDatePick.SelectedDate
+                Dim daysDifference As Integer = view.DaysSinceTxt.Text
 
                 ' Validate and write each date if present
                 If currentDueDate.HasValue Then
@@ -75,6 +76,9 @@ Namespace Handlers
                 If nextDueDate.HasValue Then
                     DocumentPropertyHelper.WriteCustomProperty(wordDoc, "Next Due Date", nextDueDate.Value.ToString("MM/dd/yyyy"))
                 End If
+
+                ' Write Rush Status and Days Since Due to doc properties
+                RushStatusHelper.SetRushStatusAndDaysSinceDue(currentDueDate)
 
                 MsgBoxHelper.Show("PPR due dates saved to document properties.")
 
