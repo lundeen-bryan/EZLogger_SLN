@@ -38,7 +38,7 @@
     <PublishUrl>I:\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</PublishUrl>
     <InstallUrl>\\nshfs1p\FCLSGRP\Forensic Office\Programming\EZ Logger\NewEZLogger\</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.22</ApplicationVersion>
+    <ApplicationVersion>1.0.0.23</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
